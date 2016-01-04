@@ -1,0 +1,1634 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass book
+\begin_preamble
+\usepackage{a4wide}
+\end_preamble
+\options a4paper
+\use_default_options false
+\begin_modules
+knitr
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding iso8859-1
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 0
+\use_package stackrel 0
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Sampling Distributions
+\end_layout
+
+\begin_layout Chunk
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Chunk
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<echo=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+if(file.exists('Global_Knitr_Opts.R')){
+\end_layout
+
+\begin_layout Plain Layout
+
+  source('Global_Knitr_Opts.R')
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+opts_chunk$set(fig.path   ='figure/Ch_4_SamplingDistributions/') 
+\end_layout
+
+\begin_layout Plain Layout
+
+opts_chunk$set(cache.path = 'cache/Ch_4_SamplingDistributions/')
+\end_layout
+
+\begin_layout Plain Layout
+
+opts_chunk$set(cache      =  TRUE)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Should be: 1) linear functions of a random variable (E and V).
+ The sums of independent RVs (E and V).
+ Finally Average of independent RVs (E, V, and CLT).
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Claim: For random variables 
+\begin_inset Formula $X$
+\end_inset
+
+ and 
+\begin_inset Formula $Y$
+\end_inset
+
+ and constant 
+\begin_inset Formula $a$
+\end_inset
+
+ the following statements hold:
+\begin_inset Formula 
+\begin{eqnarray*}
+E\left(aX\right) & = & aE\left(X\right)\\
+Var\left(aX\right) & = & a^{2}Var\left(X\right)\\
+E\left(X+Y\right) & = & E\left(X\right)+E\left(Y\right)\\
+E\left(X-Y\right) & = & E\left(X\right)-E\left(Y\right)\\
+Var\left(X\pm Y\right) & = & Var\left(X\right)+Var\left(Y\right)\;\textrm{if X,Y are independent}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Example for a Discrete case: Suppose that the number of cavities (
+\begin_inset Formula $X$
+\end_inset
+
+) that are detected during a trip to the dentist can be modeled via a Poisson
+ with 
+\begin_inset Formula $\lambda=1$
+\end_inset
+
+.
+ This dentist charges $50 for filling each cavity, and we are interested
+ in calculating the estimated cost 
+\begin_inset Formula $C=\$50X$
+\end_inset
+
+.
+ Lets walk through this:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+echo=FALSE
+\end_layout
+
+\end_inset
+
+X <- 0:8;C <- X*50;
+\end_layout
+
+\begin_layout Plain Layout
+
+P <- round(dpois(X, lambda=1), digits=3);
+\end_layout
+
+\begin_layout Plain Layout
+
+out <- rbind(X,C,P);
+\end_layout
+
+\begin_layout Plain Layout
+
+out <- as.matrix(out);
+\end_layout
+
+\begin_layout Plain Layout
+
+rownames(out) <- c('Num Cavities', 'Cost', 'Probability');
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+% latex table generated in R 2.13.1 by xtable 1.5-6 package 
+\end_layout
+
+\begin_layout Plain Layout
+
+% Wed Sep 28 14:57:31 2011 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{table}[ht] 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tabular}{rrrrrrrrrrr}   
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline  
+\end_layout
+
+\begin_layout Plain Layout
+
+Num Cavities & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & ...
+ 
+\backslash
+
+\backslash
+    
+\end_layout
+
+\begin_layout Plain Layout
+
+Cost & 0 & 50 & 100 & 150 & 200 & 250 & 300 & 350 & 400 & ...
+ 
+\backslash
+
+\backslash
+    
+\end_layout
+
+\begin_layout Plain Layout
+
+Probability & 0.3679 & 0.3679 & 0.1839 & 0.0613 & 0.0153 & 0.0031 & 0.0005 & 0.0001
+ & 0.0000 & ...
+ 
+\backslash
+
+\backslash
+     
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tabular} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{center} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{table}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Recall that we calculated the expectation of a Poisson random variable as
+\begin_inset Formula 
+\begin{eqnarray*}
+E[X] & = & \sum_{x=0}^{\infty}x\, P(X=x)\\
+ & = & 0(0.3679)+1(0.3679)+2(0.1839)+\dots\\
+ & = & 1\\
+ & = & \lambda
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now doing the same calculation for my cost random variable, 
+\begin_inset Formula 
+\begin{eqnarray*}
+E[C] & = & \sum_{costs}c\, P\left(C=c\right)\\
+ & = & \sum_{x=0}^{\infty}50\, x\, P(X=x)\\
+ & = & 50\sum_{x=0}^{\infty}x\, P(X=x)\\
+ & = & 50\, E\left[X\right]
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A similar calculation for variance can be done.
+ 
+\begin_inset Formula 
+\begin{eqnarray*}
+Var\left[C\right] & = & \sum_{costs}(c-E[C])^{2}\, P(C=c)\\
+ & = & \sum_{x=0}^{\infty}\left(50x-50E[X]\right)^{2}\, P(X=x)\\
+ & = & \sum_{x=0}^{\infty}50^{2}\left(x-E[X]\right)^{2}\, P(X=x)\\
+ & = & 50^{2}\sum_{x=0}^{\infty}\left(x-E[X]\right)^{2}\, P(X=x)\\
+ & = & 50^{2}\, Var(X)
+\end{eqnarray*}
+
+\end_inset
+
+Qualitative support: Recalling that we can think of the expectation and
+ variance of a distribution as the sample mean and variance of an infinitely
+ large sample, lets run some simulations of really large samples.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+echo=TRUE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+n <- 10000
+\end_layout
+
+\begin_layout Plain Layout
+
+x <- rnorm(n, mean=2.5, sd=2)
+\end_layout
+
+\begin_layout Plain Layout
+
+mean(x)
+\end_layout
+
+\begin_layout Plain Layout
+
+mean(2*x)
+\end_layout
+
+\begin_layout Plain Layout
+
+var(x)
+\end_layout
+
+\begin_layout Plain Layout
+
+var(2*x)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Why is this the case? Multiplying by a constant only rescales the distribution
+ (a value of 9 is now 18, etc) and the mean is rescaled along with all the
+ rest of the values.
+ However since the variance is defined by the squared distances from the
+ mean, the variance is multiplied by the constant 
+\emph on
+squared.
+
+\emph default
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+echo=FALSE, fig.height=3, fig.width=8
+\end_layout
+
+\end_inset
+
+library(ggplot2);
+\end_layout
+
+\begin_layout Plain Layout
+
+data <- data.frame(x=c(x,2*x), 
+\end_layout
+
+\begin_layout Plain Layout
+
+                   group=factor(c(rep('X',n), rep('2 * X',n)), 
+\end_layout
+
+\begin_layout Plain Layout
+
+                   levels=c('X','2 * X')));
+\end_layout
+
+\begin_layout Plain Layout
+
+p <- qplot(x, data=data, facets=.~group);
+\end_layout
+
+\begin_layout Plain Layout
+
+print( p ) 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+echo=TRUE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+x <- rnorm(n, mean=2.5, sd=2)
+\end_layout
+
+\begin_layout Plain Layout
+
+y <- rnorm(n, mean=2.5, sd=2)
+\end_layout
+
+\begin_layout Plain Layout
+
+mean( x+y )
+\end_layout
+
+\begin_layout Plain Layout
+
+mean( x-y )
+\end_layout
+
+\begin_layout Plain Layout
+
+var( x+y )
+\end_layout
+
+\begin_layout Plain Layout
+
+var( x-y )
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Adding two independent random variables will result in a new random variable
+ whose expectation is the sum of the other two.
+ However the standard deviations do not add together but the variances do.
+ This is why statisticians prefer to work with variances instead of standard
+ deviations.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+echo=FALSE, fig.height=4, fig.width=8
+\end_layout
+
+\end_inset
+
+library(ggplot2);
+\end_layout
+
+\begin_layout Plain Layout
+
+data <- data.frame(x=c(x,x+y,y,x-y),
+\end_layout
+
+\begin_layout Plain Layout
+
+                   mygroup=gl(4,n,labels=c('X','X + Y','Y','X - Y')))
+\end_layout
+
+\begin_layout Plain Layout
+
+p <- ggplot(data, aes(x=x)) + 
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_histogram(binwidth=.5) + 
+\end_layout
+
+\begin_layout Plain Layout
+
+  facet_wrap( ~ mygroup) 
+\end_layout
+
+\begin_layout Plain Layout
+
+print( p ) 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Notice that the standard deviation of the sums is 
+\begin_inset Formula $\sqrt{8}\approx2.8$
+\end_inset
+
+ which is bigger than the two original distributions, but not twice as big.
+\end_layout
+
+\begin_layout Standard
+These calculations can be done using 
+\emph on
+any 
+\emph default
+distributions and the results will still hold.
+ Try it at home!
+\end_layout
+
+\begin_layout Section
+Mean and Variance of the Sample Mean
+\end_layout
+
+\begin_layout Standard
+We have been talking about random variables drawn from a known distribution
+ and being able to derive their expected values and variances.
+ We now turn to the mean of a collection of random variables.
+ Because sample values are random, any function of them is also random.
+ So even though the act of calculating a mean is not a random process, the
+ numbers that are feed into the algorithm 
+\emph on
+are random.
+
+\emph default
+ Thus the sample mean will change from sample to sample and we are interested
+ in how it varies.
+\end_layout
+
+\begin_layout Standard
+Using the rules we have just confirmed, it is easy to calculate the expectation
+ and variance of the sample mean.
+ Given a sample 
+\begin_inset Formula $X_{1},X_{2},\dots,X_{n}$
+\end_inset
+
+ of observations where all the observations are independent of each other
+ and all the observations have expectation 
+\begin_inset Formula $E\left[X_{i}\right]=\mu$
+\end_inset
+
+ and variance 
+\begin_inset Formula $Var\left[X_{i}\right]=\sigma^{2}$
+\end_inset
+
+ then 
+\begin_inset Formula 
+\begin{eqnarray*}
+E\left[\bar{X}\right] & = & E\left[\frac{1}{n}\sum_{i=1}^{n}X_{i}\right]\\
+ & = & \frac{1}{n}E\left[\sum_{i=1}^{n}X_{i}\right]\\
+ & = & \frac{1}{n}\sum_{i=1}^{n}E\left[X_{i}\right]\\
+ & = & \frac{1}{n}\sum_{i=1}^{n}\mu\\
+ & = & \frac{1}{n}\, n\mu\\
+\\
+ & = & \mu
+\end{eqnarray*}
+
+\end_inset
+
+and
+\begin_inset Formula 
+\begin{eqnarray*}
+Var\left[\bar{X}\right] & = & Var\left[\frac{1}{n}\sum_{i=1}^{n}X_{i}\right]\\
+ & = & \frac{1}{n^{2}}Var\left[\sum_{i=1}^{n}X_{i}\right]\\
+ & = & \frac{1}{n^{2}}\sum_{i=1}^{n}Var\left[X_{i}\right]\\
+ & = & \frac{1}{n^{2}}\sum_{i=1}^{n}\sigma^{2}\\
+ & = & \frac{1}{n^{2}}\, n\sigma^{2}\\
+\\
+ & = & \frac{\sigma^{2}}{n}
+\end{eqnarray*}
+
+\end_inset
+
+Notice that the sample mean has the same expectation as the original distributio
+n that the samples were pulled from, 
+\emph on
+but it has a smaller variance! 
+\emph default
+So the sample mean is an unbiased estimator of the population mean 
+\begin_inset Formula $\mu$
+\end_inset
+
+ and the average distance of the sample mean to the population mean decreases
+ as the sample size becomes larger.
+ We can also explore this phenomena by simulation.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+echo=TRUE
+\end_layout
+
+\end_inset
+
+Num.Sims <- 10000
+\end_layout
+
+\begin_layout Plain Layout
+
+n <- 5
+\end_layout
+
+\begin_layout Plain Layout
+
+samples <- rep(0, Num.Sims)
+\end_layout
+
+\begin_layout Plain Layout
+
+for( i in 1:Num.Sims ){
+\end_layout
+
+\begin_layout Plain Layout
+
+  samples[i] <- mean( rnorm(n, mean=0, sd=10) )
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+mean(samples)
+\end_layout
+
+\begin_layout Plain Layout
+
+var(samples)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We can look at how different sample sizes affect the variance by looking
+ at 
+\begin_inset Formula $n=1,5,25,100$
+\end_inset
+
+.
+ Notice that 
+\begin_inset Formula $n=1$
+\end_inset
+
+ is just averaging 1 observation which is not averaging at all and is just
+ the original random variable.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+echo=FALSE, fig.height=5, fig.width=8, warning=FALSE
+\end_layout
+
+\end_inset
+
+Num.Sims <- 10000
+\end_layout
+
+\begin_layout Plain Layout
+
+n <- c(1,5,25,100)
+\end_layout
+
+\begin_layout Plain Layout
+
+samples <- data.frame(x=0, n=expand.grid(1:Num.Sims, n)[,2])
+\end_layout
+
+\begin_layout Plain Layout
+
+for(i in 1:(Num.Sims*4)){
+\end_layout
+
+\begin_layout Plain Layout
+
+ samples[i, 'x'] <- mean( rnorm(samples[i,'n'], mean=0, sd=10) )
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+samples$n <- factor(samples$n, levels=n, labels=paste('n =',n))
+\end_layout
+
+\begin_layout Plain Layout
+
+ggplot(samples, aes(x=x, y=..density..)) + 
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_histogram(binwidth=.1) + 
+\end_layout
+
+\begin_layout Plain Layout
+
+  facet_wrap( ~ n )
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Distribution of 
+\begin_inset Formula $\bar{X}$
+\end_inset
+
+ if the samples were drawn from a normal distribution
+\end_layout
+
+\begin_layout Standard
+Looking at the graphs in the previous section, it should not be surprising
+ that if 
+\begin_inset Formula $X_{i}\stackrel{iid}{\sim}N\left(\mu,\sigma^{2}\right)$
+\end_inset
+
+ then 
+\begin_inset Formula $\bar{X}$
+\end_inset
+
+ is also normally distributed with a mean and variance that were already
+ calculated.
+ That is
+\begin_inset Formula 
+\[
+\bar{X}\sim N\left(\mu_{\bar{X}}=\mu,\;\sigma_{\bar{X}}^{2}=\frac{\sigma^{2}}{n}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Notation: Since the expectations of 
+\begin_inset Formula $X$
+\end_inset
+
+ and 
+\begin_inset Formula $\bar{X}$
+\end_inset
+
+ are the same, I could drop the subscript for the expectation of 
+\begin_inset Formula $\bar{X}$
+\end_inset
+
+ but it is sometimes helpful to be precise.
+ Since the variances are different we will use 
+\begin_inset Formula $\sigma_{\bar{X}}$
+\end_inset
+
+ to denote the standard deviation of 
+\begin_inset Formula $\bar{X}$
+\end_inset
+
+ and 
+\begin_inset Formula $\sigma_{\bar{X}}^{2}$
+\end_inset
+
+ to denote variance of 
+\begin_inset Formula $\bar{X}$
+\end_inset
+
+.
+ If there is no subscript, we are referring to the population parameter
+ of the distribution from which we taking the sample from.
+\end_layout
+
+\begin_layout Standard
+Exercise: A researcher measures the wingspan of a captured Mountain Plover
+ three times.
+ Assume that each of these 
+\begin_inset Formula $X_{i}$
+\end_inset
+
+ measurements comes from a 
+\begin_inset Formula $N\left(\mu=6\textrm{ inches},\,\sigma^{2}=1^{2}\textrm{ inch}\right)$
+\end_inset
+
+ distribution.
+ 
+\end_layout
+
+\begin_layout Enumerate
+What is the probability that the first observation is greater than 7?
+\begin_inset Formula 
+\begin{eqnarray*}
+P\left(X\ge7\right) & = & P\left(\frac{X-\mu}{\sigma}\ge\frac{7-6}{1}\right)\\
+ & = & P\left(Z\ge1\right)\\
+ & = & 0.1587
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+What is the distribution of the sample mean?
+\begin_inset Formula 
+\[
+\bar{X}\sim N\left(\mu=6,\,\frac{1^{2}}{3}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+What is the probability that the sample mean is greater than 7?
+\begin_inset Formula 
+\begin{eqnarray*}
+P\left(\bar{X}\ge7\right) & = & P\left(\frac{\bar{X}-\mu_{\bar{X}}}{\sigma_{\bar{X}}}\ge\frac{7-6}{\sqrt{\frac{1}{3}}}\right)\\
+ & = & P\left(Z\ge\sqrt{3}\right)\\
+ & = & P\left(Z\ge1.73\right)\\
+ & = & 0.0418
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Example: Suppose that the weight of an adult black bear is normally distributed
+ with standard deviation 
+\begin_inset Formula $\sigma=50$
+\end_inset
+
+ pounds.
+ How large a sample do I need to take to be 
+\begin_inset Formula $95\%$
+\end_inset
+
+ certain that my sample mean is within 
+\begin_inset Formula $10$
+\end_inset
+
+ pounds of the true mean 
+\begin_inset Formula $\mu$
+\end_inset
+
+?
+\end_layout
+
+\begin_layout Standard
+So we want 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\left|\bar{X}-\mu\right|\le10$
+\end_inset
+
+ which we rewrite as
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ 
+\begin_inset Formula 
+\begin{eqnarray*}
+-10 & \le\bar{X}-\mu_{\bar{X}}\le & 10\\
+\\
+\frac{-10}{\left(\frac{50}{\sqrt{n}}\right)} & \le\frac{\bar{X}-\mu_{\bar{X}}}{\sigma_{\bar{X}}}\le & \frac{10}{\left(\frac{50}{\sqrt{n}}\right)}\\
+\\
+\frac{-10}{\left(\frac{50}{\sqrt{n}}\right)} & \le Z\le & \frac{10}{\left(\frac{50}{\sqrt{n}}\right)}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Next we look in our standard normal table to find a 
+\begin_inset Formula $z$
+\end_inset
+
+-value such that 
+\begin_inset Formula $P\left(-z\le Z\le z\right)=0.95$
+\end_inset
+
+ and that value is 
+\begin_inset Formula $z=1.96$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+echo=FALSE, fig.height=4, fig.width=8
+\end_layout
+
+\end_inset
+
+z <- seq(-3, 3, length=1000) 
+\end_layout
+
+\begin_layout Plain Layout
+
+y <- dnorm(z) 
+\end_layout
+
+\begin_layout Plain Layout
+
+plot(z,y, type='l', lwd=2, axes=FALSE, ylab='') 
+\end_layout
+
+\begin_layout Plain Layout
+
+z2 <- seq(-1.96, 1.96, length=1000) 
+\end_layout
+
+\begin_layout Plain Layout
+
+y2 <- dnorm(z2) 
+\end_layout
+
+\begin_layout Plain Layout
+
+polygon( c(-1.96, z2, 1.96), c(0, y2, 0), col='grey' ) 
+\end_layout
+
+\begin_layout Plain Layout
+
+axis(1, at=c(-1.96, -1, 0, 1, 1.96)) 
+\end_layout
+
+\begin_layout Plain Layout
+
+text( 0, .2, '95%') 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+So all we need to do is solve the following equation for 
+\begin_inset Formula $n$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{eqnarray*}
+1.96 & = & \frac{10}{\frac{50}{\sqrt{n}}}\\
+\frac{1.96}{10}\left(50\right) & = & \sqrt{n}\\
+96 & \approx & n
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Central Limit Theorem
+\end_layout
+
+\begin_layout Quote
+I know of scarcely anything so apt to impress the imagination as the wonderful
+ form of cosmic order expressed by the "Law of Frequency of Error".
+ The law would have been personified by the Greeks and deified, if they
+ had known of it.
+ It reigns with serenity and in complete self-effacement, amidst the wildest
+ confusion.
+ The huger the mob, and the greater the apparent anarchy, the more perfect
+ is its sway.
+ It is the supreme law of Unreason.
+ Whenever a large sample of chaotic elements are taken in hand and marshaled
+ in the order of their magnitude, an unsuspected and most beautiful form
+ of regularity proves to have been latent all along.
+ - Sir Francis Galton (1822-1911)
+\end_layout
+
+\begin_layout Standard
+It was not surprising that the average of a number of normal random variables
+ is also a normal random variable.
+ Since the average of a number of binomial random variables cannot be binomial
+ since the average could be something besides a 
+\begin_inset Formula $0$
+\end_inset
+
+ or 
+\begin_inset Formula $1$
+\end_inset
+
+ and the average of Poisson random variables does not have to be an integer.
+\end_layout
+
+\begin_layout Standard
+The question arises, what can we say he distribution of the sample mean
+ if the data comes from a non-normal distribution? The answer is quite a
+ lot, but provided the original distribution has a non-infinite variance
+ and we have a sufficient sample size.
+\end_layout
+
+\begin_layout Named Theorem
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[Central Limit Theorem]
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Named Theorem
+Let 
+\begin_inset Formula $X_{1},\dots X_{n}$
+\end_inset
+
+ be independent observations collected from a distribution with expectation
+ 
+\begin_inset Formula $\mu$
+\end_inset
+
+ and variance 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+.
+ Then the distribution of 
+\begin_inset Formula $\bar{X}$
+\end_inset
+
+ converges to a normal distribution with expectation 
+\begin_inset Formula $\mu$
+\end_inset
+
+ and variance 
+\begin_inset Formula $\sigma^{2}/n$
+\end_inset
+
+ as 
+\begin_inset Formula $n\rightarrow\infty$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+In practice this means that if 
+\begin_inset Formula $n$
+\end_inset
+
+ is large (usually 
+\begin_inset Formula $n>$
+\end_inset
+
+30 is sufficient), then 
+\begin_inset Formula 
+\[
+\bar{X}\stackrel{\cdot}{\sim}N\left(\mu,\,\frac{\sigma^{2}}{n}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Evidence:
+\end_layout
+
+\begin_layout Standard
+Again we turn to simulations.
+ We take samples from a Gamma(1.5,4) distribution which has expectation 
+\begin_inset Formula $\mu=1.5*4=6$
+\end_inset
+
+ and variance 
+\begin_inset Formula $\sigma^{2}=1.5*4^{2}=24$
+\end_inset
+
+ look at histograms of 2,000 sample means for each sample size, 
+\begin_inset Formula $n\in\left\{ 1,5,25,100\right\} $
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+echo=FALSE, fig.height=5, fig.width=8, warning=FALSE
+\end_layout
+
+\end_inset
+
+Num.Sims <- 5000
+\end_layout
+
+\begin_layout Plain Layout
+
+n <- c(1,5,25,100)
+\end_layout
+
+\begin_layout Plain Layout
+
+samples <- data.frame(x=0, n=expand.grid(1:Num.Sims, n)[,2])
+\end_layout
+
+\begin_layout Plain Layout
+
+for(i in 1:(Num.Sims*4)){
+\end_layout
+
+\begin_layout Plain Layout
+
+  samples[i, 'x'] <- mean( rgamma(samples[i,'n'], 1.5, scale=4) )
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+samples$n <- factor(samples$n, levels=n, labels=paste('n =',n))
+\end_layout
+
+\begin_layout Plain Layout
+
+ggplot(samples, aes(x=x, y=..density..)) + 
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_histogram(binwidth=.1) + 
+\end_layout
+
+\begin_layout Plain Layout
+
+  facet_wrap(~n)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+By the time 
+\begin_inset Formula $n=25$
+\end_inset
+
+ the distribution of 
+\begin_inset Formula $\bar{X}$
+\end_inset
+
+ is starting to take on the familiar mound shape of the normal.
+ The case 
+\begin_inset Formula $n=100$
+\end_inset
+
+ should be approximately 
+\begin_inset Formula $N(6,24/100)$
+\end_inset
+
+ and to demonstrate that, we zoom in on just the 
+\begin_inset Formula $n=100$
+\end_inset
+
+ and super-impose the approximate normal density.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+echo=TRUE, fig.height=5, fig.width=8
+\end_layout
+
+\end_inset
+
+data.n100 <- samples[which(samples$n == 'n = 100'),]
+\end_layout
+
+\begin_layout Plain Layout
+
+x.grid=seq(4,8,length=1001)
+\end_layout
+
+\begin_layout Plain Layout
+
+normal.curve <- data.frame(x=x.grid, 
+\end_layout
+
+\begin_layout Plain Layout
+
+                           y=dnorm(x.grid, mean=6, sd=sqrt(24/100)))
+\end_layout
+
+\begin_layout Plain Layout
+
+ggplot(data.n100, aes(x=x)) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_histogram(aes(y=..density..)) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_line( data=normal.curve, aes(y=y), size=2, color='red' )
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+So what does this mean?
+\end_layout
+
+\begin_layout Enumerate
+Variables that are the sum or average of a bunch of other random variables
+ will be close to normal.
+ Example: human height is determined by genetics, pre-natal nutrition, food
+ abundance during adolescence, etc.
+ Similar reasoning explains why the normal distribution shows up surprisingly
+ often in natural science.
+\end_layout
+
+\begin_layout Enumerate
+With sufficient data, the sample mean will have a known distribution and
+ we can proceed as if the sample mean came from a normal distribution.
+\end_layout
+
+\begin_layout Standard
+Example: Suppose the waiting time from order to delivery at a fast-food
+ restaurant is a exponential random variable with rate 
+\begin_inset Formula $\lambda=1/2$
+\end_inset
+
+ minutes and so the expected wait time is 2 minutes and the variance is
+ 4 minutes.
+ What is the approximate probability that we observe a sample of size 
+\begin_inset Formula $n=40$
+\end_inset
+
+ with a mean time greater than 2.5 minutes?
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+P\left(\bar{X}\ge2.5\right) & = & P\left(\frac{\bar{X}-\mu_{\bar{X}}}{\sigma_{\bar{X}}}\ge\frac{2.5-\mu_{\bar{X}}}{\sigma_{\bar{X}}}\right)\\
+ & \approx & P\left(Z\ge\frac{2.5-2}{\frac{2}{\sqrt{40}}}\right)\\
+ & = & P\left(Z\ge1.58\right)\\
+ & = & 0.0571
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Summary
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Itemize
+If we have sampled 
+\begin_inset Formula $n$
+\end_inset
+
+ elements 
+\begin_inset Formula $Y_{1},Y_{2},\dots,Y_{n}$
+\end_inset
+
+ independently and 
+\begin_inset Formula $E\left(Y_{i}\right)=\mu$
+\end_inset
+
+ and 
+\begin_inset Formula $Var\left(Y_{i}\right)=\sigma^{2}$
+\end_inset
+
+ then we want to understand the distribution of the sample mean, that is
+ we want to understand how the sample mean varies from sample to sample.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $E\left(\bar{Y}\right)=\mu$
+\end_inset
+
+.
+ That states that the distribution of the sample mean will centered at 
+\begin_inset Formula $\mu$
+\end_inset
+
+.
+ We expect to sometimes take samples where the sample mean is higher than
+ 
+\begin_inset Formula $\mu$
+\end_inset
+
+ and sometimes less than 
+\begin_inset Formula $\mu$
+\end_inset
+
+, but the average underestimate is the same magnitude as the average overestimat
+e.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $Var\left(\bar{Y}\right)=\frac{\sigma^{2}}{n}$
+\end_inset
+
+.
+ That states that as our sample size increases, we trust the sample mean
+ to be close to 
+\begin_inset Formula $\mu$
+\end_inset
+
+.
+ The larger the sample size, the greater our expectation that the 
+\begin_inset Formula $\bar{Y}$
+\end_inset
+
+ will be close to 
+\begin_inset Formula $\mu$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+If 
+\begin_inset Formula $Y_{1},Y_{2},\dots,Y_{n}$
+\end_inset
+
+ were sampled from a 
+\begin_inset Formula $N\left(\mu,\sigma^{2}\right)$
+\end_inset
+
+ distribution then 
+\begin_inset Formula $\bar{Y}$
+\end_inset
+
+ is normally distributed.
+ 
+\begin_inset Formula 
+\begin{eqnarray*}
+\bar{Y} & \sim & N\left(\mu,\frac{\sigma^{2}}{n}\right)
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+If 
+\begin_inset Formula $Y_{1},Y_{2},\dots,Y_{n}$
+\end_inset
+
+ were sampled from a distribution that is not normal but has mean 
+\begin_inset Formula $\mu$
+\end_inset
+
+ and variance 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+, and our sample size is large, then 
+\begin_inset Formula $\bar{Y}$
+\end_inset
+
+ is 
+\emph on
+approximately 
+\emph default
+normally distributed.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\begin{eqnarray*}
+\bar{Y} & \stackrel{\cdot}{\sim} & N\left(\mu,\frac{\sigma^{2}}{n}\right)
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

@@ -1,0 +1,9 @@
+base
+datasets
+knitr
+ggplot2
+dplyr
+lattice
+car
+mosaicData
+mosaic

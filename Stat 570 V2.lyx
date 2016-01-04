@@ -288,14 +288,6 @@ LatexCommand tableofcontents
 New plan: 
 \end_layout
 
-\begin_layout Standard
-Ch 1) Review of basic statistics.
-\end_layout
-
-\begin_layout Standard
-Ch 2) Bootstrap theory
-\end_layout
-
 \begin_layout Enumerate
 Review of basic Statistics
 \end_layout
@@ -448,7 +440,7 @@ Asymptotic Analysis
 \end_layout
 
 \begin_layout Enumerate
-Simul
+Simulation Analysis
 \end_layout
 
 \end_deeper

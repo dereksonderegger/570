@@ -154,15 +154,7 @@ Statistical software has progressed by leaps and bounds over the last decades.
  The only downside is that there is a substantial learning curve to learning
  a scripting language, particularly for students without any programming
  background.
- The R package 
-\family typewriter
-mosaic
-\family default
- attempts to overcome this difficulty by providing a minimal set of tools
- for doing introductory statistics that all follow the same syntactical
- formula.
- I've made every attempt to use this package to minimize the amount of R
- necessary.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -178,13 +170,13 @@ Because the mathematical and statistical background of typical students
 \begin_layout Standard
 As these notes are in a continual state of being re-written, I endeavor
  to keep the latest version available on the GitHub repository for this
- book at  
+ book at 
 \begin_inset Flex URL
 status open
 
 \begin_layout Plain Layout
 
-http://oak.ucc.nau.edu/dls354/Home/
+https://github.com/dereksonderegger/STA_570_Book/blob/master/Stat_570.pdf
 \end_layout
 
 \end_inset
@@ -192,13 +184,10 @@ http://oak.ucc.nau.edu/dls354/Home/
 .
  In general, I recommend printing the chapter we are currently covering
  in class.
-\end_layout
-
-\begin_layout Standard
-I encourage instructors to use these notes for their own classes and appreciate
- notification of the use to encourage me to keep tweaking the content and
- presentation.
- Finally, I hope these notes useful to a broad range of students.
+ If you wish to submit a bug report, or submit a patch, feel free to log
+ an issue on the GitHub site or to fix it and submit a pull request.
+ If you wish to use these notes for your own class, feel free to do so,
+ but please acknowledge the source.
 \end_layout
 
 \begin_layout Right Address

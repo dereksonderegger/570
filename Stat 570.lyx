@@ -177,7 +177,8 @@ Because the mathematical and statistical background of typical students
 
 \begin_layout Standard
 As these notes are in a continual state of being re-written, I endeavor
- to keep the latest version available on my website 
+ to keep the latest version available on the GitHub repository for this
+ book at  
 \begin_inset Flex URL
 status open
 
@@ -285,6 +286,10 @@ LatexCommand tableofcontents
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 New plan: 
 \end_layout
 
@@ -441,73 +446,32 @@ Asymptotic Analysis
 
 \begin_layout Enumerate
 Simulation Analysis
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \end_deeper
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand input
+filename "0_SummaryStats_Graphics.lyx"
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 \begin_inset CommandInset include
 LatexCommand input
 filename "2_Bootstrapping.lyx"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand input
-filename "3_Probability.lyx"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand input
-filename "4_SamplingDistributions.lyx"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand input
-filename "5_ConfidenceIntervals_and_Ttests_V2.lyx"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand input
-filename "8_TestingAssumptions.lyx"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand input
-filename "9_Analysis_of_Variance.lyx"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand input
-filename "10_Regression.lyx"
 
 \end_inset
 

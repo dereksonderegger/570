@@ -1,0 +1,3306 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass book
+\begin_preamble
+\usepackage{a4wide}
+\end_preamble
+\options a4paper
+\use_default_options false
+\begin_modules
+knitr
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding iso8859-1
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 0
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Summary Statistics and Graphing
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<echo=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+if(file.exists('Global_Knitr_Opts.R')){
+\end_layout
+
+\begin_layout Plain Layout
+
+  source('Global_Knitr_Opts.R')
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+opts_chunk$set(fig.path   ='figure/Ch_0_SummaryStatistics/') 
+\end_layout
+
+\begin_layout Plain Layout
+
+opts_chunk$set(cache.path = 'cache/Ch_0_SummaryStatistics/')
+\end_layout
+
+\begin_layout Plain Layout
+
+opts_chunk$set(cache = FALSE)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+When confronted with a large amount of data, we seek to summarize the data
+ into statistics that somehow capture the essence of the data with as few
+ numbers as possible.
+ Graphing the data has a similar goal...
+ to reduce the data to an image that represents all the key aspects of the
+ raw data.
+ In short, we seek to simplify the data in order to understand the trends
+ while not obscuring important structure.
+ 
+\end_layout
+
+\begin_layout Standard
+For this chapter, we will consider data from a the 2005 Cherry Blossom 10
+ mile run that occurs in Washington DC.
+ This data set has 8636 observations that includes the runners 
+\family typewriter
+state
+\family default
+ of residence, official 
+\family typewriter
+time
+\family default
+ (gun to finish, in seconds), 
+\family typewriter
+net
+\family default
+ time (start line to finish, in seconds), 
+\family typewriter
+age
+\family default
+, and 
+\family typewriter
+gender
+\family default
+ of the runners.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<message=FALSE, warning=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+library(mosaicData) # library of datasets we'll use
+\end_layout
+
+\begin_layout Plain Layout
+
+library(ggplot2)    # graphing functions
+\end_layout
+
+\begin_layout Plain Layout
+
+library(dplyr)      # data summary tools
+\end_layout
+
+\begin_layout Plain Layout
+
+head(TenMileRace)   # examine the first few rows of the data
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In general, I often need to make a distinction between two types of data.
+\end_layout
+
+\begin_layout Itemize
+Discrete (also called Categorical) data is data that can only take a small
+ set of particular values.
+ For example a college student's grade can be either A, B, C, D, or F.
+ A person's sex can be only Male or Female.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Actually this isn't true as both gender and sex are far more complex.
+ However from a statistical point of view it is often useful to simplify
+ our model of the world.
+ George Box famously said, 
+\begin_inset Quotes eld
+\end_inset
+
+All models are wrong, but some are useful.
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ Discrete data could also be numeric, for example a bird could lay 1, 2,
+ 3, ...
+ eggs in a breeding season.
+ 
+\end_layout
+
+\begin_layout Itemize
+Continuous data is data that can take on an infinite number of numerical
+ values.
+ For example a person's height could be 68 inches, 68.2 inches, 68.23212 inches.
+ 
+\end_layout
+
+\begin_layout Standard
+To decided if a data attribute is discrete or continuous, I often as 
+\begin_inset Quotes eld
+\end_inset
+
+Does a fraction of a value make sense?
+\begin_inset Quotes erd
+\end_inset
+
+ If so, then the data is continuous.
+ 
+\end_layout
+
+\begin_layout Section
+Graphical summaries of data
+\end_layout
+
+\begin_layout Subsection
+Univariate - Categorical
+\end_layout
+
+\begin_layout Standard
+If we have univariate data about a number of groups, often the best way
+ to display it is using barplots.
+ They have the advantage over pie-charts that groups are easily compared.
+ 
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+This is an example of a poorly labeled covariate, this really ought to be
+ gender.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<fig.height=3, fig.width=5>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+ggplot(TenMileRace, aes(x=sex)) + geom_bar()
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Univariate - Continuous
+\end_layout
+
+\begin_layout Standard
+A histogram looks very similar to a bar plot, but is used to represent continuou
+s data instead of categorical and therefore the bars will actually be touching.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<fig.height=3, fig.width=5>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+ggplot(TenMileRace, aes(x=net)) + geom_histogram()
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Often when a histogram is presented, the y-axis is labeled as 
+\begin_inset Quotes eld
+\end_inset
+
+frequency
+\begin_inset Quotes erd
+\end_inset
+
+ or 
+\begin_inset Quotes eld
+\end_inset
+
+count
+\begin_inset Quotes erd
+\end_inset
+
+ which is the number of observations that fall within a particular bin.
+ However, it is often desirable to scale the y-axis so that if we were to
+ sum up the area (height * width) then the total area would sum to 1.
+ The rescaling that accomplishes this is 
+\begin_inset Formula 
+\[
+density=\frac{\#\; observations\; in\; bin}{total\; number\; observations}\cdot\frac{1}{bin\; width}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Bivariate - Categorical vs Continuous
+\end_layout
+
+\begin_layout Standard
+We often wish to compare response levels from two or more groups of interest.
+ To do this, we often use side-by-side boxplots.
+ Notice that each observation is associated with a continuous response value
+ and a categorical value.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<fig.height=3, fig.width=5>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+ggplot(TenMileRace, aes(x=sex, y=net)) + geom_boxplot()
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+In this graph, the edges of the box are defined by the 25% and 75% quantiles.
+ That is to say, 25% of the data is to the below of the box, 50% of the
+ data is in the box, and the final 25% of the data is to the above of the
+ box.
+ The dots are data points that traditionally considered outliers.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Define the Inter-Quartile Range (IQR) as the length of the box.
+ Then any observation more than 1.5*IQR from the box is considered an outlier.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sometimes I think that box-and-whisker plot obscures too much of the details
+ of the data and we should look at the side-by-side histograms instead.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<fig.height=3, fig.width=5>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+ggplot(TenMileRace, aes(x=net)) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_histogram() +
+\end_layout
+
+\begin_layout Plain Layout
+
+  facet_grid( .
+ ~ sex )  # side-by-side plots based on sex
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Orientation of graphs can certainly matter.
+ In this case, it makes sense to 
+\emph on
+stack
+\emph default
+ the two graphs to facilitate comparisons.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<fig.height=3, fig.width=5>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+ggplot(TenMileRace, aes(x=net)) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_histogram() +
+\end_layout
+
+\begin_layout Plain Layout
+
+  facet_grid( sex ~ .
+ )  # side-by-side plots based on sex
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Bivariate - Continuous vs Continuous
+\end_layout
+
+\begin_layout Standard
+Finally we might want to examine the relationship between two continuous
+ random variables.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<fig.height=3, fig.width=5>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+ggplot(TenMileRace, aes(x=age, y=net, color=sex)) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_point()
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Measures of Centrality
+\end_layout
+
+\begin_layout Standard
+The most basic question to ask of any dataset is 'What is the typical value?'
+ There are several ways to answer that question and they should be familiar
+ to most students.
+\end_layout
+
+\begin_layout Subsection*
+Mean
+\end_layout
+
+\begin_layout Standard
+Often called the average, or arithmetic mean, we will denote this special
+ statistic with a bar.
+ We define
+\begin_inset Formula 
+\[
+\bar{x}=\frac{1}{n}\sum_{i=1}^{n}x_{i}=\frac{1}{n}\left(x_{1}+x_{2}+\dots+x_{n}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+If we want to find the mean of five numbers 
+\begin_inset Formula $\left\{ 3,6,4,8,2\right\} $
+\end_inset
+
+ the calculation is
+\begin_inset Formula 
+\begin{eqnarray*}
+\bar{x} & = & \frac{1}{5}\left(3+6+4+8+2\right)\\
+ & = & \frac{1}{5}\left(23\right)\\
+ & = & 23/5\\
+ & = & 4.6
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This can easily be calculated in R by using the function 
+\family typewriter
+mean()
+\family default
+.
+ We first extract the column we are interested in using the notation: 
+\family typewriter
+DataSet$ColumnName
+\family default
+ where the 
+\family typewriter
+$
+\family default
+ signifies grabbing the column.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+mean( TenMileRace$net ) # Simplest way of doing this calculation
+\end_layout
+
+\begin_layout Plain Layout
+
+TenMileRace %>% summarise( mean(net) )  # using the dplyr package
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Median
+\end_layout
+
+\begin_layout Standard
+If the data were to be ordered, the median would be the middle most observation
+ (or, in the case that 
+\begin_inset Formula $n$
+\end_inset
+
+ is even, the mean of the two middle most values).
+\end_layout
+
+\begin_layout Standard
+In our simple case of five observations 
+\begin_inset Formula $\left\{ 3,6,4,8,2\right\} $
+\end_inset
+
+, we first sort the data into 
+\begin_inset Formula $\left\{ 2,3,4,6,8\right\} $
+\end_inset
+
+ and then the middle observation is clearly 
+\begin_inset Formula $4$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+In R the median is easily calculated by the function 
+\family typewriter
+median()
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+TenMileRace %>% summarise( median(net) )  
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Mode
+\end_layout
+
+\begin_layout Standard
+This is the observation value with the most number of occurrences.
+\end_layout
+
+\begin_layout Subsection*
+Examples 
+\end_layout
+
+\begin_layout Itemize
+If my father were to become bored with retirement and enroll in my STA 570
+ course, how would that affect the mean and median age of my 570 students?
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The mean would move much more than the median.
+ Suppose the class has 5 people right now, ages 21, 22, 23, 23, 24 and therefore
+ the median is 23.
+ When my father joins, the ages will be 21, 22, 23, 23, 24, 72 and the median
+ will remain 23.
+ However, the mean would move because we add in such a large outlier.
+ Whenever we are dealing with skewed data, the mean is pulled toward the
+ outlying observations.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+In 2010, the median NFL player salary was $770,000 while the mean salary
+ was $1.9 million.
+ Why the difference? 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Because salary data is 
+\emph on
+skewed
+\emph default
+ superstar players that make huge salaries (in excess of 20 million) while
+ the minimum salary for a rookie is $375,000.
+ Financial data often reflects a highly skewed distribution and the median
+ is often a better measure of centrality in these cases.
+\end_layout
+
+\end_deeper
+\begin_layout Section
+Measures of Variation
+\end_layout
+
+\begin_layout Standard
+The second question to ask of a dataset is 'How much variability is there?'
+ Again there are several ways to measure that.
+\end_layout
+
+\begin_layout Subsection*
+Range
+\end_layout
+
+\begin_layout Standard
+Range is the distance from the largest to the smallest value in the dataset.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+max( TenMileRace$net ) - min( TenMileRace$net )
+\end_layout
+
+\begin_layout Plain Layout
+
+TenMileRace %>% summarise( range = max(net) - min(net) )  
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Inter-Quartile Range
+\end_layout
+
+\begin_layout Standard
+The 
+\series bold
+p-th
+\series default
+ percentile is the observation (or observations) that has at most 
+\begin_inset Formula $p$
+\end_inset
+
+ percent of the observations below it and 
+\begin_inset Formula $(1-p)$
+\end_inset
+
+ above it, where 
+\begin_inset Formula $p$
+\end_inset
+
+ is between 0 and 100.
+ The median is the 
+\begin_inset Formula $50$
+\end_inset
+
+th percentile.
+ Often we are interested in splitting the data into four equal sections
+ using the 
+\begin_inset Formula $25$
+\end_inset
+
+th, 
+\begin_inset Formula $50$
+\end_inset
+
+th, and 
+\begin_inset Formula $75$
+\end_inset
+
+th percentiles (which, because it splits the data into four sections, we
+ often call these the 
+\begin_inset Formula $1$
+\end_inset
+
+st, 
+\begin_inset Formula $2$
+\end_inset
+
+nd, and 
+\begin_inset Formula $3$
+\end_inset
+
+rd quartiles).
+ 
+\end_layout
+
+\begin_layout Standard
+In general I could be interested in dividing my data up into an arbitrary
+ number of sections, and refer to those as 
+\emph on
+quantiles 
+\emph default
+of my data.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+quantile( TenMileRace$net ) # this works
+\end_layout
+
+\begin_layout Plain Layout
+
+# I can't do the following because the quantile() function spits out 5 values,
+ not 1
+\end_layout
+
+\begin_layout Plain Layout
+
+# TenMileRace %>% summarise( quantile(net) )  
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The inter-quartile range (IQR) is defined as the distance from the 
+\begin_inset Formula $3$
+\end_inset
+
+rd quartile to the 
+\begin_inset Formula $1$
+\end_inset
+
+st.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+TenMileRace %>% summarise( IQR(net) ) 
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Notice that we've defined IQR before when we looked at box-and-whisker plots
+ and this is exactly the length of the box.
+ 
+\end_layout
+
+\begin_layout Subsection*
+Variance
+\end_layout
+
+\begin_layout Standard
+One way to measure the spread of a distribution is to ask 
+\begin_inset Quotes eld
+\end_inset
+
+what is the average distance of an observation to the mean?
+\begin_inset Quotes erd
+\end_inset
+
+ We could define the 
+\begin_inset Formula $i$
+\end_inset
+
+th 
+\series bold
+deviate
+\series default
+ as 
+\begin_inset Formula $e_{i}=x_{i}-\bar{x}$
+\end_inset
+
+ and then ask what is the average deviate? The problem with this approach
+ is that the sum (and thus the average) of all deviates is 
+\emph on
+always
+\emph default
+ 
+\begin_inset Formula $0$
+\end_inset
+
+.
+\begin_inset Formula 
+\begin{eqnarray*}
+\sum_{i=1}^{n}(x_{i}-\bar{x}) & = & \sum_{i=1}^{n}x_{i}-\sum_{i=1}^{n}\bar{x}\\
+ & = & n\frac{1}{n}\sum_{i=1}^{n}x_{i}-n\bar{x}\\
+ & = & n\bar{x}-n\bar{x}\\
+ & = & 0
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The big problem is that about half the deviates are negative and the others
+ are positive.
+ What we really care is the distance from the mean, not the sign.
+ So we could either take the absolute value, or square it.
+ 
+\end_layout
+
+\begin_layout Standard
+There are some really good theoretical reasons to chose the square option
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+First, squared terms are easier to deal with compared to absolute values,
+ but more importantly, the spread of the normal distribution is parameterized
+ via squared distances from the mean.
+ Because the normal distribution is so important, we've chosen to define
+ the sample variance so it matches up with the natural spread parameter
+ of the normal distribution.
+\end_layout
+
+\end_inset
+
+, so we square the deviates and then find the average deviate size (approximatel
+y) and call that the 
+\series bold
+sample variance
+\series default
+.
+\begin_inset Formula 
+\[
+s^{2}=\frac{1}{n-1}\sum_{i=1}^{n}\left(x_{i}-\bar{x}\right)^{2}
+\]
+
+\end_inset
+
+Why do we divide by 
+\begin_inset Formula $n-1$
+\end_inset
+
+ instead of 
+\begin_inset Formula $n$
+\end_inset
+
+? 
+\end_layout
+
+\begin_layout Enumerate
+If I divide by 
+\begin_inset Formula $n$
+\end_inset
+
+, then on average, we would tend to underestimate the population variance
+ 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Enumerate
+The reason is because we are using the same set of data to estimate 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+ as we did to estimate the population mean (
+\begin_inset Formula $\mu$
+\end_inset
+
+).
+ If I could use 
+\begin_inset Formula $\frac{1}{n}\sum_{i=1}^{n}\left(x_{i}-\mu\right)^{2}$
+\end_inset
+
+ as my estimator, we would be fine.
+ But since I have to replace 
+\begin_inset Formula $\mu$
+\end_inset
+
+ with 
+\begin_inset Formula $\bar{x}$
+\end_inset
+
+ we have to pay a price.
+\end_layout
+
+\begin_layout Enumerate
+Because the estimation of 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+ requires the estimation of one other quantity, and using using that quantity,
+ you only need 
+\begin_inset Formula $n-1$
+\end_inset
+
+ data points and can then figure out the last one, we have used one 
+\emph on
+degree of freedom
+\emph default
+ on estimating the mean and we need to adjust the formula accordingly.
+\end_layout
+
+\begin_layout Standard
+In later chapters we'll give this quantity a different name, so we'll introduce
+ the necessary vocabulary here.
+ Let 
+\begin_inset Formula $e_{i}=x_{i}-\bar{x}$
+\end_inset
+
+ be the 
+\emph on
+error
+\emph default
+ left after fitting the sample mean.
+ This is the deviation from the observed value to the 
+\begin_inset Quotes eld
+\end_inset
+
+expected value
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\begin_inset Formula $\bar{x}$
+\end_inset
+
+.
+ We can then define the Sum of Squared Error as
+\begin_inset Formula 
+\[
+SSE=\sum_{i=1}^{n}e_{i}^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+and the Mean Squared Error as
+\begin_inset Formula 
+\[
+MSE=\frac{SSE}{df}=\frac{SSE}{n-1}=s^{2}
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $df=n-1$
+\end_inset
+
+ is the appropriate degrees of freedom.
+\end_layout
+
+\begin_layout Standard
+Calculating the variance of our small sample of five observations 
+\begin_inset Formula $\left\{ 3,6,4,8,2\right\} $
+\end_inset
+
+, recall that the sample mean was 
+\begin_inset Formula $\bar{x}=4.6$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="3">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x_{i}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\left(x_{i}-\bar{x}\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\left(x_{i}-\bar{x}\right)^{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-1.6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2.56
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.96
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-0.6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.36
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3.4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+11.56
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-2.6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6.76
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+sum
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+23.2
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+and so the sample variance is 
+\begin_inset Formula $23.2/(n-1)=23.2/4=5.8$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Clearly this calculation would get very tedious to do by hand and computers
+ will be much more accurate in these calculations.
+ In R, the sample variance is easily calculated by the function 
+\family typewriter
+var()
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+ToyData <- data.frame( x=c(3,6,4,8,2) )
+\end_layout
+
+\begin_layout Plain Layout
+
+ToyData %>% summarise( s2 = var(x) )
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For the larger 
+\family typewriter
+TenMileRace
+\family default
+ data set, the variance is just as easily calculated.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+TenMileRace %>% summarise( s2 = var(net) )
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Standard Deviation
+\end_layout
+
+\begin_layout Standard
+The biggest problem with the sample variance statistic is that the units
+ are in the original units-
+\emph on
+squared
+\emph default
+.
+ That means if you are looking at data about car fuel efficiency, then the
+ values would be in 
+\begin_inset Formula $mpg^{2}$
+\end_inset
+
+ which are units that I can't really understand.
+ The solution is to take the positive square root, which we will call the
+ sample standard deviation.
+\begin_inset Formula 
+\[
+s=\sqrt{s^{2}}
+\]
+
+\end_inset
+
+But why do we take the jog through through variance? Mathematically the
+ variance is more useful and most distributions (such as the normal) are
+ defined by the variance term.
+ Practically though, standard deviation is easier to think about.
+\end_layout
+
+\begin_layout Standard
+The sample standard deviation is important enough for R to have function
+ that will calculate it for you.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+TenMileRace %>% summarise( s = sd(net) )
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Coefficient of Variation
+\end_layout
+
+\begin_layout Standard
+Suppose we had a group of animals and the sample standard deviation of the
+ animals lengths was 15 cm.
+ If the animals were elephants, you would be amazed at their uniformity
+ in size, but if they were insects, you would be astounded at the variability.
+ To account for that, the 
+\series bold
+coefficient of variation
+\series default
+ takes the sample standard deviation and divides by the absolute value of
+ the sample mean (to keep everything positive)
+\begin_inset Formula 
+\[
+CV=\frac{s}{\vert\bar{x}\vert}
+\]
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+TenMileRace %>% summarise( s = sd(net),
+\end_layout
+
+\begin_layout Plain Layout
+
+                           xbar = mean(net),
+\end_layout
+
+\begin_layout Plain Layout
+
+                           cv = s / abs(xbar) )
+\end_layout
+
+\begin_layout Plain Layout
+
+# For fun, lets calculate these same statistics but separated by sex...
+\end_layout
+
+\begin_layout Plain Layout
+
+TenMileRace %>% 
+\end_layout
+
+\begin_layout Plain Layout
+
+  group_by(sex) %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  summarise( xbar = mean(net),
+\end_layout
+
+\begin_layout Plain Layout
+
+             s    = sd(net),
+\end_layout
+
+\begin_layout Plain Layout
+
+             cv   = s / abs(xbar) )
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Empirical Rule of Thumb
+\end_layout
+
+\begin_layout Standard
+For any mound-shaped sample of data the following is a reasonable rule of
+ thumb:
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Interval
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Approximate percent of measurements 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\bar{x}\pm s$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $68$
+\end_inset
+
+%
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\bar{x}\pm2s$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $95$
+\end_inset
+
+%
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\bar{x}\pm3s$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $99.7$
+\end_inset
+
+%
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<EmpiricalRule, message=FALSE, fig.height=6, cache=TRUE, echo=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+library(ggplot2) 
+\end_layout
+
+\begin_layout Plain Layout
+
+library(dplyr)
+\end_layout
+
+\begin_layout Plain Layout
+
+library(STA578)
+\end_layout
+
+\begin_layout Plain Layout
+
+n <- 1000 
+\end_layout
+
+\begin_layout Plain Layout
+
+data <- data.frame(x=seq(-4,4,length=n)) %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  mutate(y=dnorm(x))
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+P1 <- ggplot(data, aes(x=x, y=y)) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_line() +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_area(data=filter(data, abs(x)<1), fill='grey') +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_text(x=0, y=.25, label='bar(x) %+-% s', parse=TRUE ) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_text(x=0, y=.15, label='= 68%' ) +   labs(x=NULL, y='density') +
+\end_layout
+
+\begin_layout Plain Layout
+
+  theme(panel.grid.minor = element_blank()) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  scale_x_continuous( breaks=c(-3,-2,-1,0,1,2,3), labels=NULL)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+P2 <- ggplot(data, aes(x=x, y=y)) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_line() +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_area(data=filter(data, abs(x)<2), fill='grey') +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_text(x=0, y=.25, label='bar(x) %+-% 2*s', parse=TRUE ) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_text(x=0, y=.15, label='= 95%' ) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  labs(x=NULL, y='density') +
+\end_layout
+
+\begin_layout Plain Layout
+
+  theme(panel.grid.minor = element_blank()) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  scale_x_continuous( breaks=c(-3,-2,-1,0,1,2,3), labels = NULL)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+P3 <- ggplot(data, aes(x=x, y=y)) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_line() +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_area(data=filter(data, abs(x)<3), fill='grey') +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_text(x=0, y=.25, label='bar(x) %+-% 3*s', parse=TRUE ) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_text(x=0, y=.15, label='= 99.7%' ) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  labs(x=NULL, y='density') +
+\end_layout
+
+\begin_layout Plain Layout
+
+  theme(panel.grid.minor = element_blank()) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  scale_x_continuous(     
+\end_layout
+
+\begin_layout Plain Layout
+
+    breaks=c(-3,-2,-1,0,1,2,3),     
+\end_layout
+
+\begin_layout Plain Layout
+
+    labels = c( expression(bar(x)-3*s ),
+\end_layout
+
+\begin_layout Plain Layout
+
+                expression(bar(x)-2*s ),
+\end_layout
+
+\begin_layout Plain Layout
+
+                expression(bar(x)-s ),
+\end_layout
+
+\begin_layout Plain Layout
+
+                expression(bar(x)),
+\end_layout
+
+\begin_layout Plain Layout
+
+                expression(bar(x)+s ),
+\end_layout
+
+\begin_layout Plain Layout
+
+                expression(bar(x)+2*s),
+\end_layout
+
+\begin_layout Plain Layout
+
+                expression(bar(x)+3*s))) 
+\end_layout
+
+\begin_layout Plain Layout
+
+multiplot(P1, P2, P3) 
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Exercises
+\end_layout
+
+\begin_layout Enumerate
+O&L 3.21.
+ The ratio of DDE (related to DDT) to PCB concentrations in bird eggs has
+ been shown to have had a number of biological implications.
+ The ratio is used as an indication of the movement of contamination through
+ the food chain.
+ The paper 
+\begin_inset Quotes eld
+\end_inset
+
+The ratio of DDE to PCB concentrations in Great Lakes herring gull eggs
+ and its us in interpreting contaminants data
+\begin_inset Quotes erd
+\end_inset
+
+ reports the following ratios for eggs collected at 13 study sites from
+ the five Great Lakes.
+ The eggs were collected from both terrestrial and aquatic feeding birds.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="12">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+DDE to PCB Ratio
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Terrestrial
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+76.50
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6.03
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3.51
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9.96
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4.24
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7.74
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9.54
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+41.70
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.84
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2.5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.54
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Aquatic
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.27
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.61
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.54
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.14
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.63
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.23
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.56
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.48
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.16
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.18
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+By hand, compute the mean and median for the 21 ratios, ignoring the type
+ of feeder.
+\end_layout
+
+\begin_layout Enumerate
+By hand, compute the mean and median separately for each type of feeder.
+\end_layout
+
+\begin_layout Enumerate
+Using your results from parts (a) and (b), comment on the relative sensitivity
+ of the mean and median to extreme values in a data set.
+\end_layout
+
+\begin_layout Enumerate
+Which measure, mean or median, would you recommend as the most appropriate
+ measure of the DDE to PCB level for both types of feeders? Explain your
+ answer.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+O&L 3.31.
+ 
+\emph on
+Consumer Reports
+\emph default
+ in its June 1998 issue reports on the typical daily room rate at six luxury
+ and nine budget hotels.
+ The room rates are give in the following table.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="10">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Luxury
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+$175
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+$180
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+$120
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+$150
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+$120
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+$125
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Budget
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+$50
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+$50
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+$49
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+$45
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+$36
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+$45
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+$50
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+$50
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+$40
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+By hand, compute the means and standard deviations of the room rates for
+ each class of hotel.
+\end_layout
+
+\begin_layout Enumerate
+Give a reason why luxury hotels might have higher variability than the budget
+ hotels.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Use R to confirm your calculations in problem 1 (the pollution data).
+ Show the code you used and the subsequent output.
+ 
+\emph on
+It will often be convenient for me to give you code that generates a data
+ frame instead of uploading an Excel file and having you read it in.
+ The data can be generated using the following commands:
+\emph default
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+PolutionRatios <- data.frame(
+\end_layout
+
+\begin_layout Plain Layout
+
+  Ratio = c(76.50, 6.03, 3.51, 9.96, 4.24, 7.74, 9.54, 41.70, 1.84, 2.5, 1.54,
+\end_layout
+
+\begin_layout Plain Layout
+
+             0.27, 0.61, 0.54, 0.14, 0.63, 0.23, 0.56,  0.48, 0.16, 0.18       ),
+\end_layout
+
+\begin_layout Plain Layout
+
+  Type  = c( rep('Terrestrial',11), rep('Aquatic',10) ) )
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# Print out some of the data to confirm what the column names are
+\end_layout
+
+\begin_layout Plain Layout
+
+head( PolutionRatios )
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\emph on
+Hint: for computing the means and medians for each type of feeder separately,
+ there is a very convenient command
+\end_layout
+
+\begin_layout Enumerate
+Use R to confirm your calculations in problem 2 (the hotel data).
+ Show the code you used and the subsequent output.
+ The data can be loaded into a data frame using the following commands Show
+ the code you used and the subsequent output:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+Hotels <- data.frame(
+\end_layout
+
+\begin_layout Plain Layout
+
+  Price = c(175, 180, 120, 150, 120, 125, 50, 50, 49, 45, 36, 45, 50, 50,
+ 40),
+\end_layout
+
+\begin_layout Plain Layout
+
+  Type  = c( rep('Luxury',6),  rep('Budget', 9) ) )
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# Print out some of the data to confirm what the column names are
+\end_layout
+
+\begin_layout Plain Layout
+
+head( Hotels )
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+For the hotel data, create side-by-side box-and-whisker plots to compare
+ the prices.
+\end_layout
+
+\begin_layout Enumerate
+Match the following histograms to the appropriate boxplot.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<echo=FALSE, fig.height=4>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+n <- 20000 
+\end_layout
+
+\begin_layout Plain Layout
+
+m1 <- rnorm(n, mean=20, sd=2.5) 
+\end_layout
+
+\begin_layout Plain Layout
+
+m2 <- rnorm(n, mean=20, sd=10) 
+\end_layout
+
+\begin_layout Plain Layout
+
+m3 <- rgamma(n, shape=4, scale=15/4) 
+\end_layout
+
+\begin_layout Plain Layout
+
+m4 <- c(rnorm(n/2, mean=0, sd=6), rnorm(n/2, mean=30, sd=6))
+\end_layout
+
+\begin_layout Plain Layout
+
+d1 <- data.frame(obs=c(m1,m2,m3,m4), Group=rep(c('A','B','C','D'), each=n))
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+d2 <- data.frame(obs=c(m2,m1,m4,m3), Group=rep(c('1','2','3','4'), each=n))
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+library(ggplot2)
+\end_layout
+
+\begin_layout Plain Layout
+
+p <- ggplot(d1, aes(obs)) +    
+\end_layout
+
+\begin_layout Plain Layout
+
+	geom_histogram(aes(y=..density..), binwidth=1) +   
+\end_layout
+
+\begin_layout Plain Layout
+
+	facet_wrap(~Group, scales='free') + xlab('Observed Value')
+\end_layout
+
+\begin_layout Plain Layout
+
+print(p)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<echo=FALSE, fig.height=4>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+p <- qplot(Group, obs, data=d2, geom='boxplot') + 
+\end_layout
+
+\begin_layout Plain Layout
+
+	xlab('') + ylab('Observed Value') 
+\end_layout
+
+\begin_layout Plain Layout
+
+print(p)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Histogram A goes with boxplot __________
+\end_layout
+
+\begin_layout Enumerate
+Histogram B goes with boxplot __________
+\end_layout
+
+\begin_layout Enumerate
+Histogram C goes with boxplot __________
+\end_layout
+
+\begin_layout Enumerate
+Histogram D goes with boxplot __________
+\end_layout
+
+\end_deeper
+\end_body
+\end_document

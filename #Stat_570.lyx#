@@ -190,13 +190,6 @@ https://github.com/dereksonderegger/STA_570_Book/blob/master/Stat_570.pdf
  but please acknowledge the source.
 \end_layout
 
-\begin_layout Standard
-I encourage instructors to use these notes for their own classes and appreciate
- notification of the use to encourage me to keep tweaking the content and
- presentation.
- Finally, I hope these notes useful to a broad range of students.
-\end_layout
-
 \begin_layout Right Address
 Derek Sonderegger, Ph.D.
 \begin_inset Newline newline
@@ -458,6 +451,16 @@ Simulation Analysis
 \begin_inset CommandInset include
 LatexCommand input
 filename "0_SummaryStats_Graphics.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand input
+filename "3_Probability.lyx"
 
 \end_inset
 

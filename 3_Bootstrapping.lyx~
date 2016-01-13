@@ -120,12 +120,12 @@ if(file.exists('Global_Knitr_Opts.R')){
 
 \begin_layout Plain Layout
 
-opts_chunk$set(fig.path   = 'figure/Ch_2_SimHypothesisTests/') 
+opts_chunk$set(fig.path   = 'figure/Ch_3_Bootstrapping/') 
 \end_layout
 
 \begin_layout Plain Layout
 
-opts_chunk$set(cache.path =  'cache/Ch_2_SimHypothesisTests/')
+opts_chunk$set(cache.path =  'cache/Ch_3_Bootstrapping/')
 \end_layout
 
 \begin_layout Plain Layout
@@ -148,56 +148,8 @@ opts_chunk$set(cache      = TRUE )
 
 \end_layout
 
-\begin_layout Standard
-Often our research goal isn't to compare our data to some specific hypothesized
- value of a parameter, but rather to take the data we've observed and ask
- 
-\begin_inset Quotes eld
-\end_inset
-
-What values of the parameter are consistent with the data?
-\begin_inset Quotes erd
-\end_inset
-
- 
-\end_layout
-
 \begin_layout Section
-Observational Studies 
-\end_layout
-
-\begin_layout Standard
-Unfortunately it is not always possible to perform a designed experiment.
- It might be unethical (randomly assigning people to receive a dangerous
- dose of radiation) logistically difficult (assigning a heating treatment
- to hectare level landscapes), or just too expensive or time consuming.
-\end_layout
-
-\begin_layout Standard
-Instead we often settle for a inferior study method of taking a random sample
- from the population of interest and observing the relationships between
- the variables of interest.
- In the designed experiment, the random assignment to treatment groups was
- critical to our inference.
- In an observational study, the random sample from the population is critical
- trusting that the observed sample data is representative of the population
- of interest.
-\end_layout
-
-\begin_layout Standard
-As with experimental data, we will want to test whether the observed data
- (and test statistic 
-\begin_inset Formula $d$
-\end_inset
-
-) is consistent with some null hypothesis 
-\begin_inset Formula $H_{0}$
-\end_inset
-
-.
- However we will have to modify our process slightly to account for the
- difference between just observing randomly sampled data versus the random
- assignment of treatments.
+Theory of Bootstrapping
 \end_layout
 
 \begin_layout Standard
@@ -325,7 +277,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<echo=FALSE>>=
+<<echo=FALSE, message=FALSE, warning=FALSE>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -1179,12 +1131,23 @@ status open
 
 \begin_layout Plain Layout
 
-# make a nice picture
+# make a nice picture...
+ dot plots are very similar to histograms
 \end_layout
 
 \begin_layout Plain Layout
 
-dotPlot( ~ AvgMercury, data=Lakes)
+# but in this case, my y-axis doen't make any sense.
+\end_layout
+
+\begin_layout Plain Layout
+
+ggplot(Lakes, aes(x=AvgMercury)) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_dotplot()
 \end_layout
 
 \begin_layout Plain Layout
@@ -1236,7 +1199,7 @@ status open
 
 \begin_layout Plain Layout
 
-mean( ~ AvgMercury, data=Lakes )
+Lakes %>% summarise(xbar = mean( AvgMercury ))
 \end_layout
 
 \begin_layout Plain Layout
@@ -1310,7 +1273,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<>>=
+<<LakesMercuryExample, cache=TRUE, fig.height=4>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -1320,7 +1283,8 @@ status open
 
 \begin_layout Plain Layout
 
-SamplingDist <- do(10000) * mean( ~ AvgMercury, data=resample(Lakes) )
+SamplingDist <- do(10000) * resample(Lakes) %>% summarise(xbar = mean(AvgMercury
+))
 \end_layout
 
 \begin_layout Plain Layout
@@ -1348,8 +1312,17 @@ str(SamplingDist)
 
 \begin_layout Plain Layout
 
-histogram( ~result, data=SamplingDist, main='Estimated Sampling distribution
- of xbar' )
+ggplot(SamplingDist, aes(x=xbar)) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_histogram() + 
+\end_layout
+
+\begin_layout Plain Layout
+
+  ggtitle('Estimated Sampling distribution of xbar' )
 \end_layout
 
 \begin_layout Plain Layout
@@ -1815,7 +1788,7 @@ n distribution of')
 
 \begin_layout Plain Layout
 
-text(3.66, -1.23, expression(bar(x)))
+text(3.70, -1.23, expression(bar(x)))
 \end_layout
 
 \begin_layout Plain Layout
@@ -2113,7 +2086,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<>>=
+<<LakesCI, cache=TRUE>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -2123,21 +2096,7 @@ status open
 
 \begin_layout Plain Layout
 
-SamplingDist <- do(10000) * mean( ~ AvgMercury, data=resample(Lakes) )
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-# what columns does the data frame "SamplingDist" have?
-\end_layout
-
-\begin_layout Plain Layout
-
-str(SamplingDist)
+SamplingDist <- do(10000) * resample(Lakes)%>%summarise(xbar=mean(AvgMercury))
 \end_layout
 
 \begin_layout Plain Layout
@@ -2151,22 +2110,27 @@ str(SamplingDist)
 
 \begin_layout Plain Layout
 
-histogram( ~result, data=SamplingDist, main='Estimated Sampling distribution
- of xbar' )
+ggplot(SamplingDist, aes(x=xbar)) +
 \end_layout
 
 \begin_layout Plain Layout
 
+  geom_histogram() +
 \end_layout
 
 \begin_layout Plain Layout
 
-# calculate the 95% confidence interval using middle 95%
+  ggtitle('Estimated Sampling distribution of xbar')
 \end_layout
 
 \begin_layout Plain Layout
 
-quantile( SamplingDist$result, probs=c(.025, .975) )
+# calculate the 95% confidence interval using middle 95% of xbars
+\end_layout
+
+\begin_layout Plain Layout
+
+quantile( SamplingDist$xbar, probs=c(.025, .975) )
 \end_layout
 
 \begin_layout Plain Layout
@@ -2242,7 +2206,7 @@ The interval
 \begin_layout Standard
 
 \series bold
-Example:
+Example: CI for a mean of 1 sample
 \end_layout
 
 \begin_layout Example*
@@ -2290,12 +2254,7 @@ CarMPG <- data.frame( ID=1:5, mpg = c(31.8, 32.1, 32.5, 30.9, 31.3) )
 
 \begin_layout Plain Layout
 
-dotPlot( ~ mpg, data=CarMPG )
-\end_layout
-
-\begin_layout Plain Layout
-
-mean( ~ mpg, data=CarMPG )
+CarMPG %>% summarise( xbar=mean(mpg) )
 \end_layout
 
 \begin_layout Plain Layout
@@ -2342,22 +2301,32 @@ status open
 
 \begin_layout Plain Layout
 
-<<cache=TRUE, fig.width=5, fig.height=2.5>>=
+<<CarMPG_Ex, cache=TRUE, fig.width=5, fig.height=2.5>>=
 \end_layout
 
 \begin_layout Plain Layout
 
-SamplingDist <- do(10000) * mean( ~ mpg, data=resample(CarMPG) )
+SamplingDist <- do(10000) * resample(CarMPG) %>% summarise(xbar=mean(mpg))
 \end_layout
 
 \begin_layout Plain Layout
 
-histogram(~result, data=SamplingDist,
+# show a histogram of the sampling distribution of xbar
 \end_layout
 
 \begin_layout Plain Layout
 
-          main='Estimated Sampling distribution of xbar' )
+ggplot(SamplingDist, aes(x=xbar)) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_histogram() +
+\end_layout
+
+\begin_layout Plain Layout
+
+  ggtitle('Estimated Sampling distribution of xbar')
 \end_layout
 
 \begin_layout Plain Layout
@@ -2400,7 +2369,12 @@ status open
 
 \begin_layout Plain Layout
 
-quantile( SamplingDist$result, probs=c(.025, .975) )
+# calculate the 95% confidence interval using middle 95% of xbars
+\end_layout
+
+\begin_layout Plain Layout
+
+quantile( SamplingDist$xbar, probs=c(.025, .975) )
 \end_layout
 
 \begin_layout Plain Layout
@@ -2432,12 +2406,12 @@ We see that the
 \end_inset
 
  mpg.
- However, I don't think that in this case we would object to a car manufacturer
- sell us a car that is 
+ However, I don't think we would object to a car manufacturer selling us
+ a car that is 
 \emph on
 better
 \emph default
- than was advertised.
+ than advertised.
 \end_layout
 
 \begin_layout Standard

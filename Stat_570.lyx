@@ -102,12 +102,6 @@ Derek Sonderegger
 \end_layout
 
 \begin_layout Standard
-These notes were originally written for an introductory statistics course
- for grad students in biological sciences.
- 
-\end_layout
-
-\begin_layout Standard
 The problem with most introductory statistics courses is that they don't
  prepare the student for the use of advanced statistics.
  Rote hand calculation is easy to test, easy to grade, and easy for students
@@ -176,7 +170,7 @@ status open
 
 \begin_layout Plain Layout
 
-https://github.com/dereksonderegger/STA_570_Book/blob/master/Stat_570.pdf
+https://github.com/dereksonderegger/STA_570_Book/raw/master/Stat_570.pdf
 \end_layout
 
 \end_inset
@@ -448,9 +442,143 @@ Simulation Analysis
 \end_layout
 
 \begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The scientific method requires us to make observations about the world and
+ then use those observations to make reasonable predictions.
+ However the way we make those observations can have a profound effect on
+ how well understand the phenomena or how well we predict some event.
+\end_layout
+
+\begin_layout Standard
+During the 1936 US presidential election between Franklin Roosevelt (D)
+ and Alfred Landon (R), the magazine 
+\emph on
+The Literary Digest
+\emph default
+ included a card that asked its readers who they were to vote for and to
+ send it back to the magazine, which would tabulate and report the predicted
+ winner.
+ This scheme correctly predicted the 1920, 1924, 1928, and 1932 races and
+ so many people respected the forecast.
+ The supposed strength of the prediction was how many people responded (2.4
+ million!).
+ However, the readers of 
+\emph on
+The Literary Digest
+\emph default
+ were typically more affluent and could afford a magazine subscription during
+ the Great Depression.
+ As a result, the magazine performed a highly biased survey and predicted
+ that Landon would win.
+ The actual outcome was that Roosevelt won 61% of the vote.
+\end_layout
+
+\begin_layout Standard
+Another person also interested in predicting the 1936 election was the statistic
+ian George Gallup.
+ He had a much smaller sample, (with 50,000 respondents) and correctly predicted
+ the outcome.
+ This was a clear demonstration of the power of a well selected random sample
+ compared to a massive set of data collected in a biased fashion.
+ 
+\end_layout
+
+\begin_layout Standard
+The goals of statistics can be 
+\end_layout
+
+\begin_layout Enumerate
+Collection of data 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Sampling Design: Observational studies rely on the assumption that your
+ sample is representative of the population of interest.
+ Unfortunately, it is often difficult to randomly select individuals in
+ a non-biased way and this branch of statistics focuses on how to leverage
+ known population level data with sampled data to account for bias.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Experimental Design: The scientific gold standard is to perform an experiment
+ where the factors of interest are manipulated, but how the manipulations
+ are done to maximize the amount of information obtained from the experiment
+ is a classic issue in statistics.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Process Modeling - Often we have some mathematical model that is a function
+ of some population level parameters that we think represents some process
+ of interest.
+ We can use sample statistics calculated from our data to estimate those
+ parameters of interest in the model.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Because our sample statistics will vary from sample to sample, we want to
+ understand how much faith should we have in our estimate.
+\end_layout
+
+\begin_layout Enumerate
+We often want confidence intervals for those parameters.
+ For example, we might have a sample where 54% of the respondents support
+ Bernie Sanders for president, but I don't expect that to be the population
+ level percent.
+ Instead we report that 52-56% of the population of likely voters supports
+ Bernie Sanders.
+\end_layout
+
+\begin_layout Enumerate
+We might ask if some particular value for a parameter is plausible.
+ For example, could the association between person's income level and their
+ probability of voting republican be zero? 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Predictions - Once we have a process model (even if it is extremely complicated
+ and not easily interpretable), we will often want to make predictions about
+ future or unobserved observations.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+We will want to consider how well we predict new observations, but, by definitio
+n, those are unavailable.
+\end_layout
+
+\begin_layout Enumerate
+Quality of prediction can be used to update the process modeling steps.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+The course covered by these notes will make some discuss some of the data
+ collection step, but will focus primarily on the process modeling step.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset CommandInset include
 LatexCommand input
-filename "0_SummaryStats_Graphics.lyx"
+filename "1_SummaryStats_Graphics.lyx"
 
 \end_inset
 
@@ -460,7 +588,17 @@ filename "0_SummaryStats_Graphics.lyx"
 \begin_layout Standard
 \begin_inset CommandInset include
 LatexCommand input
-filename "2_Bootstrapping.lyx"
+filename "2_Probability.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand input
+filename "3_Bootstrapping.lyx"
 
 \end_inset
 

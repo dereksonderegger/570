@@ -1,0 +1,8025 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass book
+\begin_preamble
+\usepackage{a4wide}
+\usepackage{tikz}
+\end_preamble
+\options a4paper
+\use_default_options false
+\begin_modules
+theorems-ams
+knitr
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding iso8859-1
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 0
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Probability
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<echo=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+if(file.exists('Global_Knitr_Opts.R')){
+\end_layout
+
+\begin_layout Plain Layout
+
+  source('Global_Knitr_Opts.R')
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+opts_chunk$set(fig.path   = 'figure/Ch_3_Probability/') 
+\end_layout
+
+\begin_layout Plain Layout
+
+opts_chunk$set(cache.path =  'cache/Ch_3_Probability/')
+\end_layout
+
+\begin_layout Plain Layout
+
+opts_chunk$set(cache      = TRUE )
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Students have a hard time telling the difference between A|B and 
+\begin_inset Formula $A\cap B$
+\end_inset
+
+ on a problem where I ask given person is white, that ...
+\end_layout
+
+\begin_layout Plain Layout
+Basically translating english to math is hard...
+\end_layout
+
+\begin_layout Plain Layout
+Using software you need to stop and think if the numbers are correct.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+I should introduce a continuous uniform distribution first and talk about
+ the difference between a density function and a mass function.
+ Then I can talk about the conditional stuff and claim that all the conditional/
+independece rules hold for density functions as they do for mass functions.
+\end_layout
+
+\begin_layout Plain Layout
+More discussion about what an expectation is and why it is calculated the
+ way that it is.
+ Another example or two would be nice.
+\end_layout
+
+\begin_layout Plain Layout
+Some more examples of calculating stuff using the p-function.
+ Maybe some pictures illustrating what you want, then writing it in math,
+ then asking R for the answer.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We need to work out the mathematics of what we mean by probability.
+ To begin with we first define an 
+\emph on
+outcome
+\emph default
+.
+ An outcome is one observation from a random process or event.
+ For example we might be interested in a single roll of a six-side die.
+ Alternatively we might be interested in selecting one NAU student at random
+ from the entire population of NAU students.
+\end_layout
+
+\begin_layout Section
+Introduction to Set Theory
+\end_layout
+
+\begin_layout Standard
+Before we jump into probability, it is useful to review a little bit of
+ set theory.
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Events
+\emph default
+ are properties of a particular outcome.
+ For a coin flip, the event 
+\begin_inset Quotes eld
+\end_inset
+
+Heads
+\begin_inset Quotes erd
+\end_inset
+
+ would be the event that a heads was flipped.
+ For the single roll of a six-sided die, a possible event might be that
+ the result is even.
+ For the NAU student, we might be interested in the event that the student
+ is a biology student.
+ A second event of interest might be if the student is an undergraduate.
+ 
+\end_layout
+
+\begin_layout Subsection
+Venn Diagrams
+\end_layout
+
+\begin_layout Standard
+Let 
+\begin_inset Formula $S$
+\end_inset
+
+ be the set of all outcomes of my random trial.
+ Suppose I am interested in two events 
+\begin_inset Formula $A$
+\end_inset
+
+ and 
+\begin_inset Formula $B$
+\end_inset
+
+.
+ The traditional way of representing these events is using a 
+\emph on
+Venn diagram.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+def
+\backslash
+firstcircle{ (2,0) circle (1.5)} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+def
+\backslash
+secondcircle{(4,0) circle (1.5)}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% define edge and fill colors
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+colorlet{edge}{blue!50} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+colorlet{area}{blue!20} 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tikzset{filled/.style={fill=area, draw=edge, thick},  
+\end_layout
+
+\begin_layout Plain Layout
+
+        outline/.style={draw=edge, thick}}     
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture} 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% draw both events
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw[outline] 
+\backslash
+firstcircle;
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw[outline] 
+\backslash
+secondcircle; 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% label the two events
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at (0.8, 1.5) {A};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at (5.0, -1.5) {B};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at (6.2, 1.8)    {S};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% draw a box around my events
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw[style=thick, color=edge] (-.2,-2) rectangle (6.4,2);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{center}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For example, suppose that my random experiment is rolling a fair 6-sided
+ die once.
+ The possible outcomes are 
+\begin_inset Formula $S=\{1,2,3,4,5,$
+\end_inset
+
+ or 
+\begin_inset Formula $6\}$
+\end_inset
+
+.
+ Suppose I then define events 
+\begin_inset Formula $A=$
+\end_inset
+
+ 
+\emph on
+roll is odd
+\emph default
+ and 
+\begin_inset Formula $B=$
+\end_inset
+
+ 
+\emph on
+roll is 5 or greater
+\emph default
+.
+ In this case our picture is:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+def
+\backslash
+firstcircle{ (2,0) circle (1.5)} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+def
+\backslash
+secondcircle{(4,0) circle (1.5)}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% define edge and fill colors
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+colorlet{edge}{blue!50} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+colorlet{area}{blue!20} 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tikzset{filled/.style={fill=area, draw=edge, thick},  
+\end_layout
+
+\begin_layout Plain Layout
+
+        outline/.style={draw=edge, thick}}     
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture} 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% draw both events
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw[outline] 
+\backslash
+firstcircle;
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw[outline] 
+\backslash
+secondcircle; 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% label the two events
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at (0.8, 1.5) {A};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at (5.0, -1.5) {B};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at (6.2, 1.8)    {S};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% draw a box around my events
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw[style=thick, color=edge] (-.5,-2.5) rectangle (6.4,2);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at (1.5,.5){ 1,3 };
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at (3,0){ 5 };
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at (4,-.5){ 6 };
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at (3, -2.0) {2,4};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{center}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+All of our possible events are present, and distributed amongst our possible
+ events.
+\end_layout
+
+\begin_layout Subsection
+Composition of events
+\end_layout
+
+\begin_layout Standard
+I am often interested in discussing the composition of two events and we
+ give the common set operations below.
+ 
+\end_layout
+
+\begin_layout Itemize
+Union: Denote the event that either 
+\begin_inset Formula $A$
+\end_inset
+
+ or 
+\begin_inset Formula $B$
+\end_inset
+
+ occurs as 
+\begin_inset Formula $A\cup B$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+def
+\backslash
+firstcircle{ (2,0) circle (1.5)} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+def
+\backslash
+secondcircle{(4,0) circle (1.5)}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% define edge and fill colors
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+colorlet{edge}{blue!50} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+colorlet{area}{blue!20} 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tikzset{filled/.style={fill=area, draw=edge, thick},  
+\end_layout
+
+\begin_layout Plain Layout
+
+        outline/.style={draw=edge, thick}}     
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture} 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% fill the Union
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{scope}     
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+fill[filled] 
+\backslash
+firstcircle; 
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+fill[filled] 
+\backslash
+secondcircle; 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{scope}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% draw both events
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw[outline] 
+\backslash
+firstcircle;
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw[outline] 
+\backslash
+secondcircle; 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% label the two events
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at (0.8, 1.5) {A};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at (5.0, -1.5) {B};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at (6.2, 1.8)    {S};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% draw a box around my events
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw[style=thick, color=edge] (-.5,-2.0) rectangle (6.4,2);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at (3, 2.5) {$A 
+\backslash
+cup B$};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{center}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Denote the event that both 
+\begin_inset Formula $A$
+\end_inset
+
+ and 
+\begin_inset Formula $B$
+\end_inset
+
+ occur as 
+\begin_inset Formula $A\cap B$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+def
+\backslash
+firstcircle{ (2,0) circle (1.5)} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+def
+\backslash
+secondcircle{(4,0) circle (1.5)}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% define edge and fill colors
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+colorlet{edge}{blue!50} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+colorlet{area}{blue!20} 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tikzset{filled/.style={fill=area, draw=edge, thick},  
+\end_layout
+
+\begin_layout Plain Layout
+
+        outline/.style={draw=edge, thick}}     
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture} 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% fill the intersection
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{scope}     
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+clip 
+\backslash
+firstcircle; 
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+fill[filled] 
+\backslash
+secondcircle; 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{scope}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% draw both events
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw[outline] 
+\backslash
+firstcircle;
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw[outline] 
+\backslash
+secondcircle; 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% label the two events
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at (0.8, 1.5) {A};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at (5.0, -1.5) {B};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at (6.2, 1.8)    {S};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% draw a box around my events
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw[style=thick, color=edge] (-.5,-2.0) rectangle (6.4,2);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at (3, 2.5) {$A 
+\backslash
+cap B$};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{center}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Denote the event that 
+\begin_inset Formula $A$
+\end_inset
+
+ does not occur as 
+\begin_inset Formula $\bar{A}$
+\end_inset
+
+ or 
+\begin_inset Formula $A^{C}$
+\end_inset
+
+ (different people use different notations)
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+def
+\backslash
+firstcircle{ (2,0) circle (1.5)} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+def
+\backslash
+secondcircle{(4,0) circle (1.5)}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% define edge and fill colors
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+colorlet{edge}{blue!50} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+colorlet{area}{blue!20} 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tikzset{filled/.style={fill=area, draw=edge, thick},  
+\end_layout
+
+\begin_layout Plain Layout
+
+        outline/.style={draw=edge, thick}}     
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture} 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% draw a box around my events
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw[style=thick, color=edge, fill=area] (-.5,-2.0) rectangle (6.4,2);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% unfill the intersection
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+fill[color=white] 
+\backslash
+firstcircle; 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% draw both events
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw[outline] 
+\backslash
+firstcircle;
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw[outline] 
+\backslash
+secondcircle; 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% label the two events
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at (0.8, 1.5) {A};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at (5.0, -1.5) {B};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at (6.2, 1.8)    {S};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at (3, 2.5) {$
+\backslash
+bar{A}$ or $A^C$};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{center}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+Two events 
+\begin_inset Formula $A$
+\end_inset
+
+ and 
+\begin_inset Formula $B$
+\end_inset
+
+ are said to be mutually exclusive (or disjoint) if the occurrence of one
+ event precludes the occurrence of the other.
+ For example, on a single roll of a die, a two and a five cannot both come
+ up.
+ For a second example, define 
+\begin_inset Formula $A$
+\end_inset
+
+ to be the event that the die is even, and 
+\series bold
+
+\begin_inset Formula $B$
+\end_inset
+
+ 
+\series default
+to be the event that the die comes up as a 5.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+def
+\backslash
+firstcircle{ (1.2,0) circle (1.5)} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+def
+\backslash
+secondcircle{(4.5,0) circle (1.5)}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% define edge and fill colors
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+colorlet{edge}{blue!50} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+colorlet{area}{blue!20} 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tikzset{filled/.style={fill=area, draw=edge, thick},  
+\end_layout
+
+\begin_layout Plain Layout
+
+        outline/.style={draw=edge, thick}}     
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture} 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% draw a box around my events
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw[style=thick, color=edge] (-.5,-2.0) rectangle (6.4,2);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% draw both events
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw[outline] 
+\backslash
+firstcircle;
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw[outline] 
+\backslash
+secondcircle; 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% label the two events
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at (0.4, 1.5) {A};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at (5.3, -1.5) {B};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at (6.2, 1.8)    {S};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at (3, 2.5) {$A$ and $B$ disjoint};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{center}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Probability Rules
+\end_layout
+
+\begin_layout Subsection
+Simple Rules
+\end_layout
+
+\begin_layout Standard
+We now take our Venn diagrams and use them to understand the rules of probabilit
+y.
+ The underlying idea that we will use is the the probability of an event
+ is the 
+\emph on
+area
+\emph default
+ in the Venn diagram.
+\end_layout
+
+\begin_layout Definition
+Probability is the proportion of times an event occurs in many repeated
+ trials of a random phenomenon.
+ In other words, probability is the long-term relative frequency.
+\end_layout
+
+\begin_layout Fact*
+For any event 
+\begin_inset Formula $A$
+\end_inset
+
+ the probability of the event 
+\begin_inset Formula $P(A)$
+\end_inset
+
+ satisfies 
+\series bold
+
+\begin_inset Formula $0\le P(A)\le1$
+\end_inset
+
+ 
+\series default
+since proportions always lie in 
+\begin_inset Formula $[0,1]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Because 
+\begin_inset Formula $S$
+\end_inset
+
+ is the set of all events that might occur, the area of our bounding rectangle
+ will be 
+\begin_inset Formula $1$
+\end_inset
+
+ and the probability of event 
+\begin_inset Formula $A$
+\end_inset
+
+ occurring will be the area in the circle 
+\begin_inset Formula $A$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Fact*
+If two events are mutually exclusive, then 
+\begin_inset Formula $P(A\textrm{ \cup\ }B)=P(A)+P(B)$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+def
+\backslash
+firstcircle{ (1.2,0) circle (1.5)} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+def
+\backslash
+secondcircle{(4.5,0) circle (1.5)}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% define edge and fill colors
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+colorlet{edge}{blue!50} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+colorlet{area}{blue!20} 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tikzset{filled/.style={fill=area, draw=edge, thick},  
+\end_layout
+
+\begin_layout Plain Layout
+
+        outline/.style={draw=edge, thick}}     
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture} 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% draw a box around my events
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw[style=thick, color=edge] (-.5,-2.0) rectangle (6.4,2);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% draw both events
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw[outline] 
+\backslash
+firstcircle;
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw[outline] 
+\backslash
+secondcircle; 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% fill both circles
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+fill[filled] 
+\backslash
+firstcircle; 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+fill[filled] 
+\backslash
+secondcircle; 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% label the two events
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at (0.4, 1.5) {A};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at (5.3, -1.5) {B};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at (6.2, 1.8)    {S};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at (3, 2.5) {$P(A 
+\backslash
+cup B) = P(A) + P(B)$};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{center}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example*
+Let 
+\begin_inset Formula $S$
+\end_inset
+
+ be the sum of two different colored dice.
+ Suppose we are interested in 
+\begin_inset Formula $P(S\le4)$
+\end_inset
+
+.
+ Notice that the pair of dice can fall 36 different ways (6 ways for the
+ first die and six for the second results in 6x6 possible outcomes, and
+ each way has equal probability 
+\begin_inset Formula $1/36$
+\end_inset
+
+.
+ Since the dice cannot simultaneously sum to 2 
+\emph on
+and 
+\emph default
+to 3, we could write
+\begin_inset Formula 
+\begin{eqnarray*}
+P(S\le4) & = & P(S=2)+P(S=3)+P(S=4)\\
+ & = & P(\left\{ 1,1\right\} )+P(\left\{ 1,2\right\} \mathrm{\textrm{ or }}\left\{ 2,1\right\} )+P(\{1,3\}\textrm{ or }\{2,2\}\textrm{ or }\{3,1\})\\
+ & = & \frac{1}{36}+\frac{2}{36}+\frac{3}{36}\\
+ & = & \frac{6}{36}\\
+ & = & \frac{1}{6}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Fact*
+\begin_inset Formula $P(A)+P(\bar{A})=1$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+The above statement is true because the probability of whole space 
+\begin_inset Formula $S$
+\end_inset
+
+ is one (remember S is all possible outcomes), then either we get an outcome
+ in which 
+\begin_inset Formula $A$
+\end_inset
+
+ occurs or we get an outcome in which 
+\begin_inset Formula $A$
+\end_inset
+
+ does not occur.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+def
+\backslash
+firstcircle{ (1.2,0) circle (1.5)} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+def
+\backslash
+secondcircle{(4.5,0) circle (1.5)}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% define edge and fill colors
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+colorlet{edge}{blue!50} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+colorlet{area}{blue!20} 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tikzset{filled/.style={fill=area, draw=edge, thick},  
+\end_layout
+
+\begin_layout Plain Layout
+
+        outline/.style={draw=edge, thick}}     
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture} 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% draw a box around my events
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw[style=thick, color=edge, fill=red!20] (-.5,-2.0) rectangle (6.4,2);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% draw both events
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw[outline] 
+\backslash
+firstcircle;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% fill both circles
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+fill[filled] 
+\backslash
+firstcircle; 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% label the two events
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at (0.4, 1.5) {A};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at (4, 0) {$
+\backslash
+bar{A}$};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at (6.2, 1.8)    {S};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at (3, 2.5) {$P(A) + P(
+\backslash
+bar{A}) = 1$};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{center}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Fact*
+\begin_inset Formula $P(A\cup B)=P(A)+P(B)-P(A\cap B)$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+The reason behind this fact is that if there is if 
+\begin_inset Formula $A$
+\end_inset
+
+ and 
+\begin_inset Formula $B$
+\end_inset
+
+ are not disjoint, then some area is added 
+\emph on
+twice
+\emph default
+ when I calculate 
+\begin_inset Formula $P\left(A\right)+P\left(B\right)$
+\end_inset
+
+.
+ To account for this, I simply subtract off the area that was double counted.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+def
+\backslash
+firstcircle{ (2,0) circle (1.5)} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+def
+\backslash
+secondcircle{(4,0) circle (1.5)}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% define edge and fill colors
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+colorlet{edge}{blue!50} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+colorlet{area}{blue!20} 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tikzset{filled/.style={fill=area, draw=edge, thick},  
+\end_layout
+
+\begin_layout Plain Layout
+
+        outline/.style={draw=edge, thick}}     
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture} 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% fill two circles
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+fill[blue!20] 
+\backslash
+firstcircle; 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+fill[red!20] 
+\backslash
+secondcircle;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{scope}     
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+clip 
+\backslash
+firstcircle; 
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+fill[violet!40] 
+\backslash
+secondcircle; 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{scope}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% draw both events
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw[outline] 
+\backslash
+firstcircle;
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw[outline] 
+\backslash
+secondcircle; 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% label the two events
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at (0.8, 1.5) {A};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at (5.0, -1.5) {B};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at (6.2, 1.8)    {S};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% draw a box around my events
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw[style=thick, color=edge] (-.5,-2.0) rectangle (6.4,2);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at (3, 2.5) {$P(A 
+\backslash
+cup B) = P(A) + P(B) - P(A 
+\backslash
+cap B)$};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{center}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Fact
+
+\series bold
+\begin_inset Formula $P(A)=P(A\cap B)+P(A\cap\bar{B})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This identity is just breaking the event 
+\begin_inset Formula $A$
+\end_inset
+
+ into two disjoint pieces.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+def
+\backslash
+firstcircle{ (2,0) circle (1.5)} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+def
+\backslash
+secondcircle{(4,0) circle (1.5)}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% define edge and fill colors
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+colorlet{edge}{blue!50} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+colorlet{area}{blue!20} 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tikzset{filled/.style={fill=area, draw=edge, thick},  
+\end_layout
+
+\begin_layout Plain Layout
+
+        outline/.style={draw=edge, thick}}     
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture} 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% fill two circles
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+fill[blue!20] 
+\backslash
+firstcircle; 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{scope}     
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+clip 
+\backslash
+firstcircle; 
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+fill[red!20] 
+\backslash
+secondcircle; 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{scope}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% draw both events
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw[outline] 
+\backslash
+firstcircle;
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw[outline] 
+\backslash
+secondcircle; 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% label the two events
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at (0.8, 1.5) {A};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at (5.0, -1.5) {B};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at (6.2, 1.8)    {S};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% draw a box around my events
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw[style=thick, color=edge] (-.5,-2.0) rectangle (6.4,2);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at (3, 2.5) {$P(A) = P(A 
+\backslash
+cap 
+\backslash
+bar{B}) + P(A 
+\backslash
+cap B) $};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{center}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Conditional Probability
+\end_layout
+
+\begin_layout Standard
+We are given the following data about insurance claims.
+ Notice that the data is given as 
+\begin_inset Formula $P(\; Category\;\cap\; PolicyType\;)$
+\end_inset
+
+ which is apparent because the sum of all the elements in the table is 
+\begin_inset Formula $100\%$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="4">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Type of Policy (%)
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Category
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Fire
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Auto
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Other
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Fraudulent
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3%
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Non-fraudulent
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+14%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+29%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+47%
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Summing across the rows and columns, we can find the probabilities of for
+ each category and policy type.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="5">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Type of Policy (%)
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Category
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Fire
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Auto
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Other
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Total %
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Fraudulent
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10%
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Non-fraudulent
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+14%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+29%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+47%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+90%
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Total
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+20%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+30%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+50%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+100%
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+It is clear that fire claims are more likely fraudulent than auto or other
+ claims.
+ In fact, the proportion of fraudulent claims, given that the claim is against
+ a fire policy is 
+\begin_inset Formula 
+\begin{eqnarray*}
+P(\textrm{ Fraud }|\textrm{ FirePolicy }) & = & \frac{\textrm{proportion of claims that are fire policies and are fraudulent}}{\textrm{proportion of fire claims}}\\
+ & = & \frac{6\%}{20\%}\\
+ & = & 0.3
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In general we define conditional probability (assuming 
+\begin_inset Formula $P(B)\ne0)$
+\end_inset
+
+ as
+\begin_inset Formula 
+\[
+P(A|B)=\frac{P(A\cap B)}{P(B)}
+\]
+
+\end_inset
+
+which can also be rearranged to show
+\begin_inset Formula 
+\begin{eqnarray*}
+P(A\cap B) & = & P(A\,|\, B)\, P(B)\\
+ & = & P(B\,|\, A)\, P(A)
+\end{eqnarray*}
+
+\end_inset
+
+since the order doesn't matter and 
+\begin_inset Formula $P\left(A\cap B\right)=P\left(B\cap A\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Using this rule, we might calculate the probability that a claim is an Auto
+ policy given that it is not fraudulent.
+\begin_inset Formula 
+\begin{eqnarray*}
+P\left(\, Auto\;|\; NotFraud\,\right) & = & \frac{P\left(\, Auto\;\cap\; NotFraud\right)}{P\left(\, NotFraud\,\right)}\\
+\\
+ & = & \frac{0.29}{0.9}\\
+\\
+ & = & 0.3\bar{2}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+Two events 
+\begin_inset Formula $A$
+\end_inset
+
+ and 
+\begin_inset Formula $B$
+\end_inset
+
+ are said to be 
+\series bold
+independent
+\series default
+ if 
+\begin_inset Formula 
+\[
+P(A|B)=P(A)\;\;\textrm{and}\;\; P(B|A)=P(B)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+What independence is saying that knowing the outcome of event 
+\begin_inset Formula $A$
+\end_inset
+
+ doesn't give you any information about the outcome of event 
+\begin_inset Formula $B$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+In simple random sampling, we assume that any two samples are independent.
+\end_layout
+
+\begin_layout Itemize
+In cluster sampling, we assume that samples within a cluster are not independent
+, but clusters are independent of each other.
+\end_layout
+
+\begin_layout Fact
+If 
+\begin_inset Formula $A$
+\end_inset
+
+ and 
+\begin_inset Formula $B$
+\end_inset
+
+ are independent events, then 
+\begin_inset Formula 
+\begin{eqnarray*}
+P(A\cap B) & = & P(A|B)P(B)\\
+ & = & P(A)P(B)
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+Suppose that we are interested in the relationship between the color and
+ the type of car.
+ Specifically I will divide the car world into convertibles and non-convertibles
+ and the colors into red and non-red.
+\end_layout
+
+\begin_layout Example
+Suppose that convertibles make up just 10% of the domestic automobile market.
+ This is to say 
+\begin_inset Formula $P(\; Convertable\;)=0.10$
+\end_inset
+
+.
+ Of the non-convertibles, red is not unheard of but it isn't common either.
+ So suppose 
+\begin_inset Formula $P(\; Red\;|\; NonConvertable\;)=0.15$
+\end_inset
+
+.
+ However red is an extremely popular color for convertibles so let 
+\begin_inset Formula $P(\; Red\;|\; Convertable\;)=0.60$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Example
+We can visualize this information via another Venn diagram:
+\end_layout
+
+\begin_layout Example
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+def
+\backslash
+redellipse{ (.8,1) ellipse (.5 and .95) } 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% define edge and fill colors
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+colorlet{edge}{blue!50} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+colorlet{area}{blue!20} 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tikzset{filled/.style={fill=area, draw=edge, thick},  
+\end_layout
+
+\begin_layout Plain Layout
+
+        outline/.style={draw=edge, thick}}     
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture} 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% fill two circles
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+fill[red] 
+\backslash
+redellipse; 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% draw both events
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw[outline] 
+\backslash
+redellipse;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% label the two events
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at (0.1, 2.2) {Convertables};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at (4, 2.2) {Not Convertables};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% draw a box around my events
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw[style=thick, color=edge] (0,0) rectangle (4,2);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw[style=thick, color=edge] (1,0) -- ++(0,2);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\backslash
+node at (3, 2.5) {$P(A) = P(A 
+\backslash
+cap 
+\backslash
+bar{B}) + P(A 
+\backslash
+cap B) $};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{center}
+\end_layout
+
+\end_inset
+
+Given the above information, we can create the following table:
+\end_layout
+
+\begin_layout Example
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="4">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Convertable
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+non-Convertable
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Red
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Not Red
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.10
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.90
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+We can fill in some of the table using our the definition of conditional
+ probability.
+ For example:
+\begin_inset Formula 
+\begin{eqnarray*}
+P\left(Red\,\cap\, Convertable\right) & = & P\left(Red\,|\, Convertable\right)\, P\left(Convertable\right)\\
+ & = & 0.60*0.10\\
+ & = & 0.06
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+Lets think about what this conditional probability means.
+ Of the 
+\begin_inset Formula $90\%$
+\end_inset
+
+ of cars that are not convertibles, 
+\begin_inset Formula $15\%$
+\end_inset
+
+ those non-convertibles are red and therefore the proportion of cars that
+ are red non-convertibles is 
+\begin_inset Formula $0.90*0.15=0.135$
+\end_inset
+
+.
+ Of the 
+\begin_inset Formula $10\%$
+\end_inset
+
+ of cars that are convertibles, 
+\begin_inset Formula $60\%$
+\end_inset
+
+ of those are red and therefore proportion of cars that are red convertibles
+ is 
+\begin_inset Formula $0.10*0.60=0.06$
+\end_inset
+
+.
+ Thus the total percentage of red cars is actually 
+\begin_inset Formula 
+\begin{eqnarray*}
+P\left(\, Red\,\right) & = & P\left(\; Red\;\cap\; Convertible\;\right)+P\left(\, Red\,\cap\, NonConvertible\,\right)\\
+ & = & P\left(\, Red\,|\, Convertable\,\right)P\left(\, Convertible\,\right)+P\left(\, Red\,|\, NonConvertible\,\right)P\left(\, NonConvertible\,\right)\\
+ & = & 0.60*0.10+0.15*0.90\\
+ & = & 0.06+0.135\\
+ & = & 0.195
+\end{eqnarray*}
+
+\end_inset
+
+So when I ask for 
+\begin_inset Formula $P(\; red\;|\; convertable\;)$
+\end_inset
+
+, I am narrowing my space of cars to consider only convertibles.
+ While there percentage of cars that are red and convertible is just 6%
+ of all cars, when I restrict myself to convertibles, we see that the percentage
+ of this smaller set of cars that are red is 60%.
+\end_layout
+
+\begin_layout Example
+Notice that because 
+\begin_inset Formula $P\left(Red\right)=0.195\ne0.60=P\left(Red\,|\, Convertable\right)$
+\end_inset
+
+ then the events 
+\begin_inset Formula $Red$
+\end_inset
+
+ and 
+\begin_inset Formula $Convertable$
+\end_inset
+
+ are not independent.
+\end_layout
+
+\begin_layout Subsection
+Summary of Probability Rules
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+ &  & 0\le P\left(A\right)\le1\\
+\\
+ &  & P\left(A\right)+P\left(\bar{A}\right)=1\\
+\\
+P\left(A\cup B\right) & = & P\left(A\right)+P\left(B\right)-P\left(A\cap B\right)\\
+\\
+P\left(A\cap B\right) & = & \begin{cases}
+P\left(A\,|\, B\right)P\left(B\right)\\
+P\left(B\,|\, A\right)P\left(A\right)\\
+P(A)P(B)\;\; & \textrm{ if A,B are independent}
+\end{cases}\\
+\\
+P\left(A\,|\, B\right) & = & \frac{P\left(A\cap B\right)}{P\left(B\right)}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Discrete Random Variables
+\end_layout
+
+\begin_layout Standard
+The different types of probability distributions (and therefore your analysis
+ method) can be divided into two general classes:
+\end_layout
+
+\begin_layout Enumerate
+Continuous Random Variables - the variable takes on numerical values and
+ could, in principle, take any of an uncountable number of values.
+ In practical terms, if fractions or decimal points in the number make sense,
+ it is usually continuous.
+\end_layout
+
+\begin_layout Enumerate
+Discrete Random Variables - the variable takes on one of small set of values
+ (or only a countable number of outcomes).
+ In practical terms, if fractions or decimals points don't make sense, it
+ is usually discrete.
+\end_layout
+
+\begin_layout Standard
+Examples:
+\end_layout
+
+\begin_layout Enumerate
+Presence or Absence of wolves in a State?
+\end_layout
+
+\begin_layout Enumerate
+Number of Speeding Tickets received?
+\end_layout
+
+\begin_layout Enumerate
+Tree girth (in cm)?
+\end_layout
+
+\begin_layout Enumerate
+Photosynthesis rate?
+\end_layout
+
+\begin_layout Subsection
+Introduction to Discrete Random Variables
+\end_layout
+
+\begin_layout Standard
+The following facts hold for discrete random variables:
+\end_layout
+
+\begin_layout Enumerate
+The probability associated with every value lies between 
+\begin_inset Formula $0$
+\end_inset
+
+ and 
+\begin_inset Formula $1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+The sum of all probabilities for all values is equal to 
+\begin_inset Formula $1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Probabilities for discrete RVs are additive.
+ i.e., 
+\begin_inset Formula $P(3\textrm{ or }4)=P(3)+P(4)$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Subsubsection*
+Expected Value
+\end_layout
+
+\begin_layout Standard
+Example: Consider the discrete random variable 
+\begin_inset Formula $S$
+\end_inset
+
+, the sum of two fair dice.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<fig.height=3, fig.width=6, echo=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+x <- 2:12 
+\end_layout
+
+\begin_layout Plain Layout
+
+y <- c(1:6,5:1)/36 
+\end_layout
+
+\begin_layout Plain Layout
+
+plot(x, y, col='blue', ylim=c(0,.18),
+\end_layout
+
+\begin_layout Plain Layout
+
+      ylab='Probability', xlab='Sum',
+\end_layout
+
+\begin_layout Plain Layout
+
+      main='Distribution of the sum of two die')
+\end_layout
+
+\begin_layout Plain Layout
+
+for(i in 1:length(x)){
+\end_layout
+
+\begin_layout Plain Layout
+
+  lines(c(x[i],x[i]), c(0,y[i]), col='blue')
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We often want to ask 'What is expected value of this distribution?' You
+ might think about taking a really, really large number of samples from
+ this distribution.
+ We define the expected value (often denoted by 
+\begin_inset Formula $\mu$
+\end_inset
+
+) as 
+\emph on
+a weighted average of the possible values and the weights are the proportions
+ with which those values occur.
+\emph default
+
+\begin_inset Formula 
+\begin{eqnarray*}
+\mu=E[S] & = & \sum_{\textrm{possible }s}\; s\cdot P\left(S=s\right)\\
+ & = & \sum_{s=2}^{12}s\cdot P(S=s)\\
+\\
+ & = & 2\cdot P\left(S=2\right)+3\cdot P\left(S=3\right)+\dots+11\cdot P\left(S=11\right)+12\cdot P\left(S=12\right)\\
+ & = & 2\left(\frac{1}{36}\right)+3\left(\frac{2}{36}\right)+\dots+11\left(\frac{2}{36}\right)+12\left(\frac{1}{36}\right)\\
+ & = & 7
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Variance
+\end_layout
+
+\begin_layout Standard
+Similarly we could define the variance of 
+\begin_inset Formula $S$
+\end_inset
+
+ (which we often denote 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+) as 
+\emph on
+a weighted average of the squared-deviations that could occur.
+\emph default
+
+\begin_inset Formula 
+\begin{eqnarray*}
+\sigma^{2}=V[S] & = & \sum_{s=2}^{12}\left(s-\mu\right)^{2}P(S=s)\\
+ & = & (2-7)^{2}\left(\frac{1}{36}\right)+(3-7)^{2}\left(\frac{2}{36}\right)+\dots+(12-7)^{2}\left(\frac{1}{36}\right)\\
+ & = & \frac{35}{6}=5.8\bar{3}
+\end{eqnarray*}
+
+\end_inset
+
+We could interpret the expectation as the sample mean of an infinitely large
+ sample, and the variance as the sample variance of the same infinitely
+ large sample.
+ These are two very important numbers that describe the distribution.
+\end_layout
+
+\begin_layout Example
+My wife is a massage therapist and over the last year, the number of clients
+ she sees per work day (denoted 
+\begin_inset Formula $Y$
+\end_inset
+
+) varied according the following table:
+\end_layout
+
+\begin_layout Example
+\noindent
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="6">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Number of Clients
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Frequency/Probability
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.35
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.20
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.10
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.05
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Because this is the long term relative frequency of the number of clients
+ (over 200 working days!), it is appropriate to interpret these frequencies
+ as probabilities.
+ This table is often called a 
+\emph on
+probability mass function (pmf)
+\emph default
+ because it lists how the probability is spread across the possible values
+ of the random variable.
+
+\emph on
+ 
+\emph default
+We might next ask ourselves what is the average number of clients per day?
+ It looks like it ought to be between 1 and 2 clients per day.
+ 
+\begin_inset Formula 
+\begin{eqnarray*}
+E\left(Y\right) & = & \sum_{\textrm{possible }y}y\, P\left(Y=y\right)\\
+\\
+ & = & \sum_{y=0}^{4}y\, P\left(Y=y\right)\\
+\\
+ & = & 0\, P\left(Y=0\right)+1\, P\left(Y=1\right)+2\, P\left(Y=2\right)+3\, P\left(Y=3\right)+4\, P\left(Y=4\right)\\
+ & = & 0\left(0.3\right)+1\left(0.35\right)+2\left(0.20\right)+3\left(0.10\right)+4\left(0.05\right)\\
+ & = & 1.25
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+Assuming that successive days are independent (which might be a bad assumption)
+ what is the probability she has two days in a row with no clients?
+\begin_inset Formula 
+\begin{eqnarray*}
+P\left(\textrm{0 on day1 }and\textrm{ 0 on day2}\right) & = & P\left(\textrm{0 on day 1}\right)P\left(\textrm{0 on day 2}\right)\\
+ & = & \left(0.3\right)\left(0.3\right)\\
+ & = & 0.09
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+What is the variance of this distribution?
+\begin_inset Formula 
+\begin{eqnarray*}
+V\left(S\right) & = & \sum_{\textrm{possible y}}\,\left(y-\mu\right)^{2}\, P\left(Y=y\right)\\
+\\
+ & = & \sum_{y=0}^{4}\,\left(y-\mu\right)^{2}P\left(Y=y\right)\\
+\\
+ & = & \left(0-1.25\right)^{2}\left(0.3\right)+\left(1-1.25\right)^{2}\left(0.35\right)+\left(2-1.25\right)^{2}\left(0.20\right)+\left(3-1.25\right)^{2}\left(0.10\right)+\left(4-1.25\right)^{2}\left(0.05\right)\\
+\\
+ & = & 1.2875
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+Note on Notation: There is a difference between the upper and lower case
+ letters we have been using to denote a random variable.
+ In general, we let the upper case denote the random variable and the lower
+ case as a value that the the variable could possibly take on.
+ So in the massage example, the number of clients seen per day 
+\begin_inset Formula $Y$
+\end_inset
+
+ could take on values 
+\begin_inset Formula $y=0,1,2,3,$
+\end_inset
+
+ or 
+\begin_inset Formula $4$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Section
+Common Discrete Distributions
+\end_layout
+
+\begin_layout Subsection
+Binomial Distribution
+\end_layout
+
+\begin_layout Standard
+Example: Suppose we are trapping small mammals in the desert and we spread
+ out three traps.
+ Assume that the traps are far enough apart that having one being filled
+ doesn't affect the probability of the others being filled and that all
+ three traps have the same probability of being filled in an evening.
+ Denote the event that a trap is filled as 
+\begin_inset Formula $F_{i}$
+\end_inset
+
+ and if it is empty 
+\begin_inset Formula $E_{i}$
+\end_inset
+
+ (note I could have used 
+\begin_inset Formula $\bar{F}_{i}$
+\end_inset
+
+).
+ Denote the probability that a trap is filled by 
+\begin_inset Formula $\pi=0.8$
+\end_inset
+
+.
+ (This sort of random variable is often referred to as a Bernoulli RV.)
+\end_layout
+
+\begin_layout Standard
+The possible outcomes are 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="9" columns="1">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Outcome
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $E_{1}E_{2}E_{3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $F_{1}E_{2}E_{3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $E_{1}F_{2}E_{3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $E_{1}E_{2}F_{3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $E_{1}F_{2}F_{3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $F_{1}E_{2}F_{3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $F_{1}F_{3}E_{3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $F_{1}F_{2}F_{3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Because these are far apart enough in space that the outcome of Trap1 is
+ independent of Trap2 and Trap3, the 
+\begin_inset Formula 
+\begin{eqnarray*}
+P(E_{1}\cap F_{2}\cap E_{3}) & = & P(E_{1})P(F_{2})P(E_{3})\\
+ & = & (1-0.8)0.8(1-0.8)\\
+ & = & 0.032
+\end{eqnarray*}
+
+\end_inset
+
+
+\series bold
+Notice how important the assumption of independence is!!! 
+\series default
+Similarly we could calculate the probabilities for the rest of the table.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="9" columns="4">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top" width="0pt">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Outcome
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Probability
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $S$
+\end_inset
+
+ outcome
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Probability
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $E_{1}E_{2}E_{3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.008
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $S=0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.008
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $F_{1}E_{2}E_{3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.032
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $E_{1}F_{2}E_{3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.032
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $S=1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3(0.032)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $E_{1}E_{2}F_{3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.032
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $E_{1}F_{2}F_{3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.128
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $F_{1}E_{2}F_{3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.128
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $S=2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3(0.128)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $F_{1}F_{3}E_{3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.128
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $F_{1}F_{2}F_{3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.512
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $S=3$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.512
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Next we are interested in the random variable 
+\begin_inset Formula $S$
+\end_inset
+
+, the number of traps that were filled:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Outcome
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Probability
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $S=0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1(0.008)=0.008$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $S=1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3(0.032)=0.096$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $S=2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3(0.128)=0.384$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $S=3$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1(0.512)=0.512$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $S$
+\end_inset
+
+ is an example of a 
+\series bold
+Binomial Random Variable.
+
+\series default
+ A binomial experiment is one that:
+\end_layout
+
+\begin_layout Enumerate
+Experiment consists of 
+\begin_inset Formula $n$
+\end_inset
+
+ identical trials
+\end_layout
+
+\begin_layout Enumerate
+Each trial results in one of two outcomes (Heads/Tails, presence/absence).
+ One will be labeled a success and the other a failure.
+\end_layout
+
+\begin_layout Enumerate
+The probability of success on a single trial is equal to 
+\begin_inset Formula $\pi$
+\end_inset
+
+ and remains the same from trial to trial.
+ 
+\end_layout
+
+\begin_layout Enumerate
+The trials are independent (this is implied from property 3)
+\end_layout
+
+\begin_layout Enumerate
+The random variable 
+\begin_inset Formula $Y$
+\end_inset
+
+ is the number of successes observed during 
+\begin_inset Formula $n$
+\end_inset
+
+ trials
+\end_layout
+
+\begin_layout Standard
+Recall that the probability mass function (pmf) describes how the probability
+ is spread across the possible outcomes, and in this case, I can describe
+ this via a nice formula.
+ The pmf of a a binomial random variable 
+\begin_inset Formula $Y$
+\end_inset
+
+ taken from 
+\begin_inset Formula $n$
+\end_inset
+
+ trials each with probability of success 
+\begin_inset Formula $\pi$
+\end_inset
+
+ is 
+\begin_inset Formula 
+\[
+P(Y=y)=\underbrace{\frac{n!}{y!(n-y)!}}_{orderings}\;\underbrace{\pi^{y}}_{y\, successes}\;\underbrace{(1-\pi)^{n-y}}_{n-y\, failures}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where we define 
+\begin_inset Formula $n!=n(n-1)\dots(2)(1)$
+\end_inset
+
+ and further define 
+\begin_inset Formula $0!=1$
+\end_inset
+
+.
+ Often the ordering term is written more compactly as 
+\begin_inset Formula ${n \choose y}=\frac{n!}{y!\left(n-y\right)!}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+There will be a variety of distributions we'll be interested in and R refers
+ to them using the following abbreviations
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="9" columns="4">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Distribution
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+R stem
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+parameters (and defaults)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+parameter interpretation
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Binomial
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+binom
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+size
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+number of trials
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+prob
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+probability of success
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Poisson
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+pois
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+lambda
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+mean
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Exponential
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+exp
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+rate 
+\family default
+or
+\family typewriter
+ lambda
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\lambda$
+\end_inset
+
+ represents the mean, while rate is 
+\begin_inset Formula $\frac{1}{\lambda}$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Normal
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+norm
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+mean=0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+mean
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+sd=1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+standard deviation
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="left" valignment="middle" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Uniform
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="left" valignment="middle" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+unif
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+min=0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+lower bound
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+max=1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+upper bound
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For our small mammal example we can create a graph that shows the binomial
+ distribution with the following R code:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<message=FALSE, fig.height=2.5, fig.width=5>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+library(mosaic)
+\end_layout
+
+\begin_layout Plain Layout
+
+plotDist('binom', size=3, prob=0.8, 
+\end_layout
+
+\begin_layout Plain Layout
+
+         main='Binomial Distribution(n=3,p=0.8)', 
+\end_layout
+
+\begin_layout Plain Layout
+
+         ylab='Probability', xlab='Number of Full Traps')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+To calculate the height of any of these bars, we can evaluate the pmf at
+ the desired point.
+ For example, to calculate the probability the number of full traps is 2,
+ we calculate the following
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+P(S=2) & = & {3 \choose 2}\left(0.8\right)^{2}\left(1-0.8\right)^{3-2}\\
+\\
+ & = & \frac{3!}{2!(3-2)!}(0.8)^{2}(0.2)^{3-2}\\
+\\
+ & = & \frac{3\cdot2\cdot1}{(2\cdot1)1}\;(0.8)^{2}(0.2)\\
+\\
+ & = & 3(0.128)\\
+\\
+ & = & 0.384
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+You can use R to calculate these probabilities.
+ In general, for any distribution, the 
+\begin_inset Quotes eld
+\end_inset
+
+d-function
+\begin_inset Quotes erd
+\end_inset
+
+ gives the distribution function (pmf or pdf).
+ So to get R to do the preceding calculation we use:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+# P( Y = 2 | n=3, pi=0.8 )
+\end_layout
+
+\begin_layout Plain Layout
+
+dbinom(2, size=3, prob=0.8)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The expectation of this distribution can be shown to be 
+\begin_inset Formula 
+\begin{eqnarray*}
+E[Y] & = & \sum_{y=0}^{n}y\, P(Y=y)\\
+\\
+ & = & \sum_{y=0}^{n}y\;\frac{n!}{y!\left(n-y\right)!}\pi^{y}\left(1-\pi\right)^{n-y}\\
+\\
+ & = & \vdots\\
+ & = & n\pi
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+and the variance can be similarly calculated
+\begin_inset Formula 
+\begin{eqnarray*}
+V[Y] & = & \sum_{y=0}^{n}\left(y-E\left[Y\right]\right)^{2}\, P\left(Y=y|n,\pi\right)\\
+\\
+ & = & \sum_{y=0}^{n}\left(y-E\left[Y\right]\right)^{2}\;\frac{n!}{y!\left(n-y\right)!}\pi^{y}\left(1-\pi\right)^{n-y}\\
+\\
+ & = & \vdots\\
+ & = & n\pi(1-\pi)
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+Suppose a bird survey only captures the presence or absence of a particular
+ bird (say the mountain chickadee).
+ Assuming the true presence proportion at national forest sites around Flagstaff
+ 
+\begin_inset Formula $\pi=0.1$
+\end_inset
+
+, then for 
+\begin_inset Formula $n=20$
+\end_inset
+
+ randomly chosen sites, the number of sites in which the bird was observed
+ would have the distribution
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<fig.height=2.5, fig.width=5>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plotDist('binom', size=20, prob=0.1, 
+\end_layout
+
+\begin_layout Plain Layout
+
+         main='Binomial Distribution(n=20,p=0.1)', 
+\end_layout
+
+\begin_layout Plain Layout
+
+         ylab='Probability', xlab='Number Sites Occupied')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Often we are interested in questions such as 
+\begin_inset Formula $P(Y\le2)$
+\end_inset
+
+ which is the probability that we see 2 or fewer of the sites being occupied
+ by mountain chickadee.
+ These calculations can be tedious to calculate by hand but R will calculate
+ these cumulative distribution function values for you using the 
+\begin_inset Quotes eld
+\end_inset
+
+p-function
+\begin_inset Quotes erd
+\end_inset
+
+.
+ This cumulative distribution function gives the sum of all values up to
+ and including the number given.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+# P(Y=0) + P(Y=1) + P(Y=2)
+\end_layout
+
+\begin_layout Plain Layout
+
+sum <- dbinom(0, size=20, prob=0.1) + 
+\end_layout
+
+\begin_layout Plain Layout
+
+       dbinom(1, size=20, prob=0.1) + 
+\end_layout
+
+\begin_layout Plain Layout
+
+       dbinom(2, size=20, prob=0.1)
+\end_layout
+
+\begin_layout Plain Layout
+
+sum
+\end_layout
+
+\begin_layout Plain Layout
+
+# P(Y <= 2)
+\end_layout
+
+\begin_layout Plain Layout
+
+pbinom(2, size=20, prob=0.1)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In general we will be interested in asking four different questions about
+ a distribution.
+\end_layout
+
+\begin_layout Enumerate
+What is the height of the probability mass function (or probability density
+ function).
+ For discrete variable 
+\begin_inset Formula $Y$
+\end_inset
+
+ this is 
+\begin_inset Formula $P\left(Y=y\right)$
+\end_inset
+
+ for whatever value of 
+\begin_inset Formula $y$
+\end_inset
+
+ we want.
+\end_layout
+
+\begin_layout Enumerate
+What is the probability of observing a value less than or equal to 
+\begin_inset Formula $y$
+\end_inset
+
+? In other words, to calculate 
+\begin_inset Formula $P\left(Y\le y\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+What is a particular quantile of a distribution? For example, what value
+ separates the lower 25% from the upper 75%?
+\end_layout
+
+\begin_layout Enumerate
+Generate a random sample of values from a specified distribution.
+\end_layout
+
+\begin_layout Standard
+All the probability distributions available in R are accessed in exactly
+ the same way, using a 
+\family typewriter
+d-function
+\family default
+, 
+\family typewriter
+p-function
+\family default
+, 
+\family typewriter
+q-function
+\family default
+, and 
+\family typewriter
+r-function
+\family default
+.
+ For the rest of this section suppose that 
+\begin_inset Formula $X$
+\end_inset
+
+ is a random variable from the distribution of interest and 
+\begin_inset Formula $x$
+\end_inset
+
+ is some possible value that 
+\begin_inset Formula $X$
+\end_inset
+
+ could take on.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="10" columns="3">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Function
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Result
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Example
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+d-function(x)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Discrete: 
+\begin_inset Formula $P\left(X=x\right)$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+dbinom(0, size=20, prob=.1)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Continuous: the height of the density 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+dnorm(0, mean=0, sd=1) 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+function at the given point
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+is the height 
+\begin_inset Formula $\approx0.40$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+p-function(x)
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $P\left(X\le x\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+pnorm(-1.96, mean=0, sd=1) 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+is 
+\begin_inset Formula $P\left(Z<1.96\right)=0.025$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+q-function(q)
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x$
+\end_inset
+
+ such that 
+\begin_inset Formula $P\left(X\le x\right)=q$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+qnorm(0.05, mean=0, sd=1) 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+is 
+\begin_inset Formula $z$
+\end_inset
+
+ such that 
+\begin_inset Formula $P\left(Z\le z\right)=0.05$
+\end_inset
+
+ which is 
+\begin_inset Formula $z=-1.645$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+r-function(n)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $n$
+\end_inset
+
+ random observations
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+rnorm(n=10, mean=0, sd=1)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ from the distribution
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ generates 10 observations from a N(0,1) distribution
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Poisson Distribution
+\end_layout
+
+\begin_layout Standard
+A commonly used distribution for count data is the Poisson.
+\end_layout
+
+\begin_layout Enumerate
+Number of customers arriving over a 5 minute interval
+\end_layout
+
+\begin_layout Enumerate
+Number of birds observed during a 10 minute listening period
+\end_layout
+
+\begin_layout Enumerate
+Number of prairie dog towns per 1000 hectares
+\end_layout
+
+\begin_layout Enumerate
+Number of alga clumps per cubic meter of lake water
+\end_layout
+
+\begin_layout Standard
+For a RV is a Poisson RV if the following conditions apply:
+\end_layout
+
+\begin_layout Enumerate
+Two or more events do not occur at precisely the same time or in the same
+ space
+\end_layout
+
+\begin_layout Enumerate
+The occurrence of an event in a given period of time or region of space
+ is independent of the occurrence of the event in a non overlapping period
+ or region.
+\end_layout
+
+\begin_layout Enumerate
+The expected number of events during one period or region, 
+\begin_inset Formula $\lambda$
+\end_inset
+
+, is the same in all periods or regions of the same size.
+\end_layout
+
+\begin_layout Standard
+Assuming that these conditions hold for some count variable 
+\begin_inset Formula $Y$
+\end_inset
+
+, the the probability mass function is given by
+\begin_inset Formula 
+\[
+P(Y=y)=\frac{\lambda^{y}e^{-\lambda}}{y!}
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ is the expected number of events over 1 unit of time or space and 
+\begin_inset Formula $e$
+\end_inset
+
+ is the constant 
+\begin_inset Formula $2.718281828$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+E[Y] & = & \lambda\\
+Var[Y] & = & \lambda
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+Suppose we are interested in the population size of small mammals in a region.
+ Let 
+\begin_inset Formula $Y$
+\end_inset
+
+ be the number of small mammals caught in a large trap (multiple traps in
+ the same location?) in a 12 hour period.
+ Finally, suppose that 
+\begin_inset Formula $Y\sim Poi(\lambda=2.3)$
+\end_inset
+
+.
+ What is the probability of finding exactly 4 critters in our trap?
+\begin_inset Formula 
+\begin{eqnarray*}
+P(Y=4) & = & \frac{2.3^{4}\, e^{-2.3}}{4!}\\
+ & = & 0.1169
+\end{eqnarray*}
+
+\end_inset
+
+What about the probability of finding at most 4?
+\begin_inset Formula 
+\begin{eqnarray*}
+P(Y\le4) & = & P(Y=0)+P(Y=1)+P(Y=2)+P(Y=3)+P(Y=4)\\
+ & = & 0.1003+0.2306+0.2652+0.2033+0.1169\\
+ & = & 0.9163
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+What about the probability of finding 5 or more?
+\begin_inset Formula 
+\begin{eqnarray*}
+P(Y\ge5) & = & 1-P(Y\le4)\\
+ & = & 1-0.9163\\
+ & = & 0.0837
+\end{eqnarray*}
+
+\end_inset
+
+These calculations can be done using the distribution function (
+\family typewriter
+d-function
+\family default
+) for the poisson and the cumulative distribution function (
+\family typewriter
+p-function)
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<fig.height=3, fig.width=6>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plotDist('pois', lambda=2.3,
+\end_layout
+
+\begin_layout Plain Layout
+
+         main='Poisson Distribution with lambda=2.3', ylab='density')
+\end_layout
+
+\begin_layout Plain Layout
+
+# P( Y = 4)
+\end_layout
+
+\begin_layout Plain Layout
+
+dpois(4, lambda=2.3)
+\end_layout
+
+\begin_layout Plain Layout
+
+# P( Y <= 4)
+\end_layout
+
+\begin_layout Plain Layout
+
+ppois(4, lambda=2.3)
+\end_layout
+
+\begin_layout Plain Layout
+
+# 1-P(Y <= 4)  ==  P( Y > 4)  ==  P( Y >= 5)
+\end_layout
+
+\begin_layout Plain Layout
+
+1-ppois(4, 2.3)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Continuous Random Variables
+\end_layout
+
+\begin_layout Standard
+Finding the area under the curve of a particular density function 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ requires the use of calculus, but since this isn't a calculus course, we
+ will resort to using R or tables of calculated values.
+\end_layout
+
+\begin_layout Subsection
+Uniform(0,1) Distribution
+\end_layout
+
+\begin_layout Standard
+Suppose you wish to draw a random number number between 0 and 1 and each
+ number should have an equal chance of being selected.
+ This random variable is said to have a 
+\emph on
+Uniform(0,1)
+\emph default
+ distribution.
+\end_layout
+
+\begin_layout Standard
+Because there are an infinite number of rational numbers between 0 and 1,
+ the probability of any particular number being selected is 
+\begin_inset Formula $1/\infty=0$
+\end_inset
+
+.
+ But even though each number has 0 probability of being selected, some number
+ must end up being selected.
+ Because of this conundrum, probability theory doesn't look at the probability
+ of a single number, but rather focuses on a 
+\emph on
+region of numbers
+\emph default
+.
+ 
+\end_layout
+
+\begin_layout Standard
+To make this distinction, we will define the distribution using a 
+\emph on
+probability density function
+\emph default
+ instead of the probability mass function.
+ In the discrete case, we had to constrain the probability mass function
+ to sum to 1.
+ In the continuous case, we have to constrain the probability density function
+ to integrate to 1.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<echo=FALSE, fig.height=4, fig.width=6>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+layout(matrix(1:2, nrow=2))
+\end_layout
+
+\begin_layout Plain Layout
+
+par(mar=c(2,3,1,1))
+\end_layout
+
+\begin_layout Plain Layout
+
+x <- seq(-.1, 1.1, length=1000)
+\end_layout
+
+\begin_layout Plain Layout
+
+smallx <- seq(0, 1/3, length=1000)
+\end_layout
+
+\begin_layout Plain Layout
+
+plot(x, dunif(x, 0,1), type='l', ylab='f(x)', xlab='')
+\end_layout
+
+\begin_layout Plain Layout
+
+polygon(x, dunif(x, 0, 1), col='grey')
+\end_layout
+
+\begin_layout Plain Layout
+
+text(.5, .5, 'Area = 1')
+\end_layout
+
+\begin_layout Plain Layout
+
+smallx <- seq(0, 1/3, length=1000)
+\end_layout
+
+\begin_layout Plain Layout
+
+plot(x, dunif(x, 0, 1), type='l', ylab='f(x)', xlab='')
+\end_layout
+
+\begin_layout Plain Layout
+
+polygon(c(0, smallx, 1/3), c(0, dunif(smallx, 0,1), 0), col='grey')
+\end_layout
+
+\begin_layout Plain Layout
+
+text(.15, .5, 'P(X < 1/3)')
+\end_layout
+
+\begin_layout Plain Layout
+
+text(.15, .3, ' = 1/3'    )
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Finding the area under the curve of a particular density function 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ usually requires the use of calculus, but since this isn't a calculus course,
+ we will resort to using R or tables of calculated values.
+\end_layout
+
+\begin_layout Subsection
+Exponential Distribution
+\end_layout
+
+\begin_layout Standard
+The exponential distribution is the continuous analog of the Poisson distributio
+n and is often used to model the time between occurrence of successive events.
+ Perhaps we are modeling time between transmissions on a network, or the
+ time between feeding events or prey capture.
+ If the random variable 
+\begin_inset Formula $X$
+\end_inset
+
+ has an Exponential distribution, its distribution function is 
+\begin_inset Formula 
+\[
+f(x)=\begin{cases}
+\lambda e^{-\lambda x} & x\ge0\;\textrm{ and }\;\lambda>0\\
+0 & \textrm{otherwise}
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<echo=FALSE, fig.height=5, fig.width=8>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+x <- seq(0,5,length=1000)
+\end_layout
+
+\begin_layout Plain Layout
+
+plot(x, dexp(x, rate=1), lty=1, type='l', ylab='density', lwd=2)
+\end_layout
+
+\begin_layout Plain Layout
+
+lines(x, dexp(x, rate=2), lty=2, col='red', lwd=2)
+\end_layout
+
+\begin_layout Plain Layout
+
+lines(x, dexp(x, rate=.5), lty=3, col='blue', lwd=2)
+\end_layout
+
+\begin_layout Plain Layout
+
+legend(2.5, .8, legend=c('Lambda=1', 'Lambda=2', 'Lambda=0.5'), 
+\end_layout
+
+\begin_layout Plain Layout
+
+lty=c(1,2,3), col=c('black', 'red', 'blue'), lwd=2)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+Analogous to the discrete distributions, we can define the Expectation and
+ Variance of these distributions by replacing the summation with an integral
+\begin_inset Formula 
+\begin{eqnarray*}
+E[X] & = & \int_{0}^{\infty}x\, f(x)\, dx\\
+ & = & \vdots\\
+ & = & \frac{1}{\lambda}\\
+Var[X] & = & \int_{0}^{\infty}\left(x-E\left[X\right]\right)^{2}\, f\left(x\right)\, dx\\
+ & = & \vdots\\
+ &  & \frac{1}{\lambda^{2}}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Since the exponential distribution is defined by the rate of occurrence
+ of an event, increasing that rate 
+\emph on
+decreases 
+\emph default
+the time between events.
+ Furthermore since the rate of occurrence cannot be negative, we restrict
+ 
+\begin_inset Formula $\lambda>0$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Example
+Suppose the time between insect captures 
+\begin_inset Formula $X$
+\end_inset
+
+ during a summer evening for a species of bat follows a exponential distribution
+ with capture rate of 
+\begin_inset Formula $\lambda=2$
+\end_inset
+
+ insects per minute and therefore the expected waiting time between captures
+ is 
+\begin_inset Formula $1/\lambda=1/2$
+\end_inset
+
+ minute.
+ Suppose that we are interested in the probability that it takes a bat more
+ than 1 minute to capture its next insect.
+\end_layout
+
+\begin_layout Example
+\begin_inset Formula $P(X>1)=$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+echo=FALSE, fig.height=4, fig.width=8
+\end_layout
+
+\end_inset
+
+xsmall <- seq(1,5,length=1000)
+\end_layout
+
+\begin_layout Plain Layout
+
+plot(x, dexp(x, rate=2), lty=1, type='l', ylab='density')
+\end_layout
+
+\begin_layout Plain Layout
+
+polygon(c(1, xsmall), c(0, dexp(xsmall, rate=2)), col='grey')
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We now must resort to calculus to find this area.
+ Or use tables of pre-calculated values.
+ Or use R (remembering that 
+\family typewriter
+p-functions
+\family default
+ give the area under the curve 
+\emph on
+to the left
+\emph default
+ 
+\emph on
+of the given value.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+# P(X > 1)  == 1 - P(X <= 1)
+\end_layout
+
+\begin_layout Plain Layout
+
+1 - pexp(1, rate=2)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Normal Distribution
+\end_layout
+
+\begin_layout Standard
+Undoubtably the most important distribution in statistics is the normal
+ distribution.
+ If my RV 
+\begin_inset Formula $X$
+\end_inset
+
+ is normally distributed with mean 
+\begin_inset Formula $\mu$
+\end_inset
+
+ and standard deviation 
+\begin_inset Formula $\sigma$
+\end_inset
+
+, its probability distribution function is given by
+\begin_inset Formula 
+\[
+f(x)=\frac{1}{\sqrt{2\pi}\sigma}\exp\left[\frac{-(x-\mu)^{2}}{2\sigma^{2}}\right]
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\exp[y]$
+\end_inset
+
+ is the exponential function 
+\begin_inset Formula $e^{y}$
+\end_inset
+
+.
+ We could slightly rearrange the function to
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+f(x)=\frac{1}{\sqrt{2\pi}\sigma}\exp\left[-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^{2}\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+and see this distribution is defined by its expectation 
+\begin_inset Formula $E[X]=\mu$
+\end_inset
+
+ and its variance 
+\begin_inset Formula $Var[X]=\sigma^{2}$
+\end_inset
+
+.
+ Notice I could define it using the standard deviation 
+\begin_inset Formula $\sigma$
+\end_inset
+
+, and different software packages will expect it to be defined by one or
+ the other.
+ R defines the normal distribution using the standard deviation.
+ 
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+echo=FALSE, fig.height=5, fig.width=8
+\end_layout
+
+\end_inset
+
+x <- seq(-5,7,length=1000)
+\end_layout
+
+\begin_layout Plain Layout
+
+plot(range(x), c(0,0.7), type='n', ylab='density', xlab='x')
+\end_layout
+
+\begin_layout Plain Layout
+
+lines(x, dnorm(x, mean=0, sd=1),   lty=1, lwd=2, col='black')
+\end_layout
+
+\begin_layout Plain Layout
+
+lines(x, dnorm(x, mean=2, sd=2),   lty=2, lwd=2, col='red')
+\end_layout
+
+\begin_layout Plain Layout
+
+lines(x, dnorm(x,     -3, sd=0.6), lty=3, lwd=2, col='blue')
+\end_layout
+
+\begin_layout Plain Layout
+
+legend(2, .6, legend=c(
+\end_layout
+
+\begin_layout Plain Layout
+
+  expression(paste(mu,'=0  ',sigma,'=1')),
+\end_layout
+
+\begin_layout Plain Layout
+
+  expression(paste(mu,'=2  ',sigma,'=2')),
+\end_layout
+
+\begin_layout Plain Layout
+
+  expression(paste(mu,'=-3  ',sigma,'=0.6'))),
+\end_layout
+
+\begin_layout Plain Layout
+
+  lwd=2, lty=1:3, col=c('black','red','blue'))
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+It is known that the heights of adult males in the US is approximately normal
+ with a mean of 5 feet 10 inches (
+\begin_inset Formula $\mu=70$
+\end_inset
+
+ inches) and a standard deviation of 
+\begin_inset Formula $\sigma=3$
+\end_inset
+
+ inches.
+ Your instructor is a mere 5 feet 4 inches (
+\begin_inset Formula $64$
+\end_inset
+
+ inches).
+ What proportion of the population is shorter than your professor?
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+echo=FALSE, fig.height=5, fig.width=8
+\end_layout
+
+\end_inset
+
+x <- seq(57,82,length=1000)
+\end_layout
+
+\begin_layout Plain Layout
+
+plot(x, dnorm(x, mean=70, sd=3), ylab='density', xlab='Adult Male Heights',
+ type='l', lwd=2)
+\end_layout
+
+\begin_layout Plain Layout
+
+x2 <- seq(57,64, length=1000)
+\end_layout
+
+\begin_layout Plain Layout
+
+polygon(c(x2,64), c(dnorm(x2, mean=70, sd=3),0), col='grey')
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Using R you can easily find this
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+echo=TRUE
+\end_layout
+
+\end_inset
+
+# P( Y <= 64 )
+\end_layout
+
+\begin_layout Plain Layout
+
+pnorm(64, mean=70, sd=3)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+but unfortunately your professor may need to ask similar questions on an
+ exam and so we have to talk about how to do the same calculation using
+ a table.
+ First we notice that the normal distribution is defined by the number of
+ standard deviations from the mean (which we denote as 
+\begin_inset Formula $z$
+\end_inset
+
+)
+\begin_inset Formula 
+\[
+z=\frac{x-\mu}{\sigma}
+\]
+
+\end_inset
+
+ and we note that he is 
+\begin_inset Formula $-2$
+\end_inset
+
+ standard deviations from the mean because
+\begin_inset Formula 
+\begin{eqnarray*}
+z & = & \frac{64-70}{3}\\
+ & = & \frac{-6}{3}\\
+ & = & -2
+\end{eqnarray*}
+
+\end_inset
+
+Next we look at the table in the front of the book for 
+\begin_inset Formula $z=-2.00$
+\end_inset
+
+.
+ To do this we go down to the 
+\begin_inset Formula $-2.0$
+\end_inset
+
+ row and over to the 
+\begin_inset Formula $.00$
+\end_inset
+
+ column and find 
+\begin_inset Formula $0.0228$
+\end_inset
+
+.
+ Only slightly over 2% of the adult male population is shorter!
+\end_layout
+
+\begin_layout Standard
+How tall must a male be to be taller than 
+\begin_inset Formula $80\%$
+\end_inset
+
+ of the rest of the male population? To answer that we must use the table
+ in reverse and look for the 
+\begin_inset Formula $0.8$
+\end_inset
+
+ value.
+ We find the closest value possible (
+\begin_inset Formula $0.7995)$
+\end_inset
+
+ and the 
+\begin_inset Formula $z$
+\end_inset
+
+ value associated with it is 
+\begin_inset Formula $z=0.84$
+\end_inset
+
+.
+ Next we solve the standardizing equation for 
+\begin_inset Formula $x$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{eqnarray*}
+z & = & \frac{x-\mu}{\sigma}\\
+0.84 & = & \frac{x-70}{3}\\
+x & = & 3(0.84)+70\\
+ & = & 72.49\;\textrm{inches}
+\end{eqnarray*}
+
+\end_inset
+
+Alternatively we could use the quantile function for the normal distribution
+ 
+\family typewriter
+(q-function)
+\family default
+ in R and avoid the imprecision of using a table.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+qnorm(.8, mean=0, sd=1)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+x & = & 3(0.8416)+70\\
+ & = & 72.52\;\textrm{inches}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Empirical Rule - It is from the normal distribution that the empirical rule
+ from chapter 3 is derived.
+ If 
+\begin_inset Formula $X\sim N(\mu,\sigma^{2})$
+\end_inset
+
+ then 
+\begin_inset Formula 
+\begin{eqnarray*}
+P(\mu-\sigma\le X\le\mu+\sigma) & = & P(-1\le Z\le1)\\
+ & = & P(Z\le1)-P(Z\le-1)\\
+ & \approx & 0.8413-0.1587\\
+ & = & 0.6826
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+fig.height=4, fig.width=8, echo=FALSE
+\end_layout
+
+\end_inset
+
+z <- seq(-3,3,length=1000)
+\end_layout
+
+\begin_layout Plain Layout
+
+plot(z, dnorm(z), ylab='density', xlab='Z', type='l', lwd=2, main='Empirical
+ Rule')
+\end_layout
+
+\begin_layout Plain Layout
+
+lines(c(-1,1), rep(dnorm(1),2), lwd=2, col=1)
+\end_layout
+
+\begin_layout Plain Layout
+
+lines(c(-2,2), rep(dnorm(2),2), lwd=2, col=2)
+\end_layout
+
+\begin_layout Plain Layout
+
+eps <- 0.015
+\end_layout
+
+\begin_layout Plain Layout
+
+text(0, dnorm(1)+ eps, expression(paste(''%~~%'','68%')), col=1)
+\end_layout
+
+\begin_layout Plain Layout
+
+text(0, dnorm(1)-eps, expression(paste(''%+-%'', '1', sigma)), col=1)
+\end_layout
+
+\begin_layout Plain Layout
+
+text(0, dnorm(2)+eps, expression(paste(''%~~%'','95%')), col=2)
+\end_layout
+
+\begin_layout Plain Layout
+
+text(0, dnorm(2)-eps, expression(paste(''%+-%'', '2', sigma)), col=2)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Exercises
+\end_layout
+
+\begin_layout Enumerate
+For each of the following, mark if it is Continuous or Discrete.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+underline{
+\backslash
+hspace{1in}}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "60col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+Milliliters of tea drunk per day.
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+underline{
+\backslash
+hspace{1in}}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "60col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+Different brands of soda drunk over the course of a year.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+underline{
+\backslash
+hspace{1in}}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "60col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+Number of days per week that you are on-campus for any amount of time.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+underline{
+\backslash
+hspace{1in}}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "60col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+Number of grizzly bears individuals genetically identified from a grid of
+ hair traps in Glacier National Park.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Twenty-five employees of a corporation have a mean salary of $62,000 and
+ the sample standard deviation of those salaries is $15,000.
+ If each employee receives a bonus of $1,000, does the standard deviation
+ of the salaries change? Explain your reasoning.
+\end_layout
+
+\begin_layout Enumerate
+For each scenario, state whether the event should be modeled via a binomial
+ or Poisson distribution.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+underline{
+\backslash
+hspace{1in}}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "60col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+Number of M&Ms I eat per hour while grading homework
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+underline{
+\backslash
+hspace{1in}}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "60col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+The number of mornings in the coming 7 days that I change my daughter's
+ first diaper of the day.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+underline{
+\backslash
+hspace{1in}}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "60col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+The number of Manzanita bushes per 100 meters of trail.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+During a road bike race, there is always a chance a crash will occur.
+ Suppose the probability that at least one crash will occur in any race
+ I'm in is 
+\begin_inset Formula $\pi=0.2$
+\end_inset
+
+ and that races are independent.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+What is the probability that the next two races I'm in will both have crashes?
+\end_layout
+
+\begin_layout Enumerate
+What is the probability that neither of my next two races will there be
+ a crash?
+\end_layout
+
+\begin_layout Enumerate
+What is the probability that at least one of the next two races will have
+ a crash?
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+My cats suffer from gastric distress due to eating house plants and the
+ number of vomits per week that I have to clean up follows a Poisson distributio
+n with rate 
+\begin_inset Formula $\lambda=1.2$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+What is the probability that I don't have to clean up any vomits this coming
+ week?
+\end_layout
+
+\begin_layout Enumerate
+What is the probability that I must clean up 1 or more vomits?
+\end_layout
+
+\begin_layout Enumerate
+If I wanted to measure this process with a rate per day, what rate should
+ I use?
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Suppose that the number of runners I see on a morning walk on the trails
+ near my house has the following distribution (Notice I've never seen four
+ or more runners on a morning walk):
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="6">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $y$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $p\left(y\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.45
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.25
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.20
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset space \hspace{}
+\length 0.4in
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.0
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+What is the probability that I see 3 runners on a morning walk?
+\end_layout
+
+\begin_layout Enumerate
+What is the expected number of runners that I will encounter?
+\end_layout
+
+\begin_layout Enumerate
+What is the variance of the number of runners that I will encounter?
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+If 
+\begin_inset Formula $Z\sim N\left(\mu=0,\sigma^{2}=1\right)$
+\end_inset
+
+, find the following probabilities: 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $P(Z<1.58)=$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $P(Z=1.58)=$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $P(Z>-.27)=$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $P(-1.97<Z<2.46)=$
+\end_inset
+
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Using the Standard Normal Table or the table functions in 
+\family typewriter
+R
+\family default
+, find 
+\begin_inset Formula $z$
+\end_inset
+
+ that makes the following statements true.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $P(Z<z)=.75$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $P(Z>z)=.4$
+\end_inset
+
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+The amount of dry kibble that I feed my cats each morning can be well approximat
+ed by a normal distribution with mean 
+\begin_inset Formula $\mu=200$
+\end_inset
+
+ grams and standard deviation 
+\begin_inset Formula $\sigma=30$
+\end_inset
+
+ grams.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+What is the probability that I fed my cats more than 
+\begin_inset Formula $250$
+\end_inset
+
+ grams of kibble this morning?
+\end_layout
+
+\begin_layout Enumerate
+From my cats' perspective, more food is better.
+ How much would I have to feed them for this morning to be among the top
+ 
+\begin_inset Formula $10\%$
+\end_inset
+
+ of feedings?
+\end_layout
+
+\end_deeper
+\end_body
+\end_document

@@ -1,0 +1,3455 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass book
+\begin_preamble
+\usepackage{a4wide}
+\end_preamble
+\options a4paper
+\use_default_options false
+\begin_modules
+knitr
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding iso8859-1
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 0
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Confidence Intervals Using Bootstrapping
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<echo=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+if(file.exists('Global_Knitr_Opts.R')){
+\end_layout
+
+\begin_layout Plain Layout
+
+  source('Global_Knitr_Opts.R')
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+opts_chunk$set(fig.path   = 'figure/Ch_3_Bootstrapping/') 
+\end_layout
+
+\begin_layout Plain Layout
+
+opts_chunk$set(cache.path =  'cache/Ch_3_Bootstrapping/')
+\end_layout
+
+\begin_layout Plain Layout
+
+opts_chunk$set(cache      = TRUE )
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Theory of Bootstrapping
+\end_layout
+
+\begin_layout Standard
+Suppose that we had a population of interest and we wish to estimate the
+ mean of that population (the population mean we'll denote as 
+\begin_inset Formula $\mu$
+\end_inset
+
+).
+ We can't observe every member of the population (which would be prohibitively
+ expensive) so instead we take a random sample and from that sample calculate
+ a sample mean (which we'll denote 
+\begin_inset Formula $\bar{x}$
+\end_inset
+
+).
+ We believe that 
+\begin_inset Formula $\bar{x}$
+\end_inset
+
+ will be a good estimator of 
+\begin_inset Formula $\mu$
+\end_inset
+
+, but it will vary from sample to sample and won't be exactly equal to 
+\begin_inset Formula $\mu$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Next suppose we wish to ask if a particular value for 
+\begin_inset Formula $\mu$
+\end_inset
+
+, say 
+\begin_inset Formula $\mu_{0}$
+\end_inset
+
+, is consistent with our observed data? We know that 
+\begin_inset Formula $\bar{x}$
+\end_inset
+
+ will vary from sample to sample, but we have no idea 
+\emph on
+how much it will vary
+\emph default
+ between samples.
+ However, if we could understand how much 
+\begin_inset Formula $\bar{x}$
+\end_inset
+
+ varied sample to sample, we could answer the question.
+ For example, suppose that 
+\begin_inset Formula $\bar{x}=5$
+\end_inset
+
+ and we know that 
+\begin_inset Formula $\bar{x}$
+\end_inset
+
+ varied about 
+\begin_inset Formula $\pm2$
+\end_inset
+
+ from sample to sample.
+ Then I'd say that possible values of 
+\begin_inset Formula $\mu_{0}$
+\end_inset
+
+ in the interval 
+\begin_inset Formula $3$
+\end_inset
+
+ to 
+\begin_inset Formula $7$
+\end_inset
+
+ 
+\begin_inset Formula $\left(5\pm2\right)$
+\end_inset
+
+ are reasonable values for 
+\begin_inset Formula $\mu$
+\end_inset
+
+ and anything outside that interval is not reasonable.
+\end_layout
+
+\begin_layout Standard
+Therefore, if we could take many, many repeated samples from the population
+ and calculate our test statistic 
+\begin_inset Formula $\bar{x}$
+\end_inset
+
+ for each sample, we could rule out possible values of 
+\begin_inset Formula $\mu$
+\end_inset
+
+.
+ Unfortunately we don't have the time or money to repeatedly sample from
+ the actual population, but we could sample from our best approximation
+ to what the population is like.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<echo=FALSE, message=FALSE, warning=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+library(mosaic)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# define the multiplot function
+\end_layout
+
+\begin_layout Plain Layout
+
+# Multiple plot function 
+\end_layout
+
+\begin_layout Plain Layout
+
+# 
+\end_layout
+
+\begin_layout Plain Layout
+
+# ggplot objects can be passed in ..., or to plotlist (as a list of ggplot
+ objects) 
+\end_layout
+
+\begin_layout Plain Layout
+
+# - cols:   Number of columns in layout 
+\end_layout
+
+\begin_layout Plain Layout
+
+# - layout: A matrix specifying the layout.
+ If present, 'cols' is ignored.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+# 
+\end_layout
+
+\begin_layout Plain Layout
+
+# If the layout is something like matrix(c(1,2,3,3), nrow=2, byrow=TRUE),
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+# then plot 1 will go in the upper left, 2 will go in the upper right, and
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+# 3 will go all the way across the bottom.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+#
+\end_layout
+
+\begin_layout Plain Layout
+
+multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
+\end_layout
+
+\begin_layout Plain Layout
+
+  require(grid)
+\end_layout
+
+\begin_layout Plain Layout
+
+  # Make a list from the ...
+ arguments and plotlist
+\end_layout
+
+\begin_layout Plain Layout
+
+  plots <- c(list(...), plotlist)
+\end_layout
+
+\begin_layout Plain Layout
+
+  numPlots = length(plots)
+\end_layout
+
+\begin_layout Plain Layout
+
+  # If layout is NULL, then use 'cols' to determine layout
+\end_layout
+
+\begin_layout Plain Layout
+
+  if (is.null(layout)) {
+\end_layout
+
+\begin_layout Plain Layout
+
+    # Make the panel
+\end_layout
+
+\begin_layout Plain Layout
+
+    # ncol: Number of columns of plots
+\end_layout
+
+\begin_layout Plain Layout
+
+    # nrow: Number of rows needed, calculated from # of cols
+\end_layout
+
+\begin_layout Plain Layout
+
+    layout <- matrix(seq(1, cols * ceiling(numPlots/cols)),
+\end_layout
+
+\begin_layout Plain Layout
+
+                    ncol = cols, nrow = ceiling(numPlots/cols))
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  if (numPlots==1) {
+\end_layout
+
+\begin_layout Plain Layout
+
+    print(plots[[1]])
+\end_layout
+
+\begin_layout Plain Layout
+
+ } else {
+\end_layout
+
+\begin_layout Plain Layout
+
+    # Set up the page
+\end_layout
+
+\begin_layout Plain Layout
+
+    grid.newpage()
+\end_layout
+
+\begin_layout Plain Layout
+
+    pushViewport(viewport(layout = grid.layout(nrow(layout), ncol(layout))))
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    # Make each plot, in the correct location
+\end_layout
+
+\begin_layout Plain Layout
+
+    for (i in 1:numPlots) {
+\end_layout
+
+\begin_layout Plain Layout
+
+      # Get the i,j matrix positions of the regions that contain this subplot
+\end_layout
+
+\begin_layout Plain Layout
+
+      matchidx <- as.data.frame(which(layout == i, arr.ind = TRUE))
+\end_layout
+
+\begin_layout Plain Layout
+
+      print(plots[[i]], vp = viewport(layout.pos.row = matchidx$row,
+\end_layout
+
+\begin_layout Plain Layout
+
+                                      layout.pos.col = matchidx$col))
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# Sample data
+\end_layout
+
+\begin_layout Plain Layout
+
+data <- data.frame(
+\end_layout
+
+\begin_layout Plain Layout
+
+  x=rep(1:3, times=3), y=rep(1:3, each=3),
+\end_layout
+
+\begin_layout Plain Layout
+
+  shape=c('Sq','Sq','Di', 'Cir','Sq','Cir', 'Tri','Cir','Sq') )
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+data2 <- rbind(
+\end_layout
+
+\begin_layout Plain Layout
+
+       mutate(data, x=x+0, y=y+0),
+\end_layout
+
+\begin_layout Plain Layout
+
+       mutate(data, x=x+0, y=y+3),
+\end_layout
+
+\begin_layout Plain Layout
+
+       mutate(data, x=x+0, y=y+6),
+\end_layout
+
+\begin_layout Plain Layout
+
+       mutate(data, x=x+3, y=y+0),
+\end_layout
+
+\begin_layout Plain Layout
+
+       mutate(data, x=x+3, y=y+3),
+\end_layout
+
+\begin_layout Plain Layout
+
+       mutate(data, x=x+3, y=y+6),
+\end_layout
+
+\begin_layout Plain Layout
+
+       mutate(data, x=x+6, y=y+0),
+\end_layout
+
+\begin_layout Plain Layout
+
+       mutate(data, x=x+6, y=y+3),
+\end_layout
+
+\begin_layout Plain Layout
+
+       mutate(data, x=x+6, y=y+6))
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+library(ggdendro)
+\end_layout
+
+\begin_layout Plain Layout
+
+sample.plot <- ggplot(data=data) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_point(aes(x=x, y=y, shape=shape), size=20, fill='dark grey') +
+\end_layout
+
+\begin_layout Plain Layout
+
+  scale_shape_manual(values=c(21,23,22,24), guide=FALSE) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  coord_cartesian(xlim = c(0.5, 3.5), c(0.5,3.5)) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  theme_dendro() + ggtitle('Sample')
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+population.plot <- ggplot(data=data2) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_point(aes(x=x, y=y, shape=shape), size=8, fill='dark grey') +
+\end_layout
+
+\begin_layout Plain Layout
+
+  scale_shape_manual(values=c(21,23,22,24), guide=FALSE) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  coord_cartesian(xlim = c(0.5, 10), c(0.5,10)) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  theme_dendro() + ggtitle('Approximate Population')
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Suppose we were to sample from a population of shapes, and we observed 
+\begin_inset Formula $4/9$
+\end_inset
+
+ of the sample were squares, 
+\begin_inset Formula $3/9$
+\end_inset
+
+ were circles, and a triangle and a diamond.
+ Then our best guess of what the population that we sampled from was a populatio
+n with 
+\begin_inset Formula $4/9$
+\end_inset
+
+ squares, 
+\begin_inset Formula $3/9$
+\end_inset
+
+ circles, and 
+\begin_inset Formula $1/9$
+\end_inset
+
+ of triangles and diamonds.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<echo=FALSE, fig.width=7, fig.height=4>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+multiplot(sample.plot, population.plot, cols=2)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+A possible sample from a population of shapes.
+ Because 
+\begin_inset Formula $4/9$
+\end_inset
+
+ of our sample were squares, our best estimate is that the population is
+ also approximately 
+\begin_inset Formula $4/9$
+\end_inset
+
+ squares.
+ We can think of the approximated population as just many many copies of
+ the observed sample data.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Using this approximated population (which is just many many copies of our
+ sample data), we can repeated sample 
+\begin_inset Formula $\bar{x}^{*}$
+\end_inset
+
+ values to create the sampling distribution of 
+\begin_inset Formula $\bar{x}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Because our approximate population is just an infinite number of copies
+ of our sample data, then sampling from the approximate population is equivalent
+ to sampling 
+\emph on
+with replacement
+\emph default
+ from our sample data.
+ If I take 
+\begin_inset Formula $n$
+\end_inset
+
+ samples from 
+\begin_inset Formula $n$
+\end_inset
+
+ distinct objects with replacement, then the process can be thought of as
+ mixing the 
+\begin_inset Formula $n$
+\end_inset
+
+ objects in a bowl and taking an object at random, noting which it is, replace
+ it into the bowl, and then draw the next sample.
+ Practically, this means some objects will be selected more than once and
+ some will not be chosen at all.
+ To sample our observed data with replacement, we'll use the 
+\family typewriter
+resample()
+\family default
+ function in the 
+\family typewriter
+mosaic
+\family default
+ package.
+ We see that some rows will be selected multiple times, and some will not
+ be selected at all.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<echo=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+set.seed(2)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+Testing.Data <- data.frame(
+\end_layout
+
+\begin_layout Plain Layout
+
+  name=c('Alison','Brandon','Chelsea','Derek','Elise'))
+\end_layout
+
+\begin_layout Plain Layout
+
+Testing.Data
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+# Sample rows from the Testing Data (with replacement)
+\end_layout
+
+\begin_layout Plain Layout
+
+resample(Testing.Data)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Notice 
+\family typewriter
+Alison
+\family default
+ has selected twice, while 
+\family typewriter
+Brandon
+\family default
+ has not been selected at all.
+ We can use the 
+\family typewriter
+resample()
+\family default
+ function similarly as we did the 
+\family typewriter
+shuffle()
+\family default
+ function.
+\end_layout
+
+\begin_layout Standard
+The sampling from the estimated population via sampling from the observed
+ data is called 
+\emph on
+bootstrapping
+\emph default
+ because we are making no distributional assumptions about where the data
+ came from, and the idiom 
+\begin_inset Quotes eld
+\end_inset
+
+Pulling yourself up by your bootstraps
+\begin_inset Quotes erd
+\end_inset
+
+ seemed appropriate.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Example: Mercury Levels in Fish from Florida Lakes
+\end_layout
+
+\begin_layout Standard
+A data set provided by the Lock
+\begin_inset Formula $^{5}$
+\end_inset
+
+ textbook looks at the mercury levels in fish harvested from lakes in Florida.
+ There are approximately 7,700 lakes in Florida that are larger than 10
+ acres.
+ As part of a study to assess the average mercury contamination in these
+ lakes, a random sample of 
+\begin_inset Formula $n=53$
+\end_inset
+
+ lakes, an unspecified number of fish were harvested and the average mercury
+ level (in ppm) was calculated for fish in each lake.
+ The goal of the study was to assess if the average mercury concentration
+ was greater than the 1969 EPA 
+\begin_inset Quotes eld
+\end_inset
+
+legally actionable level
+\begin_inset Quotes erd
+\end_inset
+
+ of 0.5 ppm.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<cache=TRUE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+# as always, our first step is to load the mosaic package
+\end_layout
+
+\begin_layout Plain Layout
+
+library(mosaic)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# read the Lakes data set
+\end_layout
+
+\begin_layout Plain Layout
+
+Lakes <- read.csv('http://www.lock5stat.com/datasets/FloridaLakes.csv')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<cache=TRUE, fig.width=6, fig.height=3>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+# make a nice picture...
+ dot plots are very similar to histograms
+\end_layout
+
+\begin_layout Plain Layout
+
+# but in this case, my y-axis doen't make any sense.
+\end_layout
+
+\begin_layout Plain Layout
+
+ggplot(Lakes, aes(x=AvgMercury)) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_dotplot()
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+We can calculate mean average mercury level for the 
+\begin_inset Formula $n=53$
+\end_inset
+
+ lakes
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<cache=TRUE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+Lakes %>% summarise(xbar = mean( AvgMercury ))
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The sample mean is greater than 
+\begin_inset Formula $0.5$
+\end_inset
+
+ but not by too much.
+ Is a true population mean concentration 
+\begin_inset Formula $\mu_{Hg}$
+\end_inset
+
+ that is 
+\begin_inset Formula $0.5$
+\end_inset
+
+ or less incompatible with our observed data? Is our data sufficient evidence
+ to conclude that the average mercury content is greater than 
+\begin_inset Formula $0.5$
+\end_inset
+
+? Perhaps the true average mercury content is less than (or equal to) 0.5
+ and we just happened to get a random sample that with a mean greater than
+ 0.5?
+\end_layout
+
+\begin_layout Standard
+The first step in answering these questions is to create the sampling distributi
+on of 
+\begin_inset Formula $\bar{x}_{Hg}$
+\end_inset
+
+.
+ To do this, we will sample from the approximate population of lakes, which
+ is just many many replicated copies of our sample data.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<LakesMercuryExample, cache=TRUE, fig.height=4>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+# create the sampling distribution of xbar
+\end_layout
+
+\begin_layout Plain Layout
+
+SamplingDist <- do(10000) * resample(Lakes) %>% summarise(xbar = mean(AvgMercury
+))
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# what columns does the data frame "SamplingDist" have?
+\end_layout
+
+\begin_layout Plain Layout
+
+str(SamplingDist)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# show a histogram of the sampling distribution of xbar
+\end_layout
+
+\begin_layout Plain Layout
+
+ggplot(SamplingDist, aes(x=xbar)) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_histogram() + 
+\end_layout
+
+\begin_layout Plain Layout
+
+  ggtitle('Estimated Sampling distribution of xbar' )
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Using Quantiles of the Estimated Sampling Distributions to create a Confidence
+ Interval
+\end_layout
+
+\begin_layout Standard
+In many cases we have seen, the sampling distribution of a statistic is
+ centered on the parameter we are interested in estimating and is symmetric
+ about that parameter
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+There are actually several ways to create a confidence interval from the
+ estimated sampling distribution.
+ The method presented here is called the 
+\begin_inset Quotes eld
+\end_inset
+
+percentile
+\begin_inset Quotes erd
+\end_inset
+
+ method and works when the sampling distribution is symmetric and the estimator
+ we are using is unbiased.
+\end_layout
+
+\end_inset
+
+.
+ For example, we expect that the sample mean 
+\begin_inset Formula $\bar{x}$
+\end_inset
+
+ should be a good estimate of the population mean 
+\begin_inset Formula $\mu$
+\end_inset
+
+ and the sampling distribution of 
+\begin_inset Formula $\bar{x}$
+\end_inset
+
+ should look something like the following.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<echo=FALSE, fig.height=3, fig.width=5>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+x <- seq(-3, 3, length=1000) 
+\end_layout
+
+\begin_layout Plain Layout
+
+plot(x, dnorm(x), type='l', lwd=2, axes=FALSE, xlab='', ylab='', 
+\end_layout
+
+\begin_layout Plain Layout
+
+     main=expression(paste('Sampling Distribution of ', bar(x) )) ) 
+\end_layout
+
+\begin_layout Plain Layout
+
+axis(1, c(0), labels=c(expression(mu)))
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+There are two points, (call them 
+\begin_inset Formula $L$
+\end_inset
+
+ and 
+\begin_inset Formula $U$
+\end_inset
+
+) where for our given sample size and population we are sampling from, where
+ we expect that 
+\begin_inset Formula $95\%$
+\end_inset
+
+ of the sample means to fall within.
+ That is to say, 
+\begin_inset Formula $L$
+\end_inset
+
+ and 
+\begin_inset Formula $U$
+\end_inset
+
+ capture the middle 
+\begin_inset Formula $95\%$
+\end_inset
+
+ of the sampling distribution of 
+\begin_inset Formula $\bar{x}$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<echo=FALSE, fig.height=4.5, fig.width=5>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+set.seed(93457629)
+\end_layout
+
+\begin_layout Plain Layout
+
+x <- seq(-3, 3, length=1000) 
+\end_layout
+
+\begin_layout Plain Layout
+
+plot(x, dnorm(x), ylim=c(-.5,.4), type='l', lwd=2, axes=FALSE, xlab='', ylab='',
+\end_layout
+
+\begin_layout Plain Layout
+
+     main=expression(paste('Sampling Distribution of ', bar(x) )) ) 
+\end_layout
+
+\begin_layout Plain Layout
+
+axis(1, c(-1.96, 0, 1.96),       
+\end_layout
+
+\begin_layout Plain Layout
+
+	labels=c('L', expression(mu), 'U' ))
+\end_layout
+
+\begin_layout Plain Layout
+
+lines(c(-10, 10), c(0, 0)) 
+\end_layout
+
+\begin_layout Plain Layout
+
+lines( c(-1.96, -1.96), c(dnorm(-1.96), -10)) 
+\end_layout
+
+\begin_layout Plain Layout
+
+lines( c( 1.96,  1.96), c(dnorm( 1.96), -10))
+\end_layout
+
+\begin_layout Plain Layout
+
+x.small <- seq(-1.96, 1.96, length=1000) 
+\end_layout
+
+\begin_layout Plain Layout
+
+polygon( c(-1.96, x.small, 1.96), c(0, dnorm(x.small),0), col='grey')
+\end_layout
+
+\begin_layout Plain Layout
+
+text(0, .25, '95%') 
+\end_layout
+
+\begin_layout Plain Layout
+
+text(0, .15, 'of sample means') 
+\end_layout
+
+\begin_layout Plain Layout
+
+N <- 40
+\end_layout
+
+\begin_layout Plain Layout
+
+xbar <- rep(0, N)
+\end_layout
+
+\begin_layout Plain Layout
+
+for(i in 1:N){
+\end_layout
+
+\begin_layout Plain Layout
+
+  xbar[i] <- rnorm(1)
+\end_layout
+
+\begin_layout Plain Layout
+
+  if(abs(xbar[i])>1.96){
+\end_layout
+
+\begin_layout Plain Layout
+
+    points(xbar[i], -i/(2*N), col='red', pch=19)   
+\end_layout
+
+\begin_layout Plain Layout
+
+  }else{
+\end_layout
+
+\begin_layout Plain Layout
+
+    points(xbar[i], -i/(2*N), col='black', pch=19)
+\end_layout
+
+\begin_layout Plain Layout
+
+  } 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+These sample means are randomly distributed about the population mean 
+\begin_inset Formula $\mu$
+\end_inset
+
+.
+ Given our sample data and sample mean 
+\begin_inset Formula $\bar{x}$
+\end_inset
+
+, we can examine how our 
+\emph on
+simulated
+\emph default
+ values of 
+\begin_inset Formula $\bar{x}^{*}$
+\end_inset
+
+ vary about 
+\begin_inset Formula $\bar{x}$
+\end_inset
+
+.
+ I expect that these simulated sample means 
+\begin_inset Formula $\bar{x}^{*}$
+\end_inset
+
+ should vary about 
+\begin_inset Formula $\bar{x}$
+\end_inset
+
+ in the same way that 
+\begin_inset Formula $\bar{x}$
+\end_inset
+
+ values vary around 
+\begin_inset Formula $\mu$
+\end_inset
+
+.
+ Below are three estimated sampling distributions that we might obtain from
+ three different samples and their associated sample means.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<echo=FALSE, fig.height=6, fig.width=5>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+x <- seq(-5, 5, length=1000)
+\end_layout
+
+\begin_layout Plain Layout
+
+plot(x, dnorm(x),       
+\end_layout
+
+\begin_layout Plain Layout
+
+  ylim=c(-2.5,.5), xlim=c(-5,5),      
+\end_layout
+
+\begin_layout Plain Layout
+
+  type='l', lwd=2, axes=FALSE, xlab='', ylab='', col='red')
+\end_layout
+
+\begin_layout Plain Layout
+
+lines(x,rep(0,length(x)), col='red')
+\end_layout
+
+\begin_layout Plain Layout
+
+text(0,-.08, expression(mu), col='red')
+\end_layout
+
+\begin_layout Plain Layout
+
+text(0,.5, expression(paste('Sampling distribution of ',bar(x))),col='red')
+\end_layout
+
+\begin_layout Plain Layout
+
+lines(c(0,0), c(-.2,-10), col='red' )
+\end_layout
+
+\begin_layout Plain Layout
+
+xbars <- c(.2, -1, 1.2) 
+\end_layout
+
+\begin_layout Plain Layout
+
+yoffsets <- 1:3 * -.75 
+\end_layout
+
+\begin_layout Plain Layout
+
+L <- xbars - 1.96 
+\end_layout
+
+\begin_layout Plain Layout
+
+U <- xbars + 1.96
+\end_layout
+
+\begin_layout Plain Layout
+
+for(i in 1:3){
+\end_layout
+
+\begin_layout Plain Layout
+
+ lines(x+xbars[i], yoffsets[i]+dnorm(x), lwd=2)
+\end_layout
+
+\begin_layout Plain Layout
+
+  lines(x, rep(yoffsets[i], length(x))) 
+\end_layout
+
+\begin_layout Plain Layout
+
+} 
+\end_layout
+
+\begin_layout Plain Layout
+
+text(2.2,-1.15, 'Estimated Sampling 
+\backslash
+n distribution of')
+\end_layout
+
+\begin_layout Plain Layout
+
+text(3.66, -1.23, expression(bar(x)))
+\end_layout
+
+\begin_layout Plain Layout
+
+points(xbars, yoffsets, pch=18) 
+\end_layout
+
+\begin_layout Plain Layout
+
+text(L[1], yoffsets[1]-.07, expression(L[1]))
+\end_layout
+
+\begin_layout Plain Layout
+
+text(L[2], yoffsets[2]-.07, expression(L[2]))
+\end_layout
+
+\begin_layout Plain Layout
+
+text(L[3], yoffsets[3]-.07, expression(L[3]))
+\end_layout
+
+\begin_layout Plain Layout
+
+text(U[1], yoffsets[1]-.07, expression(U[1]))
+\end_layout
+
+\begin_layout Plain Layout
+
+text(U[2], yoffsets[2]-.07, expression(U[2]))
+\end_layout
+
+\begin_layout Plain Layout
+
+text(U[3], yoffsets[3]-.07, expression(U[3]))
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For each possible sample, we could consider creating the estimated sampling
+ distribution of 
+\begin_inset Formula $\bar{x}$
+\end_inset
+
+ and calculating the 
+\begin_inset Formula $L$
+\end_inset
+
+ and 
+\begin_inset Formula $U$
+\end_inset
+
+ values that capture the middle 
+\begin_inset Formula $95\%$
+\end_inset
+
+ of the estimated sampling distribution.
+ Below are twenty samples, where we've calculated this interval for each
+ sample.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<echo=FALSE, fig.height=6, fig.width=7>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+x <- seq(-5, 5, length=1000) 
+\end_layout
+
+\begin_layout Plain Layout
+
+plot(x, dnorm(x), ylim=c(-.5,.4), type='l', lwd=2, axes=FALSE, xlab='', ylab='')
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+axis(1, c(-1.96, 0, 1.96),       
+\end_layout
+
+\begin_layout Plain Layout
+
+	labels=c(expression(mu - a),                
+\end_layout
+
+\begin_layout Plain Layout
+
+			 expression(mu),               
+\end_layout
+
+\begin_layout Plain Layout
+
+			 expression(mu + a) ))
+\end_layout
+
+\begin_layout Plain Layout
+
+lines(c(-10, 10), c(0, 0)) 
+\end_layout
+
+\begin_layout Plain Layout
+
+lines( c(-1.96, -1.96), c(dnorm(-1.96), -10)) 
+\end_layout
+
+\begin_layout Plain Layout
+
+lines( c( 1.96,  1.96), c(dnorm( 1.96), -10))
+\end_layout
+
+\begin_layout Plain Layout
+
+x.small <- seq(-1.96, 1.96, length=1000) 
+\end_layout
+
+\begin_layout Plain Layout
+
+polygon( c(-1.96, x.small, 1.96), c(0, dnorm(x.small),0), col='grey')
+\end_layout
+
+\begin_layout Plain Layout
+
+text(0, .25, '95%') 
+\end_layout
+
+\begin_layout Plain Layout
+
+text(0, .15, 'of sample means') 
+\end_layout
+
+\begin_layout Plain Layout
+
+N <- 40 
+\end_layout
+
+\begin_layout Plain Layout
+
+for(i in 1:N){
+\end_layout
+
+\begin_layout Plain Layout
+
+  if(abs(xbar[i])>1.96){
+\end_layout
+
+\begin_layout Plain Layout
+
+    points(xbar[i], -i/(2*N), col='red', pch=19)
+\end_layout
+
+\begin_layout Plain Layout
+
+	lines( c(xbar[i]-1.96, xbar[i]+1.96), c(-i/(2*N), -i/(2*N)), col='red' )
+  
+\end_layout
+
+\begin_layout Plain Layout
+
+  }else{
+\end_layout
+
+\begin_layout Plain Layout
+
+    points(xbar[i], -i/(2*N), col='black', pch=19)
+\end_layout
+
+\begin_layout Plain Layout
+
+	lines( c(xbar[i]-1.96, xbar[i]+1.96), c(-i/(2*N), -i/(2*N)), col='black'
+ )  
+\end_layout
+
+\begin_layout Plain Layout
+
+  } 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Most of these intervals contain the true parameter 
+\begin_inset Formula $\mu$
+\end_inset
+
+, that we are trying to estimate.
+ In practice, I will only take one sample and therefore will only calculate
+ one sample mean and one interval, but I want to recognize that the method
+ I used to produce the interval (i.e.
+ take a random sample, calculate the mean and then the interval) will result
+ in intervals where only 
+\begin_inset Formula $95\%$
+\end_inset
+
+ of those intervals will contain the mean 
+\begin_inset Formula $\mu$
+\end_inset
+
+.
+ Therefore, I will refer to the interval as a 
+\begin_inset Formula $95\%$
+\end_inset
+
+ 
+\emph on
+confidence interval.
+\end_layout
+
+\begin_layout Standard
+After the sample is taken and the interval is calculated, the numbers lower
+ and upper bounds of the confidence interval are fixed.
+ Because 
+\begin_inset Formula $\mu$
+\end_inset
+
+ is a constant value and the confidence interval is fixed, nothing is changing.
+ To distinguish between a future random event and the fixed (but unknown)
+ outcome of if I ended up with an interval that contains 
+\begin_inset Formula $\mu$
+\end_inset
+
+ and we use the term confidence interval instead of probability interval.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<cache=TRUE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+# create the sampling distribution of xbar
+\end_layout
+
+\begin_layout Plain Layout
+
+SamplingDist <- do(10000) * mean( ~ AvgMercury, data=resample(Lakes) )
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# what columns does the data frame "SamplingDist" have?
+\end_layout
+
+\begin_layout Plain Layout
+
+str(SamplingDist)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# show a histogram of the sampling distribution of xbar
+\end_layout
+
+\begin_layout Plain Layout
+
+histogram( ~result, data=SamplingDist, main='Estimated Sampling distribution
+ of xbar' )
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# calculate the 95% confidence interval using middle 95%
+\end_layout
+
+\begin_layout Plain Layout
+
+quantile( SamplingDist$result, probs=c(.025, .975) )
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+There are several ways to interpret this interval.
+ 
+\end_layout
+
+\begin_layout Enumerate
+The process used to calculate this interval (take a random sample, calculate
+ a statistic, repeatedly resample, and take the middle 95%) is a process
+ that results in an interval that contains the parameter of interest on
+ 95% of the samples we could have collected, however we don't know if the
+ particular sample we collected and its resulting interval of 
+\begin_inset Formula $\left(0.44,\,0.62\right)$
+\end_inset
+
+ is one of the intervals containing 
+\begin_inset Formula $\mu$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+We are 
+\begin_inset Formula $95\%$
+\end_inset
+
+ confident that 
+\begin_inset Formula $\mu$
+\end_inset
+
+ is in the interval 
+\begin_inset Formula $\left(0.44,\,0.62\right)$
+\end_inset
+
+.
+ This is delightfully vague and should be interpreted as a shorter version
+ of the previous interpretation.
+\end_layout
+
+\begin_layout Enumerate
+The interval 
+\begin_inset Formula $\left(0.44,\,0.62\right)$
+\end_inset
+
+ is the set of values of 
+\begin_inset Formula $\mu$
+\end_inset
+
+ that are consistent with the observed data at the 
+\begin_inset Formula $0.05$
+\end_inset
+
+ threshold of statistical significance for a two-sided hypothesis test.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Example:
+\end_layout
+
+\begin_layout Example*
+Suppose we have data regarding fuel economy of 
+\begin_inset Formula $5$
+\end_inset
+
+ new vehicles of the same make and model and we wish to test if the observed
+ fuel economy is consistent with the advertised 
+\begin_inset Formula $31$
+\end_inset
+
+ mpg at highway speeds.
+ We the data are 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+CarMPG <- data.frame( ID=1:5, mpg = c(31.8, 32.1, 32.5, 30.9, 31.3) )
+\end_layout
+
+\begin_layout Plain Layout
+
+dotPlot( ~ mpg, data=CarMPG )
+\end_layout
+
+\begin_layout Plain Layout
+
+mean( ~ mpg, data=CarMPG )
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We will use the sample mean to assess if the sample fuel efficiency is consisten
+t with the advertised number.
+ Because these cars could be considered a random sample of all new cars
+ of this make, we will create the estimated sampling distribution using
+ the bootstrap resampling of the data.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<cache=TRUE, fig.width=5, fig.height=2.5>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+SamplingDist <- do(10000) * mean( ~ mpg, data=resample(CarMPG) )
+\end_layout
+
+\begin_layout Plain Layout
+
+histogram(~result, data=SamplingDist,
+\end_layout
+
+\begin_layout Plain Layout
+
+          main='Estimated Sampling distribution of xbar' )
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<fig.width=5, fig.height=2.5>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+quantile( SamplingDist$result, probs=c(.025, .975) )
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We see that the 
+\begin_inset Formula $95\%$
+\end_inset
+
+ confidence interval is 
+\begin_inset Formula $\left(31.2,\,32.2\right)$
+\end_inset
+
+ and does not actually contain the advertised 
+\begin_inset Formula $31$
+\end_inset
+
+ mpg.
+ However, I don't think that in this case we would object to a car manufacturer
+ sell us a car that is 
+\emph on
+better
+\emph default
+ than was advertised.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Example
+\end_layout
+
+\begin_layout Standard
+Recall the pollution ratio data from homework 1 (O&L 3.21).
+ The ratio of DDE (related to DDT) to PCB concentrations in bird eggs has
+ been shown to have had a number of biological implications.
+ The ratio is used as an indication of the movement of contamination through
+ the food chain.
+ The paper 
+\begin_inset Quotes eld
+\end_inset
+
+The ratio of DDE to PCB concentrations in Great Lakes herring gull eggs
+ and its us in interpreting contaminants data
+\begin_inset Quotes erd
+\end_inset
+
+ reports the following ratios for eggs collected at 13 study sites from
+ the five Great Lakes.
+ The eggs were collected from both terrestrial and aquatic feeding birds.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="12">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+DDE to PCB Ratio
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Terrestrial
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+76.50
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6.03
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3.51
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9.96
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4.24
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7.74
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9.54
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+41.70
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.84
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2.5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.54
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Aquatic
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.27
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.61
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.54
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.14
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.63
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.23
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.56
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.48
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.16
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.18
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Suppose that the eggs were collected at random and we observe both the ratio
+ and the feeding type.
+ That is to say, we didn't decide to sample 11 Terrestrial birds and 10
+ Aquatic, that was just how it ended up.
+ To create confidence intervals in that case, we should resample from the
+ 21 eggs.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+# write a data frame as before
+\end_layout
+
+\begin_layout Plain Layout
+
+PollutionRatios <- data.frame(   
+\end_layout
+
+\begin_layout Plain Layout
+
+  Ratio = c(76.50, 6.03, 3.51, 9.96, 4.24, 7.74, 9.54, 41.70, 1.84, 2.5, 1.54,
+\end_layout
+
+\begin_layout Plain Layout
+
+             0.27, 0.61, 0.54, 0.14, 0.63, 0.23, 0.56,  0.48, 0.16, 0.18       ),
+\end_layout
+
+\begin_layout Plain Layout
+
+  Type  = c( rep('Terrestrial',11), rep('Aquatic',10) ) )
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# what happens when I calculate multiple means...
+\end_layout
+
+\begin_layout Plain Layout
+
+do(3) * mean( Ratio ~ Type, data=resample(PollutionRatios) ) 
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<cache=TRUE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+SamplingDist <- do(10000) * mean( Ratio ~ Type, data=resample(PollutionRatios)
+ )
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+As always we can look at the estimated sampling distributions of the means
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<fig.height=2.5, fig.width=5>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+histogram( ~ Aquatic, data=SamplingDist, 
+\end_layout
+
+\begin_layout Plain Layout
+
+           main='Estimated Sampling Distribution of xbar (Aquatic)',
+\end_layout
+
+\begin_layout Plain Layout
+
+           xlab='DDE to PCB Ratio')
+\end_layout
+
+\begin_layout Plain Layout
+
+histogram( ~ Terrestrial, data=SamplingDist,
+\end_layout
+
+\begin_layout Plain Layout
+
+           main='Estimated Sampling Distribution of xbar (Terrestrial)',
+\end_layout
+
+\begin_layout Plain Layout
+
+           xlab='DDE to PCB Ratio')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+# Calculate confidence intervals
+\end_layout
+
+\begin_layout Plain Layout
+
+quantile( SamplingDist$Aquatic,     probs=c(.025, .975) )
+\end_layout
+
+\begin_layout Plain Layout
+
+quantile( SamplingDist$Terrestrial, probs=c(.025, .975) )
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Because the terrestrial eggs had those large outliers we had recommend that
+ the median might be a better measure of the 
+\begin_inset Quotes eld
+\end_inset
+
+center
+\begin_inset Quotes erd
+\end_inset
+
+ of the terrestrial observations.
+ With the resampling method of calculating confidence intervals, it is easy
+ to create a 
+\begin_inset Formula $95\%$
+\end_inset
+
+ confidence interval for the medians.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<cache=TRUE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+SamplingDist <- do(10000) * median( Ratio ~ Type, data=resample(PollutionRatios)
+ )
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<fig.height=2.5, fig.width=5>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+histogram( ~ Aquatic, data=SamplingDist, 
+\end_layout
+
+\begin_layout Plain Layout
+
+           main='Est.
+ Sampling Dist.
+ of sample median (Aquatic)',
+\end_layout
+
+\begin_layout Plain Layout
+
+           xlab='DDE to PCB Ratio')
+\end_layout
+
+\begin_layout Plain Layout
+
+histogram( ~ Terrestrial, data=SamplingDist,
+\end_layout
+
+\begin_layout Plain Layout
+
+           main='Est.
+ Sampling Dist.
+ of sample median (Terrestrial)',
+\end_layout
+
+\begin_layout Plain Layout
+
+           xlab='DDE to PCB Ratio')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+# Calculate confidence intervals
+\end_layout
+
+\begin_layout Plain Layout
+
+quantile( SamplingDist$Aquatic,     probs=c(.025, .975) )
+\end_layout
+
+\begin_layout Plain Layout
+
+quantile( SamplingDist$Terrestrial, probs=c(.025, .975) )
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Suppose that the researchers had 
+\emph on
+deliberately
+\emph default
+ chosen to sample 11 terrestrial birds and 10 aquatic.
+ Then our resampling method should respect that choice and always produce
+ datasets with 11 terrestrial and 10 aquatic eggs.
+ This can be done by the 
+\family typewriter
+groups=
+\family default
+ argument to the resample command.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<cache=TRUE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+SamplingDist <- do(10000) * 
+\end_layout
+
+\begin_layout Plain Layout
+
+   mean( Ratio ~ Type, 
+\end_layout
+
+\begin_layout Plain Layout
+
+         data = resample(PollutionRatios, groups=Type) )
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+As always we can look at the estimated sampling distributions of the means
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<fig.height=2.5, fig.width=5>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+histogram( ~ Aquatic, data=SamplingDist, 
+\end_layout
+
+\begin_layout Plain Layout
+
+           main='Estimated Sampling Distribution of xbar (Aquatic)',
+\end_layout
+
+\begin_layout Plain Layout
+
+           xlab='DDE to PCB Ratio')
+\end_layout
+
+\begin_layout Plain Layout
+
+histogram( ~ Terrestrial, data=SamplingDist,
+\end_layout
+
+\begin_layout Plain Layout
+
+           main='Estimated Sampling Distribution of xbar (Terrestrial)',
+\end_layout
+
+\begin_layout Plain Layout
+
+           xlab='DDE to PCB Ratio')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+# Calculate confidence intervals
+\end_layout
+
+\begin_layout Plain Layout
+
+quantile( SamplingDist$Aquatic,     probs=c(.025, .975) )
+\end_layout
+
+\begin_layout Plain Layout
+
+quantile( SamplingDist$Terrestrial, probs=c(.025, .975) )
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+In this case, the difference between requiring the bootstrap datasets to
+ conform to the 11 Terrestrial and 10 Aquatic didn't make much of a difference
+ because that is what would happen on average sampling from the full 21
+ observations, but it could make a difference if the two groups were not
+ as balanced.
+\end_layout
+
+\end_body
+\end_document

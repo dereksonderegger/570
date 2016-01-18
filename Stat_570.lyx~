@@ -197,6 +197,25 @@ Northern Arizona University
 \end_layout
 
 \begin_layout Standard
+
+\emph on
+\begin_inset Newpage newpage
+\end_inset
+
+To Aubrey, who is my rock of consistency; and to Elise and Casey who are
+ my source of randomness.
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset Box Frameless
 position "t"
 hor_pos "c"
@@ -578,7 +597,7 @@ The course covered by these notes will make some discuss some of the data
 \begin_layout Standard
 \begin_inset CommandInset include
 LatexCommand input
-filename "0_SummaryStats_Graphics.lyx"
+filename "1_SummaryStats_Graphics.lyx"
 
 \end_inset
 
@@ -588,7 +607,7 @@ filename "0_SummaryStats_Graphics.lyx"
 \begin_layout Standard
 \begin_inset CommandInset include
 LatexCommand input
-filename "3_Probability.lyx"
+filename "2_Probability.lyx"
 
 \end_inset
 
@@ -598,7 +617,7 @@ filename "3_Probability.lyx"
 \begin_layout Standard
 \begin_inset CommandInset include
 LatexCommand input
-filename "2_Bootstrapping.lyx"
+filename "3_Bootstrapping.lyx"
 
 \end_inset
 

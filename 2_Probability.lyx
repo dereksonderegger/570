@@ -3855,42 +3855,42 @@ status open
 
 \begin_layout Plain Layout
 
-x <- 2:12 
+library(ggplot2)
 \end_layout
 
 \begin_layout Plain Layout
 
-y <- c(1:6,5:1)/36 
+data <- data.frame(x = 2:12, y = c(1:6,5:1)/36 )
 \end_layout
 
 \begin_layout Plain Layout
 
-plot(x, y, col='blue', ylim=c(0,.18),
+ggplot(data, aes(x=x, y=y)) +
 \end_layout
 
 \begin_layout Plain Layout
 
-      ylab='Probability', xlab='Sum',
+  geom_point() +
 \end_layout
 
 \begin_layout Plain Layout
 
-      main='Distribution of the sum of two die')
+  geom_linerange(aes(ymax=y, ymin=0)) +
 \end_layout
 
 \begin_layout Plain Layout
 
-for(i in 1:length(x)){
+  ylab('Probability') + xlab('Sum') +
 \end_layout
 
 \begin_layout Plain Layout
 
-  lines(c(x[i],x[i]), c(0,y[i]), col='blue')
+  ggtitle('Distribution of the sum of two dice') +
 \end_layout
 
 \begin_layout Plain Layout
 
-}
+  scale_x_continuous(breaks = c(2,4,6,8,10,12))
 \end_layout
 
 \begin_layout Plain Layout
@@ -3911,7 +3911,11 @@ for(i in 1:length(x)){
 \begin_layout Standard
 We often want to ask 'What is expected value of this distribution?' You
  might think about taking a really, really large number of samples from
- this distribution.
+ this distribution and then taking the mean of that 
+\emph on
+really really 
+\emph default
+big sample.
  We define the expected value (often denoted by 
 \begin_inset Formula $\mu$
 \end_inset
@@ -4131,10 +4135,90 @@ Frequency/Probability
 \begin_inset Newline newline
 \end_inset
 
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<fig.height=3>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+library(ggplot2) # graphing package
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+distr <- data.frame(    clients = c( 0,   1,    2,    3,    4   ),    # two
+ columns 
+\end_layout
+
+\begin_layout Plain Layout
+
+                    probability = c(0.3, 0.35, 0.20, 0.10, 0.05 ) )   # 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ggplot(distr, aes(x=clients)) +                 # graph with clients as
+ the x-axis
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_point(aes(y=probability)) +              # where the dots go
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_linerange(aes(ymax=probability, ymin=0)) # the vertical lines   
+      
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
 Because this is the long term relative frequency of the number of clients
  (over 200 working days!), it is appropriate to interpret these frequencies
  as probabilities.
- This table is often called a 
+ This table and graph is often called a 
 \emph on
 probability mass function (pmf)
 \emph default
@@ -5119,6 +5203,1679 @@ where we define
 \end_layout
 
 \begin_layout Standard
+For our small mammal example we can create a graph that shows the binomial
+ distribution with the following R code:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<message=FALSE, fig.height=2.5, fig.width=5>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+library(ggplot2)
+\end_layout
+
+\begin_layout Plain Layout
+
+library(dplyr)
+\end_layout
+
+\begin_layout Plain Layout
+
+dist <- data.frame( x=0:3 ) %>% 
+\end_layout
+
+\begin_layout Plain Layout
+
+  mutate(probability = dbinom(x, size=3, prob=0.8))
+\end_layout
+
+\begin_layout Plain Layout
+
+ggplot(dist, aes(x=x)) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_point(aes(y=probability)) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_linerange(aes(ymax=probability, ymin=0)) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  ggtitle('Binomial distribution: n=3, p=0.8')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+To calculate the height of any of these bars, we can evaluate the pmf at
+ the desired point.
+ For example, to calculate the probability the number of full traps is 2,
+ we calculate the following
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+P(S=2) & = & {3 \choose 2}\left(0.8\right)^{2}\left(1-0.8\right)^{3-2}\\
+\\
+ & = & \frac{3!}{2!(3-2)!}(0.8)^{2}(0.2)^{3-2}\\
+\\
+ & = & \frac{3\cdot2\cdot1}{(2\cdot1)1}\;(0.8)^{2}(0.2)\\
+\\
+ & = & 3(0.128)\\
+\\
+ & = & 0.384
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+You can use R to calculate these probabilities.
+ In general, for any distribution, the 
+\begin_inset Quotes eld
+\end_inset
+
+d-function
+\begin_inset Quotes erd
+\end_inset
+
+ gives the distribution function (pmf or pdf).
+ So to get R to do the preceding calculation we use:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+# P( Y = 2 | n=3, pi=0.8 )
+\end_layout
+
+\begin_layout Plain Layout
+
+dbinom(2, size=3, prob=0.8)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The expectation of this distribution can be shown to be 
+\begin_inset Formula 
+\begin{eqnarray*}
+E[Y] & = & \sum_{y=0}^{n}y\, P(Y=y)\\
+\\
+ & = & \sum_{y=0}^{n}y\;\frac{n!}{y!\left(n-y\right)!}\pi^{y}\left(1-\pi\right)^{n-y}\\
+\\
+ & = & \vdots\\
+ & = & n\pi
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+and the variance can be similarly calculated
+\begin_inset Formula 
+\begin{eqnarray*}
+V[Y] & = & \sum_{y=0}^{n}\left(y-E\left[Y\right]\right)^{2}\, P\left(Y=y|n,\pi\right)\\
+\\
+ & = & \sum_{y=0}^{n}\left(y-E\left[Y\right]\right)^{2}\;\frac{n!}{y!\left(n-y\right)!}\pi^{y}\left(1-\pi\right)^{n-y}\\
+\\
+ & = & \vdots\\
+ & = & n\pi(1-\pi)
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+Suppose a bird survey only captures the presence or absence of a particular
+ bird (say the mountain chickadee).
+ Assuming the true presence proportion at national forest sites around Flagstaff
+ 
+\begin_inset Formula $\pi=0.1$
+\end_inset
+
+, then for 
+\begin_inset Formula $n=20$
+\end_inset
+
+ randomly chosen sites, the number of sites in which the bird was observed
+ would have the distribution
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<fig.height=2.5, fig.width=5>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+dist <- data.frame( x=0:20 ) %>% 
+\end_layout
+
+\begin_layout Plain Layout
+
+  mutate(probability = dbinom(x, size=20, prob=0.1))
+\end_layout
+
+\begin_layout Plain Layout
+
+ggplot(dist, aes(x=x)) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_point(aes(y=probability)) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_linerange(aes(ymax=probability, ymin=0)) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  ggtitle('Binomial distribution: n=20, p=0.1') +
+\end_layout
+
+\begin_layout Plain Layout
+
+  xlab('Number of Sites Occupied')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Often we are interested in questions such as 
+\begin_inset Formula $P(Y\le2)$
+\end_inset
+
+ which is the probability that we see 2 or fewer of the sites being occupied
+ by mountain chickadee.
+ These calculations can be tedious to calculate by hand but R will calculate
+ these cumulative distribution function values for you using the 
+\begin_inset Quotes eld
+\end_inset
+
+p-function
+\begin_inset Quotes erd
+\end_inset
+
+.
+ This cumulative distribution function gives the sum of all values up to
+ and including the number given.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+# P(Y=0) + P(Y=1) + P(Y=2)
+\end_layout
+
+\begin_layout Plain Layout
+
+sum <- dbinom(0, size=20, prob=0.1) + 
+\end_layout
+
+\begin_layout Plain Layout
+
+       dbinom(1, size=20, prob=0.1) + 
+\end_layout
+
+\begin_layout Plain Layout
+
+       dbinom(2, size=20, prob=0.1)
+\end_layout
+
+\begin_layout Plain Layout
+
+sum
+\end_layout
+
+\begin_layout Plain Layout
+
+# P(Y <= 2)
+\end_layout
+
+\begin_layout Plain Layout
+
+pbinom(2, size=20, prob=0.1)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In general we will be interested in asking four different questions about
+ a distribution.
+\end_layout
+
+\begin_layout Enumerate
+What is the height of the probability mass function (or probability density
+ function).
+ For discrete variable 
+\begin_inset Formula $Y$
+\end_inset
+
+ this is 
+\begin_inset Formula $P\left(Y=y\right)$
+\end_inset
+
+ for whatever value of 
+\begin_inset Formula $y$
+\end_inset
+
+ we want.
+ In R, this will be the 
+\family typewriter
+d-function
+\family default
+.
+\end_layout
+
+\begin_layout Enumerate
+What is the probability of observing a value less than or equal to 
+\begin_inset Formula $y$
+\end_inset
+
+? In other words, to calculate 
+\begin_inset Formula $P\left(Y\le y\right)$
+\end_inset
+
+.
+ In R, this will be the 
+\family typewriter
+p-function
+\family default
+.
+\end_layout
+
+\begin_layout Enumerate
+What is a particular quantile of a distribution? For example, what value
+ separates the lower 25% from the upper 75%? In R, this will be the 
+\family typewriter
+q-function
+\family default
+.
+\end_layout
+
+\begin_layout Enumerate
+Generate a random sample of values from a specified distribution.
+ In R, this will be the 
+\family typewriter
+r-function
+\family default
+.
+\end_layout
+
+\begin_layout Subsection
+Poisson Distribution
+\end_layout
+
+\begin_layout Standard
+A commonly used distribution for count data is the Poisson.
+\end_layout
+
+\begin_layout Enumerate
+Number of customers arriving over a 5 minute interval
+\end_layout
+
+\begin_layout Enumerate
+Number of birds observed during a 10 minute listening period
+\end_layout
+
+\begin_layout Enumerate
+Number of prairie dog towns per 1000 hectares
+\end_layout
+
+\begin_layout Enumerate
+Number of alga clumps per cubic meter of lake water
+\end_layout
+
+\begin_layout Standard
+For a RV is a Poisson RV if the following conditions apply:
+\end_layout
+
+\begin_layout Enumerate
+Two or more events do not occur at precisely the same time or in the same
+ space
+\end_layout
+
+\begin_layout Enumerate
+The occurrence of an event in a given period of time or region of space
+ is independent of the occurrence of the event in a non overlapping period
+ or region.
+\end_layout
+
+\begin_layout Enumerate
+The expected number of events during one period or region, 
+\begin_inset Formula $\lambda$
+\end_inset
+
+, is the same in all periods or regions of the same size.
+\end_layout
+
+\begin_layout Standard
+Assuming that these conditions hold for some count variable 
+\begin_inset Formula $Y$
+\end_inset
+
+, the the probability mass function is given by
+\begin_inset Formula 
+\[
+P(Y=y)=\frac{\lambda^{y}e^{-\lambda}}{y!}
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ is the expected number of events over 1 unit of time or space and 
+\begin_inset Formula $e$
+\end_inset
+
+ is the constant 
+\begin_inset Formula $2.718281828$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+E[Y] & = & \lambda\\
+Var[Y] & = & \lambda
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+Suppose we are interested in the population size of small mammals in a region.
+ Let 
+\begin_inset Formula $Y$
+\end_inset
+
+ be the number of small mammals caught in a large trap (multiple traps in
+ the same location?) in a 12 hour period.
+ Finally, suppose that 
+\begin_inset Formula $Y\sim Poi(\lambda=2.3)$
+\end_inset
+
+.
+ What is the probability of finding exactly 4 critters in our trap?
+\begin_inset Formula 
+\begin{eqnarray*}
+P(Y=4) & = & \frac{2.3^{4}\, e^{-2.3}}{4!}\\
+ & = & 0.1169
+\end{eqnarray*}
+
+\end_inset
+
+What about the probability of finding at most 4?
+\begin_inset Formula 
+\begin{eqnarray*}
+P(Y\le4) & = & P(Y=0)+P(Y=1)+P(Y=2)+P(Y=3)+P(Y=4)\\
+ & = & 0.1003+0.2306+0.2652+0.2033+0.1169\\
+ & = & 0.9163
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+What about the probability of finding 5 or more?
+\begin_inset Formula 
+\begin{eqnarray*}
+P(Y\ge5) & = & 1-P(Y\le4)\\
+ & = & 1-0.9163\\
+ & = & 0.0837
+\end{eqnarray*}
+
+\end_inset
+
+These calculations can be done using the distribution function (
+\family typewriter
+d-function
+\family default
+) for the poisson and the cumulative distribution function (
+\family typewriter
+p-function)
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<fig.height=3, fig.width=6>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+dist <- data.frame( NumCaught = 0:10 ) %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  mutate( probability = dpois( NumCaught, lambda=2.3 ) )
+\end_layout
+
+\begin_layout Plain Layout
+
+ggplot(dist, aes(x=NumCaught)) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_point( aes(y=probability) ) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_linerange(aes( ymax=probability, ymin=0)) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  ggtitle('Poisson Distribution with lambda=2.3')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+# P( Y = 4)
+\end_layout
+
+\begin_layout Plain Layout
+
+dpois(4, lambda=2.3)
+\end_layout
+
+\begin_layout Plain Layout
+
+# P( Y <= 4)
+\end_layout
+
+\begin_layout Plain Layout
+
+ppois(4, lambda=2.3)
+\end_layout
+
+\begin_layout Plain Layout
+
+# 1-P(Y <= 4)  ==  P( Y > 4)  ==  P( Y >= 5)
+\end_layout
+
+\begin_layout Plain Layout
+
+1-ppois(4, 2.3)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Continuous Random Variables
+\end_layout
+
+\begin_layout Standard
+Finding the area under the curve of a particular density function 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ requires the use of calculus, but since this isn't a calculus course, we
+ will resort to using R or tables of calculated values.
+\end_layout
+
+\begin_layout Subsection
+Uniform(0,1) Distribution
+\end_layout
+
+\begin_layout Standard
+Suppose you wish to draw a random number number between 0 and 1 and each
+ number should have an equal chance of being selected.
+ This random variable is said to have a 
+\emph on
+Uniform(0,1)
+\emph default
+ distribution.
+\end_layout
+
+\begin_layout Standard
+Because there are an infinite number of rational numbers between 0 and 1,
+ the probability of any particular number being selected is 
+\begin_inset Formula $1/\infty=0$
+\end_inset
+
+.
+ But even though each number has 0 probability of being selected, some number
+ must end up being selected.
+ Because of this conundrum, probability theory doesn't look at the probability
+ of a single number, but rather focuses on a 
+\emph on
+region of numbers
+\emph default
+.
+ 
+\end_layout
+
+\begin_layout Standard
+To make this distinction, we will define the distribution using a 
+\emph on
+probability density function
+\emph default
+ instead of the probability mass function.
+ In the discrete case, we had to constrain the probability mass function
+ to sum to 1.
+ In the continuous case, we have to constrain the probability density function
+ to integrate to 1.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<echo=FALSE, fig.height=4, fig.width=6>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+layout(matrix(1:2, nrow=2))
+\end_layout
+
+\begin_layout Plain Layout
+
+par(mar=c(2,3,1,1))
+\end_layout
+
+\begin_layout Plain Layout
+
+x <- seq(-.1, 1.1, length=1000)
+\end_layout
+
+\begin_layout Plain Layout
+
+smallx <- seq(0, 1/3, length=1000)
+\end_layout
+
+\begin_layout Plain Layout
+
+plot(x, dunif(x, 0,1), type='l', ylab='f(x)', xlab='')
+\end_layout
+
+\begin_layout Plain Layout
+
+polygon(x, dunif(x, 0, 1), col='grey')
+\end_layout
+
+\begin_layout Plain Layout
+
+text(.5, .5, 'Area = 1')
+\end_layout
+
+\begin_layout Plain Layout
+
+smallx <- seq(0, 1/3, length=1000)
+\end_layout
+
+\begin_layout Plain Layout
+
+plot(x, dunif(x, 0, 1), type='l', ylab='f(x)', xlab='')
+\end_layout
+
+\begin_layout Plain Layout
+
+polygon(c(0, smallx, 1/3), c(0, dunif(smallx, 0,1), 0), col='grey')
+\end_layout
+
+\begin_layout Plain Layout
+
+text(.15, .5, 'P(X < 1/3)')
+\end_layout
+
+\begin_layout Plain Layout
+
+text(.15, .3, ' = 1/3'    )
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Finding the area under the curve of a particular density function 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ usually requires the use of calculus, but since this isn't a calculus course,
+ we will resort to using R or tables of calculated values.
+\end_layout
+
+\begin_layout Subsection
+Exponential Distribution
+\end_layout
+
+\begin_layout Standard
+The exponential distribution is the continuous analog of the Poisson distributio
+n and is often used to model the time between occurrence of successive events.
+ Perhaps we are modeling time between transmissions on a network, or the
+ time between feeding events or prey capture.
+ If the random variable 
+\begin_inset Formula $X$
+\end_inset
+
+ has an Exponential distribution, its distribution function is 
+\begin_inset Formula 
+\[
+f(x)=\begin{cases}
+\lambda e^{-\lambda x} & x\ge0\;\textrm{ and }\;\lambda>0\\
+0 & \textrm{otherwise}
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<echo=FALSE, fig.height=5, fig.width=8>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+data <- expand.grid( x=seq(0,10,length=1000), lambda=c(0.5,1,2)) %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  mutate( density = dexp(x,lambda),
+\end_layout
+
+\begin_layout Plain Layout
+
+          lambda  = as.factor(lambda)) 
+\end_layout
+
+\begin_layout Plain Layout
+
+head(data) 
+\end_layout
+
+\begin_layout Plain Layout
+
+ggplot(data, aes(x=x, y=density)) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_area(fill='dark grey') +
+\end_layout
+
+\begin_layout Plain Layout
+
+  facet_grid(lambda~.) 
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+Analogous to the discrete distributions, we can define the Expectation and
+ Variance of these distributions by replacing the summation with an integral
+\begin_inset Formula 
+\begin{eqnarray*}
+E[X] & = & \int_{0}^{\infty}x\, f(x)\, dx\\
+ & = & \vdots\\
+ & = & \frac{1}{\lambda}\\
+Var[X] & = & \int_{0}^{\infty}\left(x-E\left[X\right]\right)^{2}\, f\left(x\right)\, dx\\
+ & = & \vdots\\
+ &  & \frac{1}{\lambda^{2}}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Since the exponential distribution is defined by the rate of occurrence
+ of an event, increasing that rate 
+\emph on
+decreases 
+\emph default
+the time between events.
+ Furthermore since the rate of occurrence cannot be negative, we restrict
+ 
+\begin_inset Formula $\lambda>0$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Example
+Suppose the time between insect captures 
+\begin_inset Formula $X$
+\end_inset
+
+ during a summer evening for a species of bat follows a exponential distribution
+ with capture rate of 
+\begin_inset Formula $\lambda=2$
+\end_inset
+
+ insects per minute and therefore the expected waiting time between captures
+ is 
+\begin_inset Formula $1/\lambda=1/2$
+\end_inset
+
+ minute.
+ Suppose that we are interested in the probability that it takes a bat more
+ than 1 minute to capture its next insect.
+\end_layout
+
+\begin_layout Example
+\begin_inset Formula $P(X>1)=$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<fig.height=4>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+data <- data.frame( x=seq(0,5,length=1000) ) %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+    mutate(density = dexp(x, rate=2),
+\end_layout
+
+\begin_layout Plain Layout
+
+           group   = ifelse( x >= 1, 'g1', 'g2')) # if(x>1) group is 1,
+ otherwise 2  
+\end_layout
+
+\begin_layout Plain Layout
+
+head(data)
+\end_layout
+
+\begin_layout Plain Layout
+
+ggplot(data, aes(x=x, y=density, fill=group)) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_line() +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_area()
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We now must resort to calculus to find this area.
+ Or use tables of pre-calculated values.
+ Or use R (remembering that 
+\family typewriter
+p-functions
+\family default
+ give the area under the curve 
+\emph on
+to the left
+\emph default
+ 
+\emph on
+of the given value.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+# P(X > 1)  == 1 - P(X <= 1)
+\end_layout
+
+\begin_layout Plain Layout
+
+1 - pexp(1, rate=2)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Normal Distribution
+\end_layout
+
+\begin_layout Standard
+Undoubtably the most important distribution in statistics is the normal
+ distribution.
+ If my RV 
+\begin_inset Formula $X$
+\end_inset
+
+ is normally distributed with mean 
+\begin_inset Formula $\mu$
+\end_inset
+
+ and standard deviation 
+\begin_inset Formula $\sigma$
+\end_inset
+
+, its probability density function is given by
+\begin_inset Formula 
+\[
+f(x)=\frac{1}{\sqrt{2\pi}\sigma}\exp\left[\frac{-(x-\mu)^{2}}{2\sigma^{2}}\right]
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\exp[y]$
+\end_inset
+
+ is the exponential function 
+\begin_inset Formula $e^{y}$
+\end_inset
+
+.
+ We could slightly rearrange the function to
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+f(x)=\frac{1}{\sqrt{2\pi}\sigma}\exp\left[-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^{2}\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+and see this distribution is defined by its expectation 
+\begin_inset Formula $E[X]=\mu$
+\end_inset
+
+ and its variance 
+\begin_inset Formula $Var[X]=\sigma^{2}$
+\end_inset
+
+.
+ Notice I could define it using the standard deviation 
+\begin_inset Formula $\sigma$
+\end_inset
+
+, and different software packages will expect it to be defined by one or
+ the other.
+ R defines the normal distribution using the standard deviation.
+ 
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+echo=FALSE, fig.height=5, fig.width=8
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+x <- seq(-5,7,length=1000)
+\end_layout
+
+\begin_layout Plain Layout
+
+plot(range(x), c(0,0.7), type='n', ylab='density', xlab='x')
+\end_layout
+
+\begin_layout Plain Layout
+
+lines(x, dnorm(x, mean=0, sd=1),   lty=1, lwd=2, col='black')
+\end_layout
+
+\begin_layout Plain Layout
+
+lines(x, dnorm(x, mean=2, sd=2),   lty=2, lwd=2, col='red')
+\end_layout
+
+\begin_layout Plain Layout
+
+lines(x, dnorm(x,     -3, sd=0.6), lty=3, lwd=2, col='blue')
+\end_layout
+
+\begin_layout Plain Layout
+
+legend(2, .6, legend=c(
+\end_layout
+
+\begin_layout Plain Layout
+
+  expression(paste(mu,'=0  ',sigma,'=1')),
+\end_layout
+
+\begin_layout Plain Layout
+
+  expression(paste(mu,'=2  ',sigma,'=2')),
+\end_layout
+
+\begin_layout Plain Layout
+
+  expression(paste(mu,'=-3  ',sigma,'=0.6'))),
+\end_layout
+
+\begin_layout Plain Layout
+
+  lwd=2, lty=1:3, col=c('black','red','blue'))
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+It is known that the heights of adult males in the US is approximately normal
+ with a mean of 5 feet 10 inches (
+\begin_inset Formula $\mu=70$
+\end_inset
+
+ inches) and a standard deviation of 
+\begin_inset Formula $\sigma=3$
+\end_inset
+
+ inches.
+ Your instructor is a mere 5 feet 4 inches (
+\begin_inset Formula $64$
+\end_inset
+
+ inches).
+ What proportion of the population is shorter than your professor?
+\end_layout
+
+\begin_layout Example
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<fig.height=5>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+distr <- data.frame(x=seq(57,82,length=1000)) %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  mutate( density = dnorm(x, mean=70, sd=3),
+\end_layout
+
+\begin_layout Plain Layout
+
+          group = ifelse(x<=64, 'Shorter','Taller') )
+\end_layout
+
+\begin_layout Plain Layout
+
+ggplot(distr, aes(x=x, y=density, fill=group)) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_line() +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_area()
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Using R you can easily find this
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<fig.height=5>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+pnorm(64, mean=70, sd=3)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+You might remember doing something similar in an undergraduate statistics
+ course using a table look up.
+ First we notice that the normal distribution is defined by the number of
+ standard deviations from the mean (which we denote as 
+\begin_inset Formula $z$
+\end_inset
+
+)
+\begin_inset Formula 
+\[
+z=\frac{x-\mu}{\sigma}
+\]
+
+\end_inset
+
+ and we note that he is 
+\begin_inset Formula $-2$
+\end_inset
+
+ standard deviations from the mean because
+\begin_inset Formula 
+\begin{eqnarray*}
+z & = & \frac{64-70}{3}\\
+ & = & \frac{-6}{3}\\
+ & = & -2
+\end{eqnarray*}
+
+\end_inset
+
+Next we look at a table for 
+\begin_inset Formula $z=-2.00$
+\end_inset
+
+.
+ To do this we go down to the 
+\begin_inset Formula $-2.0$
+\end_inset
+
+ row and over to the 
+\begin_inset Formula $.00$
+\end_inset
+
+ column and find 
+\begin_inset Formula $0.0228$
+\end_inset
+
+.
+ Only slightly over 2% of the adult male population is shorter!
+\end_layout
+
+\begin_layout Standard
+How tall must a male be to be taller than 
+\begin_inset Formula $80\%$
+\end_inset
+
+ of the rest of the male population? To answer that we must use the table
+ in reverse and look for the 
+\begin_inset Formula $0.8$
+\end_inset
+
+ value.
+ We find the closest value possible (
+\begin_inset Formula $0.7995)$
+\end_inset
+
+ and the 
+\begin_inset Formula $z$
+\end_inset
+
+ value associated with it is 
+\begin_inset Formula $z=0.84$
+\end_inset
+
+.
+ Next we solve the standardizing equation for 
+\begin_inset Formula $x$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{eqnarray*}
+z & = & \frac{x-\mu}{\sigma}\\
+0.84 & = & \frac{x-70}{3}\\
+x & = & 3(0.84)+70\\
+ & = & 72.49\;\textrm{inches}
+\end{eqnarray*}
+
+\end_inset
+
+Alternatively we could use the quantile function for the normal distribution
+ 
+\family typewriter
+(q-function)
+\family default
+ in R and avoid the imprecision of using a table.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+qnorm(.8, mean=0, sd=1)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+x & = & 3(0.8416)+70\\
+ & = & 72.52\;\textrm{inches}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Empirical Rule - It is from the normal distribution that the empirical rule
+ from chapter 3 is derived.
+ If 
+\begin_inset Formula $X\sim N(\mu,\sigma^{2})$
+\end_inset
+
+ then 
+\begin_inset Formula 
+\begin{eqnarray*}
+P(\mu-\sigma\le X\le\mu+\sigma) & = & P(-1\le Z\le1)\\
+ & = & P(Z\le1)-P(Z\le-1)\\
+ & \approx & 0.8413-0.1587\\
+ & = & 0.6826
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+fig.height=4, fig.width=8, echo=FALSE
+\end_layout
+
+\end_inset
+
+z <- seq(-3,3,length=1000)
+\end_layout
+
+\begin_layout Plain Layout
+
+plot(z, dnorm(z), ylab='density', xlab='Z', type='l', lwd=2, main='Empirical
+ Rule')
+\end_layout
+
+\begin_layout Plain Layout
+
+lines(c(-1,1), rep(dnorm(1),2), lwd=2, col=1)
+\end_layout
+
+\begin_layout Plain Layout
+
+lines(c(-2,2), rep(dnorm(2),2), lwd=2, col=2)
+\end_layout
+
+\begin_layout Plain Layout
+
+eps <- 0.015
+\end_layout
+
+\begin_layout Plain Layout
+
+text(0, dnorm(1)+ eps, expression(paste(''%~~%'','68%')), col=1)
+\end_layout
+
+\begin_layout Plain Layout
+
+text(0, dnorm(1)-eps, expression(paste(''%+-%'', '1', sigma)), col=1)
+\end_layout
+
+\begin_layout Plain Layout
+
+text(0, dnorm(2)+eps, expression(paste(''%~~%'','95%')), col=2)
+\end_layout
+
+\begin_layout Plain Layout
+
+text(0, dnorm(2)-eps, expression(paste(''%+-%'', '2', sigma)), col=2)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+R Comments
+\end_layout
+
+\begin_layout Standard
 There will be a variety of distributions we'll be interested in and R refers
  to them using the following abbreviations
 \begin_inset Newline newline
@@ -5540,381 +7297,6 @@ upper bound
 \end_layout
 
 \begin_layout Standard
-For our small mammal example we can create a graph that shows the binomial
- distribution with the following R code:
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100col%"
-special "none"
-height "1in"
-height_special "totalheight"
-status open
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<message=FALSE, fig.height=2.5, fig.width=5>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-library(mosaic)
-\end_layout
-
-\begin_layout Plain Layout
-
-plotDist('binom', size=3, prob=0.8, 
-\end_layout
-
-\begin_layout Plain Layout
-
-         main='Binomial Distribution(n=3,p=0.8)', 
-\end_layout
-
-\begin_layout Plain Layout
-
-         ylab='Probability', xlab='Number of Full Traps')
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-To calculate the height of any of these bars, we can evaluate the pmf at
- the desired point.
- For example, to calculate the probability the number of full traps is 2,
- we calculate the following
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{eqnarray*}
-P(S=2) & = & {3 \choose 2}\left(0.8\right)^{2}\left(1-0.8\right)^{3-2}\\
-\\
- & = & \frac{3!}{2!(3-2)!}(0.8)^{2}(0.2)^{3-2}\\
-\\
- & = & \frac{3\cdot2\cdot1}{(2\cdot1)1}\;(0.8)^{2}(0.2)\\
-\\
- & = & 3(0.128)\\
-\\
- & = & 0.384
-\end{eqnarray*}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-You can use R to calculate these probabilities.
- In general, for any distribution, the 
-\begin_inset Quotes eld
-\end_inset
-
-d-function
-\begin_inset Quotes erd
-\end_inset
-
- gives the distribution function (pmf or pdf).
- So to get R to do the preceding calculation we use:
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex Chunk
-status open
-
-\begin_layout Plain Layout
-
-# P( Y = 2 | n=3, pi=0.8 )
-\end_layout
-
-\begin_layout Plain Layout
-
-dbinom(2, size=3, prob=0.8)
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-The expectation of this distribution can be shown to be 
-\begin_inset Formula 
-\begin{eqnarray*}
-E[Y] & = & \sum_{y=0}^{n}y\, P(Y=y)\\
-\\
- & = & \sum_{y=0}^{n}y\;\frac{n!}{y!\left(n-y\right)!}\pi^{y}\left(1-\pi\right)^{n-y}\\
-\\
- & = & \vdots\\
- & = & n\pi
-\end{eqnarray*}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-and the variance can be similarly calculated
-\begin_inset Formula 
-\begin{eqnarray*}
-V[Y] & = & \sum_{y=0}^{n}\left(y-E\left[Y\right]\right)^{2}\, P\left(Y=y|n,\pi\right)\\
-\\
- & = & \sum_{y=0}^{n}\left(y-E\left[Y\right]\right)^{2}\;\frac{n!}{y!\left(n-y\right)!}\pi^{y}\left(1-\pi\right)^{n-y}\\
-\\
- & = & \vdots\\
- & = & n\pi(1-\pi)
-\end{eqnarray*}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Example
-Suppose a bird survey only captures the presence or absence of a particular
- bird (say the mountain chickadee).
- Assuming the true presence proportion at national forest sites around Flagstaff
- 
-\begin_inset Formula $\pi=0.1$
-\end_inset
-
-, then for 
-\begin_inset Formula $n=20$
-\end_inset
-
- randomly chosen sites, the number of sites in which the bird was observed
- would have the distribution
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100col%"
-special "none"
-height "1in"
-height_special "totalheight"
-status open
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<fig.height=2.5, fig.width=5>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-plotDist('binom', size=20, prob=0.1, 
-\end_layout
-
-\begin_layout Plain Layout
-
-         main='Binomial Distribution(n=20,p=0.1)', 
-\end_layout
-
-\begin_layout Plain Layout
-
-         ylab='Probability', xlab='Number Sites Occupied')
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Often we are interested in questions such as 
-\begin_inset Formula $P(Y\le2)$
-\end_inset
-
- which is the probability that we see 2 or fewer of the sites being occupied
- by mountain chickadee.
- These calculations can be tedious to calculate by hand but R will calculate
- these cumulative distribution function values for you using the 
-\begin_inset Quotes eld
-\end_inset
-
-p-function
-\begin_inset Quotes erd
-\end_inset
-
-.
- This cumulative distribution function gives the sum of all values up to
- and including the number given.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100col%"
-special "none"
-height "1in"
-height_special "totalheight"
-status open
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-# P(Y=0) + P(Y=1) + P(Y=2)
-\end_layout
-
-\begin_layout Plain Layout
-
-sum <- dbinom(0, size=20, prob=0.1) + 
-\end_layout
-
-\begin_layout Plain Layout
-
-       dbinom(1, size=20, prob=0.1) + 
-\end_layout
-
-\begin_layout Plain Layout
-
-       dbinom(2, size=20, prob=0.1)
-\end_layout
-
-\begin_layout Plain Layout
-
-sum
-\end_layout
-
-\begin_layout Plain Layout
-
-# P(Y <= 2)
-\end_layout
-
-\begin_layout Plain Layout
-
-pbinom(2, size=20, prob=0.1)
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-In general we will be interested in asking four different questions about
- a distribution.
-\end_layout
-
-\begin_layout Enumerate
-What is the height of the probability mass function (or probability density
- function).
- For discrete variable 
-\begin_inset Formula $Y$
-\end_inset
-
- this is 
-\begin_inset Formula $P\left(Y=y\right)$
-\end_inset
-
- for whatever value of 
-\begin_inset Formula $y$
-\end_inset
-
- we want.
-\end_layout
-
-\begin_layout Enumerate
-What is the probability of observing a value less than or equal to 
-\begin_inset Formula $y$
-\end_inset
-
-? In other words, to calculate 
-\begin_inset Formula $P\left(Y\le y\right)$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Enumerate
-What is a particular quantile of a distribution? For example, what value
- separates the lower 25% from the upper 75%?
-\end_layout
-
-\begin_layout Enumerate
-Generate a random sample of values from a specified distribution.
-\end_layout
-
-\begin_layout Standard
 All the probability distributions available in R are accessed in exactly
  the same way, using a 
 \family typewriter
@@ -5933,19 +7315,7 @@ q-function
 r-function
 \family default
 .
- For the rest of this section suppose that 
-\begin_inset Formula $X$
-\end_inset
-
- is a random variable from the distribution of interest and 
-\begin_inset Formula $x$
-\end_inset
-
- is some possible value that 
-\begin_inset Formula $X$
-\end_inset
-
- could take on.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -6321,1068 +7691,6 @@ rnorm(n=10, mean=0, sd=1)
 \end_inset
 
 
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
-Poisson Distribution
-\end_layout
-
-\begin_layout Standard
-A commonly used distribution for count data is the Poisson.
-\end_layout
-
-\begin_layout Enumerate
-Number of customers arriving over a 5 minute interval
-\end_layout
-
-\begin_layout Enumerate
-Number of birds observed during a 10 minute listening period
-\end_layout
-
-\begin_layout Enumerate
-Number of prairie dog towns per 1000 hectares
-\end_layout
-
-\begin_layout Enumerate
-Number of alga clumps per cubic meter of lake water
-\end_layout
-
-\begin_layout Standard
-For a RV is a Poisson RV if the following conditions apply:
-\end_layout
-
-\begin_layout Enumerate
-Two or more events do not occur at precisely the same time or in the same
- space
-\end_layout
-
-\begin_layout Enumerate
-The occurrence of an event in a given period of time or region of space
- is independent of the occurrence of the event in a non overlapping period
- or region.
-\end_layout
-
-\begin_layout Enumerate
-The expected number of events during one period or region, 
-\begin_inset Formula $\lambda$
-\end_inset
-
-, is the same in all periods or regions of the same size.
-\end_layout
-
-\begin_layout Standard
-Assuming that these conditions hold for some count variable 
-\begin_inset Formula $Y$
-\end_inset
-
-, the the probability mass function is given by
-\begin_inset Formula 
-\[
-P(Y=y)=\frac{\lambda^{y}e^{-\lambda}}{y!}
-\]
-
-\end_inset
-
-where 
-\begin_inset Formula $\lambda$
-\end_inset
-
- is the expected number of events over 1 unit of time or space and 
-\begin_inset Formula $e$
-\end_inset
-
- is the constant 
-\begin_inset Formula $2.718281828$
-\end_inset
-
-.
- 
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{eqnarray*}
-E[Y] & = & \lambda\\
-Var[Y] & = & \lambda
-\end{eqnarray*}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Example
-Suppose we are interested in the population size of small mammals in a region.
- Let 
-\begin_inset Formula $Y$
-\end_inset
-
- be the number of small mammals caught in a large trap (multiple traps in
- the same location?) in a 12 hour period.
- Finally, suppose that 
-\begin_inset Formula $Y\sim Poi(\lambda=2.3)$
-\end_inset
-
-.
- What is the probability of finding exactly 4 critters in our trap?
-\begin_inset Formula 
-\begin{eqnarray*}
-P(Y=4) & = & \frac{2.3^{4}\, e^{-2.3}}{4!}\\
- & = & 0.1169
-\end{eqnarray*}
-
-\end_inset
-
-What about the probability of finding at most 4?
-\begin_inset Formula 
-\begin{eqnarray*}
-P(Y\le4) & = & P(Y=0)+P(Y=1)+P(Y=2)+P(Y=3)+P(Y=4)\\
- & = & 0.1003+0.2306+0.2652+0.2033+0.1169\\
- & = & 0.9163
-\end{eqnarray*}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Example
-What about the probability of finding 5 or more?
-\begin_inset Formula 
-\begin{eqnarray*}
-P(Y\ge5) & = & 1-P(Y\le4)\\
- & = & 1-0.9163\\
- & = & 0.0837
-\end{eqnarray*}
-
-\end_inset
-
-These calculations can be done using the distribution function (
-\family typewriter
-d-function
-\family default
-) for the poisson and the cumulative distribution function (
-\family typewriter
-p-function)
-\family default
-.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100col%"
-special "none"
-height "1in"
-height_special "totalheight"
-status open
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<fig.height=3, fig.width=6>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-plotDist('pois', lambda=2.3,
-\end_layout
-
-\begin_layout Plain Layout
-
-         main='Poisson Distribution with lambda=2.3', ylab='density')
-\end_layout
-
-\begin_layout Plain Layout
-
-# P( Y = 4)
-\end_layout
-
-\begin_layout Plain Layout
-
-dpois(4, lambda=2.3)
-\end_layout
-
-\begin_layout Plain Layout
-
-# P( Y <= 4)
-\end_layout
-
-\begin_layout Plain Layout
-
-ppois(4, lambda=2.3)
-\end_layout
-
-\begin_layout Plain Layout
-
-# 1-P(Y <= 4)  ==  P( Y > 4)  ==  P( Y >= 5)
-\end_layout
-
-\begin_layout Plain Layout
-
-1-ppois(4, 2.3)
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-Continuous Random Variables
-\end_layout
-
-\begin_layout Standard
-Finding the area under the curve of a particular density function 
-\begin_inset Formula $f(x)$
-\end_inset
-
- requires the use of calculus, but since this isn't a calculus course, we
- will resort to using R or tables of calculated values.
-\end_layout
-
-\begin_layout Subsection
-Uniform(0,1) Distribution
-\end_layout
-
-\begin_layout Standard
-Suppose you wish to draw a random number number between 0 and 1 and each
- number should have an equal chance of being selected.
- This random variable is said to have a 
-\emph on
-Uniform(0,1)
-\emph default
- distribution.
-\end_layout
-
-\begin_layout Standard
-Because there are an infinite number of rational numbers between 0 and 1,
- the probability of any particular number being selected is 
-\begin_inset Formula $1/\infty=0$
-\end_inset
-
-.
- But even though each number has 0 probability of being selected, some number
- must end up being selected.
- Because of this conundrum, probability theory doesn't look at the probability
- of a single number, but rather focuses on a 
-\emph on
-region of numbers
-\emph default
-.
- 
-\end_layout
-
-\begin_layout Standard
-To make this distinction, we will define the distribution using a 
-\emph on
-probability density function
-\emph default
- instead of the probability mass function.
- In the discrete case, we had to constrain the probability mass function
- to sum to 1.
- In the continuous case, we have to constrain the probability density function
- to integrate to 1.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100col%"
-special "none"
-height "1in"
-height_special "totalheight"
-status open
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<echo=FALSE, fig.height=4, fig.width=6>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-layout(matrix(1:2, nrow=2))
-\end_layout
-
-\begin_layout Plain Layout
-
-par(mar=c(2,3,1,1))
-\end_layout
-
-\begin_layout Plain Layout
-
-x <- seq(-.1, 1.1, length=1000)
-\end_layout
-
-\begin_layout Plain Layout
-
-smallx <- seq(0, 1/3, length=1000)
-\end_layout
-
-\begin_layout Plain Layout
-
-plot(x, dunif(x, 0,1), type='l', ylab='f(x)', xlab='')
-\end_layout
-
-\begin_layout Plain Layout
-
-polygon(x, dunif(x, 0, 1), col='grey')
-\end_layout
-
-\begin_layout Plain Layout
-
-text(.5, .5, 'Area = 1')
-\end_layout
-
-\begin_layout Plain Layout
-
-smallx <- seq(0, 1/3, length=1000)
-\end_layout
-
-\begin_layout Plain Layout
-
-plot(x, dunif(x, 0, 1), type='l', ylab='f(x)', xlab='')
-\end_layout
-
-\begin_layout Plain Layout
-
-polygon(c(0, smallx, 1/3), c(0, dunif(smallx, 0,1), 0), col='grey')
-\end_layout
-
-\begin_layout Plain Layout
-
-text(.15, .5, 'P(X < 1/3)')
-\end_layout
-
-\begin_layout Plain Layout
-
-text(.15, .3, ' = 1/3'    )
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Finding the area under the curve of a particular density function 
-\begin_inset Formula $f(x)$
-\end_inset
-
- usually requires the use of calculus, but since this isn't a calculus course,
- we will resort to using R or tables of calculated values.
-\end_layout
-
-\begin_layout Subsection
-Exponential Distribution
-\end_layout
-
-\begin_layout Standard
-The exponential distribution is the continuous analog of the Poisson distributio
-n and is often used to model the time between occurrence of successive events.
- Perhaps we are modeling time between transmissions on a network, or the
- time between feeding events or prey capture.
- If the random variable 
-\begin_inset Formula $X$
-\end_inset
-
- has an Exponential distribution, its distribution function is 
-\begin_inset Formula 
-\[
-f(x)=\begin{cases}
-\lambda e^{-\lambda x} & x\ge0\;\textrm{ and }\;\lambda>0\\
-0 & \textrm{otherwise}
-\end{cases}
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100col%"
-special "none"
-height "1in"
-height_special "totalheight"
-status open
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<echo=FALSE, fig.height=5, fig.width=8>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-x <- seq(0,5,length=1000)
-\end_layout
-
-\begin_layout Plain Layout
-
-plot(x, dexp(x, rate=1), lty=1, type='l', ylab='density', lwd=2)
-\end_layout
-
-\begin_layout Plain Layout
-
-lines(x, dexp(x, rate=2), lty=2, col='red', lwd=2)
-\end_layout
-
-\begin_layout Plain Layout
-
-lines(x, dexp(x, rate=.5), lty=3, col='blue', lwd=2)
-\end_layout
-
-\begin_layout Plain Layout
-
-legend(2.5, .8, legend=c('Lambda=1', 'Lambda=2', 'Lambda=0.5'), 
-\end_layout
-
-\begin_layout Plain Layout
-
-lty=c(1,2,3), col=c('black', 'red', 'blue'), lwd=2)
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\noindent
-\align left
-Analogous to the discrete distributions, we can define the Expectation and
- Variance of these distributions by replacing the summation with an integral
-\begin_inset Formula 
-\begin{eqnarray*}
-E[X] & = & \int_{0}^{\infty}x\, f(x)\, dx\\
- & = & \vdots\\
- & = & \frac{1}{\lambda}\\
-Var[X] & = & \int_{0}^{\infty}\left(x-E\left[X\right]\right)^{2}\, f\left(x\right)\, dx\\
- & = & \vdots\\
- &  & \frac{1}{\lambda^{2}}
-\end{eqnarray*}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Since the exponential distribution is defined by the rate of occurrence
- of an event, increasing that rate 
-\emph on
-decreases 
-\emph default
-the time between events.
- Furthermore since the rate of occurrence cannot be negative, we restrict
- 
-\begin_inset Formula $\lambda>0$
-\end_inset
-
- 
-\end_layout
-
-\begin_layout Example
-Suppose the time between insect captures 
-\begin_inset Formula $X$
-\end_inset
-
- during a summer evening for a species of bat follows a exponential distribution
- with capture rate of 
-\begin_inset Formula $\lambda=2$
-\end_inset
-
- insects per minute and therefore the expected waiting time between captures
- is 
-\begin_inset Formula $1/\lambda=1/2$
-\end_inset
-
- minute.
- Suppose that we are interested in the probability that it takes a bat more
- than 1 minute to capture its next insect.
-\end_layout
-
-\begin_layout Example
-\begin_inset Formula $P(X>1)=$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\noindent
-\align left
-\begin_inset Flex Chunk
-status open
-
-\begin_layout Plain Layout
-
-\begin_inset Argument 1
-status open
-
-\begin_layout Plain Layout
-echo=FALSE, fig.height=4, fig.width=8
-\end_layout
-
-\end_inset
-
-xsmall <- seq(1,5,length=1000)
-\end_layout
-
-\begin_layout Plain Layout
-
-plot(x, dexp(x, rate=2), lty=1, type='l', ylab='density')
-\end_layout
-
-\begin_layout Plain Layout
-
-polygon(c(1, xsmall), c(0, dexp(xsmall, rate=2)), col='grey')
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-We now must resort to calculus to find this area.
- Or use tables of pre-calculated values.
- Or use R (remembering that 
-\family typewriter
-p-functions
-\family default
- give the area under the curve 
-\emph on
-to the left
-\emph default
- 
-\emph on
-of the given value.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex Chunk
-status open
-
-\begin_layout Plain Layout
-
-# P(X > 1)  == 1 - P(X <= 1)
-\end_layout
-
-\begin_layout Plain Layout
-
-1 - pexp(1, rate=2)
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
-Normal Distribution
-\end_layout
-
-\begin_layout Standard
-Undoubtably the most important distribution in statistics is the normal
- distribution.
- If my RV 
-\begin_inset Formula $X$
-\end_inset
-
- is normally distributed with mean 
-\begin_inset Formula $\mu$
-\end_inset
-
- and standard deviation 
-\begin_inset Formula $\sigma$
-\end_inset
-
-, its probability distribution function is given by
-\begin_inset Formula 
-\[
-f(x)=\frac{1}{\sqrt{2\pi}\sigma}\exp\left[\frac{-(x-\mu)^{2}}{2\sigma^{2}}\right]
-\]
-
-\end_inset
-
-where 
-\begin_inset Formula $\exp[y]$
-\end_inset
-
- is the exponential function 
-\begin_inset Formula $e^{y}$
-\end_inset
-
-.
- We could slightly rearrange the function to
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-f(x)=\frac{1}{\sqrt{2\pi}\sigma}\exp\left[-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^{2}\right]
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-and see this distribution is defined by its expectation 
-\begin_inset Formula $E[X]=\mu$
-\end_inset
-
- and its variance 
-\begin_inset Formula $Var[X]=\sigma^{2}$
-\end_inset
-
-.
- Notice I could define it using the standard deviation 
-\begin_inset Formula $\sigma$
-\end_inset
-
-, and different software packages will expect it to be defined by one or
- the other.
- R defines the normal distribution using the standard deviation.
- 
-\end_layout
-
-\begin_layout Standard
-\noindent
-\align left
-\begin_inset Flex Chunk
-status open
-
-\begin_layout Plain Layout
-
-\begin_inset Argument 1
-status open
-
-\begin_layout Plain Layout
-echo=FALSE, fig.height=5, fig.width=8
-\end_layout
-
-\end_inset
-
-x <- seq(-5,7,length=1000)
-\end_layout
-
-\begin_layout Plain Layout
-
-plot(range(x), c(0,0.7), type='n', ylab='density', xlab='x')
-\end_layout
-
-\begin_layout Plain Layout
-
-lines(x, dnorm(x, mean=0, sd=1),   lty=1, lwd=2, col='black')
-\end_layout
-
-\begin_layout Plain Layout
-
-lines(x, dnorm(x, mean=2, sd=2),   lty=2, lwd=2, col='red')
-\end_layout
-
-\begin_layout Plain Layout
-
-lines(x, dnorm(x,     -3, sd=0.6), lty=3, lwd=2, col='blue')
-\end_layout
-
-\begin_layout Plain Layout
-
-legend(2, .6, legend=c(
-\end_layout
-
-\begin_layout Plain Layout
-
-  expression(paste(mu,'=0  ',sigma,'=1')),
-\end_layout
-
-\begin_layout Plain Layout
-
-  expression(paste(mu,'=2  ',sigma,'=2')),
-\end_layout
-
-\begin_layout Plain Layout
-
-  expression(paste(mu,'=-3  ',sigma,'=0.6'))),
-\end_layout
-
-\begin_layout Plain Layout
-
-  lwd=2, lty=1:3, col=c('black','red','blue'))
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Example
-It is known that the heights of adult males in the US is approximately normal
- with a mean of 5 feet 10 inches (
-\begin_inset Formula $\mu=70$
-\end_inset
-
- inches) and a standard deviation of 
-\begin_inset Formula $\sigma=3$
-\end_inset
-
- inches.
- Your instructor is a mere 5 feet 4 inches (
-\begin_inset Formula $64$
-\end_inset
-
- inches).
- What proportion of the population is shorter than your professor?
-\end_layout
-
-\begin_layout Standard
-\noindent
-\align left
-\begin_inset Flex Chunk
-status open
-
-\begin_layout Plain Layout
-
-\begin_inset Argument 1
-status open
-
-\begin_layout Plain Layout
-echo=FALSE, fig.height=5, fig.width=8
-\end_layout
-
-\end_inset
-
-x <- seq(57,82,length=1000)
-\end_layout
-
-\begin_layout Plain Layout
-
-plot(x, dnorm(x, mean=70, sd=3), ylab='density', xlab='Adult Male Heights',
- type='l', lwd=2)
-\end_layout
-
-\begin_layout Plain Layout
-
-x2 <- seq(57,64, length=1000)
-\end_layout
-
-\begin_layout Plain Layout
-
-polygon(c(x2,64), c(dnorm(x2, mean=70, sd=3),0), col='grey')
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Using R you can easily find this
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex Chunk
-status open
-
-\begin_layout Plain Layout
-
-\begin_inset Argument 1
-status open
-
-\begin_layout Plain Layout
-echo=TRUE
-\end_layout
-
-\end_inset
-
-# P( Y <= 64 )
-\end_layout
-
-\begin_layout Plain Layout
-
-pnorm(64, mean=70, sd=3)
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-but unfortunately your professor may need to ask similar questions on an
- exam and so we have to talk about how to do the same calculation using
- a table.
- First we notice that the normal distribution is defined by the number of
- standard deviations from the mean (which we denote as 
-\begin_inset Formula $z$
-\end_inset
-
-)
-\begin_inset Formula 
-\[
-z=\frac{x-\mu}{\sigma}
-\]
-
-\end_inset
-
- and we note that he is 
-\begin_inset Formula $-2$
-\end_inset
-
- standard deviations from the mean because
-\begin_inset Formula 
-\begin{eqnarray*}
-z & = & \frac{64-70}{3}\\
- & = & \frac{-6}{3}\\
- & = & -2
-\end{eqnarray*}
-
-\end_inset
-
-Next we look at the table in the front of the book for 
-\begin_inset Formula $z=-2.00$
-\end_inset
-
-.
- To do this we go down to the 
-\begin_inset Formula $-2.0$
-\end_inset
-
- row and over to the 
-\begin_inset Formula $.00$
-\end_inset
-
- column and find 
-\begin_inset Formula $0.0228$
-\end_inset
-
-.
- Only slightly over 2% of the adult male population is shorter!
-\end_layout
-
-\begin_layout Standard
-How tall must a male be to be taller than 
-\begin_inset Formula $80\%$
-\end_inset
-
- of the rest of the male population? To answer that we must use the table
- in reverse and look for the 
-\begin_inset Formula $0.8$
-\end_inset
-
- value.
- We find the closest value possible (
-\begin_inset Formula $0.7995)$
-\end_inset
-
- and the 
-\begin_inset Formula $z$
-\end_inset
-
- value associated with it is 
-\begin_inset Formula $z=0.84$
-\end_inset
-
-.
- Next we solve the standardizing equation for 
-\begin_inset Formula $x$
-\end_inset
-
-
-\begin_inset Formula 
-\begin{eqnarray*}
-z & = & \frac{x-\mu}{\sigma}\\
-0.84 & = & \frac{x-70}{3}\\
-x & = & 3(0.84)+70\\
- & = & 72.49\;\textrm{inches}
-\end{eqnarray*}
-
-\end_inset
-
-Alternatively we could use the quantile function for the normal distribution
- 
-\family typewriter
-(q-function)
-\family default
- in R and avoid the imprecision of using a table.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex Chunk
-status open
-
-\begin_layout Plain Layout
-
-qnorm(.8, mean=0, sd=1)
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{eqnarray*}
-x & = & 3(0.8416)+70\\
- & = & 72.52\;\textrm{inches}
-\end{eqnarray*}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Empirical Rule - It is from the normal distribution that the empirical rule
- from chapter 3 is derived.
- If 
-\begin_inset Formula $X\sim N(\mu,\sigma^{2})$
-\end_inset
-
- then 
-\begin_inset Formula 
-\begin{eqnarray*}
-P(\mu-\sigma\le X\le\mu+\sigma) & = & P(-1\le Z\le1)\\
- & = & P(Z\le1)-P(Z\le-1)\\
- & \approx & 0.8413-0.1587\\
- & = & 0.6826
-\end{eqnarray*}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\noindent
-\align left
-\begin_inset Flex Chunk
-status open
-
-\begin_layout Plain Layout
-
-\begin_inset Argument 1
-status open
-
-\begin_layout Plain Layout
-fig.height=4, fig.width=8, echo=FALSE
-\end_layout
-
-\end_inset
-
-z <- seq(-3,3,length=1000)
-\end_layout
-
-\begin_layout Plain Layout
-
-plot(z, dnorm(z), ylab='density', xlab='Z', type='l', lwd=2, main='Empirical
- Rule')
-\end_layout
-
-\begin_layout Plain Layout
-
-lines(c(-1,1), rep(dnorm(1),2), lwd=2, col=1)
-\end_layout
-
-\begin_layout Plain Layout
-
-lines(c(-2,2), rep(dnorm(2),2), lwd=2, col=2)
-\end_layout
-
-\begin_layout Plain Layout
-
-eps <- 0.015
-\end_layout
-
-\begin_layout Plain Layout
-
-text(0, dnorm(1)+ eps, expression(paste(''%~~%'','68%')), col=1)
-\end_layout
-
-\begin_layout Plain Layout
-
-text(0, dnorm(1)-eps, expression(paste(''%+-%'', '1', sigma)), col=1)
-\end_layout
-
-\begin_layout Plain Layout
-
-text(0, dnorm(2)+eps, expression(paste(''%~~%'','95%')), col=2)
-\end_layout
-
-\begin_layout Plain Layout
-
-text(0, dnorm(2)-eps, expression(paste(''%+-%'', '2', sigma)), col=2)
 \end_layout
 
 \end_inset

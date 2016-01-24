@@ -1,5 +1,4 @@
 base
-datasets
 knitr
 dplyr
 lattice
@@ -8,3 +7,4 @@ car
 mosaicData
 mosaic
 ggdendro
+Lock5Data

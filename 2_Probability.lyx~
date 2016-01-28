@@ -4498,7 +4498,7 @@ Outcome
 
 \begin_layout Standard
 Because these are far apart enough in space that the outcome of Trap1 is
- independent of Trap2 and Trap3, the 
+ independent of Trap2 and Trap3, then 
 \begin_inset Formula 
 \begin{eqnarray*}
 P(E_{1}\cap F_{2}\cap E_{3}) & = & P(E_{1})P(F_{2})P(E_{3})\\
@@ -5162,7 +5162,7 @@ Recall that the probability mass function (pmf) describes how the probability
  is spread across the possible outcomes, and in this case, I can describe
  this via a nice formula.
  The pmf of a a binomial random variable 
-\begin_inset Formula $Y$
+\begin_inset Formula $X$
 \end_inset
 
  taken from 
@@ -5176,7 +5176,7 @@ Recall that the probability mass function (pmf) describes how the probability
  is 
 \begin_inset Formula 
 \[
-P(Y=y)=\underbrace{\frac{n!}{y!(n-y)!}}_{orderings}\;\underbrace{\pi^{y}}_{y\,successes}\;\underbrace{(1-\pi)^{n-y}}_{n-y\,failures}
+P(X=x)=\underbrace{\frac{n!}{x!(n-x)!}}_{orderings}\;\underbrace{\pi^{x}}_{y\,successes}\;\underbrace{(1-\pi)^{n-x}}_{n-y\,failures}
 \]
 
 \end_inset
@@ -5195,7 +5195,7 @@ where we define
 
 .
  Often the ordering term is written more compactly as 
-\begin_inset Formula ${n \choose y}=\frac{n!}{y!\left(n-y\right)!}$
+\begin_inset Formula ${n \choose x}=\frac{n!}{x!\left(n-x\right)!}$
 \end_inset
 
 .
@@ -5296,7 +5296,7 @@ To calculate the height of any of these bars, we can evaluate the pmf at
 \begin_layout Standard
 \begin_inset Formula 
 \begin{eqnarray*}
-P(S=2) & = & {3 \choose 2}\left(0.8\right)^{2}\left(1-0.8\right)^{3-2}\\
+P(X=2) & = & {3 \choose 2}\left(0.8\right)^{2}\left(1-0.8\right)^{3-2}\\
 \\
  & = & \frac{3!}{2!(3-2)!}(0.8)^{2}(0.2)^{3-2}\\
 \\
@@ -5349,9 +5349,9 @@ dbinom(2, size=3, prob=0.8)
 The expectation of this distribution can be shown to be 
 \begin_inset Formula 
 \begin{eqnarray*}
-E[Y] & = & \sum_{y=0}^{n}y\,P(Y=y)\\
+E[X] & = & \sum_{x=0}^{n}x\,P(X=x)\\
 \\
- & = & \sum_{y=0}^{n}y\;\frac{n!}{y!\left(n-y\right)!}\pi^{y}\left(1-\pi\right)^{n-y}\\
+ & = & \sum_{x=0}^{n}x\;\frac{n!}{x!\left(n-x\right)!}\pi^{x}\left(1-\pi\right)^{n-x}\\
 \\
  & = & \vdots\\
  & = & n\pi
@@ -5366,9 +5366,9 @@ E[Y] & = & \sum_{y=0}^{n}y\,P(Y=y)\\
 and the variance can be similarly calculated
 \begin_inset Formula 
 \begin{eqnarray*}
-V[Y] & = & \sum_{y=0}^{n}\left(y-E\left[Y\right]\right)^{2}\,P\left(Y=y|n,\pi\right)\\
+V[X] & = & \sum_{x=0}^{n}\left(x-E\left[X\right]\right)^{2}\,P\left(X=x|n,\pi\right)\\
 \\
- & = & \sum_{y=0}^{n}\left(y-E\left[Y\right]\right)^{2}\;\frac{n!}{y!\left(n-y\right)!}\pi^{y}\left(1-\pi\right)^{n-y}\\
+ & = & \sum_{x=0}^{n}\left(x-E\left[X\right]\right)^{2}\;\frac{n!}{x!\left(n-x\right)!}\pi^{x}\left(1-\pi\right)^{n-x}\\
 \\
  & = & \vdots\\
  & = & n\pi(1-\pi)
@@ -5481,7 +5481,7 @@ ggplot(dist, aes(x=x)) +
 
 \begin_layout Standard
 Often we are interested in questions such as 
-\begin_inset Formula $P(Y\le2)$
+\begin_inset Formula $P(X\le2)$
 \end_inset
 
  which is the probability that we see 2 or fewer of the sites being occupied
@@ -5525,7 +5525,7 @@ status open
 
 \begin_layout Plain Layout
 
-# P(Y=0) + P(Y=1) + P(Y=2)
+# P(X=0) + P(X=1) + P(X=2)
 \end_layout
 
 \begin_layout Plain Layout
@@ -5550,7 +5550,7 @@ sum
 
 \begin_layout Plain Layout
 
-# P(Y <= 2)
+# P(X <= 2)
 \end_layout
 
 \begin_layout Plain Layout
@@ -6263,7 +6263,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<fig.height=4>>=
+<<fig.height=3>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -6278,8 +6278,8 @@ data <- data.frame( x=seq(0,5,length=1000) ) %>%
 
 \begin_layout Plain Layout
 
-           group   = ifelse( x >= 1, 'g1', 'g2')) # if(x>1) group is 1,
- otherwise 2  
+           group   = ifelse( x >= 1, 'greater than 1', 'less than 1')) 
+  
 \end_layout
 
 \begin_layout Plain Layout

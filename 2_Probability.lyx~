@@ -4266,7 +4266,7 @@ P\left(\textrm{0 on day1 }and\textrm{ 0 on day2}\right) & = & P\left(\textrm{0 o
 What is the variance of this distribution?
 \begin_inset Formula 
 \begin{eqnarray*}
-V\left(S\right) & = & \sum_{\textrm{possible y}}\,\left(y-\mu\right)^{2}\,P\left(Y=y\right)\\
+V\left(Y\right) & = & \sum_{\textrm{possible y}}\,\left(y-\mu\right)^{2}\,P\left(Y=y\right)\\
 \\
  & = & \sum_{y=0}^{4}\,\left(y-\mu\right)^{2}P\left(Y=y\right)\\
 \\
@@ -5332,7 +5332,12 @@ status open
 
 \begin_layout Plain Layout
 
-# P( Y = 2 | n=3, pi=0.8 )
+# If    X ~ Binomial(n=3, pi=0.8)
+\end_layout
+
+\begin_layout Plain Layout
+
+# Then  P( X = 2 | n=3, pi=0.8 ) =
 \end_layout
 
 \begin_layout Plain Layout

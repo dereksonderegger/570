@@ -445,7 +445,7 @@ count
  The rescaling that accomplishes this is 
 \begin_inset Formula 
 \[
-density=\frac{\#\; observations\; in\; bin}{total\; number\; observations}\cdot\frac{1}{bin\; width}
+density=\frac{\#\;observations\;in\;bin}{total\;number\;observations}\cdot\frac{1}{bin\;width}
 \]
 
 \end_inset
@@ -2727,7 +2727,7 @@ Consumer Reports
 \emph default
  in its June 1998 issue reports on the typical daily room rate at six luxury
  and nine budget hotels.
- The room rates are give in the following table.
+ The room rates are given in the following table.
 \begin_inset Newline newline
 \end_inset
 
@@ -2947,8 +2947,13 @@ By hand, compute the means and standard deviations of the room rates for
 \end_layout
 
 \begin_layout Enumerate
-Give a reason why luxury hotels might have higher variability than the budget
- hotels.
+Give a practical reason why luxury hotels might have higher variability
+ than the budget hotels.
+ 
+\emph on
+(Don't just say the standard deviation is higher because there is more spread
+ in the data, but rather think about the Hotel Industry and why you might
+ see greater price variability for upscale goods compared to budget items.)
 \end_layout
 
 \end_deeper

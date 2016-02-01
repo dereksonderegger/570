@@ -3145,6 +3145,20 @@ height_special "totalheight"
 status open
 
 \begin_layout Plain Layout
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
 \begin_inset ERT
 status open
 
@@ -3284,6 +3298,11 @@ print(p)
 
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_deeper
 \begin_layout Enumerate
 Histogram A goes with boxplot __________
@@ -3302,5 +3321,12 @@ Histogram D goes with boxplot __________
 \end_layout
 
 \end_deeper
+\begin_layout Enumerate
+Twenty-five employees of a corporation have a mean salary of $62,000 and
+ the sample standard deviation of those salaries is $15,000.
+ If each employee receives a bonus of $1,000, does the standard deviation
+ of the salaries change? Explain your reasoning.
+\end_layout
+
 \end_body
 \end_document

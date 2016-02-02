@@ -117,7 +117,7 @@ Lakes %>% summarise(xbar = mean( AvgMercury ))
 SamplingDist <- do(10000) * resample(Lakes) %>% summarise(xbar = mean(AvgMercury))
 
 # what columns does the data frame "SamplingDist" have?
-str(SamplingDist)
+head(SamplingDist)
 
 # show a histogram of the sampling distribution of xbar
 ggplot(SamplingDist, aes(x=xbar)) +
@@ -173,7 +173,7 @@ for(i in 1:3){
   lines(x, rep(yoffsets[i], length(x))) 
 } 
 text(2.2,-1.15, 'Estimated Sampling \n distribution of')
-text(3.70, -1.23, expression(bar(x)))
+text(3.90, -1.23, expression(bar(x)))
 points(xbars, yoffsets, pch=18) 
 text(L[1], yoffsets[1]-.07, expression(L[1]))
 text(L[2], yoffsets[2]-.07, expression(L[2]))
@@ -207,12 +207,12 @@ for(i in 1:N){
   } 
 }
 
-## ----LakesCI, cache=TRUE-------------------------------------------------
+## ----LakesCI, fig.height=3, cache=TRUE-----------------------------------
 # create the sampling distribution of xbar
 SamplingDist <- do(10000) * resample(Lakes)%>%summarise(xbar=mean(AvgMercury))
 
 # show a histogram of the sampling distribution of xbar
-ggplot(SamplingDist, aes(x=xbar)) +
+ggplot(SamplingDist, aes(x=xbar, y=..density..)) +
   geom_histogram() +
   ggtitle('Estimated Sampling distribution of xbar')
 # calculate the 95% confidence interval using middle 95% of xbars
@@ -253,12 +253,12 @@ SampDist <- do(10000) * {
   resample(GPAGender) %>% summarise(xbar = mean(Pulse))
 }
 
-ggplot(SampDist, aes(x=Pulse, y=..density..)) +
-  geom_histogram(binwidth=1) +
+ggplot(SampDist, aes(x=xbar, y=..density..)) +
+  geom_histogram(binwidth=.2) +
   ggtitle('Sampling Distribution of Mean(Pulse)')
 
 ## ------------------------------------------------------------------------
-quantile( SampDist$xbar )
+quantile( SampDist$xbar, probs=c(0.025, 0.975) )
 
 ## ------------------------------------------------------------------------
 library(Lock5Data)

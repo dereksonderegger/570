@@ -197,25 +197,6 @@ Northern Arizona University
 \end_layout
 
 \begin_layout Standard
-
-\emph on
-\begin_inset Newpage newpage
-\end_inset
-
-To Aubrey, who is my rock of consistency; and to Elise and Casey who are
- my source of randomness.
-\end_layout
-
-\begin_layout Standard
-
-\emph on
-\begin_inset Newpage newpage
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 \begin_inset Box Frameless
 position "t"
 hor_pos "c"
@@ -618,6 +599,26 @@ filename "2_Probability.lyx"
 \begin_inset CommandInset include
 LatexCommand input
 filename "3_Bootstrapping.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand input
+filename "4_SamplingDistributions.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand input
+filename "5_ConfidenceIntervals.lyx"
 
 \end_inset
 

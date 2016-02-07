@@ -2653,7 +2653,7 @@ Conditional Probability
 \begin_layout Standard
 We are given the following data about insurance claims.
  Notice that the data is given as 
-\begin_inset Formula $P(\;Category\;\cap\;PolicyType\;)$
+\begin_inset Formula $P(\; Category\;\cap\; PolicyType\;)$
 \end_inset
 
  which is apparent because the sum of all the elements in the table is 
@@ -3123,8 +3123,8 @@ P(A|B)=\frac{P(A\cap B)}{P(B)}
 which can also be rearranged to show
 \begin_inset Formula 
 \begin{eqnarray*}
-P(A\cap B) & = & P(A\,|\,B)\,P(B)\\
- & = & P(B\,|\,A)\,P(A)
+P(A\cap B) & = & P(A\,|\, B)\, P(B)\\
+ & = & P(B\,|\, A)\, P(A)
 \end{eqnarray*}
 
 \end_inset
@@ -3141,7 +3141,7 @@ Using this rule, we might calculate the probability that a claim is an Auto
  policy given that it is not fraudulent.
 \begin_inset Formula 
 \begin{eqnarray*}
-P\left(\,Auto\;|\;NotFraud\,\right) & = & \frac{P\left(\,Auto\;\cap\;NotFraud\right)}{P\left(\,NotFraud\,\right)}\\
+P\left(\, Auto\;|\; NotFraud\,\right) & = & \frac{P\left(\, Auto\;\cap\; NotFraud\right)}{P\left(\, NotFraud\,\right)}\\
 \\
  & = & \frac{0.29}{0.9}\\
 \\
@@ -3169,7 +3169,7 @@ independent
  if 
 \begin_inset Formula 
 \[
-P(A|B)=P(A)\;\;\textrm{and}\;\;P(B|A)=P(B)
+P(A|B)=P(A)\;\;\textrm{and}\;\; P(B|A)=P(B)
 \]
 
 \end_inset
@@ -3230,18 +3230,18 @@ Suppose that we are interested in the relationship between the color and
 \begin_layout Example
 Suppose that convertibles make up just 10% of the domestic automobile market.
  This is to say 
-\begin_inset Formula $P(\;Convertable\;)=0.10$
+\begin_inset Formula $P(\; Convertable\;)=0.10$
 \end_inset
 
 .
  Of the non-convertibles, red is not unheard of but it isn't common either.
  So suppose 
-\begin_inset Formula $P(\;Red\;|\;NonConvertable\;)=0.15$
+\begin_inset Formula $P(\; Red\;|\; NonConvertable\;)=0.15$
 \end_inset
 
 .
  However red is an extremely popular color for convertibles so let 
-\begin_inset Formula $P(\;Red\;|\;Convertable\;)=0.60$
+\begin_inset Formula $P(\; Red\;|\; Convertable\;)=0.60$
 \end_inset
 
 .
@@ -3633,7 +3633,7 @@ We can fill in some of the table using our the definition of conditional
  For example:
 \begin_inset Formula 
 \begin{eqnarray*}
-P\left(Red\,\cap\,Convertable\right) & = & P\left(Red\,|\,Convertable\right)\,P\left(Convertable\right)\\
+P\left(Red\,\cap\, Convertable\right) & = & P\left(Red\,|\, Convertable\right)\, P\left(Convertable\right)\\
  & = & 0.60*0.10\\
  & = & 0.06
 \end{eqnarray*}
@@ -3676,8 +3676,8 @@ Lets think about what this conditional probability means.
  Thus the total percentage of red cars is actually 
 \begin_inset Formula 
 \begin{eqnarray*}
-P\left(\,Red\,\right) & = & P\left(\;Red\;\cap\;Convertible\;\right)+P\left(\,Red\,\cap\,NonConvertible\,\right)\\
- & = & P\left(\,Red\,|\,Convertable\,\right)P\left(\,Convertible\,\right)+P\left(\,Red\,|\,NonConvertible\,\right)P\left(\,NonConvertible\,\right)\\
+P\left(\, Red\,\right) & = & P\left(\; Red\;\cap\; Convertible\;\right)+P\left(\, Red\,\cap\, NonConvertible\,\right)\\
+ & = & P\left(\, Red\,|\, Convertable\,\right)P\left(\, Convertible\,\right)+P\left(\, Red\,|\, NonConvertible\,\right)P\left(\, NonConvertible\,\right)\\
  & = & 0.60*0.10+0.15*0.90\\
  & = & 0.06+0.135\\
  & = & 0.195
@@ -3686,7 +3686,7 @@ P\left(\,Red\,\right) & = & P\left(\;Red\;\cap\;Convertible\;\right)+P\left(\,Re
 \end_inset
 
 So when I ask for 
-\begin_inset Formula $P(\;red\;|\;convertable\;)$
+\begin_inset Formula $P(\; red\;|\; convertable\;)$
 \end_inset
 
 , I am narrowing my space of cars to consider only convertibles.
@@ -3697,7 +3697,7 @@ So when I ask for
 
 \begin_layout Example
 Notice that because 
-\begin_inset Formula $P\left(Red\right)=0.195\ne0.60=P\left(Red\,|\,Convertable\right)$
+\begin_inset Formula $P\left(Red\right)=0.195\ne0.60=P\left(Red\,|\, Convertable\right)$
 \end_inset
 
  then the events 
@@ -3725,12 +3725,12 @@ Summary of Probability Rules
 P\left(A\cup B\right) & = & P\left(A\right)+P\left(B\right)-P\left(A\cap B\right)\\
 \\
 P\left(A\cap B\right) & = & \begin{cases}
-P\left(A\,|\,B\right)P\left(B\right)\\
-P\left(B\,|\,A\right)P\left(A\right)\\
+P\left(A\,|\, B\right)P\left(B\right)\\
+P\left(B\,|\, A\right)P\left(A\right)\\
 P(A)P(B)\;\; & \textrm{ if A,B are independent}
 \end{cases}\\
 \\
-P\left(A\,|\,B\right) & = & \frac{P\left(A\cap B\right)}{P\left(B\right)}
+P\left(A\,|\, B\right) & = & \frac{P\left(A\cap B\right)}{P\left(B\right)}
 \end{eqnarray*}
 
 \end_inset
@@ -3928,7 +3928,7 @@ a weighted average of the possible values and the weights are the proportions
 
 \begin_inset Formula 
 \begin{eqnarray*}
-\mu=E[S] & = & \sum_{\textrm{possible }s}\;s\cdot P\left(S=s\right)\\
+\mu=E[S] & = & \sum_{\textrm{possible }s}\; s\cdot P\left(S=s\right)\\
  & = & \sum_{s=2}^{12}s\cdot P(S=s)\\
 \\
  & = & 2\cdot P\left(S=2\right)+3\cdot P\left(S=3\right)+\dots+11\cdot P\left(S=11\right)+12\cdot P\left(S=12\right)\\
@@ -4233,11 +4233,11 @@ We might next ask ourselves what is the average number of clients per day?
  
 \begin_inset Formula 
 \begin{eqnarray*}
-E\left(Y\right) & = & \sum_{\textrm{possible }y}y\,P\left(Y=y\right)\\
+E\left(Y\right) & = & \sum_{\textrm{possible }y}y\, P\left(Y=y\right)\\
 \\
- & = & \sum_{y=0}^{4}y\,P\left(Y=y\right)\\
+ & = & \sum_{y=0}^{4}y\, P\left(Y=y\right)\\
 \\
- & = & 0\,P\left(Y=0\right)+1\,P\left(Y=1\right)+2\,P\left(Y=2\right)+3\,P\left(Y=3\right)+4\,P\left(Y=4\right)\\
+ & = & 0\, P\left(Y=0\right)+1\, P\left(Y=1\right)+2\, P\left(Y=2\right)+3\, P\left(Y=3\right)+4\, P\left(Y=4\right)\\
  & = & 0\left(0.3\right)+1\left(0.35\right)+2\left(0.20\right)+3\left(0.10\right)+4\left(0.05\right)\\
  & = & 1.25
 \end{eqnarray*}
@@ -4266,7 +4266,7 @@ P\left(\textrm{0 on day1 }and\textrm{ 0 on day2}\right) & = & P\left(\textrm{0 o
 What is the variance of this distribution?
 \begin_inset Formula 
 \begin{eqnarray*}
-V\left(Y\right) & = & \sum_{\textrm{possible y}}\,\left(y-\mu\right)^{2}\,P\left(Y=y\right)\\
+V\left(Y\right) & = & \sum_{\textrm{possible y}}\,\left(y-\mu\right)^{2}\, P\left(Y=y\right)\\
 \\
  & = & \sum_{y=0}^{4}\,\left(y-\mu\right)^{2}P\left(Y=y\right)\\
 \\
@@ -5176,7 +5176,7 @@ Recall that the probability mass function (pmf) describes how the probability
  is 
 \begin_inset Formula 
 \[
-P(X=x)=\underbrace{\frac{n!}{x!(n-x)!}}_{orderings}\;\underbrace{\pi^{x}}_{y\,successes}\;\underbrace{(1-\pi)^{n-x}}_{n-y\,failures}
+P(X=x)=\underbrace{\frac{n!}{x!(n-x)!}}_{orderings}\;\underbrace{\pi^{x}}_{y\, successes}\;\underbrace{(1-\pi)^{n-x}}_{n-y\, failures}
 \]
 
 \end_inset
@@ -5354,7 +5354,7 @@ dbinom(2, size=3, prob=0.8)
 The expectation of this distribution can be shown to be 
 \begin_inset Formula 
 \begin{eqnarray*}
-E[X] & = & \sum_{x=0}^{n}x\,P(X=x)\\
+E[X] & = & \sum_{x=0}^{n}x\, P(X=x)\\
 \\
  & = & \sum_{x=0}^{n}x\;\frac{n!}{x!\left(n-x\right)!}\pi^{x}\left(1-\pi\right)^{n-x}\\
 \\
@@ -5371,7 +5371,7 @@ E[X] & = & \sum_{x=0}^{n}x\,P(X=x)\\
 and the variance can be similarly calculated
 \begin_inset Formula 
 \begin{eqnarray*}
-V[X] & = & \sum_{x=0}^{n}\left(x-E\left[X\right]\right)^{2}\,P\left(X=x|n,\pi\right)\\
+V[X] & = & \sum_{x=0}^{n}\left(x-E\left[X\right]\right)^{2}\, P\left(X=x|n,\pi\right)\\
 \\
  & = & \sum_{x=0}^{n}\left(x-E\left[X\right]\right)^{2}\;\frac{n!}{x!\left(n-x\right)!}\pi^{x}\left(1-\pi\right)^{n-x}\\
 \\
@@ -5745,7 +5745,7 @@ Suppose we are interested in the population size of small mammals in a region.
  What is the probability of finding exactly 4 critters in our trap?
 \begin_inset Formula 
 \begin{eqnarray*}
-P(Y=4) & = & \frac{2.3^{4}\,e^{-2.3}}{4!}\\
+P(Y=4) & = & \frac{2.3^{4}\, e^{-2.3}}{4!}\\
  & = & 0.1169
 \end{eqnarray*}
 
@@ -6193,10 +6193,10 @@ Analogous to the discrete distributions, we can define the Expectation and
  Variance of these distributions by replacing the summation with an integral
 \begin_inset Formula 
 \begin{eqnarray*}
-E[X] & = & \int_{0}^{\infty}x\,f(x)\,dx\\
+E[X] & = & \int_{0}^{\infty}x\, f(x)\, dx\\
  & = & \vdots\\
  & = & \frac{1}{\lambda}\\
-Var[X] & = & \int_{0}^{\infty}\left(x-E\left[X\right]\right)^{2}\,f\left(x\right)\,dx\\
+Var[X] & = & \int_{0}^{\infty}\left(x-E\left[X\right]\right)^{2}\, f\left(x\right)\, dx\\
  & = & \vdots\\
  &  & \frac{1}{\lambda^{2}}
 \end{eqnarray*}
@@ -8174,8 +8174,20 @@ What is the probability that a randomly selected donor will be Asian and
 
 \begin_layout Enumerate
 What is the probability that a randomly selected donor is white? That is
- to say, given a donor is randomly selected from the list of all donors,
- what is the probability that the selected donor is white?
+ to say, given a donor is randomly selected from the list of 
+\emph on
+all donors
+\emph default
+, what is the probability that the selected donor is white?
+\end_layout
+
+\begin_layout Enumerate
+What is the probability that a randomly selected donor has Type A blood?
+ That is to say, given a donor is selected from the list of 
+\emph on
+all donors
+\emph default
+, what is the probability that the selected donor has Type A blood?
 \end_layout
 
 \begin_layout Enumerate
@@ -8187,6 +8199,11 @@ all the white donors,
  what is the probability that the selected donor has Type A blood? (Notice
  we already know the donor is white because we restricted ourselves to that
  subset!)
+\end_layout
+
+\begin_layout Enumerate
+Is blood type and ethnicity independent? Justify your response mathematically
+ using your responses from the previous answers.
 \end_layout
 
 \end_deeper
@@ -8493,13 +8510,11 @@ What is the probability that the next two races I'm in will both have crashes?
 \end_layout
 
 \begin_layout Enumerate
-What is the probability that neither of my next two races will there be
- a crash?
+What is the probability that neither of my next two races will have a crash?
 \end_layout
 
 \begin_layout Enumerate
-What is the probability that at least one of the next two races will have
- a crash?
+What is the probability that at least one of the next two races have a crash?
 \end_layout
 
 \end_deeper

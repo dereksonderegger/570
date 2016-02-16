@@ -2832,8 +2832,6 @@ Pulse
 \begin_deeper
 \begin_layout Enumerate
 Create a histogram of the observed pulse values.
- Comment on the graph and aspects of the graph that might be of scientific
- interest.
 \end_layout
 
 \begin_layout Enumerate
@@ -2859,20 +2857,6 @@ Create a dataset of 10000 bootstrap replicates of
 \begin_layout Enumerate
 Create a histogram of the bootstrap replicates.
  Calculate the mean and standard deviation of this distribution.
- Notice that the standard deviation of the distribution is often called
- the 
-\emph on
-Standard Error
-\emph default
- of 
-\begin_inset Formula $\bar{x}$
-\end_inset
-
- and we'll denote it as 
-\begin_inset Formula $\sigma_{\bar{x}}$
-\end_inset
-
-.
 \end_layout
 
 \begin_layout Enumerate
@@ -2884,8 +2868,6 @@ Using the bootstrap replicates, create a 95% confidence interval for
 \end_layout
 
 \begin_layout Enumerate
-<<<<<<< HEAD
-=======
 Calculate the standard deviation of your 10000 bootstrap replicates of 
 \begin_inset Formula $\bar{x}^{*}$
 \end_inset
@@ -2907,7 +2889,6 @@ Standard Error
 \end_layout
 
 \begin_layout Enumerate
->>>>>>> origin/master
 Calculate the interval
 \begin_inset Formula 
 \[
@@ -2916,7 +2897,7 @@ Calculate the interval
 
 \end_inset
 
-and comment on its similarity to the interval you calculated in part (e).
+and comment on its similarity to the interval you calculated 
 \end_layout
 
 \end_deeper
@@ -2943,8 +2924,6 @@ HoursWk
 \begin_deeper
 \begin_layout Enumerate
 Create a histogram of the observed hours worked.
- Comment on the graph and aspects of the graph that might be of scientific
- interest.
 \end_layout
 
 \begin_layout Enumerate
@@ -2970,20 +2949,6 @@ Create a dataset of 10000 bootstrap replicates of
 \begin_layout Enumerate
 Create a histogram of the bootstrap replicates.
  Calculate the mean and standard deviation of this distribution.
- Notice that the standard deviation of the distribution is often called
- the 
-\emph on
-Standard Error
-\emph default
- of 
-\begin_inset Formula $\bar{x}$
-\end_inset
-
- and we'll denote it as 
-\begin_inset Formula $\sigma_{\bar{x}}$
-\end_inset
-
-.
 \end_layout
 
 \begin_layout Enumerate
@@ -2992,42 +2957,6 @@ Using the bootstrap replicates, create a 95% confidence interval for
 \end_inset
 
 , the average worked hours per week.
-\end_layout
-
-\begin_layout Enumerate
-<<<<<<< HEAD
-=======
-Calculate the standard deviation of your 10000 bootstrap replicates of 
-\begin_inset Formula $\bar{x}^{*}$
-\end_inset
-
- and we'll call this the 
-\emph on
-Standard Error
-\emph default
- of 
-\begin_inset Formula $\bar{x}$
-\end_inset
-
- and denote it as 
-\begin_inset Formula $\hat{\sigma}_{\bar{x}}$
-\end_inset
-
-.
- 
-\end_layout
-
-\begin_layout Enumerate
->>>>>>> origin/master
-Calculate the interval
-\begin_inset Formula 
-\[
-\left(\bar{x}-2\cdot\hat{\sigma}_{\bar{x}}\,,\,\;\;\bar{x}+2\cdot\hat{\sigma}_{\bar{x}}\right)
-\]
-
-\end_inset
-
-and comment on its similarity to the interval you calculated in part (e).
 \end_layout
 
 \end_deeper

@@ -532,8 +532,11 @@ Because our sample statistics will vary from sample to sample, we want to
 \begin_layout Enumerate
 We often want confidence intervals for those parameters.
  For example, we might have a sample where 54% of the respondents support
- Bernie Sanders for president, but I don't expect that to be the population
- level percent.
+ Bernie Sanders for president, but I don't expect that to be 
+\emph on
+exactly 
+\emph default
+the population level percent.
  Instead we report that 52-56% of the population of likely voters supports
  Bernie Sanders.
 \end_layout

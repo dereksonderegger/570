@@ -2082,12 +2082,7 @@ cars <- data.frame(mpg = c(31.8, 32.1, 32.5, 30.9, 31.3))
 
 \begin_layout Plain Layout
 
-mean( ~ mpg, data=cars)
-\end_layout
-
-\begin_layout Plain Layout
-
-sd( ~ mpg, data=cars )
+cars %>% summarise(mean(mpg), sd(mpg))
 \end_layout
 
 \begin_layout Plain Layout
@@ -2173,26 +2168,7 @@ status open
 
 \begin_layout Plain Layout
 
-# Mosaic style call to the t.test function
-\end_layout
-
-\begin_layout Plain Layout
-
-t.test( ~ mpg, data=cars, mu=31, alternative='two.sided' )
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-# Base R call to the t.test returns the same analysis
-\end_layout
-
-\begin_layout Plain Layout
-
-# t.test( cars$mpg, mu=31, alternative='two.sided' )
+t.test( cars$mpg, mu=31, alternative='two.sided' )
 \end_layout
 
 \begin_layout Plain Layout
@@ -3711,5 +3687,653 @@ We need a second example here that shows a hypothesis test along with 3
 
 \end_layout
 
+\begin_layout Section
+Exercises
+\end_layout
+
+\begin_layout Enumerate
+One way the amount of sewage and industrial pollutants dumped into a body
+ of water affects the health of the water is by reducing the amount of dissolved
+ oxygen available for aquatic life.
+ Over a 2-month period, 8 samples were taken from a river at a location
+ 1 mile downstream from a sewage treatment plant.
+ The amount of dissolved oxygen in the samples was determined and is reported
+ in the following table.
+ Current research suggests that the mean dissolved oxygen level must be
+ at least 5.0 parts per million (ppm) for fish to survive.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="9">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Sample
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Oxygen (ppm)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5.1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4.9
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5.6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4.2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4.8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4.5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5.3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5.2
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Use R to calculate the sample mean and standard deviation.
+\end_layout
+
+\begin_layout Enumerate
+Using the asymptotic results and the quantities you calculated, create a
+ 
+\begin_inset Formula $95\%$
+\end_inset
+
+ two-sided confidence interval for the mean dissolved oxygen level during
+ the 2-month period.
+ What assumption is being made for this calculation to be valid?
+\end_layout
+
+\begin_layout Enumerate
+Calculate a 95% two-sided confidence interval using the bootstrap method.
+ Examine the histogram of bootstrap means, does it appear normal? If so,
+ what does that imply about the assumption you made in the calculation in
+ the previous part? 
+\end_layout
+
+\begin_layout Enumerate
+Using the confidence interval calculated in part (b), do the data support
+ the hypothesis that the mean dissolved oxygen level is equal to 5 ppm?
+ 
+\end_layout
+
+\begin_layout Enumerate
+Perform a 1-sided hypothesis test that the mean oxygen level is less that
+ 5 ppm with a significance level of 
+\begin_inset Formula $\alpha=0.05$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Use the function 
+\family typewriter
+t.test
+\family default
+ in R to repeat the calculations you made in parts (b) and (e).
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+We are interested in investigating how accurate radon detectors sold to
+ homeowners are.
+ We take a randomly selection of 
+\begin_inset Formula $n=12$
+\end_inset
+
+ detectors and expose to 
+\begin_inset Formula $105$
+\end_inset
+
+ pico-curies per liter (pCi/l) of radon.
+ The following values were given by the radon detectors.
+ Do all of the following calculations by hand (except for the calculations
+ of the mean and standard deviation).
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="6">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+91.9
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+97.8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+111.4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+122.3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+105.4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+95.0
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+103.8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+99.6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+96.6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+119.3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+104.8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+101.7
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Calculate a 
+\begin_inset Formula $90\%$
+\end_inset
+
+ confidence interval using the asymptotic method.
+\end_layout
+
+\begin_layout Enumerate
+State an appropriate null and alternative hypothesis for a two-sided t-test.
+ Why is a two-sided test appropriate here?
+\end_layout
+
+\begin_layout Enumerate
+Calculate an appropriate test statistic.
+\end_layout
+
+\begin_layout Enumerate
+Calculate a p-value.
+\end_layout
+
+\begin_layout Enumerate
+At an 
+\begin_inset Formula $\alpha=0.10$
+\end_inset
+
+ level, what is your conclusion.
+ Be sure to state your conclusion in terms of the problem.
+\end_layout
+
+\begin_layout Enumerate
+Use the function 
+\family typewriter
+t.test()
+\family default
+ to redo the the hand calculations you did in parts (a), (c), (d).
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Given data such that 
+\begin_inset Formula $X_{i}\sim N\left(\mu,\sigma^{2}=5^{2}\right)$
+\end_inset
+
+, the following graph shows the distribution of a sample mean of 
+\begin_inset Formula $n=8$
+\end_inset
+
+ observations under the null hypothesis 
+\begin_inset Formula $H_{0}:\mu=5$
+\end_inset
+
+.
+ We are interested in testing the alternative 
+\begin_inset Formula $H_{a}:\mu>5$
+\end_inset
+
+ at the 
+\begin_inset Formula $\alpha=0.05$
+\end_inset
+
+ level and therefore the cut off point for rejecting the null hypothesis
+ is 
+\begin_inset Formula $t_{crit}=1.895$
+\end_inset
+
+ and 
+\begin_inset Formula $\bar{x}_{crit}=1.895*5+5=8.35$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Add the plot of the distribution of the sample mean if 
+\begin_inset Formula $\mu=11$
+\end_inset
+
+ and denote which areas represent 
+\begin_inset Formula $\alpha,$
+\end_inset
+
+ 
+\begin_inset Formula $\beta$
+\end_inset
+
+, and the power in the figure below.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+echo=FALSE, fig.height=4, fig.width=6
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+n <- 8; 
+\end_layout
+
+\begin_layout Plain Layout
+
+mu <- 5; 
+\end_layout
+
+\begin_layout Plain Layout
+
+sd.xbar <- 5/sqrt(n); 
+\end_layout
+
+\begin_layout Plain Layout
+
+cut.off <- qt(0.95, df=n-1)*sd.xbar + mu; 
+\end_layout
+
+\begin_layout Plain Layout
+
+x <- seq(-2, 18, length=1000); 
+\end_layout
+
+\begin_layout Plain Layout
+
+plot(x, dt((x-mu)/sd.xbar, n-1), type='l', ylab='density'); 
+\end_layout
+
+\begin_layout Plain Layout
+
+axis(1, at=8.35, hadj=.8)
+\end_layout
+
+\begin_layout Plain Layout
+
+axis(1, at=11)
+\end_layout
+
+\begin_layout Plain Layout
+
+text(3, .3, expression(H[0]))
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Under the same alternative value of 
+\begin_inset Formula $\mu=11$
+\end_inset
+
+, find the probability of a Type II error.
+ That is, calculate the value of 
+\begin_inset Formula $\beta=P\left(\bar{X}<8.35\,|\,\mu=11\right)$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+A study is to be undertaken to study the effectiveness of connective tissue
+ massage therapy on the range of motion of the hip joint for elderly clients.
+ Practitioners think that a reasonable standard deviation of the differences
+ (post - pre) would be 
+\begin_inset Formula $\sigma=20$
+\end_inset
+
+ degrees.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Suppose an increase of 5 degrees in the range would be a clinically significant
+ result.
+ How large of a sample would be necessary if we wanted to control the Type
+ I error rate by 
+\begin_inset Formula $\alpha=0.1$
+\end_inset
+
+ and the Type II error rate with 
+\begin_inset Formula $\beta=0.1$
+\end_inset
+
+ (therefore the power is 
+\begin_inset Formula $1-\beta=0.90$
+\end_inset
+
+)? Use the use the 
+\family typewriter
+power.t.test()
+\family default
+ function available in the package 
+\family typewriter
+pwr
+\family default
+ to find the necessary sample size.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Suppose we were thought that only increases greater than 10 degrees were
+ substantive.
+ How large must our minimum sample size be in this case? What about for
+ 15, 20, 25 and 30 degrees? Sketch a graph of 
+\begin_inset Formula $n$
+\end_inset
+
+ versus the difference to be detected and comment on how much larger a sample
+ size must be to detect a difference half as small.
+\end_layout
+
+\end_deeper
 \end_body
 \end_document

@@ -2884,30 +2884,6 @@ Using the bootstrap replicates, create a 95% confidence interval for
 \end_layout
 
 \begin_layout Enumerate
-<<<<<<< HEAD
-=======
-Calculate the standard deviation of your 10000 bootstrap replicates of 
-\begin_inset Formula $\bar{x}^{*}$
-\end_inset
-
- and we'll call this the 
-\emph on
-Standard Error
-\emph default
- of 
-\begin_inset Formula $\bar{x}$
-\end_inset
-
- and denote it as 
-\begin_inset Formula $\hat{\sigma}_{\bar{x}}$
-\end_inset
-
-.
- 
-\end_layout
-
-\begin_layout Enumerate
->>>>>>> origin/master
 Calculate the interval
 \begin_inset Formula 
 \[
@@ -2995,30 +2971,6 @@ Using the bootstrap replicates, create a 95% confidence interval for
 \end_layout
 
 \begin_layout Enumerate
-<<<<<<< HEAD
-=======
-Calculate the standard deviation of your 10000 bootstrap replicates of 
-\begin_inset Formula $\bar{x}^{*}$
-\end_inset
-
- and we'll call this the 
-\emph on
-Standard Error
-\emph default
- of 
-\begin_inset Formula $\bar{x}$
-\end_inset
-
- and denote it as 
-\begin_inset Formula $\hat{\sigma}_{\bar{x}}$
-\end_inset
-
-.
- 
-\end_layout
-
-\begin_layout Enumerate
->>>>>>> origin/master
 Calculate the interval
 \begin_inset Formula 
 \[

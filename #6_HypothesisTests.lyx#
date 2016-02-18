@@ -79,7 +79,11 @@ knitr
 \begin_body
 
 \begin_layout Chapter
+<<<<<<< HEAD
 Hypothesis Tests for the mean of a population
+=======
+Hypothesis Tests
+>>>>>>> origin/master
 \end_layout
 
 \begin_layout Standard
@@ -223,7 +227,11 @@ Example.
 \series default
  Suppose a rancher in Texas (my brother-in-law Bryan) wants to buy some
  calves from another rancher.
+<<<<<<< HEAD
  This rancher claims that the average weight of his calves is 500 pounds.
+=======
+ This rancher claims that the average weight of his ste is 500 pounds.
+>>>>>>> origin/master
  My brother-in-law likes them and buys 10.
  A few days later he starts looking at the cows and begins to wonder if
  the average really is 500 pounds.
@@ -2082,7 +2090,16 @@ cars <- data.frame(mpg = c(31.8, 32.1, 32.5, 30.9, 31.3))
 
 \begin_layout Plain Layout
 
+<<<<<<< HEAD
 cars %>% summarise(mean(mpg), sd(mpg))
+=======
+mean( ~ mpg, data=cars)
+\end_layout
+
+\begin_layout Plain Layout
+
+sd( ~ mpg, data=cars )
+>>>>>>> origin/master
 \end_layout
 
 \begin_layout Plain Layout
@@ -2168,7 +2185,30 @@ status open
 
 \begin_layout Plain Layout
 
+<<<<<<< HEAD
 t.test( cars$mpg, mu=31, alternative='two.sided' )
+=======
+# Mosaic style call to the t.test function
+\end_layout
+
+\begin_layout Plain Layout
+
+t.test( ~ mpg, data=cars, mu=31, alternative='two.sided' )
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# Base R call to the t.test returns the same analysis
+\end_layout
+
+\begin_layout Plain Layout
+
+# t.test( cars$mpg, mu=31, alternative='two.sided' )
+>>>>>>> origin/master
 \end_layout
 
 \begin_layout Plain Layout
@@ -3687,6 +3727,7 @@ We need a second example here that shows a hypothesis test along with 3
 
 \end_layout
 
+<<<<<<< HEAD
 \begin_layout Section
 Exercises
 \end_layout
@@ -4335,5 +4376,7 @@ Suppose we were thought that only increases greater than 10 degrees were
 \end_layout
 
 \end_deeper
+=======
+>>>>>>> origin/master
 \end_body
 \end_document

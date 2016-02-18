@@ -98,7 +98,8 @@ Introduction to Statistics for Researchers
 \end_layout
 
 \begin_layout Author
-Derek Sonderegger
+Derek L.
+ Sonderegger
 \end_layout
 
 \begin_layout Standard
@@ -185,7 +186,8 @@ https://github.com/dereksonderegger/STA_570_Book/raw/master/Stat_570.pdf
 \end_layout
 
 \begin_layout Right Address
-Derek Sonderegger, Ph.D.
+Derek L.
+ Sonderegger, Ph.D.
 \begin_inset Newline newline
 \end_inset
 
@@ -622,6 +624,16 @@ filename "4_SamplingDistributions.lyx"
 \begin_inset CommandInset include
 LatexCommand input
 filename "5_ConfidenceIntervals.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand input
+filename "6_HypothesisTests.lyx"
 
 \end_inset
 

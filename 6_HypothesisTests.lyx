@@ -2082,7 +2082,20 @@ cars <- data.frame(mpg = c(31.8, 32.1, 32.5, 30.9, 31.3))
 
 \begin_layout Plain Layout
 
+<<<<<<< HEAD
 cars %>% summarise(mean(mpg), sd(mpg))
+=======
+<<<<<<< HEAD
+cars %>% summarise(mean(mpg), sd(mpg))
+=======
+mean( ~ mpg, data=cars)
+\end_layout
+
+\begin_layout Plain Layout
+
+sd( ~ mpg, data=cars )
+>>>>>>> origin/master
+>>>>>>> origin/master
 \end_layout
 
 \begin_layout Plain Layout
@@ -2168,7 +2181,34 @@ status open
 
 \begin_layout Plain Layout
 
+<<<<<<< HEAD
 t.test( cars$mpg, mu=31, alternative='two.sided' )
+=======
+<<<<<<< HEAD
+t.test( cars$mpg, mu=31, alternative='two.sided' )
+=======
+# Mosaic style call to the t.test function
+\end_layout
+
+\begin_layout Plain Layout
+
+t.test( ~ mpg, data=cars, mu=31, alternative='two.sided' )
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# Base R call to the t.test returns the same analysis
+\end_layout
+
+\begin_layout Plain Layout
+
+# t.test( cars$mpg, mu=31, alternative='two.sided' )
+>>>>>>> origin/master
+>>>>>>> origin/master
 \end_layout
 
 \begin_layout Plain Layout
@@ -3687,6 +3727,10 @@ We need a second example here that shows a hypothesis test along with 3
 
 \end_layout
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
 \begin_layout Section
 Exercises
 \end_layout
@@ -4335,5 +4379,10 @@ Suppose we were thought that only increases greater than 10 degrees were
 \end_layout
 
 \end_deeper
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> origin/master
+>>>>>>> origin/master
 \end_body
 \end_document

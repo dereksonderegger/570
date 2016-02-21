@@ -82,7 +82,11 @@ knitr
 <<<<<<< HEAD
 Hypothesis Tests for the mean of a population
 =======
+<<<<<<< HEAD
+Hypothesis Tests for the mean of a population
+=======
 Hypothesis Tests
+>>>>>>> origin/master
 >>>>>>> origin/master
 \end_layout
 
@@ -230,7 +234,11 @@ Example.
 <<<<<<< HEAD
  This rancher claims that the average weight of his calves is 500 pounds.
 =======
+<<<<<<< HEAD
+ This rancher claims that the average weight of his calves is 500 pounds.
+=======
  This rancher claims that the average weight of his ste is 500 pounds.
+>>>>>>> origin/master
 >>>>>>> origin/master
  My brother-in-law likes them and buys 10.
  A few days later he starts looking at the cows and begins to wonder if
@@ -2093,12 +2101,16 @@ cars <- data.frame(mpg = c(31.8, 32.1, 32.5, 30.9, 31.3))
 <<<<<<< HEAD
 cars %>% summarise(mean(mpg), sd(mpg))
 =======
+<<<<<<< HEAD
+cars %>% summarise(mean(mpg), sd(mpg))
+=======
 mean( ~ mpg, data=cars)
 \end_layout
 
 \begin_layout Plain Layout
 
 sd( ~ mpg, data=cars )
+>>>>>>> origin/master
 >>>>>>> origin/master
 \end_layout
 
@@ -2188,6 +2200,9 @@ status open
 <<<<<<< HEAD
 t.test( cars$mpg, mu=31, alternative='two.sided' )
 =======
+<<<<<<< HEAD
+t.test( cars$mpg, mu=31, alternative='two.sided' )
+=======
 # Mosaic style call to the t.test function
 \end_layout
 
@@ -2208,6 +2223,7 @@ t.test( ~ mpg, data=cars, mu=31, alternative='two.sided' )
 \begin_layout Plain Layout
 
 # t.test( cars$mpg, mu=31, alternative='two.sided' )
+>>>>>>> origin/master
 >>>>>>> origin/master
 \end_layout
 
@@ -3728,6 +3744,9 @@ We need a second example here that shows a hypothesis test along with 3
 \end_layout
 
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
 \begin_layout Section
 Exercises
 \end_layout
@@ -4376,7 +4395,10 @@ Suppose we were thought that only increases greater than 10 degrees were
 \end_layout
 
 \end_deeper
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/master
 >>>>>>> origin/master
 \end_body
 \end_document

@@ -1459,7 +1459,8 @@ Lock5Data
 Cereal
 \family default
  contains nutrition information about a random sample of 30 cereals taken
- a on-line nutrition information website.
+ from an on-line nutrition information website (see the help file for the
+ dataset to get the link).
  For this problem, we'll consider the column 
 \family typewriter
 Sugars
@@ -1491,12 +1492,13 @@ Comment on the similarity of these two intervals.
 \end_layout
 
 \begin_layout Enumerate
-This problem is actually a bit silly.
- First, we could easily write a little program to obtain the nutritional
- information about all the cereals on the website.
- Second, we shouldn't we consider this sample as representative of the populatio
-n of cereals that I care about.
- Discuss what population of cereals we might actually be interested in.
+We could easily write a little program (or pay an undergrad) to obtain the
+ nutritional information about all the cereals on the website so the random
+ sampling of 30 cereals is unnecessary.
+ However, a bigger concern is that the website cereals aren't representative
+ of cereals Americans eat.
+ Why? For example, consider what would happen if we added 30 new cereals
+ that were very nutritious but were never sold.
  
 \end_layout
 

@@ -2861,8 +2861,6 @@ Create a histogram of the bootstrap replicates.
  Calculate the mean and standard deviation of this distribution.
  Notice that the standard deviation of the distribution is often called
  the 
-<<<<<<< HEAD
-=======
 \emph on
 Standard Error
 \emph default
@@ -2886,41 +2884,6 @@ Using the bootstrap replicates, create a 95% confidence interval for
 \end_layout
 
 \begin_layout Enumerate
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-Calculate the standard deviation of your 10000 bootstrap replicates of 
-\begin_inset Formula $\bar{x}^{*}$
-\end_inset
-
- and we'll call this the 
->>>>>>> origin/master
-\emph on
-Standard Error
-\emph default
- of 
-\begin_inset Formula $\bar{x}$
-\end_inset
-
- and we'll denote it as 
-\begin_inset Formula $\sigma_{\bar{x}}$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Enumerate
-Using the bootstrap replicates, create a 95% confidence interval for 
-\begin_inset Formula $\mu$
-\end_inset
-
-, the average adult heart rate.
-\end_layout
-
-\begin_layout Enumerate
->>>>>>> origin/master
->>>>>>> origin/master
 Calculate the interval
 \begin_inset Formula 
 \[
@@ -2985,8 +2948,6 @@ Create a histogram of the bootstrap replicates.
  Calculate the mean and standard deviation of this distribution.
  Notice that the standard deviation of the distribution is often called
  the 
-<<<<<<< HEAD
-=======
 \emph on
 Standard Error
 \emph default
@@ -3010,41 +2971,6 @@ Using the bootstrap replicates, create a 95% confidence interval for
 \end_layout
 
 \begin_layout Enumerate
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-Calculate the standard deviation of your 10000 bootstrap replicates of 
-\begin_inset Formula $\bar{x}^{*}$
-\end_inset
-
- and we'll call this the 
->>>>>>> origin/master
-\emph on
-Standard Error
-\emph default
- of 
-\begin_inset Formula $\bar{x}$
-\end_inset
-
- and we'll denote it as 
-\begin_inset Formula $\sigma_{\bar{x}}$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Enumerate
-Using the bootstrap replicates, create a 95% confidence interval for 
-\begin_inset Formula $\mu$
-\end_inset
-
-, the average worked hours per week.
-\end_layout
-
-\begin_layout Enumerate
->>>>>>> origin/master
->>>>>>> origin/master
 Calculate the interval
 \begin_inset Formula 
 \[

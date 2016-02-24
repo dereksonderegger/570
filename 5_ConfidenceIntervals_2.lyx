@@ -1492,13 +1492,14 @@ Comment on the similarity of these two intervals.
 
 \begin_layout Enumerate
 This problem is actually a bit silly.
- First, we could write a program to scrap all the
+ First, we could easily write a little program to obtain the nutritional
+ information about all the cereals on the website.
+ Second, we shouldn't we consider this sample as representative of the populatio
+n of cereals that I care about.
+ Discuss what population of cereals we might actually be interested in.
+ 
 \end_layout
 
 \end_deeper
-\begin_layout Standard
-
-\end_layout
-
 \end_body
 \end_document

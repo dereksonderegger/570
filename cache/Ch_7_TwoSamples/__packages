@@ -1,0 +1,11 @@
+base
+datasets
+knitr
+dplyr
+lattice
+ggplot2
+car
+mosaicData
+mosaic
+Lock5Data
+tidyr

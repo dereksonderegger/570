@@ -1337,14 +1337,171 @@ Notice that I don't bother using the
 Exercises
 \end_layout
 
-\begin_layout Standard
-none yet.
- Wait for it...
+\begin_layout Enumerate
+An experiment is conducted to examine the susceptibility of root stocks
+ of a variety of lemon trees to a specific larva.
+ Forty of the plants are subjected to the larvae and examined after a fixed
+ period of time.
+ The response of interest is the logarithm of the number of larvae per gram
+ of of root stock.
+ For these 40 plants, the sample mean is 
+\begin_inset Formula $\bar{x}=11.2$
+\end_inset
+
+ and the sample standard deviation is 
+\begin_inset Formula $s=1.3$
+\end_inset
+
+.
+ Use these data to construct a 
+\begin_inset Formula $90\%$
+\end_inset
+
+ confidence interval for 
+\begin_inset Formula $\mu$
+\end_inset
+
+, the mean susceptibility of lemon tree root stocks from which the sample
+ was taken.
+ 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Enumerate
+A social worker is interested in estimating the average length of time spent
+ outside of prison for first offenders who later commit a second crime and
+ are sent to prison again.
+ A random sample of 
+\begin_inset Formula $n=100$
+\end_inset
 
+ prison records in the count courthouse indicates that the average length
+ of prison-free life between first and second offenses is 4.2 years, with
+ a standard deviation of 1.1 years.
+ Use this information to construct a 
+\begin_inset Formula $95\%$
+\end_inset
+
+ confidence interval for 
+\begin_inset Formula $\mu$
+\end_inset
+
+, the average time between first and second offenses for all prisoners on
+ record in the county courthouse.
 \end_layout
 
+\begin_layout Enumerate
+A biologist wishes to estimate the effect of an antibiotic on the growth
+ of a particular bacterium by examining the number of colony forming units
+ (CFUs) per plate of culture when a fixed amount of antibiotic is applied.
+ Previous experimentation with the antibiotic on this type of bacteria indicates
+ that the standard deviation of CFUs is approximately 4.
+ Using this information, determine the number of observations (i.e.
+ cultures developed) necessary to calculate a 
+\begin_inset Formula $99\%$
+\end_inset
+
+ confidence interval with a half-width of 
+\begin_inset Formula $1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+In the R package 
+\family typewriter
+Lock5Data
+\family default
+, the dataset 
+\family typewriter
+FloridaLakes
+\family default
+ contains information about the mercury content of fish in 53 Florida lakes.
+ For this question, we'll be concerned with the average ppm of mercury in
+ fish from those lakes which is encoded in the column 
+\family typewriter
+AvgMercury
+\family default
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Using the bootstrapping method, calculate a 90% confidence interval for
+ 
+\begin_inset Formula $\mu$
+\end_inset
+
+, the average ppm of mercury in fish in all Florida lakes.
+\end_layout
+
+\begin_layout Enumerate
+Using the asymptotic approximations discussed in this chapter, calculate
+ a 90% confidence interval for 
+\begin_inset Formula $\mu$
+\end_inset
+
+, the average ppm of mercury in fish in all Florida lakes.
+\end_layout
+
+\begin_layout Enumerate
+Comment on the similarity of these two intervals.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+In the R package 
+\family typewriter
+Lock5Data
+\family default
+, the dataset 
+\family typewriter
+Cereal
+\family default
+ contains nutrition information about a random sample of 30 cereals taken
+ from an on-line nutrition information website (see the help file for the
+ dataset to get the link).
+ For this problem, we'll consider the column 
+\family typewriter
+Sugars
+\family default
+ which records the grams of sugar per cup.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Using the bootstrapping method, calculate a 90% confidence interval for
+ 
+\begin_inset Formula $\mu$
+\end_inset
+
+, the average grams of sugar per cup of all cereals listed on this website.
+\end_layout
+
+\begin_layout Enumerate
+Using the asymptotic approximations discussed in this chapter, calculate
+ a 90% confidence interval for 
+\begin_inset Formula $\mu$
+\end_inset
+
+, the average grams of sugar per cup of all cereals listed on this website.
+\end_layout
+
+\begin_layout Enumerate
+Comment on the similarity of these two intervals.
+\end_layout
+
+\begin_layout Enumerate
+We could easily write a little program (or pay an undergrad) to obtain the
+ nutritional information about all the cereals on the website so the random
+ sampling of 30 cereals is unnecessary.
+ However, a bigger concern is that the website cereals aren't representative
+ of cereals Americans eat.
+ Why? For example, consider what would happen if we added 30 new cereals
+ that were very nutritious but were never sold.
+ 
+\end_layout
+
+\end_deeper
 \end_body
 \end_document

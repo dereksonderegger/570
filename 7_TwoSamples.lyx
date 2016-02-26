@@ -1475,27 +1475,43 @@ BootDist <- do(10000)*{
 
 \begin_layout Plain Layout
 
+<<<<<<< HEAD
   CaffeineTaps %>%
 \end_layout
 
 \begin_layout Plain Layout
 
     group_by(Group) %>%
+=======
+  resample(CaffeineTaps) %>%
+>>>>>>> origin/master
 \end_layout
 
 \begin_layout Plain Layout
 
+<<<<<<< HEAD
     resample() %>%
+=======
+  group_by(Group) %>%
+>>>>>>> origin/master
 \end_layout
 
 \begin_layout Plain Layout
 
+<<<<<<< HEAD
     summarise( xbar=mean(Taps) ) %>%
+=======
+  summarise( xbar=mean(Taps) ) %>%
+>>>>>>> origin/master
 \end_layout
 
 \begin_layout Plain Layout
 
+<<<<<<< HEAD
     summarise( d.star = diff(xbar)  )
+=======
+  summarise( d.star = diff(xbar)  )
+>>>>>>> origin/master
 \end_layout
 
 \begin_layout Plain Layout
@@ -1631,6 +1647,7 @@ Notice that the null hypothesis value,
 \end_inset
 
  is not in the 95% confidence interval.
+<<<<<<< HEAD
  A subtle point in the above bootstrap code is that I resampled each group
  separately.
  Because the experimental protocol was to have 10 in each group, then we
@@ -1638,6 +1655,8 @@ Notice that the null hypothesis value,
  Had I resampled first and then did the grouping, we might end up with 12
  caffeinated and 8 un-caffeinated subjects, which is data that our experimental
  design couldn't have generated.
+=======
+>>>>>>> origin/master
 \end_layout
 
 \begin_layout Subsection
@@ -3126,7 +3145,11 @@ BootDist <- do(10000)*{
 
 \begin_layout Plain Layout
 
+<<<<<<< HEAD
   Mosquitoes %>%
+=======
+  resample(Mosquitoes)                  %>%
+>>>>>>> origin/master
 \end_layout
 
 \begin_layout Plain Layout
@@ -3136,11 +3159,14 @@ BootDist <- do(10000)*{
 
 \begin_layout Plain Layout
 
+<<<<<<< HEAD
     resample()                          %>%
 \end_layout
 
 \begin_layout Plain Layout
 
+=======
+>>>>>>> origin/master
     summarise( xbar.i = mean(Number) )  %>%
 \end_layout
 

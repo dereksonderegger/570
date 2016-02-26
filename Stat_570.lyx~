@@ -1,0 +1,644 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass book
+\begin_preamble
+\usepackage{tikz}
+\usepackage[T1]{fontenc}
+\end_preamble
+\use_default_options true
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+knitr
+theorems-named
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 0
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 0
+\use_package mhchem 1
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1.25in
+\topmargin 1in
+\rightmargin 1.25in
+\bottommargin 1in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Introduction to Statistics for Researchers
+\end_layout
+
+\begin_layout Author
+Derek L.
+ Sonderegger
+\end_layout
+
+\begin_layout Standard
+The problem with most introductory statistics courses is that they don't
+ prepare the student for the use of advanced statistics.
+ Rote hand calculation is easy to test, easy to grade, and easy for students
+ to learn to do, but is useless for actually understanding how to apply
+ statistics.
+ Because students pursuing a Ph.D.
+ will likely be using statistics for the rest of their professional careers,
+ I feel that this sort of course should attempt to steer away from a 
+\begin_inset Quotes eld
+\end_inset
+
+cookbook
+\begin_inset Quotes erd
+\end_inset
+
+ undergraduate pedagogy, and give the student enough theoretical background
+ to continue their statistical studies at a high level while staying away
+ from the painful mathematical details that statisticians must work through.
+\end_layout
+
+\begin_layout Standard
+Recent pedagogical changes have been made at the undergraduate level to
+ introduce sampling distributions via permutation and bootstrap procedures.
+ Because those are extremely useful tools in their own right and because
+ of the ability to think about statistical inference from the very start
+ of the course is invaluable, I've attempted to duplicate this approach.
+ I am grateful to the ICOTS 9 organizers and presenters for their expertise,
+ perspective, and motivation for making such a large shift in my teaching.
+\end_layout
+
+\begin_layout Standard
+Statistical software has progressed by leaps and bounds over the last decades.
+ Scientists need access to reliable software that is flexible enough to
+ handle new problems, with minimal headaches.
+ R has become a widely used, and extremely robust Open Source platform for
+ statistical computing and most new methodologies will appear in R before
+ being incorporated into commercial software.
+ Second, data exploration is the first step of any analysis and a user friendly
+ yet powerful mechanism for graphing is a critical component in a researchers
+ toolbox.
+ R succeeds in this area as R has the most flexible graphing library of
+ any statistical software I know of and the basic plots can created quickly
+ and easily.
+ The only downside is that there is a substantial learning curve to learning
+ a scripting language, particularly for students without any programming
+ background.
+ 
+\end_layout
+
+\begin_layout Standard
+Because the mathematical and statistical background of typical students
+ varies widely, the course seems to have a split-personality disorder.
+ We wish to talk about using calculus to maximize the likelihood function
+ and define the expectation of a continuous random variable, but also must
+ spend time defining how to calculate the a mean.
+ I attempt to address both audiences, but recognize that it is not ideal.
+ 
+\end_layout
+
+\begin_layout Standard
+As these notes are in a continual state of being re-written, I endeavor
+ to keep the latest version available on the GitHub repository for this
+ book at 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://github.com/dereksonderegger/STA_570_Book/raw/master/Stat_570.pdf
+\end_layout
+
+\end_inset
+
+.
+ In general, I recommend printing the chapter we are currently covering
+ in class.
+ If you wish to submit a bug report, or submit a patch, feel free to log
+ an issue on the GitHub site or to fix it and submit a pull request.
+ If you wish to use these notes for your own class, feel free to do so,
+ but please acknowledge the source.
+\end_layout
+
+\begin_layout Right Address
+Derek L.
+ Sonderegger, Ph.D.
+\begin_inset Newline newline
+\end_inset
+
+Department of Mathematics and Statistics
+\begin_inset Newline newline
+\end_inset
+
+Northern Arizona University
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<echo=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+if(file.exists('Global_Knitr_Opts.R')){
+\end_layout
+
+\begin_layout Plain Layout
+
+  source('Global_Knitr_Opts.R')
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+thm <- knit_theme$get("whitengrey")  
+\end_layout
+
+\begin_layout Plain Layout
+
+knit_theme$set(thm)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+New plan: 
+\end_layout
+
+\begin_layout Enumerate
+Review of basic Statistics
+\end_layout
+
+\begin_layout Enumerate
+Bootstrap Theory
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Study Uncertainty (why not a census?)
+\end_layout
+
+\begin_layout Enumerate
+How? - Resample the data
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Critical assumption about representative samples!
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Examine bootstrap distribution - Centered at 
+\begin_inset Formula $t$
+\end_inset
+
+? Spread of 
+\begin_inset Formula $t^{*}$
+\end_inset
+
+?
+\end_layout
+
+\begin_layout Enumerate
+Propose a Confidence interval 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Percentile method
+\end_layout
+
+\begin_layout Enumerate
+BCa (should I mention this?)
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+Bootstrap CIs for (keep showing the normal distribution in the background!)
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Univariate means
+\end_layout
+
+\begin_layout Enumerate
+Univariate proportions
+\end_layout
+
+\begin_layout Enumerate
+Two sample difference of means
+\end_layout
+
+\begin_layout Enumerate
+Two sample difference of proportions
+\end_layout
+
+\begin_layout Enumerate
+Paired differences of means
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Introduction to Probability!
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Asymptotic distributions!
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Confidence intervals using the Asymptotic distribution
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Univariate means
+\end_layout
+
+\begin_layout Enumerate
+Univariate proportions (optional???)
+\end_layout
+
+\begin_layout Enumerate
+Two sample means
+\end_layout
+
+\begin_layout Enumerate
+Two sample proportions (optional???)
+\end_layout
+
+\begin_layout Enumerate
+Paired differences of means
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Hypothesis tests using randomization and Asymptotic distributions
+\end_layout
+
+\begin_layout Enumerate
+Discussion of Randomization vs Asymptotic procedures
+\end_layout
+
+\begin_layout Enumerate
+ANOVA 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Theory
+\end_layout
+
+\begin_layout Enumerate
+Asymptotic analysis
+\end_layout
+
+\begin_layout Enumerate
+simulation analysis
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regression
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Theory
+\end_layout
+
+\begin_layout Enumerate
+Asymptotic Analysis
+\end_layout
+
+\begin_layout Enumerate
+Simulation Analysis
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The scientific method requires us to make observations about the world and
+ then use those observations to make reasonable predictions.
+ However the way we make those observations can have a profound effect on
+ how well understand the phenomena or how well we predict some event.
+\end_layout
+
+\begin_layout Standard
+During the 1936 US presidential election between Franklin Roosevelt (D)
+ and Alfred Landon (R), the magazine 
+\emph on
+The Literary Digest
+\emph default
+ included a card that asked its readers who they were to vote for and to
+ send it back to the magazine, which would tabulate and report the predicted
+ winner.
+ This scheme correctly predicted the 1920, 1924, 1928, and 1932 races and
+ so many people respected the forecast.
+ The supposed strength of the prediction was how many people responded (2.4
+ million!).
+ However, the readers of 
+\emph on
+The Literary Digest
+\emph default
+ were typically more affluent and could afford a magazine subscription during
+ the Great Depression.
+ As a result, the magazine performed a highly biased survey and predicted
+ that Landon would win.
+ The actual outcome was that Roosevelt won 61% of the vote.
+\end_layout
+
+\begin_layout Standard
+Another person also interested in predicting the 1936 election was the statistic
+ian George Gallup.
+ He had a much smaller sample, (with 50,000 respondents) and correctly predicted
+ the outcome.
+ This was a clear demonstration of the power of a well selected random sample
+ compared to a massive set of data collected in a biased fashion.
+ 
+\end_layout
+
+\begin_layout Standard
+The goals of statistics can be 
+\end_layout
+
+\begin_layout Enumerate
+Collection of data 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Sampling Design: Observational studies rely on the assumption that your
+ sample is representative of the population of interest.
+ Unfortunately, it is often difficult to randomly select individuals in
+ a non-biased way and this branch of statistics focuses on how to leverage
+ known population level data with sampled data to account for bias.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Experimental Design: The scientific gold standard is to perform an experiment
+ where the factors of interest are manipulated, but how the manipulations
+ are done to maximize the amount of information obtained from the experiment
+ is a classic issue in statistics.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Process Modeling - Often we have some mathematical model that is a function
+ of some population level parameters that we think represents some process
+ of interest.
+ We can use sample statistics calculated from our data to estimate those
+ parameters of interest in the model.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Because our sample statistics will vary from sample to sample, we want to
+ understand how much faith should we have in our estimate.
+\end_layout
+
+\begin_layout Enumerate
+We often want confidence intervals for those parameters.
+ For example, we might have a sample where 54% of the respondents support
+ Bernie Sanders for president, but I don't expect that to be 
+\emph on
+exactly 
+\emph default
+the population level percent.
+ Instead we report that 52-56% of the population of likely voters supports
+ Bernie Sanders.
+\end_layout
+
+\begin_layout Enumerate
+We might ask if some particular value for a parameter is plausible.
+ For example, could the association between person's income level and their
+ probability of voting republican be zero? 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Predictions - Once we have a process model (even if it is extremely complicated
+ and not easily interpretable), we will often want to make predictions about
+ future or unobserved observations.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+We will want to consider how well we predict new observations, but, by definitio
+n, those are unavailable.
+\end_layout
+
+\begin_layout Enumerate
+Quality of prediction can be used to update the process modeling steps.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+The course covered by these notes will discuss some of the data collection
+ step, but will focus primarily on the process modeling step.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand input
+filename "1_SummaryStats_Graphics.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand input
+filename "2_Probability.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand input
+filename "3_Bootstrapping.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand input
+filename "4_SamplingDistributions.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand input
+filename "5_ConfidenceIntervals.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand input
+filename "6_HypothesisTests.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

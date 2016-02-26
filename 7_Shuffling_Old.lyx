@@ -1,0 +1,4607 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass book
+\begin_preamble
+\usepackage{a4wide}
+\end_preamble
+\options a4paper
+\use_default_options false
+\begin_modules
+knitr
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding iso8859-1
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 0
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Two-Sample Hypothesis Tests and Confidence Intervals
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<echo=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+if(file.exists('Global_Knitr_Opts.R')){
+\end_layout
+
+\begin_layout Plain Layout
+
+  source('Global_Knitr_Opts.R')
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+opts_chunk$set(fig.path   = 'figure/7_TwoSamples/') 
+\end_layout
+
+\begin_layout Plain Layout
+
+opts_chunk$set(cache.path =  'cache/7_TwoSamples/')
+\end_layout
+
+\begin_layout Plain Layout
+
+opts_chunk$set(cache      =  TRUE)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+There are two broad classifications of types of research, 
+\emph on
+observational studies
+\emph default
+ and 
+\emph on
+designed experiments
+\emph default
+.
+ These two types of research differ in the way that the researcher interacts
+ with the subjects being observed.
+ In an observational study, the researcher doesn't force a subject into
+ some behavior or treatment, but merely observes the subject (making measurement
+s but not changing behaviors).
+ In contrast, in an experiment, the researcher imposes different treatments
+ onto the subjects and the pairing between the subject and treatment group
+ happens at random.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Example: 
+\series default
+For many years hormone (Estrogen and Progestin) replacement therapy's primary
+ use for post-menopausal woman was to reduce the uncomfortable side-effects
+ of menopause but it was thought to also reduced the rate of rate of breast
+ cancer in post-menopausal women.
+ This belief was the result of many observational studies where women who
+ chose to take hormone replacement therapy also had reduced rates of breast
+ cancer.
+ The 
+\emph on
+lurking
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+A 
+\emph on
+lurking variable
+\emph default
+ is a variable the researcher hasn't considered but affects the response
+ variable.
+ In observational studies a researcher will try to measure all the variables
+ that might affect the response but will undoubtable miss something.
+ 
+\end_layout
+
+\end_inset
+
+ variable
+\emph default
+ thing that the observational studies missed was that hormone therapy is
+ relatively expensive and was taken by predominately women of a high socio-
+ economic status.
+ Those women tended to be more health conscious, lived in areas with less
+ pollution, and were generally at a lower risk for developing breast cancer.
+ Even when researchers realized that socio-economic status was 
+\emph on
+confounded
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Two variables are said to be 
+\emph on
+confounded
+\emph default
+ if the design of a given experiment or study cannot distinguish the effect
+ of one variable from the other.
+\end_layout
+
+\end_inset
+
+ 
+\emph default
+with the therapy, they couldn't be sure which was the cause of the reduced
+ breast cancer rates.
+ To correctly test this, nearly 17,000 women underwent an experiment in
+ which each women was randomly assigned to take either the treatment (E+P)
+ or a placebo.
+ The Women’s Health Initiative (WHI) Estrogen plus Progestin Study
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Risks and Benefits of Estrogen Plus Progestin in Healthy Postmenopausal
+ Women: Principal Results From the Women's Health Initiative Randomized
+ Controlled Trial.
+ JAMA.
+ 2002;288(3):321-333.
+ doi:10.1001/jama.288.3.321.
+\end_layout
+
+\end_inset
+
+ (E+P) was stopped on July 7, 2002 (after an average 5.6 years of follow-up)
+ because of increased risks of cardiovascular disease and breast cancer
+ in women taking active study pills, compared with those on placebo (inactive
+ pills).
+ The study showed that the overall risks exceeded the benefits, with women
+ taking E+P at higher risk for heart disease, blood clots, stroke, and breast
+ cancer, but at lower risk for fracture and colon cancer.
+ Lurking variables such as income levels and education are correlated to
+ overall health behaviors and with an increased use of hormone replacement
+ therapy.
+ By randomly assigning each woman to a treatment, the unidentified lurking
+ variables were evenly spread across treatments and the dangers of hormone
+ replacement therapy were revealed.
+\end_layout
+
+\begin_layout Standard
+There is a fundamental difference between imposing treatments onto subjects
+ versus taking a random sample from a population and observing relationships
+ between variables.
+ In general, designed experiments allow us to determine cause-and-effect
+ relationships while observational studies can only determine if variables
+ are correlated.
+ This difference in how the data is generated will result in different methods
+ for generating a sampling distribution for a statistic of interest.
+ In this chapter we will focus on experimental designs, though the same
+ analyses are appropriate for observational studies.
+\end_layout
+
+\begin_layout Section
+Difference in means between two groups
+\end_layout
+
+\begin_layout Standard
+Often researchers will obtain a group of subjects and them into two groups,
+ provide different treatments to each, and the observe some response.
+ The goal is to see if the two groups have different mean values, as this
+ is the most common difference to be interested in.
+\end_layout
+
+\begin_layout Standard
+The first thing to consider is that the group of subjects in our sample
+ is should be representative of a population of interest.
+ Because we cannot impose an experiment on an entire population, we often
+ are forced to examine a small sample and we hope that the sample statistics
+ (the sample mean 
+\begin_inset Formula $\bar{x}$
+\end_inset
+
+, and sample standard deviation 
+\begin_inset Formula $s$
+\end_inset
+
+) are good estimates of the population parameters (the population mean 
+\begin_inset Formula $\mu$
+\end_inset
+
+, and population standard deviation 
+\begin_inset Formula $\sigma$
+\end_inset
+
+).
+ First recognize that these are a sample and we generally think of them
+ to be representative of some population.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Example:
+\series default
+ Finger Tapping and Caffeine
+\end_layout
+
+\begin_layout Standard
+The effects of caffeine on the body have been well studied.
+ In one experiment,
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Hand, A.J., Daly, F., Lund, A.D., McConway, K.J.
+ and Ostrowski, I., 
+\emph on
+Handbook of Small Data Sets
+\emph default
+, Chapman and Hall, London, 1994, p.
+ 40.
+\end_layout
+
+\end_inset
+
+ a group of male college students were trained in a particular tapping movement
+ and to tap at a rapid rate.
+ They were randomly divided into caffeine and non-caffeine groups and given
+ approximately two cups of coffee (with either 200 mg of caffeine or none).
+ After a 2-hour period, the students tapping rate was measured.
+ 
+\end_layout
+
+\begin_layout Standard
+The population that we are trying to learn about is male college-aged students
+ and we the most likely question of interest is if the mean tap rate of
+ the caffeinated group is different than the non-caffeinated group.
+ Notice that we don't particularly care about these 20 students, but rather
+ the population of male college-aged students so the hypotheses we are intereste
+d in are
+\begin_inset Formula 
+\begin{eqnarray*}
+H_{0}: & \mu_{c}=\mu_{nc}\\
+H_{a}: & \mu_{c}\ne\mu_{nc}
+\end{eqnarray*}
+
+\end_inset
+
+where 
+\begin_inset Formula $\mu_{c}$
+\end_inset
+
+ is the mean tap rate of the caffeinated group and 
+\begin_inset Formula $\mu_{nc}$
+\end_inset
+
+ is the mean tap rate of the non-caffeinated group.
+ We could equivalently express these hypotheses via
+\begin_inset Formula 
+\begin{eqnarray*}
+H_{0}: & \mu_{nc}-\mu_{c}=0\\
+H_{a}: & \mu_{nc}-\mu_{c}\ne0
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Or we could let 
+\begin_inset Formula $\delta=\mu_{nc}-\mu_{c}$
+\end_inset
+
+ and write the hypotheses as 
+\begin_inset Formula 
+\begin{eqnarray*}
+H_{0}:\,\delta & = & 0\\
+H_{a}:\,\delta & \ne & 0
+\end{eqnarray*}
+
+\end_inset
+
+The data are available in many different formats at 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://www.lock5stat.com/datapage.html
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<message=FALSE, warning=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+# Load all the libraries we'll need in this chapter
+\end_layout
+
+\begin_layout Plain Layout
+
+library(Lock5Data)
+\end_layout
+
+\begin_layout Plain Layout
+
+library(dplyr)
+\end_layout
+
+\begin_layout Plain Layout
+
+library(ggplot2)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+data(CaffeineTaps)   # load the data from the Lock5Data package
+\end_layout
+
+\begin_layout Plain Layout
+
+str(CaffeineTaps)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The first thing we should do is, as always, is graph the data.
+ Because there are only 10 individuals in each group, a dotplot is an appropriat
+e choice.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<fig.height=2>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+ggplot(CaffeineTaps, aes(x=Taps)) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_dotplot() + 
+\end_layout
+
+\begin_layout Plain Layout
+
+  facet_grid( Group ~ .
+ )  # two graphs stacked by Group (Caffeine vs non)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+From this view, it looks like the caffeine group has a higher tapping rate.
+ It will be helpful to summarize the difference between these two groups
+ with a single statistic by calculating the mean for each group and then
+ calculate the difference between the group means.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<fig.height=3>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+CaffeineTaps %>% 
+\end_layout
+
+\begin_layout Plain Layout
+
+  group_by(Group) %>%  # group the summary stats by Treatment group
+\end_layout
+
+\begin_layout Plain Layout
+
+  summarise(xbar=mean(Taps), s=sd(Taps))
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<fig.height=3>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+# No Caffeine  -  Caffeine
+\end_layout
+
+\begin_layout Plain Layout
+
+244.8 - 248.3
+\end_layout
+
+\begin_layout Plain Layout
+
+CaffeineTaps %>% group_by(Group) %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  summarise(xbar=mean(Taps)) %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  summarise(d = diff(xbar))
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Notationally, lets call this statistic 
+\begin_inset Formula $d=\bar{x}_{nc}-\bar{x}_{c}=-3.5$
+\end_inset
+
+.
+ We are interested in testing if this observed difference might be due to
+ just random chance and we just happened to assigned more of the fast tappers
+ to the caffeine group.
+ How could we test the null hypothesis that the mean of the caffeinated
+ group is different than the non-caffeinated?
+\end_layout
+
+\begin_layout Subsection
+Inference via resampling 
+\end_layout
+
+\begin_layout Standard
+The key idea is 
+\emph on
+
+\begin_inset Quotes eld
+\end_inset
+
+How could the data have turned out if the null hypothesis is true?
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\emph default
+If the null hypothesis is true, then the caffeinated/non-caffeinated group
+ treatment had no effect on the tap rate and it was just random chance that
+ the caffeinated group got a larger percentage of fast tappers.
+ That is to say the group variable has no relationship to tap rate.
+ I could have just as easily assigned the fast tappers to the non-caffeinated
+ group purely by random chance.
+ So our simulation technique is to 
+\series bold
+shuffle the group labels 
+\series default
+and then calculate a difference between the group means!
+\end_layout
+
+\begin_layout Standard
+We can perform this shuffling with the following code:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<cache=TRUE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+# shuffle(): takes an input column and reorders it randomly
+\end_layout
+
+\begin_layout Plain Layout
+
+CaffeineTaps %>% mutate(ShuffledGroup = shuffle(Group))
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We can then calculate the mean difference but this time using the randomly
+ generated groups, and now the non-caffeinated group just happens to have
+ a slightly higher mean tap rate just by the random sorting into two groups.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+CaffeineTaps %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  mutate( ShuffledGroup = shuffle(Group) ) %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  group_by( ShuffledGroup )  %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  summarise(xbar=mean(Taps)) %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  summarise(d.star = diff(xbar))  
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We could repeat this shuffling several times and see the possible values
+ we might have seen if the null hypothesis is correct and the treatment
+ group doesn't matter at all.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+do(5) * {
+\end_layout
+
+\begin_layout Plain Layout
+
+  CaffeineTaps %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  mutate( ShuffledGroup = shuffle(Group) ) %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  group_by( ShuffledGroup )  %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  summarise(xbar=mean(Taps)) %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  summarise(d.star = diff(xbar))  
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Of course, five times isn't sufficient to understand the sampling distribution
+ of the mean difference under the null hypothesis, we should do more.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<echo=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+set.seed(456)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<Tapping_Permutation, cache=TRUE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+SamplingDist <- do(10000) * {
+\end_layout
+
+\begin_layout Plain Layout
+
+  CaffeineTaps %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  mutate( ShuffledGroup = shuffle(Group) ) %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  group_by( ShuffledGroup )  %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  summarise(xbar=mean(Taps)) %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  summarise(d.star = diff(xbar))  
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+ggplot(SamplingDist, aes(x=d.star)) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_histogram(binwidth=.2) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  ggtitle('Est.
+ Sampling dist.
+ of d if H0 is true') +
+\end_layout
+
+\begin_layout Plain Layout
+
+  xlab('d*')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We have almost no cases where the randomly assigned groups produced a difference
+ as extreme as the actual groups.
+ We can calculate the percentage of the sampling distribution of the difference
+ in means that is farther from zero 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+SamplingDist %>% 
+\end_layout
+
+\begin_layout Plain Layout
+
+  mutate( MoreExtreme = ifelse( abs(d.star) >= 3.5, 1, 0)) %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  summarise( p.value1 = sum(MoreExtreme)/n(),       # these are all the
+\end_layout
+
+\begin_layout Plain Layout
+
+             p.value2 = mean(MoreExtreme),          # same calculation
+\end_layout
+
+\begin_layout Plain Layout
+
+             p.value3 = mean( abs(d.star) >= 3.5 )) # but more verbose
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+We see that of the simulations were as or more extreme than our observed
+ difference in sample means so we can reject the null hypothesis 
+\begin_inset Formula $H_{0}:\mu_{nc}-\mu_{c}=0$
+\end_inset
+
+ in favor of the alternative 
+\begin_inset Formula $H_{a}:\mu_{nc}-\mu_{c}\ne0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Everything we know about the biological effects of ingesting caffeine suggests
+ that we should have expected the caffeinated group to tap faster, so we
+ might want to set up our experiment so only faster tapping represents 
+\begin_inset Quotes eld
+\end_inset
+
+extreme
+\begin_inset Quotes erd
+\end_inset
+
+ data compared to the null hypothesis.
+ In this case we want an alternative of 
+\begin_inset Formula $H_{a}:\,\mu_{nc}-\mu_{c}<0$
+\end_inset
+
+? Therefore the null and alternative hypothesis are 
+\begin_inset Formula 
+\begin{eqnarray*}
+H_{0}:\,\mu_{nc}-\mu_{c} & \ge & 0\\
+H_{a}:\,\mu_{nc}-\mu_{c} & < & 0
+\end{eqnarray*}
+
+\end_inset
+
+or using the parameter 
+\begin_inset Formula $\delta=\mu_{nc}-\mu_{c}$
+\end_inset
+
+ the null and alternative are 
+\begin_inset Formula 
+\begin{eqnarray*}
+H_{0}:\,\delta & \ge & 0\\
+H_{a}:\,\delta & < & 0
+\end{eqnarray*}
+
+\end_inset
+
+The creation of the sampling distribution of the mean difference 
+\begin_inset Formula $d^{*}$
+\end_inset
+
+ is identical to our previous technique because if our observed difference
+ 
+\begin_inset Formula $d$
+\end_inset
+
+ is so negative that it is incompatible with the hypothesis that 
+\begin_inset Formula $\delta=0$
+\end_inset
+
+ then it 
+\emph on
+must
+\emph default
+ also be incompatible with any positive value of 
+\begin_inset Formula $\delta$
+\end_inset
+
+, so we evaluate the consistency of our data with the value of 
+\begin_inset Formula $\delta$
+\end_inset
+
+ that is closest to the observed 
+\begin_inset Formula $d$
+\end_inset
+
+ while still being true to the null hypothesis.
+ Thus for either the the one-sided (i.e.
+ 
+\begin_inset Formula $\delta<0$
+\end_inset
+
+) or the two-sided case (i.e.
+ 
+\begin_inset Formula $\delta\ne0$
+\end_inset
+
+), we generate the sampling distribution of 
+\begin_inset Formula $d^{*}$
+\end_inset
+
+ in the same way.
+ The only difference in the analysis is at the end when we calculate the
+ p-value and don't consider the positive tail.
+ That is, the p-value is the percent of simulations where 
+\begin_inset Formula $d^{*}<d$
+\end_inset
+
+.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+SamplingDist %>% 
+\end_layout
+
+\begin_layout Plain Layout
+
+  summarise( p.value = mean( d.star >= 3.5 ))
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+and we see that the p-value is approximately cut in half by ignoring the
+ upper tail, which makes sense considering the observed symmetry in the
+ sampling distribution of 
+\begin_inset Formula $d^{*}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+In general, we prefer to use a two-sided test because if the two-sided test
+ leads us to reject the null hypothesis then so would the appropriate one-sided
+ hypothesis
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Except in the case where the alternative was chosen before the data was
+ collected and the observed data was in the other tail.
+ For example: the alternative was 
+\begin_inset Formula $H_{a}:\delta>0$
+\end_inset
+
+ but the observed difference was actually negative.
+\end_layout
+
+\end_inset
+
+.
+ Second, by using a two-sample test, it prevents us from from 
+\begin_inset Quotes eld
+\end_inset
+
+tricking
+\begin_inset Quotes erd
+\end_inset
+
+ ourselves when we don't know the which group should have a higher mean
+ going into the experiment, but after seeing the data, thinking we should
+ have known and using the less stringent test.
+ Some statisticians go so far as to say that using a 1-sided test is outright
+ fraudulent.
+ Generally, we'll concentrate on two-sided tests as they are the most widely
+ acceptable.
+\end_layout
+
+\begin_layout Standard
+Notice that the corresponding confidence interval gives a similar inference.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<Tapping_Bootstrap, cache=TRUE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+BootDist <- do(10000)*{
+\end_layout
+
+\begin_layout Plain Layout
+
+  resample(CaffeineTaps) %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  group_by(Group) %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  summarise( xbar=mean(Taps) ) %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  summarise( d.star = diff(xbar)  )
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+ggplot(BootDist, aex(x=d.star)) %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_histogram(binwidth=.2)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+CI <- quantile( BootDist$d.star, probs=c(0.025, 0.975) )
+\end_layout
+
+\begin_layout Plain Layout
+
+CI
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Example
+\series default
+:
+\end_layout
+
+\begin_layout Standard
+In places in the country substantial mosquito populations, the question
+ of whether drinking beer causes the drinker to be more attractive to the
+ mosquitoes than drinking something else has plagued campers.
+ To answer such a question, researchers
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Lefvre, T., et.
+ al., “Beer Consumption Increases Human Attractiveness to Malaria Mosquitoes,
+ ” PLoS ONE, 2010; 5(3): e9546
+\end_layout
+
+\end_inset
+
+ conducted a study to determine if drinking beer attracts more mosquitoes
+ than drinking water.
+ Of 
+\begin_inset Formula $n=43$
+\end_inset
+
+ subjects, 
+\begin_inset Formula $n_{b}=25$
+\end_inset
+
+ drank a liter beer and 
+\begin_inset Formula $n_{w}=18$
+\end_inset
+
+ drank a liter of water and mosquitoes were caught in traps as they approached
+ the different subjects.
+ The critical part of this study is that the treatment (beer or water) was
+ randomly assigned to each subject.
+\end_layout
+
+\begin_layout Standard
+For this study, we want to test 
+\begin_inset Formula 
+\[
+H_{0}:\:\delta=0\;\;\;\;\;\;\textrm{vs}\;\;\;\;\;\;H_{a}:\,\delta\ne0
+\]
+
+\end_inset
+
+where we define 
+\begin_inset Formula $\delta=\mu_{w}-\mu_{b}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mu_{b}$
+\end_inset
+
+ is the mean number of mosquitoes attracted to a beer drinker and 
+\begin_inset Formula $\mu_{w}$
+\end_inset
+
+ is the mean number attracted to a water drinker.
+ As usual we begin our analysis by plotting the data 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<fig.height=3.5>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+# I can't find this dataset on-line so I'll just type it in.
+\end_layout
+
+\begin_layout Plain Layout
+
+Mosquitoes <- data.frame(
+\end_layout
+
+\begin_layout Plain Layout
+
+  Number = c(27,19,20,20,23,17,21,24,31,26,28,20,27,
+\end_layout
+
+\begin_layout Plain Layout
+
+             19,25,31,24,28,24,29,21,21,18,27,20,
+\end_layout
+
+\begin_layout Plain Layout
+
+             21,19,13,22,15,22,15,22,20,
+\end_layout
+
+\begin_layout Plain Layout
+
+             12,24,24,21,19,18,16,23,20),
+\end_layout
+
+\begin_layout Plain Layout
+
+  Group = c( rep('Beer', 25), rep('Water',18) ) )
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# Plot the data
+\end_layout
+
+\begin_layout Plain Layout
+
+dotPlot(~ Number | Group, data=Mosquitoes, layout=c(1,2) )
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Raw data for the number of mosquitoes attracted to each subject, divided
+ by treatment type (beer or water).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+and calculating a summary statistic that captures the difference we are
+ trying to understand
+\begin_inset Formula 
+\[
+d=\bar{x}_{w}-\bar{x}_{b}
+\]
+
+\end_inset
+
+ where 
+\begin_inset Formula $\bar{x}_{w}$
+\end_inset
+
+ is the sample mean number of mosquitoes attracted by the water group and
+ 
+\begin_inset Formula $\bar{x}_{b}$
+\end_inset
+
+ is the sample mean number of mosquitoes attracted by the beer group.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+# Observed difference in number of mosquitoes 
+\end_layout
+
+\begin_layout Plain Layout
+
+d <- diffmean(Number ~ Group, data=Mosquitoes)
+\end_layout
+
+\begin_layout Plain Layout
+
+d
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The calculation of the sampling distribution of 
+\begin_inset Formula $d^{*}$
+\end_inset
+
+, the distribution of the difference in group means assuming that the null
+ hypothesis is true and the beer/water grouping doesn't matter, is done
+ by repeatedly shuffling the group labels and calculating differences.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<cache=TRUE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+SamplingDist <- do(10000) * diffmean(Number ~ shuffle(Group), data=Mosquitoes)
+\end_layout
+
+\begin_layout Plain Layout
+
+histogram( ~ diffmean, data=SamplingDist, groups=( abs(diffmean) >= abs(d)
+ ),
+\end_layout
+
+\begin_layout Plain Layout
+
+           main='Sampling distribution of d*', xlab='d*')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<cache=TRUE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+p.value <- tally( ~ (abs(diffmean) >= abs(d)), 
+\end_layout
+
+\begin_layout Plain Layout
+
+                  data=SamplingDist, 
+\end_layout
+
+\begin_layout Plain Layout
+
+                  format='proportion'        ) 
+\end_layout
+
+\begin_layout Plain Layout
+
+p.value
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The calculated p-value is extremely small (p = 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Sexpr{p.value[1]}
+\end_layout
+
+\end_inset
+
+) and we can conclude that the choice of drink does cause a change in attractive
+ness to mosquitoes.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Example:
+\end_layout
+
+\begin_layout Standard
+Caffeine is often used to increase alertness in the United States.
+ A study
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Mednick, S., Cai, D., Kanady, J., and Drummond, S., 
+\begin_inset Quotes eld
+\end_inset
+
+Comparing the Benefits of Caffeine, Naps, and Placebo on Verbal Motor and
+ Perceptual Memory
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\emph on
+Behavioral Brain Research
+\size normal
+ 
+\emph default
+2008; 193: 79-86.
+\end_layout
+
+\end_inset
+
+ compared the effect of a brief nap versus caffeine on the ability to recall
+ memorized information.
+ Using the summary statistics provided by the article, the plausible data
+ were generated for a textbook.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Problem 4.82 of 
+\emph on
+Statistics: Unlocking the power of data 
+\emph default
+by Lock, Lock, Lock, Lock, and Lock.
+\end_layout
+
+\end_inset
+
+ The question is if the number of words a subject can recall is related
+ to the randomly assigned treatment received before the trial (nap or caffeine).
+ The simulated data are available on the book's website.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<cache=TRUE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+# If we wanted to read an excel file...
+\end_layout
+
+\begin_layout Plain Layout
+
+# library(gdata)
+\end_layout
+
+\begin_layout Plain Layout
+
+# SleepCaffeine <- read.xls('http://www.lock5stat.com/datasets/SleepCaffeine.xls')
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# Just using the standard .csv file...
+\end_layout
+
+\begin_layout Plain Layout
+
+SleepCaffeine <- read.csv('http://www.lock5stat.com/datasets/SleepCaffeine.csv')
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+As always we plot the data first, and observe that we have 12 subjects assigned
+ to the sleep group and 12 assigned to the caffeine group.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<cache=TRUE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+dotPlot( ~ Words | Group, data=SleepCaffeine, layout=c(1,2))
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We generate the observed difference in the means 
+\begin_inset Formula $d=\bar{x}_{C}-\bar{x}_{S}$
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<cache=TRUE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+d <- diffmean(Words ~ Group, data=SleepCaffeine)
+\end_layout
+
+\begin_layout Plain Layout
+
+d
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+We then generate the sampling distribution of 
+\begin_inset Formula $d^{*}$
+\end_inset
+
+, the possible differences assuming that there is no difference in effect
+ of the two treatments.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<cache=TRUE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+SamplingDist <- do(10000) * diffmean(Words ~ shuffle(Group), data=SleepCaffeine)
+\end_layout
+
+\begin_layout Plain Layout
+
+histogram( ~ diffmean, data=SamplingDist, groups=( abs(diffmean) >= abs(d)
+ ),
+\end_layout
+
+\begin_layout Plain Layout
+
+           main='Sampling distribution of d*', xlab='d*')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+We can then calculate the p-value as the proportion of simulations with
+ 
+\begin_inset Formula $\left|d^{*}\right|>d=3$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<cache=TRUE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+p.value <- tally( ~ (abs(diffmean) >= abs(d)), 
+\end_layout
+
+\begin_layout Plain Layout
+
+                  data=SamplingDist, 
+\end_layout
+
+\begin_layout Plain Layout
+
+                  format='proportion'         )
+\end_layout
+
+\begin_layout Plain Layout
+
+p.value
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The p-value is very near the common cut-off value of 
+\begin_inset Formula $0.05$
+\end_inset
+
+ for deciding if the result is significant.
+ I would run more simulations if I were submitting this to a journal, but
+ we should recognize that this p-value indicates we have moderately strong
+ evidence to reject that naps are equivalent to caffeine, but a larger study
+ would necessary for a definitive result.
+\end_layout
+
+\begin_layout Subsection
+Two groups, binary response 
+\end_layout
+
+\begin_layout Standard
+We are often interested in experiments where the response variable is binary
+ in nature.
+ For example, perhaps we treat a bunch of plots with two types of insecticides
+ and after 2 weeks observe if the plots are infested or not infested with
+ some insect.
+ Our goal would be to decide if the proportion of plots invested is different
+ amongst the two treatment types.
+ 
+\end_layout
+
+\begin_layout Standard
+We will have two questions:
+\end_layout
+
+\begin_layout Enumerate
+What statistic could be calculated from the observed data to measure how
+ far the observed data is from the null hypothesis?
+\end_layout
+
+\begin_layout Enumerate
+Given the statistic in part 1, how should it vary from sample to sample
+ assuming the null hypothesis (no difference in treatments) is true?
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Example:
+\end_layout
+
+\begin_layout Standard
+We will examine these questions in the context of a study where researchers
+ suspected that attack of a plant by one organism induced resistance to
+ subsequent attack by a different organism.
+ Individually potted cotton plants were randomly allocated to two groups:
+ infestation by spider mites or no infestation.
+ After two weeks the mites were dutifully removed by a conscientious research
+ assistant, and both groups were inoculated with Verticillium, a fungus
+ that causes Wilt disease.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<cache=TRUE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+library(mosaicData)  # where the data lives
+\end_layout
+
+\begin_layout Plain Layout
+
+data(Mites)
+\end_layout
+
+\begin_layout Plain Layout
+
+str(Mites)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+We will summarize the data into a 
+\emph on
+contingency table 
+\emph default
+that counts the number of plants in each treatment/wilt category
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+If the code below doesn't give the counts, it might be because the packages
+ 
+\family typewriter
+mosaic
+\family default
+ and 
+\family typewriter
+dplyr
+\family default
+ are fighting over which gets to define the function 
+\family typewriter
+tally()
+\family default
+.
+ You can force your code to use the mosaic version of the function by using
+ 
+\family typewriter
+mosaic::tally( outcome ~ treatment, data=mites )
+\family default
+ where the key part is to give the package name and then the function.
+ Within 
+\family typewriter
+mosaic
+\family default
+'s 
+\family typewriter
+tally()
+\family default
+ function there is an option 
+\family typewriter
+format=
+\family default
+ option that allows you to specify if you want the raw 
+\family typewriter
+counts
+\family default
+, the 
+\family typewriter
+proportion
+\family default
+ in each column, or as 
+\family typewriter
+percent
+\family default
+ in each column.
+ 
+\end_layout
+
+\end_inset
+
+.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<cache=TRUE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+tally(outcome ~ treatment, data=Mites, # table of outcome by treatment
+\end_layout
+
+\begin_layout Plain Layout
+
+     format='count'                    # give the raw counts, not percentages
+\end_layout
+
+\begin_layout Plain Layout
+
+)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+From this table we can see that of the 
+\begin_inset Formula $n=47$
+\end_inset
+
+ plants, 28 of them wilted.
+ Furthermore we see that the mites were applied to 
+\begin_inset Formula $n_{m}=26$
+\end_inset
+
+ of the plants.
+ Is this data indicative of mites inferring a disease resistance? More formally
+ we are interested in testing 
+\begin_inset Formula 
+\begin{eqnarray*}
+H_{0}:\: & \pi_{w}=\pi_{w|m}\\
+H_{0}:\: & \pi_{w}\ne\pi_{w|m}
+\end{eqnarray*}
+
+\end_inset
+
+where the relevant parameters are 
+\begin_inset Formula $\pi_{w}$
+\end_inset
+
+, the probability that a plant will wilt, and 
+\begin_inset Formula $\pi_{w|m}$
+\end_inset
+
+, the probability that a plant will wilt given that it has been treated
+ with mites.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+What would you expect to see if there was absolutely no effect of the mite
+ treatment? The wilting plants should be equally dispersed between the mite
+ and non-mite treatments, but we also have to account for the fact that
+ we have more mite treatments.
+ Let 
+\begin_inset Formula $p_{w}=\frac{28}{47}$
+\end_inset
+
+ be the proportion all the plants that wilted, and 
+\begin_inset Formula $n_{m}=26$
+\end_inset
+
+ be the number of plants receiving the mite treatment.
+ If the treatment has no effect on wilting, then we expect 
+\begin_inset Formula $p_{w}\cdot n_{m}=15.49$
+\end_inset
+
+ of the mite treated plants to wilt and 
+\begin_inset Formula $\left(1-p_{w}\right)n_{m}=10.51$
+\end_inset
+
+ to not wilt.
+ A similar calculation for the non-mite treatment shows 
+\begin_inset Formula $p_{w}\cdot\left(n-n_{m}\right)=12.51$
+\end_inset
+
+ should wilt and 
+\begin_inset Formula $\left(1-p_{w}\right)\left(n-n_{m}\right)=8.49$
+\end_inset
+
+ should not.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="9" columns="5">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Treatment
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Mites
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No Mites
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="left" valignment="middle" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Outcome
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No Wilt
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $O_{nw,m}=15$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $O_{nw,nm}=4$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $E_{nw,m}=\left(10.51\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $E_{nw,m}=\left(8.49\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $n_{nw}=19$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Wilt
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $O_{w,m}=11$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $O_{w,nm}=17$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $E_{nw,m}=\left(15.49\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $E_{nw,m}=\left(12.51\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $n_{w}=28$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $n_{m}=26$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $n_{nm}=21$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $n=47$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In general the expected count for a cell can be calculated as 
+\begin_inset Formula 
+\[
+E_{i,j}=\frac{n_{i}n_{j}}{n}
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $n_{i}$
+\end_inset
+
+ is the row sum, and 
+\begin_inset Formula $n_{j}$
+\end_inset
+
+ is the column sum.
+ For example 
+\begin_inset Formula $E_{nw,m}=15.49=(28*26)/47$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+This is the first case where our test statistic will not be just plugging
+ in the sample statistic into the null hypothesis.
+ Instead we will consider a test statistic that is more flexible and will
+ handle more general cases (say 3 or more response or treatment groups)
+ Our statistic for assessing how far our observed data is from what we expect
+ under the null hypothesis involves the difference between the observed
+ and the expected for each of the cells, but again we don't want to just
+ sum the differences, instead will make the differences positive by squaring
+ the differences.
+ Second, a difference of 10 between the observed and expected cell count
+ is very different if the number expected is 1000 than if it is 10, so we
+ will scale the observed difference by dividing by the expected cell count.
+ 
+\end_layout
+
+\begin_layout Standard
+We define
+\begin_inset Formula 
+\begin{eqnarray*}
+X^{2} & = & \sum_{\textrm{all ij cells}}\frac{\left(O_{ij}-E_{ij}\right)^{2}}{E_{ij}}\\
+\\
+ & = & \frac{\left(15-10.51\right)^{2}}{10.51}+\frac{\left(4-8.49\right)^{2}}{8.49}+\frac{\left(11-15.49\right)^{2}}{15.49}+\frac{\left(17-12.51\right)^{2}}{12.51}\\
+\\
+ & = & 1.92+2.37+1.30+1.61\\
+\\
+ & = & 7.20
+\end{eqnarray*}
+
+\end_inset
+
+If the null hypothesis is true, then this statistic should be small, and
+ a large value of the statistic is indicative of the null hypothesis being
+ incorrect.
+ But how large must the statistic be before we reject the null hypothesis?
+ Again, we'll randomly shuffle the treatment assignments and recalculate
+ the statistic many times and examine the sampling distribution of 
+\begin_inset Formula $X^{2}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+To do this efficiently, we'll need a way of easily calculating this test
+ statistic.
+ In a traditional course I would introduce this test by the name of 
+\begin_inset Quotes eld
+\end_inset
+
+Pearson's Chi-squared test
+\begin_inset Quotes erd
+\end_inset
+
+ and we can obtain the test statistic using the following code:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<cache=TRUE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+# function is chisq.test() and we need to tell it not to do the Yates continuity
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+# correction and just calculate the test statistic as we've described 
+\end_layout
+
+\begin_layout Plain Layout
+
+chisq.test(                                                # do a Chi-sq
+ test
+\end_layout
+
+\begin_layout Plain Layout
+
+  tally(outcome ~ treatment, data=Mites, format='count'),  # on this table
+\end_layout
+
+\begin_layout Plain Layout
+
+  correct=FALSE                                            # Don't do the
+ correction
+\end_layout
+
+\begin_layout Plain Layout
+
+)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+R is performing the traditional Pearson's Chi-Squared test which assumes
+ our sample sizes are large enough for several approximations to be good.
+ Fortunately, we don't care about this approximation to the p-value and
+ will use simulation methods which will be more accurate.
+ In order to use the 
+\family typewriter
+chisq.test()
+\family default
+ function to do our calculations, we need to extract the test-statistic
+ from the output of the 
+\family typewriter
+f
+\family default
+unction.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<cache=TRUE, warning=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+# extract the X^2 test statistic from the output
+\end_layout
+
+\begin_layout Plain Layout
+
+Xsq <- chisq.test(                                         # do a Chi-sq
+ test
+\end_layout
+
+\begin_layout Plain Layout
+
+  tally(outcome ~ treatment, data=Mites, format='count'),  # on this table
+\end_layout
+
+\begin_layout Plain Layout
+
+  correct=FALSE                                            # Don't do the
+ correction
+\end_layout
+
+\begin_layout Plain Layout
+
+)$statistic                                                # grab only the
+ test statistic
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Xsq
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Next we wish to repeat our shuffling trick of the treatment labels to calculate
+ the sampling distribution of 
+\begin_inset Formula $X^{2*}$
+\end_inset
+
+, which is the distribution of 
+\begin_inset Formula $X^{2}$
+\end_inset
+
+ when the null hypothesis of no difference between treatments is true.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<cache=TRUE, warning=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+SamplingDist <- do(3)*
+\end_layout
+
+\begin_layout Plain Layout
+
+  chisq.test( 
+\end_layout
+
+\begin_layout Plain Layout
+
+    tally(outcome ~ shuffle(treatment), data=Mites, format='count'),
+\end_layout
+
+\begin_layout Plain Layout
+
+    correct=FALSE 
+\end_layout
+
+\begin_layout Plain Layout
+
+  )$statistic
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+SamplingDist
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We see that this code is creating a data frame with a single column called
+ 
+\family typewriter
+X.squared
+\family default
+ and next we simulate a large number of times and display the sampling distribut
+ion of 
+\begin_inset Formula $X^{2*}$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<cache=TRUE, warning=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+SamplingDist <- do(10000)*
+\end_layout
+
+\begin_layout Plain Layout
+
+  chisq.test( 
+\end_layout
+
+\begin_layout Plain Layout
+
+    tally(outcome ~ shuffle(treatment), data=Mites, format='count'),
+\end_layout
+
+\begin_layout Plain Layout
+
+    correct=FALSE 
+\end_layout
+
+\begin_layout Plain Layout
+
+  )$statistic
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+histogram( ~ X.squared, data=SamplingDist, groups=( X.squared >= Xsq ),
+\end_layout
+
+\begin_layout Plain Layout
+
+           main='Sampling distribution of Xsq*', xlab='Xsq*')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+At first glance this seems wrong because it is not a nice looking distribution.
+ However there are only a small number of ways to allocate the treatments
+ labels to the two possible outcomes.
+ Second, for the test statistic we have chosen only the right hand side
+ of the distribution (large values of 
+\begin_inset Formula $X^{*}$
+\end_inset
+
+) would be evidence against the null hypothesis, so we only look at 
+\begin_inset Formula $X^{2*}>7.20$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<cache=TRUE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+p.value <- tally( ~ (X.squared >= Xsq), data=SamplingDist, format='proportion'
+ )
+\end_layout
+
+\begin_layout Plain Layout
+
+p.value
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We see that the p-value is 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Sexpr{p.value[1]}
+\end_layout
+
+\end_inset
+
+ and conclude that there is strong evidence to reject the null hypothesis
+ that the mite treatment does not affect the probability of wilting.
+ That is to say, the probability of observing data as extreme as ours is
+ unlikely to occur by random chance when the null hypothesis is true.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Example:
+\end_layout
+
+\begin_layout Standard
+In a study to investigate possible treatments for human infertility, researchers
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Harrison, R.
+ F., Blades, M., De Louvois, J., & Hurley, R.
+ (1975).
+ Doxycycline treatment and human infertility.
+ 
+\emph on
+The Lancet
+\emph default
+, 305(7907), 605-607.
+\end_layout
+
+\end_inset
+
+performed a double-blind study and randomly divided 58 patients into two
+ groups.
+ The treatment group (
+\begin_inset Formula $n_{t}=30$
+\end_inset
+
+) received 100 mg per day of Doxycycline and the placebo group (
+\begin_inset Formula $n_{p}=28$
+\end_inset
+
+) received a placebo but were unaware that it was a placebo.
+ Within 5 months, the treatment group had 5 pregnancies, while the placebo
+ group had 4.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="9" columns="5">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Treatment
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Doxycycline
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Placebo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="left" valignment="middle" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Outcome
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Conceived
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $O_{c,t}=5$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $O_{c,p}=4$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $E_{c,t}=\left(\frac{9\cdot30}{58}\right)=4.66$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $E_{c,p}=\left(\frac{9\cdot28}{58}\right)=4.34$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $n_{c}=9$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Not Conceived
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $O_{nc,t}=25$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $O_{nc,p}=24$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $E_{nc,t}=\left(\frac{49\cdot30}{58}\right)=25.34$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $E_{nc,p}=\left(\frac{49\cdot28}{58}\right)=23.66$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $n_{nc}=49$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $n_{t}=30$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $n_{p}=28$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $n=58$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Just looking at the observed vs expected there doesn't seem to be much differenc
+e between the treatments.
+ To confirm this we do a similar test as before.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<cache=TRUE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+Conceived <-  data.frame(
+\end_layout
+
+\begin_layout Plain Layout
+
+  CoupleID=1:58,
+\end_layout
+
+\begin_layout Plain Layout
+
+  Treatment=c(rep('Doxycyline',30), rep('Placebo',28)),
+\end_layout
+
+\begin_layout Plain Layout
+
+  Outcome=c(rep('Conceived',5), rep('Not Conceived',25),
+\end_layout
+
+\begin_layout Plain Layout
+
+            rep('Conceived',4), rep('Not Conceived',24)))
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+chisq.test( 
+\end_layout
+
+\begin_layout Plain Layout
+
+  tally(Outcome ~ Treatment, data=Conceived, format='count'), 
+\end_layout
+
+\begin_layout Plain Layout
+
+  correct=FALSE )
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Notice that the 
+\family typewriter
+chisq.test()
+\family default
+ function is warning us that it doesn't think the asymptotic (large sample)
+ approximations it must make to calculate a p-value are appropriate.
+ Fortunately we have an alternative methodology of simulation to rely on
+ and all we want is to save the observed 
+\begin_inset Formula $X^{2}$
+\end_inset
+
+ test statistic from this analysis.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<cache=TRUE, warning=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+Xsq <- chisq.test(                    
+\end_layout
+
+\begin_layout Plain Layout
+
+  tally(Outcome ~ Treatment, data=Conceived, format='count'),
+\end_layout
+
+\begin_layout Plain Layout
+
+  correct=FALSE 
+\end_layout
+
+\begin_layout Plain Layout
+
+)$statistic
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Xsq
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+As usual, we create the sampling distribution of 
+\begin_inset Formula $X^{2*}$
+\end_inset
+
+ by shuffling the treatment labels and re-calculating the statistic of interest.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<cache=TRUE, warning=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+SamplingDist <- do(10000)*
+\end_layout
+
+\begin_layout Plain Layout
+
+  chisq.test( 
+\end_layout
+
+\begin_layout Plain Layout
+
+    tally(Outcome ~ shuffle(Treatment), data=Conceived, format='count'),
+\end_layout
+
+\begin_layout Plain Layout
+
+    correct=FALSE 
+\end_layout
+
+\begin_layout Plain Layout
+
+  )$statistic
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+histogram( ~ X.squared, data=SamplingDist, groups=( X.squared >= Xsq ),
+\end_layout
+
+\begin_layout Plain Layout
+
+           main='Sampling distribution of Xsq*', xlab='Xsq*')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Note that the the entire distribution is 
+\begin_inset Quotes eld
+\end_inset
+
+more extreme
+\begin_inset Quotes erd
+\end_inset
+
+ than what our actual data was because our there is no way to perfectly
+ partition the 9 pregnancies into the 
+\begin_inset Formula $n_{t}=30$
+\end_inset
+
+ and 
+\begin_inset Formula $n_{p}=28$
+\end_inset
+
+ groups and our observed data was as close as possible to an even split
+ as possible.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<cache=TRUE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+p.value <- tally( ~ (X.squared >= Xsq), data=SamplingDist, format='proportion'
+ )
+\end_layout
+
+\begin_layout Plain Layout
+
+p.value
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We see that the p-value is 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Sexpr{p.value[1]}
+\end_layout
+
+\end_inset
+
+ and conclude that there is no evidence to reject the null hypothesis that
+ Doxycycline affects the probability of conceiving.
+ 
+\end_layout
+
+\begin_layout Section
+Summary
+\end_layout
+
+\begin_layout Standard
+The scientific method relies on being able to decide if a given set of data
+ is compatible or consistent with a particular hypothesis (which we called
+ the null hypothesis).
+ We answer that question by first simplifying the data to a single statistic
+ that concisely measures the hypothesis of interest, and then examining
+ the distribution of that statistic assuming the null hypothesis is correct.
+ We called that distribution the 
+\emph on
+sampling distribution
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+In the case of a sample proportion, we were able to simulate the sampling
+ distribution directly and all that was needed was the null hypothesis value
+ for 
+\begin_inset Formula $\pi$
+\end_inset
+
+.
+ With repeated draws from the sampling distribution, we were able to infer
+ how probable our observed data would be if the null hypothesis was true.
+ We called that probability the 
+\emph on
+p-value
+\emph default
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Designed experiments are the 
+\begin_inset Quotes eld
+\end_inset
+
+gold standard
+\begin_inset Quotes erd
+\end_inset
+
+ of scientific studies because the random assignment to treatment groups
+ controls for unknown lurking variables.
+ Due to the random assignment, each level of the lurking variables end up
+ in all the treatment groups.
+ This random assignment is absolutely critical in the study and our simulated
+ sampling distribution is consistent with design by incorporating this randomnes
+s by the shuffling of treatment labels.
+ Assuming the null hypothesis of 
+\begin_inset Quotes eld
+\end_inset
+
+no effect
+\begin_inset Quotes erd
+\end_inset
+
+ is true, then the assignment to treatment groups is not related to the
+ observed response and our simulation method respects the experimental design.
+ 
+\end_layout
+
+\begin_layout Standard
+The methodology we used isn't restricted to these particular statistics.
+ If we wanted to know if the median values of two treatment groups are different
+, we would use 
+\begin_inset Formula 
+\[
+d=\tilde{x}_{1}-\tilde{x}_{2}
+\]
+
+\end_inset
+
+ as our sample statistic where 
+\begin_inset Formula $\tilde{x}_{1}$
+\end_inset
+
+and 
+\begin_inset Formula $\tilde{x}_{2}$
+\end_inset
+
+ are the sample medians of the groups and then do usual trick of repeatedly
+ calculating that same statistic on the shuffled data sets.
+ The comparison of the observed statistic to the sampling distribution when
+ 
+\begin_inset Formula $H_{0}$
+\end_inset
+
+ is true would remain the same.
+\end_layout
+
+\end_body
+\end_document

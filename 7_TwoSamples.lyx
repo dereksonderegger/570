@@ -1,0 +1,3376 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass book
+\begin_preamble
+\usepackage{a4wide}
+\end_preamble
+\options a4paper
+\use_default_options false
+\begin_modules
+knitr
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding iso8859-1
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 0
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Two-Sample Hypothesis Tests and Confidence Intervals
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<echo=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+if(file.exists('Global_Knitr_Opts.R')){
+\end_layout
+
+\begin_layout Plain Layout
+
+  source('Global_Knitr_Opts.R')
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+opts_chunk$set(fig.path   = 'figure/Ch_7_TwoSamples/') 
+\end_layout
+
+\begin_layout Plain Layout
+
+opts_chunk$set(cache.path =  'cache/Ch_7_TwoSamples/')
+\end_layout
+
+\begin_layout Plain Layout
+
+opts_chunk$set(cache      =  FALSE)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+There are two broad classifications of types of research, 
+\emph on
+observational studies
+\emph default
+ and 
+\emph on
+designed experiments
+\emph default
+.
+ These two types of research differ in the way that the researcher interacts
+ with the subjects being observed.
+ In an observational study, the researcher doesn't force a subject into
+ some behavior or treatment, but merely observes the subject (making measurement
+s but not changing behaviors).
+ In contrast, in an experiment, the researcher imposes different treatments
+ onto the subjects and the pairing between the subject and treatment group
+ happens at random.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Example: 
+\series default
+For many years hormone (Estrogen and Progestin) replacement therapy's primary
+ use for post-menopausal woman was to reduce the uncomfortable side-effects
+ of menopause but it was thought to also reduced the rate of rate of breast
+ cancer in post-menopausal women.
+ This belief was the result of many observational studies where women who
+ chose to take hormone replacement therapy also had reduced rates of breast
+ cancer.
+ The 
+\emph on
+lurking
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+A 
+\emph on
+lurking variable
+\emph default
+ is a variable the researcher hasn't considered but affects the response
+ variable.
+ In observational studies a researcher will try to measure all the variables
+ that might affect the response but will undoubtable miss something.
+ 
+\end_layout
+
+\end_inset
+
+ variable
+\emph default
+ thing that the observational studies missed was that hormone therapy is
+ relatively expensive and was taken by predominately women of a high socio-
+ economic status.
+ Those women tended to be more health conscious, lived in areas with less
+ pollution, and were generally at a lower risk for developing breast cancer.
+ Even when researchers realized that socio-economic status was 
+\emph on
+confounded
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Two variables are said to be 
+\emph on
+confounded
+\emph default
+ if the design of a given experiment or study cannot distinguish the effect
+ of one variable from the other.
+\end_layout
+
+\end_inset
+
+ 
+\emph default
+with the therapy, they couldn't be sure which was the cause of the reduced
+ breast cancer rates.
+ To correctly test this, nearly 17,000 women underwent an experiment in
+ which each women was randomly assigned to take either the treatment (E+P)
+ or a placebo.
+ The Women’s Health Initiative (WHI) Estrogen plus Progestin Study
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Risks and Benefits of Estrogen Plus Progestin in Healthy Postmenopausal
+ Women: Principal Results From the Women's Health Initiative Randomized
+ Controlled Trial.
+ JAMA.
+ 2002;288(3):321-333.
+ doi:10.1001/jama.288.3.321.
+\end_layout
+
+\end_inset
+
+ (E+P) was stopped on July 7, 2002 (after an average 5.6 years of follow-up)
+ because of increased risks of cardiovascular disease and breast cancer
+ in women taking active study pills, compared with those on placebo (inactive
+ pills).
+ The study showed that the overall risks exceeded the benefits, with women
+ taking E+P at higher risk for heart disease, blood clots, stroke, and breast
+ cancer, but at lower risk for fracture and colon cancer.
+ Lurking variables such as income levels and education are correlated to
+ overall health behaviors and with an increased use of hormone replacement
+ therapy.
+ By randomly assigning each woman to a treatment, the unidentified lurking
+ variables were evenly spread across treatments and the dangers of hormone
+ replacement therapy were revealed.
+\end_layout
+
+\begin_layout Standard
+There is a fundamental difference between imposing treatments onto subjects
+ versus taking a random sample from a population and observing relationships
+ between variables.
+ In general, designed experiments allow us to determine cause-and-effect
+ relationships while observational studies can only determine if variables
+ are correlated.
+ This difference in how the data is generated will result in different methods
+ for generating a sampling distribution for a statistic of interest.
+ In this chapter we will focus on experimental designs, though the same
+ analyses are appropriate for observational studies.
+\end_layout
+
+\begin_layout Section
+Difference in means between two groups
+\end_layout
+
+\begin_layout Standard
+Often researchers will obtain a group of subjects and them into two groups,
+ provide different treatments to each, and the observe some response.
+ The goal is to see if the two groups have different mean values, as this
+ is the most common difference to be interested in.
+\end_layout
+
+\begin_layout Standard
+The first thing to consider is that the group of subjects in our sample
+ is should be representative of a population of interest.
+ Because we cannot impose an experiment on an entire population, we often
+ are forced to examine a small sample and we hope that the sample statistics
+ (the sample mean 
+\begin_inset Formula $\bar{x}$
+\end_inset
+
+, and sample standard deviation 
+\begin_inset Formula $s$
+\end_inset
+
+) are good estimates of the population parameters (the population mean 
+\begin_inset Formula $\mu$
+\end_inset
+
+, and population standard deviation 
+\begin_inset Formula $\sigma$
+\end_inset
+
+).
+ First recognize that these are a sample and we generally think of them
+ to be representative of some population.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Example:
+\series default
+ Finger Tapping and Caffeine
+\end_layout
+
+\begin_layout Standard
+The effects of caffeine on the body have been well studied.
+ In one experiment,
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Hand, A.J., Daly, F., Lund, A.D., McConway, K.J.
+ and Ostrowski, I., 
+\emph on
+Handbook of Small Data Sets
+\emph default
+, Chapman and Hall, London, 1994, p.
+ 40.
+\end_layout
+
+\end_inset
+
+ a group of male college students were trained in a particular tapping movement
+ and to tap at a rapid rate.
+ They were randomly divided into caffeine and non-caffeine groups and given
+ approximately two cups of coffee (with either 200 mg of caffeine or none).
+ After a 2-hour period, the students tapping rate was measured.
+ 
+\end_layout
+
+\begin_layout Standard
+The population that we are trying to learn about is male college-aged students
+ and we the most likely question of interest is if the mean tap rate of
+ the caffeinated group is different than the non-caffeinated group.
+ Notice that we don't particularly care about these 20 students, but rather
+ the population of male college-aged students so the hypotheses we are intereste
+d in are
+\begin_inset Formula 
+\begin{eqnarray*}
+H_{0}: & \mu_{c}=\mu_{nc}\\
+H_{a}: & \mu_{c}\ne\mu_{nc}
+\end{eqnarray*}
+
+\end_inset
+
+where 
+\begin_inset Formula $\mu_{c}$
+\end_inset
+
+ is the mean tap rate of the caffeinated group and 
+\begin_inset Formula $\mu_{nc}$
+\end_inset
+
+ is the mean tap rate of the non-caffeinated group.
+ We could equivalently express these hypotheses via
+\begin_inset Formula 
+\begin{eqnarray*}
+H_{0}: & \mu_{nc}-\mu_{c}=0\\
+H_{a}: & \mu_{nc}-\mu_{c}\ne0
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Or we could let 
+\begin_inset Formula $\delta=\mu_{nc}-\mu_{c}$
+\end_inset
+
+ and write the hypotheses as 
+\begin_inset Formula 
+\begin{eqnarray*}
+H_{0}:\,\delta & = & 0\\
+H_{a}:\,\delta & \ne & 0
+\end{eqnarray*}
+
+\end_inset
+
+The data are available in many different formats at 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://www.lock5stat.com/datapage.html
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<message=FALSE, warning=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+# Load all the libraries we'll need in this chapter
+\end_layout
+
+\begin_layout Plain Layout
+
+library(mosaic)    # for the do{}, shuffle(), resample() functions...
+\end_layout
+
+\begin_layout Plain Layout
+
+library(Lock5Data)
+\end_layout
+
+\begin_layout Plain Layout
+
+library(dplyr)
+\end_layout
+
+\begin_layout Plain Layout
+
+library(tidyr)     # spread() and gather()
+\end_layout
+
+\begin_layout Plain Layout
+
+library(ggplot2)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+data(CaffeineTaps)   # load the data from the Lock5Data package
+\end_layout
+
+\begin_layout Plain Layout
+
+str(CaffeineTaps)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The first thing we should do is, as always, is graph the data.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<fig.height=2>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+ggplot(CaffeineTaps, aes(x=Taps)) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_histogram( binwidth=.2) + 
+\end_layout
+
+\begin_layout Plain Layout
+
+  facet_grid( Group ~ .
+ )  # two graphs stacked by Group (Caffeine vs non)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+From this view, it looks like the caffeine group has a higher tapping rate.
+ It will be helpful to summarize the difference between these two groups
+ with a single statistic by calculating the mean for each group and then
+ calculate the difference between the group means.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<fig.height=3>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+CaffeineTaps %>% 
+\end_layout
+
+\begin_layout Plain Layout
+
+  group_by(Group) %>%  # group the summary stats by Treatment group
+\end_layout
+
+\begin_layout Plain Layout
+
+  summarise(xbar=mean(Taps), s=sd(Taps))
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<fig.height=3>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+# No Caffeine  -  Caffeine
+\end_layout
+
+\begin_layout Plain Layout
+
+244.8 - 248.3
+\end_layout
+
+\begin_layout Plain Layout
+
+CaffeineTaps %>% group_by(Group) %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  summarise(xbar=mean(Taps)) %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  summarise(d = diff(xbar))
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Notationally, lets call this statistic 
+\begin_inset Formula $d=\bar{x}_{nc}-\bar{x}_{c}=-3.5$
+\end_inset
+
+.
+ We are interested in testing if this observed difference might be due to
+ just random chance and we just happened to assigned more of the fast tappers
+ to the caffeine group.
+ How could we test the null hypothesis that the mean of the caffeinated
+ group is different than the non-caffeinated?
+\end_layout
+
+\begin_layout Subsection
+Inference via resampling 
+\end_layout
+
+\begin_layout Standard
+The key idea is 
+\emph on
+
+\begin_inset Quotes eld
+\end_inset
+
+How could the data have turned out if the null hypothesis is true?
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\emph default
+If the null hypothesis is true, then the caffeinated/non-caffeinated group
+ treatment had no effect on the tap rate and it was just random chance that
+ the caffeinated group got a larger percentage of fast tappers.
+ That is to say the group variable has no relationship to tap rate.
+ I could have just as easily assigned the fast tappers to the non-caffeinated
+ group purely by random chance.
+ So our simulation technique is to 
+\series bold
+shuffle the group labels 
+\series default
+and then calculate a difference between the group means!
+\end_layout
+
+\begin_layout Standard
+We can perform this shuffling with the following code:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<cache=TRUE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+# shuffle(): takes an input column and reorders it randomly
+\end_layout
+
+\begin_layout Plain Layout
+
+CaffeineTaps %>% mutate(ShuffledGroup = shuffle(Group))
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We can then calculate the mean difference but this time using the randomly
+ generated groups, and now the non-caffeinated group just happens to have
+ a slightly higher mean tap rate just by the random sorting into two groups.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+CaffeineTaps %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  mutate( ShuffledGroup = shuffle(Group) ) %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  group_by( ShuffledGroup )  %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  summarise(xbar=mean(Taps)) %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  summarise(d.star = diff(xbar))  
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We could repeat this shuffling several times and see the possible values
+ we might have seen if the null hypothesis is correct and the treatment
+ group doesn't matter at all.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+do(5) * {
+\end_layout
+
+\begin_layout Plain Layout
+
+  CaffeineTaps %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  mutate( ShuffledGroup = shuffle(Group) ) %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  group_by( ShuffledGroup )  %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  summarise(xbar=mean(Taps)) %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  summarise(d.star = diff(xbar))  
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Of course, five times isn't sufficient to understand the sampling distribution
+ of the mean difference under the null hypothesis, we should do more.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<echo=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+set.seed(456)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<Tapping_Permutation, cache=TRUE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+SamplingDist <- do(10000) * {
+\end_layout
+
+\begin_layout Plain Layout
+
+  CaffeineTaps %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  mutate( ShuffledGroup = shuffle(Group) ) %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  group_by( ShuffledGroup )  %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  summarise(xbar=mean(Taps)) %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  summarise(d.star = diff(xbar))  
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<fig.height=2.5>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+ggplot(SamplingDist, aes(x=d.star)) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_histogram(binwidth=.2) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  ggtitle('Permutation dist.
+ of d* assuming H0 is true') +
+\end_layout
+
+\begin_layout Plain Layout
+
+  xlab('d*')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We have almost no cases where the randomly assigned groups produced a difference
+ as extreme as the actual observed difference of 
+\begin_inset Formula $d=-3.5$
+\end_inset
+
+.
+ We can calculate the percentage of the sampling distribution of the difference
+ in means that is farther from zero 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+SamplingDist %>% 
+\end_layout
+
+\begin_layout Plain Layout
+
+  mutate( MoreExtreme = ifelse( abs(d.star) >= 3.5, 1, 0)) %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  summarise( p.value1 = sum(MoreExtreme)/n(),       # these are all the
+\end_layout
+
+\begin_layout Plain Layout
+
+             p.value2 = mean(MoreExtreme),          # same calculation
+\end_layout
+
+\begin_layout Plain Layout
+
+             p.value3 = mean( abs(d.star) >= 3.5 )) # but more verbose
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+We see that only 
+\begin_inset Formula $58/10,000$
+\end_inset
+
+ simulations of data produced assuming 
+\begin_inset Formula $H_{0}$
+\end_inset
+
+ is true produced a 
+\begin_inset Formula $d^{*}$
+\end_inset
+
+ value more extreme than our observed difference in sample means so we can
+ reject the null hypothesis 
+\begin_inset Formula $H_{0}:\mu_{nc}-\mu_{c}=0$
+\end_inset
+
+ in favor of the alternative 
+\begin_inset Formula $H_{a}:\mu_{nc}-\mu_{c}\ne0$
+\end_inset
+
+ at an 
+\begin_inset Formula $\alpha=0.05$
+\end_inset
+
+ or any other reasonable 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ level.
+\end_layout
+
+\begin_layout Standard
+Everything we know about the biological effects of ingesting caffeine suggests
+ that we should have expected the caffeinated group to tap faster, so we
+ might want to set up our experiment so only faster tapping represents 
+\begin_inset Quotes eld
+\end_inset
+
+extreme
+\begin_inset Quotes erd
+\end_inset
+
+ data compared to the null hypothesis.
+ In this case we want an alternative of 
+\begin_inset Formula $H_{a}:\,\mu_{nc}-\mu_{c}<0$
+\end_inset
+
+? Therefore the null and alternative hypothesis are 
+\begin_inset Formula 
+\begin{eqnarray*}
+H_{0}:\,\mu_{nc}-\mu_{c} & \ge & 0\\
+H_{a}:\,\mu_{nc}-\mu_{c} & < & 0
+\end{eqnarray*}
+
+\end_inset
+
+or using the parameter 
+\begin_inset Formula $\delta=\mu_{nc}-\mu_{c}$
+\end_inset
+
+ the null and alternative are 
+\begin_inset Formula 
+\begin{eqnarray*}
+H_{0}:\,\delta & \ge & 0\\
+H_{a}:\,\delta & < & 0
+\end{eqnarray*}
+
+\end_inset
+
+The creation of the sampling distribution of the mean difference 
+\begin_inset Formula $d^{*}$
+\end_inset
+
+ is identical to our previous technique because if our observed difference
+ 
+\begin_inset Formula $d$
+\end_inset
+
+ is so negative that it is incompatible with the hypothesis that 
+\begin_inset Formula $\delta=0$
+\end_inset
+
+ then it 
+\emph on
+must
+\emph default
+ also be incompatible with any positive value of 
+\begin_inset Formula $\delta$
+\end_inset
+
+, so we evaluate the consistency of our data with the value of 
+\begin_inset Formula $\delta$
+\end_inset
+
+ that is closest to the observed 
+\begin_inset Formula $d$
+\end_inset
+
+ while still being true to the null hypothesis.
+ Thus for either the the one-sided (i.e.
+ 
+\begin_inset Formula $\delta<0$
+\end_inset
+
+) or the two-sided case (i.e.
+ 
+\begin_inset Formula $\delta\ne0$
+\end_inset
+
+), we generate the sampling distribution of 
+\begin_inset Formula $d^{*}$
+\end_inset
+
+ in the same way.
+ The only difference in the analysis is at the end when we calculate the
+ p-value and don't consider the positive tail.
+ That is, the p-value is the percent of simulations where 
+\begin_inset Formula $d^{*}<d$
+\end_inset
+
+.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+SamplingDist %>% 
+\end_layout
+
+\begin_layout Plain Layout
+
+  summarise( p.value = mean( d.star <= -3.5 ))
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+and we see that the p-value is approximately cut in half by ignoring the
+ upper tail, which makes sense considering the observed symmetry in the
+ sampling distribution of 
+\begin_inset Formula $d^{*}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+In general, we prefer to use a two-sided test because if the two-sided test
+ leads us to reject the null hypothesis then so would the appropriate one-sided
+ hypothesis
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Except in the case where the alternative was chosen before the data was
+ collected and the observed data was in the other tail.
+ For example: the alternative was 
+\begin_inset Formula $H_{a}:\delta>0$
+\end_inset
+
+ but the observed difference was actually negative.
+\end_layout
+
+\end_inset
+
+.
+ Second, by using a two-sample test, it prevents us from from 
+\begin_inset Quotes eld
+\end_inset
+
+tricking
+\begin_inset Quotes erd
+\end_inset
+
+ ourselves when we don't know the which group should have a higher mean
+ going into the experiment, but after seeing the data, thinking we should
+ have known and using the less stringent test.
+ Some statisticians go so far as to say that using a 1-sided test is outright
+ fraudulent.
+ Generally, we'll concentrate on two-sided tests as they are the most widely
+ acceptable.
+\end_layout
+
+\begin_layout Standard
+Notice that the corresponding confidence interval gives a similar inference.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<Tapping_Bootstrap, cache=TRUE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+BootDist <- do(10000)*{
+\end_layout
+
+\begin_layout Plain Layout
+
+  CaffeineTaps %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+    group_by(Group) %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+    resample() %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+    summarise( xbar=mean(Taps) ) %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+    summarise( d.star = diff(xbar)  )
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<fig.height=2.5>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+ggplot(BootDist, aes(x=d.star)) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_histogram(binwidth=.2) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  ggtitle('Bootstrap distribution of d*')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+CI <- quantile( BootDist$d.star, probs=c(0.025, 0.975) )
+\end_layout
+
+\begin_layout Plain Layout
+
+CI
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Notice that the null hypothesis value, 
+\begin_inset Formula $\delta=0$
+\end_inset
+
+, is not a value supported by the data because 
+\begin_inset Formula $0$
+\end_inset
+
+ is not in the 95% confidence interval.
+ A subtle point in the above bootstrap code is that I resampled each group
+ separately.
+ Because the experimental protocol was to have 10 in each group, then we
+ want our simulated data sets should obey the same rule.
+ Had I resampled first and then did the grouping, we might end up with 12
+ caffeinated and 8 un-caffeinated subjects, which is data that our experimental
+ design couldn't have generated.
+\end_layout
+
+\begin_layout Subsection
+Inference via asymptotic results (unequal variance assumption)
+\end_layout
+
+\begin_layout Standard
+Previously we've seen that the Central Limit Theorem gives us a way to estimate
+ the distribution of the sample mean.
+ So it should be reasonable to assume that for our two groups (1=NonCaffeine,
+ 2=Caffeine),
+\begin_inset Formula 
+\[
+\bar{X}_{1}\stackrel{\cdot}{\sim}N\left(\mu_{1},\,\sigma_{1}^{2}\right)\;\;\;\textrm{and}\;\;\;\bar{X}_{2}\stackrel{\cdot}{\sim}N\left(\mu_{2},\;\sigma_{2}^{2}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+It turns out that because 
+\begin_inset Formula $\bar{X}_{C}$
+\end_inset
+
+ and 
+\begin_inset Formula $\bar{X}_{NC}$
+\end_inset
+
+ both have approximately normal distributions, then the difference between
+ them also does.
+ This shouldn't be too surprising after looking at the permutation and bootstrap
+ distributions of the 
+\begin_inset Formula $d^{*}$
+\end_inset
+
+ values.
+ 
+\end_layout
+
+\begin_layout Standard
+So our hypothesis tests and confidence interval routine will follow a similar
+ pattern as our one-sample tests, but we now need to figure out the correct
+ standardization formula for the 
+\emph on
+difference in
+\emph default
+ 
+\emph on
+means.
+ 
+\emph default
+The only difficulty will be figuring out what the appropriate standard deviation
+ term 
+\begin_inset Formula $\hat{\sigma}_{D}$
+\end_inset
+
+ should be.
+\end_layout
+
+\begin_layout Standard
+Recall that if two random variables, 
+\begin_inset Formula $A$
+\end_inset
+
+ and 
+\begin_inset Formula $B$
+\end_inset
+
+, are independent then
+\begin_inset Formula 
+\[
+Var\left(A-B\right)=Var(A)+Var(B)
+\]
+
+\end_inset
+
+and therefore 
+\begin_inset Formula 
+\begin{eqnarray*}
+Var\left(D\right) & = & Var\left(\bar{X}_{1}-\bar{X}_{2}\right)\\
+\\
+ & = & Var\left(\bar{X}_{1}\right)+Var\left(\bar{X}_{2}\right)\\
+\\
+ & = & \frac{\sigma_{1}^{2}}{n_{1}}+\frac{\sigma_{2}^{2}}{n_{2}}
+\end{eqnarray*}
+
+\end_inset
+
+and finally we have
+\begin_inset Formula 
+\[
+StdErr\left(D\right)=\sqrt{\frac{s_{1}^{2}}{n_{1}}+\frac{s_{2}^{2}}{n_{2}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+and therefore my standardized value for the difference will be
+\begin_inset Formula 
+\begin{eqnarray*}
+t_{???} & = & \frac{\textrm{estimate}\,\,\,-\,\,\,\textrm{hypothesized value}}{StdErr\left(\,\,\textrm{estimate}\,\,\right)}\\
+\\
+ & = & \frac{\left(\bar{x}_{1}-\bar{x}_{2}\right)-0}{\sqrt{\frac{s_{1}^{2}}{n_{1}}+\frac{s_{2}^{2}}{n_{2}}}}\\
+\\
+ & = & \frac{\left(-3.5\right)-0}{\sqrt{\frac{2.39^{2}}{10}+\frac{2.21^{2}}{10}}}\\
+\\
+ & = & -3.39
+\end{eqnarray*}
+
+\end_inset
+
+ This is somewhat painful, but reasonable.
+ The last question is what t-distribution should we compare this to? Previously
+ we've used 
+\begin_inset Formula $df=n-1$
+\end_inset
+
+ but now we have 
+\emph on
+two
+\emph default
+ samples.
+ So our degrees of freedom ought to be somewhere between 
+\begin_inset Formula $\min\left(n_{1},n_{2}\right)-2=8$
+\end_inset
+
+ and 
+\begin_inset Formula $\left(n_{1}+n_{2}\right)-1=19$
+\end_inset
+
+.
+ There is no correct answer, but the best approximation to what it should
+ be is called 
+\emph on
+Satterwaite's Approximation
+\emph default
+.
+ 
+\begin_inset Formula 
+\[
+df=\frac{\left(V_{1}+V_{2}\right)^{2}}{\frac{V_{1}^{2}}{n_{1}-1}+\frac{V_{2}^{2}}{n_{2}-1}}
+\]
+
+\end_inset
+
+and 
+\begin_inset Formula 
+\[
+V_{1}=\frac{s_{1}^{2}}{n_{1}}\;\;\textrm{and }\;\;V_{2}=\frac{s_{2}^{2}}{n_{2}}
+\]
+
+\end_inset
+
+ So for our example we have
+\begin_inset Formula 
+\[
+V_{1}=\frac{2.39^{2}}{10}=0.5712\;\;\;\textrm{and}\;\;\;V_{2}=\frac{2.21^{2}}{10}=0.4884
+\]
+
+\end_inset
+
+and
+\begin_inset Formula 
+\[
+df=\frac{\left(0.5712+0.4884\right)^{2}}{\frac{\left(0.5712\right)^{2}}{9}+\frac{\left(0.4884\right)^{2}}{9}}=17.89
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+So now we can compute our p-value as 
+\begin_inset Formula 
+\[
+p.value=P\left(T_{17.89}<-3.39\right)
+\]
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+pt(-3.39, df=17.89)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In a similar fashion, we can calculate the confidence interval in our usual
+ fashion
+\begin_inset Formula 
+\begin{eqnarray*}
+\textrm{Est}\;\;\pm\;t_{???}^{1-\alpha/2}\;\textrm{StdErr}\left(\;\textrm{Est}\;\right)
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\left(\bar{x}_{1}-\bar{x}_{2}\right)\pm t_{17.89}^{1-\alpha/2}\sqrt{\frac{s_{1}^{2}}{n_{1}}+\frac{s_{2}^{2}}{n_{2}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+-3.5\pm2.10\sqrt{\frac{2.39^{2}}{10}+\frac{2.21^{2}}{10}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+-3.5\pm2.16
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\left(-5.66,\;-1.34\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+It is probably fair to say that this is an ugly calculation to do by hand.
+ Fortunately it isn't too hard to make 
+\family typewriter
+R
+\family default
+ do these calculations for you.
+ The function 
+\family typewriter
+t.test()
+\family default
+ will accept two arguments, a vector of values from the first group and
+ a vector from the second group.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+Caffeine    <- CaffeineTaps$Taps[ 1:10]  # first 10 are Caffeine
+\end_layout
+
+\begin_layout Plain Layout
+
+NonCaffeine <- CaffeineTaps$Taps[11:20]  # last 10 are non-Caffeine
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# Do the t-test
+\end_layout
+
+\begin_layout Plain Layout
+
+t.test( NonCaffeine, Caffeine )
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Inference via asymptotic results (equal variance assumption)
+\end_layout
+
+\begin_layout Standard
+In the 
+\family typewriter
+CaffeineTaps
+\family default
+ example, the standard deviations of each group are quite similar.
+ Instead of thinking of the data as 
+\begin_inset Formula 
+\[
+\bar{X}_{1}\stackrel{\cdot}{\sim}N\left(\mu_{1},\,\sigma_{1}^{2}\right)\;\;\;\textrm{and}\;\;\;\bar{X}_{2}\stackrel{\cdot}{\sim}N\left(\mu_{2},\;\sigma_{2}^{2}\right)
+\]
+
+\end_inset
+
+we could consider the model where we assume that the variance term is the
+ same for each sample.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\bar{X}_{1}\stackrel{\cdot}{\sim}N\left(\mu_{1},\,\sigma^{2}\right)\;\;\;\textrm{and}\;\;\;\bar{X}_{2}\stackrel{\cdot}{\sim}N\left(\mu_{2},\;\sigma^{2}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+First, we can estimate 
+\begin_inset Formula $\mu_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mu_{2}$
+\end_inset
+
+ with the appropriate sample means 
+\begin_inset Formula $\bar{x}_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\bar{x}_{2}$
+\end_inset
+
+.
+ Next we need to calculate an estimate of 
+\begin_inset Formula $\sigma$
+\end_inset
+
+ using all of the data.
+ First recall the formula for the sample variance for one group was
+\begin_inset Formula 
+\[
+s^{2}=\frac{1}{n-1}\left[\sum_{j=1}^{n}\left(x_{j}-\bar{x}\right)^{2}\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In the case with two samples, we want a similar formula but it should take
+ into account data from both sample groups.
+ Define the notation 
+\begin_inset Formula $x_{1j}$
+\end_inset
+
+ to be the 
+\begin_inset Formula $j$
+\end_inset
+
+th observation of group 
+\begin_inset Formula $1$
+\end_inset
+
+, and 
+\begin_inset Formula $x_{2j}$
+\end_inset
+
+ to be the 
+\begin_inset Formula $j$
+\end_inset
+
+th observation of group 2 and in general 
+\begin_inset Formula $x_{ij}$
+\end_inset
+
+ as the 
+\begin_inset Formula $j$
+\end_inset
+
+th observation from group 
+\begin_inset Formula $i$
+\end_inset
+
+.
+ We want to subtract each observation from the its appropriate sample mean
+ and then, because we had to estimate two means, we need to subtract two
+ degrees of freedom from the denominator.
+\begin_inset Formula 
+\begin{eqnarray*}
+s_{pooled}^{2} & = & \frac{1}{n_{1}+n_{2}-2}\left[\sum_{j=1}^{n_{1}}\left(x_{1j}-\bar{x}_{1}\right)^{2}+\sum_{j=1}^{n_{2}}\left(x_{2j}-\bar{x}_{2}\right)^{2}\right]\\
+\\
+ & = & \frac{1}{n_{1}+n_{2}-2}\left[\sum_{j=1}^{n_{1}}e_{1j}^{2}+\sum_{j=1}^{n_{2}}e_{2j}^{2}\right]\\
+\\
+ & = & \frac{1}{n_{1}+n_{2}-2}\left[\sum_{i=1}^{2}\sum_{j=1}^{n_{i}}e_{ij}^{2}\right]
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $\bar{x}_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\bar{x}_{2}$
+\end_inset
+
+ are the sample means and 
+\begin_inset Formula $e_{ij}=x_{ij}-\bar{x}_{i}$
+\end_inset
+
+ is the residual error of the 
+\begin_inset Formula $i,j$
+\end_inset
+
+ observation.
+ A computationally convenient formula for this same quantity is
+\begin_inset Formula 
+\[
+s_{pooled}^{2}=\frac{1}{n_{1}+n_{2}-2}\left[\left(n_{1}-1\right)s_{1}^{2}+\left(n_{2}-1\right)s_{2}^{2}\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Finally we notice that this pooled estimate of the variance term 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+ has 
+\begin_inset Formula $n_{1}+n_{2}-2$
+\end_inset
+
+ degrees of freedom.
+ One benefit of the pooled procedure is that we don't have to mess with
+ the Satterthwaite's approximate degrees of freedom.
+\end_layout
+
+\begin_layout Standard
+Recall our test statistic in the unequal variance case was
+\begin_inset Formula 
+\[
+t_{???}=\frac{\left(\bar{x}_{1}-\bar{x}_{2}\right)-0}{\sqrt{\frac{s_{1}^{2}}{n_{1}}+\frac{s_{2}^{2}}{n_{2}}}}
+\]
+
+\end_inset
+
+but in the equal variance case, we will use the pooled estimate of the variance
+ term 
+\begin_inset Formula $s_{pooled}^{2}$
+\end_inset
+
+ instead of 
+\begin_inset Formula $s_{1}^{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $s_{2}^{2}$
+\end_inset
+
+.
+ So our test statistic becomes 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+t_{df=n_{1}+n_{2}-2} & = & \frac{\left(\bar{x}_{1}-\bar{x}_{2}\right)-0}{\sqrt{\frac{s_{pool}^{2}}{n_{1}}+\frac{s_{pool}^{2}}{n_{2}}}}\\
+\\
+ & = & \frac{\left(\bar{x}_{1}-\bar{x}_{2}\right)-0}{s_{pool}\sqrt{\frac{1}{n_{1}}+\frac{1}{n_{2}}}}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where we have 
+\begin_inset Formula $StdErr\left(\bar{X}_{1}-\bar{X}_{2}\right)=s_{pooled}\sqrt{\left(1/n_{1}\right)+\left(1/n_{2}\right)}$
+\end_inset
+
+.
+ For the 
+\family typewriter
+CaffeineTaps
+\family default
+ data, this results in the following analysis for
+\begin_inset Formula 
+\begin{eqnarray*}
+H_{0}: & \mu_{nc}-\mu_{c}=0\\
+H_{a}: & \mu_{nc}-\mu_{c}\ne0
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+First we have to calculate the summary statistics (along with the pooled
+ 
+\begin_inset Formula $\sigma_{pooled}$
+\end_inset
+
+).
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+CaffeineTaps %>% 
+\end_layout
+
+\begin_layout Plain Layout
+
+  group_by(Group) %>% 
+\end_layout
+
+\begin_layout Plain Layout
+
+  summarise(xbar.i = mean(Taps),   # sample mean for each group
+\end_layout
+
+\begin_layout Plain Layout
+
+            s2.i   = var(Taps),    # sample variances for each group
+\end_layout
+
+\begin_layout Plain Layout
+
+            s.i    = sd(Taps),     # sample standard deviations for each
+ group
+\end_layout
+
+\begin_layout Plain Layout
+
+            n.i    = n()      )    # sample sizes for each group
+\end_layout
+
+\begin_layout Plain Layout
+
+CaffeineTaps %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  group_by(Group) %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  summarize(  n.i = n(),             
+\end_layout
+
+\begin_layout Plain Layout
+
+             s2.i = var(Taps) ) %>%     
+\end_layout
+
+\begin_layout Plain Layout
+
+  summarize( s2.p = sum( (n.i-1)*s2.i ) / ( sum(n.i)-2 ),
+\end_layout
+
+\begin_layout Plain Layout
+
+             s.p  = sqrt(s2.p) )  
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Next we can calculate 
+\begin_inset Formula 
+\[
+t_{18}=\frac{\left(244.8-248.3\right)-0}{2.31\sqrt{\frac{1}{10}+\frac{1}{10}}}=-3.39
+\]
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+p.value <- 2 * pt(-3.39, df=18)   # 2-sided test, so multiply by 2
+\end_layout
+
+\begin_layout Plain Layout
+
+p.value      
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The associated 
+\begin_inset Formula $95\%$
+\end_inset
+
+ confidence interval is
+\begin_inset Formula 
+\[
+\left(\bar{x}_{1}-\bar{x}_{2}\right)\pm t_{n_{1}+n_{2}-2}^{1-\alpha/2}\;\left(s_{pool}\sqrt{\frac{1}{n_{1}}+\frac{1}{n_{2}}}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+qt( .975, df=18 )    
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+-3.5\pm2.10\left(\,2.31\sqrt{\frac{1}{10}+\frac{1}{10}}\right)
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+-3.5\pm2.17
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\left(-5.67,\;-1.33\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This p-value and 
+\begin_inset Formula $95\%$
+\end_inset
+
+ confidence interval are quite similar to the values we got in the case
+ where we assumed unequal variances.
+\end_layout
+
+\begin_layout Standard
+As usual, these calculations are pretty annoying to do by hand and we wish
+ to instead do them using 
+\family typewriter
+R
+\family default
+.
+ Again the function 
+\family typewriter
+t.test()
+\family default
+ will do the annoying calculations for us.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+Caffeine    <- CaffeineTaps$Taps[ 1:10]  # first 10 are Caffeine
+\end_layout
+
+\begin_layout Plain Layout
+
+NonCaffeine <- CaffeineTaps$Taps[11:20]  # last 10 are non-Caffeine
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# Do the t-test
+\end_layout
+
+\begin_layout Plain Layout
+
+t.test( NonCaffeine, Caffeine, var.equal=TRUE )
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+# 99% confidence interval instead
+\end_layout
+
+\begin_layout Plain Layout
+
+t.test( NonCaffeine, Caffeine, var.equal=TRUE, conf.level=.99 )
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Example - Does drinking beer increase your attractiveness to mosquitos?
+\end_layout
+
+\begin_layout Standard
+In places in the country substantial mosquito populations, the question
+ of whether drinking beer causes the drinker to be more attractive to the
+ mosquitoes than drinking something else has plagued campers.
+ To answer such a question, researchers
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Lefvre, T., et.
+ al., “Beer Consumption Increases Human Attractiveness to Malaria Mosquitoes”
+ PLoS ONE, 2010; 5(3): e9546
+\end_layout
+
+\end_inset
+
+ conducted a study to determine if drinking beer attracts more mosquitoes
+ than drinking water.
+ Of 
+\begin_inset Formula $n=43$
+\end_inset
+
+ subjects, 
+\begin_inset Formula $n_{b}=25$
+\end_inset
+
+ drank a liter beer and 
+\begin_inset Formula $n_{w}=18$
+\end_inset
+
+ drank a liter of water and mosquitoes were caught in traps as they approached
+ the different subjects.
+ The critical part of this study is that the treatment (beer or water) was
+ randomly assigned to each subject.
+\end_layout
+
+\begin_layout Standard
+For this study, we want to test 
+\begin_inset Formula 
+\[
+H_{0}:\:\delta=0\;\;\;\;\;\;\textrm{vs}\;\;\;\;\;\;H_{a}:\,\delta<0
+\]
+
+\end_inset
+
+where we define 
+\begin_inset Formula $\delta=\mu_{w}-\mu_{b}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mu_{b}$
+\end_inset
+
+ is the mean number of mosquitoes attracted to a beer drinker and 
+\begin_inset Formula $\mu_{w}$
+\end_inset
+
+ is the mean number attracted to a water drinker.
+ As usual we begin our analysis by plotting the data.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<fig.height=3.5>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+# I can't find this dataset on-line so I'll just type it in.
+\end_layout
+
+\begin_layout Plain Layout
+
+Mosquitoes <- data.frame(
+\end_layout
+
+\begin_layout Plain Layout
+
+  Number = c(27,19,20,20,23,17,21,24,31,26,28,20,27,
+\end_layout
+
+\begin_layout Plain Layout
+
+             19,25,31,24,28,24,29,21,21,18,27,20,
+\end_layout
+
+\begin_layout Plain Layout
+
+             21,19,13,22,15,22,15,22,20,
+\end_layout
+
+\begin_layout Plain Layout
+
+             12,24,24,21,19,18,16,23,20),
+\end_layout
+
+\begin_layout Plain Layout
+
+  Treat = c( rep('Beer', 25), rep('Water',18) ) )
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# Plot the data
+\end_layout
+
+\begin_layout Plain Layout
+
+ggplot(Mosquitoes, aes(x=Number)) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_histogram(binwidth=1) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  facet_grid( Treat ~ .
+ )
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+For this experiment and the summary statistic that captures the difference
+ we are trying to understand is
+\begin_inset Formula 
+\[
+d=\bar{x}_{w}-\bar{x}_{b}
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\bar{x}_{w}$
+\end_inset
+
+ is the sample mean number of mosquitoes attracted by the water group and
+ 
+\begin_inset Formula $\bar{x}_{b}$
+\end_inset
+
+ is the sample mean number of mosquitoes attracted by the beer group.
+ Because of the order we chose for the subtraction, a negative value for
+ 
+\begin_inset Formula $d$
+\end_inset
+
+ is supportive of the alternative hypothesis that mosquitoes are more attracted
+ to beer drinkers.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+Mosquitoes %>% group_by(Treat) %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  summarise(xbar.i = mean(Number),
+\end_layout
+
+\begin_layout Plain Layout
+
+            s2.i   = var(Number),
+\end_layout
+
+\begin_layout Plain Layout
+
+            s.i    = sd(Number),
+\end_layout
+
+\begin_layout Plain Layout
+
+            n.i    = n())
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Here we see that our statistic of interest is 
+\begin_inset Formula 
+\begin{eqnarray*}
+d & = & \bar{x}_{w}-\bar{x}_{b}\\
+ & = & 19.22-23.6\\
+ & = & -4.37\bar{7}
+\end{eqnarray*}
+
+\end_inset
+
+The hypothesis test and confidence interval to see if this is statistically
+ significant evidence to conclude that beer increases attractiveness to
+ mosquitos is as follows.
+ First we perform the hypothesis test by creating the sampling distribution
+ of 
+\begin_inset Formula $d^{*}$
+\end_inset
+
+ assuming 
+\begin_inset Formula $H_{0}$
+\end_inset
+
+ is true by repeatedly shuffling the group labels and calculating differences.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<Mosquitos_Permute, cache=TRUE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+SamplingDist <- do(10000) *{
+\end_layout
+
+\begin_layout Plain Layout
+
+  Mosquitoes %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+    mutate(ShuffledTreat = shuffle(Treat)) %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+    group_by( ShuffledTreat )              %>% 
+\end_layout
+
+\begin_layout Plain Layout
+
+    summarise( xbar.i = mean(Number) )     %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+    summarise( d.star = diff(xbar.i) )
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<fig.height=2>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+ggplot(SamplingDist, aes(x=d.star)) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_histogram(binwidth=.5) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  ggtitle('Sampling Dist.
+ of d* assuming H0 is true')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<fig.height=2>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+p.value <- SamplingDist %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  summarise( mean( d.star <= -4.377 ))
+\end_layout
+
+\begin_layout Plain Layout
+
+p.value
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The associated confidence interval (lets do a 90% confidence level), is
+ created via bootstrapping.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<Mosquitos_Boot, cache=TRUE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+BootDist <- do(10000)*{
+\end_layout
+
+\begin_layout Plain Layout
+
+  Mosquitoes %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+    group_by(Treat)                     %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+    resample()                          %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+    summarise( xbar.i = mean(Number) )  %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+    summarise( d.star = diff(xbar.i) )    
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<fig.height=2.5>>= 
+\end_layout
+
+\begin_layout Plain Layout
+
+ggplot(BootDist, aes(x=d.star)) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_histogram(binwidth=.5) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  ggtitle('Bootstrap dist.
+ of d*')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>= 
+\end_layout
+
+\begin_layout Plain Layout
+
+quantile( BootDist$d.star, probs=c(.05, .95))
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The calculated p-value is extremely small (p = 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Sexpr{p.value[1]}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula $\le\alpha=0.10$
+\end_inset
+
+) and the associated two-sided 90% confidence interval doesn't contain 
+\begin_inset Formula $0$
+\end_inset
+
+, so we can conclude that the choice of drink does cause a change in attractiven
+ess to mosquitoes.
+\end_layout
+
+\begin_layout Standard
+If we wanted to perform the same analysis using asymptotic methods we could
+ do the calculations by hand, or just use R.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>= 
+\end_layout
+
+\begin_layout Plain Layout
+
+# the package mosaic augments the t.test() function to 
+\end_layout
+
+\begin_layout Plain Layout
+
+# input the data in a more convenient fashion.
+\end_layout
+
+\begin_layout Plain Layout
+
+t.test( Number ~ Treat, data=Mosquitoes, 
+\end_layout
+
+\begin_layout Plain Layout
+
+        var.equal=TRUE,
+\end_layout
+
+\begin_layout Plain Layout
+
+        conf.level=0.90)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Notice that we didn't specify the order for the subtraction and the 
+\family typewriter
+mosaic:t.test()
+\family default
+ function did the subtraction in the opposite order than we did.
+ The p-value is slightly different but doesn't change the resulting inference.
+\end_layout
+
+\end_body
+\end_document

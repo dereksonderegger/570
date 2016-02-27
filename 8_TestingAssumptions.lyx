@@ -416,12 +416,7 @@ ggplot(data) +
 \begin_layout Plain Layout
 
   labs(x='Theoretical', y='Observed', title="Q-Q Plot: Observed vs Normal
- Distribution') +
-\end_layout
-
-\begin_layout Plain Layout
-
-  theme_bw()
+ Distribution')
 \end_layout
 
 \begin_layout Plain Layout
@@ -506,12 +501,7 @@ ggplot(data) +
 \begin_layout Plain Layout
 
   labs(x='Theoretical', y='Observed', title='Q-Q Plot: Observed vs Normal
- Distribution') +
-\end_layout
-
-\begin_layout Plain Layout
-
-  theme_bw()
+ Distribution')
 \end_layout
 
 \begin_layout Plain Layout
@@ -1049,7 +1039,66 @@ status open
 
 \begin_layout Plain Layout
 
-<<fig.height=4, fig.width=4>>=
+<<message=FALSE, warning=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+# libraries I'll need for the rest of the chapter
+\end_layout
+
+\begin_layout Plain Layout
+
+library(mosaic)
+\end_layout
+
+\begin_layout Plain Layout
+
+library(dplyr)
+\end_layout
+
+\begin_layout Plain Layout
+
+library(ggplot2)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<fig.height=3>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -1074,7 +1123,12 @@ Alcohol <- data.frame(
 
 \begin_layout Plain Layout
 
-boxplot(time ~ trt, data=Alcohol, main='Raw Data')
+ggplot(Alcohol, aes(x=trt, y=time)) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_boxplot()
 \end_layout
 
 \begin_layout Plain Layout
@@ -1262,7 +1316,7 @@ ggplot(curves, aes(x=x, y=y)) +
 
 \begin_layout Plain Layout
 
-  facet_grid(group~., labeller=label_parsed) + theme_bw()
+  facet_grid(group~., labeller=label_parsed) 
 \end_layout
 
 \begin_layout Plain Layout
@@ -1501,7 +1555,7 @@ The labeling of group 1 and group 2 is completely arbitrary and I should
  Therefore we have
 \begin_inset Formula 
 \[
-P\left(F_{df_{1},\, df_{2}}>\frac{s_{1}^{2}}{s_{2}^{2}}\right)=P\left(F_{df_{2},\, df_{1}}<\frac{s_{2}^{2}}{s_{1}^{2}}\right)
+P\left(F_{df_{1},\,df_{2}}>\frac{s_{1}^{2}}{s_{2}^{2}}\right)=P\left(F_{df_{2},\,df_{1}}<\frac{s_{2}^{2}}{s_{1}^{2}}\right)
 \]
 
 \end_inset
@@ -1610,11 +1664,6 @@ status open
 
 \begin_layout Plain Layout
 
-library(ggplot2)
-\end_layout
-
-\begin_layout Plain Layout
-
 x <- seq(0, 5, length=1000)
 \end_layout
 
@@ -1717,12 +1766,7 @@ ggplot(curves, aes(x=x, y=y)) +
 
 \begin_layout Plain Layout
 
-  xlab('') + ylab('density') +
-\end_layout
-
-\begin_layout Plain Layout
-
-  theme_bw()
+  xlab('') + ylab('density')
 \end_layout
 
 \begin_layout Plain Layout
@@ -2068,11 +2112,6 @@ status open
 
 \begin_layout Plain Layout
 
-library(dplyr)
-\end_layout
-
-\begin_layout Plain Layout
-
 F <- Alcohol %>%
 \end_layout
 
@@ -2257,17 +2296,13 @@ status open
 
 \begin_layout Plain Layout
 
-<<message=FALSE, fig.keep='last'>>=
+<<Alcohol_Permute, cache=TRUE, message=FALSE, fig.keep='last'>>=
 \end_layout
 
 \begin_layout Plain Layout
 
-library(mosaic)
-\end_layout
-
-\begin_layout Plain Layout
-
-# estimate the sampling distribution of Observed F via simulation 
+# Permutation distribution of Observed F-statistic assuming H0 is true.
+ 
 \end_layout
 
 \begin_layout Plain Layout
@@ -2336,33 +2371,37 @@ status open
 
 \begin_layout Plain Layout
 
-<<message=FALSE, fig.keep='last'>>=
+<<fig.height=3>>=
 \end_layout
 
 \begin_layout Plain Layout
 
-# Make a histogram of the boostrap sampling distribution and theoretical
+# Make a histogram of the permutation distribution along with the theoretical
 \end_layout
 
 \begin_layout Plain Layout
 
-histogram( ~ F, data=SampDist, 
+ggplot(SampDist, aes(x=F, y=..density..)) +
 \end_layout
 
 \begin_layout Plain Layout
 
-  xlim  = c(-.25,8),  # Don't bother showing huge values
+  geom_histogram(binwidth=.25) +
 \end_layout
 
 \begin_layout Plain Layout
 
-  width = .25)      # Bin Widths of 1/4
+  geom_area( data=data.frame(x=seq(0,10,length=1000)) %>%
 \end_layout
 
 \begin_layout Plain Layout
 
-plotDist('f', df1=9, df2=9, add=TRUE)  # add the theoretical distiribution
- on top
+                             mutate(y=df(x, 9,9)),
+\end_layout
+
+\begin_layout Plain Layout
+
+             aes(x=x, y=y), alpha=.3, fill='red')
 \end_layout
 
 \begin_layout Plain Layout
@@ -2406,13 +2445,13 @@ status open
 
 \begin_layout Plain Layout
 
-# Bootstrap p-value...
+# p-value...
  what percent is more extreme than what I observed?
 \end_layout
 
 \begin_layout Plain Layout
 
-mosaic::tally( ~ extreme, data=SampDist, format='proportion')
+SampDist %>% summarise(p.value = mean(extreme))
 \end_layout
 
 \begin_layout Plain Layout
@@ -2524,6 +2563,41 @@ Commute <- data.frame(
 
 \begin_layout Plain Layout
 
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<fig.height=3>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -2644,7 +2718,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<message=FALSE, fig.keep='last'>>=
+<<Commute_Permute, cache=TRUE, message=FALSE >>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -2663,7 +2737,7 @@ obs.F <- var.test(time ~ type, data=Commute)$statistic
 
 \begin_layout Plain Layout
 
-# estimate the sampling distribution of Observed F via simulation 
+# create the permutation distribution of F-values 
 \end_layout
 
 \begin_layout Plain Layout
@@ -2732,33 +2806,41 @@ status open
 
 \begin_layout Plain Layout
 
-<<message=FALSE, fig.keep='last', fig.height=3, fig.width=5>>=
+<<message=FALSE, fig.height=3>>=
 \end_layout
 
 \begin_layout Plain Layout
 
-# Make a histogram of the boostrap sampling distribution and theoretical
+# Make a histogram of the permutation distribution and theoretical
 \end_layout
 
 \begin_layout Plain Layout
 
-histogram( ~ F, data=SampDist, 
+ggplot(SampDist, aes(x=F, y=..density..)) +
 \end_layout
 
 \begin_layout Plain Layout
 
-  width = .1,        # Bin Widths of 1/10
+  geom_histogram(binwidth=.1) +
 \end_layout
 
 \begin_layout Plain Layout
 
-  groups = (extreme==TRUE) )      
+  geom_area( data=data.frame(x=seq(0,10,length=1000)) %>%
 \end_layout
 
 \begin_layout Plain Layout
 
-plotDist('f', df1=13, df2=11, add=TRUE)  # add the theoretical distiribution
- on top
+                             mutate(y=df(x, 13, 11)),
+\end_layout
+
+\begin_layout Plain Layout
+
+             aes(x=x, y=y), alpha=.3, fill='red')
+\end_layout
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \begin_layout Plain Layout
@@ -2801,13 +2883,13 @@ status open
 
 \begin_layout Plain Layout
 
-# Bootstrap p-value...
+# p-value...
  what proportion is more extreme than what I observed?
 \end_layout
 
 \begin_layout Plain Layout
 
-mosaic::tally( ~ extreme, data=SampDist, format='proportion')
+SampDist %>% summarise(p.value = mean(extreme))
 \end_layout
 
 \begin_layout Plain Layout
@@ -2834,5 +2916,909 @@ We again see that with this small of a data set, our simulation based p-value
  based distributions should give similar inference and p-values.
 \end_layout
 
+\begin_layout Section
+Exercises
+\end_layout
+
+\begin_layout Enumerate
+To find the probabilities for the F-distribution, we will use the function
+ 
+\family typewriter
+pf(f, df1, df2)
+\family default
+ where the 
+\family typewriter
+f
+\family default
+ is the value for which we want to find the probability of finding a value
+ less than.
+ That is 
+\begin_inset Formula 
+\[
+P\left(F_{2,10}<4.2\right)=
+\]
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+echo=TRUE
+\end_layout
+
+\end_inset
+
+pf(4.2, df1=2, df2=10)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\family typewriter
+ 
+\family default
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Using the probability function for the F-distribution in R, find the following
+ probabilities:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $P\left(F_{5,5}<\frac{1}{2}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $P\left(F_{5,5}>\frac{2}{1}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $P\left(F_{4,10}>\frac{6}{1}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $P\left(F_{10,4}<\frac{1}{6}\right)$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+From what you calculated in part (a), comment on the reciprocal symmetry
+ of the F-distribution.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+In this exercise we will examine the variability of samples from various
+ distributions and how easily departures from normality are detected using
+ qqplots and the Shapiro-Wilks test.
+ 
+\emph on
+Under no circumstances should you turn in page after page of output or graphs.
+ Produce a table that summarizes how often the test rejects the null hypotheses
+ and include at most one figure of QQ-plots.
+ To receive credit, you must comment on the table and graph and describe
+ what you observe and why you observed what you did.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+The following code will create a random sample from a normal distribution
+ and draw the qqplot.
+ Also notice the results of the Shapiro-Wilks test.
+ Investigate the behavior of repeated samples (ie run this code at least
+ 10 times).
+ Repeat with increased sample sizes (do this for 
+\begin_inset Formula $n=5,25,100,400$
+\end_inset
+
+).
+ Describe your results.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+echo=TRUE, eval=FALSE, tidy=FALSE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+par(mfrow=c(1,2)) # 1 row of 2 graphs, side-by-side
+\end_layout
+
+\begin_layout Plain Layout
+
+n <- 5                       # sample size is 5
+\end_layout
+
+\begin_layout Plain Layout
+
+x <- rnorm(n, mean=25, sd=5) # draw random sample
+\end_layout
+
+\begin_layout Plain Layout
+
+hist(x)                      # histogram
+\end_layout
+
+\begin_layout Plain Layout
+
+qqnorm(x)                    # qqplot for normality
+\end_layout
+
+\begin_layout Plain Layout
+
+qqline(x)                    # add a line to the above plot
+\end_layout
+
+\begin_layout Plain Layout
+
+shapiro.test(x)              # do the test for normality
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Repeat problem (a) but consider samples drawn from a distribution that is
+ not normal, in this case, the gamma distribution with parameters 
+\family typewriter
+shape=
+\family default
+3, and
+\family typewriter
+ rate=2
+\family default
+.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+echo=TRUE, eval=FALSE, tidy=FALSE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+par(mfrow=c(1,2)) # 1 row of 2 graphs, side-by-side
+\end_layout
+
+\begin_layout Plain Layout
+
+n <- 5                          # sample size is 5
+\end_layout
+
+\begin_layout Plain Layout
+
+x <- rgamma(n, shape=3, rate=2) # draw random sample
+\end_layout
+
+\begin_layout Plain Layout
+
+hist(x)                         # histogram
+\end_layout
+
+\begin_layout Plain Layout
+
+qqnorm(x)                       # qqplot for normality
+\end_layout
+
+\begin_layout Plain Layout
+
+qqline(x)                       # add a line to the above plot
+\end_layout
+
+\begin_layout Plain Layout
+
+shapiro.test(x)                 # do the test for normality
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+In this exercise, we will examine the variability of samples from a normal
+ distribution.
+ The following code will generate random samples from a normal distribution,
+ create boxplots, and perform an F-test for equal variance.
+ Run the code many times (again 20 or more times) and investigate the effects
+ of changing your sample size and the mean and standard deviation of each
+ group.
+ 
+\emph on
+Under no circumstances should you turn in page after page of output or graphs.
+ For each question produce a table that summarizes how often the test rejects
+ the null hypotheses and include at most one figure of boxplots.
+ To receive credit, you must comment on the table and graph and describe
+ what you observe and why you observed what you did.
+\emph default
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+echo=TRUE, eval=FALSE, tidy=FALSE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+par(mfrow=c(1,1)) # 1 row of 1: Just one graph
+\end_layout
+
+\begin_layout Plain Layout
+
+n <- 5 
+\end_layout
+
+\begin_layout Plain Layout
+
+sigma <- c(2,2) 
+\end_layout
+
+\begin_layout Plain Layout
+
+my.data <- data.frame(y = c(rnorm( n, mean=0, sd=sigma[1] ),
+\end_layout
+
+\begin_layout Plain Layout
+
+                            rnorm( n, mean=0, sd=sigma[2] )),
+\end_layout
+
+\begin_layout Plain Layout
+
+                      group = c( rep('g1',n), rep('g2',n)  ))
+\end_layout
+
+\begin_layout Plain Layout
+
+boxplot(y ~ group, data=my.data) 
+\end_layout
+
+\begin_layout Plain Layout
+
+var.test(y ~ group, data=my.data)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+How often does the F-test reject (at 
+\begin_inset Formula $\alpha=0.05$
+\end_inset
+
+ level) equal variance when the variances of the two groups are equal? (Run
+ the above code 20 or more times.) Does this appear to change as the sample
+ size gets larger? 
+\end_layout
+
+\begin_layout Enumerate
+How often does the F-test reject (at 
+\begin_inset Formula $\alpha=0.05$
+\end_inset
+
+ level) equal variance when the variances are different, say 
+\begin_inset Formula $\sigma_{1}=2$
+\end_inset
+
+ and 
+\begin_inset Formula $\sigma_{2}=4$
+\end_inset
+
+? (Run your code many times!)
+\end_layout
+
+\begin_layout Enumerate
+Is it surprising to you how much variability there is in the widths of the
+ boxplots when the data are generated having the same standard deviation?
+ With both groups having the same standard deviation, investigate the variabilit
+y in boxplot widths as 
+\begin_inset Formula $n$
+\end_inset
+
+ is 
+\begin_inset Formula $5,20,$
+\end_inset
+
+ and 
+\begin_inset Formula $50$
+\end_inset
+
+.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+We are interested in testing if the variance is equal among two populations
+ that are known to be normal.
+ A sample of size 
+\begin_inset Formula $n_{1}=15$
+\end_inset
+
+ from the first population resulted in a sample mean and standard deviation
+ of 
+\begin_inset Formula $\bar{x}_{1}=52$
+\end_inset
+
+ and 
+\begin_inset Formula $s_{1}=7$
+\end_inset
+
+ while the sample of size 
+\begin_inset Formula $n_{2}=20$
+\end_inset
+
+ from the second population had a sample mean and standard deviation of
+ 
+\begin_inset Formula $\bar{x}_{2}=42$
+\end_inset
+
+ and 
+\begin_inset Formula $s_{2}=4$
+\end_inset
+
+.
+ Perform an F-test with 
+\begin_inset Formula $\alpha=0.05$
+\end_inset
+
+ to test if the variances are different.
+ 
+\emph on
+Because the data is not given, all calculations must be done by-hand (except
+ the usual probability look up).
+\end_layout
+
+\begin_layout Enumerate
+The life span of an electrical component was studied under two operating
+ voltages (110 and 220).
+ Ten components were randomly assigned to operate at 110 volts and 16 were
+ assigned to 220 volts.
+ The time to failure (in hundreds of hours) for the 26 components were obtained:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="11">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+110
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+19.25
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+19.7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+19.75
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+19.9
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+19.95
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+20.05
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+20.13
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+20.2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+20.4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+20.6
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+220
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9.7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9.75
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9.8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9.82
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9.85
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9.90
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9.92
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9.96
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10.01
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10.02
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10.10
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10.11
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10.13
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10.19
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10.28
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10.31
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Calculate the mean and variance of each sample group
+\end_layout
+
+\begin_layout Enumerate
+Test the assumption that the data in each group is normally distributed.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Create the QQplots first and comment on their fit.
+\end_layout
+
+\begin_layout Enumerate
+Perform the Shapiro-Wilks test to assess normality.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Test the assumption that the variances in each group are equal
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Create side-by-side boxplots and visually assess the equality.
+\end_layout
+
+\begin_layout Enumerate
+By hand, perform a two-side hypothesis test that variances in each group
+ are equal.
+ (Here, 
+\begin_inset Quotes eld
+\end_inset
+
+by hand
+\begin_inset Quotes erd
+\end_inset
+
+ means to calculate the f-statistic by hand and then form the probability
+ statement that defines the p-value.
+ Then use the 
+\family typewriter
+pf()
+\family default
+ function to calculate the actual p-value.)
+\end_layout
+
+\begin_layout Enumerate
+Using the R function 
+\family typewriter
+var.test()
+\family default
+ confirm your calculations in part (ii).
+ 
+\end_layout
+
+\end_deeper
+\end_deeper
 \end_body
 \end_document

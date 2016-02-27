@@ -1475,43 +1475,27 @@ BootDist <- do(10000)*{
 
 \begin_layout Plain Layout
 
-<<<<<<< HEAD
   CaffeineTaps %>%
 \end_layout
 
 \begin_layout Plain Layout
 
     group_by(Group) %>%
-=======
-  resample(CaffeineTaps) %>%
->>>>>>> origin/master
 \end_layout
 
 \begin_layout Plain Layout
 
-<<<<<<< HEAD
     resample() %>%
-=======
-  group_by(Group) %>%
->>>>>>> origin/master
 \end_layout
 
 \begin_layout Plain Layout
 
-<<<<<<< HEAD
     summarise( xbar=mean(Taps) ) %>%
-=======
-  summarise( xbar=mean(Taps) ) %>%
->>>>>>> origin/master
 \end_layout
 
 \begin_layout Plain Layout
 
-<<<<<<< HEAD
     summarise( d.star = diff(xbar)  )
-=======
-  summarise( d.star = diff(xbar)  )
->>>>>>> origin/master
 \end_layout
 
 \begin_layout Plain Layout
@@ -1647,7 +1631,6 @@ Notice that the null hypothesis value,
 \end_inset
 
  is not in the 95% confidence interval.
-<<<<<<< HEAD
  A subtle point in the above bootstrap code is that I resampled each group
  separately.
  Because the experimental protocol was to have 10 in each group, then we
@@ -1655,8 +1638,6 @@ Notice that the null hypothesis value,
  Had I resampled first and then did the grouping, we might end up with 12
  caffeinated and 8 un-caffeinated subjects, which is data that our experimental
  design couldn't have generated.
-=======
->>>>>>> origin/master
 \end_layout
 
 \begin_layout Subsection
@@ -3145,11 +3126,7 @@ BootDist <- do(10000)*{
 
 \begin_layout Plain Layout
 
-<<<<<<< HEAD
   Mosquitoes %>%
-=======
-  resample(Mosquitoes)                  %>%
->>>>>>> origin/master
 \end_layout
 
 \begin_layout Plain Layout
@@ -3159,14 +3136,11 @@ BootDist <- do(10000)*{
 
 \begin_layout Plain Layout
 
-<<<<<<< HEAD
     resample()                          %>%
 \end_layout
 
 \begin_layout Plain Layout
 
-=======
->>>>>>> origin/master
     summarise( xbar.i = mean(Number) )  %>%
 \end_layout
 
@@ -3398,5 +3372,1505 @@ mosaic:t.test()
  The p-value is slightly different but doesn't change the resulting inference.
 \end_layout
 
+\begin_layout Section
+Difference in means between two groups: Paired Data
+\end_layout
+
+\begin_layout Standard
+If the context of study is such that we can logically pair an observation
+ from the first population to a particular observation in the second, then
+ we can perform what is called a 
+\emph on
+Paired Test
+\emph default
+.
+ In a paired test, we will take each set of paired observations, calculate
+ the difference, and then perform a 1-sample regular hypothesis test on
+ the 
+\emph on
+differences
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+For example, in the package 
+\family typewriter
+Lock5Data
+\family default
+ there is a dataset that examines the age in which men and women get married.
+ The data was obtained by taking a random sample from publicly available
+ marriage licenses in St.
+ Lawrence County, NY.
+ Below is a visualization of the data.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<fig.height=3>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+data(MarriageAges)
+\end_layout
+
+\begin_layout Plain Layout
+
+MarriageAges.Long <- MarriageAges %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  mutate(Marriage = factor(1:n())) %>%        # Give each row a unique ID
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+  gather('Spouse', 'Age', Husband, Wife) %>%  # pivot from Husband/Wife
+ to Spouse/Age
+\end_layout
+
+\begin_layout Plain Layout
+
+  arrange(Marriage, desc(Spouse))             # Sort by Marriage, then (Wife,Hus
+band)
+\end_layout
+
+\begin_layout Plain Layout
+
+head(MarriageAges)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<fig.height=3>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+ggplot(MarriageAges.Long, aes(x=Age)) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_histogram(binwidth=5) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  facet_grid(Spouse ~ .) 
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Looking at this view of the data, it doesn't appear that the husbands tend
+ to be older than the wives.
+ A t-test to see if the average age of husbands is greater than the average
+ age of wives gives an insignificant difference.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+t.test( Age ~ Spouse, data=MarriageAges.Long )
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+But critically, we are ignoring that while the average ages might not be
+ different, for a given marriage, the husband tends to be older than the
+ wife.
+ Instead of looking at the difference in the means (i.e 
+\begin_inset Formula $d=\bar{h}-\bar{w}$
+\end_inset
+
+) we should actually be looking at the mean of the differences 
+\begin_inset Formula $\bar{d}=\frac{1}{n}\sum d_{i}$
+\end_inset
+
+ where 
+\begin_inset Formula $d_{i}=h_{i}-w_{i}$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<fig.height=3>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+data(MarriageAges)
+\end_layout
+
+\begin_layout Plain Layout
+
+AgeDifferences <- MarriageAges.Long %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  group_by(Marriage) %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  summarise( d = diff(Age) )   # diff(a,b) = b-a, so this will be Husband-Wife
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ggplot(AgeDifferences, aes(x = d)) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_histogram(binwidth=2)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Given this set of differences, we'd like to know if this data is compatible
+ with the null hypothesis that husbands and wives tend to be the same age
+ versus the alternative that husbands tend to be older.
+ (We could chose the two-sided test as well).
+\begin_inset Formula 
+\begin{eqnarray*}
+H_{0}:\;\delta & = & 0\\
+H_{A}:\;\delta & > & 0
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Because we have reduced our problem to a 1-sample test, we can perform the
+ asymptotic t-test easily enough in R.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+t.test( AgeDifferences$d )
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The result is highly statistically significant, and we see the mean difference
+ in ages for the husband to be 2.8 years older.
+ 
+\end_layout
+
+\begin_layout Standard
+To perform the same analysis using resampling methods, we need to be careful
+ to do the resampling correctly.
+ To perform the hypothesis test, we want to create data where the null hypothesi
+s is true.
+ To do this, we'll shuffle the ages within the marriage so that the husband
+ and the wife have equal probability of being the older spouse.
+ For the bootstrap CI, we need to be certain that we are resampling marriages,
+ not people.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<MarriagePerm, cache=TRUE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+# Permutation t-test of delta == 0
+\end_layout
+
+\begin_layout Plain Layout
+
+PermDist <- do(10000)*{ 
+\end_layout
+
+\begin_layout Plain Layout
+
+  MarriageAges.Long            %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+    group_by(Marriage)         %>% 
+\end_layout
+
+\begin_layout Plain Layout
+
+    mutate(age = shuffle(Age)) %>%  # shuffle the ages within each marriage
+\end_layout
+
+\begin_layout Plain Layout
+
+    summarize(d.i = diff(Age)) %>%  # Calc Husband - Wife age difference
+\end_layout
+
+\begin_layout Plain Layout
+
+    summarize(d.bar = mean(d.i))    # calc the mean difference
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+PermDist %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  summarize( p.value = mean(d.bar >= 2.83) )
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<MarriageBoot, cache=TRUE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+# Bootstrap CI for delta
+\end_layout
+
+\begin_layout Plain Layout
+
+BootDist <- do(10000)*{ 
+\end_layout
+
+\begin_layout Plain Layout
+
+  MarriageAges.Long            %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+    group_by(Marriage)         %>% 
+\end_layout
+
+\begin_layout Plain Layout
+
+    summarize(d.i = diff(Age)) %>%  # Calc observed Husband - Wife age difference
+s
+\end_layout
+
+\begin_layout Plain Layout
+
+	resample()                 %>%  # resample from the observed differences
+\end_layout
+
+\begin_layout Plain Layout
+
+    summarize(d.bar = mean(d.i))    # calc the mean difference
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+quantile( BootDist$d.bar, probs=c(0.025, 0.975) )
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We observe a similar p-value and confidence interval as we did using the
+ asymptotic test as expected.
+ The code for calculating the bootstrap CI is a bit inefficient because
+ I keep recalculating the observed differences with each bootstrap.
+ However, it is nice to have the code 
+\begin_inset Quotes eld
+\end_inset
+
+recipe
+\begin_inset Quotes erd
+\end_inset
+
+ for the hypothesis test and the associated CI to be fairly similar.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Example - Traffic Flow
+\end_layout
+
+\begin_layout Standard
+Engineers in Dresden, Germany were looking at ways to improve traffic flow
+ by enabling traffic lights to communicate information about traffic flow
+ with nearby traffic lights and modify their timing sequence appropriately.
+ The engineers wished to compare new flexible timing system with the standard
+ fixed timing sequence by evaluating the delay at a randomly selected 
+\begin_inset Formula $n=24$
+\end_inset
+
+ intersections in Dresden.
+ The data show results of one experiment where they simulated buses moving
+ along a street and recorded the delay time for both systems.
+ Because each simulation is extremely intensive, they only simulated 
+\begin_inset Formula $n=24$
+\end_inset
+
+ intersections instead of simulating the whole city.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<fig.height=3>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+data(TrafficFlow)  # from Lock5Data
+\end_layout
+
+\begin_layout Plain Layout
+
+head(TrafficFlow)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<fig.height=3>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+TrafficFlow.Long <- TrafficFlow           %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  mutate(Light = factor(1:n()))           %>% # Give each row a unique ID
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+  gather('Seq', 'Delay', Flexible, Timed) %>% # pivot to SequenceType and
+ Delay amount
+\end_layout
+
+\begin_layout Plain Layout
+
+  arrange(Light, Seq)                         # Sort by Light, then by SequenceT
+ype
+\end_layout
+
+\begin_layout Plain Layout
+
+head(TrafficFlow.Long)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As usual, we'll first examine the data with a graph.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<fig.height=3>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+ggplot(TrafficFlow.Long, aes(x=Delay)) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_histogram(binwidth=2) +              # histograms of Delay time
+\end_layout
+
+\begin_layout Plain Layout
+
+  facet_grid(Seq ~ .)                       # two plots, stacked by SequenceType
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<fig.height=3>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+ggplot(TrafficFlow, aes(x=Difference)) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_histogram(binwidth=2) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  ggtitle('Difference (Standard - Flexible)')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+All of the differences were positive, so it is almost ridiculous to do a
+ hypothesis test that there is no decrease in delays with the flexible timing
+ system, but we might as well walk through the analysis.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+t.test( TrafficFlow$Difference )
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<TrafficPerm, cache=TRUE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+# Permutation t-test of delta == 0
+\end_layout
+
+\begin_layout Plain Layout
+
+PermDist <- do(10000)*{ 
+\end_layout
+
+\begin_layout Plain Layout
+
+  TrafficFlow.Long                 %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+    group_by(Light)                %>% 
+\end_layout
+
+\begin_layout Plain Layout
+
+    mutate(Delay = shuffle(Delay)) %>%  # shuffle the delays within each
+ intersection
+\end_layout
+
+\begin_layout Plain Layout
+
+    summarize(d.i = diff(Delay))   %>%  # Calc Timed - Flexible delay difference
+\end_layout
+
+\begin_layout Plain Layout
+
+    summarize(d.bar = mean(d.i))        # calc the mean difference
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+PermDist %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  summarize( p.value = mean(d.bar >= 61) )
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Our p-value is 0, but because we we actually only did 10,000 permutations,
+ the most we can say is that the p-value is less than 1/ 10,000.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<TrafficBoot, cache=TRUE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+# Bootstrap CI for delta
+\end_layout
+
+\begin_layout Plain Layout
+
+BootDist <- do(10000)*{ 
+\end_layout
+
+\begin_layout Plain Layout
+
+  TrafficFlow.Long               %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+    group_by(Light)              %>% 
+\end_layout
+
+\begin_layout Plain Layout
+
+    summarize(d.i = diff(Delay)) %>%  # Calc observed Timed-Flexible delay
+ differences
+\end_layout
+
+\begin_layout Plain Layout
+
+    resample()                   %>%  # resample from the observed differences
+\end_layout
+
+\begin_layout Plain Layout
+
+    summarize(d.bar = mean(d.i))      # calc the mean difference
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+quantile( BootDist$d.bar, probs=c(0.025, 0.975) )
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The confidence interval suggests that these data support that the mean differenc
+e between the flexible timing sequence versus the standard fixed timing
+ sequence in Dresden is in the interval 
+\begin_inset Formula $\left(55.5,\,67.3\right)$
+\end_inset
+
+ seconds.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Problems
+\end_layout
+
+\begin_layout Enumerate
+In the 2011 article 
+\begin_inset Quotes eld
+\end_inset
+
+Methane contamination of drinking water accompanying gas-well drilling and
+ hydraulic fracturing
+\begin_inset Quotes erd
+\end_inset
+
+ in the Proceedings of the National Academy of Sciences, 
+\begin_inset Formula $n_{1}=21$
+\end_inset
+
+ sites in proximity to a fracking well had a mean methane level of 
+\begin_inset Formula $\bar{x}_{1}=19.2$
+\end_inset
+
+ mg CH
+\begin_inset Formula $_{4}$
+\end_inset
+
+ L
+\begin_inset Formula $^{-1}$
+\end_inset
+
+ with a sample standard deviation 
+\begin_inset Formula $s_{1}=30.3$
+\end_inset
+
+.
+ The 
+\begin_inset Formula $n_{2}=13$
+\end_inset
+
+ sites in the same region with no fracking wells within 1 kilometer had
+ mean methane levels of 
+\begin_inset Formula $\bar{x}_{2}=1.1$
+\end_inset
+
+ mg CH
+\begin_inset Formula $_{4}$
+\end_inset
+
+ L
+\begin_inset Formula $^{-1}$
+\end_inset
+
+ and standard deviation 
+\begin_inset Formula $s_{2}=6.3$
+\end_inset
+
+.
+ Perform a one-sided, two-sample t-test with unpooled variance and an 
+\begin_inset Formula $\alpha=0.05$
+\end_inset
+
+ level to investigate if the presence of fracking wells increases the methane
+ level in drinking-water wells in this region.
+ 
+\emph on
+Notice that because I don't give you the data, you can only analyze the
+ data using the asymptotic method and plugging in the give quantities into
+ the formulas presented.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+State an appropriate null and alternative hypothesis.
+ 
+\emph on
+(Be sure to use correct notation!)
+\end_layout
+
+\begin_layout Enumerate
+Calculate an appropriate test statistic (making sure to denote the appropriate
+ degrees of freedom, if necessary).
+\end_layout
+
+\begin_layout Enumerate
+Calculate an appropriate p-value.
+\end_layout
+
+\begin_layout Enumerate
+At an significance level of 
+\begin_inset Formula $\alpha=0.05$
+\end_inset
+
+, do you reject or fail to reject the null hypothesis?
+\end_layout
+
+\begin_layout Enumerate
+Restate your conclusion in terms of the problem.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+All persons running for public office must report the amount of money raised
+ and spent during their campaign.
+ Political scientists contend that it is more difficult for female candidates
+ to raise money.
+ Suppose that we randomly sample 30 male and 30 female candidates for state
+ legislature and observe the male candidates raised, on average, 
+\begin_inset Formula $\bar{y}=\$350,000$
+\end_inset
+
+ with a standard deviation of 
+\begin_inset Formula $s_{y}=\$61,900$
+\end_inset
+
+ and the females raised on average 
+\begin_inset Formula $\bar{x}=\$245,000$
+\end_inset
+
+ with a standard deviation of 
+\begin_inset Formula $s_{x}=\$52,100$
+\end_inset
+
+.
+ Perform a one-sided, two-sample t-test with pooled variance to test if
+ female candidates generally raise and spend less in their campaigns that
+ male candidates.
+ 
+\emph on
+Notice that because I don't give you the data, you can only analyze the
+ data using the asymptotic method and plugging in the give quantities into
+ the formulas presented.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+State an appropriate null and alternative hypothesis.
+
+\emph on
+ (Be sure to use correct notation!)
+\end_layout
+
+\begin_layout Enumerate
+Calculate an appropriate test statistic (making sure to denote the appropriate
+ degrees of freedom, if necessary).
+\end_layout
+
+\begin_layout Enumerate
+Calculate an appropriate p-value.
+\end_layout
+
+\begin_layout Enumerate
+At an significance level of 
+\begin_inset Formula $\alpha=0.05$
+\end_inset
+
+, do you reject or fail to reject the null hypothesis?
+\end_layout
+
+\begin_layout Enumerate
+Restate your conclusion in terms of the problem.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+In the 
+\family typewriter
+Lock5Data
+\family default
+ package, the dataset 
+\family typewriter
+Smiles
+\family default
+ gives data 
+\begin_inset Quotes eld
+\end_inset
+
+...from a study examining the effect of a smile on the leniency of disciplinary
+ action for wrongdoers.
+ Participants in the experiment took on the role of members of a college
+ disciplinary panel judging students accused of cheating.
+ For each suspect, along with a description of the offense, a picture was
+ provided with either a smile or neutral facial expression.
+ A leniency score was calculated based on the disciplinary decisions made
+ by the participants.
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Graph the 
+\family typewriter
+leniency
+\family default
+ score for the smiling and non-smiling groups.
+ Comment on if you can visually detect any difference in leniency score.
+\end_layout
+
+\begin_layout Enumerate
+Calculate the mean and standard deviation of the leniencies for each group.
+ Does it seem reasonable that the standard deviation of each group is the
+ same?
+\end_layout
+
+\begin_layout Enumerate
+Do a two-sided two-sample t-test using pooled variance using the asymptotic
+ method.
+ Report the test statistic, p-value, and a 95% CI.
+\end_layout
+
+\begin_layout Enumerate
+Do a two-side two-sample t-test using resampling methods.
+ Report the p-value and a 95% CI.
+\end_layout
+
+\begin_layout Enumerate
+What do you conclude at an 
+\begin_inset Formula $\alpha=0.05$
+\end_inset
+
+ level? Do you feel we should have used a more stringent 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ level?
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+In the 
+\family typewriter
+Lock5Data
+\family default
+ package, the dataset 
+\family typewriter
+StorySpoilers
+\family default
+ is data from an experiment where the researchers are testing if a 
+\begin_inset Quotes eld
+\end_inset
+
+spoiler
+\begin_inset Quotes erd
+\end_inset
+
+ at the beginning of a short story negatively affects the enjoyment of the
+ story.
+ A set of 
+\begin_inset Formula $n=12$
+\end_inset
+
+ stories were selected and a spoiler introduction was created.
+ Each version of each story was read by at least 30 people and rated.
+ Reported are the average ratings for the spoiler and non-spoiler versions.
+ The following code creates the 
+\begin_inset Quotes eld
+\end_inset
+
+long
+\begin_inset Quotes erd
+\end_inset
+
+ version of the data.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+library(Lock5Data)
+\end_layout
+
+\begin_layout Plain Layout
+
+library(dplyr)
+\end_layout
+
+\begin_layout Plain Layout
+
+library(tidyr)
+\end_layout
+
+\begin_layout Plain Layout
+
+data(StorySpoilers)
+\end_layout
+
+\begin_layout Plain Layout
+
+StorySpoilers.Long <- StorySpoilers %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  gather('Type', 'Rating', Spoiler, Original) %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  arrange(Story)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Based on the description, a 1-sided test is appropriate.
+ Explain why.
+\end_layout
+
+\begin_layout Enumerate
+Graph the ratings for the original stories and the modified spoiler version.
+ Comment on if you detect any difference in ratings between the two.
+\end_layout
+
+\begin_layout Enumerate
+Graph the difference in ratings for each story.
+ Comment on if the distribution of the differences seems to suggest that
+ a spoiler 
+\emph on
+lowers
+\emph default
+ the rating.
+\end_layout
+
+\begin_layout Enumerate
+Do a paired t-test using the asymptotic method.
+ Also calculate a 95% confidence interval.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Do a paired t-test using the bootstrap method.
+ Also calculate a 95% confidence interval.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Based on your results in parts (c) and (d), what do you conclude? 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+In the 
+\family typewriter
+Lock5Data
+\family default
+ package, the dataset 
+\family typewriter
+Wetsuit
+\family default
+ describes an experiment with the goal of quantifying the effect of wearing
+ a wetsuit on the speed of swimming.
+ (It is often debated among triathletes whether or not to wear a wetsuit
+ when it is optional.) A set of 
+\begin_inset Formula $n=12$
+\end_inset
+
+ swimmers and triathletes did a 1500 m swim in both the wetsuit and again
+ in regular swimwear.
+ The order in which they swam (wetsuit first or non-wetsuit first) was randomize
+d for each participant.
+ Reported is the maximum velocity during each swim.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Why did the researcher randomize which suit was worn first?
+\end_layout
+
+\begin_layout Enumerate
+Plot the velocities for the wetsuit and non-wetsuit for each participant.
+ Comment on if you detect any difference in the means of these two distributions.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Ignore the pairing and do a two-sample t-test using the asymptotic method.
+ What do you conclude?
+\end_layout
+
+\begin_layout Enumerate
+Plot the difference in velocity for each swimmer.
+ Comment on if the observed difference in velocity seems to indicate that
+ which should be preferred (wetsuit or non-wetsuit).
+\end_layout
+
+\begin_layout Enumerate
+Do a paired t-test using the asymptotic method.
+ Also calculate the 95% confidence interval.
+ What do you conclude?
+\end_layout
+
+\begin_layout Enumerate
+Do a paired t-test using the permutation method.
+ Also calculate the 95% confidence interval using the bootstrap method.
+ What do you conclude?
+\end_layout
+
+\end_deeper
 \end_body
 \end_document

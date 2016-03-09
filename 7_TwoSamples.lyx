@@ -4294,6 +4294,12 @@ PermDist <- do(10000)*{
 
 \begin_layout Plain Layout
 
+    arrange(Light, Seq)            %>%  # Put into the Flexible, SeqType
+ order
+\end_layout
+
+\begin_layout Plain Layout
+
     summarize(d.i = diff(Delay))   %>%  # Calc Timed - Flexible delay difference
 \end_layout
 
@@ -4753,6 +4759,11 @@ StorySpoilers.Long <- StorySpoilers %>%
 
 \begin_layout Plain Layout
 
+  mutate( Story = factor(Story) ) %>%  # make Story into a categorical variable
+\end_layout
+
+\begin_layout Plain Layout
+
   gather('Type', 'Rating', Spoiler, Original) %>%
 \end_layout
 
@@ -4804,8 +4815,8 @@ Do a paired t-test using the asymptotic method.
 \end_layout
 
 \begin_layout Enumerate
-Do a paired t-test using the bootstrap method.
- Also calculate a 95% confidence interval.
+Do a paired t-test using the permutation method.
+ Also calculate a 95% confidence interval using the bootstrap.
  
 \end_layout
 

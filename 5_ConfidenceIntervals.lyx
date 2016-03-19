@@ -1427,7 +1427,7 @@ AvgMercury
 
 \begin_deeper
 \begin_layout Enumerate
-Using the bootstrapping method, calculate a 90% confidence interval for
+Using the bootstrapping method, calculate a 95% confidence interval for
  
 \begin_inset Formula $\mu$
 \end_inset
@@ -1437,7 +1437,7 @@ Using the bootstrapping method, calculate a 90% confidence interval for
 
 \begin_layout Enumerate
 Using the asymptotic approximations discussed in this chapter, calculate
- a 90% confidence interval for 
+ a 95% confidence interval for 
 \begin_inset Formula $\mu$
 \end_inset
 

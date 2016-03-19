@@ -1,0 +1,4354 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass book
+\begin_preamble
+\usepackage{a4wide}
+\end_preamble
+\options a4paper
+\use_default_options false
+\begin_modules
+theorems-ams
+theorems-named
+knitr
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding iso8859-1
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 0
+\use_package stackrel 0
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Hypothesis Tests for the mean of a population
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<echo=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+if(file.exists('Global_Knitr_Opts.R')){
+\end_layout
+
+\begin_layout Plain Layout
+
+  source('Global_Knitr_Opts.R')
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+opts_chunk$set(fig.path   ='figure/HypothesisTests/') 
+\end_layout
+
+\begin_layout Plain Layout
+
+opts_chunk$set(cache.path = 'cache/HypothesisTests/')
+\end_layout
+
+\begin_layout Plain Layout
+
+opts_chunk$set(cache      =  TRUE)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<message=FALSE, warning=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+# packages we'll use in this chapter
+\end_layout
+
+\begin_layout Plain Layout
+
+library(mosaic)
+\end_layout
+
+\begin_layout Plain Layout
+
+library(dplyr)
+\end_layout
+
+\begin_layout Plain Layout
+
+library(ggplot2)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Science is done by observing how the world works, making a conjecture (or
+ hypothesis) about the mechanism and then performing experiments to see
+ if real data agrees or disagrees with the proposed hypothesis.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Example.
+
+\series default
+ Suppose a rancher in Texas (my brother-in-law Bryan) wants to buy some
+ calves from another rancher.
+ This rancher claims that the average weight of his calves is 500 pounds.
+ My brother-in-law likes them and buys 10.
+ A few days later he starts looking at the cows and begins to wonder if
+ the average really is 500 pounds.
+ He weighs his 10 cows and the sample mean is 
+\begin_inset Formula $\bar{x}=475$
+\end_inset
+
+ and the sample standard deviation is 
+\begin_inset Formula $s=50$
+\end_inset
+
+.
+ Below are the data
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<fig.width=5, fig.height=3>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+cows <- data.frame(    
+\end_layout
+
+\begin_layout Plain Layout
+
+  weight = c(553, 466, 451, 421, 523, 517, 451, 510, 392, 466) )
+\end_layout
+
+\begin_layout Plain Layout
+
+cows %>% summarise( xbar=mean(weight), s=sd(weight) )
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+There are two possibilities.
+ Either Bryan was just unlucky the random selection of his 10 cows from
+ the heard, or the true average weight within the herd is less than 500.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+H_{0}:\;\mu & = & 500\\
+H_{a}:\;\mu & < & 500
+\end{eqnarray*}
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+Assuming
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+For this calculation we'll assume the weight of a steer is normally distributed
+ 
+\begin_inset Formula $N\left(\mu,\sigma\right)$
+\end_inset
+
+, and therefore 
+\begin_inset Formula $\bar{X}$
+\end_inset
+
+ is normally distributed 
+\begin_inset Formula $N\left(\mu,\frac{\sigma}{\sqrt{n}}\right)$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+ the true mean is 500, how likely is it to get a sample mean of 475 (or
+ less)? One way to think about this is that we want a measure of how extreme
+ the event is that we observed, and one way to do that is to calculate how
+ much probability there is for events that are even more extreme.
+\end_layout
+
+\begin_layout Standard
+To calculate how far into the tail our observed sample mean 
+\begin_inset Formula $\bar{x}=475$
+\end_inset
+
+ is by measuring the area of the distribution that is farther into the tail
+ than the observed value.
+\begin_inset Formula 
+\begin{eqnarray*}
+P\left(\bar{X}\le475\right) & = & P\left(\frac{\bar{X}-\mu}{\frac{s}{\sqrt{n}}}\le\frac{475-500}{\frac{50}{\sqrt{10}}}\right)\\
+\\
+ & = & P\left(T_{9}\le-1.58\right)\\
+\\
+ & = & 0.074
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We see that the observed 
+\begin_inset Formula $\bar{X}$
+\end_inset
+
+ is in the tail of the distribution and tends to not support 
+\begin_inset Formula $H_{0}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+P-value
+\series default
+ is the probability of seeing the observed data 
+\emph on
+or something more extreme
+\emph default
+ given the null hypothesis is true.
+ By 
+\begin_inset Quotes eld
+\end_inset
+
+something more extreme
+\begin_inset Quotes erd
+\end_inset
+
+, we mean samples that would be more evidence for the alternative hypothesis.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mbox{p-value}=P(T_{9}<-1.58)=0.074
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The above value is the actual value calculated using R
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+pt(-1.58, df=9)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+but using tables typically found in intro statistics books, the most precise
+ thing you would be able to say is 
+\begin_inset Formula 
+\[
+0.05\le\mbox{p-value}\le0.10
+\]
+
+\end_inset
+
+So there is a small chance that my brother-in-law just got unlucky with
+ his ten cows.
+ While the data isn't entirely supportive of 
+\begin_inset Formula $H_{0}$
+\end_inset
+
+, we don't have strong enough data to out right reject 
+\begin_inset Formula $H_{0}$
+\end_inset
+
+.
+ So we will say that 
+\emph on
+we fail to reject
+\emph default
+ 
+\begin_inset Formula $H_{0}$
+\end_inset
+
+.
+ Notice that we aren't saying that we accept the null hypothesis, only that
+ there is insufficient evidence to call-out the neighbor as a liar.
+ 
+\end_layout
+
+\begin_layout Section
+Writing Hypotheses
+\end_layout
+
+\begin_layout Subsection
+Null and alternative hypotheses
+\end_layout
+
+\begin_layout Standard
+In elementary school most students are taught the scientific method follows
+ the following steps:
+\end_layout
+
+\begin_layout Enumerate
+Ask a question of interest.
+\end_layout
+
+\begin_layout Enumerate
+Construct a hypothesis.
+\end_layout
+
+\begin_layout Enumerate
+Design and conduct an experiment that challenges the hypothesis.
+\end_layout
+
+\begin_layout Enumerate
+Depending on how consistent the data is with the hypothesis:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+If the observed data is inconsistent with the hypothesis, then we have proven
+ it wrong and we should consider competing hypotheses.
+\end_layout
+
+\begin_layout Enumerate
+If the observed data is consistent with the hypothesis, design a more rigorous
+ experiment to continue testing the hypothesis.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Through the iterative process of testing ideas and refining them under the
+ ever growing body of evidence, we continually improve our understanding
+ of how our universe works.
+ The heart of the scientific method is the falsification of hypothesis and
+ statistics is the tool we'll use to assess the consistency of our data
+ with a hypothesis.
+ 
+\end_layout
+
+\begin_layout Standard
+Science is done by examining competing ideas for how the world works and
+ throwing evidence at them.
+ Each time a hypothesis is removed, the remaining hypotheses appear to be
+ more credible.
+ This doesn't mean the remaining hypotheses are correct, only that they
+ are consistent with the available data.
+\end_layout
+
+\begin_layout Enumerate
+In approximately 300 BC, Eratosthenes
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+For more about Eratosthenes, start at his wikipedia page.
+ http://en.wikipedia.org/wiki/Eratosthenes
+\end_layout
+
+\end_inset
+
+ showed that the world was not flat
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Carl Sagan has an excellent episode of 
+\emph on
+Cosmos
+\emph default
+ on this topic.
+ https://www.youtube.com/watch?v=G8cbIWMv0rI
+\end_layout
+
+\end_inset
+
+ by measuring the different lengths of shadows of identical sticks in two
+ cities that were 580 miles apart but lay on the same meridian (Alexandria
+ is directly north of Aswan).
+ His proposed alternative was that the Earth was a sphere.
+ While his alternative is not technically true (it is actually an oblate
+ spheroid that bulges at the equator), it was substantially better than
+ the flat world hypothesis.
+\end_layout
+
+\begin_layout Enumerate
+At one point it was believed that plants 
+\begin_inset Quotes eld
+\end_inset
+
+ate
+\begin_inset Quotes erd
+\end_inset
+
+ the soil and turned it into plant mass.
+ A experiment to test this hypothesis was performed by Johannes Baptista
+ van Helmont in 1648 in which he put exactly 200 pounds of soil in a pot
+ and then grew a willow tree out of it for five years.
+ At the end of the experiment, the pot contained 199.875 pounds of soil and
+ 168 pounds of willow tree.
+ He correctly concluded that the plant matter was not substantially taken
+ from the soil but incorrectly jumped to the conclusion that the mass must
+ of have come from the water that was used to irrigate the willow.
+ 
+\end_layout
+
+\begin_layout Standard
+It is helpful to our understanding to label the different hypothesis, both
+ the ones being tested and the different alternatives.
+ We'll label the hypothesis being tested as 
+\begin_inset Formula $H_{0}$
+\end_inset
+
+ which we often refer to as the 
+\begin_inset Quotes eld
+\end_inset
+
+
+\series bold
+null hypothesis
+\series default
+.
+\begin_inset Quotes erd
+\end_inset
+
+ The 
+\series bold
+alternative hypothesis
+\series default
+, which we'll denote 
+\begin_inset Formula $H_{a}$
+\end_inset
+
+, should be the opposite of the null hypothesis.
+ Had Eratosthenes known about modern scientific methods, he would have correctly
+ considered 
+\begin_inset Formula $H_{0}:$
+\end_inset
+
+ 
+\emph on
+the world is flat
+\emph default
+ verses 
+\begin_inset Formula $H_{a}$
+\end_inset
+
+: 
+\emph on
+the world is not flat
+\emph default
+ and not incorrectly concluded that the world is a sphere
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Amusingly Eratosthenes' data wasn't inconsistent with the hypothesis that
+ the world was shaped like a donut, but he thought the sphere to be more
+ likely.
+ 
+\end_layout
+
+\end_inset
+
+.
+ Likewise Helmont should have considered the hypotheses 
+\begin_inset Formula $H_{0}:$
+\end_inset
+
+ 
+\emph on
+plants only consume soil
+\emph default
+ versus the alternative 
+\begin_inset Formula $H_{a}:$
+\end_inset
+
+ 
+\emph on
+plants consume something besides soil
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+In both of cases, the observed data was compared to what would have been
+ expected if the null hypothesis was true.
+ If the null was true Eratosthenes would have seen the same length shadow
+ in both cities and Helmont would have seen 168 pounds of willow tree and
+ 
+\begin_inset Formula $200-168=32$
+\end_inset
+
+ pounds of soil remaining.
+\end_layout
+
+\begin_layout Subsection
+Error
+\end_layout
+
+\begin_layout Standard
+Unfortunately the world is not a simple place and experiments rarely can
+ isolate exactly the hypothesis being tested.
+ We can repeat an experiment and get slightly different results each time
+ due to variation in weather, temperature, or diligence of the researcher.
+ If we are testing the effectiveness of a new drug to treat a particular
+ disease, we don't trust the results of a single patient, instead we wish
+ to examine many patients (some that receive the new drug and some the receive
+ the old) to average out the noise between the patients.
+ The questions about how many patients do we need to have and how large
+ of a difference between the treatments is large enough to conclude the
+ new drug is better are the heart of modern statistics.
+\end_layout
+
+\begin_layout Standard
+Suppose we consider the population of all US men aged 40-60 with high blood
+ pressure (there might be about 20 million people in this population).
+ We want to know if exercise and ACE inhibitors lower systolic blood pressure
+ better than exercise alone for these people.
+ We'll consider the null hypothesis that 
+\emph on
+exercise is equivalent to exercise and ACE inhibitors
+\emph default
+ versus 
+\emph on
+exercise is different than exercise and ACE inhibitors.
+
+\emph default
+ If we could take every single member of the population and expose them
+ to exercise or exercise with ACE inhibitors, we would know for certain
+ how the population reacts to the different treatments.
+ Unfortunately this is too expensive and ethically dubious.
+ 
+\end_layout
+
+\begin_layout Standard
+Instead of testing the entire population we'll take a sample of 
+\begin_inset Formula $n$
+\end_inset
+
+ men from the population and treat half of them with exercise alone and
+ half of them with exercise and ACE inhibitors.
+ What might our data look like if there is a difference between the two
+ treatments at different samples sizes compared to if there is no difference?
+ At small sample sizes it is difficult to distinguish the effect of the
+ treatment when it is masked by individual variation.
+ At high sample sizes, the individual variation is smoothed out and the
+ difference between the treatments can be readily seen.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<echo=FALSE, fig.width=10, fig.height=5, warnings=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+library(ggplot2)
+\end_layout
+
+\begin_layout Plain Layout
+
+set.seed(325)
+\end_layout
+
+\begin_layout Plain Layout
+
+bp <- NULL 
+\end_layout
+
+\begin_layout Plain Layout
+
+for(n in c(5, 20, 100)){
+\end_layout
+
+\begin_layout Plain Layout
+
+  bp <- rbind(bp,
+\end_layout
+
+\begin_layout Plain Layout
+
+    data.frame(systolic=rnorm(n, 165, 15), 
+\end_layout
+
+\begin_layout Plain Layout
+
+               n=paste('n ==',2*n), 
+\end_layout
+
+\begin_layout Plain Layout
+
+               Group='Control',    
+\end_layout
+
+\begin_layout Plain Layout
+
+               H0='paste(H[0],": FALSE")'),
+\end_layout
+
+\begin_layout Plain Layout
+
+    data.frame(systolic=rnorm(n, 150, 15),
+\end_layout
+
+\begin_layout Plain Layout
+
+               n=paste('n ==',2*n), 
+\end_layout
+
+\begin_layout Plain Layout
+
+               Group='Experiment', 
+\end_layout
+
+\begin_layout Plain Layout
+
+               H0='paste(H[0],": FALSE")'),
+\end_layout
+
+\begin_layout Plain Layout
+
+	data.frame(systolic=rnorm(n, 165, 15),
+\end_layout
+
+\begin_layout Plain Layout
+
+			   n=paste('n ==',2*n),
+\end_layout
+
+\begin_layout Plain Layout
+
+               Group='Control',
+\end_layout
+
+\begin_layout Plain Layout
+
+               H0='paste(H[0],": TRUE")'),
+\end_layout
+
+\begin_layout Plain Layout
+
+	data.frame(systolic=rnorm(n, 165, 15),
+\end_layout
+
+\begin_layout Plain Layout
+
+               n=paste('n ==',2*n),
+\end_layout
+
+\begin_layout Plain Layout
+
+               Group='Experiment',
+\end_layout
+
+\begin_layout Plain Layout
+
+               H0='paste(H[0],": TRUE")')) 
+\end_layout
+
+\begin_layout Plain Layout
+
+} 
+\end_layout
+
+\begin_layout Plain Layout
+
+ggplot() +
+\end_layout
+
+\begin_layout Plain Layout
+
+  facet_grid(H0 ~ n, labeller=label_parsed) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_dotplot(data=subset(bp, Group=="Experiment"), aes(systolic, fill="Exercis
+e + Inhibitor")) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_dotplot(data=subset(bp, Group=="Control"), aes(systolic, fill="Exercise")
+, stackdir = "down") +
+\end_layout
+
+\begin_layout Plain Layout
+
+  scale_fill_hue("Group") +
+\end_layout
+
+\begin_layout Plain Layout
+
+  theme(axis.text.y = element_blank(), axis.title.y = element_blank())
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Comparing possible data assuming there is a difference between treatments
+ versus no difference.
+ In the top row of graphs, there is a difference between the 
+\emph on
+Exercise
+\emph default
+ and the 
+\emph on
+Exercise + Inhibitor
+\emph default
+ treatments.
+ However, at small sample sizes, we can't tell if the observed difference
+ is due to the difference in treatment or just random variation in the data.
+ In the second row, there is no difference between the treatments.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+When the sample size is large it is easy to see if the treatments differ
+ in their effect on systolic blood pressure, but at medium or small sample
+ sizes, the question is much harder.
+ It is important to recognize that the core of the problem is still 
+\emph on
+
+\begin_inset Quotes eld
+\end_inset
+
+is the observed data consistent with the null hypothesis?
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\emph default
+but we now have to consider an addition variability term that is unrelated
+ to the research hypothesis of interest.
+ In the above example, the small sample data is consistent with the null
+ hypothesis even when the null hypothesis is false!
+\end_layout
+
+\begin_layout Standard
+Perhaps the hardest part about conducting a hypothesis test is figuring
+ out what the null and alternative hypothesis should be.
+ The null hypothesis is a statement about a population parameter.
+ 
+\begin_inset Formula 
+\[
+H_{0}:\mbox{ population parameter = hypothesized value}
+\]
+
+\end_inset
+
+ and the alternative will be one of 
+\begin_inset Formula 
+\begin{eqnarray*}
+H_{a}: & \textrm{population parameter\,}\ensuremath{<}\textrm{ hypothesized value}\\
+H_{a}: & \textrm{population parameter}\ensuremath{\,>}\textrm{ hypothesized value}\\
+H_{a}: & \textrm{population parameter}\,\ne\textrm{ hypothesized value}
+\end{eqnarray*}
+
+\end_inset
+
+ The hard part is figuring which of the possible alternatives we should
+ examine.
+ The alternative hypothesis is what the researcher believes is true.
+ By showing that the complement of 
+\begin_inset Formula $H_{a}$
+\end_inset
+
+ (that is 
+\begin_inset Formula $H_{0}$
+\end_inset
+
+) can not be true, we support the alternative which we believe to be true.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $H_{0}$
+\end_inset
+
+ is often a statement of no effect, or no difference between the claimed
+ and observed.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Example
+\series default
+ A light bulb company advertises that their bulbs last for 1000 hours.
+ Consumers will be unhappy if the bulbs last less time, but will not mind
+ if the bulbs last longer.
+ Therefore 
+\emph on
+Consumer Reports
+\emph default
+ might perform a test and would consider the hypotheses 
+\begin_inset Formula 
+\begin{eqnarray*}
+H_{0}:\;\mu & = & 1000\\
+H_{a}:\;\mu & < & 1000
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Suppose we perform an experiment with 
+\begin_inset Formula $n=20$
+\end_inset
+
+ lightbulbs and observe 
+\begin_inset Formula $\bar{x}=980$
+\end_inset
+
+ and 
+\begin_inset Formula $s=64$
+\end_inset
+
+ hours and therefore our test statistic is
+\begin_inset Formula 
+\begin{eqnarray*}
+t_{19} & = & \frac{\bar{x}-\mu}{s/\sqrt{n}}\\
+\\
+ & = & \frac{980-1000}{64/\sqrt{20}}\\
+\\
+ & = & -1.40
+\end{eqnarray*}
+
+\end_inset
+
+Then the p-value would be
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<echo=FALSE, fig.height=4, fig.width=8>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+x <- seq(-3.5, 3.5, length=1000)
+\end_layout
+
+\begin_layout Plain Layout
+
+plot(x, dt(x, df=19), type='l', xlab='t-value', ylab='')
+\end_layout
+
+\begin_layout Plain Layout
+
+x.small <- seq(-3.5, -1.4, length=1000)
+\end_layout
+
+\begin_layout Plain Layout
+
+polygon(c(-3.5, x.small, -1.4), c(0, dt(x.small, df=19), 0), col='grey')
+\end_layout
+
+\begin_layout Plain Layout
+
+text(-2.5, .15, 'p-value')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+and we calculate 
+\begin_inset Formula 
+\[
+p-value=P\left(T_{19}<-1.4\right)=0.0888
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+using R
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+pt(-1.4, df=19)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Example
+\series default
+ A computer company is buying resistors from another company.
+ The resistors are supposed to have a resistance of 2 Ohms and too much
+ or too little resistance is bad.
+ Here we would be testing 
+\begin_inset Formula 
+\begin{eqnarray*}
+H_{0}:\mbox{ }\mu & = & 2\\
+H_{a}:\mbox{ }\mu & \ne & 2
+\end{eqnarray*}
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+Suppose we perform a test of a random sample of resistors and obtain a test
+ statistics of 
+\begin_inset Formula $t_{9}=1.8$
+\end_inset
+
+.
+ Because the p-value is 
+\begin_inset Quotes eld
+\end_inset
+
+the probability of your data or something more extreme
+\begin_inset Quotes erd
+\end_inset
+
+ and in this case more extreme implies extreme values in both tails then
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<echo=FALSE,fig.height=4, fig.width=8>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+x <- seq(-3.5, 3.5, length=1000)
+\end_layout
+
+\begin_layout Plain Layout
+
+plot(x, dt(x, df=9), type='l', xlab='t-value', ylab='')
+\end_layout
+
+\begin_layout Plain Layout
+
+x.small <- seq(1.8, 3.5, length=1000)
+\end_layout
+
+\begin_layout Plain Layout
+
+polygon(c(1.8, x.small, 3.5),    c(0, dt(x.small, df=9), 0), col='grey')
+\end_layout
+
+\begin_layout Plain Layout
+
+polygon(c(-1.8, -x.small, -3.5), c(0, dt(x.small, df=9), 0), col='grey')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+and we calculate
+\begin_inset Formula 
+\[
+p-value=P\left(\left|T_{9}\right|>1.8\right)=2P\left(T_{9}<-1.8\right)=2\left(0.0527\right)=0.105
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+using the R commands
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+2 * pt(-1.8, df=9)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Why should hypotheses use 
+\begin_inset Formula $\mu$
+\end_inset
+
+ and not 
+\begin_inset Formula $\bar{x}$
+\end_inset
+
+?
+\end_layout
+
+\begin_layout Standard
+There is no need to make a statistical test of the form
+\begin_inset Formula 
+\begin{eqnarray*}
+H_{0}:\;\bar{x} & = & 3\\
+H_{a}:\;\bar{x} & \ne & 3
+\end{eqnarray*}
+
+\end_inset
+
+because we 
+\emph on
+know the value of 
+\begin_inset Formula $\bar{x}$
+\end_inset
+
+;
+\emph default
+ we calculated the value there is no uncertainty to what it is.
+ However I want to use the sample mean 
+\begin_inset Formula $\bar{x}$
+\end_inset
+
+ as an estimate of the population mean 
+\begin_inset Formula $\mu$
+\end_inset
+
+ and because I don't know what 
+\begin_inset Formula $\mu$
+\end_inset
+
+ is but know that it should be somewhere near 
+\begin_inset Formula $\bar{x}$
+\end_inset
+
+, my hypothesis test is a question about 
+\begin_inset Formula $\mu$
+\end_inset
+
+ and if it is near the value stated in the null hypothesis.
+ 
+\end_layout
+
+\begin_layout Standard
+Hypotheses are 
+\emph on
+always
+\emph default
+ statements about population parameters such as 
+\begin_inset Formula $\mu$
+\end_inset
+
+ or 
+\begin_inset Formula $\sigma$
+\end_inset
+
+ and 
+\emph on
+never
+\emph default
+ about sample statistic values such as 
+\begin_inset Formula $\bar{x}$
+\end_inset
+
+ or 
+\begin_inset Formula $s$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+Examples
+\end_layout
+
+\begin_layout Enumerate
+A potato chip manufacturer advertises that it sells 16 ounces of chips per
+ bag.
+ A consumer advocacy group wants to test this claim.
+ They take a sample of 
+\begin_inset Formula $n=18$
+\end_inset
+
+ bags and carefully weights the contents of each bag and calculate a sample
+ mean 
+\begin_inset Formula $\bar{x}=15.8$
+\end_inset
+
+ oz and a sample standard deviation of 
+\begin_inset Formula $s=0.2$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+State an appropriate null and alternative hypothesis.
+ 
+\begin_inset Formula 
+\begin{eqnarray*}
+H_{0}:\mu & = & 16\mbox{ oz }\\
+H_{a}:\mu & < & 16\mbox{ oz }
+\end{eqnarray*}
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Enumerate
+Calculate an appropriate test statistic given the sample data.
+ 
+\begin_inset Formula 
+\[
+t=\frac{\bar{x}-\mu_{0}}{\frac{s}{\sqrt{n}}}=\frac{15.8-16}{\frac{.2}{\sqrt{18}}}=-4.24
+\]
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Enumerate
+Calculate the p-value.
+ 
+\begin_inset Formula 
+\[
+\mbox{p-value }=P(T_{17}<-4.24)=0.000276
+\]
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Enumerate
+Do you reject or fail to reject the null hypothesis at the 
+\begin_inset Formula $\alpha=0.05$
+\end_inset
+
+ level? 
+\begin_inset Newline newline
+\end_inset
+
+ Since the p-value is less than 
+\begin_inset Formula $\alpha=0.05$
+\end_inset
+
+ we will reject the null hypothesis.
+ 
+\end_layout
+
+\begin_layout Enumerate
+State your conclusion in terms of the problem.
+\begin_inset Newline newline
+\end_inset
+
+ There is statistically significant evidence to conclude that the mean weight
+ of chips is less than 16 oz.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+A pharmaceutical company has developed an improved pain reliever and believes
+ that it acts faster than the leading brand.
+ It is well known that the leading brand takes 25 minutes to act.
+ They perform an experiment on 16 people with pain and record the time until
+ the patient notices pain relief.
+ The sample mean is 
+\begin_inset Formula $\bar{x}=23$
+\end_inset
+
+ minutes, and the sample standard deviation was 
+\begin_inset Formula $s=10$
+\end_inset
+
+ minutes.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+State an appropriate null and alternative hypothesis.
+ 
+\begin_inset Formula 
+\begin{eqnarray*}
+H_{0}:\mu & = & 25\mbox{ minutes }\\
+H_{a}:\mu & < & 25\mbox{ minutes }
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Calculate an appropriate test statistic given the sample data.
+ 
+\begin_inset Formula 
+\[
+t_{15}=\frac{\bar{x}-\mu_{0}}{\frac{s}{\sqrt{n}}}=\frac{23-25}{\frac{10}{\sqrt{16}}}=-0.8
+\]
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Enumerate
+Calculate the p-value.
+ 
+\begin_inset Formula 
+\[
+\mbox{p-value }=P(T_{15}<-0.8)=0.218
+\]
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Enumerate
+Do you reject or fail to reject the null hypothesis at the 
+\begin_inset Formula $\alpha=.10$
+\end_inset
+
+ level? 
+\begin_inset Newline newline
+\end_inset
+
+ Since the p-value is larger than my 
+\begin_inset Formula $\alpha$
+\end_inset
+
+-level, I will fail to reject the null hypothesis.
+ 
+\end_layout
+
+\begin_layout Enumerate
+State your conclusion in terms of the problem.
+\begin_inset Newline newline
+\end_inset
+
+ These data do not provide statistically significant evidence to conclude
+ that this new pain reliever acts faster than the leading brand.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Consider the case of SAT test preparation course.
+ They claim that their students perform better than the national average
+ of 1019.
+ We wish to perform a test to discover whether or not that is true.
+ 
+\begin_inset Formula 
+\begin{eqnarray*}
+H_{0}:\,\mu & = & 1019\\
+H_{a}:\,\mu & > & 1019
+\end{eqnarray*}
+
+\end_inset
+
+They take a sample of size 
+\begin_inset Formula $n=10$
+\end_inset
+
+ and the sample mean is 
+\begin_inset Formula $\bar{x}=1020$
+\end_inset
+
+, with a sample standard deviation 
+\begin_inset Formula $s=50$
+\end_inset
+
+.
+ The test statistic is 
+\begin_inset Formula 
+\[
+t_{9}=\frac{\bar{x}-\mu_{0}}{\frac{s}{\sqrt{n}}}=\frac{1}{\frac{50}{\sqrt{10}}}=.06
+\]
+
+\end_inset
+
+ So the p-value is 
+\begin_inset Formula 
+\[
+\mbox{p-value }=P(T_{9}>.06)\approx0.5
+\]
+
+\end_inset
+
+ So we fail to reject the null hypothesis.
+ However, what if they had performed this experiment with 
+\begin_inset Formula $n=20000$
+\end_inset
+
+ students and gotten the same results? 
+\begin_inset Formula 
+\[
+t_{19999}=\frac{\bar{x}-\mu_{0}}{\frac{s}{\sqrt{n}}}=\frac{1}{\frac{50}{\sqrt{20000}}}=2.83
+\]
+
+\end_inset
+
+ and thus 
+\begin_inset Formula 
+\[
+\mbox{p-value }=P(T_{19999}>2.83)=0.0023
+\]
+
+\end_inset
+
+ At 
+\begin_inset Formula $\alpha=.05$
+\end_inset
+
+, we will reject the null hypothesis and conclude that there is statistically
+ significant evidence that the students who take the course perform better
+ than the national average.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+So what just happened and what does 
+\begin_inset Quotes eld
+\end_inset
+
+statistically significant
+\begin_inset Quotes erd
+\end_inset
+
+ mean? It appears that there is 
+\emph on
+very
+\emph default
+ slight difference between the students who take the course versus those
+ that don't.
+ With a small sample size we can not detect that difference, but by taking
+ a large sample size, I can detect the difference of even 1 SAT point.
+ So here I would say that there is a statistical difference between the
+ students who take the course versus those that don't because given such
+ a large sample, we are 
+\emph on
+very
+\emph default
+ unlikely to see a sample mean of 
+\begin_inset Formula $\bar{x}=1020$
+\end_inset
+
+ if the true mean is 
+\begin_inset Formula $\mu=1020$
+\end_inset
+
+.
+ So statistically significant really means 
+\begin_inset Quotes eld
+\end_inset
+
+unlikely to occur by random chance
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+But is there a practical difference in 1 SAT point? Not really.
+ Since SAT scores are measured in multiple of 5 (you can score 1015, or
+ 1020, but not 1019), there isn't any practical value of raising a students
+ score by 1 point.
+ By taking a sample so large, I have been able to detect a completely worthless
+ difference.
+\end_layout
+
+\begin_layout Standard
+Thus we have an example of a statistically significant difference, but it
+ is not a practical difference.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+Calculating p-values
+\end_layout
+
+\begin_layout Standard
+Students often get confused by looking up probabilities in tables and don't
+ know which tail of the distribution supports the alternative hypothesis.
+ This is further exacerbated by tables sometimes giving area to the left,
+ sometimes area to the right, and R only giving area to the left.
+ In general, your best approach to calculating p-values correctly is to
+ draw the picture of the distribution of the test statistic (usually a t-distrib
+ution) and decide which tail(s) supports the alternative and figuring out
+ the area farther out in the tail(s) than your test statistic.
+ However, since some students need a more algorithmic set of instructions,
+ the following will work:
+\end_layout
+
+\begin_layout Enumerate
+If your alternative has a 
+\begin_inset Formula $\ne$
+\end_inset
+
+ sign
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Look up the value of your test statistic in whatever table you are going
+ to use and get some probability...
+ which I'll call 
+\begin_inset Formula $p^{*}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Is 
+\begin_inset Formula $p^{*}$
+\end_inset
+
+ greater than 
+\begin_inset Formula $0.5$
+\end_inset
+
+? If so, you just looked up the area in the wrong tail.
+ To fix your error, subtract from one...
+ that is 
+\begin_inset Formula $p^{*}\leftarrow1-p^{*}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Because this is a two sided test, multiply 
+\begin_inset Formula $p^{*}$
+\end_inset
+
+ by two and that is your p-value.
+ 
+\begin_inset Formula $\textrm{p-value}=2\left(p^{*}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+A p-value is a probability and therefore must be in the range
+\begin_inset Formula $[0,1]$
+\end_inset
+
+.
+ If what you've calculated is outside that range, you've made a mistake.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+If your alternative is 
+\begin_inset Formula $<$
+\end_inset
+
+ (or 
+\begin_inset Formula $>$
+\end_inset
+
+) then the p-value is the area to the left (to the right for the greater
+ than case) of your test statistic.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Look up the value of your test statistic in whatever table you are using
+ and get the probability...
+ which again I'll call 
+\begin_inset Formula $p^{*}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+If 
+\begin_inset Formula $p^{*}$
+\end_inset
+
+ is greater than 
+\begin_inset Formula $0.5$
+\end_inset
+
+, you have most likely screwed up and looked up the area for the wrong tail.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Be careful here, because if your alternative is 
+\begin_inset Quotes eld
+\end_inset
+
+greater than
+\begin_inset Quotes erd
+\end_inset
+
+ and your test statistic is negative, then the p-value really is greater
+ than 
+\begin_inset Formula $0.5$
+\end_inset
+
+.
+ This situation is rare and 9 times out of 10, the student has just used
+ the table incorrectly.
+\end_layout
+
+\end_inset
+
+ Most of the time you'll subtract from one 
+\begin_inset Formula $p^{*}=1-p^{*}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Enumerate
+After possibly adjusting for looking up the wrong tail, your p-value is
+ 
+\begin_inset Formula $p^{*}$
+\end_inset
+
+ with no multiplication necessary.
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+Calculating p-values vs cutoff values
+\end_layout
+
+\begin_layout Standard
+We have been calculating p-values and then comparing those values to the
+ desired alpha level.
+ It is possible, however, to use the alpha level to back-calculate a cutoff
+ level for the test statistic, or even original sample mean.
+ Often these cutoff values are referred to as 
+\emph on
+critical values.
+ 
+\emph default
+Neither approach is wrong, but is generally a matter of preference, although
+ knowing both techniques can be useful.
+\end_layout
+
+\begin_layout Example*
+We return to the pharmaceutical company that has developed a new pain reliever.
+ Recall null and alternative hypothesis was
+\end_layout
+
+\begin_layout Example*
+\begin_inset Formula 
+\begin{eqnarray*}
+H_{0}:\mu & = & 25\mbox{ minutes }\\
+H_{a}:\mu & < & 25\mbox{ minutes }
+\end{eqnarray*}
+
+\end_inset
+
+and we had observed a test statistic 
+\begin_inset Formula 
+\[
+t=\frac{\bar{x}-\mu_{0}}{\frac{s}{\sqrt{n}}}=\frac{23-25}{\frac{10}{\sqrt{16}}}=-0.8
+\]
+
+\end_inset
+
+ with 
+\begin_inset Formula $15$
+\end_inset
+
+ degrees of freedom.
+ Using an 
+\begin_inset Formula $\alpha=0.10$
+\end_inset
+
+ level of significance, if this test statistic is smaller than the 
+\begin_inset Formula $0.10$
+\end_inset
+
+th quantile of a t-distribution with 15 degrees of freedom, then we will
+ reject the null hypothesis.
+ This cutoff value is 
+\begin_inset Formula $t_{crit}=-1.341$
+\end_inset
+
+ and can be using either R or the t-table in your book.
+ Because the observed test statistic is less extreme than the cutoff value,
+ we failed to reject the null hypothesis.
+\end_layout
+
+\begin_layout Example*
+We can push this idea even farther and calculate a critical value on the
+ original scale of 
+\begin_inset Formula $\bar{x}$
+\end_inset
+
+ by solving 
+\begin_inset Formula 
+\begin{eqnarray*}
+t_{crit} & = & \frac{\bar{x}_{crit}-\mu_{0}}{\frac{s}{\sqrt{n}}}\\
+-1.341 & = & \frac{\bar{x}_{crit}-25}{\frac{10}{\sqrt{16}}}\\
+-1.341\left(\frac{10}{\sqrt{16}}\right)+25 & = & \bar{x}_{crit}\\
+21.65 & = & \bar{x}_{crit}
+\end{eqnarray*}
+
+\end_inset
+
+So if we observe a sample mean 
+\begin_inset Formula $\bar{x}<21.65$
+\end_inset
+
+ then we would reject the null hypothesis.
+ Here we actually observed 
+\begin_inset Formula $\bar{x}=23$
+\end_inset
+
+ so this comparison still fails to reject the null hypothesis and concludes
+ there is insufficient evidence to reject that the new pain reliever has
+ the same time till relief as the old medicine.
+\end_layout
+
+\begin_layout Example*
+In general, I prefer to calculate and report p-values because they already
+ account for any ambiguity in if we are dealing with a 1 sided or 2 sided
+ test and how many degrees of freedom there are.
+\end_layout
+
+\begin_layout Subsection
+t-tests in R
+\end_layout
+
+\begin_layout Standard
+While it is possible to do t-tests by hand, most people will use a software
+ package to perform these calculations.
+ Here we will use the R function 
+\family typewriter
+t.test()
+\family default
+.
+ This function expects a vector of data (so that it can calculate 
+\begin_inset Formula $\bar{x}$
+\end_inset
+
+ and 
+\begin_inset Formula $s$
+\end_inset
+
+) and a hypothesized value of 
+\begin_inset Formula $\mu$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Example*
+Suppose we have data regarding fuel economy of 
+\begin_inset Formula $5$
+\end_inset
+
+ vehicles of the same make and model and we wish to test if the observed
+ fuel economy is consistent with the advertised 
+\begin_inset Formula $31$
+\end_inset
+
+ mpg at highway speeds.
+ Assuming the fuel economy varies normally amongst cars of the same make
+ and model, we test 
+\begin_inset Formula 
+\begin{eqnarray*}
+H_{0}:\,\mu & = & 31\\
+H_{a}:\,\mu & \ne & 31
+\end{eqnarray*}
+
+\end_inset
+
+and calculate
+\end_layout
+
+\begin_layout Example*
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+cars <- data.frame(mpg = c(31.8, 32.1, 32.5, 30.9, 31.3))
+\end_layout
+
+\begin_layout Plain Layout
+
+cars %>% summarise(mean(mpg), sd(mpg))
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The test statistic is:
+\begin_inset Formula 
+\[
+t=\frac{\bar{x}-\mu_{0}}{s/\sqrt{n}}=\frac{31.72-31}{\frac{0.634}{\sqrt{5}}}=2.54
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The p-value is
+\begin_inset Formula 
+\[
+p-value=2\cdot P\text{\left(T_{4}>2.54\right)}=0.064
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+and a 
+\begin_inset Formula $95\%$
+\end_inset
+
+ confidence interval is
+\begin_inset Formula 
+\begin{eqnarray*}
+\bar{x} & \pm & t_{n-1}^{1-\alpha/2}\left(\frac{s}{\sqrt{n}}\right)\\
+31.72 & \pm & 2.776445\left(\frac{0.63403}{\sqrt{5}}\right)\\
+31.72 & \pm & 0.7872\\
+ &  & [30.93,32.51]
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+t.test( cars$mpg, mu=31, alternative='two.sided' )
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+t.test()
+\family default
+ function supports testing one-sided alternatives and more information can
+ be found in the R help system using 
+\family typewriter
+help(t.test)
+\family default
+.
+\end_layout
+
+\begin_layout Section
+Type I and Type II Errors
+\end_layout
+
+\begin_layout Standard
+We can think of the p-value as measuring how much evidence we have for the
+ null hypothesis.
+ If the p-value is small, the evidence for the null hypothesis is small.
+ Conversely if the p-value is large, then the data is supporting the null
+ hypothesis.
+\end_layout
+
+\begin_layout Standard
+There is an important philosophical debate about how much evidence do we
+ need in order to reject the null hypothesis.
+ My brother-in-law would have to have extremely strong evidence before he
+ stated the other rancher was wrong.
+ Likewise, researchers needed solid evidence before concluding that Newton's
+ Laws of Motion were incorrect.
+\end_layout
+
+\begin_layout Standard
+Since the p-value is a measure of evidence for the null hypothesis, if the
+ p-value drops below a specified threshold (call it 
+\begin_inset Formula $\alpha$
+\end_inset
+
+), I will chose to reject the null hypothesis.
+ Different scientific disciplines have different levels of rigor.
+ Therefore they set commonly used 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ levels differently.
+ For example physicists demand a high degree of accuracy and consistency,
+ thus might use 
+\begin_inset Formula $\alpha=0.01$
+\end_inset
+
+, while ecologists deal with very messy data and might use an 
+\begin_inset Formula $\alpha=0.10$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The most commonly used 
+\begin_inset Formula $\alpha$
+\end_inset
+
+-level is 
+\begin_inset Formula $\alpha=0.05$
+\end_inset
+
+, which is traditional due to an off-hand comment by R.A.
+ Fisher.
+ There is nothing that fundamentally forces us to use 
+\begin_inset Formula $\alpha=0.05$
+\end_inset
+
+ other than tradition.
+ However, when sociologists do experiments presenting subjects with unlikely
+ events, it is usually when the events have a probability around 
+\begin_inset Formula $0.05$
+\end_inset
+
+ that the subjects begin to suspect they are being duped.
+ 
+\end_layout
+
+\begin_layout Standard
+People who demand rigor might want to set 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ as low as possible, but there is a trade off.
+ Consider the following possibilities, where the 
+\begin_inset Quotes eld
+\end_inset
+
+True State of Nature
+\begin_inset Quotes erd
+\end_inset
+
+ is along the top, and the decision is along the side.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="4">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+True State of Nature
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $H_{0}$
+\end_inset
+
+ True
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $H_{0}$
+\end_inset
+
+ False
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Decision
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Fail to Reject 
+\begin_inset Formula $H_{0}$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Correct 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Type II error
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Reject 
+\begin_inset Formula $H_{0}$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Type I error 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Correct 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+There are two ways to make a mistake.
+ The type I error is to reject 
+\begin_inset Formula $H_{0}$
+\end_inset
+
+ when it is true.
+ This error is controlled by 
+\begin_inset Formula $\alpha$
+\end_inset
+
+.
+ We can think of 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ as the probability of rejecting 
+\begin_inset Formula $H_{0}$
+\end_inset
+
+ when we shouldn't.
+ However there is a trade off.
+ If 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ is very small then we will fail to reject 
+\begin_inset Formula $H_{0}$
+\end_inset
+
+ in cases where 
+\begin_inset Formula $H_{0}$
+\end_inset
+
+ is not true.
+ This is called a type II error and we will define 
+\begin_inset Formula $\beta$
+\end_inset
+
+ as the probability of failing to reject 
+\begin_inset Formula $H_{0}$
+\end_inset
+
+ when it is false.
+\end_layout
+
+\begin_layout Standard
+This trade off between type I and type II errors can be seen by examining
+ our legal system.
+ A person is presumed innocent until proven guilty.
+ So the hypothesis being tested in the court of law are
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+H_{0}: & \textrm{defendent is innocent}\\
+H_{a}: & \textrm{defendent is guilty}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Our legal system theoretically operates under the rule that it is better
+ to let 10 guilty people go free, than wrongly convict 1 innocent.
+ In other words, it is worse to make a type I mistake (concluding guilty
+ when innocent), than to make a type II mistake (concluding not guilty when
+ guilty).
+ Critically, when a jury finds a person 
+\begin_inset Quotes eld
+\end_inset
+
+not guilty
+\begin_inset Quotes erd
+\end_inset
+
+ they are not saying that defense team has proven that the defendant is
+ innocent, but rather that the prosecution has not proven the defendant
+ guilty.
+\end_layout
+
+\begin_layout Standard
+This same idea manifests itself in science with the 
+\begin_inset Formula $\alpha$
+\end_inset
+
+-level.
+ Typically we decide that it is better to make a type II mistake.
+ An experiment that results in a large p-value does not prove that 
+\begin_inset Formula $H_{0}$
+\end_inset
+
+ is true, but that there is insufficient evidence to conclude 
+\begin_inset Formula $H_{a}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+If we still suspect that 
+\begin_inset Formula $H_{a}$
+\end_inset
+
+ is true, then we must repeat the experiment with a larger samples size.
+ A larger sample size makes it possible to detect smaller differences.
+\end_layout
+
+\begin_layout Subsection
+Power and Sample Size Selection
+\end_layout
+
+\begin_layout Standard
+Just as we calculated the necessary sample size to achieve a confidence
+ interval of a specified width, we are also often interested in calculating
+ the necessary sample size to to find a significant difference from the
+ hypothesized mean 
+\begin_inset Formula $\mu_{0}$
+\end_inset
+
+.
+ Just as in the confidence interval case where we had to specify the half-width
+ 
+\begin_inset Formula $E$
+\end_inset
+
+ and some estimate of the population standard deviation 
+\begin_inset Formula $\hat{\sigma}$
+\end_inset
+
+, we now must specify a difference we want to be able to detect 
+\begin_inset Formula $\delta$
+\end_inset
+
+ and an estimate of the population standard deviation 
+\begin_inset Formula $\hat{\sigma}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Example*
+Suppose that I work in Quality Control for a company that manufactures a
+ type of rope.
+ This rope is supposed to have a mean breaking strength of 
+\begin_inset Formula $5000$
+\end_inset
+
+ pounds and long experience with the process suggests that the standard
+ deviation is approximately 
+\begin_inset Formula $s=50$
+\end_inset
+
+.
+ As with many manufacturing processes, sometimes the machines that create
+ the rope get out of calibration.
+ So each morning we take a random sample of 
+\begin_inset Formula $n=7$
+\end_inset
+
+ pieces of rope and using 
+\begin_inset Formula $\alpha=0.05$
+\end_inset
+
+, test the hypothesis 
+\begin_inset Formula 
+\begin{eqnarray*}
+H_{0}:\;\mu & = & 5000\\
+H_{a}:\;\mu & < & 5000
+\end{eqnarray*}
+
+\end_inset
+
+Notice that I will reject the null hypothesis if 
+\begin_inset Formula $\bar{x}$
+\end_inset
+
+ is less than some cut-off value (which we denote 
+\begin_inset Formula $\bar{x}_{crit}$
+\end_inset
+
+), which we calculate by first recognizing that the critical t-value is
+ 
+\begin_inset Formula $t_{crit}=t_{n-1}^{\alpha}=-1.943$
+\end_inset
+
+ and then solving the following equation for 
+\begin_inset Formula $\bar{x}_{crit}$
+\end_inset
+
+ 
+\begin_inset Formula 
+\begin{eqnarray*}
+t_{crit} & = & \frac{\bar{x}_{crit}-\mu_{0}}{\frac{s}{\sqrt{n}}}\\
+t_{crit}\left(\frac{s}{\sqrt{n}}\right)+\mu_{0} & = & \bar{x}_{crit}\\
+-1.943\left(\frac{50}{\sqrt{7}}\right)+5000 & = & \bar{x}_{crit}\\
+4963 & = & \bar{x}_{crit}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example*
+There is a trade off between the Type I and Type II errors.
+ By making a Type I error, I will reject the null hypothesis when the null
+ hypothesis is true.
+ Here I would stop manufacturing for the day while recalibrating the machine.
+ Clearly a Type I error is not good.
+ The probability of making a Type I error is denoted 
+\begin_inset Formula $\alpha$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Example*
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<echo=FALSE, fig.width=12, fig.height=5>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+library(ggplot2)
+\end_layout
+
+\begin_layout Plain Layout
+
+n <- 7;  
+\end_layout
+
+\begin_layout Plain Layout
+
+mu.0 <- 5000;  
+\end_layout
+
+\begin_layout Plain Layout
+
+mu.a <- 4950; 
+\end_layout
+
+\begin_layout Plain Layout
+
+sd.xbar <- 50/sqrt(n);  
+\end_layout
+
+\begin_layout Plain Layout
+
+x.star <- mu.0+qt(0.05,n-1)*sd.xbar; 
+\end_layout
+
+\begin_layout Plain Layout
+
+x <- seq(4850, 5100, length=1000); 
+\end_layout
+
+\begin_layout Plain Layout
+
+HO <- data.frame(x, Hypothesis='Null Hypothesis True') 
+\end_layout
+
+\begin_layout Plain Layout
+
+HO$t <- (HO$x-mu.0)/sd.xbar 
+\end_layout
+
+\begin_layout Plain Layout
+
+HO$density <- dt( HO$t, n-1 ) 
+\end_layout
+
+\begin_layout Plain Layout
+
+HO$Decision <- 'Reject' 
+\end_layout
+
+\begin_layout Plain Layout
+
+HO$Decision[which(HO$x > x.star)] <- 'Fail to Reject'
+\end_layout
+
+\begin_layout Plain Layout
+
+alpha <- data.frame(x=c(x[which(x<x.star)], x.star), Hypothesis='Null Hypothesis
+ True') 
+\end_layout
+
+\begin_layout Plain Layout
+
+alpha$t <- (alpha$x - mu.0)/sd.xbar 
+\end_layout
+
+\begin_layout Plain Layout
+
+alpha$density <- dt(alpha$t, n-1) 
+\end_layout
+
+\begin_layout Plain Layout
+
+alpha$density[length(alpha$density)] <- 0
+\end_layout
+
+\begin_layout Plain Layout
+
+Ha <- data.frame(x, Hypothesis='Alternative Hypothesis True') 
+\end_layout
+
+\begin_layout Plain Layout
+
+Ha$t <- (Ha$x-mu.a)/sd.xbar 
+\end_layout
+
+\begin_layout Plain Layout
+
+Ha$density <- dt( Ha$t, n-1 ) 
+\end_layout
+
+\begin_layout Plain Layout
+
+Ha$Decision <- 'Reject' 
+\end_layout
+
+\begin_layout Plain Layout
+
+Ha$Decision[which(Ha$x > x.star)] <- 'Fail to Reject'
+\end_layout
+
+\begin_layout Plain Layout
+
+beta <- data.frame(x=c(x.star, x[which(x>x.star)]), Hypothesis='Alternative
+ Hypothesis True') 
+\end_layout
+
+\begin_layout Plain Layout
+
+beta$t <- (beta$x - mu.a)/sd.xbar 
+\end_layout
+
+\begin_layout Plain Layout
+
+beta$density <- dt(beta$t, n-1) 
+\end_layout
+
+\begin_layout Plain Layout
+
+beta$density[1] <- 0
+\end_layout
+
+\begin_layout Plain Layout
+
+rejection.region <- data.frame( 
+\end_layout
+
+\begin_layout Plain Layout
+
+	xmin=c(4850,x.star),xmax=c(x.star,5100), 
+\end_layout
+
+\begin_layout Plain Layout
+
+	ymin=c(-Inf,-Inf), ymax=c(Inf, Inf), 
+\end_layout
+
+\begin_layout Plain Layout
+
+	Decision=factor(c('Reject','Fail to Reject'), 
+\end_layout
+
+\begin_layout Plain Layout
+
+	levels=c('Reject','Fail to Reject')))
+\end_layout
+
+\begin_layout Plain Layout
+
+greek.labels <- data.frame( 
+\end_layout
+
+\begin_layout Plain Layout
+
+	x=c(4960, 4975), 
+\end_layout
+
+\begin_layout Plain Layout
+
+	density=c(.03, .06), 
+\end_layout
+
+\begin_layout Plain Layout
+
+	label=c('alpha','beta'), 
+\end_layout
+
+\begin_layout Plain Layout
+
+	Hypothesis=c('Null Hypothesis True','Alternative Hypothesis True'))
+\end_layout
+
+\begin_layout Plain Layout
+
+ggplot(NULL, aes(x=x, y=density)) + 
+\end_layout
+
+\begin_layout Plain Layout
+
+	geom_line(data=HO) + 
+\end_layout
+
+\begin_layout Plain Layout
+
+	facet_grid(Hypothesis ~ .) + 
+\end_layout
+
+\begin_layout Plain Layout
+
+	labs(title='Distribution of the Sample Mean') + 
+\end_layout
+
+\begin_layout Plain Layout
+
+	geom_vline(xintercept=x.star, col='red') + 
+\end_layout
+
+\begin_layout Plain Layout
+
+#	geom_rect(data=rejection.region, 
+\end_layout
+
+\begin_layout Plain Layout
+
+#		aes(NULL,NULL,xmin=xmin,xmax=xmax,ymin=ymin,ymax=ymax, fill=Decision),
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+#		alpha=c(0.2,0)) + 
+\end_layout
+
+\begin_layout Plain Layout
+
+	scale_fill_manual(values=c('red','green')) + 
+\end_layout
+
+\begin_layout Plain Layout
+
+	geom_polygon(data=alpha, fill='grey') + 
+\end_layout
+
+\begin_layout Plain Layout
+
+	geom_text( data=greek.labels[1,], aes(label=label), parse=TRUE) +
+\end_layout
+
+\begin_layout Plain Layout
+
+	scale_x_continuous(breaks=c(seq(4850, 5100, by=50), round(x.star)))
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A type II error occurs when I fail to reject the null hypothesis when the
+ alternative is true.
+ This would mean that we would be selling ropes that have a breaking point
+ less than the advertised amount.
+ This opens the company up to a lawsuit.
+ We denote the probability of making a Type II error is denoted as 
+\begin_inset Formula $\beta$
+\end_inset
+
+ and define 
+\series bold
+Power 
+\begin_inset Formula $=1-\beta$
+\end_inset
+
+
+\series default
+.
+ But consider that I don't want to be shutting down the plant when the breaking
+ point is just a few pounds from the true mean.
+ The head of engineering tells me that if the average breaking point is
+ more than 50 pounds less than 5000, we have a problem, but less than 50
+ pounds is acceptable.
+ 
+\end_layout
+
+\begin_layout Standard
+So I want to be able to detect if the true mean is less than 4950 pounds.
+ Consider the following where we assume 
+\begin_inset Formula $\mu=4950$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<echo=FALSE, fig.width=10, fig.height=5>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+ggplot(NULL, aes(x=x, y=density)) + 
+\end_layout
+
+\begin_layout Plain Layout
+
+	geom_line(data=HO) + 
+\end_layout
+
+\begin_layout Plain Layout
+
+	geom_line(data=Ha) + 
+\end_layout
+
+\begin_layout Plain Layout
+
+	facet_grid(Hypothesis ~ .) + 
+\end_layout
+
+\begin_layout Plain Layout
+
+	labs(title='Distribution of the Sample Mean') + 
+\end_layout
+
+\begin_layout Plain Layout
+
+	geom_vline(xintercept=x.star, col='red') + 
+\end_layout
+
+\begin_layout Plain Layout
+
+#	geom_rect(data=rejection.region, 
+\end_layout
+
+\begin_layout Plain Layout
+
+#		aes(NULL,NULL,xmin=xmin,xmax=xmax,ymin=ymin,ymax=ymax, fill=Decision),
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+#		alpha=c(0.2,0)) + 
+\end_layout
+
+\begin_layout Plain Layout
+
+	scale_fill_manual(values=c('red','green')) + 
+\end_layout
+
+\begin_layout Plain Layout
+
+	geom_polygon(data=alpha, fill='grey') + 
+\end_layout
+
+\begin_layout Plain Layout
+
+	geom_polygon(data=beta, fill='grey') + 
+\end_layout
+
+\begin_layout Plain Layout
+
+	geom_text( data=greek.labels, aes(label=label), parse=TRUE) +
+\end_layout
+
+\begin_layout Plain Layout
+
+	scale_x_continuous(breaks=c(seq(4850, 5100, by=50), round(x.star)))
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The the probability of a type II error is 
+\begin_inset Formula 
+\begin{eqnarray*}
+\beta & = & P\left(\bar{X}>4963.3\;|\,\mu=4950\right)\\
+ & = & P\left(\frac{\bar{X}-4950}{50/\sqrt{7}}>\frac{4963.3-4950}{50/\sqrt{7}}\right)\\
+ & = & P\left(T_{6}>0.703\right)\\
+ & = & 0.254
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+and therefore my power for detecting a mean breaking strength less than
+ or equal to 4950 is 
+\begin_inset Formula $1-\beta=0.7457$
+\end_inset
+
+ which is very close to what any statistical package will calculate for
+ us.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+The power calculation should done using a t-distribution with non-centrality
+ parameter instead of just shifting the distribution.
+ The difference is slight, but is enough to cause our calculation to be
+ slightly off.
+ 
+\end_layout
+
+\end_inset
+
+ This power is rather low and I would prefer to have the power be near 
+\begin_inset Formula $0.95$
+\end_inset
+
+.
+ We can improve our power by using a larger sample size.
+ We'll repeat these calculations using 
+\begin_inset Formula $n=15$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<echo=FALSE, fig.width=8, fig.height=5>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+n <- 15;  
+\end_layout
+
+\begin_layout Plain Layout
+
+mu.0 <- 5000;  
+\end_layout
+
+\begin_layout Plain Layout
+
+mu.a <- 4950; 
+\end_layout
+
+\begin_layout Plain Layout
+
+sd.xbar <- 50/sqrt(n);  
+\end_layout
+
+\begin_layout Plain Layout
+
+x.star <- mu.0+qt(0.05,n-1)*sd.xbar; 
+\end_layout
+
+\begin_layout Plain Layout
+
+x <- seq(4850, 5100, length=1000); 
+\end_layout
+
+\begin_layout Plain Layout
+
+HO <- data.frame(x, Hypothesis='Null Hypothesis True') 
+\end_layout
+
+\begin_layout Plain Layout
+
+HO$t <- (HO$x-mu.0)/sd.xbar 
+\end_layout
+
+\begin_layout Plain Layout
+
+HO$density <- dt( HO$t, n-1 ) 
+\end_layout
+
+\begin_layout Plain Layout
+
+HO$Decision <- 'Reject' 
+\end_layout
+
+\begin_layout Plain Layout
+
+HO$Decision[which(HO$x > x.star)] <- 'Fail to Reject'
+\end_layout
+
+\begin_layout Plain Layout
+
+alpha <- data.frame(x=c(x[which(x<x.star)], x.star), Hypothesis='Null Hypothesis
+ True') 
+\end_layout
+
+\begin_layout Plain Layout
+
+alpha$t <- (alpha$x - mu.0)/sd.xbar 
+\end_layout
+
+\begin_layout Plain Layout
+
+alpha$density <- dt(alpha$t, n-1) 
+\end_layout
+
+\begin_layout Plain Layout
+
+alpha$density[length(alpha$density)] <- 0
+\end_layout
+
+\begin_layout Plain Layout
+
+Ha <- data.frame(x, Hypothesis='Alternative Hypothesis True') 
+\end_layout
+
+\begin_layout Plain Layout
+
+Ha$t <- (Ha$x-mu.a)/sd.xbar 
+\end_layout
+
+\begin_layout Plain Layout
+
+Ha$density <- dt( Ha$t, n-1 ) 
+\end_layout
+
+\begin_layout Plain Layout
+
+Ha$Decision <- 'Reject' 
+\end_layout
+
+\begin_layout Plain Layout
+
+Ha$Decision[which(Ha$x > x.star)] <- 'Fail to Reject'
+\end_layout
+
+\begin_layout Plain Layout
+
+beta <- data.frame(x=c(x.star, x[which(x>x.star)]), Hypothesis='Alternative
+ Hypothesis True') 
+\end_layout
+
+\begin_layout Plain Layout
+
+beta$t <- (beta$x - mu.a)/sd.xbar 
+\end_layout
+
+\begin_layout Plain Layout
+
+beta$density <- dt(beta$t, n-1) 
+\end_layout
+
+\begin_layout Plain Layout
+
+beta$density[1] <- 0
+\end_layout
+
+\begin_layout Plain Layout
+
+rejection.region <- data.frame( 
+\end_layout
+
+\begin_layout Plain Layout
+
+	xmin=c(4850,x.star),xmax=c(x.star,5100), 
+\end_layout
+
+\begin_layout Plain Layout
+
+	ymin=c(-Inf,-Inf), ymax=c(Inf, Inf), 
+\end_layout
+
+\begin_layout Plain Layout
+
+	Decision=factor(c('Reject','Fail to Reject'), 
+\end_layout
+
+\begin_layout Plain Layout
+
+	levels=c('Reject','Fail to Reject')))
+\end_layout
+
+\begin_layout Plain Layout
+
+greek.labels <- data.frame( 
+\end_layout
+
+\begin_layout Plain Layout
+
+	x=c(4974, 4981), 
+\end_layout
+
+\begin_layout Plain Layout
+
+	density=c(.03, .02), 
+\end_layout
+
+\begin_layout Plain Layout
+
+	label=c('alpha','beta'), 
+\end_layout
+
+\begin_layout Plain Layout
+
+	Hypothesis=c('Null Hypothesis True','Alternative Hypothesis True'))
+\end_layout
+
+\begin_layout Plain Layout
+
+ggplot(NULL, aes(x=x, y=density)) + 
+\end_layout
+
+\begin_layout Plain Layout
+
+	geom_line(data=HO) + 
+\end_layout
+
+\begin_layout Plain Layout
+
+	geom_line(data=Ha) + 
+\end_layout
+
+\begin_layout Plain Layout
+
+	facet_grid(Hypothesis ~ .) + 
+\end_layout
+
+\begin_layout Plain Layout
+
+	labs(title='Distribution of the Sample Mean') + 
+\end_layout
+
+\begin_layout Plain Layout
+
+	geom_vline(xintercept=x.star, col='red') + 
+\end_layout
+
+\begin_layout Plain Layout
+
+#	geom_rect(data=rejection.region, 
+\end_layout
+
+\begin_layout Plain Layout
+
+#		aes(NULL,NULL,xmin=xmin,xmax=xmax,ymin=ymin,ymax=ymax, fill=Decision),
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+#		alpha=c(0.2,0)) + 
+\end_layout
+
+\begin_layout Plain Layout
+
+	scale_fill_manual(values=c('red','green')) + 
+\end_layout
+
+\begin_layout Plain Layout
+
+	geom_polygon(data=alpha, fill='grey') + 
+\end_layout
+
+\begin_layout Plain Layout
+
+	geom_polygon(data=beta, fill='grey') + 
+\end_layout
+
+\begin_layout Plain Layout
+
+	geom_text( data=greek.labels, aes(label=label), parse=TRUE) +
+\end_layout
+
+\begin_layout Plain Layout
+
+	scale_x_continuous(breaks=c(seq(4850, 5100, by=50), round(x.star))) 
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Power calculations are relatively tedious to do by hand, but fortunately
+ there are several very good resources for exploring how power and sample
+ size interact.
+ My favorite is a Java Applet web page maintained by Dr.
+ Russ Lenth at 
+\begin_inset CommandInset href
+LatexCommand href
+name "http://www.stat.uiowa.edu/~rlenth/Power/"
+target "http://www.stat.uiowa.edu/~rlenth/Power/"
+
+\end_inset
+
+.
+ It will provide you a list of analysis to do the calculations for and the
+ user is responsible for knowing that we are doing a one-sample t-test with
+ a one-sided alternative.
+\end_layout
+
+\begin_layout Standard
+Alternatively, we can do these calculations in R using the function 
+\family typewriter
+power.t.test()
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+Fundamentally there are five values that can be used and all power calculators
+ will allow a user to input four of them and the calculator will calculate
+ the fifth.
+\end_layout
+
+\begin_layout Enumerate
+The difference 
+\begin_inset Formula $\delta$
+\end_inset
+
+ from the hypothesized mean 
+\begin_inset Formula $\mu_{0}$
+\end_inset
+
+ that we wish to detect
+\end_layout
+
+\begin_layout Enumerate
+The population standard deviation 
+\begin_inset Formula $\sigma$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+The significance level of the test 
+\begin_inset Formula $\alpha$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+The power of the test 
+\begin_inset Formula $1-\beta$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+The sample size 
+\begin_inset Formula $n$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+power.t.test(delta=50, sd=50, sig.level=0.05, n=7, 
+\end_layout
+
+\begin_layout Plain Layout
+
+             type="one.sample", alternative="one.sided")
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+power.t.test(delta=50, sd=50, sig.level=0.05, power=0.95, 
+\end_layout
+
+\begin_layout Plain Layout
+
+             type="one.sample", alternative="one.sided")
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The general process for selecting a sample size is to
+\end_layout
+
+\begin_layout Enumerate
+Pick a 
+\begin_inset Formula $\alpha$
+\end_inset
+
+-level.
+ Usually this is easy and people use 
+\begin_inset Formula $\alpha=0.05$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Come up with an estimate for the standard deviation 
+\begin_inset Formula $\sigma$
+\end_inset
+
+.
+ If you don't have an estimate, then a pilot study should be undertaken
+ to get a rough idea what the variability is.
+ Often this is the only good data that comes out of the first field season
+ in a dissertation.
+\end_layout
+
+\begin_layout Enumerate
+Decide how large of an effect is scientifically interesting.
+\end_layout
+
+\begin_layout Enumerate
+Plug the results of steps 1-3 into a power calculator and see how large
+ a study you need to achieve a power of 
+\begin_inset Formula $90\%$
+\end_inset
+
+ or 
+\begin_inset Formula $95\%$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+We need a second example here that shows a hypothesis test along with 3
+ different alternatives, one small, one medium, one large.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Exercises
+\end_layout
+
+\begin_layout Enumerate
+One way the amount of sewage and industrial pollutants dumped into a body
+ of water affects the health of the water is by reducing the amount of dissolved
+ oxygen available for aquatic life.
+ Over a 2-month period, 8 samples were taken from a river at a location
+ 1 mile downstream from a sewage treatment plant.
+ The amount of dissolved oxygen in the samples was determined and is reported
+ in the following table.
+ Current research suggests that the mean dissolved oxygen level must be
+ at least 5.0 parts per million (ppm) for fish to survive.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="9">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Sample
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Oxygen (ppm)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5.1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4.9
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5.6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4.2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4.8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4.5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5.3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5.2
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Use R to calculate the sample mean and standard deviation.
+\end_layout
+
+\begin_layout Enumerate
+Using the asymptotic results and the quantities you calculated, create a
+ 
+\begin_inset Formula $95\%$
+\end_inset
+
+ two-sided confidence interval for the mean dissolved oxygen level during
+ the 2-month period.
+ What assumption is being made for this calculation to be valid?
+\end_layout
+
+\begin_layout Enumerate
+Calculate a 95% two-sided confidence interval using the bootstrap method.
+ Examine the histogram of bootstrap means, does it appear normal? If so,
+ what does that imply about the assumption you made in the calculation in
+ the previous part? 
+\end_layout
+
+\begin_layout Enumerate
+Using the confidence interval calculated in part (b), do the data support
+ the hypothesis that the mean dissolved oxygen level is equal to 5 ppm?
+ 
+\end_layout
+
+\begin_layout Enumerate
+Perform a 1-sided hypothesis test that the mean oxygen level is less that
+ 5 ppm with a significance level of 
+\begin_inset Formula $\alpha=0.05$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Use the function 
+\family typewriter
+t.test
+\family default
+ in R to repeat the calculations you made in parts (b) and (e).
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+We are interested in investigating how accurate radon detectors sold to
+ homeowners are.
+ We take a randomly selection of 
+\begin_inset Formula $n=12$
+\end_inset
+
+ detectors and expose to 
+\begin_inset Formula $105$
+\end_inset
+
+ pico-curies per liter (pCi/l) of radon.
+ The following values were given by the radon detectors.
+ Do all of the following calculations by hand (except for the calculations
+ of the mean and standard deviation).
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="6">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+91.9
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+97.8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+111.4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+122.3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+105.4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+95.0
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+103.8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+99.6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+96.6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+119.3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+104.8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+101.7
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Calculate a 
+\begin_inset Formula $90\%$
+\end_inset
+
+ confidence interval using the asymptotic method.
+\end_layout
+
+\begin_layout Enumerate
+State an appropriate null and alternative hypothesis for a two-sided t-test.
+ Why is a two-sided test appropriate here?
+\end_layout
+
+\begin_layout Enumerate
+Calculate an appropriate test statistic.
+\end_layout
+
+\begin_layout Enumerate
+Calculate a p-value.
+\end_layout
+
+\begin_layout Enumerate
+At an 
+\begin_inset Formula $\alpha=0.10$
+\end_inset
+
+ level, what is your conclusion.
+ Be sure to state your conclusion in terms of the problem.
+\end_layout
+
+\begin_layout Enumerate
+Use the function 
+\family typewriter
+t.test()
+\family default
+ to redo the the hand calculations you did in parts (a), (c), (d).
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Given data such that 
+\begin_inset Formula $X_{i}\sim N\left(\mu,\sigma^{2}=5^{2}\right)$
+\end_inset
+
+, the following graph shows the distribution of a sample mean of 
+\begin_inset Formula $n=8$
+\end_inset
+
+ observations under the null hypothesis 
+\begin_inset Formula $H_{0}:\mu=5$
+\end_inset
+
+.
+ We are interested in testing the alternative 
+\begin_inset Formula $H_{a}:\mu>5$
+\end_inset
+
+ at the 
+\begin_inset Formula $\alpha=0.05$
+\end_inset
+
+ level and therefore the cut off point for rejecting the null hypothesis
+ is 
+\begin_inset Formula $t_{crit}=1.895$
+\end_inset
+
+ and 
+\begin_inset Formula $\bar{x}_{crit}=1.895*5+5=8.35$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Add the plot of the distribution of the sample mean if 
+\begin_inset Formula $\mu=11$
+\end_inset
+
+ and denote which areas represent 
+\begin_inset Formula $\alpha,$
+\end_inset
+
+ 
+\begin_inset Formula $\beta$
+\end_inset
+
+, and the power in the figure below.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<fig.height=4, echo=FALSE, warning=FALSE, message=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+n <- 8 
+\end_layout
+
+\begin_layout Plain Layout
+
+x.crit <- 8.35 
+\end_layout
+
+\begin_layout Plain Layout
+
+data.lines <- rbind(   
+\end_layout
+
+\begin_layout Plain Layout
+
+  data.frame(x=seq(-2,18,length=1000),
+\end_layout
+
+\begin_layout Plain Layout
+
+             Group='H[0]: mu == 5') %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+       mutate(y=dnorm(x, mean=5, sd=5/sqrt(n))),
+\end_layout
+
+\begin_layout Plain Layout
+
+  data.frame(x=seq(-2,18,length=1),
+\end_layout
+
+\begin_layout Plain Layout
+
+             Group='H[a]: mu == 11') %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+      mutate(y=dnorm(x, mean=11, sd=5/sqrt(n))))
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ggplot(data.lines, aes(x=x, y=y)) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  facet_grid(Group ~ ., labeller=label_parsed) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_line() + 
+\end_layout
+
+\begin_layout Plain Layout
+
+  ylab('density') 
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Under the same alternative value of 
+\begin_inset Formula $\mu=11$
+\end_inset
+
+, find the probability of a Type II error.
+ That is, calculate the value of 
+\begin_inset Formula $\beta=P\left(\bar{X}<8.35\,|\,\mu=11\right)$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+A study is to be undertaken to study the effectiveness of connective tissue
+ massage therapy on the range of motion of the hip joint for elderly clients.
+ Practitioners think that a reasonable standard deviation of the differences
+ (post - pre) would be 
+\begin_inset Formula $\sigma=20$
+\end_inset
+
+ degrees.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Suppose an increase of 5 degrees in the range would be a clinically significant
+ result.
+ How large of a sample would be necessary if we wanted to control the Type
+ I error rate by 
+\begin_inset Formula $\alpha=0.1$
+\end_inset
+
+ and the Type II error rate with 
+\begin_inset Formula $\beta=0.1$
+\end_inset
+
+ (therefore the power is 
+\begin_inset Formula $1-\beta=0.90$
+\end_inset
+
+)? Use the use the 
+\family typewriter
+power.t.test()
+\family default
+ function available in the package 
+\family typewriter
+pwr
+\family default
+ to find the necessary sample size.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Suppose we were thought that only increases greater than 10 degrees were
+ substantive.
+ How large must our minimum sample size be in this case? Comment on how
+ much larger a sample size must be to detect a difference half as small.
+\end_layout
+
+\end_deeper
+\end_body
+\end_document

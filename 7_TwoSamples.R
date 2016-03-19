@@ -87,10 +87,11 @@ SamplingDist %>%
 
 ## ----Tapping_Bootstrap, cache=TRUE---------------------------------------
 BootDist <- do(10000)*{
-  resample(CaffeineTaps) %>%
-  group_by(Group) %>%
-  summarise( xbar=mean(Taps) ) %>%
-  summarise( d.star = diff(xbar)  )
+  CaffeineTaps %>%
+    group_by(Group) %>%
+    resample() %>%
+    summarise( xbar=mean(Taps) ) %>%
+    summarise( d.star = diff(xbar)  )
 }
 
 ## ----fig.height=2.5------------------------------------------------------
@@ -186,8 +187,9 @@ p.value
 
 ## ----Mosquitos_Boot, cache=TRUE------------------------------------------
 BootDist <- do(10000)*{
-  resample(Mosquitoes)                  %>%
+  Mosquitoes %>%
     group_by(Treat)                     %>%
+    resample()                          %>%
     summarise( xbar.i = mean(Number) )  %>%
     summarise( d.star = diff(xbar.i) )    
 }
@@ -206,4 +208,111 @@ quantile( BootDist$d.star, probs=c(.05, .95))
 t.test( Number ~ Treat, data=Mosquitoes, 
         var.equal=TRUE,
         conf.level=0.90)
+
+## ----fig.height=3--------------------------------------------------------
+data(MarriageAges)
+MarriageAges.Long <- MarriageAges %>%
+  mutate(Marriage = factor(1:n())) %>%        # Give each row a unique ID 
+  gather('Spouse', 'Age', Husband, Wife) %>%  # pivot from Husband/Wife to Spouse/Age
+  arrange(Marriage, desc(Spouse))             # Sort by Marriage, then (Wife,Husband)
+head(MarriageAges)
+
+## ----fig.height=3--------------------------------------------------------
+ggplot(MarriageAges.Long, aes(x=Age)) +
+  geom_histogram(binwidth=5) +
+  facet_grid(Spouse ~ .) 
+
+## ------------------------------------------------------------------------
+t.test( Age ~ Spouse, data=MarriageAges.Long )
+
+## ----fig.height=3--------------------------------------------------------
+data(MarriageAges)
+AgeDifferences <- MarriageAges.Long %>%
+  group_by(Marriage) %>%
+  summarise( d = diff(Age) )   # diff(a,b) = b-a, so this will be Husband-Wife 
+
+ggplot(AgeDifferences, aes(x = d)) +
+  geom_histogram(binwidth=2)
+
+## ------------------------------------------------------------------------
+t.test( AgeDifferences$d )
+
+## ----MarriagePerm, cache=TRUE--------------------------------------------
+# Permutation t-test of delta == 0
+PermDist <- do(10000)*{ 
+  MarriageAges.Long            %>%
+    group_by(Marriage)         %>% 
+    mutate(age = shuffle(Age)) %>%  # shuffle the ages within each marriage
+    summarize(d.i = diff(Age)) %>%  # Calc Husband - Wife age difference
+    summarize(d.bar = mean(d.i))    # calc the mean difference
+}
+PermDist %>%
+  summarize( p.value = mean(d.bar >= 2.83) )
+
+## ----MarriageBoot, cache=TRUE--------------------------------------------
+# Bootstrap CI for delta
+BootDist <- do(10000)*{ 
+  MarriageAges.Long            %>%
+    group_by(Marriage)         %>% 
+    summarize(d.i = diff(Age)) %>%  # Calc observed Husband - Wife age differences
+	resample()                 %>%  # resample from the observed differences
+    summarize(d.bar = mean(d.i))    # calc the mean difference
+}
+quantile( BootDist$d.bar, probs=c(0.025, 0.975) )
+
+## ----fig.height=3--------------------------------------------------------
+data(TrafficFlow)  # from Lock5Data
+head(TrafficFlow)
+
+## ----fig.height=3--------------------------------------------------------
+TrafficFlow.Long <- TrafficFlow           %>%
+  mutate(Light = factor(1:n()))           %>% # Give each row a unique ID 
+  gather('Seq', 'Delay', Flexible, Timed) %>% # pivot to SequenceType and Delay amount
+  arrange(Light, Seq)                         # Sort by Light, then by SequenceType
+head(TrafficFlow.Long)
+
+## ----fig.height=3--------------------------------------------------------
+ggplot(TrafficFlow.Long, aes(x=Delay)) +
+  geom_histogram(binwidth=2) +              # histograms of Delay time
+  facet_grid(Seq ~ .)                       # two plots, stacked by SequenceType
+
+## ----fig.height=3--------------------------------------------------------
+ggplot(TrafficFlow, aes(x=Difference)) +
+  geom_histogram(binwidth=2) +
+  ggtitle('Difference (Standard - Flexible)')
+
+## ------------------------------------------------------------------------
+t.test( TrafficFlow$Difference )
+
+## ----TrafficPerm, cache=TRUE---------------------------------------------
+# Permutation t-test of delta == 0
+PermDist <- do(10000)*{ 
+  TrafficFlow.Long                 %>%
+    group_by(Light)                %>% 
+    mutate(Delay = shuffle(Delay)) %>%  # shuffle the delays within each intersection
+    summarize(d.i = diff(Delay))   %>%  # Calc Timed - Flexible delay difference
+    summarize(d.bar = mean(d.i))        # calc the mean difference
+}
+PermDist %>%
+  summarize( p.value = mean(d.bar >= 61) )
+
+## ----TrafficBoot, cache=TRUE---------------------------------------------
+# Bootstrap CI for delta
+BootDist <- do(10000)*{ 
+  TrafficFlow.Long               %>%
+    group_by(Light)              %>% 
+    summarize(d.i = diff(Delay)) %>%  # Calc observed Timed-Flexible delay differences
+    resample()                   %>%  # resample from the observed differences
+    summarize(d.bar = mean(d.i))      # calc the mean difference
+}
+quantile( BootDist$d.bar, probs=c(0.025, 0.975) )
+
+## ------------------------------------------------------------------------
+library(Lock5Data)
+library(dplyr)
+library(tidyr)
+data(StorySpoilers)
+StorySpoilers.Long <- StorySpoilers %>%
+  gather('Type', 'Rating', Spoiler, Original) %>%
+  arrange(Story)
 

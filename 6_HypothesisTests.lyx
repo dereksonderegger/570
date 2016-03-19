@@ -3701,7 +3701,7 @@ One way the amount of sewage and industrial pollutants dumped into a body
  in the following table.
  Current research suggests that the mean dissolved oxygen level must be
  at least 5.0 parts per million (ppm) for fish to survive.
- 
+ Do the calculations in parts (b) and (e) by hand.
 \begin_inset Newline newline
 \end_inset
 
@@ -3897,8 +3897,8 @@ Use R to calculate the sample mean and standard deviation.
 \end_layout
 
 \begin_layout Enumerate
-Using the asymptotic results and the quantities you calculated, create a
- 
+Using the asymptotic results and the quantities you calculated, by hand
+ calculation create a 
 \begin_inset Formula $95\%$
 \end_inset
 
@@ -3921,8 +3921,9 @@ Using the confidence interval calculated in part (b), do the data support
 \end_layout
 
 \begin_layout Enumerate
-Perform a 1-sided hypothesis test that the mean oxygen level is less that
- 5 ppm with a significance level of 
+Using the quantities you calculated in part (a), by hand perform a 1-sided
+ hypothesis test that the mean oxygen level is less that 5 ppm with a significan
+ce level of 
 \begin_inset Formula $\alpha=0.05$
 \end_inset
 
@@ -4195,66 +4196,86 @@ height_special "totalheight"
 status open
 
 \begin_layout Plain Layout
-\begin_inset Flex Chunk
+\begin_inset ERT
 status open
 
 \begin_layout Plain Layout
 
-\begin_inset Argument 1
-status open
-
-\begin_layout Plain Layout
-echo=FALSE, fig.height=4, fig.width=6
-\end_layout
-
-\end_inset
-
-
+<<fig.height=4, echo=FALSE, warning=FALSE, message=FALSE>>=
 \end_layout
 
 \begin_layout Plain Layout
 
-n <- 8; 
+n <- 8 
 \end_layout
 
 \begin_layout Plain Layout
 
-mu <- 5; 
+x.crit <- 8.35 
 \end_layout
 
 \begin_layout Plain Layout
 
-sd.xbar <- 5/sqrt(n); 
+data.lines <- rbind(   
 \end_layout
 
 \begin_layout Plain Layout
 
-cut.off <- qt(0.95, df=n-1)*sd.xbar + mu; 
+  data.frame(x=seq(-2,18,length=1000),
 \end_layout
 
 \begin_layout Plain Layout
 
-x <- seq(-2, 18, length=1000); 
+             Group='H[0]: mu == 5') %>%
 \end_layout
 
 \begin_layout Plain Layout
 
-plot(x, dt((x-mu)/sd.xbar, n-1), type='l', ylab='density'); 
+       mutate(y=dnorm(x, mean=5, sd=5/sqrt(n))),
 \end_layout
 
 \begin_layout Plain Layout
 
-axis(1, at=8.35, hadj=.8)
+  data.frame(x=seq(-2,18,length=1),
 \end_layout
 
 \begin_layout Plain Layout
 
-axis(1, at=11)
+             Group='H[a]: mu == 11') %>%
 \end_layout
 
 \begin_layout Plain Layout
 
-text(3, .3, expression(H[0]))
+      mutate(y=dnorm(x, mean=11, sd=5/sqrt(n))))
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ggplot(data.lines, aes(x=x, y=y)) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  facet_grid(Group ~ ., labeller=label_parsed) +
+\end_layout
+
+\begin_layout Plain Layout
+
+  geom_line() + 
+\end_layout
+
+\begin_layout Plain Layout
+
+  ylab('density') 
+\end_layout
+
+\begin_layout Plain Layout
+
+@
 \end_layout
 
 \end_inset
@@ -4325,13 +4346,8 @@ pwr
 \begin_layout Enumerate
 Suppose we were thought that only increases greater than 10 degrees were
  substantive.
- How large must our minimum sample size be in this case? What about for
- 15, 20, 25 and 30 degrees? Sketch a graph of 
-\begin_inset Formula $n$
-\end_inset
-
- versus the difference to be detected and comment on how much larger a sample
- size must be to detect a difference half as small.
+ How large must our minimum sample size be in this case? Comment on how
+ much larger a sample size must be to detect a difference half as small.
 \end_layout
 
 \end_deeper

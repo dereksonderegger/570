@@ -1,6 +1,6 @@
 base
-datasets
 knitr
 ggplot2
 plyr
 multcompView
+dplyr

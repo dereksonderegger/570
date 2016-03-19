@@ -78,7 +78,7 @@ knitr
 \begin_body
 
 \begin_layout Chapter
-Analysis of Variance
+Analysis of Variance (ANOVA)
 \end_layout
 
 \begin_layout Subsection*
@@ -699,15 +699,29 @@ If the null hypothesis is true and
 \begin_inset Formula $\bar{Y}_{i\cdot}\sim N\left(\mu,\frac{\sigma^{2}}{n_{i}}\right)$
 \end_inset
 
- and therefore the 
+.
+ In the simple case where 
+\begin_inset Formula $n_{1}=n_{2}=\dots=n_{k}$
+\end_inset
+
+ then the sample variance of the 
 \begin_inset Formula $k$
 \end_inset
 
- sample means could be used to estimate 
+ sample means 
+\begin_inset Formula $\bar{y}_{1},\bar{y}_{2},\dots,\bar{y}_{k}$
+\end_inset
+
+ has expectation 
+\begin_inset Formula $\sigma^{2}/n_{i}$
+\end_inset
+
+ and could be used to estimate 
 \begin_inset Formula $\sigma^{2}$
 \end_inset
 
 .
+ In the case of unequal sample sizes, the formula will be slightly different.
  
 \begin_inset Formula 
 \[
@@ -745,7 +759,11 @@ f=\frac{s_{B}^{2}}{s_{W}^{2}}
 \end_layout
 
 \begin_layout Standard
-In the case that the null hypothesis is false, 
+In the case that the null hypothesis is false (non-equal means 
+\begin_inset Formula $\mu_{1},\mu_{2},\dots,\mu_{k}$
+\end_inset
+
+), 
 \begin_inset Formula $s_{B}^{2}$
 \end_inset
 
@@ -787,7 +805,7 @@ In the case that the null hypothesis is false,
  is large.
 \begin_inset Formula 
 \[
-p-value=P\left(F_{k-1,\, n_{t}-k}>f\right)
+p-value=P\left(F_{k-1,\,n_{t}-k}>f\right)
 \]
 
 \end_inset
@@ -1509,8 +1527,12 @@ and we can think about what these sums actually mean by returning to our
 
 \begin_layout Subsection
 ANOVA using Simple vs Complex models.
+\end_layout
+
+\begin_layout Standard
+The problem
 \begin_inset Foot
-status collapsed
+status open
 
 \begin_layout Plain Layout
 Upon the second reading of these notes, the student is likely asking why
@@ -1524,12 +1546,8 @@ Upon the second reading of these notes, the student is likely asking why
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-The problem under consideration boils down to how complicated of a model
- should we fit.
+ under consideration boils down to how complicated of a model should we
+ fit.
  
 \end_layout
 
@@ -2079,7 +2097,7 @@ Therefore an appropriate confidence interval for
  is 
 \begin_inset Formula 
 \[
-\bar{y}_{i\cdot}\pm t_{\, n-k}^{1-\alpha/2}\left(\frac{\hat{\sigma}}{\sqrt{n_{i}}}\right)
+\bar{y}_{i\cdot}\pm t_{\,n-k}^{1-\alpha/2}\left(\frac{\hat{\sigma}}{\sqrt{n_{i}}}\right)
 \]
 
 \end_inset
@@ -2140,8 +2158,27 @@ Species
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex Chunk
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
 status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
 
 \begin_layout Plain Layout
 
@@ -2171,6 +2208,16 @@ str(data)
 \begin_layout Plain Layout
 
 model <- aov(LAI ~ Species, data=data)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2243,21 +2290,26 @@ model
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex Chunk
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
 status open
 
 \begin_layout Plain Layout
 
-\begin_inset Argument 1
-status open
-
-\begin_layout Plain Layout
-fig.height=4, fig.width=8
-\end_layout
-
-\end_inset
-
-
+<<fig.height=4>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -2278,6 +2330,16 @@ qqline( resid(model) )
 \begin_layout Plain Layout
 
 boxplot(LAI~Species, data=data)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2301,8 +2363,27 @@ anova()
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex Chunk
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
 status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
 
 \begin_layout Plain Layout
 
@@ -2312,6 +2393,16 @@ model <- aov(LAI ~ Species, data=data)
 \begin_layout Plain Layout
 
 anova(model)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2409,8 +2500,27 @@ confint()
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex Chunk
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
 status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
 
 \begin_layout Plain Layout
 
@@ -2445,6 +2555,16 @@ coef(model.2)
 \begin_layout Plain Layout
 
 confint(model.2)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -3354,7 +3474,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<>>=
+<<fig.height=3>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -3856,21 +3976,26 @@ so that the
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex Chunk
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
 status open
 
 \begin_layout Plain Layout
 
-\begin_inset Argument 1
-status open
-
-\begin_layout Plain Layout
-echo=FALSE, fig.height=3, fig.width=6
-\end_layout
-
-\end_inset
-
-
+<<echo=FALSE, fig.height=3>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -3939,6 +4064,16 @@ for( i in 1:3 ){
 }
 \end_layout
 
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \end_inset
 
 
@@ -3960,21 +4095,26 @@ But I am often interested in the difference between one group and another.
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex Chunk
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
 status open
 
 \begin_layout Plain Layout
 
-\begin_inset Argument 1
-status open
-
-\begin_layout Plain Layout
-echo=FALSE, fig.height=3, fig.width=6
-\end_layout
-
-\end_inset
-
-
+<<echo=FALSE, fig.height=3>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -4051,6 +4191,16 @@ text(2+.14, ybars[2], pos=4, '9 = 4 + 5', col='red')
 \begin_layout Plain Layout
 
 text(3+.14, ybars[3], pos=4, '14 = 4 + 10', col='red') 
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4139,16 +4289,42 @@ Model Representations in R
 \end_layout
 
 \begin_layout Standard
-To obtain the different representations within R, you must use the 
+To obtain the different representations within R, we will vary the formula
+ to include or exclude the intercept term 
+\begin_inset Formula $\mu$
+\end_inset
+
+.
+ By default, R assumes you want the intercept term (offset representation)
+ and you must use the 
 \family typewriter
 -1
 \family default
- term that we have already seen
+ term in the formula for the cell means representation.
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex Chunk
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
 status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
 
 \begin_layout Plain Layout
 
@@ -4195,13 +4371,23 @@ fake.data <- data.frame(   y =        c( 3,4,5,  8,9,10, 13,14,15),
 coef(c.model.1)
 \end_layout
 
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \end_inset
 
 
 \end_layout
 
 \begin_layout Standard
-In the above case, we see R giving the mean of group 1 and then the two
+In the above case, we see R is giving the mean of group 1 and then the two
  offsets.
  
 \end_layout
@@ -4220,8 +4406,27 @@ To force R to use the cell means model, we force R to use the constraint
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex Chunk
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
 status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
 
 \begin_layout Plain Layout
 
@@ -4231,6 +4436,16 @@ c.model.1 <- aov(y ~ grp -1, data=fake.data)
 \begin_layout Plain Layout
 
 coef(c.model.1)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4252,8 +4467,27 @@ confint()
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex Chunk
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
 status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
 
 \begin_layout Plain Layout
 
@@ -4268,6 +4502,16 @@ coef(model)
 \begin_layout Plain Layout
 
 confint(model)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4285,8 +4529,27 @@ We can use the intercept model by removing
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex Chunk
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
 status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
 
 \begin_layout Plain Layout
 
@@ -4301,6 +4564,16 @@ coef(model)
 \begin_layout Plain Layout
 
 confint(model)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4414,19 +4687,29 @@ where
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex Chunk
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
 status open
 
 \begin_layout Plain Layout
 
-\begin_inset Argument 1
-status open
-
-\begin_layout Plain Layout
-echo=FALSE, fig.height=4, fig.width=8
+<<echo=FALSE, fig.height=4>>=
 \end_layout
 
-\end_inset
+\begin_layout Plain Layout
 
 library(plyr)
 \end_layout
@@ -4743,6 +5026,12 @@ for(i in 1:k){
 
 \begin_layout Plain Layout
 
+@
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4866,21 +5155,26 @@ We return to the hostility scores example and we will create the two different
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex Chunk
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
 status open
 
 \begin_layout Plain Layout
 
-\begin_inset Argument 1
-status open
-
-\begin_layout Plain Layout
-echo=TRUE
-\end_layout
-
-\end_inset
-
-
+<<>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -4943,6 +5237,16 @@ anova(offset.representation)
 anova(cell.representation)
 \end_layout
 
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \end_inset
 
 
@@ -4965,21 +5269,26 @@ One way to be certain which models you are comparing is to explicitly choose
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex Chunk
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
 status open
 
 \begin_layout Plain Layout
 
-\begin_inset Argument 1
-status open
-
-\begin_layout Plain Layout
-echo=TRUE
-\end_layout
-
-\end_inset
-
-
+<<>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -5017,10 +5326,1785 @@ simple <- aov(HLT ~ 1, data=Hostility)
 anova(simple, cell.representation)
 \end_layout
 
+\begin_layout Plain Layout
+
+@
+\end_layout
+
 \end_inset
 
 
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Exercises
+\end_layout
+
+\begin_layout Enumerate
+For this exercise, we will compare the Sums of Squared Error for the simple
+ 
+\begin_inset Formula 
+\[
+y_{ij}=\mu+\epsilon_{ij}
+\]
+
+\end_inset
+
+and complex
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula 
+\[
+y_{ij}=\mu_{i}+\epsilon_{ij}
+\]
+
+\end_inset
+
+model
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ and clearly, in the data presented below, the complex model fits the data
+ better.
+ The group means 
+\begin_inset Formula $\bar{y}_{i\cdot}$
+\end_inset
+
+ are 3, 13, 5, and 9, while the overall mean is 
+\begin_inset Formula $\bar{y}_{\cdot\cdot}=7.5$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<echo=FALSE, fig.height=3>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+library(ggplot2)
+\end_layout
+
+\begin_layout Plain Layout
+
+Simple.data <- data.frame( 
+\end_layout
+
+\begin_layout Plain Layout
+
+y = c(2,3,4,5, 12,13,14,15, 7,6,5,4, 8,9,10,11 )-.5,
+\end_layout
+
+\begin_layout Plain Layout
+
+grp = rep(c('A','B','C','D'), each=4),
+\end_layout
+
+\begin_layout Plain Layout
+
+rep = factor(rep(1:4, times=4)),
+\end_layout
+
+\begin_layout Plain Layout
+
+model = 'Simple Model') 
+\end_layout
+
+\begin_layout Plain Layout
+
+Complex.data <- Simple.data
+\end_layout
+
+\begin_layout Plain Layout
+
+Complex.data$model <- 'Complex Model'
+\end_layout
+
+\begin_layout Plain Layout
+
+Full.data <- rbind(Simple.data, Complex.data) 
+\end_layout
+
+\begin_layout Plain Layout
+
+ggplot(Full.data, aes(x=grp, y=y, grp=rep, shape=grp, color=grp)) +
+\end_layout
+
+\begin_layout Plain Layout
+
+geom_pointrange(aes(ymin=y, ymax=y), position=position_dodge(width=.6)) +
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+scale_y_continuous(breaks=c(3,5,7,9,11,13,15)) + 
+\end_layout
+
+\begin_layout Plain Layout
+
+xlab('Group') + 
+\end_layout
+
+\begin_layout Plain Layout
+
+facet_grid(.
+ ~ model) 
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+For the simple model graph, draw a horizontal line at the height of the
+ overall mean, representing predicted value of a new observation.
+ Next, draw the the corresponding residuals 
+\begin_inset Formula $y_{ij}-\bar{y}_{\cdot\cdot}$
+\end_inset
+
+ as vertical lines from the data points to the overall mean.
+ Similarly draw horizontal lines for the group means in the complex model
+ and represent the residuals for the complex model 
+\begin_inset Formula $y_{ij}-\bar{y}_{i\cdot}$
+\end_inset
+
+ as vertical lines from the data points to the group means.
+ In this case, does it appear that the average residual is significantly
+ larger in the simple model than the complex?
+\begin_inset VSpace 0.4in
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+To show that the complex is a significantly better model, fill in the empty
+ boxes in the ANOVA table.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="6">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="left" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Source
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Sum of Squares
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+df
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Mean Squares
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+F-stat
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+P-value
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Difference
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Complex
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+20
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+12
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Simple
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+256
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+15
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+We will essentially repeat the previous exercise, except this time, the
+ simple model will be preferred.
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<echo=FALSE, fig.height=2.5>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+, fig.width=6, message=FALSE
+\end_layout
+
+\end_inset
+
+set.seed(238)
+\end_layout
+
+\begin_layout Plain Layout
+
+Simple.data <- data.frame( 
+\end_layout
+
+\begin_layout Plain Layout
+
+y = rnorm(9, mean=5), 
+\end_layout
+
+\begin_layout Plain Layout
+
+grp = rep(c('A','B','C'), each=3), 
+\end_layout
+
+\begin_layout Plain Layout
+
+rep = factor(rep(1:3, times=3)), 
+\end_layout
+
+\begin_layout Plain Layout
+
+model = 'Simple Model') 
+\end_layout
+
+\begin_layout Plain Layout
+
+Complex.data <- Simple.data
+\end_layout
+
+\begin_layout Plain Layout
+
+Complex.data$model <- 'Complex Model'
+\end_layout
+
+\begin_layout Plain Layout
+
+Full.data <- rbind(Simple.data, Complex.data) 
+\end_layout
+
+\begin_layout Plain Layout
+
+ggplot(Full.data, aes(x=grp, y=y, grp=rep, shape=grp, color=grp)) +
+\end_layout
+
+\begin_layout Plain Layout
+
+geom_pointrange(aes(ymin=y, ymax=y), position=position_dodge(width=.6)) +
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+xlab('Group') + 
+\end_layout
+
+\begin_layout Plain Layout
+
+facet_grid(.
+ ~ model) 
+\end_layout
+
+\begin_layout Plain Layout
+
+# make a data frame to show the students...
+\end_layout
+
+\begin_layout Plain Layout
+
+p2.data <- Simple.data[,c('y','grp')]
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+For this data, the following means can be calculated:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+library(dplyr)
+\end_layout
+
+\begin_layout Plain Layout
+
+str(p2.data)
+\end_layout
+
+\begin_layout Plain Layout
+
+# calculate the group means
+\end_layout
+
+\begin_layout Plain Layout
+
+p2.data %>% group_by(grp) %>% summarise(xbar.i = mean(y))
+\end_layout
+
+\begin_layout Plain Layout
+
+# calculate the overall mean
+\end_layout
+
+\begin_layout Plain Layout
+
+p2.data %>% summarise(xbar = mean(y))
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+For the simple model graph, draw the corresponding residuals 
+\begin_inset Formula $y_{ij}-\bar{y}_{\cdot\cdot}$
+\end_inset
+
+ as vertical lines from the data point to the overall mean.
+ Similarly draw the residuals for the complex model 
+\begin_inset Formula $y_{ij}-\bar{y}_{i\cdot}$
+\end_inset
+
+ as vertical lines from the data points to the group means.
+ (Visually estimate the group and overall means).
+ In this case, does it appear that the average residual is significantly
+ larger in the simple model than the complex?
+\begin_inset VSpace 0.4in
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+To show that the complex not a significantly better model, fill in the empty
+ boxes in the ANOVA table.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="6">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="left" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Source
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Sum of Squares
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+df
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Mean Squares
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+F-stat
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+P-value
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Difference
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Complex
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8.75
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Simple
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9.79
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+The following data were collected and we wish to perform an analysis of
+ variance to determine if the group means are statistically different.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="3">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Group 1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Group 2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Group 3
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $4,6,6,8$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $8,8,6,6$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $12,13,15,16$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+The complex model assumes different means for each group.
+ That is 
+\begin_inset Formula 
+\[
+Y_{ij}=\mu_{i}+\epsilon_{ij}
+\]
+
+\end_inset
+
+Calculate 
+\begin_inset Formula $SSE_{complex}$
+\end_inset
+
+ via the following:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Find the estimate of 
+\begin_inset Formula $\mu_{i}$
+\end_inset
+
+.
+ That is, calculate 
+\begin_inset Formula $\hat{\mu}_{i}=\bar{y}_{i\cdot}$
+\end_inset
+
+ which is the mean of each group.
+ Therefore the predicted value for a new observation in group 
+\begin_inset Formula $i$
+\end_inset
+
+ would be 
+\begin_inset Formula $\hat{y}_{ij}=\hat{\mu}_{i}=\bar{y}_{i\cdot}$
+\end_inset
+
+ and you can now calculate 
+\begin_inset Formula $SSE_{complex}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Calculate
+\begin_inset Formula 
+\[
+SSE_{complex}=\sum_{i=1}^{3}\sum_{j=1}^{4}\left(y_{ij}-\hat{y}_{ij}\right)^{2}=\sum_{i=1}^{3}\sum_{j=1}^{4}\left(y_{ij}-\bar{y}_{\cdot\cdot}\right)^{2}
+\]
+
+\end_inset
+
+ 
+\begin_inset VSpace 1.5in
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+The simple model assumes the same mean for each group.
+ That is 
+\begin_inset Formula 
+\[
+Y_{ij}=\mu+\epsilon_{ij}
+\]
+
+\end_inset
+
+Calculate 
+\begin_inset Formula $SSE_{simple}$
+\end_inset
+
+ via the following:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Find the estimate of 
+\begin_inset Formula $\mu$
+\end_inset
+
+.
+ That is, calculate 
+\begin_inset Formula $\hat{\mu}=\bar{y}_{\cdot\cdot}$
+\end_inset
+
+ which is the overall mean of all the data.
+ Therefore the predicted value for a new observation in any group would
+ be 
+\begin_inset Formula $\hat{y}_{ij}=\hat{\mu}=\bar{y}_{\cdot\cdot}$
+\end_inset
+
+ and we can calculate 
+\begin_inset Formula $SSE_{simple}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Calculate 
+\begin_inset Formula 
+\[
+SSE_{simple}=\sum_{i=1}^{3}\sum_{j=1}^{4}\left(y_{ij}-\hat{y}_{ij}\right)^{2}=\sum_{i=1}^{3}\sum_{j=1}^{4}\left(y_{ij}-\bar{y}_{\cdot\cdot}\right)^{2}
+\]
+
+\end_inset
+
+
+\begin_inset VSpace 1.5in
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Recreate the ANOVA table using R by typing in the data set and fitting the
+ appropriate model using the 
+\family typewriter
+aov()
+\family default
+ command.
+ Obtain the ANOVA table from this model by using the 
+\family typewriter
+anova()
+\family default
+ command.
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Suppose that for a project I did four separate t-tests and the resulting
+ p-values were
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="4">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $p_{1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $p_{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $p_{3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $p_{4}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.03$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.14$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.01$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.001$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+If I wanted to control my overall type I error rate at an 
+\begin_inset Formula $\alpha=0.05$
+\end_inset
+
+ and used the Bonferroni multiple comparisons procedure, which tests would
+ be statistically significant?
+\end_layout
+
+\begin_layout Enumerate
+We will examine the amount of waste produced at five different plants that
+ manufacture Levi Jeans.
+ The 
+\family typewriter
+Waste
+\family default
+ amount is the amount of cloth wasted in cutting out designs compared to
+ a computer program, so negative values for 
+\family typewriter
+Waste 
+\family default
+indicate that the human engineer did a better job planning the cuts than
+ the computer algorithm.
+ The data are available in the file 
+\begin_inset Quotes eld
+\end_inset
+
+Levi.csv
+\begin_inset Quotes erd
+\end_inset
+
+ available on Bblearn.
+ There are two columns, 
+\family typewriter
+Plant
+\family default
+ and 
+\family typewriter
+Waste
+\family default
+.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Read the data into R.
+ If you need more help on this, see the chapter on importing data in the
+ 
+\begin_inset CommandInset href
+LatexCommand href
+name "R manual: "
+target "https://raw.github.com/dereksonderegger/STA_570L_Book/master/Introduction_to_R.pdf"
+
+\end_inset
+
+ 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://raw.github.com/dereksonderegger/STA_570L_Book/master/Introduction_to_R.pdf
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Download the file 
+\family typewriter
+Levi.csv
+\family default
+ from 
+\begin_inset CommandInset href
+LatexCommand href
+name "GitHub"
+target "https://raw.github.com/dereksonderegger/STA_570_Book/master/data/Levi.csv"
+
+\end_inset
+
+ 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://raw.github.com/dereksonderegger/STA_570_Book/master/data/Levi.csv
+\end_layout
+
+\end_inset
+
+ to some location on your computer (wherever you store RMarkdown files for
+ your homework assignments).
+ Open this file using a simple editor (Notepad on Windows or TextEdit on
+ a Mac) and notice that the first line is a set of column headers and subsequent
+ lines have the data.
+ Also notice that the columns are separated by commas.
+ This file type is known as a 
+\begin_inset Quotes eld
+\end_inset
+
+comma separated values
+\begin_inset Quotes erd
+\end_inset
+
+ file and MS Excel can open it just fine and Excel can save files in this
+ file type as well.
+\end_layout
+
+\begin_layout Enumerate
+Make sure the working directory in R is set to the same directory.
+ In RStudio, this is under the menu item: Tools -> Set Working Directory.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Read in the file using the following command:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<eval=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+# First term is the file name, 
+\end_layout
+
+\begin_layout Plain Layout
+
+# second is that the first row is the column headers, 
+\end_layout
+
+\begin_layout Plain Layout
+
+# last is that a comma separates the columns from one another
+\end_layout
+
+\begin_layout Plain Layout
+
+Levi <- read.table('Levi.csv', header=TRUE, sep=',')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Examine the data frame using the 
+\family typewriter
+str(Levi)
+\family default
+ command.
+ Is the 
+\family typewriter
+Plant
+\family default
+ column already a factor, or do you need to convert it to a factor?
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Make a boxplot of the data.
+ Do any assumptions necessary for ANOVA appear to be violated?
+\end_layout
+
+\begin_layout Enumerate
+Test the equal variance assumption using Bartlett's test.
+\end_layout
+
+\begin_layout Enumerate
+Fit an ANOVA model to these data and test if the residuals have a normal
+ distribution using the Shapiro-Wilks test.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+The dataset 
+\family typewriter
+iris
+\family default
+ is available on R and can be loaded by the entering the command 
+\family typewriter
+data('iris')
+\family default
+ at your R prompt.
+ This famous (Fisher's or Anderson's) iris data set gives the measurements
+ in centimeters of the variables sepal length and width and petal length
+ and width, respectively, for 
+\begin_inset Formula $n_{i}=50$
+\end_inset
+
+ flowers from each of 3 species of iris.
+ The species are 
+\emph on
+Iris setosa
+\emph default
+, 
+\emph on
+versicolor
+\emph default
+, and 
+\emph on
+virginica
+\emph default
+.
+ We will be examining the relationship between sepal width and the species
+ of these irises.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Denote the mean value of all 
+\emph on
+setosa
+\emph default
+ flowers as 
+\begin_inset Formula $\mu_{setosa}$
+\end_inset
+
+ and similar notation for the other species.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Make a boxplot of the data.
+ Do any assumptions necessary for ANOVA appear to be violated?
+\end_layout
+
+\begin_layout Enumerate
+Test the equal variance assumption of ANOVA using Bartlett's test.
+\end_layout
+
+\begin_layout Enumerate
+Do the ANOVA test using the command 
+\family typewriter
+
+\begin_inset Newline newline
+\end_inset
+
+
+\family default
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<eval=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+model <- aov( Sepal.Width ~ Species, data=iris)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\family typewriter
+
+\begin_inset Newline newline
+\end_inset
+
+
+\family default
+and test the normality of the residual terms by making a QQplot and doing
+ the Shapiro-Wilk's test.
+\end_layout
+
+\begin_layout Enumerate
+Examine the ANOVA table.
+ What is the p-value for testing the hypotheses
+\begin_inset Formula 
+\begin{eqnarray*}
+H_{0}:\, &  & \mu_{setosa}=\mu_{virginica}=\mu_{versicolor}\\
+H_{a:\,} &  & \textrm{at least on mean is different}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Now that we know there is a statistically significant difference amongst
+ the means (and with 
+\emph on
+setosa
+\emph default
+ having a mean 
+\family typewriter
+Sepal.Width
+\family default
+ about 30% larger than the other two, I think aesthetically that is a big
+ difference), we can go searching for it.
+ Use Tukey's 
+\begin_inset Quotes eld
+\end_inset
+
+Honestly Significant Differences
+\begin_inset Quotes erd
+\end_inset
+
+ method to test all the pairwise comparisons between means.
+ In particular, what is the p-value for testing
+\begin_inset Formula 
+\begin{eqnarray*}
+H_{0}:\, &  & \mu_{setosa}=\mu_{virginica}\\
+H_{a}:\: &  & \mu_{setosa}\ne\mu_{virginica}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Refit the model using the 
+\begin_inset Quotes eld
+\end_inset
+
+
+\family typewriter
+-1
+\family default
+
+\begin_inset Quotes erd
+\end_inset
+
+ term 
+\family typewriter
+
+\begin_inset Newline newline
+\end_inset
+
+
+\family default
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<eval=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+model.2 <- aov( Sepal.Width ~ -1 + Species, data=iris)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Using this second model and the function 
+\family typewriter
+coef()
+\family default
+, what is the estimated value of 
+\begin_inset Formula $\mu_{setosa}$
+\end_inset
+
+? What is the estimated value of 
+\begin_inset Formula $\mu_{virginica}$
+\end_inset
+
+?
+\end_layout
+
+\begin_layout Enumerate
+What is the estimated value of 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+? 
+\end_layout
+
+\begin_layout Enumerate
+By hand, calculate the appropriate 95% confidence interval for 
+\begin_inset Formula $\mu_{setosa}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Using the R function 
+\family typewriter
+confint()
+\family default
+, confirm your calculation in part (h).
+\end_layout
+
+\end_deeper
 \end_body
 \end_document

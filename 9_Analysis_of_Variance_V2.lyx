@@ -81,10 +81,19 @@ knitr
 Analysis of Variance (ANOVA)
 \end_layout
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
 \begin_layout Subsection*
 Introduction
 \end_layout
 
+<<<<<<< Updated upstream
+=======
+>>>>>>> origin/master
+>>>>>>> Stashed changes
 \begin_layout Standard
 \begin_inset Box Frameless
 position "t"
@@ -150,6 +159,73 @@ opts_chunk$set(cache=TRUE)
 
 \end_inset
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<message=FALSE, warning=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+library(mosaic)     # for TukeyHSD to work with lm() cleanly
+\end_layout
+
+\begin_layout Plain Layout
+
+library(ggplot2)    # for ggplot2
+\end_layout
+
+\begin_layout Plain Layout
+
+library(ggfortify)  # for ggplot2 diagnostic plots using autoplot()
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Introduction
+\end_layout
+
+\begin_layout Standard
+=======
+>>>>>>> origin/master
+>>>>>>> Stashed changes
 We are now moving into a different realm of statistics.
  We have covered enough probability and the basic ideas of hypothesis tests
  and p-values to move onto the type of inference that you took this class
@@ -347,6 +423,16 @@ The observations are representative of the population of interest
 
 \end_inset
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+
+\begin_inset Newline newline
+\end_inset
+
+=======
+>>>>>>> origin/master
+>>>>>>> Stashed changes
 In general I want to test the hypotheses
 \begin_inset Formula 
 \begin{eqnarray*}
@@ -2140,7 +2226,15 @@ aov()
 \family default
  to fit this model, and the following we will concentrate on using 
 \family typewriter
+<<<<<<< Updated upstream
 aov()
+=======
+<<<<<<< HEAD
+lm()
+=======
+aov()
+>>>>>>> origin/master
+>>>>>>> Stashed changes
 \family default
 .
  The first argument to this function is a formula that describes the relationshi
@@ -2207,7 +2301,15 @@ str(data)
 
 \begin_layout Plain Layout
 
+<<<<<<< Updated upstream
 model <- aov(LAI ~ Species, data=data)
+=======
+<<<<<<< HEAD
+model <- lm(LAI ~ Species, data=data)
+=======
+model <- aov(LAI ~ Species, data=data)
+>>>>>>> origin/master
+>>>>>>> Stashed changes
 \end_layout
 
 \begin_layout Plain Layout
@@ -2228,7 +2330,15 @@ model <- aov(LAI ~ Species, data=data)
 \begin_layout Standard
 The 
 \family typewriter
+<<<<<<< Updated upstream
 aov()
+=======
+<<<<<<< HEAD
+lm()
+=======
+aov()
+>>>>>>> origin/master
+>>>>>>> Stashed changes
 \family default
  command is the command that does all the calculations necessary to fit
  an ANOVA model.
@@ -2240,7 +2350,15 @@ aov()
 \begin_layout Standard
 In the call to 
 \family typewriter
+<<<<<<< Updated upstream
 aov()
+=======
+<<<<<<< HEAD
+lm()
+=======
+aov()
+>>>>>>> origin/master
+>>>>>>> Stashed changes
 \family default
  we created a formula.
  Formulas in R always are of the form 
@@ -2309,27 +2427,96 @@ status open
 
 \begin_layout Plain Layout
 
+<<<<<<< Updated upstream
 <<fig.height=4>>=
+=======
+<<<<<<< HEAD
+<<fig.height=3>>=
+=======
+<<fig.height=4>>=
+>>>>>>> origin/master
+>>>>>>> Stashed changes
 \end_layout
 
 \begin_layout Plain Layout
 
+<<<<<<< Updated upstream
 par(mfrow=c(1,2)) # side-by-side plots...
 \end_layout
 
 \begin_layout Plain Layout
 
+=======
+<<<<<<< HEAD
+autoplot( model, which=2)  # The which argument specifies which plot to
+ make
+=======
+par(mfrow=c(1,2)) # side-by-side plots...
+>>>>>>> origin/master
+\end_layout
+
+\begin_layout Plain Layout
+
+<<<<<<< HEAD
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<fig.height=3>>=
+=======
+>>>>>>> Stashed changes
 qqnorm( resid(model) )
 \end_layout
 
 \begin_layout Plain Layout
 
 qqline( resid(model) )
+<<<<<<< Updated upstream
+=======
+>>>>>>> origin/master
+>>>>>>> Stashed changes
 \end_layout
 
 \begin_layout Plain Layout
 
+<<<<<<< Updated upstream
 boxplot(LAI~Species, data=data)
+=======
+<<<<<<< HEAD
+ggplot(data, aes(x=Species, y=LAI)) + geom_boxplot()
+=======
+boxplot(LAI~Species, data=data)
+>>>>>>> origin/master
+>>>>>>> Stashed changes
 \end_layout
 
 \begin_layout Plain Layout
@@ -2387,7 +2574,15 @@ status open
 
 \begin_layout Plain Layout
 
+<<<<<<< Updated upstream
 model <- aov(LAI ~ Species, data=data)
+=======
+<<<<<<< HEAD
+model <- lm(LAI ~ Species, data=data)
+=======
+model <- aov(LAI ~ Species, data=data)
+>>>>>>> origin/master
+>>>>>>> Stashed changes
 \end_layout
 
 \begin_layout Plain Layout
@@ -2423,11 +2618,21 @@ The package
 \size normal
 NCStats
 \family default
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+ modifies the print command to create the missing third row.
+=======
+>>>>>>> Stashed changes
  modifies the print command for an 
 \family typewriter
 aov
 \family default
  object to create the missing third row.
+<<<<<<< Updated upstream
+=======
+>>>>>>> origin/master
+>>>>>>> Stashed changes
 \end_layout
 
 \end_inset
@@ -2544,7 +2749,15 @@ status open
 
 \begin_layout Plain Layout
 
+<<<<<<< Updated upstream
 model.2 <- aov(LAI ~ Species - 1, data=data)
+=======
+<<<<<<< HEAD
+model.2 <- lm(LAI ~ Species - 1, data=data)
+=======
+model.2 <- aov(LAI ~ Species - 1, data=data)
+>>>>>>> origin/master
+>>>>>>> Stashed changes
 \end_layout
 
 \begin_layout Plain Layout
@@ -2859,12 +3072,22 @@ status open
 
 \begin_layout Plain Layout
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+model <- lm(Y ~ -1 + Group, mydata)
+=======
+>>>>>>> Stashed changes
 # TukeyHSD is very picky and will not accept Y ~ Group - 1
 \end_layout
 
 \begin_layout Plain Layout
 
 model <- aov(Y~Group, mydata)
+<<<<<<< Updated upstream
+=======
+>>>>>>> origin/master
+>>>>>>> Stashed changes
 \end_layout
 
 \begin_layout Plain Layout
@@ -3563,17 +3786,35 @@ status open
 
 \begin_layout Plain Layout
 
+<<<<<<< Updated upstream
 model <- aov( HLT ~ Method, data=Hostility )
+=======
+<<<<<<< HEAD
+model <- lm( HLT ~ Method, data=Hostility )
+=======
+model <- aov( HLT ~ Method, data=Hostility )
+>>>>>>> origin/master
+>>>>>>> Stashed changes
 \end_layout
 
 \begin_layout Plain Layout
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+autoplot(model, which=2)
+=======
+>>>>>>> Stashed changes
 qqnorm( resid(model) )
 \end_layout
 
 \begin_layout Plain Layout
 
 qqline( resid(model) )
+<<<<<<< Updated upstream
+=======
+>>>>>>> origin/master
+>>>>>>> Stashed changes
 \end_layout
 
 \begin_layout Plain Layout
@@ -3686,7 +3927,15 @@ status open
 
 \begin_layout Plain Layout
 
+<<<<<<< Updated upstream
 model <- aov( HLT ~ Method, data=Hostility )
+=======
+<<<<<<< HEAD
+model <- lm( HLT ~ -1 + Method, data=Hostility )
+=======
+model <- aov( HLT ~ Method, data=Hostility )
+>>>>>>> origin/master
+>>>>>>> Stashed changes
 \end_layout
 
 \begin_layout Plain Layout
@@ -3761,11 +4010,25 @@ status open
 
 \begin_layout Plain Layout
 
+<<<<<<< Updated upstream
 # To get the group means from aov, we must
+=======
+<<<<<<< HEAD
+coef(model)
+=======
+# To get the group means from aov, we must
+>>>>>>> origin/master
+>>>>>>> Stashed changes
 \end_layout
 
 \begin_layout Plain Layout
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+confint(model)
+=======
+>>>>>>> Stashed changes
 # use the -1 in the formula command 
 \end_layout
 
@@ -3782,6 +4045,10 @@ coef(model.2)
 \begin_layout Plain Layout
 
 confint(model.2)
+<<<<<<< Updated upstream
+=======
+>>>>>>> origin/master
+>>>>>>> Stashed changes
 \end_layout
 
 \begin_layout Plain Layout
@@ -3833,11 +4100,20 @@ status open
 
 \begin_layout Plain Layout
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
 # Remember TukeyHSD is picky and doesn't like the -1...
 \end_layout
 
 \begin_layout Plain Layout
 
+<<<<<<< Updated upstream
+=======
+>>>>>>> origin/master
+>>>>>>> Stashed changes
 TukeyHSD(model)
 \end_layout
 
@@ -4358,12 +4634,28 @@ fake.data <- data.frame(   y =        c( 3,4,5,  8,9,10, 13,14,15),
 
 \begin_layout Plain Layout
 
+<<<<<<< Updated upstream
 #c.model.1 <- aov(y ~ grp  , data=fake.data)
+=======
+<<<<<<< HEAD
+c.model.1 <- lm(y ~     grp, data=fake.data)
+=======
+#c.model.1 <- aov(y ~ grp  , data=fake.data)
+>>>>>>> origin/master
+>>>>>>> Stashed changes
 \end_layout
 
 \begin_layout Plain Layout
 
+<<<<<<< Updated upstream
  c.model.1 <- aov(y ~ grp+1, data=fake.data)
+=======
+<<<<<<< HEAD
+c.model.1 <- lm(y ~ 1 + grp, data=fake.data)
+=======
+ c.model.1 <- aov(y ~ grp+1, data=fake.data)
+>>>>>>> origin/master
+>>>>>>> Stashed changes
 \end_layout
 
 \begin_layout Plain Layout
@@ -4430,7 +4722,15 @@ status open
 
 \begin_layout Plain Layout
 
+<<<<<<< Updated upstream
 c.model.1 <- aov(y ~ grp -1, data=fake.data)
+=======
+<<<<<<< HEAD
+c.model.1 <- lm(y ~ -1 + grp, data=fake.data)
+=======
+c.model.1 <- aov(y ~ grp -1, data=fake.data)
+>>>>>>> origin/master
+>>>>>>> Stashed changes
 \end_layout
 
 \begin_layout Plain Layout
@@ -4491,7 +4791,15 @@ status open
 
 \begin_layout Plain Layout
 
+<<<<<<< Updated upstream
 model <- aov(HLT ~ Method - 1, data=Hostility)
+=======
+<<<<<<< HEAD
+model <- lm(HLT ~ -1 + Method, data=Hostility)
+=======
+model <- aov(HLT ~ Method - 1, data=Hostility)
+>>>>>>> origin/master
+>>>>>>> Stashed changes
 \end_layout
 
 \begin_layout Plain Layout
@@ -4520,7 +4828,15 @@ confint(model)
 \end_layout
 
 \begin_layout Standard
+<<<<<<< Updated upstream
 We can use the intercept model by removing 
+=======
+<<<<<<< HEAD
+We can use the offset model by removing 
+=======
+We can use the intercept model by removing 
+>>>>>>> origin/master
+>>>>>>> Stashed changes
 \family typewriter
 -1
 \family default
@@ -5179,12 +5495,28 @@ status open
 
 \begin_layout Plain Layout
 
+<<<<<<< Updated upstream
 offset.representation <- aov(HLT ~ Method, data=Hostility)
+=======
+<<<<<<< HEAD
+offset.representation <- lm(HLT ~ Method, data=Hostility)
+=======
+offset.representation <- aov(HLT ~ Method, data=Hostility)
+>>>>>>> origin/master
+>>>>>>> Stashed changes
 \end_layout
 
 \begin_layout Plain Layout
 
+<<<<<<< Updated upstream
 cell.representation   <- aov(HLT ~ Method -1, data= Hostility)
+=======
+<<<<<<< HEAD
+cell.representation   <- lm(HLT ~ Method -1, data= Hostility)
+=======
+cell.representation   <- aov(HLT ~ Method -1, data= Hostility)
+>>>>>>> origin/master
+>>>>>>> Stashed changes
 \end_layout
 
 \begin_layout Plain Layout
@@ -5293,7 +5625,15 @@ status open
 
 \begin_layout Plain Layout
 
+<<<<<<< Updated upstream
 simple <- aov(HLT ~ 1, data=Hostility)
+=======
+<<<<<<< HEAD
+simple <- lm(HLT ~ 1, data=Hostility)
+=======
+simple <- aov(HLT ~ 1, data=Hostility)
+>>>>>>> origin/master
+>>>>>>> Stashed changes
 \end_layout
 
 \begin_layout Plain Layout
@@ -6927,7 +7267,15 @@ status open
 
 \begin_layout Plain Layout
 
+<<<<<<< Updated upstream
 model <- aov( Sepal.Width ~ Species, data=iris)
+=======
+<<<<<<< HEAD
+model <- lm( Sepal.Width ~ Species, data=iris)
+=======
+model <- aov( Sepal.Width ~ Species, data=iris)
+>>>>>>> origin/master
+>>>>>>> Stashed changes
 \end_layout
 
 \begin_layout Plain Layout
@@ -7047,7 +7395,15 @@ status open
 
 \begin_layout Plain Layout
 
+<<<<<<< Updated upstream
 model.2 <- aov( Sepal.Width ~ -1 + Species, data=iris)
+=======
+<<<<<<< HEAD
+model.2 <- lm( Sepal.Width ~ -1 + Species, data=iris)
+=======
+model.2 <- aov( Sepal.Width ~ -1 + Species, data=iris)
+>>>>>>> origin/master
+>>>>>>> Stashed changes
 \end_layout
 
 \begin_layout Plain Layout

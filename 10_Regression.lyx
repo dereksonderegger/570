@@ -3594,289 +3594,10 @@ for(i in 1:3){
 \end_layout
 
 \begin_layout Standard
-To illustrate this, we'll look at data about the height and weight values
- for women between 30 and 39.
- (The data presented is actually the average weight for women of given heights,
- but is a useful example).
-\end_layout
-
-\begin_layout Scrap
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100col%"
-special "none"
-height "1in"
-height_special "totalheight"
-status open
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<fig.height=3.5, fig.width=5>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-data('women')
-\end_layout
-
-\begin_layout Plain Layout
-
-str(women)
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-# fit the regression line and add that info to my data frame
-\end_layout
-
-\begin_layout Plain Layout
-
-model <- lm(weight ~ height, data=women)
-\end_layout
-
-\begin_layout Plain Layout
-
-women <- women %>%
-\end_layout
-
-\begin_layout Plain Layout
-
-  mutate( fit   = fitted(model),
-\end_layout
-
-\begin_layout Plain Layout
-
-          resid = resid(model)  )
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100col%"
-special "none"
-height "1in"
-height_special "totalheight"
-status open
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<fig.height=3.5, fig.width=5>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-ggplot(women) +
-\end_layout
-
-\begin_layout Plain Layout
-
-  geom_point(aes(x=height, y = weight )) +
-\end_layout
-
-\begin_layout Plain Layout
-
-  geom_line( aes(x=height, y = fit    )) +
-\end_layout
-
-\begin_layout Plain Layout
-
-  labs( x='Height', y='Weight', 
-\end_layout
-
-\begin_layout Plain Layout
-
-        title='Average Weight vs Height of US Women 30-39' ) +
-\end_layout
-
-\begin_layout Plain Layout
-
-  theme_bw()
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-If we squint at this graph, we see that the data are not perfectly linear
- and there appears to be some curvature.
- It isn't particularly clear from this graph however.
- However, when we look at the residuals vs fitted values and immediately
- conclude that the linearity assumption is violated.
-\end_layout
-
-\begin_layout Scrap
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100col%"
-special "none"
-height "1in"
-height_special "totalheight"
-status open
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<fig.height=3, fig.width=8>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-ggplot(women, aes( x=fit, y=resid )) +
-\end_layout
-
-\begin_layout Plain Layout
-
-  geom_point() +
-\end_layout
-
-\begin_layout Plain Layout
-
-  labs(title='Residuals vs Fitted', x='Fitted', y='Residual') + theme_bw()
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-This sort of graph is useful enough that R provides a quick way to create
- it.
- The function 
-\family typewriter
-plot( lm.object ) 
-\family default
-will take the input linear model and produce 6 diagnostic plots.
- If we've loaded the 
-\family typewriter
-ggfortify 
-\family default
-package, then the function 
-\family typewriter
-autoplot()
-\family default
- will do the same thing.
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100col%"
-special "none"
-height "1in"
-height_special "totalheight"
-status open
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<fig.height=3, fig.width=6>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-autoplot(model, which=c(1,2))
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Example: Cherry Trees
-\end_layout
-
-\begin_layout Standard
-To see the entire regression process, we consider the problem of predicting
- the volume of lumber produced by a cherry tree of a given diameter.
+To illustrate this, we'll consider the cherry tree dataset that comes with
+ R.
+ The goal will be predicting the volume of lumber produced by a cherry tree
+ of a given diameter.
  The data are given in a dataset pre-loaded in R called 
 \family typewriter
 trees
@@ -4007,8 +3728,10 @@ autoplot(model, which=c(1,2))
 \begin_inset Newline newline
 \end_inset
 
-The normality assumption isn't too bad, but there is a trend in the residual
- plot.
+The normality assumption isn't too bad, but there is a strong trend in the
+ residual plot.
+ The curvature we see in the residual group is present in the original scatterpl
+ot, but it is more obvious.
  At this point I would think about a slightly more complicated model, e.g.
  should we include height in the model or perhaps 
 \family typewriter
@@ -4095,8 +3818,12 @@ ggplot(trees, aes(x=Girth)) +
 \end_layout
 
 \begin_layout Standard
-While the model we've selected isn't as good as it could be (we are missing
- the curvature), this isn't horribly bad and might suffice for a first pass
+In this graph we see that we underestimate the volume for small girths,
+ overestimate for medium values, and underestimate for large girths.
+ So we see the same pattern of the residuals in this graph as we saw in
+ the residual graph.
+ While the model we've selected isn't as good as it could be, this isn't
+ horribly bad and might suffice for a first pass
 \begin_inset Foot
 status open
 
@@ -4191,7 +3918,7 @@ Girth
 \family default
  values we actually have.
  This is primarily being driven by the real relationship having curvature
- and our model has not curvature in it.
+ and our model has no curvature in it.
  So long as we don't use this model to predict values too far away from
  our data points, I'm happy.
 \end_layout

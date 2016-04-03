@@ -135,173 +135,6 @@ opts_chunk$set(cache=TRUE)
 
 \begin_layout Plain Layout
 
-\end_layout
-
-\begin_layout Plain Layout
-
-multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
-\end_layout
-
-\begin_layout Plain Layout
-
-  library(grid)
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-  # Make a list from the ...
- arguments and plotlist
-\end_layout
-
-\begin_layout Plain Layout
-
-  plots <- c(list(...), plotlist)
-\end_layout
-
-\begin_layout Plain Layout
-
-  numPlots = length(plots)
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-  # If layout is NULL, then use 'cols' to determine layout   
-\end_layout
-
-\begin_layout Plain Layout
-
-  if (is.null(layout)) {
-\end_layout
-
-\begin_layout Plain Layout
-
-    # Make the panel
-\end_layout
-
-\begin_layout Plain Layout
-
-    # ncol: Number of columns of plots
-\end_layout
-
-\begin_layout Plain Layout
-
-    # nrow: Number of rows needed, calculated from # of cols
-\end_layout
-
-\begin_layout Plain Layout
-
-    layout <- matrix(seq(1, cols * ceiling(numPlots/cols)),
-\end_layout
-
-\begin_layout Plain Layout
-
-                    ncol = cols, nrow = ceiling(numPlots/cols))
-\end_layout
-
-\begin_layout Plain Layout
-
-  }
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-  if (numPlots==1) {
-\end_layout
-
-\begin_layout Plain Layout
-
-    print(plots[[1]])
-\end_layout
-
-\begin_layout Plain Layout
-
-  }else{
-\end_layout
-
-\begin_layout Plain Layout
-
-    # Set up the page
-\end_layout
-
-\begin_layout Plain Layout
-
-    grid.newpage()
-\end_layout
-
-\begin_layout Plain Layout
-
-    pushViewport(viewport(layout = grid.layout(nrow(layout), ncol(layout))))
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\end_layout
-
-\begin_layout Plain Layout
-
-    # Make each plot, in the correct location
-\end_layout
-
-\begin_layout Plain Layout
-
-    for (i in 1:numPlots) {
-\end_layout
-
-\begin_layout Plain Layout
-
-      # Get the i,j matrix positions of the regions that contain this subplot
-\end_layout
-
-\begin_layout Plain Layout
-
-      matchidx <- as.data.frame(which(layout == i, arr.ind = TRUE))
-\end_layout
-
-\begin_layout Plain Layout
-
-      print(plots[[i]], vp = viewport(layout.pos.row = matchidx$row,
-\end_layout
-
-\begin_layout Plain Layout
-
-                                      layout.pos.col = matchidx$col))
-\end_layout
-
-\begin_layout Plain Layout
-
-    }
-\end_layout
-
-\begin_layout Plain Layout
-
-  }
-\end_layout
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\begin_layout Plain Layout
-
-set.seed(767)
-\end_layout
-
-\begin_layout Plain Layout
-
 @
 \end_layout
 
@@ -409,7 +242,7 @@ data <- data.frame( x = runif(n, 0, 1) )
 
 \begin_layout Plain Layout
 
-data <- mutate(data, y= 2 + x + rnorm(n, sd=.2))
+data <- mutate(data, y= 2 + x + rnorm(n, sd=.4))
 \end_layout
 
 \begin_layout Plain Layout
@@ -507,76 +340,62 @@ status open
 
 \begin_layout Plain Layout
 
-<<echo=FALSE, fig.height=3>>=
+<<echo=FALSE, fig.height=4, fig.width=8>>=
 \end_layout
 
 \begin_layout Plain Layout
 
-xbar <- mean(data$x ) 
+x <- data$x
 \end_layout
 
 \begin_layout Plain Layout
 
-ybar <- mean(data$y )
+y <- data$y
 \end_layout
 
 \begin_layout Plain Layout
 
-tile.data <- data.frame(x=c(xbar-1, xbar-1, xbar+1, xbar+1),
+plot(x,y, axes=FALSE, xlab='', ylab=''); box();
 \end_layout
 
 \begin_layout Plain Layout
 
-                        y=c(ybar-1, ybar+1, ybar+1, ybar-1),
+ybar <- mean(y)
 \end_layout
 
 \begin_layout Plain Layout
 
-                        sign=c('Positive','Negative','Positive','Negative'))
+xbar <- mean(x)
 \end_layout
 
 \begin_layout Plain Layout
 
+abline(v=xbar, lty=2); axis(1, at=xbar, label=expression(bar(x)));
 \end_layout
 
 \begin_layout Plain Layout
 
-ggplot(data, aes(x=x, y=y)) +
+abline(h=ybar, lty=2); axis(2, at=ybar, label=expression(bar(y)));
 \end_layout
 
 \begin_layout Plain Layout
 
-  geom_tile(data=tile.data, aes(fill=sign), alpha=.5) +
+text(xbar-.25, ybar+.25, '-', cex=3)
 \end_layout
 
 \begin_layout Plain Layout
 
-  geom_point() +
+text(xbar-.25, ybar-.25, '+', cex=3)
 \end_layout
 
 \begin_layout Plain Layout
 
-  coord_cartesian(xlim=range(data$x),
+text(xbar+.25, ybar+.25, '+', cex=3)
 \end_layout
 
 \begin_layout Plain Layout
 
-                  ylim=range(data$y)) +
-\end_layout
-
-\begin_layout Plain Layout
-
-  scale_x_continuous(breaks=xbar, label=expression(bar(x))) +
-\end_layout
-
-\begin_layout Plain Layout
-
-  scale_y_continuous(breaks=ybar, label=expression(bar(y))) +
-\end_layout
-
-\begin_layout Plain Layout
-
-  labs(x=NULL, y=NULL)     
+text(xbar+.25, ybar-.25, '-', cex=3)
 \end_layout
 
 \begin_layout Plain Layout
@@ -665,107 +484,67 @@ status open
 
 \begin_layout Plain Layout
 
-x <- seq(0,1, length=n) 
+par(mfrow=c(2,3))
 \end_layout
 
 \begin_layout Plain Layout
 
-lots.data <- rbind(
+x <- seq(0,1, length=n)
 \end_layout
 
 \begin_layout Plain Layout
 
-  data.frame(x=x, y=2 + 2*x + rnorm(n, sd=.5), grp=1),
+y <- array(NA, dim=c(5, n))
 \end_layout
 
 \begin_layout Plain Layout
 
-  data.frame(x=x, y=2 - 2*x + rnorm(n, sd=.5), grp=2),
+y[1,] <- 2 + 2*x + rnorm(n, sd=.5)
 \end_layout
 
 \begin_layout Plain Layout
 
-  data.frame(x=x, y=2 + 2*x + rnorm(n, sd=.1), grp=3),
+y[2,] <- 2 - 2*x + rnorm(n, sd=.5)
 \end_layout
 
 \begin_layout Plain Layout
 
-  data.frame(x=x, y=2 + 2*x + rnorm(n, sd=5), grp=4),
+y[3,] <- 2 + 2*x + rnorm(n, sd=.1)
 \end_layout
 
 \begin_layout Plain Layout
 
-  data.frame(x=x, y=2 - 2*x + rnorm(n, sd=2), grp=5),
+y[4,] <- 2 + 2*x + rnorm(n, sd=5)
 \end_layout
 
 \begin_layout Plain Layout
 
-  data.frame(x=x, y=2*(2*x-1)^2 + rnorm(n, sd=.2), grp=6))
+y[5,] <- 2*(2*x-1)^2 + rnorm(n, sd=.2)
 \end_layout
 
 \begin_layout Plain Layout
 
+for( i in 1:5 ){
 \end_layout
 
 \begin_layout Plain Layout
 
-R.values <-    lots.data %>% dplyr::group_by(grp) %>% dplyr::summarise(R=cor(x,y))
+  model <- lm(y[i,] ~ x);
 \end_layout
 
 \begin_layout Plain Layout
 
-Plots <- list() 
+  r <- round(sqrt(summary(model)$r.squared), digits=2) * sign(model$coef[2])
 \end_layout
 
 \begin_layout Plain Layout
 
-for(i in 1:6){
+  plot(x,y[i,], main=paste('r =', r), ylab=i)
 \end_layout
 
 \begin_layout Plain Layout
 
-  Plots[[i]] <- ggplot(lots.data %>% filter(grp==i), aes(x=x, y=y)) +
-\end_layout
-
-\begin_layout Plain Layout
-
-     geom_point() +
-\end_layout
-
-\begin_layout Plain Layout
-
-    ggtitle(paste('r = ', round(R.values[i,2], digits=3))) +
-\end_layout
-
-\begin_layout Plain Layout
-
-    labs(x=NULL, y=NULL) +
-\end_layout
-
-\begin_layout Plain Layout
-
-    scale_x_continuous(labels=NULL) +
-\end_layout
-
-\begin_layout Plain Layout
-
-    scale_y_continuous(labels=NULL) 
-\end_layout
-
-\begin_layout Plain Layout
-
-}  
-\end_layout
-
-\begin_layout Plain Layout
-
-multiplot(Plots[[1]], Plots[[2]], Plots[[3]], Plots[[4]], Plots[[5]], Plots[[6]]
-,
-\end_layout
-
-\begin_layout Plain Layout
-
-          cols=3) 
+}
 \end_layout
 
 \begin_layout Plain Layout
@@ -904,7 +683,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<echo=FALSE, fig.height=3>>=
+<<echo=FALSE, fig.height=4, fig.width=8>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -1013,92 +792,6 @@ Given this model, how do we find estimates of
 e_{i} & = & y_{i}-\hat{y}_{i}\\
 SSE & = & \sum_{i=1}^{n}e_{i}^{2}
 \end{eqnarray*}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100col%"
-special "none"
-height "1in"
-height_special "totalheight"
-status open
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<echo=FALSE, fig.height=3>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-simple.data  <- cbind(data, yhat=predict(lm(y~1,data))) %>% mutate( model='Simple
-' ) 
-\end_layout
-
-\begin_layout Plain Layout
-
-complex.data <- cbind(data, yhat=predict(lm(y~x,data))) %>% mutate( model='Comple
-x') 
-\end_layout
-
-\begin_layout Plain Layout
-
-full.data <- rbind(simple.data, complex.data) 
-\end_layout
-
-\begin_layout Plain Layout
-
-full.data <- full.data %>% mutate(model = factor(model, levels=c('Simple','Complex
-'))) 
-\end_layout
-
-\begin_layout Plain Layout
-
-ggplot( full.data, aes(x=x)) +
-\end_layout
-
-\begin_layout Plain Layout
-
-  geom_point(aes(y=y)) +
-\end_layout
-
-\begin_layout Plain Layout
-
-  geom_line(aes(y=yhat), color='red') +
-\end_layout
-
-\begin_layout Plain Layout
-
-  geom_linerange(aes(ymin=y, ymax=yhat), color='blue') +
-\end_layout
-
-\begin_layout Plain Layout
-
-  facet_grid(.~model) 
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
 
 \end_inset
 
@@ -1313,7 +1006,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<message=FALSE, fig.height=3>>=
+<<message=FALSE, fig.height=4, fig.width=8>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -1328,7 +1021,7 @@ library(dplyr)
 
 \begin_layout Plain Layout
 
-setosa <- iris %>% filter( Species == 'setosa' )
+setosa <- filter( iris, Species == 'setosa' )
 \end_layout
 
 \begin_layout Plain Layout
@@ -1343,7 +1036,12 @@ ggplot(setosa, aes(x=Sepal.Length, y=Sepal.Width)) +
 
 \begin_layout Plain Layout
 
-  labs(x="Sepal Length", y="Sepal Width", title='Setosa Irises') 
+  labs(x="Sepal Length", y="Sepal Width", title='Setosa Irises') +
+\end_layout
+
+\begin_layout Plain Layout
+
+  theme_bw()
 \end_layout
 
 \begin_layout Plain Layout
@@ -1536,90 +1234,12 @@ cor( setosa$Sepal.Width,  setosa$Sepal.Length )
 
 \begin_layout Plain Layout
 
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100col%"
-special "none"
-height "1in"
-height_special "totalheight"
-status open
-
-\begin_layout Scrap
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<>>=
-\end_layout
-
-\begin_layout Plain Layout
-
 model <- lm(Sepal.Width ~ Sepal.Length, data=setosa)
 \end_layout
 
 \begin_layout Plain Layout
 
 coef(model)
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100col%"
-special "none"
-height "1in"
-height_special "totalheight"
-status open
-
-\begin_layout Scrap
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -2917,22 +2537,36 @@ status open
 
 \begin_layout Plain Layout
 
-<<fig.height=3>>=
+<<fig.height=3, fig.width=5>>=
 \end_layout
 
 \begin_layout Plain Layout
 
-ggplot(setosa, aes(x=Sepal.Length, y=Sepal.Width)) + 
+# make up some data and graph it
 \end_layout
 
 \begin_layout Plain Layout
 
-  geom_point() +
+n <- 40
 \end_layout
 
 \begin_layout Plain Layout
 
-  ggtitle('Sepal Length vs Sepal Width')
+sim.data <- data.frame( x = seq(0,1, length=n) ) %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  mutate( y = 2 - 1*x + rnorm(n, sd=.2) )
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ggplot(sim.data, aes(x=x, y=y)) + geom_point() + theme_bw()
 \end_layout
 
 \begin_layout Plain Layout
@@ -2980,7 +2614,7 @@ status open
 
 \begin_layout Plain Layout
 
-model <- lm(Sepal.Width ~ Sepal.Length, data=setosa)
+model <- lm(y~x, data=sim.data)
 \end_layout
 
 \begin_layout Plain Layout
@@ -3003,12 +2637,12 @@ head( predict(model, interval="confidence") )
 
 \begin_layout Plain Layout
 
-# predict at x = 5.0
+# predict at x = 0.75
 \end_layout
 
 \begin_layout Plain Layout
 
-predict(model, interval="prediction", newdata=data.frame(Sepal.Length = 5.0))
+predict(model, interval="prediction", newdata=data.frame(x=0.75))
 \end_layout
 
 \begin_layout Plain Layout
@@ -3085,7 +2719,7 @@ pred.region <- predict(model, interval='prediction')
 
 \begin_layout Plain Layout
 
-setosa <- setosa %>%
+sim.data <- sim.data %>%
 \end_layout
 
 \begin_layout Plain Layout
@@ -3159,29 +2793,34 @@ status open
 
 \begin_layout Plain Layout
 
-ggplot(setosa) +
+ggplot(sim.data) +
 \end_layout
 
 \begin_layout Plain Layout
 
-  geom_point(  aes(x=Sepal.Length, y=Sepal.Width) ) +
+  geom_point( aes(x=x, y=y) ) +
 \end_layout
 
 \begin_layout Plain Layout
 
-  geom_line(   aes(x=Sepal.Length, y=fit), col='red' ) +
+  geom_line(  aes(x=x, y=fit), col='red' ) +
 \end_layout
 
 \begin_layout Plain Layout
 
-  geom_ribbon( aes(x=Sepal.Length, ymin=conf.lwr, ymax=conf.upr), fill='red',
-  alpha=.4) +
+  geom_ribbon( aes(x=x, ymin=conf.lwr, ymax=conf.upr), fill='red',  alpha=.4)
+ +
 \end_layout
 
 \begin_layout Plain Layout
 
-  geom_ribbon( aes(x=Sepal.Length, ymin=pred.lwr, ymax=pred.upr), fill='blue',
- alpha=.4)
+  geom_ribbon( aes(x=x, ymin=pred.lwr, ymax=pred.upr), fill='blue', alpha=.4)
+ +
+\end_layout
+
+\begin_layout Plain Layout
+
+  theme_bw()
 \end_layout
 
 \begin_layout Plain Layout
@@ -3884,387 +3523,7 @@ trees
 .
 \end_layout
 
-\begin_layout Standard
-Step one: Graph the data.
- The first step in a regression analysis is to graph the data and think
- about if a linear relationship makes sense.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100col%"
-special "none"
-height "1in"
-height_special "totalheight"
-status open
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<fig.height=2>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-head(trees)  # 3 columns Girth, Height, Volume
-\end_layout
-
-\begin_layout Plain Layout
-
-ggplot(trees, aes(x=Girth, y=Volume)) + 
-\end_layout
-
-\begin_layout Plain Layout
-
-  geom_point() + 
-\end_layout
-
-\begin_layout Plain Layout
-
-  ggtitle('Volume vs Girth')
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Initially, it looks like a line is a pretty good description of this relationshi
-p.
- 
-\end_layout
-
-\begin_layout Standard
-Step two: Fit a regression and examine the diagnostic plots.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100col%"
-special "none"
-height "1in"
-height_special "totalheight"
-status open
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<fig.height=2, fig.width=6>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-model <- lm( Volume ~ Girth, data=trees )
-\end_layout
-
-\begin_layout Plain Layout
-
-autoplot(model, which=c(1,2))
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-The normality assumption isn't too bad, but there is a trend in the residual
- plot.
- At this point I would think about a slightly more complicated model, e.g.
- should we include height in the model or perhaps 
-\family typewriter
-Girth^2
-\family default
-? The implications of both of these possibilities will be explored in STA
- 571 but for now we'll just continue using the model we have.
-\end_layout
-
-\begin_layout Standard
-Step three: Plot the data and the regression model.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100col%"
-special "none"
-height "1in"
-height_special "totalheight"
-status open
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<fig.height=2>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-trees <- cbind( trees, predict(model, interval='confidence') )
-\end_layout
-
-\begin_layout Plain Layout
-
-head(trees)  # now we have the fit, lwr, upr columns
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-ggplot(trees, aes(x=Girth)) +
-\end_layout
-
-\begin_layout Plain Layout
-
-  geom_ribbon( aes( ymin=lwr, ymax=upr), alpha=.4, fill='pink' ) +
-\end_layout
-
-\begin_layout Plain Layout
-
-  geom_line( aes(y=fit), color='red') +
-\end_layout
-
-\begin_layout Plain Layout
-
-  geom_point(aes(y=Volume)) 
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-While the model we've selected isn't as good as it could be (we are missing
- the curvature), this isn't horribly bad and might suffice for a first pass
-\begin_inset Foot
-status open
-
-\begin_layout Plain Layout
-\begin_inset Quotes eld
-\end_inset
-
-All models are wrong, but some are useful.
-\begin_inset Quotes erd
-\end_inset
-
- George Box
-\end_layout
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-Step four: Evaluate the model coefficients.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100col%"
-special "none"
-height "1in"
-height_special "totalheight"
-status open
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<fig.height=2>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-summary(model)
-\end_layout
-
-\begin_layout Plain Layout
-
-confint(model)
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-From the summary output, we can see several things:
-\end_layout
-
-\begin_layout Enumerate
-The intercept term 
-\begin_inset Formula $\hat{\beta}_{0}$
-\end_inset
-
- is significantly different than zero.
- While we should expect that a tree with zero girth should have zero volume,
- our model predicts a volume of 
-\begin_inset Formula $-36.9$
-\end_inset
-
-, which is obviously ridiculous.
- I'm not too worried about this because we have no data from trees that
- small and the intercept is quite the extrapolation from the range of 
-\family typewriter
-Girth
-\family default
- values we actually have.
- This is primarily being driven by the real relationship having curvature
- and our model has not curvature in it.
- So long as we don't use this model to predict values too far away from
- our data points, I'm happy.
-\end_layout
-
-\begin_layout Enumerate
-The slope is statistically significantly positive.
- We see an estimate an increase of 5 units of 
-\family typewriter
-Volume
-\family default
- for every 1 unit increase in 
-\family typewriter
-Girth
-\family default
-.
-\end_layout
-
-\begin_layout Enumerate
-The estimate 
-\begin_inset Formula $\hat{\sigma}$
-\end_inset
-
- is given by the 
-\family typewriter
-residual standard error
-\family default
- and is 4.252 and that quantifies the typical distance away from the regression
- line.
-\end_layout
-
-\begin_layout Enumerate
-The 
-\family typewriter
-R-sq
-\family default
- value gives the amount of variability in the data that is explained by
- the regression line as 
-\family typewriter
-93.5%
-\family default
-.
- So the variable 
-\family typewriter
-Girth
-\family default
- explains a huge amount of the variability in volume of lumber a tree produces.
- 
-\end_layout
-
-\begin_layout Enumerate
-Finally, the F-test is comparing the complex vs the simple model, which
- in this case, reduces to just testing if the slope term, 
-\begin_inset Formula $\beta_{1}$
-\end_inset
-
-, could be zero.
- In simple regression, the F-statistic is the square of the t-statistic
- for testing the slope.
- That is, F-statistic = 419.4 = 20.48
-\begin_inset Formula $^{2}$
-\end_inset
-
-.
- The p-values are the same for the two tests because they are testing 
-\emph on
-exactly the same hypothesis.
-\end_layout
-
 \begin_layout Section
-Common Problems
-\end_layout
-
-\begin_layout Subsection
 Influential Points
 \end_layout
 
@@ -4400,7 +3659,7 @@ One solution is to run the analysis both with and without the influential
  point and see how much it affects your inferences.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Section
 Transformations
 \end_layout
 
@@ -4790,1952 +4049,12 @@ Here we see the resulting confidence interval for
 \end_layout
 
 \begin_layout Standard
-Unfortunately there isn't a matching procedure for deciding how to transform
- the x covariate.
- Usually we spend a great deal of time trying different transformations
- and see how they affect the scatterplot and using transformations that
- are common in whatever field the researcher is working in.
-\end_layout
-
-\begin_layout Standard
 In general, deciding on a transformation to use is often a trade-off between
  statistical pragmatism and interpretability.
  In cases that a transformation is not possible, or the interpretation is
- difficult, it is necessary to build more complicated models that are hopefully
- interpretable.
+ difficult, it is necessary to build more complicated models that are interpreta
+ble.
 \end_layout
 
-\begin_layout Section
-Exercises
-\end_layout
-
-\begin_layout Enumerate
-Use the following data below to answer the questions below
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100col%"
-special "none"
-height "1in"
-height_special "totalheight"
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Tabular
-<lyxtabular version="3" rows="2" columns="7">
-<features rotate="0" tabularvalignment="middle">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $x$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-3
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-8
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-10
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-18
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-23
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-28
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $y$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-14
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-28
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-43
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-62
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-79
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-86
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-Plot the data in a scatter plot.
- The following code might be useful:
-\begin_inset Newline newline
-\end_inset
-
-
-\family typewriter
-
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100col%"
-special "none"
-height "1in"
-height_special "totalheight"
-status open
-
-\begin_layout Plain Layout
-\begin_inset Flex Chunk
-status open
-
-\begin_layout Plain Layout
-
-\begin_inset Argument 1
-status open
-
-\begin_layout Plain Layout
-eval=FALSE
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-# read in the data
-\end_layout
-
-\begin_layout Plain Layout
-
-p1.data <- data.frame(
-\end_layout
-
-\begin_layout Plain Layout
-
-  x = c( 3,  8, 10, 18, 23, 28),
-\end_layout
-
-\begin_layout Plain Layout
-
-  y = c(14, 28, 43, 62, 79, 86)  )
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-# make a nice graph
-\end_layout
-
-\begin_layout Plain Layout
-
-library(ggplot2)
-\end_layout
-
-\begin_layout Plain Layout
-
-ggplot(p1.data, aes(x=x, y=y)) +
-\end_layout
-
-\begin_layout Plain Layout
-
-  geom_point() 
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-We will first calculate the regression coefficients and their estimated
- standard deviations by hand (mostly).
- 
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-Using R, confirm that that the following summary statistics are correct:
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100col%"
-special "none"
-height "1in"
-height_special "totalheight"
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Tabular
-<lyxtabular version="3" rows="2" columns="4">
-<features rotate="0" tabularvalignment="middle">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $\bar{x}=15$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $s_{x}=9.59$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $S_{xx}=460$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multirow="3" alignment="left" valignment="middle" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $r=0.9898$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $\bar{y}=52$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $s_{y}=28.59$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multirow="4" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100col%"
-special "none"
-height "1in"
-height_special "totalheight"
-status open
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<eval=FALSE, echo=FALSE>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-cbind( x.bar = mean(p1.data$x), s.x = sd(p1.data$x), S.xx = var(p1.data$x)*5 )
-\end_layout
-
-\begin_layout Plain Layout
-
-cbind( y.bar = mean(p1.data$y), s.y = sd(p1.data$y) )
-\end_layout
-
-\begin_layout Plain Layout
-
-cor( p1.data$x, p1.data$y )
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-Using the above statistics, by hand calculate the estimates 
-\begin_inset Formula $\hat{\beta}_{0}$
-\end_inset
-
- and 
-\begin_inset Formula $\hat{\beta}_{1}$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Enumerate
-For each data point, by hand calculate the predicted value 
-\begin_inset Formula $\hat{y}_{i}=\hat{\beta}_{0}+\hat{\beta}_{1}x_{i}$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Enumerate
-For each data point, by hand calculate the estimated error term 
-\begin_inset Formula $\hat{\epsilon}_{i}=y_{i}-\hat{y}_{i}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-Calculate the 
-\begin_inset Formula $MSE$
-\end_inset
-
- for the complex model.
- Using the 
-\begin_inset Formula $MSE$
-\end_inset
-
-, what is 
-\begin_inset Formula $\hat{\sigma}?$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-By hand, calculate the estimated standard deviation (which is often called
- the standard error) of 
-\begin_inset Formula $\hat{\beta}_{0}$
-\end_inset
-
- and 
-\begin_inset Formula $\hat{\beta}_{1}$
-\end_inset
-
-.
-\end_layout
-
-\end_deeper
-\begin_layout Enumerate
-Use the R function 
-\family typewriter
-lm()
-\family default
- to fit a regression to these data.
- 
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-Using the 
-\family typewriter
-predict()
-\family default
- function, confirm your hand calculation of 
-\begin_inset Formula $\hat{y}_{i}$
-\end_inset
-
- values.
-\end_layout
-
-\begin_layout Enumerate
-Using the 
-\family typewriter
-resid()
-\family default
- function, confirm your hand calculation of the 
-\begin_inset Formula $\hat{\epsilon}_{i}$
-\end_inset
-
- terms.
-\end_layout
-
-\begin_layout Enumerate
-Using the summary() function, confirm your hand calculations of 
-\begin_inset Formula $\hat{\beta}_{0}$
-\end_inset
-
- and 
-\begin_inset Formula $\hat{\beta}_{1}$
-\end_inset
-
- and their standard errors.
-\end_layout
-
-\end_deeper
-\begin_layout Enumerate
-Again using R's built in functions, give a 95% confidence interval for 
-\begin_inset Formula $\beta_{1}$
-\end_inset
-
-.
- 
-\end_layout
-
-\begin_layout Enumerate
-Using the appropriate R output, test the hypothesis 
-\begin_inset Formula $H_{0}:\;\beta_{1}=0$
-\end_inset
-
- versus the alternative 
-\begin_inset Formula $H_{a}:\;\beta_{1}\ne0$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Enumerate
-Give the 
-\begin_inset Formula $R^{2}$
-\end_inset
-
- value for this regression.
-\end_layout
-
-\begin_layout Enumerate
-What is the typical distance to the regression line?
-\end_layout
-
-\begin_layout Enumerate
-Create a nice graph of the regression line and the confidence interval for
- the true relationship using the following code.
-\begin_inset Newline newline
-\end_inset
-
-
-\family typewriter
-
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100col%"
-special "none"
-height "1in"
-height_special "totalheight"
-status open
-
-\begin_layout Plain Layout
-\begin_inset Flex Chunk
-status open
-
-\begin_layout Plain Layout
-
-\begin_inset Argument 1
-status open
-
-\begin_layout Plain Layout
-eval=FALSE, tidy=FALSE
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-# make a nice graph
-\end_layout
-
-\begin_layout Plain Layout
-
-ggplot(p1.data, aes(x=x, y=y)) +
-\end_layout
-
-\begin_layout Plain Layout
-
-  geom_point() +
-\end_layout
-
-\begin_layout Plain Layout
-
-  geom_smooth(method='lm')
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\family default
-
-\begin_inset Newline newline
-\end_inset
-
-Often I want to create the confidence region myself (perhaps to use a prediction
- interval instead of a confidence interval), and we could use the following
- code: 
-\begin_inset Newline newline
-\end_inset
-
-
-\family typewriter
-
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100col%"
-special "none"
-height "1in"
-height_special "totalheight"
-status open
-
-\begin_layout Plain Layout
-\begin_inset Flex Chunk
-status open
-
-\begin_layout Plain Layout
-
-\begin_inset Argument 1
-status open
-
-\begin_layout Plain Layout
-eval=FALSE
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-library(dplyr)
-\end_layout
-
-\begin_layout Plain Layout
-
-model <- lm( y ~ x, data=p1.data )
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-p1.data <- p1.data %>% 
-\end_layout
-
-\begin_layout Plain Layout
-
-  mutate( yhat = predict(model),
-\end_layout
-
-\begin_layout Plain Layout
-
-          lwr  = predict(model, interval='confidence')[,2],
-\end_layout
-
-\begin_layout Plain Layout
-
-          upr  = predict(model, interval='confidence')[,3]  )
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-# make a nice graph
-\end_layout
-
-\begin_layout Plain Layout
-
-ggplot(p1.data, aes(x=x)) +
-\end_layout
-
-\begin_layout Plain Layout
-
-  geom_ribbon( aes(ymin=lwr, ymax=upr), fill='pink', alpha=.2 ) +
-\end_layout
-
-\begin_layout Plain Layout
-
-  geom_line(   aes(   y=yhat), color='green' ) +
-\end_layout
-
-\begin_layout Plain Layout
-
-  geom_point(  aes(   y=y   ), color='black' )
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Enumerate
-Olympic track and field records are broken practically every Olympics.
- The following is output comparing the gold medal winning performance in
- the men's long jump (in inches) versus the years 00 to 84.
- (In this data set, the year 00 represents 1900, and 84 represents 1984.
- This is a pre Y2K dataset.) There were 
-\begin_inset Formula $n=19$
-\end_inset
-
- Olympic games in that period.
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-Fill in the blanks in the following summary and anova tables:
-\begin_inset Newline newline
-\end_inset
-
-Summary:
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Tabular
-<lyxtabular version="3" rows="4" columns="5">
-<features rotate="0" tabularvalignment="middle">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Coefficients
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Estimate
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Std Error
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-t-value
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Pr(>|t|)
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-(Intercept)
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-283.45
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-4.28
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-< 2e-16 
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Year
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.613
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.0841
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-7.289
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-1.27e-06
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell multicolumn="1" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Residual Standard Error =
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-R-sq =
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset VSpace 0.35in
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-Analysis of Variance:
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Tabular
-<lyxtabular version="3" rows="4" columns="6">
-<features rotate="0" tabularvalignment="middle">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Source
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-df
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Sum Sq
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Mean Sq
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-F value
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Pr(>F)
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Year
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Residuals
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-95.19
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Total
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-18
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-6673.2
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Enumerate
-Ott & Longnecker 11.45&47 - In the preliminary studies of a new drug, a pharmaceu
-tical firm needs to obtain information on the relationship between the dose
- level and potency of the drug.
- In order to obtain this information, a total of 18 test tubes are inoculated
- with a virus culture and incubated for an appropriate period of time.
- Three test tubes are randomly assigned to each of 6 different dose levels.
- The 18 test tubes are then injected with the randomly assigned dose level
- of the drug.
- the measured response is the protective strength of the drug against the
- virus culture.
- Due to a problem with a few of the test tubes, only 2 responses were obtained
- for dose levels 4,8, and 16.
- The data are:
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100col%"
-special "none"
-height "1in"
-height_special "totalheight"
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Tabular
-<lyxtabular version="3" rows="2" columns="16">
-<features rotate="0" tabularvalignment="middle">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Dose Level
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-2
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-2
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-2
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-4
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-4
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-8
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-8
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-16
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-16
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-16
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-32
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-32
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-64
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-64
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-64
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Response
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-5
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-7
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-3
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-10
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-14
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-15
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-17
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-20
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-21
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-19
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-23
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-29
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-28
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-31
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-30
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-We will first fit a regression model to the raw data.
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-Plot the data and comment on the relationship between the covariate and
- response.
-\end_layout
-
-\begin_layout Enumerate
-Fit a linear regression model to these data using the 
-\family typewriter
-lm()
-\family default
- function.
-\end_layout
-
-\begin_layout Enumerate
-Examine the plot of the residuals vs fitted values.
- Does there appear to be a problem? Explain.
-\end_layout
-
-\end_deeper
-\begin_layout Enumerate
-Often in drug evaluations, a logarithmic transformation of the dose level
- will yield a linear relationship between the response variable and the
- independent variable.
- Let 
-\begin_inset Formula $x_{i}=\log\left(dose_{i}\right)$
-\end_inset
-
- (where log is the natural log).
- Notice that because the constant variance assumption seems to be met, I
- don't wish to transform 
-\begin_inset Formula $y$
-\end_inset
-
-.
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-Plot the response of the drug vs the natural log of the dose levels.
- Does it appear that a linear model is appropriate?
-\end_layout
-
-\begin_layout Enumerate
-Fit the linear regression model to these data.
-\end_layout
-
-\begin_layout Enumerate
-From a plot of the residuals vs the fitted values, does the linear model
- seem appropriate?
-\end_layout
-
-\begin_layout Enumerate
-Examine the QQplot of the residuals vs the theoretical normal quantiles.
- Does the normality assumption appear to be violated? Also perform a Shapiro-Wil
-ks test on the residuals to test of a statistically significant difference
- from normality.
- Comment on these results.
-\end_layout
-
-\begin_layout Enumerate
-What is change in the response variable for every one unit change in log(dose)?
-\end_layout
-
-\begin_layout Enumerate
-Give a 
-\begin_inset Formula $95\%$
-\end_inset
-
- confidence interval for the y-intercept and slope parameters.
- Is the log(dose) level a statistically significant predictor of the response?
-\end_layout
-
-\end_deeper
-\end_deeper
 \end_body
 \end_document

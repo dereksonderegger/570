@@ -3208,7 +3208,7 @@ status open
 
 \begin_layout Plain Layout
 
-boot.model <- Boot( model )
+boot.model <- Boot( model )  # by default method='case'
 \end_layout
 
 \begin_layout Plain Layout
@@ -3453,7 +3453,7 @@ my.stat <- function(sample.data, indices){
 
 \begin_layout Plain Layout
 
-# original group means
+# original model coefficients
 \end_layout
 
 \begin_layout Plain Layout
@@ -3504,21 +3504,15 @@ Notice that the function we write doesn't need to determine the random sample
 \begin_inset Formula $\hat{\theta}$
 \end_inset
 
- to calculate how far the mean 
+ to calculate how far the mean of the 
 \begin_inset Formula $\hat{\theta}^{*}$
 \end_inset
 
- value is from 
+ values is from 
 \begin_inset Formula $\hat{\theta}$
 \end_inset
 
 .
- The studentized method calculates a bootstrap estimate of variance for
- each 
-\begin_inset Formula $\hat{\theta}^{*}$
-\end_inset
-
- and so bootstraps the bootstrap.
  To avoid the user having to see all of that, we just need to take the set
  of indices given and calculate the statistic of interest.
  
@@ -3555,7 +3549,17 @@ boot.model <- boot(my.data, my.stat, R=10000)
 
 \begin_layout Plain Layout
 
-boot.ci(boot.model, type='bca', index=1) # CI for Intercept
+#boot.ci(boot.model, type='bca', index=1) # CI for Intercept
+\end_layout
+
+\begin_layout Plain Layout
+
+#boot.ci(boot.model, type='bca', index=2) # CI for the Slope
+\end_layout
+
+\begin_layout Plain Layout
+
+confint(boot.model)
 \end_layout
 
 \begin_layout Plain Layout
@@ -3572,46 +3576,6 @@ boot.ci(boot.model, type='bca', index=1) # CI for Intercept
 
 
 \begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100col%"
-special "none"
-height "1in"
-height_special "totalheight"
-status open
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-boot.ci(boot.model, type='bca', index=2) # CI for the Slope
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \end_inset
 
 
@@ -3685,7 +3649,7 @@ Hostility <- Hostility %>% mutate(
 
 \begin_layout Plain Layout
 
-  fitted = fitted(model),
+  fit    = fitted(model),
 \end_layout
 
 \begin_layout Plain Layout
@@ -3709,7 +3673,7 @@ my.stat <- function(sample.data, indices){
 
 \begin_layout Plain Layout
 
-  data.star <- sample.data %>% mutate(HLT = fitted + resid[indices])
+  data.star  <- sample.data %>% mutate(HLT = fit + resid[indices])
 \end_layout
 
 \begin_layout Plain Layout
@@ -3719,7 +3683,7 @@ my.stat <- function(sample.data, indices){
 
 \begin_layout Plain Layout
 
-  output <- coef(model.star)
+  output     <- coef(model.star)
 \end_layout
 
 \begin_layout Plain Layout
@@ -3786,7 +3750,7 @@ status open
 
 \begin_layout Plain Layout
 
-boot.ci(boot.model, type='bca', index=1) # Mean of Method 1
+confint(boot.model)
 \end_layout
 
 \begin_layout Plain Layout
@@ -3805,7 +3769,18 @@ boot.ci(boot.model, type='bca', index=1) # Mean of Method 1
 \begin_inset Newline newline
 \end_inset
 
+Fortunately the 
+\family typewriter
+hist()
+\family default
+ command can print the nice histogram from the output of the 
+\family typewriter
+boot()
+\family default
+ command.
+\end_layout
 
+\begin_layout Standard
 \begin_inset Box Frameless
 position "t"
 hor_pos "c"
@@ -3825,56 +3800,12 @@ status open
 
 \begin_layout Plain Layout
 
-<<>>=
+<<fig.height=3>>=
 \end_layout
 
 \begin_layout Plain Layout
 
-boot.ci(boot.model, type='bca', index=2) # Mean of Method 2
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100col%"
-special "none"
-height "1in"
-height_special "totalheight"
-status open
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-boot.ci(boot.model, type='bca', index=3) # Mean of Method 3
+hist( boot.model, layout=c(1,3) )
 \end_layout
 
 \begin_layout Plain Layout
@@ -3890,13 +3821,9 @@ boot.ci(boot.model, type='bca', index=3) # Mean of Method 3
 \end_inset
 
 
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
-
-\begin_inset Newline newline
-\end_inset
-
+\begin_layout Standard
 Notice that we don't need to have the model coefficients 
 \begin_inset Formula $\hat{\mu}_{i}$
 \end_inset
@@ -4052,7 +3979,7 @@ hist(boot.model)
 
 \begin_layout Plain Layout
 
-boot.ci(boot.model, type='bca')
+confint(boot.model)
 \end_layout
 
 \begin_layout Plain Layout
@@ -4372,7 +4299,7 @@ Hostility <- Hostility %>% mutate(
 
 \begin_layout Plain Layout
 
-# Do residual resampling with the regression example
+# Do residual resampling 
 \end_layout
 
 \begin_layout Plain Layout
@@ -4417,6 +4344,55 @@ my.stat <- function(sample.data, indices){
 \begin_layout Plain Layout
 
 boot.model <- boot( Hostility, my.stat, R=1000, strata=Hostility$Method )
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<cache=TRUE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+hist(boot.model)
+\end_layout
+
+\begin_layout Plain Layout
+
+confint(boot.model)
 \end_layout
 
 \begin_layout Plain Layout
@@ -5435,6 +5411,7 @@ The following function will calculate
 
 , the statistic of interest, given the original data and a set of indices
  to use.
+ Notice that we've chosen to do case resampling here.
 \begin_inset Newline newline
 \end_inset
 
@@ -5528,7 +5505,7 @@ indices = resample(1:21, groups=Pollution$type)
 \begin_inset Formula $\hat{\rho}^{*}$
 \end_inset
 
- where we are doing resampling within each group.
+ where we are doing case resampling within each group.
 \end_layout
 
 \begin_layout Enumerate
@@ -5536,7 +5513,8 @@ Use the
 \family typewriter
 boot()
 \family default
- function with the option 
+ to perform the full bootstrap analysis.
+ Use the option 
 \family typewriter
 strata=Pollution$type
 \family default

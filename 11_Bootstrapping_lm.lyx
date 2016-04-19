@@ -3389,6 +3389,11 @@ model <- lm( y ~ x, data=my.data )
 
 \begin_layout Plain Layout
 
+coef(model)
+\end_layout
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \begin_layout Plain Layout
@@ -4170,7 +4175,7 @@ data <- data.frame(y  =c(9.8,9.9,10.1,10.2,   18,19,21,22),
 
 \begin_layout Plain Layout
 
-data.star <- data %>% group_by(grp) %>%
+data.star <- data %>% group_by(grp) %>%    # do the grouping using dplyr
 \end_layout
 
 \begin_layout Plain Layout
@@ -4254,7 +4259,8 @@ data.star <- data %>%
 
 \begin_layout Plain Layout
 
-  mutate(resid.star = resample(resid, group=grp),
+  mutate(resid.star = resample(resid, group=grp), # do the grouping within
+ resample 
 \end_layout
 
 \begin_layout Plain Layout
@@ -4759,7 +4765,7 @@ We will first use case resampling.
 
 \begin_deeper
 \begin_layout Enumerate
-Suppose that the bootstrap indices is selected to be cases 1,3,3,4,6,6.
+Suppose that the bootstrap indices are selected to be cases 1,3,3,4,6,6.
  Create a new dataset with those cases and calculate the regression coefficients
  
 \begin_inset Formula $\hat{\beta}_{0}^{*}$
@@ -4816,7 +4822,7 @@ Next we will use Residual Resampling
 
 \begin_deeper
 \begin_layout Enumerate
-Suppose that the bootstrap indices is selected to be cases 1,3,3,4,6,6.
+Suppose that the bootstrap indices are selected to be cases 1,3,3,4,6,6.
  Create a new dataset with those cases and calculate the regression coefficients
  
 \begin_inset Formula $\hat{\beta}_{0}^{*}$

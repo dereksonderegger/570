@@ -149,6 +149,58 @@ opts_chunk$set(cache=TRUE)
 
 \end_inset
 
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<message=FALSE, warning=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+library(dplyr)
+\end_layout
+
+\begin_layout Plain Layout
+
+library(ggplot2)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
 In the most common statistical methods that are introduced in introductory
  classes rely on the assumption that the distribution of the sample mean
  is either normal or approximately normal
@@ -3162,6 +3214,431 @@ Under the null hypothesis the average rank within a group
 \end_inset
 
  is big enough.
+ Under the null hypothesis, 
+\begin_inset Formula $H\stackrel{\cdot}{\sim}\chi_{k-1}^{2}$
+\end_inset
+
+ which is the Chi-squared distribution with 
+\begin_inset Formula $k-1$
+\end_inset
+
+ degrees of freedom.
+ This is only an approximation and will be more appropriate as 
+\begin_inset Formula $n_{i}$
+\end_inset
+
+ gets large for every group.
+ The common rule of thumb is that we need at least 
+\begin_inset Formula $n_{i}\ge5$
+\end_inset
+
+ for all groups.
+\end_layout
+
+\begin_layout Paragraph*
+Example - Levi
+\end_layout
+
+\begin_layout Standard
+We will examine the amount of waste produced at 
+\begin_inset Formula $k=5$
+\end_inset
+
+ different plants that manufacture Levi Jeans.
+ The 
+\family typewriter
+Waste
+\family default
+ amount is the amount of cloth wasted in cutting out designs compared to
+ a computer program, so negative values for 
+\family typewriter
+Waste 
+\family default
+indicate that the human engineer did a better job planning the cuts than
+ the computer algorithm.
+ The data are available in the file 
+\begin_inset Quotes eld
+\end_inset
+
+Levi.csv
+\begin_inset Quotes erd
+\end_inset
+
+ available on the GitHub for the book.
+ There are two columns, 
+\family typewriter
+Plant
+\family default
+ and 
+\family typewriter
+Waste
+\family default
+.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<fig.height=2.5>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+Levi <- read.csv('https://github.com/dereksonderegger/STA_570_Book/raw/master/data
+/Levi.csv')
+\end_layout
+
+\begin_layout Plain Layout
+
+ggplot(Levi, aes(x=Plant, y=Waste)) + geom_boxplot()
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Due to the large outliers in Plant 2, I'm not happy about doing a standard
+ ANOVA analysis and we'll instead do a Kruskal-Wallis test for equality
+ of the medians in each group.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+n <- nrow(Levi) 
+\end_layout
+
+\begin_layout Plain Layout
+
+Rank.Data <- Levi %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  arrange(Waste) %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  mutate( Rank = rank(Waste)) %>%    # ranks across the data
+\end_layout
+
+\begin_layout Plain Layout
+
+  mutate(R = mean(Rank)) %>%         # Overall mean rank R..
+\end_layout
+
+\begin_layout Plain Layout
+
+  arrange(Plant) %>%group_by(Plant) %>%      # now within plant statistics
+\end_layout
+
+\begin_layout Plain Layout
+
+  mutate( R_i = mean(Rank),   # Mean rank within a plant
+\end_layout
+
+\begin_layout Plain Layout
+
+          n_i = n() )         # Num observations within plant
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Numerator <- Rank.Data %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+   group_by(Plant) %>%         # because R needs to come along for the ride
+\end_layout
+
+\begin_layout Plain Layout
+
+   summarise(R   = mean(R),    # mean(R) == R because R is a constant
+\end_layout
+
+\begin_layout Plain Layout
+
+            n_i = n(),
+\end_layout
+
+\begin_layout Plain Layout
+
+            R_i = mean(Rank)) %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  summarise( value = sum( n_i * (R_i - R)^2 )  )
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Denominator <- Rank.Data %>%group_by() %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  summarise( value = sum( (Rank - R)^2 )  )
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+(n-1) * Numerator$value / Denominator$value 
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+kruskal.test(Waste ~ Plant, data=Levi)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The Kruskal-Wallis test has a very interesting theoretical motivation.
+ Notice that the test statistic 
+\begin_inset Formula 
+\[
+H=\left(n-1\right)\cdot\frac{\sum_{i=1}^{k}n_{i}\left(\bar{R}_{i\cdot}-\bar{R}_{\cdot\cdot}\right)^{2}}{\sum_{i=1}^{k}\sum_{j=1}^{n_{i}}\left(R_{ij}-\bar{R}_{\cdot\cdot}\right)^{2}}
+\]
+
+\end_inset
+
+looks very similar to the test statistic in the usual ANOVA model, only
+ instead of working with the raw 
+\begin_inset Formula $y_{ij}$
+\end_inset
+
+ values, we are using the 
+\emph on
+ranks!
+\emph default
+.
+ We can do a regular ANOVA and look at the 
+\begin_inset Formula $SSE_{diff}$
+\end_inset
+
+ and 
+\begin_inset Formula $SSE_{simple}$
+\end_inset
+
+ and notice those are the exact same terms as the 
+\family typewriter
+Numerator
+\family default
+ and 
+\family typewriter
+Denominator
+\family default
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+model <- lm( Rank ~ Plant, data=Rank.Data )  # ANOVA where the response is
+ the ranks!
+\end_layout
+
+\begin_layout Plain Layout
+
+anova(model)
+\end_layout
+
+\begin_layout Plain Layout
+
+rbind(Numerator, Denominator-Numerator, Denominator)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This is a very interesting thing to notice.
+ Many of the classic non-parametric tests can be regarded as doing standard
+ tests not on the actual 
+\begin_inset Formula $y_{i}$
+\end_inset
+
+ values but rather on the rank transformation of those responses.
+ 
+\emph on
+In this case you would might have expected the test statistic to be based
+ on 
+\begin_inset Formula $SSE_{diff}$
+\end_inset
+
+ / 
+\begin_inset Formula $SSE_{complex}$
+\end_inset
+
+ instead, but that quantity has an F-distribution if the data is normally
+ distributed, and the ranks certainly are not.
+ Instead we consider 
+\begin_inset Formula $SSE_{diff}$
+\end_inset
+
+ / 
+\begin_inset Formula $SSE_{simple}$
+\end_inset
+
+ which is analogous to an 
+\begin_inset Formula $R^{2}$
+\end_inset
+
+ value.
 \end_layout
 
 \begin_layout Section
@@ -3969,6 +4446,91 @@ Use R to calculate the p-value for the test using the
 wilcox.test()
 \family default
  function.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Load the built in data set 
+\family typewriter
+airquality
+\family default
+ in R.
+ This gives the daily air quality measurements in New York in the summer
+ of 1973.
+ We are interested in testing if the median ozone level is the same for
+ all five months (May-September).
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Fit the usual ANOVA model using the following code
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+data(airquality)
+\end_layout
+
+\begin_layout Plain Layout
+
+airquality$Month <- factor( airquality$Month, labels=c('May','June','July','Aug'
+,'Sept'))
+\end_layout
+
+\begin_layout Plain Layout
+
+model <- lm( Ozone ~ Month, data=airquality)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Examine the QQ-plot of the residuals for assessing normality.
+ Also use the Shapiro-Wilks test for assessing normality of the residuals.
+ What do you conclude?
+\end_layout
+
+\begin_layout Enumerate
+Use R to perform a Kruskal-Wallis test to determine if the median ozone
+ levels are the same for each month.
 \end_layout
 
 \end_deeper

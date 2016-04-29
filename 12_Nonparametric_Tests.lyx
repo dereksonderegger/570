@@ -3641,6 +3641,93 @@ In this case you would might have expected the test statistic to be based
  value.
 \end_layout
 
+\begin_layout Paragraph*
+Example - Levi
+\end_layout
+
+\begin_layout Standard
+We will examine the amount of waste produced at 
+\begin_inset Formula $k=5$
+\end_inset
+
+ different plants that manufacture Levi Jeans.
+ The 
+\family typewriter
+Waste
+\family default
+ amount is the amount of cloth wasted in cutting out designs compared to
+ a computer program, so negative values for 
+\family typewriter
+Waste 
+\family default
+indicate that the human engineer did a better job planning the cuts than
+ the computer algorithm.
+ The data are available in the file 
+\begin_inset Quotes eld
+\end_inset
+
+Levi.csv
+\begin_inset Quotes erd
+\end_inset
+
+ available on the GitHub for the book.
+ There are two columns, 
+\family typewriter
+Plant
+\family default
+ and 
+\family typewriter
+Waste
+\family default
+.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+Levi <- read.csv('https://github.com/dereksonderegger/STA_570_Book/raw/master/data
+/Levi.csv')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Exercises
 \end_layout

@@ -700,5 +700,15 @@ filename "12_Nonparametric_Tests.lyx"
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand input
+filename "13_ContingencyTables.lyx"
+
+\end_inset
+
+
+\end_layout
+
 \end_body
 \end_document

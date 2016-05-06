@@ -678,7 +678,7 @@ between
 \emph on
 within
 \emph default
- a hybrid then I'd conclude there is a difference (this would be the first
+ a hybrid then I'd conclude there is a difference (this would be the second
  case).
  In this case, I prefer the more complicated model with each group having
  separate means.
@@ -6525,7 +6525,7 @@ SSE_{simple}=\sum_{i=1}^{3}\sum_{j=1}^{4}\left(y_{ij}-\hat{y}_{ij}\right)^{2}=\s
 Recreate the ANOVA table using R by typing in the data set and fitting the
  appropriate model using the 
 \family typewriter
-aov()
+lm()
 \family default
  command.
  Obtain the ANOVA table from this model by using the 
@@ -6692,15 +6692,6 @@ Waste
 \family default
 indicate that the human engineer did a better job planning the cuts than
  the computer algorithm.
- The data are available in the file 
-\begin_inset Quotes eld
-\end_inset
-
-Levi.csv
-\begin_inset Quotes erd
-\end_inset
-
- available on Bblearn.
  There are two columns, 
 \family typewriter
 Plant
@@ -6715,81 +6706,7 @@ Waste
 
 \begin_deeper
 \begin_layout Enumerate
-Read the data into R.
- If you need more help on this, see the chapter on importing data in the
- 
-\begin_inset CommandInset href
-LatexCommand href
-name "R manual: "
-target "https://raw.github.com/dereksonderegger/STA_570L_Book/master/Introduction_to_R.pdf"
-
-\end_inset
-
- 
-\begin_inset Flex URL
-status open
-
-\begin_layout Plain Layout
-
-https://raw.github.com/dereksonderegger/STA_570L_Book/master/Introduction_to_R.pdf
-\end_layout
-
-\end_inset
-
-.
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-Download the file 
-\family typewriter
-Levi.csv
-\family default
- from 
-\begin_inset CommandInset href
-LatexCommand href
-name "GitHub"
-target "https://raw.github.com/dereksonderegger/STA_570_Book/master/data/Levi.csv"
-
-\end_inset
-
- 
-\begin_inset Flex URL
-status open
-
-\begin_layout Plain Layout
-
-https://raw.github.com/dereksonderegger/STA_570_Book/master/data/Levi.csv
-\end_layout
-
-\end_inset
-
- to some location on your computer (wherever you store RMarkdown files for
- your homework assignments).
- Open this file using a simple editor (Notepad on Windows or TextEdit on
- a Mac) and notice that the first line is a set of column headers and subsequent
- lines have the data.
- Also notice that the columns are separated by commas.
- This file type is known as a 
-\begin_inset Quotes eld
-\end_inset
-
-comma separated values
-\begin_inset Quotes erd
-\end_inset
-
- file and MS Excel can open it just fine and Excel can save files in this
- file type as well.
-\end_layout
-
-\begin_layout Enumerate
-Make sure the working directory in R is set to the same directory.
- In RStudio, this is under the menu item: Tools -> Set Working Directory.
- 
-\end_layout
-
-\begin_layout Enumerate
-Read in the file using the following command:
+Read the data into R using the following:.
 \begin_inset Newline newline
 \end_inset
 
@@ -6813,27 +6730,13 @@ status open
 
 \begin_layout Plain Layout
 
-<<eval=FALSE>>=
+<<>>=
 \end_layout
 
 \begin_layout Plain Layout
 
-# First term is the file name, 
-\end_layout
-
-\begin_layout Plain Layout
-
-# second is that the first row is the column headers, 
-\end_layout
-
-\begin_layout Plain Layout
-
-# last is that a comma separates the columns from one another
-\end_layout
-
-\begin_layout Plain Layout
-
-Levi <- read.table('Levi.csv', header=TRUE, sep=',')
+Levi <- read.csv('https://raw.github.com/dereksonderegger/STA_570_Book/master/data/
+Levi.csv')
 \end_layout
 
 \begin_layout Plain Layout
@@ -6851,6 +6754,7 @@ Levi <- read.table('Levi.csv', header=TRUE, sep=',')
 
 \end_layout
 
+\begin_deeper
 \begin_layout Enumerate
 Examine the data frame using the 
 \family typewriter

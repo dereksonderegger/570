@@ -1,0 +1,20 @@
+bookdown::gitbook:
+  css: style.css
+  split_by: "chapter+number"
+  config:
+    toc:
+      collapse: section
+      scroll_highlight: true
+      before: |
+        <li><a href="./">Statistical Methods I</a></li>
+        <li><a href="https://dereksonderegger.github.io/570/Statistical_Methods_I.pdf" target="blank">PDF version</a></li>
+
+      after: |
+    edit:
+      link: https://github.com/dereksonderegger/STA_570_Book/raw/master/%s
+bookdown::pdf_book:
+  includes:
+    in_header: preamble.tex
+  latex_engine: xelatex
+  citation_package: natbib
+bookdown::epub_book: default

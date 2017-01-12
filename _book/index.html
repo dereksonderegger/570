@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Introduction to Statistical Methodology</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="Introduction to Statistical Methodology">
+  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Introduction to Statistical Methodology" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="dereksonderegger/STA_570_Book" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Introduction to Statistical Methodology" />
+  
+  
+  
+
+<meta name="author" content="Derek L. Sonderegger">
+
+
+<meta name="date" content="2017-01-11">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+
+<link rel="next" href="2-probability.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Statistical Methods I</a></li>
+<li><a href="https://dereksonderegger.github.io/570/Statistical_Methods_I.pdf" target="blank">PDF version</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Summary Statistics and Graphing</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#graphical-summaries-of-data"><i class="fa fa-check"></i><b>1.1</b> Graphical summaries of data</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#univariate---categorical"><i class="fa fa-check"></i><b>1.1.1</b> Univariate - Categorical</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#univariate---continuous"><i class="fa fa-check"></i><b>1.1.2</b> Univariate - Continuous</a></li>
+<li class="chapter" data-level="1.1.3" data-path="index.html"><a href="index.html#bivariate---categorical-vs-continuous"><i class="fa fa-check"></i><b>1.1.3</b> Bivariate - Categorical vs Continuous</a></li>
+<li class="chapter" data-level="1.1.4" data-path="index.html"><a href="index.html#bivariate---continuous-vs-continuous"><i class="fa fa-check"></i><b>1.1.4</b> Bivariate - Continuous vs Continuous</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#measures-of-centrality"><i class="fa fa-check"></i><b>1.2</b> Measures of Centrality</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#mean"><i class="fa fa-check"></i><b>1.2.1</b> Mean</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#median"><i class="fa fa-check"></i><b>1.2.2</b> Median</a></li>
+<li class="chapter" data-level="1.2.3" data-path="index.html"><a href="index.html#mode"><i class="fa fa-check"></i><b>1.2.3</b> Mode</a></li>
+<li class="chapter" data-level="1.2.4" data-path="index.html"><a href="index.html#examples"><i class="fa fa-check"></i><b>1.2.4</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#measures-of-variation"><i class="fa fa-check"></i><b>1.3</b> Measures of Variation</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#range"><i class="fa fa-check"></i><b>1.3.1</b> Range</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#inter-quartile-range"><i class="fa fa-check"></i><b>1.3.2</b> Inter-Quartile Range</a></li>
+<li class="chapter" data-level="1.3.3" data-path="index.html"><a href="index.html#variance"><i class="fa fa-check"></i><b>1.3.3</b> Variance</a></li>
+<li class="chapter" data-level="1.3.4" data-path="index.html"><a href="index.html#standard-deviation"><i class="fa fa-check"></i><b>1.3.4</b> Standard Deviation</a></li>
+<li class="chapter" data-level="1.3.5" data-path="index.html"><a href="index.html#coefficient-of-variation"><i class="fa fa-check"></i><b>1.3.5</b> Coefficient of Variation</a></li>
+<li class="chapter" data-level="1.3.6" data-path="index.html"><a href="index.html#empirical-rule-of-thumb"><i class="fa fa-check"></i><b>1.3.6</b> Empirical Rule of Thumb</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#exercises"><i class="fa fa-check"></i><b>1.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-probability.html"><a href="2-probability.html"><i class="fa fa-check"></i><b>2</b> Probability</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-probability.html"><a href="2-probability.html#introduction-to-set-theory"><i class="fa fa-check"></i><b>2.1</b> Introduction to Set Theory</a></li>
+<li class="chapter" data-level="2.2" data-path="2-probability.html"><a href="2-probability.html#probability-rules"><i class="fa fa-check"></i><b>2.2</b> Probability Rules</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="2-probability.html"><a href="2-probability.html#simple-rules"><i class="fa fa-check"></i><b>2.2.1</b> Simple Rules</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2-probability.html"><a href="2-probability.html#conditional-probability"><i class="fa fa-check"></i><b>2.2.2</b> Conditional Probability</a></li>
+<li class="chapter" data-level="2.2.3" data-path="2-probability.html"><a href="2-probability.html#summary-of-probability-rules"><i class="fa fa-check"></i><b>2.2.3</b> Summary of Probability Rules</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="2-probability.html"><a href="2-probability.html#discrete-random-variables"><i class="fa fa-check"></i><b>2.3</b> Discrete Random Variables</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="2-probability.html"><a href="2-probability.html#introduction-to-discrete-random-variables"><i class="fa fa-check"></i><b>2.3.1</b> Introduction to Discrete Random Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="2-probability.html"><a href="2-probability.html#common-discrete-distributions"><i class="fa fa-check"></i><b>2.4</b> Common Discrete Distributions</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="2-probability.html"><a href="2-probability.html#binomial-distribution"><i class="fa fa-check"></i><b>2.4.1</b> Binomial Distribution</a></li>
+<li class="chapter" data-level="2.4.2" data-path="2-probability.html"><a href="2-probability.html#poisson-distribution"><i class="fa fa-check"></i><b>2.4.2</b> Poisson Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="2-probability.html"><a href="2-probability.html#continuous-random-variables"><i class="fa fa-check"></i><b>2.5</b> Continuous Random Variables</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="2-probability.html"><a href="2-probability.html#uniform01-distribution"><i class="fa fa-check"></i><b>2.5.1</b> Uniform(0,1) Distribution</a></li>
+<li class="chapter" data-level="2.5.2" data-path="2-probability.html"><a href="2-probability.html#exponential-distribution"><i class="fa fa-check"></i><b>2.5.2</b> Exponential Distribution</a></li>
+<li class="chapter" data-level="2.5.3" data-path="2-probability.html"><a href="2-probability.html#normal-distribution"><i class="fa fa-check"></i><b>2.5.3</b> Normal Distribution</a></li>
+<li class="chapter" data-level="2.5.4" data-path="2-probability.html"><a href="2-probability.html#standardizing"><i class="fa fa-check"></i><b>2.5.4</b> Standardizing</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Statistical Methodology</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Introduction to Statistical Methodology</h1>
+<h4 class="author"><em>Derek L. Sonderegger</em></h4>
+<h4 class="date"><em>2017-01-11</em></h4>
+</div>
+<div id="summary-statistics-and-graphing" class="section level1">
+<h1><span class="header-section-number">1</span> Summary Statistics and Graphing</h1>
+<p>When confronted with a large amount of data, we seek to summarize the data into statistics that somehow capture the essence of the data with as few numbers as possible. Graphing the data has a similar goal… to reduce the data to an image that represents all the key aspects of the raw data. In short, we seek to simplify the data in order to understand the trends while not obscuring important structure.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Every chapter, we will load all the librarys we will use at the beginning</span>
+<span class="co"># of the chapter. If you</span>
+<span class="kw">library</span>(mosaicData) <span class="co"># library of datasets we&#39;ll use</span>
+<span class="kw">library</span>(ggplot2)    <span class="co"># graphing functions</span>
+<span class="kw">library</span>(dplyr)      <span class="co"># data summary tools</span></code></pre></div>
+<p>For this chapter, we will consider data from a the 2005 Cherry Blossom 10 mile run that occurs in Washington DC. This data set has 8636 observations that includes the runners state of residence, official time (gun to finish, in seconds), net time (start line to finish, in seconds), age, and gender of the runners.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(TenMileRace)   <span class="co"># examine the first few rows of the data</span></code></pre></div>
+<pre><code>##   state time  net age sex
+## 1    VA 6060 5978  12   M
+## 2    MD 4515 4457  13   M
+## 3    VA 5026 4928  13   M
+## 4    MD 4229 4229  14   M
+## 5    MD 5293 5076  14   M
+## 6    VA 6234 5968  14   M</code></pre>
+<p>In general, I often need to make a distinction between two types of data.</p>
+<ul>
+<li>Discrete (also called Categorical) data is data that can only take a small set of particular values. For example a college student’s grade can be either A, B, C, D, or F. A person’s sex can be only Male or Female.Actually this isn’t true as both gender and sex are far more complex. However from a statistical point of view it is often useful to simplify our model of the world. George Box famously said, “All models are wrong, but some are useful.” Discrete data could also be numeric, for example a bird could lay 1, 2, 3, … eggs in a breeding season.</li>
+<li>Continuous data is data that can take on an infinite number of numerical values. For example a person’s height could be 68 inches, 68.2 inches, 68.23212 inches.</li>
+</ul>
+<p>To decided if a data attribute is discrete or continuous, I often as “Does a fraction of a value make sense?” If so, then the data is continuous.</p>
+<div id="graphical-summaries-of-data" class="section level2">
+<h2><span class="header-section-number">1.1</span> Graphical summaries of data</h2>
+<div id="univariate---categorical" class="section level3">
+<h3><span class="header-section-number">1.1.1</span> Univariate - Categorical</h3>
+<p>If we have univariate data about a number of groups, often the best way to display it is using barplots. They have the advantage over pie-charts that groups are easily compared.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(TenMileRace, <span class="kw">aes</span>(<span class="dt">x=</span>sex)) +<span class="st"> </span><span class="kw">geom_bar</span>()</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
+<div id="univariate---continuous" class="section level3">
+<h3><span class="header-section-number">1.1.2</span> Univariate - Continuous</h3>
+<p>A histogram looks very similar to a bar plot, but is used to represent continuous data instead of categorical and therefore the bars will actually be touching.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(TenMileRace, <span class="kw">aes</span>(<span class="dt">x=</span>net)) +<span class="st"> </span><span class="kw">geom_histogram</span>()</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>Often when a histogram is presented, the y-axis is labeled as “frequency” or “count” which is the number of observations that fall within a particular bin. However, it is often desirable to scale the y-axis so that if we were to sum up the area <span class="math inline">\((height * width)\)</span> then the total area would sum to 1. The rescaling that accomplishes this is <span class="math display">\[density=\frac{\#\;observations\;in\;bin}{total\;number\;observations}\cdot\frac{1}{bin\;width}\]</span></p>
+</div>
+<div id="bivariate---categorical-vs-continuous" class="section level3">
+<h3><span class="header-section-number">1.1.3</span> Bivariate - Categorical vs Continuous</h3>
+<p>We often wish to compare response levels from two or more groups of interest. To do this, we often use side-by-side boxplots. Notice that each observation is associated with a continuous response value and a categorical value.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(TenMileRace, <span class="kw">aes</span>(<span class="dt">x=</span>sex, <span class="dt">y=</span>net)) +<span class="st"> </span><span class="kw">geom_boxplot</span>()</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>In this graph, the edges of the box are defined by the 25% and 75% quantiles. That is to say, 25% of the data is to the below of the box, 50% of the data is in the box, and the final 25% of the data is to the above of the box. The dots are data points that traditionally considered outliers.Define the Inter-Quartile Range (IQR) as the length of the box. Then any observation more than 1.5*IQR from the box is considered an outlier.</p>
+<p>Sometimes I think that box-and-whisker plot obscures too much of the details of the data and we should look at the side-by-side histograms instead.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(TenMileRace, <span class="kw">aes</span>(<span class="dt">x=</span>net)) +
+<span class="st">  </span><span class="kw">geom_histogram</span>() +
+<span class="st">  </span><span class="kw">facet_grid</span>( . ~<span class="st"> </span>sex )  <span class="co"># side-by-side plots based on sex</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>Orientation of graphs can certainly matter. In this case, it makes sense to stack the two graphs to facilitate comparisons.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(TenMileRace, <span class="kw">aes</span>(<span class="dt">x=</span>net)) +
+<span class="st">  </span><span class="kw">geom_histogram</span>() +
+<span class="st">  </span><span class="kw">facet_grid</span>( sex ~<span class="st"> </span>. )  <span class="co"># side-by-side plots based on sex</span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+</div>
+<div id="bivariate---continuous-vs-continuous" class="section level3">
+<h3><span class="header-section-number">1.1.4</span> Bivariate - Continuous vs Continuous</h3>
+<p>Finally we might want to examine the relationship between two continuous random variables.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(TenMileRace, <span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y=</span>net, <span class="dt">color=</span>sex)) +
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+</div>
+</div>
+<div id="measures-of-centrality" class="section level2">
+<h2><span class="header-section-number">1.2</span> Measures of Centrality</h2>
+<p>The most basic question to ask of any dataset is ‘What is the typical value?’ There are several ways to answer that question and they should be familiar to most students.</p>
+<div id="mean" class="section level3">
+<h3><span class="header-section-number">1.2.1</span> Mean</h3>
+<p>Often called the average, or arithmetic mean, we will denote this special statistic with a bar. We define <span class="math display">\[\bar{x}=\frac{1}{n}\sum_{i=1}^{n}x_{i}=\frac{1}{n}\left(x_{1}+x_{2}+\dots+x_{n}\right)\]</span></p>
+<p>If we want to find the mean of five numbers <span class="math inline">\(\left\{ 3,6,4,8,2\right\}\)</span> the calculation is <span class="math display">\[\bar{x}   =   \frac{1}{5}\left(3+6+4+8+2\right)
+    =   \frac{1}{5}\left(23\right)
+    =   23/5
+    =   4.6\]</span></p>
+<p>This can easily be calculated in R by using the function <code>mean()</code>. We first extract the column we are interested in using the notation: <code>DataSet$ColumnName</code> where the $ signifies grabbing the column.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>( TenMileRace$net ) <span class="co"># Simplest way of doing this calculation</span></code></pre></div>
+<pre><code>## [1] 5599.065</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">TenMileRace %&gt;%<span class="st"> </span><span class="kw">summarise</span>( <span class="kw">mean</span>(net) )  <span class="co"># using the dplyr package</span></code></pre></div>
+<pre><code>##   mean(net)
+## 1  5599.065</code></pre>
+</div>
+<div id="median" class="section level3">
+<h3><span class="header-section-number">1.2.2</span> Median</h3>
+<p>If the data were to be ordered, the median would be the middle most observation (or, in the case that <span class="math inline">\(n\)</span> is even, the mean of the two middle most values).</p>
+<p>In our simple case of five observations <span class="math inline">\(\left\{ 3,6,4,8,2\right\}\)</span>, we first sort the data into <span class="math inline">\(\left\{ 2,3,4,6,8\right\}\)</span> and then the middle observation is clearly <span class="math inline">\(4\)</span>.</p>
+<p>In R the median is easily calculated by the function <code>median()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># median( TenMileRace$net )</span>
+TenMileRace %&gt;%<span class="st"> </span><span class="kw">summarise</span>( <span class="kw">median</span>(net) ) </code></pre></div>
+<pre><code>##   median(net)
+## 1        5555</code></pre>
+</div>
+<div id="mode" class="section level3">
+<h3><span class="header-section-number">1.2.3</span> Mode</h3>
+<p>This is the observation value with the most number of occurrences. This measure of “center” is not often used</p>
+</div>
+<div id="examples" class="section level3">
+<h3><span class="header-section-number">1.2.4</span> Examples</h3>
+<ul>
+<li>If my father were to become bored with retirement and enroll in my STA 570 course, how would that affect the mean and median age of my 570 students?
+<ul>
+<li>The mean would move much more than the median. Suppose the class has 5 people right now, ages 21, 22, 23, 23, 24 and therefore the median is 23. When my father joins, the ages will be 21, 22, 23, 23, 24, 72 and the median will remain 23. However, the mean would move because we add in such a large outlier. Whenever we are dealing with skewed data, the mean is pulled toward the outlying observations.</li>
+</ul></li>
+<li>In 2010, the median NFL player salary was $770,000 while the mean salary was $1.9 million. Why the difference?
+<ul>
+<li>Because salary data is skewed superstar players that make huge salaries (in excess of 20 million) while the minimum salary for a rookie is $375,000. Financial data often reflects a highly skewed distribution and the median is often a better measure of centrality in these cases.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="measures-of-variation" class="section level2">
+<h2><span class="header-section-number">1.3</span> Measures of Variation</h2>
+<p>The second question to ask of a dataset is ‘How much variability is there?’ Again there are several ways to measure that.</p>
+<div id="range" class="section level3">
+<h3><span class="header-section-number">1.3.1</span> Range</h3>
+<p>Range is the distance from the largest to the smallest value in the dataset.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#vmax( TenMileRace$net ) - min( TenMileRace$net )</span>
+TenMileRace %&gt;%<span class="st"> </span><span class="kw">summarise</span>( <span class="dt">range =</span> <span class="kw">max</span>(net) -<span class="st"> </span><span class="kw">min</span>(net) )</code></pre></div>
+<pre><code>##   range
+## 1  7722</code></pre>
+</div>
+<div id="inter-quartile-range" class="section level3">
+<h3><span class="header-section-number">1.3.2</span> Inter-Quartile Range</h3>
+<p>The p-th percentile is the observation (or observations) that has at most <span class="math inline">\(p\)</span> percent of the observations below it and <span class="math inline">\((1-p)\)</span> above it, where <span class="math inline">\(p\)</span> is between 0 and 100. The median is the <span class="math inline">\(50\)</span>th percentile. Often we are interested in splitting the data into four equal sections using the <span class="math inline">\(25\)</span>th, <span class="math inline">\(50\)</span>th, and <span class="math inline">\(75\)</span>th percentiles (which, because it splits the data into four sections, we often call these the <span class="math inline">\(1\)</span>st, <span class="math inline">\(2\)</span>nd, and <span class="math inline">\(3\)</span>rd quartiles).</p>
+<p>In general I could be interested in dividing my data up into an arbitrary number of sections, and refer to those as quantiles of my data.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">quantile</span>( TenMileRace$net ) <span class="co"># this works</span></code></pre></div>
+<pre><code>##    0%   25%   50%   75%  100% 
+##  2814  4950  5555  6169 10536</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># I can&#39;t do the following because the quantile() function spits out 5 values, not 1</span>
+<span class="co"># TenMileRace %&gt;% summarise( quantile(net) )  </span></code></pre></div>
+<p>The inter-quartile range (IQR) is defined as the distance from the <span class="math inline">\(3\)</span>rd quartile to the <span class="math inline">\(1\)</span>st.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># IQR( TenMileRace$net )</span>
+TenMileRace %&gt;%<span class="st"> </span><span class="kw">summarise</span>( <span class="kw">IQR</span>(net) ) </code></pre></div>
+<pre><code>##   IQR(net)
+## 1     1219</code></pre>
+<p>Notice that we’ve defined IQR before when we looked at box-and-whisker plots and this is exactly the length of the box.</p>
+</div>
+<div id="variance" class="section level3">
+<h3><span class="header-section-number">1.3.3</span> Variance</h3>
+<p>One way to measure the spread of a distribution is to ask “what is the typical distance of an observation to the mean?” We could define the <span class="math inline">\(i\)</span>th deviate as <span class="math display">\[e_{i}=x_{i}-\bar{x}\]</span> and then ask what is the average deviate? The problem with this approach is that the sum (and thus the average) of all deviates is always 0. <span class="math display">\[\sum_{i=1}^{n}(x_{i}-\bar{x}) =   \sum_{i=1}^{n}x_{i}-\sum_{i=1}^{n}\bar{x}
+    =   n\frac{1}{n}\sum_{i=1}^{n}x_{i}-n\bar{x}
+    =   n\bar{x}-n\bar{x}
+    =   0\]</span></p>
+<p>The big problem is that about half the deviates are negative and the others are positive. What we really care is the distance from the mean, not the sign. So we could either take the absolute value, or square it.</p>
+<p>There are some really good theoretical reasons to chose the square option. Squared terms are easier to deal with compared to absolute values, but more importantly, the spread of the normal distribution is parameterized via squared distances from the mean. Because the normal distribution is so important, we’ve chosen to define the sample variance so it matches up with the natural spread parameter of the normal distribution. So we square the deviates and then find the average deviate size (approximately) and call that the sample variance. <span class="math display">\[s^{2}=\frac{1}{n-1}\sum_{i=1}^{n}\left(x_{i}-\bar{x}\right)^{2}\]</span> Why do we divide by <span class="math inline">\(n-1\)</span> instead of <span class="math inline">\(n\)</span>?</p>
+<ol style="list-style-type: decimal">
+<li>If I divide by <span class="math inline">\(n\)</span>, then on average, we would tend to underestimate the population variance <span class="math inline">\(\sigma^{2}\)</span>.</li>
+<li>The reason is because we are using the same set of data to estimate <span class="math inline">\(\sigma^{2}\)</span> as we did to estimate the population mean (<span class="math inline">\(\mu\)</span>). If I could use<br />
+<span class="math display">\[\frac{1}{n}\sum_{i=1}^{n}\left(x_{i}-\mu\right)^{2}\]</span> as my estimator, we would be fine. But because I have to replace <span class="math inline">\(\mu\)</span> with <span class="math inline">\(\bar{x}\)</span> we have to pay a price.</li>
+<li>Because the estimation of <span class="math inline">\(\sigma^{2}\)</span> requires the estimation of one other quantity, and using using that quantity, you only need <span class="math inline">\(n-1\)</span> data points and can then figure out the last one, we have used one degree of freedom on estimating the mean and we need to adjust the formula accordingly.</li>
+</ol>
+<p>In later chapters we’ll give this quantity a different name, so we’ll introduce the necessary vocabulary here. Let <span class="math inline">\(e_{i}=x_{i}-\bar{x}\)</span> be the error left after fitting the sample mean. This is the deviation from the observed value to the “expected value” <span class="math inline">\(\bar{x}\)</span>. We can then define the Sum of Squared Error as <span class="math display">\[SSE=\sum_{i=1}^{n}e_{i}^{2}\]</span></p>
+<p>and the Mean Squared Error as <span class="math display">\[MSE=\frac{SSE}{df}=\frac{SSE}{n-1}=s^{2}\]</span> where <span class="math inline">\(df=n-1\)</span> is the appropriate degrees of freedom.</p>
+<p>Calculating the variance of our small sample of five observations <span class="math inline">\(\left\{ 3,6,4,8,2\right\}\)</span>, recall that the sample mean was <span class="math inline">\(\bar{x}=4.6\)</span></p>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(x_i\)</span></th>
+<th><span class="math inline">\((x_i-\bar{x})\)</span></th>
+<th><span class="math inline">\((x_i-\bar{x})^2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>3</td>
+<td>-1.6</td>
+<td>2.56</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>1.4</td>
+<td>1.96</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>-0.6</td>
+<td>0.36</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>3.4</td>
+<td>11.56</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>-2.6</td>
+<td>6.76</td>
+</tr>
+<tr class="even">
+<td>——–</td>
+<td>——————-</td>
+<td>——————–</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>SSE = 23.2</td>
+</tr>
+</tbody>
+</table>
+<p>and so the sample variance is <span class="math display">\[s^2 = \frac{23.2}{(n-1)} = \frac{23.2}{4}=5.8\]</span></p>
+<p>Clearly this calculation would get very tedious to do by hand and computers will be much more accurate in these calculations. In R, the sample variance is easily calculated by the function var().</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ToyData &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">x=</span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">2</span>) )
+<span class="co"># var( ToyData$x )</span>
+ToyData %&gt;%<span class="st"> </span><span class="kw">summarise</span>( <span class="dt">s2 =</span> <span class="kw">var</span>(x) )</code></pre></div>
+<pre><code>##    s2
+## 1 5.8</code></pre>
+<p>For the larger TenMileRace data set, the variance is just as easily calculated.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># var( TenMileRace$net )</span>
+TenMileRace %&gt;%<span class="st"> </span><span class="kw">summarise</span>( <span class="dt">s2 =</span> <span class="kw">var</span>(net) )</code></pre></div>
+<pre><code>##         s2
+## 1 940233.5</code></pre>
+</div>
+<div id="standard-deviation" class="section level3">
+<h3><span class="header-section-number">1.3.4</span> Standard Deviation</h3>
+<p>The biggest problem with the sample variance statistic is that the units are in the original units-squared. That means if you are looking at data about car fuel efficiency, then the values would be in mpg<span class="math inline">\(^{2}\)</span> which are units that I can’t really understand. The solution is to take the positive square root, which we will call the sample standard deviation. <span class="math display">\[s=\sqrt{s^{2}}\]</span> But why do we take the jog through through variance? Mathematically the variance is more useful and most distributions (such as the normal) are defined by the variance term. Practically though, standard deviation is easier to think about.</p>
+<p>The sample standard deviation is important enough for R to have function that will calculate it for you.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># sd( TenMileRace$net )</span>
+TenMileRace %&gt;%<span class="st"> </span><span class="kw">summarise</span>( <span class="dt">s =</span> <span class="kw">sd</span>(net) )</code></pre></div>
+<pre><code>##          s
+## 1 969.6564</code></pre>
+</div>
+<div id="coefficient-of-variation" class="section level3">
+<h3><span class="header-section-number">1.3.5</span> Coefficient of Variation</h3>
+<p>Suppose we had a group of animals and the sample standard deviation of the animals lengths was 15 cm. If the animals were elephants, you would be amazed at their uniformity in size, but if they were insects, you would be astounded at the variability. To account for that, the coefficient of variation takes the sample standard deviation and divides by the absolute value of the sample mean (to keep everything positive)</p>
+<p><span class="math display">\[CV=\frac{s}{\vert\bar{x}\vert}\]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">TenMileRace %&gt;%<span class="st"> </span><span class="kw">summarise</span>( <span class="dt">s =</span> <span class="kw">sd</span>(net),
+                           <span class="dt">xbar =</span> <span class="kw">mean</span>(net),
+                           <span class="dt">cv =</span> s /<span class="st"> </span><span class="kw">abs</span>(xbar) )</code></pre></div>
+<pre><code>##          s     xbar        cv
+## 1 969.6564 5599.065 0.1731818</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># For fun, lets calculate these same statistics but separated by sex...</span>
+TenMileRace %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(sex) %&gt;%
+<span class="st">  </span><span class="kw">summarise</span>( <span class="dt">xbar =</span> <span class="kw">mean</span>(net),
+             <span class="dt">s    =</span> <span class="kw">sd</span>(net),
+             <span class="dt">cv   =</span> s /<span class="st"> </span><span class="kw">abs</span>(xbar) )</code></pre></div>
+<pre><code>## # A tibble: 2 × 4
+##      sex     xbar        s        cv
+##   &lt;fctr&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+## 1      F 5916.398 902.1090 0.1524761
+## 2      M 5280.702 929.9817 0.1761095</code></pre>
+</div>
+<div id="empirical-rule-of-thumb" class="section level3">
+<h3><span class="header-section-number">1.3.6</span> Empirical Rule of Thumb</h3>
+<p>For any mound-shaped sample of data the following is a reasonable rule of thumb:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Interval</th>
+<th>Approximate percent of Measurements</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\bar{x}\pm s\)</span></td>
+<td>68%</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\bar{x}\pm 2s\)</span></td>
+<td>95%</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\bar{x}\pm 3s\)</span></td>
+<td>99.7%</td>
+</tr>
+</tbody>
+</table>
+<p><img src="_main_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+</div>
+</div>
+<div id="exercises" class="section level2">
+<h2><span class="header-section-number">1.4</span> Exercises</h2>
+<ol style="list-style-type: decimal">
+<li><p>O&amp;L 3.21. The ratio of DDE (related to DDT) to PCB concentrations in bird eggs has been shown to have had a number of biological implications. The ratio is used as an indication of the movement of contamination through the food chain. The paper “The ratio of DDE to PCB concentrations in Great Lakes herring gull eggs and its us in interpreting contaminants data” reports the following ratios for eggs collected at 13 study sites from the five Great Lakes. The eggs were collected from both terrestrial and aquatic feeding birds.</p>
+<table>
+<colgroup>
+<col width="21%" />
+<col width="78%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><p>Source Type</p></td>
+<td><p>DDE to PCB Ratio</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Terrestrial</strong> <strong>Aquatic</strong></p></td>
+<td><p>76.50, 6.03, 3.51, 9.96, 4.24, 7.74, 9.54, 41.70, 1.84, 2.5, 1.54 0.27, 0.61, 0.54, 0.14, 0.63, 0.23, 0.56, 0.48, 0.16, 0.18</p></td>
+</tr>
+</tbody>
+</table>
+<ol style="list-style-type: lower-alpha">
+<li>By hand, compute the mean and median separately for each type of feeder.</li>
+<li>Using your results from part (a), comment on the relative sensitivity of the mean and median to extreme values in a data set.</li>
+<li>Which measure, mean or median, would you recommend as the most appropriate measure of the DDE to PCB level for both types of feeders? Explain your answer.</li>
+</ol></li>
+<li><p>O&amp;L 3.31. Consumer Reports in its June 1998 issue reports on the typical daily room rate at six luxury and nine budget hotels. The room rates are given in the following table.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Hotel Type</th>
+<th>Nightly Rate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Luxury</td>
+<td>$175, $180, $120, $150, $120, $125</td>
+</tr>
+<tr class="even">
+<td>Budget</td>
+<td>$50, $50, $49, $45, $36, $45, $50, $50, $40</td>
+</tr>
+</tbody>
+</table>
+<ol style="list-style-type: lower-alpha">
+<li>By hand, compute the means and standard deviations of the room rates for each class of hotel.</li>
+<li>Give a practical reason why luxury hotels might have higher variability than the budget hotels. (Don’t just say the standard deviation is higher because there is more spread in the data, but rather think about the Hotel Industry and why you might see greater price variability for upscale goods compared to budget items.)</li>
+</ol></li>
+<li><p>Use R to confirm your calculations in problem 1 (the pollution data). Show the code you used and the subsequent output. It will often be convenient for me to give you code that generates a data frame instead of uploading an Excel file and having you read it in. The data can be generated using the following commands:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">PolutionRatios &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
+  <span class="dt">Ratio =</span> <span class="kw">c</span>(<span class="fl">76.50</span>, <span class="fl">6.03</span>, <span class="fl">3.51</span>, <span class="fl">9.96</span>, <span class="fl">4.24</span>, <span class="fl">7.74</span>, <span class="fl">9.54</span>, <span class="fl">41.70</span>, <span class="fl">1.84</span>, <span class="fl">2.5</span>, <span class="fl">1.54</span>,
+             <span class="fl">0.27</span>, <span class="fl">0.61</span>, <span class="fl">0.54</span>, <span class="fl">0.14</span>, <span class="fl">0.63</span>, <span class="fl">0.23</span>, <span class="fl">0.56</span>,  <span class="fl">0.48</span>, <span class="fl">0.16</span>, <span class="fl">0.18</span>       ),
+  <span class="dt">Type  =</span> <span class="kw">c</span>( <span class="kw">rep</span>(<span class="st">&#39;Terrestrial&#39;</span>,<span class="dv">11</span>), <span class="kw">rep</span>(<span class="st">&#39;Aquatic&#39;</span>,<span class="dv">10</span>) ) )
+
+<span class="co"># Print out some of the data to confirm what the column names are</span>
+<span class="kw">head</span>( PolutionRatios )</code></pre></div>
+<pre><code>##   Ratio        Type
+## 1 76.50 Terrestrial
+## 2  6.03 Terrestrial
+## 3  3.51 Terrestrial
+## 4  9.96 Terrestrial
+## 5  4.24 Terrestrial
+## 6  7.74 Terrestrial</code></pre>
+<p><em>Hint: for computing the means and medians for each type of feeder separately, the <code>group_by()</code> command we demonstated earlier in the chapter is convenient.</em></p></li>
+<li><p>Use R to confirm your calculations in problem 2 (the hotel data). Show the code you used and the subsequent output. The data can be loaded into a data frame using the following commands Show the code you used and the subsequent output:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Hotels &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
+  <span class="dt">Price =</span> <span class="kw">c</span>(<span class="dv">175</span>, <span class="dv">180</span>, <span class="dv">120</span>, <span class="dv">150</span>, <span class="dv">120</span>, <span class="dv">125</span>, <span class="dv">50</span>, <span class="dv">50</span>, <span class="dv">49</span>, <span class="dv">45</span>, <span class="dv">36</span>, <span class="dv">45</span>, <span class="dv">50</span>, <span class="dv">50</span>, <span class="dv">40</span>),
+  <span class="dt">Type  =</span> <span class="kw">c</span>( <span class="kw">rep</span>(<span class="st">&#39;Luxury&#39;</span>,<span class="dv">6</span>),  <span class="kw">rep</span>(<span class="st">&#39;Budget&#39;</span>, <span class="dv">9</span>) ) )
+
+<span class="co"># Print out some of the data to confirm what the column names are</span>
+<span class="kw">head</span>( Hotels )</code></pre></div>
+<pre><code>##   Price   Type
+## 1   175 Luxury
+## 2   180 Luxury
+## 3   120 Luxury
+## 4   150 Luxury
+## 5   120 Luxury
+## 6   125 Luxury</code></pre></li>
+<li><p>For the hotel data, create side-by-side box-and-whisker plots to compare the prices.</p></li>
+<li><p>Match the following histograms to the appropriate boxplot. <img src="_main_files/figure-html/unnamed-chunk-23-1.png" width="672" /> <img src="_main_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<ol style="list-style-type: lower-alpha">
+<li>Histogram A goes with boxplot __________</li>
+<li>Histogram B goes with boxplot __________</li>
+<li>Histogram C goes with boxplot __________</li>
+<li>Histogram D goes with boxplot __________</li>
+</ol></li>
+<li><p>Twenty-five employees of a corporation have a mean salary of $62,000 and the sample standard deviation of those salaries is $15,000. If each employee receives a bonus of $1,000, does the standard deviation of the salaries change? Explain your reasoning.</p></li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="2-probability.html" class="navigation navigation-next navigation-unique" aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/dereksonderegger/STA_570_Book/raw/master/index.Rmd",
+"text": "Edit"
+},
+"download": null,
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

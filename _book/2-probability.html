@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Introduction to Statistical Methodology</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="Introduction to Statistical Methodology">
+  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Introduction to Statistical Methodology" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="dereksonderegger/STA_570_Book" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Introduction to Statistical Methodology" />
+  
+  
+  
+
+<meta name="author" content="Derek L. Sonderegger">
+
+
+<meta name="date" content="2017-01-11">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="index.html">
+
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Statistical Methods I</a></li>
+<li><a href="https://dereksonderegger.github.io/570/Statistical_Methods_I.pdf" target="blank">PDF version</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Summary Statistics and Graphing</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#graphical-summaries-of-data"><i class="fa fa-check"></i><b>1.1</b> Graphical summaries of data</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#univariate---categorical"><i class="fa fa-check"></i><b>1.1.1</b> Univariate - Categorical</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#univariate---continuous"><i class="fa fa-check"></i><b>1.1.2</b> Univariate - Continuous</a></li>
+<li class="chapter" data-level="1.1.3" data-path="index.html"><a href="index.html#bivariate---categorical-vs-continuous"><i class="fa fa-check"></i><b>1.1.3</b> Bivariate - Categorical vs Continuous</a></li>
+<li class="chapter" data-level="1.1.4" data-path="index.html"><a href="index.html#bivariate---continuous-vs-continuous"><i class="fa fa-check"></i><b>1.1.4</b> Bivariate - Continuous vs Continuous</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#measures-of-centrality"><i class="fa fa-check"></i><b>1.2</b> Measures of Centrality</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#mean"><i class="fa fa-check"></i><b>1.2.1</b> Mean</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#median"><i class="fa fa-check"></i><b>1.2.2</b> Median</a></li>
+<li class="chapter" data-level="1.2.3" data-path="index.html"><a href="index.html#mode"><i class="fa fa-check"></i><b>1.2.3</b> Mode</a></li>
+<li class="chapter" data-level="1.2.4" data-path="index.html"><a href="index.html#examples"><i class="fa fa-check"></i><b>1.2.4</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#measures-of-variation"><i class="fa fa-check"></i><b>1.3</b> Measures of Variation</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#range"><i class="fa fa-check"></i><b>1.3.1</b> Range</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#inter-quartile-range"><i class="fa fa-check"></i><b>1.3.2</b> Inter-Quartile Range</a></li>
+<li class="chapter" data-level="1.3.3" data-path="index.html"><a href="index.html#variance"><i class="fa fa-check"></i><b>1.3.3</b> Variance</a></li>
+<li class="chapter" data-level="1.3.4" data-path="index.html"><a href="index.html#standard-deviation"><i class="fa fa-check"></i><b>1.3.4</b> Standard Deviation</a></li>
+<li class="chapter" data-level="1.3.5" data-path="index.html"><a href="index.html#coefficient-of-variation"><i class="fa fa-check"></i><b>1.3.5</b> Coefficient of Variation</a></li>
+<li class="chapter" data-level="1.3.6" data-path="index.html"><a href="index.html#empirical-rule-of-thumb"><i class="fa fa-check"></i><b>1.3.6</b> Empirical Rule of Thumb</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#exercises"><i class="fa fa-check"></i><b>1.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-probability.html"><a href="2-probability.html"><i class="fa fa-check"></i><b>2</b> Probability</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-probability.html"><a href="2-probability.html#introduction-to-set-theory"><i class="fa fa-check"></i><b>2.1</b> Introduction to Set Theory</a></li>
+<li class="chapter" data-level="2.2" data-path="2-probability.html"><a href="2-probability.html#probability-rules"><i class="fa fa-check"></i><b>2.2</b> Probability Rules</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="2-probability.html"><a href="2-probability.html#simple-rules"><i class="fa fa-check"></i><b>2.2.1</b> Simple Rules</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2-probability.html"><a href="2-probability.html#conditional-probability"><i class="fa fa-check"></i><b>2.2.2</b> Conditional Probability</a></li>
+<li class="chapter" data-level="2.2.3" data-path="2-probability.html"><a href="2-probability.html#summary-of-probability-rules"><i class="fa fa-check"></i><b>2.2.3</b> Summary of Probability Rules</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="2-probability.html"><a href="2-probability.html#discrete-random-variables"><i class="fa fa-check"></i><b>2.3</b> Discrete Random Variables</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="2-probability.html"><a href="2-probability.html#introduction-to-discrete-random-variables"><i class="fa fa-check"></i><b>2.3.1</b> Introduction to Discrete Random Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="2-probability.html"><a href="2-probability.html#common-discrete-distributions"><i class="fa fa-check"></i><b>2.4</b> Common Discrete Distributions</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="2-probability.html"><a href="2-probability.html#binomial-distribution"><i class="fa fa-check"></i><b>2.4.1</b> Binomial Distribution</a></li>
+<li class="chapter" data-level="2.4.2" data-path="2-probability.html"><a href="2-probability.html#poisson-distribution"><i class="fa fa-check"></i><b>2.4.2</b> Poisson Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="2-probability.html"><a href="2-probability.html#continuous-random-variables"><i class="fa fa-check"></i><b>2.5</b> Continuous Random Variables</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="2-probability.html"><a href="2-probability.html#uniform01-distribution"><i class="fa fa-check"></i><b>2.5.1</b> Uniform(0,1) Distribution</a></li>
+<li class="chapter" data-level="2.5.2" data-path="2-probability.html"><a href="2-probability.html#exponential-distribution"><i class="fa fa-check"></i><b>2.5.2</b> Exponential Distribution</a></li>
+<li class="chapter" data-level="2.5.3" data-path="2-probability.html"><a href="2-probability.html#normal-distribution"><i class="fa fa-check"></i><b>2.5.3</b> Normal Distribution</a></li>
+<li class="chapter" data-level="2.5.4" data-path="2-probability.html"><a href="2-probability.html#standardizing"><i class="fa fa-check"></i><b>2.5.4</b> Standardizing</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Statistical Methodology</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="probability" class="section level1">
+<h1><span class="header-section-number">2</span> Probability</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Every chapter, we will load all the librarys we will use at the beginning</span>
+<span class="co"># of the chapter. </span>
+<span class="kw">library</span>(ggplot2)    <span class="co"># graphing functions</span>
+<span class="kw">library</span>(dplyr)      <span class="co"># data summary tools</span></code></pre></div>
+<p>We need to work out the mathematics of what we mean by probability. To begin with we first define an outcome. An outcome is one observation from a random process or event. For example we might be interested in a single roll of a six-side die. Alternatively we might be interested in selecting one NAU student at random from the entire population of NAU students.</p>
+<div id="introduction-to-set-theory" class="section level2">
+<h2><span class="header-section-number">2.1</span> Introduction to Set Theory</h2>
+<p>Before we jump into probability, it is useful to review a little bit of set theory.</p>
+<p>Events are properties of a particular outcome. For a coin flip, the event “Heads” would be the event that a heads was flipped. For the single roll of a six-sided die, a possible event might be that the result is even. For the NAU student, we might be interested in the event that the student is a biology student. A second event of interest might be if the student is an undergraduate.</p>
+<p>1.1.1 Venn Diagrams</p>
+<p>Let <span class="math inline">\(S\)</span> be the set of all outcomes of my random trial. Suppose I am interested in two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>. The traditional way of representing these events is using a Venn diagram.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<p>For example, suppose that my random experiment is rolling a fair 6-sided die once. The possible outcomes are <span class="math inline">\(S=\{1,2,3,4,5,6\}\)</span>. Suppose I then define events <span class="math inline">\(A=\)</span> roll is odd and <span class="math inline">\(B=\)</span> roll is 5 or greater. In this case our picture is:</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<p>All of our possible events are present, and distributed amongst our possible events.</p>
+<p>1.1.2 Composition of events</p>
+<p>I am often interested in discussing the composition of two events and we give the common set operations below.</p>
+<ul>
+<li><p>Union: Denote the event that either <span class="math inline">\(A\)</span> or <span class="math inline">\(B\)</span> occurs as <span class="math inline">\(A\cup B\)</span>. <img src="_main_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p></li>
+<li><p>Denote the event that <strong>both</strong> <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> occur as <span class="math inline">\(A\cap B\)</span> <img src="_main_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p></li>
+<li><p>Denote the event that <span class="math inline">\(A\)</span> does not occur as <span class="math inline">\(\bar{A}\)</span> or <span class="math inline">\(A^{C}\)</span> (different people use different notations) <img src="_main_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p></li>
+</ul>
+<p><strong>Definition 1</strong>. Two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are said to be mutually exclusive (or disjoint) if the occurrence of one event precludes the occurrence of the other. For example, on a single roll of a die, a two and a five cannot both come up. For a second example, define <span class="math inline">\(A\)</span> to be the event that the die is even, and <span class="math inline">\(B\)</span> to be the event that the die comes up as a <span class="math inline">\(5\)</span>.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+</div>
+<div id="probability-rules" class="section level2">
+<h2><span class="header-section-number">2.2</span> Probability Rules</h2>
+<div id="simple-rules" class="section level3">
+<h3><span class="header-section-number">2.2.1</span> Simple Rules</h3>
+<p>We now take our Venn diagrams and use them to understand the rules of probability. The underlying idea that we will use is the the probability of an event is the area in the Venn diagram.</p>
+<p><strong>Definition 2</strong>. Probability is the proportion of times an event occurs in many repeated trials of a random phenomenon. In other words, probability is the long-term relative frequency.</p>
+<p><strong>Fact</strong>. <em>For any event <span class="math inline">\(A\)</span> the probability of the event <span class="math inline">\(P(A)\)</span> satisfies <span class="math inline">\(0\le P(A) \le 1\)</span> because proportions always lie in <span class="math inline">\([0,1]\)</span>.</em></p>
+<p>Because <span class="math inline">\(S\)</span> is the set of all events that might occur, the area of our bounding rectangle will be <span class="math inline">\(1\)</span> and the probability of event <span class="math inline">\(A\)</span> occurring will be represented by the area in the circle <span class="math inline">\(A\)</span>.</p>
+<p><strong>Fact</strong>. <em>If two events are mutually exclusive, then <span class="math inline">\(P(A\cup B)=P(A)+P(B)\)</span></em></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<p><strong>Example</strong>. Let <span class="math inline">\(R\)</span> be the sum of two different colored dice. Suppose we are interested in <span class="math inline">\(P(R \le 4)\)</span>. Notice that the pair of dice can fall 36 different ways (6 ways for the first die and six for the second results in 6x6 possible outcomes, and each way has equal probability <span class="math inline">\(1/36\)</span>. Because the dice cannot simultaneously sum to <span class="math inline">\(2\)</span> and to <span class="math inline">\(3\)</span>, we could write P(R 4 ) = P(R=2)+P(R=3)+P(R=4) = P({ 1,1} )+P({ 1,2} { 2,1} )+P({1,3}{2,2}{3,1}) = ++ =  = </p>
+<p><strong>Fact</strong>. <span class="math inline">\(P(A)+P(\bar{A})=1\)</span> <img src="_main_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+<p>The above statement is true because the probability of whole space <span class="math inline">\(S\)</span> is one (remember <span class="math inline">\(S\)</span> is all possible outcomes), then either we get an outcome in which <span class="math inline">\(A\)</span> occurs or we get an outcome in which <span class="math inline">\(A\)</span> does not occur.</p>
+<p><strong>Fact</strong>. <span class="math inline">\(P(A\cup B)=P(A)+P(B)-P(A\cap B)\)</span></p>
+<p>The reason behind this fact is that if there is if <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are not disjoint, then some area is added twice when I calculate <span class="math inline">\(P\left(A\right)+P\left(B\right)\)</span>. To account for this, I simply subtract off the area that was double counted.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+<p><strong>Fact 3</strong>. <span class="math inline">\(P(A)=P(A\cap B)+P(A\cap\bar{B})\)</span></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+<p>This identity is just breaking the event <span class="math inline">\(A\)</span> into two disjoint pieces.</p>
+</div>
+<div id="conditional-probability" class="section level3">
+<h3><span class="header-section-number">2.2.2</span> Conditional Probability</h3>
+<p>We are given the following data about insurance claims. Notice that the data is given as <span class="math inline">\(P(\;Category\;\cap\;PolicyType\;)\)</span> which is apparent because the sum of all the elements in the table is <span class="math inline">\(100\%\)</span></p>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(\,\)</span></th>
+<th>Fire</th>
+<th>Auto</th>
+<th>Other</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Fraudulant</strong></td>
+<td>6%</td>
+<td>1%</td>
+<td>3%</td>
+</tr>
+<tr class="even">
+<td><strong>non-Fraudulant</strong></td>
+<td>14%</td>
+<td>29%</td>
+<td>47%</td>
+</tr>
+</tbody>
+</table>
+<p>Summing across the rows and columns, we can find the probabilities of for each category and policy type.</p>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(\,\)</span></th>
+<th>Fire</th>
+<th>Auto</th>
+<th>Other</th>
+<th><span class="math inline">\(\,\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Fraudulant</strong></td>
+<td>6%</td>
+<td>1%</td>
+<td>3%</td>
+<td><strong>10%</strong></td>
+</tr>
+<tr class="even">
+<td><strong>non-Fraudulant</strong></td>
+<td>14%</td>
+<td>29%</td>
+<td>47%</td>
+<td><strong>90%</strong></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\,\)</span></td>
+<td><strong>20%</strong></td>
+<td><strong>30%</strong></td>
+<td><strong>50%</strong></td>
+<td><strong>100%</strong></td>
+</tr>
+</tbody>
+</table>
+<p>It is clear that fire claims are more likely fraudulent than auto or other claims. In fact, the proportion of fraudulent claims, given that the claim is against a fire policy is <span class="math display">\[\begin{aligned}
+P(\textrm{ Fraud }|\textrm{ FirePolicy })   &amp;=  \frac{\textrm{proportion of claims that are fire policies and are fraudulent}}{\textrm{proportion of fire claims}} \\
+    &amp;=  \frac{6\%}{20\%}\\
+    &amp; \\
+    &amp;=  0.3
+    \end{aligned}\]</span></p>
+<p>In general we define conditional probability (assuming <span class="math inline">\(P(B) \ne 0\)</span>) as <span class="math display">\[P(A|B)=\frac{P(A\cap B)}{P(B)}\]</span> which can also be rearranged to show <span class="math display">\[\begin{aligned}
+P(A\cap B)  &amp;=  P(A\,|\,B)\,P(B) \\
+              &amp;=    P(B\,|\,A)\,P(A)
+\end{aligned}\]</span> Because the order doesn’t matter and <span class="math inline">\(P\left(A\cap B\right)=P\left(B\cap A\right)\)</span>.</p>
+<p>Using this rule, we might calculate the probability that a claim is an Auto policy given that it is not fraudulent. <span class="math display">\[\begin{aligned}
+P\left(\,Auto\;|\;NotFraud\,\right) &amp;= \frac{P\left(\,Auto\;\cap\;NotFraud\right)}{P\left(\,NotFraud\,\right)} \\
+    &amp;=  \frac{0.29}{0.9} \\
+    &amp;   \\
+    &amp;=  0.3\bar{2}
+    \end{aligned}\]</span></p>
+<p><strong>Definition 4</strong>. <em>Two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are said to be independent if <span class="math inline">\(P(A|B)=P(A)\;\;\textrm{and}\;\;P(B|A)=P(B)\)</span>.</em></p>
+<p>What independence is saying that knowing the outcome of event <span class="math inline">\(A\)</span> doesn’t give you any information about the outcome of event <span class="math inline">\(B\)</span>.</p>
+<p><em>In simple random sampling, we assume that any two samples are independent. </em> In cluster sampling, we assume that samples within a cluster are not independent, but clusters are independent of each other.</p>
+<p><strong>Fact 5</strong>. <em>If <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent events, then <span class="math inline">\(P(A\cap B) = P(A|B)P(B) = P(A)P(B)\)</span>.</em></p>
+<p><strong>Example 6</strong>. Suppose that we are interested in the relationship between the color and the type of car. Specifically I will divide the car world into convertibles and non-convertibles and the colors into red and non-red.</p>
+<p>Suppose that convertibles make up just 10% of the domestic automobile market. This is to say <span class="math inline">\(P(\;Convertable\;)=0.10\)</span>. Of the non-convertibles, red is not unheard of but it isn’t common either. So suppose <span class="math inline">\(P(\;Red\;|\;NonConvertable\;)=0.15\)</span>. However red is an extremely popular color for convertibles so let <span class="math inline">\(P(\;Red\;|\;Convertable\;)=0.60\)</span>.</p>
+<p>Given the above information, we can create the following table:</p>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(\,\)</span></th>
+<th>Convertable</th>
+<th>Not Convertable</th>
+<th><span class="math inline">\(\,\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Red</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><strong>Not Red</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\,\)</span></td>
+<td><strong>10%</strong></td>
+<td><strong>90%</strong></td>
+<td><strong>100%</strong></td>
+</tr>
+</tbody>
+</table>
+<p>We can fill in some of the table using our the definition of conditional probability. For example: <span class="math display">\[\begin{aligned}
+P\left(Red\,\cap\,Convertable\right)    &amp;= P\left(Red\,|\,Convertable\right)\,P\left(Convertable\right) \\
+    &amp;=  0.60*0.10 \\
+    &amp;=  0.06
+  \end{aligned}\]</span></p>
+<p>Lets think about what this conditional probability means. Of the <span class="math inline">\(90\%\)</span> of cars that are not convertibles, <span class="math inline">\(15\%\)</span> those non-convertibles are red and therefore the proportion of cars that are red non-convertibles is <span class="math inline">\(0.90*0.15=0.135\)</span>. Of the <span class="math inline">\(10\%\)</span> of cars that are convertibles, <span class="math inline">\(60\%\)</span> of those are red and therefore proportion of cars that are red convertibles is <span class="math inline">\(0.10*0.60=0.06\)</span>. Thus the total percentage of red cars is actually <span class="math display">\[\begin{aligned}P\left(\,Red\,\right)  
+  &amp;= P\left(\;Red\;\cap\;Convertible\;\right)+P\left(\,Red\,\cap\,NonConvertible\,\right)\\
+    &amp;= P\left(\,Red\,|\,Convertable\,\right)P\left(\,Convertible\,\right)+P\left(\,Red\,|\,NonConvertible\,\right)P\left(\,NonConvertible\,\right)\\
+    &amp;=  0.60*0.10+0.15*0.90\\
+    &amp;=  0.06+0.135\\
+    &amp;=  0.195
+    \end{aligned}\]</span> So when I ask for <span class="math inline">\(P(\;red\;|\;convertable\;)\)</span>, I am narrowing my space of cars to consider only convertibles. While there percentage of cars that are red and convertible is just 6% of all cars, when I restrict myself to convertibles, we see that the percentage of this smaller set of cars that are red is 60%.</p>
+<p>Notice that because <span class="math inline">\(P\left(Red\right)=0.195\ne0.60=P\left(Red\,|\,Convertable\right)\)</span> then the events <span class="math inline">\(Red\)</span> and <span class="math inline">\(Convertable\)</span> are not independent.</p>
+</div>
+<div id="summary-of-probability-rules" class="section level3">
+<h3><span class="header-section-number">2.2.3</span> Summary of Probability Rules</h3>
+<p><span class="math display">\[0 \le P\left(A\right) \le 1\]</span></p>
+<p><span class="math display">\[P\left(A\right)+P\left(\bar{A}\right)=1\]</span> <span class="math display">\[P\left(A\cup B\right) =   P\left(A\right)+P\left(B\right)-P\left(A\cap B\right)\]</span> <span class="math display">\[P\left(A\cap B\right) =   \begin{cases}
+P\left(A\,|\,B\right)P\left(B\right)\\
+P\left(B\,|\,A\right)P\left(A\right)\\
+P(A)P(B)\;\; &amp; \textrm{ if A,B are independent}
+\end{cases}\]</span></p>
+<p><span class="math display">\[P\left(A\,|\,B\right) =   \frac{P\left(A\cap B\right)}{P\left(B\right)}\]</span></p>
+</div>
+</div>
+<div id="discrete-random-variables" class="section level2">
+<h2><span class="header-section-number">2.3</span> Discrete Random Variables</h2>
+<p>The different types of probability distributions (and therefore your analysis method) can be divided into two general classes:</p>
+<ol style="list-style-type: decimal">
+<li><p>Continuous Random Variables - the variable takes on numerical values and could, in principle, take any of an uncountable number of values. In practical terms, if fractions or decimal points in the number make sense, it is usually continuous.</p></li>
+<li><p>Discrete Random Variables - the variable takes on one of small set of values (or only a countable number of outcomes). In practical terms, if fractions or decimals points don’t make sense, it is usually discrete.</p></li>
+</ol>
+<p>Examples:</p>
+<ol style="list-style-type: decimal">
+<li>Presence or Absence of wolves in a State?</li>
+<li>Number of Speeding Tickets received?</li>
+<li>Tree girth (in cm)?</li>
+<li>Photosynthesis rate?</li>
+</ol>
+<div id="introduction-to-discrete-random-variables" class="section level3">
+<h3><span class="header-section-number">2.3.1</span> Introduction to Discrete Random Variables</h3>
+<p>The following facts hold for discrete random variables:</p>
+<ol style="list-style-type: decimal">
+<li>The probability associated with every value lies between 0 and 1</li>
+<li>The sum of all probabilities for all values is equal to 1</li>
+<li>Probabilities for discrete RVs are additive. i.e., <span class="math inline">\(P(3\textrm{ or }4)=P(3)+P(4)\)</span></li>
+</ol>
+<div id="expected-value" class="section level4">
+<h4><span class="header-section-number">2.3.1.1</span> Expected Value</h4>
+<p>Example: Consider the discrete random variable <span class="math inline">\(S\)</span>, the sum of two fair dice.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+<p>We often want to ask ‘What is expected value of this distribution?’ You might think about taking a really, really large number of samples from this distribution and then taking the mean of that really really big sample. We define the expected value (often denoted by <span class="math inline">\(\mu\)</span>) as a weighted average of the possible values and the weights are the proportions with which those values occur. <span class="math display">\[\mu=E[S]  =   \sum_{\textrm{possible }s}\;s\cdot P\left(S=s\right)\]</span> In this case, we have that <span class="math display">\[\begin{aligned} \mu = E[S] 
+&amp;=  \sum_{s=2}^{12}s\cdot P(S=s) \\
+&amp;=  2\cdot P\left(S=2\right)+3\cdot P\left(S=3\right)+\dots+11\cdot P\left(S=11\right)+12\cdot P\left(S=12\right) \\
+&amp;=  2\left(\frac{1}{36}\right)+3\left(\frac{2}{36}\right)+\dots+11\left(\frac{2}{36}\right)+12\left(\frac{1}{36}\right) \\
+&amp;=  7
+\end{aligned}\]</span></p>
+</div>
+<div id="variance-1" class="section level4">
+<h4><span class="header-section-number">2.3.1.2</span> Variance</h4>
+<p>Similarly we could define the variance of <span class="math inline">\(S\)</span> (which we often denote <span class="math inline">\(\sigma^{2}\)</span>) as a weighted average of the squared-deviations that could occur. <span class="math display">\[ \sigma^{2}=V[S]  = \sum_{\textrm{possible }s}\; (s-\mu)^2 \cdot P\left(S=s\right)\]</span> which in this example can be calculated as <span class="math display">\[\begin{aligned} \sigma^{2}=V[S] 
+  &amp;= \sum_{s=2}^{12}\left(s-\mu\right)^{2}P(S=s) \\
+    &amp;= (2-7)^{2}\left(\frac{1}{36}\right)+(3-7)^{2}\left(\frac{2}{36}\right)+\dots+(12-7)^{2}\left(\frac{1}{36}\right) \\
+    &amp;= \frac{35}{6}=5.8\bar{3}
+    \end{aligned}\]</span></p>
+<p>We could interpret the expectation as the sample mean of an infinitely large sample, and the variance as the sample variance of the same infinitely large sample. These are two very important numbers that describe the distribution.</p>
+<p><strong>Example 7</strong>. My wife is a massage therapist and over the last year, the number of clients she sees per work day (denoted Y ) varied according the following table:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Number of Clients</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Frequency/Probability</strong></td>
+<td>0.30</td>
+<td>0.35</td>
+<td>0.20</td>
+<td>0.10</td>
+<td>0.05</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">distr &lt;-<span class="st"> </span><span class="kw">data.frame</span>(    <span class="dt">clients =</span> <span class="kw">c</span>( <span class="dv">0</span>,   <span class="dv">1</span>,    <span class="dv">2</span>,    <span class="dv">3</span>,    <span class="dv">4</span>   ),    <span class="co"># two columns </span>
+                    <span class="dt">probability =</span> <span class="kw">c</span>(<span class="fl">0.3</span>, <span class="fl">0.35</span>, <span class="fl">0.20</span>, <span class="fl">0.10</span>, <span class="fl">0.05</span> ) )   <span class="co"># </span>
+
+<span class="kw">ggplot</span>(distr, <span class="kw">aes</span>(<span class="dt">x=</span>clients)) +<span class="st">                   </span><span class="co"># graph with clients as the x-axis</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">y=</span>probability)) +<span class="st">                </span><span class="co"># where the dots go</span>
+<span class="st">  </span><span class="kw">geom_linerange</span>(<span class="kw">aes</span>(<span class="dt">ymax=</span>probability, <span class="dt">ymin=</span><span class="dv">0</span>)) +<span class="st"> </span><span class="co"># the vertical lines       </span>
+<span class="st">  </span><span class="kw">theme_bw</span>()                                      <span class="co"># set background color...</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-38-1.png" width="672" /> Because this is the long term relative frequency of the number of clients (over 200 working days!), it is appropriate to interpret these frequencies as probabilities. This table and graph is often called a probability mass function (pmf) because it lists how the probability is spread across the possible values of the random variable. We might next ask ourselves what is the average number of clients per day? It looks like it ought to be between 1 and 2 clients per day. <span class="math display">\[\begin{aligned} E\left(Y\right)   
+  &amp;=    \sum_{\textrm{possible }y}y\,P\left(Y=y\right) \\
+    &amp;=  \sum_{y=0}^{4}y\,P\left(Y=y\right) \\
+    &amp;=  0\,P\left(Y=0\right)+1\,P\left(Y=1\right)+2\,P\left(Y=2\right)+3\,P\left(Y=3\right)+4\,P\left(Y=4\right) \\
+    &amp;=  0\left(0.3\right)+1\left(0.35\right)+2\left(0.20\right)+3\left(0.10\right)+4\left(0.05\right) \\
+    &amp;=  1.25 \end{aligned}\]</span></p>
+<p>Assuming that successive days are independent (which might be a bad assumption) what is the probability she has two days in a row with no clients? <span class="math display">\[\begin{aligned}P\left(\textrm{0 on day1 }and\textrm{ 0 on day2}\right)    
+  &amp;=    P\left(\textrm{0 on day 1}\right)P\left(\textrm{0 on day 2}\right) \\
+    &amp;=  \left(0.3\right)\left(0.3\right) \\
+    &amp;=  0.09 \end{aligned}\]</span></p>
+<p>What is the variance of this distribution? <span class="math display">\[\begin{aligned}V\left(Y\right)    
+  &amp;= \sum_{\textrm{possible y}}\,\left(y-\mu\right)^{2}\,P\left(Y=y\right) \\
+    &amp;= \sum_{y=0}^{4}\,\left(y-\mu\right)^{2}P\left(Y=y\right) \\
+    &amp;=  \left(0-1.25\right)^{2}\left(0.3\right)+\left(1-1.25\right)^{2}\left(0.35\right)+\left(2-1.25\right)^{2}\left(0.20\right)+\left(3-1.25\right)^{2}\left(0.10\right)+\left(4-1.25\right)^{2}\left(0.05\right) \\
+    &amp;=  1.2875 \end{aligned}\]</span></p>
+<p>Note on Notation: There is a difference between the upper and lower case letters we have been using to denote a random variable. In general, we let the upper case denote the random variable and the lower case as a value that the the variable could possibly take on. So in the massage example, the number of clients seen per day <span class="math inline">\(Y\)</span> could take on values <span class="math inline">\(y=0,1,2,3,\)</span> or <span class="math inline">\(4\)</span>.</p>
+</div>
+</div>
+</div>
+<div id="common-discrete-distributions" class="section level2">
+<h2><span class="header-section-number">2.4</span> Common Discrete Distributions</h2>
+<div id="binomial-distribution" class="section level3">
+<h3><span class="header-section-number">2.4.1</span> Binomial Distribution</h3>
+<p><strong>Example</strong>: Suppose we are trapping small mammals in the desert and we spread out three traps. Assume that the traps are far enough apart that having one being filled doesn’t affect the probability of the others being filled and that all three traps have the same probability of being filled in an evening. Denote the event that a trap is filled with a critter as <span class="math inline">\(C_{i}\)</span> and denote the event that the trap is empty as <span class="math inline">\(E_{i}\)</span>. Denote the probability that a trap is filled by =0.8. (This sort of random variable is often referred to as a Bernoulli RV.)</p>
+<p>The possible outcomes are</p>
+<table>
+<thead>
+<tr class="header">
+<th>Outcome</th>
+<th><span class="math inline">\(\,\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(E_1, E_2, E_3\)</span></td>
+<td><span class="math inline">\(\,\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(C_1, E_2, E_3\)</span></td>
+<td><span class="math inline">\(\,\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(E_1, C_2, E_3\)</span></td>
+<td><span class="math inline">\(\,\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(E_1, E_2, C_3\)</span></td>
+<td><span class="math inline">\(\,\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(C_1, C_2, E_3\)</span></td>
+<td><span class="math inline">\(\,\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(C_1, E_2, C_3\)</span></td>
+<td><span class="math inline">\(\,\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(E_1, C_2, C_3\)</span></td>
+<td><span class="math inline">\(\,\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(C_1, C_2, C_3\)</span></td>
+<td><span class="math inline">\(\,\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Because these are far apart enough in space that the outcome of Trap1 is independent of Trap2 and Trap3, then <span class="math display">\[P(E_{1}\cap C_{2}\cap E_{3})  =   P(E_{1})P(C_{2})P(E_{3})
+    =   (1-0.8)0.8(1-0.8)
+    =   0.032\]</span> <strong>Notice how important the assumption of independence is!!!</strong> Similarly we could calculate the probabilities for the rest of the table.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Outcome</th>
+<th>Probability</th>
+<th><span class="math inline">\(S\)</span> Outcome</th>
+<th>Probability</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(E_1, E_2, E_3\)</span></td>
+<td>0.008</td>
+<td><span class="math inline">\(S=0\)</span></td>
+<td>0.008</td>
+</tr>
+<tr class="even">
+<td>——————-</td>
+<td>—————</td>
+<td>————-</td>
+<td>—————</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(C_1, E_2, E_3\)</span></td>
+<td>0.032</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(E_1, C_2, E_3\)</span></td>
+<td>0.032</td>
+<td><span class="math inline">\(S=1\)</span></td>
+<td><span class="math inline">\(3(0.032) = 0.096\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(E_1, E_2, C_3\)</span></td>
+<td>0.032</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>——————-</td>
+<td>—————</td>
+<td>————-</td>
+<td>—————</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(C_1, C_2, E_3\)</span></td>
+<td>0.128</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(C_1, E_2, C_3\)</span></td>
+<td>0.128</td>
+<td><span class="math inline">\(S=2\)</span></td>
+<td><span class="math inline">\(3(0.128) = 0.384\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(E_1, C_2, C_3\)</span></td>
+<td>0.128</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>——————-</td>
+<td>—————</td>
+<td>————-</td>
+<td>—————</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(C_1, C_2, C_3\)</span></td>
+<td>0.512</td>
+<td><span class="math inline">\(S=3\)</span></td>
+<td><span class="math inline">\(0.512\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Next we are interested in the random variable <span class="math inline">\(S\)</span>, the number of traps that were filled:</p>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(S\)</span> Outcome</th>
+<th>Probability</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(S=0\)</span></td>
+<td><span class="math inline">\(0.008\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(S=1\)</span></td>
+<td><span class="math inline">\(0.096\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(S=2\)</span></td>
+<td><span class="math inline">\(0.384\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(S=3\)</span></td>
+<td><span class="math inline">\(0.512\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math inline">\(S\)</span> is an example of a Binomial Random Variable. A binomial experiment is one that:</p>
+<ol style="list-style-type: decimal">
+<li>Experiment consists of <span class="math inline">\(n\)</span> identical trials.</li>
+<li>Each trial results in one of two outcomes (Heads/Tails, presence/absence). One will be labeled a success and the other a failure.</li>
+<li>The probability of success on a single trial is equal to <span class="math inline">\(\pi\)</span> and remains the same from trial to trial.</li>
+<li>The trials are independent (this is implied from property 3).</li>
+<li>The random variable <span class="math inline">\(Y\)</span> is the number of successes observed during <span class="math inline">\(n\)</span> trials.</li>
+</ol>
+<p>Recall that the probability mass function (pmf) describes how the probability is spread across the possible outcomes, and in this case, I can describe this via a nice formula. The pmf of a a binomial random variable <span class="math inline">\(X\)</span> taken from <span class="math inline">\(n\)</span> trials each with probability of success <span class="math inline">\(\pi\)</span> is</p>
+<p><span class="math display">\[P(X=x)=\underbrace{\frac{n!}{x!(n-x)!}}_{orderings}\;\underbrace{\pi^{x}}_{y\,successes}\;\underbrace{(1-\pi)^{n-x}}_{n-y\,failures}\]</span></p>
+<p>where we define <span class="math inline">\(n!=n(n-1)\dots(2)(1)\)</span> and further define <span class="math inline">\(0!=1\)</span>. Often the ordering term is written more compactly as <span class="math display">\[{n \choose x}=\frac{n!}{x!\left(n-x\right)!}\]</span>.</p>
+<p>For our small mammal example we can create a graph that shows the binomial distribution with the following R code:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dist &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">x=</span><span class="dv">0</span>:<span class="dv">3</span> ) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">probability =</span> <span class="kw">dbinom</span>(x, <span class="dt">size=</span><span class="dv">3</span>, <span class="dt">prob=</span><span class="fl">0.8</span>))
+<span class="kw">ggplot</span>(dist, <span class="kw">aes</span>(<span class="dt">x=</span>x)) +
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">y=</span>probability)) +
+<span class="st">  </span><span class="kw">geom_linerange</span>(<span class="kw">aes</span>(<span class="dt">ymax=</span>probability, <span class="dt">ymin=</span><span class="dv">0</span>)) +
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&#39;Binomial distribution: n=3, p=0.8&#39;</span>) +
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
+<p>To calculate the height of any of these bars, we can evaluate the pmf at the desired point. For example, to calculate the probability the number of full traps is 2, we calculate the following</p>
+<p><span class="math display">\[\begin{aligned} P(X=2)    
+  &amp;=    {3 \choose 2}\left(0.8\right)^{2}\left(1-0.8\right)^{3-2} \\
+    &amp;=  \frac{3!}{2!(3-2)!}(0.8)^{2}(0.2)^{3-2} \\
+    &amp;=  \frac{3\cdot2\cdot1}{(2\cdot1)1}\;(0.8)^{2}(0.2) \\
+    &amp;=  3(0.128) \\
+    &amp;=  0.384 \end{aligned}\]</span></p>
+<p>You can use R to calculate these probabilities. In general, for any distribution, the “d-function” gives the distribution function (pmf or pdf). So to get R to do the preceding calculation we use:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># If    X ~ Binomial(n=3, pi=0.8)</span>
+<span class="co"># Then  P( X = 2 | n=3, pi=0.8 ) =</span>
+<span class="kw">dbinom</span>(<span class="dv">2</span>, <span class="dt">size=</span><span class="dv">3</span>, <span class="dt">prob=</span><span class="fl">0.8</span>)</code></pre></div>
+<pre><code>## [1] 0.384</code></pre>
+<p>The expectation of this distribution can be shown to be <span class="math display">\[\begin{aligned}E[X]   
+  &amp;=    \sum_{x=0}^{n}x\,P(X=x) \\
+    &amp;=  \sum_{x=0}^{n}x\;\frac{n!}{x!\left(n-x\right)!}\pi^{x}\left(1-\pi\right)^{n-x}\\
+    &amp;=  \vdots \\
+    &amp;=  n\pi \end{aligned}\]</span></p>
+<p>and the variance can be similarly calculated <span class="math display">\[\begin{aligned} V[X]  
+  &amp;=    \sum_{x=0}^{n}\left(x-E\left[X\right]\right)^{2}\,P\left(X=x|n,\pi\right) \\
+    &amp;=  \sum_{x=0}^{n}\left(x-E\left[X\right]\right)^{2}\;\frac{n!}{x!\left(n-x\right)!}\pi^{x}\left(1-\pi\right)^{n-x} \\
+    &amp;=  \vdots \\
+    &amp;=  n\pi(1-\pi) \end{aligned}\]</span></p>
+<p><strong>Example 8</strong>. Suppose a bird survey only captures the presence or absence of a particular bird (say the mountain chickadee). Assuming the true presence proportion at national forest sites around Flagstaff <span class="math display">\[\pi=0.1\]</span>, then for <span class="math inline">\(n=20\)</span> randomly chosen sites, the number of sites in which the bird was observed would have the distribution</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dist &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">x =</span> <span class="dv">0</span>:<span class="dv">20</span> ) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">probability =</span> <span class="kw">dbinom</span>(x, <span class="dt">size=</span><span class="dv">20</span>, <span class="dt">prob=</span><span class="fl">0.1</span>))
+<span class="kw">ggplot</span>(dist, <span class="kw">aes</span>(<span class="dt">x=</span>x)) +
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">y=</span>probability)) +
+<span class="st">  </span><span class="kw">geom_linerange</span>(<span class="kw">aes</span>(<span class="dt">ymax=</span>probability, <span class="dt">ymin=</span><span class="dv">0</span>)) +
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&#39;Binomial distribution: n=20, p=0.1&#39;</span>) +
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&#39;Number of Sites Occupied&#39;</span>) +
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
+<p>Often we are interested in questions such as <span class="math inline">\(P(X\le2)\)</span> which is the probability that we see 2 or fewer of the sites being occupied by mountain chickadee. These calculations can be tedious to calculate by hand but R will calculate these cumulative distribution function values for you using the “p-function”. This cumulative distribution function gives the sum of all values up to and including the number given.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># P(X=0) + P(X=1) + P(X=2)</span>
+sum &lt;-<span class="st"> </span><span class="kw">dbinom</span>(<span class="dv">0</span>, <span class="dt">size=</span><span class="dv">20</span>, <span class="dt">prob=</span><span class="fl">0.1</span>) +<span class="st"> </span>
+<span class="st">       </span><span class="kw">dbinom</span>(<span class="dv">1</span>, <span class="dt">size=</span><span class="dv">20</span>, <span class="dt">prob=</span><span class="fl">0.1</span>) +<span class="st"> </span>
+<span class="st">       </span><span class="kw">dbinom</span>(<span class="dv">2</span>, <span class="dt">size=</span><span class="dv">20</span>, <span class="dt">prob=</span><span class="fl">0.1</span>)
+sum</code></pre></div>
+<pre><code>## [1] 0.6769268</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># P(X &lt;= 2)</span>
+<span class="kw">pbinom</span>(<span class="dv">2</span>, <span class="dt">size=</span><span class="dv">20</span>, <span class="dt">prob=</span><span class="fl">0.1</span>)</code></pre></div>
+<pre><code>## [1] 0.6769268</code></pre>
+<p>In general we will be interested in asking four different questions about a distribution.</p>
+<ol style="list-style-type: decimal">
+<li>What is the height of the probability mass function (or probability density function). For discrete variable <span class="math inline">\(Y\)</span> this is <span class="math inline">\(P\left(Y=y\right)\)</span> for whatever value of <span class="math inline">\(y\)</span> we want. In R, this will be the <code>d</code>-function.</li>
+<li>What is the probability of observing a value less than or equal to <span class="math inline">\(y\)</span>? In other words, to calculate <span class="math inline">\(P\left(Y\le y\right)\)</span>. In R, this will be the <code>p</code>-function.</li>
+<li>What is a particular quantile of a distribution? For example, what value separates the lower <span class="math inline">\(25\%\)</span> from the upper <span class="math inline">\(75\%\)</span>? In R, this will be the <code>q</code>-function.</li>
+<li>Generate a random sample of values from a specified distribution. In R, this will be the <code>r</code>-function.</li>
+</ol>
+</div>
+<div id="poisson-distribution" class="section level3">
+<h3><span class="header-section-number">2.4.2</span> Poisson Distribution</h3>
+<p>A commonly used distribution for count data is the Poisson.</p>
+<ol style="list-style-type: decimal">
+<li>Number of customers arriving over a 5 minute interval</li>
+<li>Number of birds observed during a 10 minute listening period</li>
+<li>Number of prairie dog towns per 1000 hectares</li>
+<li>Number of alga clumps per cubic meter of lake water</li>
+</ol>
+<p>For a RV is a Poisson RV if the following conditions apply:</p>
+<ol style="list-style-type: decimal">
+<li>Two or more events do not occur at precisely the same time or in the same space</li>
+<li>The occurrence of an event in a given period of time or region of space is independent of the occurrence of the event in a non overlapping period or region.</li>
+<li>The expected number of events during one period or region, <span class="math inline">\(\lambda\)</span>, is the same in all periods or regions of the same size.</li>
+</ol>
+<p>Assuming that these conditions hold for some count variable <span class="math inline">\(Y\)</span>, the the probability mass function is given by <span class="math display">\[P(Y=y)=\frac{\lambda^{y}e^{-\lambda}}{y!}\]</span> where <span class="math inline">\(\lambda\)</span> is the expected number of events over 1 unit of time or space and <span class="math inline">\(e\)</span> is the constant <span class="math inline">\(2.718281828\dots\)</span>.</p>
+<p><span class="math display">\[E[Y]  =   \lambda\]</span> <span class="math display">\[Var[Y]    =   \lambda\]</span></p>
+<p><strong>Example 9</strong>. Suppose we are interested in the population size of small mammals in a region. Let <span class="math inline">\(Y\)</span> be the number of small mammals caught in a large trap (multiple traps in the same location?) in a 12 hour period. Finally, suppose that <span class="math inline">\(Y\sim Poi(\lambda=2.3)\)</span>. What is the probability of finding exactly 4 critters in our trap? <span class="math display">\[P(Y=4)    =   \frac{2.3^{4}\,e^{-2.3}}{4!} =  0.1169\]</span> What about the probability of finding at most 4? <span class="math display">\[\begin{aligned} P(Y\le4) 
+  &amp;=    P(Y=0)+P(Y=1)+P(Y=2)+P(Y=3)+P(Y=4) \\
+    &amp;=  0.1003+0.2306+0.2652+0.2033+0.1169 \\
+    &amp;=  0.9163 \end{aligned}\]</span></p>
+<p>What about the probability of finding 5 or more? <span class="math display">\[P(Y\ge5)  =   1-P(Y\le4) =    1-0.9163 =  0.0837\]</span></p>
+<p>These calculations can be done using the distribution function (d-function) for the poisson and the cumulative distribution function (p-function).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dist &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">NumCaught =</span> <span class="dv">0</span>:<span class="dv">10</span> ) %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>( <span class="dt">probability =</span> <span class="kw">dpois</span>( NumCaught, <span class="dt">lambda=</span><span class="fl">2.3</span> ) )
+<span class="kw">ggplot</span>(dist, <span class="kw">aes</span>(<span class="dt">x=</span>NumCaught)) +
+<span class="st">  </span><span class="kw">geom_point</span>( <span class="kw">aes</span>(<span class="dt">y=</span>probability) ) +
+<span class="st">  </span><span class="kw">geom_linerange</span>(<span class="kw">aes</span>( <span class="dt">ymax=</span>probability, <span class="dt">ymin=</span><span class="dv">0</span>)) +
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&#39;Poisson Distribution with  &#39;</span>, lambda ==<span class="st"> </span><span class="fl">2.3</span>))) +
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&#39;Number Caught&#39;</span>) +
+<span class="st">  </span><span class="kw">theme_bw</span>()            </code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># P( Y = 4)</span>
+<span class="kw">dpois</span>(<span class="dv">4</span>, <span class="dt">lambda=</span><span class="fl">2.3</span>)</code></pre></div>
+<pre><code>## [1] 0.1169022</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># P( Y &lt;= 4)</span>
+<span class="kw">ppois</span>(<span class="dv">4</span>, <span class="dt">lambda=</span><span class="fl">2.3</span>)</code></pre></div>
+<pre><code>## [1] 0.9162493</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 1-P(Y &lt;= 4)  ==  P( Y &gt; 4)  ==  P( Y &gt;= 5)</span>
+<span class="dv">1</span>-<span class="kw">ppois</span>(<span class="dv">4</span>, <span class="fl">2.3</span>)</code></pre></div>
+<pre><code>## [1] 0.08375072</code></pre>
+</div>
+</div>
+<div id="continuous-random-variables" class="section level2">
+<h2><span class="header-section-number">2.5</span> Continuous Random Variables</h2>
+<p>Continuous random variables can take on an (uncountably) infinite number of values, and this results in a few obnoxious mathematical differences between how we handle continuous and discrete random variables. In particular, the probability that a continuous random variable <span class="math inline">\(X\)</span> will take on a particular value will be zero, so we will be interested in finding the probability that the random variable is in some interval instead. Wherever we had a summation, <span class="math inline">\(\sum\)</span>, we will instead have an integral, but because many students haven’t had calculus, we will resort to using R or tables of calculated values.</p>
+<div id="uniform01-distribution" class="section level3">
+<h3><span class="header-section-number">2.5.1</span> Uniform(0,1) Distribution</h3>
+<p>Suppose you wish to draw a random number number between 0 and 1 and any two intervals of equal size should have the same probability of the value being in them. This random variable is said to have a Uniform(0,1) distribution.</p>
+<p>Because there are an infinite number of rational numbers between 0 and 1, the probability of any particular number being selected is <span class="math inline">\(1/\infty=0\)</span>. But even though each number has 0 probability of being selected, some number must end up being selected. Because of this conundrum, probability theory doesn’t look at the probability of a single number, but rather focuses on a region of numbers.</p>
+<p>To make this distinction, we will define the distribution using a probability density function (pdf) instead of the probability mass function. In the discrete case, we had to constrain the probability mass function to sum to 1. In the continuous case, we have to constrain the probability density function to integrate to 1.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
+<p>Finding the area under the curve of a particular density function <span class="math inline">\(f(x)\)</span> usually requires the use of calculus, but since this isn’t a calculus course, we will resort to using R or tables of calculated values.</p>
+</div>
+<div id="exponential-distribution" class="section level3">
+<h3><span class="header-section-number">2.5.2</span> Exponential Distribution</h3>
+<p>The exponential distribution is the continuous analog of the Poisson distribution and is often used to model the time between occurrence of successive events. Perhaps we are modeling time between transmissions on a network, or the time between feeding events or prey capture. If the random variable <span class="math inline">\(X\)</span> has an Exponential distribution, its probability density function is <span class="math display">\[f(x)=\begin{cases}
+\lambda e^{-\lambda x} &amp; x\ge0\;\textrm{ and }\;\lambda&gt;0\\
+0 &amp; \textrm{otherwise}
+\end{cases}\]</span></p>
+<p>Analogous to the discrete distributions, we can define the Expectation and Variance of these distributions by replacing the summation with an integral <span class="math display">\[\mu = E[X] =  \int_{0}^{\infty}x\,f(x)\,dx = \dots = \frac{1}{\lambda} \]</span> <span class="math display">\[\sigma^2 = Var[X] =   \int_{0}^{\infty}\left(x-\mu\right)^{2}\,f\left(x\right)\,dx =  \dots = \frac{1}{\lambda^{2}}\]</span></p>
+<p>Because the exponential distribution is defined by the rate of occurrence of an event, increasing that rate decreases the time between events. Furthermore because the rate of occurrence cannot be negative, we restrict <span class="math inline">\(\lambda&gt;0\)</span>.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
+<p><strong>Example 10</strong>. Suppose the time between insect captures <span class="math inline">\(X\)</span> during a summer evening for a species of bat follows a exponential distribution with capture rate of <span class="math inline">\(\lambda=2\)</span> insects per minute and therefore the expected waiting time between captures is <span class="math inline">\(1/\lambda=1/2\)</span> minute. Suppose that we are interested in the probability that it takes a bat more than 1 minute to capture its next insect.</p>
+<p><span class="math display">\[P(X&gt;1)=\]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x=</span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">5</span>,<span class="dt">length=</span><span class="dv">1000</span>), <span class="dt">lambda =</span> <span class="dv">2</span>) %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">y=</span><span class="kw">dexp</span>(x, <span class="dt">rate =</span> lambda),
+         <span class="dt">grp =</span> <span class="kw">ifelse</span>( x &gt;<span class="st"> </span><span class="dv">1</span>, <span class="st">&#39;&gt; 1&#39;</span>, <span class="st">&#39;&lt;= 1&#39;</span>))
+<span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>y, <span class="dt">fill=</span>grp)) +
+<span class="st">  </span><span class="kw">geom_area</span>() +
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">y=</span><span class="st">&#39;density&#39;</span>) +
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
+<p>We now must resort to calculus to find this area. Or use tables of pre-calculated values. Or use R, remembering that p-functions give the area under the curve to the left of the given value.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># P(X &gt; 1)  == 1 - P(X &lt;= 1)</span>
+<span class="dv">1</span> -<span class="st"> </span><span class="kw">pexp</span>(<span class="dv">1</span>, <span class="dt">rate=</span><span class="dv">2</span>)</code></pre></div>
+<pre><code>## [1] 0.1353353</code></pre>
+</div>
+<div id="normal-distribution" class="section level3">
+<h3><span class="header-section-number">2.5.3</span> Normal Distribution</h3>
+<p>Undoubtably the most important distribution in statistics is the normal distribution. If my RV <span class="math inline">\(X\)</span> is normally distributed with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>, its probability density function is given by <span class="math display">\[f(x)=\frac{1}{\sqrt{2\pi}\sigma}\exp\left[\frac{-(x-\mu)^{2}}{2\sigma^{2}}\right]\]</span> where <span class="math inline">\(\exp[y]\)</span> is the exponential function <span class="math inline">\(e^{y}\)</span>. We could slightly rearrange the function to</p>
+<p><span class="math display">\[f(x)=\frac{1}{\sqrt{2\pi}\sigma}\exp\left[-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^{2}\right]\]</span></p>
+<p>and see this distribution is defined by its expectation <span class="math inline">\(E[X]=\mu\)</span> and its variance <span class="math inline">\(Var[X]=\sigma^{2}\)</span>. Notice I could define it using the standard deviation <span class="math inline">\(\sigma\)</span>, and different software packages will expect it to be defined by one or the other. R defines the normal distribution using the standard deviation.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
+<p><strong>Example 11</strong>. It is known that the heights of adult males in the US is approximately normal with a mean of 5 feet 10 inches (<span class="math inline">\(\mu=70\)</span> inches) and a standard deviation of <span class="math inline">\(\sigma=3\)</span> inches. Your instructor is a mere 5 feet 4 inches (64 inches). What proportion of the population is shorter than your professor?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">distr &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x=</span><span class="kw">seq</span>(<span class="dv">57</span>, <span class="dv">82</span>, <span class="dt">length=</span><span class="dv">1000</span>)) %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>( <span class="dt">density =</span> <span class="kw">dnorm</span>(x, <span class="dt">mean=</span><span class="dv">70</span>, <span class="dt">sd=</span><span class="dv">3</span>),
+          <span class="dt">group =</span> <span class="kw">ifelse</span>(x&lt;=<span class="dv">64</span>, <span class="st">&#39;Shorter&#39;</span>,<span class="st">&#39;Taller&#39;</span>) )
+<span class="kw">ggplot</span>(distr, <span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>density, <span class="dt">fill=</span>group)) +
+<span class="st">  </span><span class="kw">geom_line</span>() +
+<span class="st">  </span><span class="kw">geom_area</span>() +
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
+<p>Using R you can easily find this</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pnorm</span>(<span class="dv">64</span>, <span class="dt">mean=</span><span class="dv">70</span>, <span class="dt">sd=</span><span class="dv">3</span>)</code></pre></div>
+<pre><code>## [1] 0.02275013</code></pre>
+</div>
+<div id="standardizing" class="section level3">
+<h3><span class="header-section-number">2.5.4</span> Standardizing</h3>
+<p>Before we had computers that could calculate these probabilities for any normal distribution, it was important to know how to convert a probability statement from an arbitrary <span class="math inline">\(N\left(\mu,\sigma^{2}\right)\)</span> distribution to a question about a Stanard Normal distribution, which is a normal distribution with mean <span class="math inline">\(\mu=0\)</span> and standard deviation <span class="math inline">\(\sigma=1\)</span>. If we have <span class="math display">\[X\sim N\left(\mu,\sigma^{2}\right)\]</span> then <span class="math display">\[Z=\frac{X-\mu}{\sigma}\sim N\left(0,1\right)\]</span></p>
+<p>You might remember doing something similar in an undergraduate statistics course in order to use a table to look up some probability. From the height example, we calculate <span class="math display">\[\begin{aligned}z  
+  &amp;=    \frac{64-70}{3} \\
+    &amp;=  \frac{-6}{3} \\
+    &amp;=  -2 \end{aligned}\]</span> Note that this calculation shows that he is <span class="math inline">\(-2\)</span> standard deviations from the mean. Next we look at a table for <span class="math inline">\(z=-2.00\)</span>. To do this we go down to the <span class="math inline">\(-2.0\)</span> row and over to the <span class="math inline">\(.00\)</span> column and find <span class="math inline">\(0.0228\)</span>. Only slightly over 2% of the adult male population is shorter!</p>
+<p>How tall must a person be to be taller than <span class="math inline">\(80\%\)</span> of the rest of the adult male population? To answer that we must use the table in reverse and look for the <span class="math inline">\(0.8\)</span> value. We find the closest value possible <span class="math inline">\((0.7995)\)</span> and the <span class="math inline">\(z\)</span> value associated with it is <span class="math inline">\(z=0.84\)</span>. Next we solve the standardizing equation for <span class="math inline">\(x\)</span> <span class="math display">\[\begin{aligned}
+z       &amp;=  \frac{x-\mu}{\sigma} \\
+0.84    &amp;=  \frac{x-70}{3} \\
+x       &amp;=  3(0.84)+70 \\
+        &amp;=  72.49\;\textrm{inches} \end{aligned}\]</span></p>
+<p>Alternatively we could use the quantile function for the normal distribution (q-function) in R and avoid the imprecision of using a table.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qnorm</span>(.<span class="dv">8</span>, <span class="dt">mean=</span><span class="dv">0</span>, <span class="dt">sd=</span><span class="dv">1</span>)</code></pre></div>
+<pre><code>## [1] 0.8416212</code></pre>
+<p><strong>Empirical Rule</strong> - It is from the normal distribution that the empirical rule from the previous chapter is derived. If <span class="math inline">\(X\sim N(\mu,\sigma^{2})\)</span> then <span class="math display">\[\begin{aligned} P(\mu-\sigma\le X\le\mu+\sigma)   
+  &amp;=    P(-1 \le Z \le 1) \\
+    &amp;=  P(Z \le 1) - P(Z \le -1) \\
+    &amp;\approx    0.8413-0.1587 \\
+    &amp;=  0.6826 \end{aligned}\]</span></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
+<p>1.6 R Comments</p>
+<p>There will be a variety of distributions we’ll be interested in and R refers to them using the following abbreviations</p>
+<table>
+<colgroup>
+<col width="18%" />
+<col width="17%" />
+<col width="19%" />
+<col width="45%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Distribution</th>
+<th>Stem</th>
+<th>Parameters</th>
+<th>Parameter Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Binomial</p></td>
+<td><p><code>binom</code></p></td>
+<td><p><code>size</code> <code>prob</code></p></td>
+<td><p>Number of Trials Probability of Success (per Trial)</p></td>
+</tr>
+<tr class="even">
+<td><p>Exponential</p></td>
+<td><p><code>exp</code></p></td>
+<td><p><code>rate</code></p></td>
+<td><p>Mean of the distribution</p></td>
+</tr>
+<tr class="odd">
+<td><p>Normal</p></td>
+<td><p><code>norm</code></p></td>
+<td><p><code>mean=0</code> <code>sd=1</code></p></td>
+<td><p>Center of the distribution Standard deviation</p></td>
+</tr>
+<tr class="even">
+<td><p>Uniform</p></td>
+<td><p><code>unif</code></p></td>
+<td><p><code>min=0</code> <code>max=1</code></p></td>
+<td><p>Minimum of the distribution Maximum of the distribution</p></td>
+</tr>
+</tbody>
+</table>
+<p>All the probability distributions available in R are accessed in exactly the same way, using a d-function, p-function, q-function, and r-function.</p>
+<table>
+<colgroup>
+<col width="25%" />
+<col width="74%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p><code>d</code>-function(x)</p></td>
+<td><p>The height of the probability distribution/density at <span class="math inline">\(x\)</span></p></td>
+</tr>
+<tr class="even">
+<td><p><code>p</code>-function(x)</p></td>
+<td><p><span class="math inline">\(P\left(X\le x\right)\)</span></p></td>
+</tr>
+<tr class="odd">
+<td><p><code>q</code>-function(q)</p></td>
+<td><p><span class="math inline">\(x\)</span> such that <span class="math inline">\(P\left(X\le x\right) = q\)</span></p></td>
+</tr>
+<tr class="even">
+<td><p><code>r</code>-function(n)</p></td>
+<td><p><span class="math inline">\(n\)</span> random observations from the distribution</p></td>
+</tr>
+</tbody>
+</table>
+<p>1.7 Exercises</p>
+<ol style="list-style-type: decimal">
+<li><p>The population distribution of blood donors in the United States based on race/ethnicity and blood type as reported by the American Red Cross is given here:</p>
+<table style="width:82%;">
+<colgroup>
+<col width="18%" />
+<col width="12%" />
+<col width="13%" />
+<col width="12%" />
+<col width="12%" />
+<col width="12%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(\,\)</span></th>
+<th>O</th>
+<th>A</th>
+<th>B</th>
+<th>AB</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p><strong>White</strong></p></td>
+<td><p>36%</p></td>
+<td><p>32.2%</p></td>
+<td><p>8.8%</p></td>
+<td><p>3.2%</p></td>
+<td><p><span class="math inline">\(\,\)</span></p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Black</strong></p></td>
+<td><p>7%</p></td>
+<td><p>2.9%</p></td>
+<td><p>2.5%</p></td>
+<td><p>0.5%</p></td>
+<td><p><span class="math inline">\(\,\)</span></p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Asian</strong></p></td>
+<td><p>1.7%</p></td>
+<td><p>1.2%</p></td>
+<td><p>1%</p></td>
+<td><p>0.3%</p></td>
+<td><p><span class="math inline">\(\,\)</span></p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Other</strong></p></td>
+<td><p>1.5%</p></td>
+<td><p>0.8%</p></td>
+<td><p>0.3%</p></td>
+<td><p>0.1%</p></td>
+<td><p><span class="math inline">\(\,\)</span></p></td>
+</tr>
+<tr class="odd">
+<td><p><span class="math inline">\(\,\)</span></p></td>
+<td><p><span class="math inline">\(\,\)</span></p></td>
+<td><p><span class="math inline">\(\,\)</span></p></td>
+<td><p><span class="math inline">\(\,\)</span></p></td>
+<td><p><span class="math inline">\(\,\)</span></p></td>
+<td><p>100%</p></td>
+</tr>
+</tbody>
+</table>
+Notice that the numbers given in the table sum to 100%, so the data presented are the probability of a particular ethnicity and blood type.
+<ol style="list-style-type: lower-alpha">
+<li>Fill in the column and row totals.</li>
+<li>What is the probability that a randomly selected donor will be Asian and have Type O blood? That is to say, given a donor is randomly selected from the list of all donors, what is the probability that the selected donor will Asian with Type O?</li>
+<li>What is the probability that a randomly selected donor is white? That is to say, given a donor is randomly selected from the list of all donors, what is the probability that the selected donor is white?</li>
+<li>What is the probability that a randomly selected donor has Type A blood? That is to say, given a donor is selected from the list of all donors, what is the probability that the selected donor has Type A blood?</li>
+<li>What is the probability that a white donor will have Type A blood? That is to say, given a donor is randomly selected from the list of all the white donors, what is the probability that the selected donor has Type A blood? (Notice we already know the donor is white because we restricted ourselves to that subset!)</li>
+<li>Is blood type and ethnicity independent? Justify your response mathematically using your responses from the previous answers.</li>
+</ol></li>
+<li>For each of the following, mark if it is Continuous or Discrete.
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(\underline{\hspace{1in}}\)</span> Milliliters of tea drunk per day.</li>
+<li><span class="math inline">\(\underline{\hspace{1in}}\)</span> Different brands of soda drunk over the course of a year.</li>
+<li><span class="math inline">\(\underline{\hspace{1in}}\)</span> Number of days per week that you are on-campus for any amount of time.</li>
+<li><span class="math inline">\(\underline{\hspace{1in}}\)</span> Number of grizzly bears individuals genetically identified from a grid of hair traps in Glacier National Park.</li>
+</ol></li>
+<li>For each scenario, state whether the event should be modeled via a binomial or Poisson distribution.
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(\underline{\hspace{1in}}\)</span> Number of M&amp;Ms I eat per hour while grading homework</li>
+<li><span class="math inline">\(\underline{\hspace{1in}}\)</span> The number of mornings in the coming 7 days that I change my son’s first diaper of the day.</li>
+<li><span class="math inline">\(\underline{\hspace{1in}}\)</span> The number of Manzanita bushes per 100 meters of trail.</li>
+</ol></li>
+<li>During a road bike race, there is always a chance a crash will occur. Suppose the probability that at least one crash will occur in any race I’m in is <span class="math inline">\(\pi=0.2\)</span> and that races are independent.
+<ol style="list-style-type: lower-alpha">
+<li>What is the probability that the next two races I’m in will both have crashes?</li>
+<li>What is the probability that neither of my next two races will have a crash?</li>
+<li>What is the probability that at least one of the next two races have a crash?</li>
+</ol></li>
+<li>My cats suffer from gastric distress due to eating house plants and the number of vomits per week that I have to clean up follows a Poisson distribution with rate <span class="math inline">\(\lambda=1.2\)</span> pukes per week.
+<ol style="list-style-type: lower-alpha">
+<li>What is the probability that I don’t have to clean up any vomits this coming week?</li>
+<li>What is the probability that I must clean up 1 or more vomits?</li>
+<li>If I wanted to measure this process with a rate per day, what rate should I use?</li>
+</ol></li>
+<li><p>Suppose that the number of runners I see on a morning walk on the trails near my house has the following distribution (Notice I’ve never seen four or more runners on a morning walk):</p>
+<table>
+<thead>
+<tr class="header">
+<th>y</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Probabilty</strong></td>
+<td>0.45</td>
+<td>0.25</td>
+<td>0.20</td>
+<td></td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+<ol style="list-style-type: lower-alpha">
+<li>What is the probability that I see 3 runners on a morning walk?</li>
+<li>What is the expected number of runners that I will encounter?</li>
+<li>What is the variance of the number of runners that I will encounter?</li>
+</ol></li>
+<li>If <span class="math inline">\(Z\sim N\left(\mu=0,\sigma^{2}=1\right)\)</span>, find the following probabilities:
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(P(Z&lt;1.58)=\)</span></li>
+<li><span class="math inline">\(P(Z=1.58)=\)</span></li>
+<li><span class="math inline">\(P(Z&gt;-.27)=\)</span></li>
+<li><span class="math inline">\(P(-1.97&lt;Z&lt;2.46)=\)</span></li>
+</ol></li>
+<li>Using the Standard Normal Table or the table functions in R, find <span class="math inline">\(z\)</span> that makes the following statements true.
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(P(Z&lt;z)=.75\)</span></li>
+<li><span class="math inline">\(P(Z&gt;z)=.4\)</span></li>
+</ol></li>
+<li>The amount of dry kibble that I feed my cats each morning can be well approximated by a normal distribution with mean <span class="math inline">\(\mu=200\)</span> grams and standard deviation <span class="math inline">\(\sigma=30\)</span> grams.
+<ol style="list-style-type: lower-alpha">
+<li>What is the probability that I fed my cats more than 250 grams of kibble this morning?</li>
+<li>From my cats’ perspective, more food is better. How much would I have to feed them for this morning to be among the top <span class="math inline">\(10\%\)</span> of feedings?</li>
+</ol></li>
+</ol>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/dereksonderegger/STA_570_Book/raw/master/Probability.Rmd",
+"text": "Edit"
+},
+"download": null,
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

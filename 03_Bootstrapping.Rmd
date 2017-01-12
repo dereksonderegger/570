@@ -1,0 +1,386 @@
+# Confidence Intervals via Bootstrapping
+
+```{r, echo=FALSE}
+# Unattach any packages that happen to already be loaded. In general this is unecessary
+# but is important for the creation of the book to not have package namespaces
+# fighting unexpectedly.
+pkgs = names(sessionInfo()$otherPkgs)
+if( length(pkgs > 0)){
+  pkgs = paste('package:', pkgs, sep = "")
+  for( i in 1:length(pkgs)){
+    detach(pkgs[i], character.only = TRUE, force=TRUE)
+  }
+}
+# Set my default chunk options 
+knitr::opts_chunk$set( fig.height=3 )
+```
+
+```{r, message=FALSE, warning=FALSE}
+# Every chapter, we will load all the librarys we will use at the beginning
+# of the chapter.
+library(mosaic)     # for the resample, shuffle, and do functions
+library(ggplot2)    # graphing functions
+library(dplyr)      # data summary tools
+```
+
+
+## Theory of Bootstrapping
+
+Suppose that we had a population of interest and we wish to estimate the mean of that population (the population mean we'll denote as $\mu$). We can't observe every member of the population (which would be prohibitively expensive) so instead we take a random sample and from that sample calculate a sample mean (which we'll denote $\bar{x}$). We believe that $\bar{x}$ will be a good estimator of $\mu$, but it will vary from sample to sample and won't be exactly equal to $\mu$. 
+
+Next suppose we wish to ask if a particular value for $\mu$, say $\mu_{0}$, is consistent with our observed data? We know that $\bar{x}$ will vary from sample to sample, but we have no idea how much it will vary between samples. However, if we could understand how much $\bar{x}$ varied sample to sample, we could answer the question. For example, suppose that $\bar{x}=5$ and we know that $\bar{x}$ varied about $\pm2$ from sample to sample. Then I'd say that possible values of $\mu_{0}$ in the interval $3$ to $7$ $\left(5\pm2\right)$ are reasonable values for $\mu$ and anything outside that interval is not reasonable.
+
+Therefore, if we could take many, many repeated samples from the population and calculate our test statistic $\bar{x}$ for each sample, we could rule out possible values of $\mu$. Unfortunately we don't have the time or money to repeatedly sample from the actual population, but we could sample from our best approximation to what the population is like.
+
+```{r, echo=FALSE}
+library(mosaic)
+
+# define the multiplot function
+# Multiple plot function 
+# 
+# ggplot objects can be passed in ..., or to plotlist (as a list of ggplot objects) 
+# - cols:   Number of columns in layout 
+# - layout: A matrix specifying the layout. If present, 'cols' is ignored. 
+# 
+# If the layout is something like matrix(c(1,2,3,3), nrow=2, byrow=TRUE), 
+# then plot 1 will go in the upper left, 2 will go in the upper right, and 
+# 3 will go all the way across the bottom. 
+#
+multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
+  require(grid)
+  # Make a list from the ... arguments and plotlist
+  plots <- c(list(...), plotlist)
+  numPlots = length(plots)
+  # If layout is NULL, then use 'cols' to determine layout
+  if (is.null(layout)) {
+    # Make the panel
+    # ncol: Number of columns of plots
+    # nrow: Number of rows needed, calculated from # of cols
+    layout <- matrix(seq(1, cols * ceiling(numPlots/cols)),
+                    ncol = cols, nrow = ceiling(numPlots/cols))
+  }
+
+  if (numPlots==1) {
+    print(plots[[1]])
+ } else {
+    # Set up the page
+    grid.newpage()
+    pushViewport(viewport(layout = grid.layout(nrow(layout), ncol(layout))))
+
+    # Make each plot, in the correct location
+    for (i in 1:numPlots) {
+      # Get the i,j matrix positions of the regions that contain this subplot
+      matchidx <- as.data.frame(which(layout == i, arr.ind = TRUE))
+      print(plots[[i]], vp = viewport(layout.pos.row = matchidx$row,
+                                      layout.pos.col = matchidx$col))
+    }
+  }
+}
+
+# Sample data
+data <- data.frame(
+  x=rep(1:3, times=3), y=rep(1:3, each=3),
+  shape=c('Sq','Sq','Di', 'Cir','Sq','Cir', 'Tri','Cir','Sq') )
+
+data2 <- rbind(
+       mutate(data, x=x+0, y=y+0),
+       mutate(data, x=x+0, y=y+3),
+       mutate(data, x=x+0, y=y+6),
+       mutate(data, x=x+3, y=y+0),
+       mutate(data, x=x+3, y=y+3),
+       mutate(data, x=x+3, y=y+6),
+       mutate(data, x=x+6, y=y+0),
+       mutate(data, x=x+6, y=y+3),
+       mutate(data, x=x+6, y=y+6))
+
+library(ggdendro)
+sample.plot <- ggplot(data=data) +
+  geom_point(aes(x=x, y=y, shape=shape), size=20, fill='dark grey') +
+  scale_shape_manual(values=c(21,23,22,24), guide=FALSE) +
+  coord_cartesian(xlim = c(0.5, 3.5), c(0.5,3.5)) +
+  theme_dendro() + ggtitle('Sample')
+
+population.plot <- ggplot(data=data2) +
+  geom_point(aes(x=x, y=y, shape=shape), size=8, fill='dark grey') +
+  scale_shape_manual(values=c(21,23,22,24), guide=FALSE) +
+  coord_cartesian(xlim = c(0.5, 10), c(0.5,10)) +
+  theme_dendro() + ggtitle('Approximate Population')
+```
+
+Suppose we were to sample from a population of shapes, and we observed $4/9$ of the sample were squares, $3/9$ were circles, and a triangle and a diamond. Then our best guess of what the population that we sampled from was a population with $4/9$ squares, $3/9$ circles, and $1/9$ of triangles and diamonds. 
+
+```{r}
+multiplot(sample.plot, population.plot, cols=2)
+```
+
+Using this approximated population (which is just many many copies of our sample data), we can repeated sample $\bar{x}^{*}$ values to create an estimate of the sampling distribution of $\bar{x}$. 
+
+Because our approximate population is just an infinite number of copies of our sample data, then sampling from the approximate population is equivalent to sampling with replacement from our sample data. If I take $n$ samples from $n$ distinct objects with replacement, then the process can be thought of as mixing the $n$ objects in a bowl and taking an object at random, noting which it is, replace it into the bowl, and then draw the next sample. Practically, this means some objects will be selected more than once and some will not be chosen at all. To sample our observed data with replacement, we'll use the `resample()` function in the `mosaic` package. We see that some rows will be selected multiple times, and some will not be selected at all. 
+
+```{r, echo=FALSE}
+set.seed(2)
+```
+```{r}
+Testing.Data <- data.frame(
+  name=c('Alison','Brandon','Chelsea','Derek','Elise'))
+Testing.Data
+# Sample rows from the Testing Data (with replacement)
+resample(Testing.Data)
+```
+
+Notice Alison has selected twice, while Brandon has not been selected at all. 
+
+The sampling from the estimated population via sampling from the observed data is called bootstrapping because we are making no distributional assumptions about where the data came from, and the idiom “Pulling yourself up by your bootstraps” seemed appropriate. 
+
+**Example**: Mercury Levels in Fish from Florida Lakes
+
+A data set provided by the Lock$^{5}$ introductory statistics textbook looks at the mercury levels in fish harvested from lakes in Florida. There are approximately 7,700 lakes in Florida that are larger than 10 acres. As part of a study to assess the average mercury contamination in these lakes, a random sample of $n=53$ lakes, an unspecified number of fish were harvested and the average mercury level (in ppm) was calculated for fish in each lake. The goal of the study was to assess if the average mercury concentration was greater than the 1969 EPA “legally actionable level” of 0.5 ppm.
+
+```{r, cache=TRUE}
+# read the Lakes data set
+Lakes <- read.csv('http://www.lock5stat.com/datasets/FloridaLakes.csv')
+# make a nice picture... dot plots are very similar to histograms
+# but in this case, my y-axis doen't make any sense.
+ggplot(Lakes, aes(x=AvgMercury)) +
+  geom_dotplot()
+```
+
+We can calculate mean average mercury level for the $n=53$ lakes
+
+```{r}
+Lakes %>% summarise(xbar = mean( AvgMercury ))
+```
+
+The sample mean is greater than $0.5$ but not by too much. Is a true population mean concentration $\mu_{Hg}$ that is $0.5$ or less incompatible with our observed data? Is our data sufficient evidence to conclude that the average mercury content is greater than $0.5$? Perhaps the true average mercury content is less than (or equal to) $0.5$ and we just happened to get a random sample that with a mean greater than $0.5$?
+
+The first step in answering these questions is to create an estimate of the sampling distribution of $\bar{x}_{Hg}$. To do this, we will sample from the approximate population of lakes, which is just many many replicated copies of our sample data. 
+
+```{r, cache=TRUE}
+# create the sampling distribution of xbar
+SamplingDist <- do(10000) * resample(Lakes) %>% summarise(xbar = mean(AvgMercury))
+
+# what columns does the data frame "SamplingDist" have?
+head(SamplingDist)
+
+# show a histogram of the sampling distribution of xbar
+ggplot(SamplingDist, aes(x=xbar)) +
+  geom_histogram() + 
+  ggtitle('Estimated Sampling distribution of xbar' )
+```
+
+## Quantile-based Confidence Intervals
+
+In many cases we have seen, the sampling distribution of a statistic is centered on the parameter we are interested in estimating and is symmetric about that parameterThere are actually several ways to create a confidence interval from the estimated sampling distribution. The method presented here is called the “percentile” method and works when the sampling distribution is symmetric and the estimator we are using is unbiased. For example, we expect that the sample mean $\bar{x}$ should be a good estimate of the population mean $\mu$ and the sampling distribution of $\bar{x}$ should look something like the following.
+
+```{r, echo=FALSE}
+x <- seq(-3, 3, length=1000) 
+plot(x, dnorm(x), type='l', lwd=2, axes=FALSE, xlab='', ylab='', 
+     main=expression(paste('Sampling Distribution of ', bar(x) )) ) 
+axis(1, c(0), labels=c(expression(mu)))
+```
+
+There are two points, (call them $L$ and $U$) where for our given sample size and population we are sampling from, where we expect that $95\%$ of the sample means to fall within. That is to say, $L$ and $U$ capture the middle $95\%$ of the sampling distribution of $\bar{x}$.
+
+```{r, echo=FALSE}
+set.seed(93457629)
+x <- seq(-3, 3, length=1000) 
+plot(x, dnorm(x), ylim=c(-.5,.4), type='l', lwd=2, axes=FALSE, xlab='', ylab='',
+     main=expression(paste('Sampling Distribution of ', bar(x) )) ) 
+axis(1, c(-1.96, 0, 1.96),       
+	labels=c('L', expression(mu), 'U' ))
+lines(c(-10, 10), c(0, 0)) 
+lines( c(-1.96, -1.96), c(dnorm(-1.96), -10)) 
+lines( c( 1.96,  1.96), c(dnorm( 1.96), -10))
+x.small <- seq(-1.96, 1.96, length=1000) 
+polygon( c(-1.96, x.small, 1.96), c(0, dnorm(x.small),0), col='grey')
+text(0, .25, '95%') 
+text(0, .15, 'of sample means') 
+N <- 40
+xbar <- rep(0, N)
+for(i in 1:N){
+  xbar[i] <- rnorm(1)
+  if(abs(xbar[i])>1.96){
+    points(xbar[i], -i/(2*N), col='red', pch=19)   
+  }else{
+    points(xbar[i], -i/(2*N), col='black', pch=19)
+  } 
+}
+```
+
+These sample means are randomly distributed about the population mean $\mu$. Given our sample data and sample mean $\bar{x}$, we can examine how our simulated values of $\bar{x}^{*}$ vary about $\bar{x}$. I expect that these simulated sample means $\bar{x}^{*}$ should vary about $\bar{x}$ in the same way that $\bar{x}$ values vary around $\mu$. Below are three estimated sampling distributions that we might obtain from three different samples and their associated sample means.
+
+```{r, echo=FALSE}
+x <- seq(-5, 5, length=1000)
+plot(x, dnorm(x),       
+  ylim=c(-2.5,.5), xlim=c(-5,5),      
+  type='l', lwd=2, axes=FALSE, xlab='', ylab='', col='red')
+lines(x,rep(0,length(x)), col='red')
+text(0,-.08, expression(mu), col='red')
+text(0,.5, expression(paste('Sampling distribution of ',bar(x))),col='red')
+lines(c(0,0), c(-.2,-10), col='red' )
+xbars <- c(.2, -1, 1.2) 
+yoffsets <- 1:3 * -.75 
+L <- xbars - 1.96 
+U <- xbars + 1.96
+for(i in 1:3){
+ lines(x+xbars[i], yoffsets[i]+dnorm(x), lwd=2)
+  lines(x, rep(yoffsets[i], length(x))) 
+} 
+text(2.2,-1.15, 'Estimated Sampling \n distribution of')
+text(3.90, -1.23, expression(bar(x)))
+points(xbars, yoffsets, pch=18) 
+text(L[1], yoffsets[1]-.07, expression(L[1]))
+text(L[2], yoffsets[2]-.07, expression(L[2]))
+text(L[3], yoffsets[3]-.07, expression(L[3]))
+text(U[1], yoffsets[1]-.07, expression(U[1]))
+text(U[2], yoffsets[2]-.07, expression(U[2]))
+text(U[3], yoffsets[3]-.07, expression(U[3]))
+```
+
+For each possible sample, we could consider creating the estimated sampling distribution of $\bar{X}$ and calculating the $L$ and $U$ values that capture the middle $95\%$ of the estimated sampling distribution. Below are twenty samples, where we've calculated this interval for each sample. 
+
+```{r, echo=FALSE}
+x <- seq(-5, 5, length=1000) 
+plot(x, dnorm(x), ylim=c(-.5,.4), type='l', lwd=2, axes=FALSE, xlab='', ylab='') 
+axis(1, c(-1.96, 0, 1.96),       
+	labels=c(expression(mu - a),                
+			 expression(mu),               
+			 expression(mu + a) ))
+lines(c(-10, 10), c(0, 0)) 
+lines( c(-1.96, -1.96), c(dnorm(-1.96), -10)) 
+lines( c( 1.96,  1.96), c(dnorm( 1.96), -10))
+x.small <- seq(-1.96, 1.96, length=1000) 
+polygon( c(-1.96, x.small, 1.96), c(0, dnorm(x.small),0), col='grey')
+text(0, .25, '95%') 
+text(0, .15, 'of sample means') 
+N <- 40 
+for(i in 1:N){
+  if(abs(xbar[i])>1.96){
+    points(xbar[i], -i/(2*N), col='red', pch=19)
+	lines( c(xbar[i]-1.96, xbar[i]+1.96), c(-i/(2*N), -i/(2*N)), col='red' )  
+  }else{
+    points(xbar[i], -i/(2*N), col='black', pch=19)
+	lines( c(xbar[i]-1.96, xbar[i]+1.96), c(-i/(2*N), -i/(2*N)), col='black' )  
+  } 
+}
+```
+
+Most of these intervals contain the true parameter $\mu$, that we are trying to estimate. In practice, I will only take one sample and therefore will only calculate one sample mean and one interval, but I want to recognize that the method I used to produce the interval (i.e. take a random sample, calculate the mean and then the interval) will result in intervals where only $95\%$ of those intervals will contain the mean $\mu$. Therefore, I will refer to the interval as a $95\%$ confidence interval.
+
+After the sample is taken and the interval is calculated, the numbers lower and upper bounds of the confidence interval are fixed. Because $\mu$ is a constant value and the confidence interval is fixed, nothing is changing. To distinguish between a future random event and the fixed (but unknown) outcome of if I ended up with an interval that contains $\mu$ and we use the term confidence interval instead of probability interval. 
+
+```{r, cache=TRUE}
+# create the sampling distribution of xbar
+SamplingDist <- do(10000) * resample(Lakes) %>% summarise(xbar=mean(AvgMercury))
+
+# show a histogram of the sampling distribution of xbar
+ggplot(SamplingDist, aes(x=xbar, y=..density..)) +
+  geom_histogram() +
+  ggtitle('Estimated Sampling distribution of xbar')
+# calculate the 95% confidence interval using middle 95% of xbars
+quantile( SamplingDist$xbar, probs=c(.025, .975) )
+```
+
+There are several ways to interpret this interval. 
+
+1. The process used to calculate this interval (take a random sample, calculate a statistic, repeatedly resample, and take the middle $95\%$) is a process that results in an interval that contains the parameter of interest on $95\%$ of the samples we could have collected, however we don't know if the particular sample we collected and its resulting interval of $\left(0.44,\,0.62\right)$ is one of the intervals containing $\mu$.
+
+2. We are $95\%$ confident that $\mu$ is in the interval $\left(0.44,\,0.62\right)$. This is delightfully vague and should be interpreted as a shorter version of the previous interpretation.
+
+3. The interval $\left(0.44,\,0.62\right)$ is the set of values of $\mu$ that are consistent with the observed data at the $0.05$ threshold of statistical significance for a two-sided hypothesis test
+
+**Example**: Fuel Economy
+
+Suppose we have data regarding fuel economy of $5$ new vehicles of the same make and model and we wish to test if the observed fuel economy is consistent with the advertised $31$ mpg at highway speeds. We the data are 
+
+```{r}
+CarMPG <- data.frame( ID=1:5, mpg = c(31.8, 32.1, 32.5, 30.9, 31.3) )
+CarMPG %>% summarise( xbar=mean(mpg) )
+```
+
+We will use the sample mean to assess if the sample fuel efficiency is consistent with the advertised number. Because these cars could be considered a random sample of all new cars of this make, we will create the estimated sampling distribution using the bootstrap resampling of the data.
+
+```{r, cache=TRUE}
+SamplingDist <- do(10000) * resample(CarMPG) %>% summarise(xbar=mean(mpg))
+# show a histogram of the sampling distribution of xbar
+ggplot(SamplingDist, aes(x=xbar)) +
+  geom_histogram() +
+  ggtitle('Estimated Sampling distribution of xbar')
+# calculate the 95% confidence interval using middle 95% of xbars
+quantile( SamplingDist$xbar, probs=c(.025, .975) )
+```
+
+We see that the $95\%$ confidence interval is $\left(31.2,\,32.2\right)$ and does not actually contain the advertised $31$ mpg. However, I don't think we would object to a car manufacturer selling us a car that is better than advertised.
+
+**Example**: Pulse Rate of College Students
+
+In the package Lock5Data, the dataset `GPAGender` contains information taken from undergraduate students in an Introductory Statistics course. This is a convenience sample, but could be considered representative of students at that university. One of the covariates measured was the students pulse rate and we will use this to create a confidence interval for average pulse of students at that university.
+
+First we'll look at the raw data.
+
+```{r}
+library(Lock5Data)  # load the package
+data(GPAGender)     # from the package, load the dataset
+
+# Now a nice histogram
+ggplot(GPAGender, aes(x=Pulse, y=..density..)) +
+  geom_histogram(binwidth=2) +
+  ggtitle('Sample Data')
+```
+
+It is worth noting this was supposed to be measuring resting heart rates, but there are two students had extremely high pulse rates and six with extremely low rates. The two high values are approximately what you'd expect from someone currently engaged in moderate exercise and the low values are levels we'd expect from highly trained endurance athletes.
+
+```{r}
+# Summary Statistics
+GPAGender %>% summarise(xbar = mean(Pulse),
+                        StdDev = sd(Pulse))
+```
+
+So the sample mean is $\bar{x}=69.9$ but how much should we expect our sample mean to vary from sample to sample when our sample size is $n=343$ people? We'll estimate the sampling distribution of $\bar{X}$ using the bootstrap.
+
+```{r}
+# Create the bootstrap replicates
+SampDist <- do(10000) * resample(GPAGender) %>% summarise(xbar = mean(Pulse))
+
+ggplot(SampDist, aes(x=xbar, y=..density..)) +
+  geom_histogram(binwidth=.2) +
+  ggtitle('Sampling Distribution of Mean(Pulse)')
+```
+
+Just by sampling variability, we expect the sampling mean $\bar{X}$ to vary from approximately 68 to 72. The appropriate quantiles for a $95\%$ bootstrap confidence interval are actually
+
+```{r}
+quantile( SampDist$xbar, probs=c(0.025, 0.975) )
+```
+
+## Exercises
+
+For several of these exercises, we will use data sets from the R package `Lock5Data`, which greatly contributed to the pedagogical approach of these notes. Install the package from CRAN using the RStudio point-and-click interface `Tools -> Install Packages`....
+
+1. Load the dataset `BodyTemp50` from the Lock5Data package. This is a dataset of 50 healthy adults. Unfortunately the documentation doesn't give how the data was collected, but for this problem we'll assume that it is a representative sample of healthy US adults.
+    ```{r}
+    library(Lock5Data)
+    data( BodyTemp50 )
+    ?BodyTemp50
+    ```
+    One of the columns of this dataset is the Pulse of the 50 data points, which is the number of heartbeats per minute.
+    
+    a) Create a histogram of the observed pulse values. Comment on the graph and aspects of the graph that might be of scientific interest.
+    b) Calculate the sample mean $\bar{x}$ and sample standard deviation $s$ of the pulses.
+    c) Create a dataset of 10000 bootstrap replicates of $\bar{x}^{*}$.
+    d) Create a histogram of the bootstrap replicates. Calculate the mean and standard deviation of this distribution. Notice that the standard deviation of the distribution is often called the Standard Error of $\bar{x}$ and we'll denote it as $\sigma_{\bar{x}}$.
+    e) Using the bootstrap replicates, create a 95% confidence interval for $\mu$
+ , the average adult heart rate.
+    f) Calculate the interval 
+    $$\left(\bar{x}-2\cdot\hat{\sigma}_{\bar{x}}\,,\,\;\;\bar{x}+2\cdot\hat{\sigma}_{\bar{x}}\right)$$
+    and comment on its similarity to the interval you calculated in part (e).
+
+2. Load the dataset `EmployedACS` from the `Lock5Data` package. This is a dataset drawn from American Community Survey results which is conducted monthly by the US Census Bureau and should be representative of US workers. The column `HoursWk` represents the number of hours worked per week.
+    a) Create a histogram of the observed hours worked. Comment on the graph and aspects of the graph that might be of scientific interest.
+    b) Calculate the sample mean $\bar{x}$ and sample standard deviation $s$ of the worked hours per week.
+    c) Create a dataset of 10000 bootstrap replicates of $\bar{x}^{*}$.
+    d) Create a histogram of the bootstrap replicates. Calculate the mean and standard deviation of this distribution. Notice that the standard deviation of the distribution is often called the Standard Error of $\bar{x}$ and we'll denote it as $\sigma_{\bar{x}}$.
+    e) Using the bootstrap replicates, create a 95% confidence interval for $\mu$, the average worked hours per week.
+    f) Calculate the interval 
+        $$\left(\bar{x}-2\cdot\hat{\sigma}_{\bar{x}}\,,\,\;\;\bar{x}+2\cdot\hat{\sigma}_{\bar{x}}\right)$$
+        and comment on its similarity to the interval you calculated in part (e).

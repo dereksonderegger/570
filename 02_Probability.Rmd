@@ -1009,7 +1009,7 @@ All the probability distributions available in R are accessed in exactly the sam
 | `r`-function(n)    | $n$ random observations from the distribution             |
 +--------------------+-----------------------------------------------------------+
 
-1.7 Exercises
+## Exercises
 
 1. The population distribution of blood donors in the United States based on race/ethnicity and blood type as reported by the American Red Cross is given here:
 

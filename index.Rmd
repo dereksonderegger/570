@@ -61,6 +61,14 @@ If we have univariate data about a number of groups, often the best way to displ
 ggplot(TenMileRace, aes(x=sex)) + geom_bar()
 ```
 
+One thing that can be misleading is if the zero on the y-axis is removed. In the following graph it looks like there are twice as many female runners as male until you examin the y-axis closely.  In general, the following is a very misleading graph.
+
+```{r}
+ggplot(TenMileRace, aes(x=sex)) + 
+  geom_bar() +
+  coord_cartesian(ylim = c(4300, 4330))
+```
+
 ### Univariate - Continuous
 
 A histogram looks very similar to a bar plot, but is used to represent continuous data instead of categorical and therefore the bars will actually be touching. 
@@ -220,17 +228,23 @@ and the Mean Squared Error as $$MSE=\frac{SSE}{df}=\frac{SSE}{n-1}=s^{2}$$
 
 Calculating the variance of our small sample of five observations $\left\{ 3,6,4,8,2\right\}$, recall that the sample mean was $\bar{x}=4.6$ 
 
-$x_i$   |  $(x_i-\bar{x})$  | $(x_i-\bar{x})^2$ 
---------|-------------------|--------------------
-  3     |       -1.6        |    2.56
-  6     |        1.4        |    1.96
-  4     |       -0.6        |    0.36
-  8     |        3.4        |   11.56
-  2     |       -2.6        |    6.76
---------|-------------------|--------------------  
-        |                   |  SSE = 23.2
++-------+-------------------+--------------------+
+| $x_i$ |  $(x_i-\bar{x})$  |  $(x_i-\bar{x})^2$ |
++=======+===================+====================+
+|  3    |       -1.6        |    2.56            |
++-------+-------------------+--------------------+
+|  6    |        1.4        |    1.96            |
++-------+-------------------+--------------------+
+|  4    |       -0.6        |    0.36            |
++-------+-------------------+--------------------+
+|  8    |        3.4        |   11.56            |
++-------+-------------------+--------------------+ 
+|  2    |       -2.6        |    6.76            |
++-------+-------------------+--------------------+
+|       |                   |  SSE = 23.2        |
++-------+-------------------+--------------------+
         
-and so the sample variance is $$s^2 = \frac{23.2}{(n-1)} = \frac{23.2}{4}=5.8$$
+and so the sample variance is $$s^2 = \frac{SSE}{n-1} = \frac{23.2}{(n-1)} = \frac{23.2}{4}=5.8$$
  
 Clearly this calculation would get very tedious to do by hand and computers will be much more accurate in these calculations. In R, the sample variance is easily calculated by the function var().
 
@@ -332,6 +346,7 @@ ggplot( Area.Data, aes(x=x)) +
     |  Source Type      |   DDE to PCB Ratio                                                    |
     +-------------------+-----------------------------------------------------------------------+
     |  **Terrestrial**  | 76.50, 6.03, 3.51, 9.96, 4.24, 7.74, 9.54, 41.70, 1.84, 2.5, 1.54     |
+    +-------------------+-----------------------------------------------------------------------+
     |  **Aquatic**      |  0.27, 0.61, 0.54, 0.14, 0.63, 0.23, 0.56,  0.48, 0.16, 0.18          |
     +-------------------+-----------------------------------------------------------------------+
     

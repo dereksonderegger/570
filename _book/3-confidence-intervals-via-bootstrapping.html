@@ -26,7 +26,7 @@
 <meta name="author" content="Derek L. Sonderegger">
 
 
-<meta name="date" content="2017-01-12">
+<meta name="date" content="2017-01-20">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -187,7 +187,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Suppose we were to sample from a population of shapes, and we observed <span class="math inline">\(4/9\)</span> of the sample were squares, <span class="math inline">\(3/9\)</span> were circles, and a triangle and a diamond. Then our best guess of what the population that we sampled from was a population with <span class="math inline">\(4/9\)</span> squares, <span class="math inline">\(3/9\)</span> circles, and <span class="math inline">\(1/9\)</span> of triangles and diamonds.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">multiplot</span>(sample.plot, population.plot, <span class="dt">cols=</span><span class="dv">2</span>)</code></pre></div>
 <pre><code>## Loading required package: grid</code></pre>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-57-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-58-1.png" width="672" /></p>
 <p>Using this approximated population (which is just many many copies of our sample data), we can repeated sample <span class="math inline">\(\bar{x}^{*}\)</span> values to create an estimate of the sampling distribution of <span class="math inline">\(\bar{x}\)</span>.</p>
 <p>Because our approximate population is just an infinite number of copies of our sample data, then sampling from the approximate population is equivalent to sampling with replacement from our sample data. If I take <span class="math inline">\(n\)</span> samples from <span class="math inline">\(n\)</span> distinct objects with replacement, then the process can be thought of as mixing the <span class="math inline">\(n\)</span> objects in a bowl and taking an object at random, noting which it is, replace it into the bowl, and then draw the next sample. Practically, this means some objects will be selected more than once and some will not be chosen at all. To sample our observed data with replacement, we’ll use the <code>resample()</code> function in the <code>mosaic</code> package. We see that some rows will be selected multiple times, and some will not be selected at all.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Testing.Data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
@@ -218,7 +218,7 @@ Lakes &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class
 <span class="kw">ggplot</span>(Lakes, <span class="kw">aes</span>(<span class="dt">x=</span>AvgMercury)) +
 <span class="st">  </span><span class="kw">geom_dotplot</span>()</code></pre></div>
 <pre><code>## `stat_bindot()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-60-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
 <p>We can calculate mean average mercury level for the <span class="math inline">\(n=53\)</span> lakes</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Lakes %&gt;%<span class="st"> </span><span class="kw">summarise</span>(<span class="dt">xbar =</span> <span class="kw">mean</span>( AvgMercury ))</code></pre></div>
 <pre><code>##        xbar
@@ -242,18 +242,18 @@ SamplingDist &lt;-<span class="st"> </span><span class="kw">do</span>(<span clas
 <span class="st">  </span><span class="kw">geom_histogram</span>() +<span class="st"> </span>
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&#39;Estimated Sampling distribution of xbar&#39;</span> )</code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-62-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-63-1.png" width="672" /></p>
 </div>
 <div id="quantile-based-confidence-intervals" class="section level2">
 <h2><span class="header-section-number">3.2</span> Quantile-based Confidence Intervals</h2>
 <p>In many cases we have seen, the sampling distribution of a statistic is centered on the parameter we are interested in estimating and is symmetric about that parameterThere are actually several ways to create a confidence interval from the estimated sampling distribution. The method presented here is called the “percentile” method and works when the sampling distribution is symmetric and the estimator we are using is unbiased. For example, we expect that the sample mean <span class="math inline">\(\bar{x}\)</span> should be a good estimate of the population mean <span class="math inline">\(\mu\)</span> and the sampling distribution of <span class="math inline">\(\bar{x}\)</span> should look something like the following.</p>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-63-1.png" width="672" /></p>
-<p>There are two points, (call them <span class="math inline">\(L\)</span> and <span class="math inline">\(U\)</span>) where for our given sample size and population we are sampling from, where we expect that <span class="math inline">\(95\%\)</span> of the sample means to fall within. That is to say, <span class="math inline">\(L\)</span> and <span class="math inline">\(U\)</span> capture the middle <span class="math inline">\(95\%\)</span> of the sampling distribution of <span class="math inline">\(\bar{x}\)</span>.</p>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-64-1.png" width="672" /></p>
-<p>These sample means are randomly distributed about the population mean <span class="math inline">\(\mu\)</span>. Given our sample data and sample mean <span class="math inline">\(\bar{x}\)</span>, we can examine how our simulated values of <span class="math inline">\(\bar{x}^{*}\)</span> vary about <span class="math inline">\(\bar{x}\)</span>. I expect that these simulated sample means <span class="math inline">\(\bar{x}^{*}\)</span> should vary about <span class="math inline">\(\bar{x}\)</span> in the same way that <span class="math inline">\(\bar{x}\)</span> values vary around <span class="math inline">\(\mu\)</span>. Below are three estimated sampling distributions that we might obtain from three different samples and their associated sample means.</p>
+<p>There are two points, (call them <span class="math inline">\(L\)</span> and <span class="math inline">\(U\)</span>) where for our given sample size and population we are sampling from, where we expect that <span class="math inline">\(95\%\)</span> of the sample means to fall within. That is to say, <span class="math inline">\(L\)</span> and <span class="math inline">\(U\)</span> capture the middle <span class="math inline">\(95\%\)</span> of the sampling distribution of <span class="math inline">\(\bar{x}\)</span>.</p>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-65-1.png" width="672" /></p>
-<p>For each possible sample, we could consider creating the estimated sampling distribution of <span class="math inline">\(\bar{X}\)</span> and calculating the <span class="math inline">\(L\)</span> and <span class="math inline">\(U\)</span> values that capture the middle <span class="math inline">\(95\%\)</span> of the estimated sampling distribution. Below are twenty samples, where we’ve calculated this interval for each sample.</p>
+<p>These sample means are randomly distributed about the population mean <span class="math inline">\(\mu\)</span>. Given our sample data and sample mean <span class="math inline">\(\bar{x}\)</span>, we can examine how our simulated values of <span class="math inline">\(\bar{x}^{*}\)</span> vary about <span class="math inline">\(\bar{x}\)</span>. I expect that these simulated sample means <span class="math inline">\(\bar{x}^{*}\)</span> should vary about <span class="math inline">\(\bar{x}\)</span> in the same way that <span class="math inline">\(\bar{x}\)</span> values vary around <span class="math inline">\(\mu\)</span>. Below are three estimated sampling distributions that we might obtain from three different samples and their associated sample means.</p>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
+<p>For each possible sample, we could consider creating the estimated sampling distribution of <span class="math inline">\(\bar{X}\)</span> and calculating the <span class="math inline">\(L\)</span> and <span class="math inline">\(U\)</span> values that capture the middle <span class="math inline">\(95\%\)</span> of the estimated sampling distribution. Below are twenty samples, where we’ve calculated this interval for each sample.</p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-67-1.png" width="672" /></p>
 <p>Most of these intervals contain the true parameter <span class="math inline">\(\mu\)</span>, that we are trying to estimate. In practice, I will only take one sample and therefore will only calculate one sample mean and one interval, but I want to recognize that the method I used to produce the interval (i.e. take a random sample, calculate the mean and then the interval) will result in intervals where only <span class="math inline">\(95\%\)</span> of those intervals will contain the mean <span class="math inline">\(\mu\)</span>. Therefore, I will refer to the interval as a <span class="math inline">\(95\%\)</span> confidence interval.</p>
 <p>After the sample is taken and the interval is calculated, the numbers lower and upper bounds of the confidence interval are fixed. Because <span class="math inline">\(\mu\)</span> is a constant value and the confidence interval is fixed, nothing is changing. To distinguish between a future random event and the fixed (but unknown) outcome of if I ended up with an interval that contains <span class="math inline">\(\mu\)</span> and we use the term confidence interval instead of probability interval.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># create the sampling distribution of xbar</span>
@@ -264,7 +264,7 @@ SamplingDist &lt;-<span class="st"> </span><span class="kw">do</span>(<span clas
 <span class="st">  </span><span class="kw">geom_histogram</span>() +
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&#39;Estimated Sampling distribution of xbar&#39;</span>)</code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-67-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># calculate the 95% confidence interval using middle 95% of xbars</span>
 <span class="kw">quantile</span>( SamplingDist$xbar, <span class="dt">probs=</span><span class="kw">c</span>(.<span class="dv">025</span>, .<span class="dv">975</span>) )</code></pre></div>
 <pre><code>##      2.5%     97.5% 
@@ -288,7 +288,7 @@ CarMPG %&gt;%<span class="st"> </span><span class="kw">summarise</span>( <span c
 <span class="st">  </span><span class="kw">geom_histogram</span>() +
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&#39;Estimated Sampling distribution of xbar&#39;</span>)</code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-69-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># calculate the 95% confidence interval using middle 95% of xbars</span>
 <span class="kw">quantile</span>( SamplingDist$xbar, <span class="dt">probs=</span><span class="kw">c</span>(.<span class="dv">025</span>, .<span class="dv">975</span>) )</code></pre></div>
 <pre><code>##  2.5% 97.5% 
@@ -304,7 +304,7 @@ CarMPG %&gt;%<span class="st"> </span><span class="kw">summarise</span>( <span c
 <span class="kw">ggplot</span>(GPAGender, <span class="kw">aes</span>(<span class="dt">x=</span>Pulse, <span class="dt">y=</span>..density..)) +
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">2</span>) +
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&#39;Sample Data&#39;</span>)</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-71-1.png" width="672" /></p>
 <p>It is worth noting this was supposed to be measuring resting heart rates, but there are two students had extremely high pulse rates and six with extremely low rates. The two high values are approximately what you’d expect from someone currently engaged in moderate exercise and the low values are levels we’d expect from highly trained endurance athletes.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Summary Statistics</span>
 GPAGender %&gt;%<span class="st"> </span><span class="kw">summarise</span>(<span class="dt">xbar =</span> <span class="kw">mean</span>(Pulse),
@@ -318,7 +318,7 @@ SampDist &lt;-<span class="st"> </span><span class="kw">do</span>(<span class="d
 <span class="kw">ggplot</span>(SampDist, <span class="kw">aes</span>(<span class="dt">x=</span>xbar, <span class="dt">y=</span>..density..)) +
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span>.<span class="dv">2</span>) +
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&#39;Sampling Distribution of Mean(Pulse)&#39;</span>)</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
 <p>Just by sampling variability, we expect the sampling mean <span class="math inline">\(\bar{X}\)</span> to vary from approximately 68 to 72. The appropriate quantiles for a <span class="math inline">\(95\%\)</span> bootstrap confidence interval are actually</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">quantile</span>( SampDist$xbar, <span class="dt">probs=</span><span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>) )</code></pre></div>
 <pre><code>##     2.5%    97.5% 

@@ -129,7 +129,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#exercises"><i class="fa fa-check"></i><b>1.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="2-probability.html"><a href="2-probability.html"><i class="fa fa-check"></i><b>2</b> Probability</a><ul>
-<li class="chapter" data-level="2.1" data-path="2-probability.html"><a href="2-probability.html#introduction-to-set-theory"><i class="fa fa-check"></i><b>2.1</b> Introduction to Set Theory</a></li>
+<li class="chapter" data-level="2.1" data-path="2-probability.html"><a href="2-probability.html#introduction-to-set-theory"><i class="fa fa-check"></i><b>2.1</b> Introduction to Set Theory</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="2-probability.html"><a href="2-probability.html#composition-of-events"><i class="fa fa-check"></i><b>2.1.1</b> Composition of events</a></li>
+</ul></li>
 <li class="chapter" data-level="2.2" data-path="2-probability.html"><a href="2-probability.html#probability-rules"><i class="fa fa-check"></i><b>2.2</b> Probability Rules</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="2-probability.html"><a href="2-probability.html#simple-rules"><i class="fa fa-check"></i><b>2.2.1</b> Simple Rules</a></li>
 <li class="chapter" data-level="2.2.2" data-path="2-probability.html"><a href="2-probability.html#conditional-probability"><i class="fa fa-check"></i><b>2.2.2</b> Conditional Probability</a></li>
@@ -205,15 +207,24 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>For example, suppose that my random experiment is rolling a fair 6-sided die once. The possible outcomes are <span class="math inline">\(S=\{1,2,3,4,5,6\}\)</span>. Suppose I then define events <span class="math inline">\(A=\)</span> roll is odd and <span class="math inline">\(B=\)</span> roll is 5 or greater. In this case our picture is:</p>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
 <p>All of our possible events are present, and distributed amongst our possible events.</p>
-<p>1.1.2 Composition of events</p>
+<div id="composition-of-events" class="section level3">
+<h3><span class="header-section-number">2.1.1</span> Composition of events</h3>
 <p>I am often interested in discussing the composition of two events and we give the common set operations below.</p>
 <ul>
-<li><p>Union: Denote the event that either <span class="math inline">\(A\)</span> or <span class="math inline">\(B\)</span> occurs as <span class="math inline">\(A\cup B\)</span>. <img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p></li>
-<li><p>Denote the event that <strong>both</strong> <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> occur as <span class="math inline">\(A\cap B\)</span> <img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p></li>
-<li><p>Denote the event that <span class="math inline">\(A\)</span> does not occur as <span class="math inline">\(\bar{A}\)</span> or <span class="math inline">\(A^{C}\)</span> (different people use different notations) <img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p></li>
+<li>Union: Denote the event that either <span class="math inline">\(A\)</span> or <span class="math inline">\(B\)</span> occurs as <span class="math inline">\(A\cup B\)</span>.</li>
 </ul>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<ul>
+<li>Denote the event that <strong>both</strong> <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> occur as <span class="math inline">\(A\cap B\)</span></li>
+</ul>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<ul>
+<li>Denote the event that <span class="math inline">\(A\)</span> does not occur as <span class="math inline">\(\bar{A}\)</span> or <span class="math inline">\(A^{C}\)</span> (different people use different notations)</li>
+</ul>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
 <p><strong>Definition 1</strong>. Two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are said to be mutually exclusive (or disjoint) if the occurrence of one event precludes the occurrence of the other. For example, on a single roll of a die, a two and a five cannot both come up. For a second example, define <span class="math inline">\(A\)</span> to be the event that the die is even, and <span class="math inline">\(B\)</span> to be the event that the die comes up as a <span class="math inline">\(5\)</span>.</p>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+</div>
 </div>
 <div id="probability-rules" class="section level2">
 <h2><span class="header-section-number">2.2</span> Probability Rules</h2>
@@ -231,7 +242,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
     &amp;=  \frac{1}{36}+\frac{2}{36}+\frac{3}{36} \\
     &amp;=  \frac{6}{36} \\
     &amp;=  \frac{1}{6} \end{aligned}\]</span></p>
-<p><strong>Fact</strong>. <span class="math inline">\(P(A)+P(\bar{A})=1\)</span> <img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+<p><strong>Fact</strong>. <span class="math inline">\(P(A)+P(\bar{A})=1\)</span></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
 <p>The above statement is true because the probability of whole space <span class="math inline">\(S\)</span> is one (remember <span class="math inline">\(S\)</span> is all possible outcomes), then either we get an outcome in which <span class="math inline">\(A\)</span> occurs or we get an outcome in which <span class="math inline">\(A\)</span> does not occur.</p>
 <p><strong>Fact</strong>. <span class="math inline">\(P(A\cup B)=P(A)+P(B)-P(A\cap B)\)</span></p>
 <p>The reason behind this fact is that if there is if <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are not disjoint, then some area is added twice when I calculate <span class="math inline">\(P\left(A\right)+P\left(B\right)\)</span>. To account for this, I simply subtract off the area that was double counted.</p>

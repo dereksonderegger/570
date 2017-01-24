@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 # Confidence Intervals via Bootstrapping
 
 ```{r, echo=FALSE}
@@ -155,7 +160,7 @@ The sample mean is greater than $0.5$ but not by too much. Is a true population 
 
 The first step in answering these questions is to create an estimate of the sampling distribution of $\bar{x}_{Hg}$. To do this, we will sample from the approximate population of lakes, which is just many many replicated copies of our sample data. 
 
-```{r, cache=TRUE}
+```{r, cache=TRUE, warning=FALSE, message=FALSE}
 # create the sampling distribution of xbar
 SamplingDist <- do(10000) * resample(Lakes) %>% summarise(xbar = mean(AvgMercury))
 
@@ -181,7 +186,7 @@ axis(1, c(0), labels=c(expression(mu)))
 
 There are two points, (call them $L$ and $U$) where for our given sample size and population we are sampling from, where we expect that $95\%$ of the sample means to fall within. That is to say, $L$ and $U$ capture the middle $95\%$ of the sampling distribution of $\bar{x}$.
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, fig.height=5}
 set.seed(93457629)
 x <- seq(-3, 3, length=1000) 
 plot(x, dnorm(x), ylim=c(-.5,.4), type='l', lwd=2, axes=FALSE, xlab='', ylab='',
@@ -209,7 +214,7 @@ for(i in 1:N){
 
 These sample means are randomly distributed about the population mean $\mu$. Given our sample data and sample mean $\bar{x}$, we can examine how our simulated values of $\bar{x}^{*}$ vary about $\bar{x}$. I expect that these simulated sample means $\bar{x}^{*}$ should vary about $\bar{x}$ in the same way that $\bar{x}$ values vary around $\mu$. Below are three estimated sampling distributions that we might obtain from three different samples and their associated sample means.
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, fig.height=6}
 x <- seq(-5, 5, length=1000)
 plot(x, dnorm(x),       
   ylim=c(-2.5,.5), xlim=c(-5,5),      
@@ -239,7 +244,7 @@ text(U[3], yoffsets[3]-.07, expression(U[3]))
 
 For each possible sample, we could consider creating the estimated sampling distribution of $\bar{X}$ and calculating the $L$ and $U$ values that capture the middle $95\%$ of the estimated sampling distribution. Below are twenty samples, where we've calculated this interval for each sample. 
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, fig.height=5}
 x <- seq(-5, 5, length=1000) 
 plot(x, dnorm(x), ylim=c(-.5,.4), type='l', lwd=2, axes=FALSE, xlab='', ylab='') 
 axis(1, c(-1.96, 0, 1.96),       
@@ -269,7 +274,7 @@ Most of these intervals contain the true parameter $\mu$, that we are trying to 
 
 After the sample is taken and the interval is calculated, the numbers lower and upper bounds of the confidence interval are fixed. Because $\mu$ is a constant value and the confidence interval is fixed, nothing is changing. To distinguish between a future random event and the fixed (but unknown) outcome of if I ended up with an interval that contains $\mu$ and we use the term confidence interval instead of probability interval. 
 
-```{r, cache=TRUE}
+```{r, cache=TRUE, warning=FALSE, message=FALSE}
 # create the sampling distribution of xbar
 SamplingDist <- do(10000) * resample(Lakes) %>% summarise(xbar=mean(AvgMercury))
 

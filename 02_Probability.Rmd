@@ -92,11 +92,12 @@ ggplot(df, aes(x=x, y=y)) +
 
 All of our possible events are present, and distributed amongst our possible events.
 
-1.1.2 Composition of events
+### Composition of events
 
 I am often interested in discussing the composition of two events and we give the common set operations below. 
 
 * Union: Denote the event that either $A$ or $B$ occurs as $A\cup B$.
+
 ```{r, echo=FALSE}
 df.A <- data.frame(theta=seq(0,2*pi, length=1000)) %>%
         mutate(x = cos(theta),
@@ -125,6 +126,7 @@ ggplot(df, aes(x=x, y=y)) +
 ```
 
 * Denote the event that **both** $A$ and $B$ occur as $A\cap B$
+
 ```{r, echo=FALSE}
 df.A <- data.frame(theta=seq(0,2*pi, length=1000)) %>%
         mutate(x = cos(theta),
@@ -163,6 +165,7 @@ ggplot(df, aes(x=x, y=y)) +
 
 
 * Denote the event that $A$ does not occur as $\bar{A}$ or $A^{C}$ (different people use different notations)
+
 ```{r, echo=FALSE}
 df.A <- data.frame(theta=seq(0,2*pi, length=1000)) %>%
         mutate(x = cos(theta),
@@ -279,6 +282,7 @@ $$\begin{aligned} P(R \le 4 )
  
 
 **Fact**. $P(A)+P(\bar{A})=1$
+
 ```{r, echo=FALSE}
 df.A <- data.frame(theta=seq(0,2*pi, length=1000)) %>%
         mutate(x = cos(theta),

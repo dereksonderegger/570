@@ -129,7 +129,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#exercises"><i class="fa fa-check"></i><b>1.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="2-probability.html"><a href="2-probability.html"><i class="fa fa-check"></i><b>2</b> Probability</a><ul>
-<li class="chapter" data-level="2.1" data-path="2-probability.html"><a href="2-probability.html#introduction-to-set-theory"><i class="fa fa-check"></i><b>2.1</b> Introduction to Set Theory</a></li>
+<li class="chapter" data-level="2.1" data-path="2-probability.html"><a href="2-probability.html#introduction-to-set-theory"><i class="fa fa-check"></i><b>2.1</b> Introduction to Set Theory</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="2-probability.html"><a href="2-probability.html#composition-of-events"><i class="fa fa-check"></i><b>2.1.1</b> Composition of events</a></li>
+</ul></li>
 <li class="chapter" data-level="2.2" data-path="2-probability.html"><a href="2-probability.html#probability-rules"><i class="fa fa-check"></i><b>2.2</b> Probability Rules</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="2-probability.html"><a href="2-probability.html#simple-rules"><i class="fa fa-check"></i><b>2.2.1</b> Simple Rules</a></li>
 <li class="chapter" data-level="2.2.2" data-path="2-probability.html"><a href="2-probability.html#conditional-probability"><i class="fa fa-check"></i><b>2.2.2</b> Conditional Probability</a></li>
@@ -257,7 +259,6 @@ SamplingDist &lt;-<span class="st"> </span><span class="kw">do</span>(<span clas
 <span class="kw">ggplot</span>(SamplingDist, <span class="kw">aes</span>(<span class="dt">x=</span>xbar)) +
 <span class="st">  </span><span class="kw">geom_histogram</span>() +<span class="st"> </span>
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&#39;Estimated Sampling distribution of xbar&#39;</span> )</code></pre></div>
-<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-63-1.png" width="672" /></p>
 </div>
 <div id="quantile-based-confidence-intervals" class="section level2">
@@ -279,7 +280,6 @@ SamplingDist &lt;-<span class="st"> </span><span class="kw">do</span>(<span clas
 <span class="kw">ggplot</span>(SamplingDist, <span class="kw">aes</span>(<span class="dt">x=</span>xbar, <span class="dt">y=</span>..density..)) +
 <span class="st">  </span><span class="kw">geom_histogram</span>() +
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&#39;Estimated Sampling distribution of xbar&#39;</span>)</code></pre></div>
-<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># calculate the 95% confidence interval using middle 95% of xbars</span>
 <span class="kw">quantile</span>( SamplingDist$xbar, <span class="dt">probs=</span><span class="kw">c</span>(.<span class="dv">025</span>, .<span class="dv">975</span>) )</code></pre></div>

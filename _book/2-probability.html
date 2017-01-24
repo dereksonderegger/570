@@ -26,7 +26,7 @@
 <meta name="author" content="Derek L. Sonderegger">
 
 
-<meta name="date" content="2017-01-20">
+<meta name="date" content="2017-01-23">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -155,6 +155,22 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.2" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#quantile-based-confidence-intervals"><i class="fa fa-check"></i><b>3.2</b> Quantile-based Confidence Intervals</a></li>
 <li class="chapter" data-level="3.3" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#exercises-2"><i class="fa fa-check"></i><b>3.3</b> Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="4" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html"><i class="fa fa-check"></i><b>4</b> Sampling Distribution of <span class="math inline">\(\bar{X}\)</span></a><ul>
+<li class="chapter" data-level="4.1" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#enlightening-example"><i class="fa fa-check"></i><b>4.1</b> Enlightening Example</a></li>
+<li class="chapter" data-level="4.2" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#mathematical-details"><i class="fa fa-check"></i><b>4.2</b> Mathematical details</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#probability-rules-for-expectations-and-variances"><i class="fa fa-check"></i><b>4.2.1</b> Probability Rules for Expectations and Variances</a></li>
+<li class="chapter" data-level="4.2.2" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#mean-and-variance-of-the-sample-mean"><i class="fa fa-check"></i><b>4.2.2</b> Mean and Variance of the Sample Mean</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#distribution-of-barx"><i class="fa fa-check"></i><b>4.3</b> Distribution of <span class="math inline">\(\bar{X}\)</span></a></li>
+<li class="chapter" data-level="4.4" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#central-limit-theorem"><i class="fa fa-check"></i><b>4.4</b> Central Limit Theorem</a></li>
+<li class="chapter" data-level="4.5" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#exercises-3"><i class="fa fa-check"></i><b>4.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html"><i class="fa fa-check"></i><b>5</b> Confidence Intervals for <span class="math inline">\(\mu\)</span></a><ul>
+<li class="chapter" data-level="5.1" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#asymptotic-result-sigma-known"><i class="fa fa-check"></i><b>5.1</b> Asymptotic result (<span class="math inline">\(\sigma\)</span> known)</a></li>
+<li class="chapter" data-level="5.2" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#asymptotoic-result-sigma-unknown"><i class="fa fa-check"></i><b>5.2</b> Asymptotoic result (<span class="math inline">\(\sigma\)</span> unknown)</a></li>
+<li class="chapter" data-level="5.3" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#sample-size-selection"><i class="fa fa-check"></i><b>5.3</b> Sample Size Selection</a></li>
+<li class="chapter" data-level="5.4" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#exercises-4"><i class="fa fa-check"></i><b>5.4</b> Exercises</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -230,24 +246,24 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <table>
 <thead>
 <tr class="header">
-<th><span class="math inline">\(\,\)</span></th>
-<th>Fire</th>
-<th>Auto</th>
-<th>Other</th>
+<th align="right"><span class="math inline">\(\,\)</span></th>
+<th align="center">Fire</th>
+<th align="center">Auto</th>
+<th align="center">Other</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Fraudulant</strong></td>
-<td>6%</td>
-<td>1%</td>
-<td>3%</td>
+<td align="right"><strong>Fraudulant</strong></td>
+<td align="center">6%</td>
+<td align="center">1%</td>
+<td align="center">3%</td>
 </tr>
 <tr class="even">
-<td><strong>non-Fraudulant</strong></td>
-<td>14%</td>
-<td>29%</td>
-<td>47%</td>
+<td align="right"><strong>non-Fraudulant</strong></td>
+<td align="center">14%</td>
+<td align="center">29%</td>
+<td align="center">47%</td>
 </tr>
 </tbody>
 </table>
@@ -255,34 +271,34 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <table>
 <thead>
 <tr class="header">
-<th><span class="math inline">\(\,\)</span></th>
-<th>Fire</th>
-<th>Auto</th>
-<th>Other</th>
-<th><span class="math inline">\(\,\)</span></th>
+<th align="right"><span class="math inline">\(\,\)</span></th>
+<th align="center">Fire</th>
+<th align="center">Auto</th>
+<th align="center">Other</th>
+<th align="center"><span class="math inline">\(\,\)</span></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Fraudulant</strong></td>
-<td>6%</td>
-<td>1%</td>
-<td>3%</td>
-<td><strong>10%</strong></td>
+<td align="right"><strong>Fraudulant</strong></td>
+<td align="center">6%</td>
+<td align="center">1%</td>
+<td align="center">3%</td>
+<td align="center"><strong>10%</strong></td>
 </tr>
 <tr class="even">
-<td><strong>non-Fraudulant</strong></td>
-<td>14%</td>
-<td>29%</td>
-<td>47%</td>
-<td><strong>90%</strong></td>
+<td align="right"><strong>non-Fraudulant</strong></td>
+<td align="center">14%</td>
+<td align="center">29%</td>
+<td align="center">47%</td>
+<td align="center"><strong>90%</strong></td>
 </tr>
 <tr class="odd">
-<td><span class="math inline">\(\,\)</span></td>
-<td><strong>20%</strong></td>
-<td><strong>30%</strong></td>
-<td><strong>50%</strong></td>
-<td><strong>100%</strong></td>
+<td align="right"><span class="math inline">\(\,\)</span></td>
+<td align="center"><strong>20%</strong></td>
+<td align="center"><strong>30%</strong></td>
+<td align="center"><strong>50%</strong></td>
+<td align="center"><strong>100%</strong></td>
 </tr>
 </tbody>
 </table>
@@ -312,30 +328,30 @@ P\left(\,Auto\;|\;NotFraud\,\right) &amp;= \frac{P\left(\,Auto\;\cap\;NotFraud\r
 <table>
 <thead>
 <tr class="header">
-<th><span class="math inline">\(\,\)</span></th>
-<th>Convertable</th>
-<th>Not Convertable</th>
-<th><span class="math inline">\(\,\)</span></th>
+<th align="right"><span class="math inline">\(\,\)</span></th>
+<th align="center">Convertable</th>
+<th align="center">Not Convertable</th>
+<th align="center"><span class="math inline">\(\,\)</span></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Red</strong></td>
-<td></td>
-<td></td>
-<td></td>
+<td align="right"><strong>Red</strong></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
 </tr>
 <tr class="even">
-<td><strong>Not Red</strong></td>
-<td></td>
-<td></td>
-<td></td>
+<td align="right"><strong>Not Red</strong></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
 </tr>
 <tr class="odd">
-<td><span class="math inline">\(\,\)</span></td>
-<td><strong>10%</strong></td>
-<td><strong>90%</strong></td>
-<td><strong>100%</strong></td>
+<td align="right"><span class="math inline">\(\,\)</span></td>
+<td align="center"><strong>10%</strong></td>
+<td align="center"><strong>90%</strong></td>
+<td align="center"><strong>100%</strong></td>
 </tr>
 </tbody>
 </table>
@@ -405,26 +421,26 @@ P(A)P(B)\;\; &amp; \textrm{ if A,B are independent}
     &amp;= \frac{35}{6}=5.8\bar{3}
     \end{aligned}\]</span></p>
 <p>We could interpret the expectation as the sample mean of an infinitely large sample, and the variance as the sample variance of the same infinitely large sample. These are two very important numbers that describe the distribution.</p>
-<p><strong>Example 7</strong>. My wife is a massage therapist and over the last year, the number of clients she sees per work day (denoted Y ) varied according the following table:</p>
+<p><strong>Example 7</strong>. My wife is a massage therapist and over the last year, the number of clients she sees per work day (denoted Y) varied according the following table:</p>
 <table>
 <thead>
 <tr class="header">
-<th>Number of Clients</th>
-<th>0</th>
-<th>1</th>
-<th>2</th>
-<th>3</th>
-<th>4</th>
+<th align="right">Number of Clients</th>
+<th align="center">0</th>
+<th align="center">1</th>
+<th align="center">2</th>
+<th align="center">3</th>
+<th align="center">4</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Frequency/Probability</strong></td>
-<td>0.30</td>
-<td>0.35</td>
-<td>0.20</td>
-<td>0.10</td>
-<td>0.05</td>
+<td align="right"><strong>Frequency/Probability</strong></td>
+<td align="center">0.30</td>
+<td align="center">0.35</td>
+<td align="center">0.20</td>
+<td align="center">0.10</td>
+<td align="center">0.05</td>
 </tr>
 </tbody>
 </table>
@@ -435,7 +451,8 @@ P(A)P(B)\;\; &amp; \textrm{ if A,B are independent}
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">y=</span>probability)) +<span class="st">                </span><span class="co"># where the dots go</span>
 <span class="st">  </span><span class="kw">geom_linerange</span>(<span class="kw">aes</span>(<span class="dt">ymax=</span>probability, <span class="dt">ymin=</span><span class="dv">0</span>)) +<span class="st"> </span><span class="co"># the vertical lines       </span>
 <span class="st">  </span><span class="kw">theme_bw</span>()                                      <span class="co"># set background color...</span></code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-39-1.png" width="672" /> Because this is the long term relative frequency of the number of clients (over 200 working days!), it is appropriate to interpret these frequencies as probabilities. This table and graph is often called a probability mass function (pmf) because it lists how the probability is spread across the possible values of the random variable. We might next ask ourselves what is the average number of clients per day? It looks like it ought to be between 1 and 2 clients per day. <span class="math display">\[\begin{aligned} E\left(Y\right)   
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-39-1.png" width="672" /> Because this is the long term relative frequency of the number of clients (over 200 working days!), it is appropriate to interpret these frequencies as probabilities. This table and graph is often called a probability mass function (pmf) because it lists how the probability is spread across the possible values of the random variable. We might next ask ourselves what is the average number of clients per day? It looks like it ought to be between 1 and 2 clients per day.</p>
+<p><span class="math display">\[\begin{aligned} E\left(Y\right)   
   &amp;=    \sum_{\textrm{possible }y}y\,P\left(Y=y\right) \\
     &amp;=  \sum_{y=0}^{4}y\,P\left(Y=y\right) \\
     &amp;=  0\,P\left(Y=0\right)+1\,P\left(Y=1\right)+2\,P\left(Y=2\right)+3\,P\left(Y=3\right)+4\,P\left(Y=4\right) \\
@@ -463,42 +480,42 @@ P(A)P(B)\;\; &amp; \textrm{ if A,B are independent}
 <table>
 <thead>
 <tr class="header">
-<th>Outcome</th>
-<th><span class="math inline">\(\,\)</span></th>
+<th align="center">Outcome</th>
+<th align="center"><span class="math inline">\(\,\)</span></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><span class="math inline">\(E_1, E_2, E_3\)</span></td>
-<td><span class="math inline">\(\,\)</span></td>
+<td align="center"><span class="math inline">\(E_1, E_2, E_3\)</span></td>
+<td align="center"><span class="math inline">\(\,\)</span></td>
 </tr>
 <tr class="even">
-<td><span class="math inline">\(C_1, E_2, E_3\)</span></td>
-<td><span class="math inline">\(\,\)</span></td>
+<td align="center"><span class="math inline">\(C_1, E_2, E_3\)</span></td>
+<td align="center"><span class="math inline">\(\,\)</span></td>
 </tr>
 <tr class="odd">
-<td><span class="math inline">\(E_1, C_2, E_3\)</span></td>
-<td><span class="math inline">\(\,\)</span></td>
+<td align="center"><span class="math inline">\(E_1, C_2, E_3\)</span></td>
+<td align="center"><span class="math inline">\(\,\)</span></td>
 </tr>
 <tr class="even">
-<td><span class="math inline">\(E_1, E_2, C_3\)</span></td>
-<td><span class="math inline">\(\,\)</span></td>
+<td align="center"><span class="math inline">\(E_1, E_2, C_3\)</span></td>
+<td align="center"><span class="math inline">\(\,\)</span></td>
 </tr>
 <tr class="odd">
-<td><span class="math inline">\(C_1, C_2, E_3\)</span></td>
-<td><span class="math inline">\(\,\)</span></td>
+<td align="center"><span class="math inline">\(C_1, C_2, E_3\)</span></td>
+<td align="center"><span class="math inline">\(\,\)</span></td>
 </tr>
 <tr class="even">
-<td><span class="math inline">\(C_1, E_2, C_3\)</span></td>
-<td><span class="math inline">\(\,\)</span></td>
+<td align="center"><span class="math inline">\(C_1, E_2, C_3\)</span></td>
+<td align="center"><span class="math inline">\(\,\)</span></td>
 </tr>
 <tr class="odd">
-<td><span class="math inline">\(E_1, C_2, C_3\)</span></td>
-<td><span class="math inline">\(\,\)</span></td>
+<td align="center"><span class="math inline">\(E_1, C_2, C_3\)</span></td>
+<td align="center"><span class="math inline">\(\,\)</span></td>
 </tr>
 <tr class="even">
-<td><span class="math inline">\(C_1, C_2, C_3\)</span></td>
-<td><span class="math inline">\(\,\)</span></td>
+<td align="center"><span class="math inline">\(C_1, C_2, C_3\)</span></td>
+<td align="center"><span class="math inline">\(\,\)</span></td>
 </tr>
 </tbody>
 </table>
@@ -508,78 +525,78 @@ P(A)P(B)\;\; &amp; \textrm{ if A,B are independent}
 <table>
 <thead>
 <tr class="header">
-<th>Outcome</th>
-<th>Probability</th>
-<th><span class="math inline">\(S\)</span> Outcome</th>
-<th>Probability</th>
+<th align="center">Outcome</th>
+<th align="center">Probability</th>
+<th align="center"><span class="math inline">\(S\)</span> Outcome</th>
+<th align="center">Probability</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><span class="math inline">\(E_1, E_2, E_3\)</span></td>
-<td>0.008</td>
-<td><span class="math inline">\(S=0\)</span></td>
-<td>0.008</td>
+<td align="center"><span class="math inline">\(E_1, E_2, E_3\)</span></td>
+<td align="center">0.008</td>
+<td align="center"><span class="math inline">\(S=0\)</span></td>
+<td align="center">0.008</td>
 </tr>
 <tr class="even">
-<td>——————-</td>
-<td>—————</td>
-<td>————-</td>
-<td>—————</td>
+<td align="center">——————-</td>
+<td align="center">—————</td>
+<td align="center">————-</td>
+<td align="center">—————</td>
 </tr>
 <tr class="odd">
-<td><span class="math inline">\(C_1, E_2, E_3\)</span></td>
-<td>0.032</td>
-<td></td>
-<td></td>
+<td align="center"><span class="math inline">\(C_1, E_2, E_3\)</span></td>
+<td align="center">0.032</td>
+<td align="center"></td>
+<td align="center"></td>
 </tr>
 <tr class="even">
-<td><span class="math inline">\(E_1, C_2, E_3\)</span></td>
-<td>0.032</td>
-<td><span class="math inline">\(S=1\)</span></td>
-<td><span class="math inline">\(3(0.032) = 0.096\)</span></td>
+<td align="center"><span class="math inline">\(E_1, C_2, E_3\)</span></td>
+<td align="center">0.032</td>
+<td align="center"><span class="math inline">\(S=1\)</span></td>
+<td align="center"><span class="math inline">\(3(0.032) = 0.096\)</span></td>
 </tr>
 <tr class="odd">
-<td><span class="math inline">\(E_1, E_2, C_3\)</span></td>
-<td>0.032</td>
-<td></td>
-<td></td>
+<td align="center"><span class="math inline">\(E_1, E_2, C_3\)</span></td>
+<td align="center">0.032</td>
+<td align="center"></td>
+<td align="center"></td>
 </tr>
 <tr class="even">
-<td>——————-</td>
-<td>—————</td>
-<td>————-</td>
-<td>—————</td>
+<td align="center">——————-</td>
+<td align="center">—————</td>
+<td align="center">————-</td>
+<td align="center">—————</td>
 </tr>
 <tr class="odd">
-<td><span class="math inline">\(C_1, C_2, E_3\)</span></td>
-<td>0.128</td>
-<td></td>
-<td></td>
+<td align="center"><span class="math inline">\(C_1, C_2, E_3\)</span></td>
+<td align="center">0.128</td>
+<td align="center"></td>
+<td align="center"></td>
 </tr>
 <tr class="even">
-<td><span class="math inline">\(C_1, E_2, C_3\)</span></td>
-<td>0.128</td>
-<td><span class="math inline">\(S=2\)</span></td>
-<td><span class="math inline">\(3(0.128) = 0.384\)</span></td>
+<td align="center"><span class="math inline">\(C_1, E_2, C_3\)</span></td>
+<td align="center">0.128</td>
+<td align="center"><span class="math inline">\(S=2\)</span></td>
+<td align="center"><span class="math inline">\(3(0.128) = 0.384\)</span></td>
 </tr>
 <tr class="odd">
-<td><span class="math inline">\(E_1, C_2, C_3\)</span></td>
-<td>0.128</td>
-<td></td>
-<td></td>
+<td align="center"><span class="math inline">\(E_1, C_2, C_3\)</span></td>
+<td align="center">0.128</td>
+<td align="center"></td>
+<td align="center"></td>
 </tr>
 <tr class="even">
-<td>——————-</td>
-<td>—————</td>
-<td>————-</td>
-<td>—————</td>
+<td align="center">——————-</td>
+<td align="center">—————</td>
+<td align="center">————-</td>
+<td align="center">—————</td>
 </tr>
 <tr class="odd">
-<td><span class="math inline">\(C_1, C_2, C_3\)</span></td>
-<td>0.512</td>
-<td><span class="math inline">\(S=3\)</span></td>
-<td><span class="math inline">\(0.512\)</span></td>
+<td align="center"><span class="math inline">\(C_1, C_2, C_3\)</span></td>
+<td align="center">0.512</td>
+<td align="center"><span class="math inline">\(S=3\)</span></td>
+<td align="center"><span class="math inline">\(0.512\)</span></td>
 </tr>
 </tbody>
 </table>
@@ -587,26 +604,26 @@ P(A)P(B)\;\; &amp; \textrm{ if A,B are independent}
 <table>
 <thead>
 <tr class="header">
-<th><span class="math inline">\(S\)</span> Outcome</th>
-<th>Probability</th>
+<th align="center"><span class="math inline">\(S\)</span> Outcome</th>
+<th align="center">Probability</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><span class="math inline">\(S=0\)</span></td>
-<td><span class="math inline">\(0.008\)</span></td>
+<td align="center"><span class="math inline">\(S=0\)</span></td>
+<td align="center"><span class="math inline">\(0.008\)</span></td>
 </tr>
 <tr class="even">
-<td><span class="math inline">\(S=1\)</span></td>
-<td><span class="math inline">\(0.096\)</span></td>
+<td align="center"><span class="math inline">\(S=1\)</span></td>
+<td align="center"><span class="math inline">\(0.096\)</span></td>
 </tr>
 <tr class="odd">
-<td><span class="math inline">\(S=2\)</span></td>
-<td><span class="math inline">\(0.384\)</span></td>
+<td align="center"><span class="math inline">\(S=2\)</span></td>
+<td align="center"><span class="math inline">\(0.384\)</span></td>
 </tr>
 <tr class="even">
-<td><span class="math inline">\(S=3\)</span></td>
-<td><span class="math inline">\(0.512\)</span></td>
+<td align="center"><span class="math inline">\(S=3\)</span></td>
+<td align="center"><span class="math inline">\(0.512\)</span></td>
 </tr>
 </tbody>
 </table>
@@ -821,7 +838,7 @@ x       &amp;=  3(0.84)+70 \\
 <td><p>Binomial</p></td>
 <td><p><code>binom</code></p></td>
 <td><p><code>size</code> <code>prob</code></p></td>
-<td><p>Number of Trials Probability of Success (per Trial)</p></td>
+<td><p>Number of Trials, Probability of Success (per Trial)</p></td>
 </tr>
 <tr class="even">
 <td><p>Exponential</p></td>
@@ -833,13 +850,13 @@ x       &amp;=  3(0.84)+70 \\
 <td><p>Normal</p></td>
 <td><p><code>norm</code></p></td>
 <td><p><code>mean=0</code> <code>sd=1</code></p></td>
-<td><p>Center of the distribution Standard deviation</p></td>
+<td><p>Center of the distribution, Standard deviation</p></td>
 </tr>
 <tr class="even">
 <td><p>Uniform</p></td>
 <td><p><code>unif</code></p></td>
 <td><p><code>min=0</code> <code>max=1</code></p></td>
-<td><p>Minimum of the distribution Maximum of the distribution</p></td>
+<td><p>Minimum and Maximum of the distribution</p></td>
 </tr>
 </tbody>
 </table>
@@ -976,34 +993,34 @@ Notice that the numbers given in the table sum to 100%, so the data presented ar
 <li>What is the probability that I must clean up 1 or more vomits?</li>
 <li>If I wanted to measure this process with a rate per day, what rate should I use?</li>
 </ol></li>
-<li><p>Suppose that the number of runners I see on a morning walk on the trails near my house has the following distribution (Notice I’ve never seen four or more runners on a morning walk):</p>
+<li><p>Suppose that the number of runners I see on a morning walk on the trails near my house has the following distribution (Notice I’ve never seen four or more runners on a morning walk):</p></li>
+</ol>
 <table>
 <thead>
 <tr class="header">
-<th>y</th>
-<th>0</th>
-<th>1</th>
-<th>2</th>
-<th>3</th>
-<th>4+</th>
+<th align="right">y</th>
+<th align="center">0</th>
+<th align="center">1</th>
+<th align="center">2</th>
+<th align="center">3</th>
+<th align="center">4+</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Probabilty</strong></td>
-<td>0.45</td>
-<td>0.25</td>
-<td>0.20</td>
-<td></td>
-<td>0.0</td>
+<td align="right"><strong>Probabilty</strong></td>
+<td align="center">0.45</td>
+<td align="center">0.25</td>
+<td align="center">0.20</td>
+<td align="center"></td>
+<td align="center">0.0</td>
 </tr>
 </tbody>
 </table>
-<ol style="list-style-type: lower-alpha">
-<li>What is the probability that I see 3 runners on a morning walk?</li>
-<li>What is the expected number of runners that I will encounter?</li>
-<li>What is the variance of the number of runners that I will encounter?</li>
-</ol></li>
+<pre><code>a) What is the probability that I see 3 runners on a morning walk?
+b) What is the expected number of runners that I will encounter?
+c) What is the variance of the number of runners that I will encounter?</code></pre>
+<ol start="7" style="list-style-type: decimal">
 <li>If <span class="math inline">\(Z\sim N\left(\mu=0,\sigma^{2}=1\right)\)</span>, find the following probabilities:
 <ol style="list-style-type: lower-alpha">
 <li><span class="math inline">\(P(Z&lt;1.58)=\)</span></li>

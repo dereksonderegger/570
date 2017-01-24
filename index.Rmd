@@ -299,11 +299,11 @@ TenMileRace %>%
 
 For any mound-shaped sample of data the following is a reasonable rule of thumb:
 
-  Interval        |     Approximate percent of Measurements
-------------------|-------------------------------------------  
- $\bar{x}\pm s$   |               68%
- $\bar{x}\pm 2s$  |               95%
- $\bar{x}\pm 3s$  |               99.7%
+|  Interval        |     Approximate percent of Measurements   |
+|:----------------:|:-----------------------------------------:|  
+| $\bar{x}\pm s$   |               68%                         |  
+| $\bar{x}\pm 2s$  |               95%                         |
+| $\bar{x}\pm 3s$  |               99.7%                       |
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 n <- 1000
@@ -356,10 +356,10 @@ ggplot( Area.Data, aes(x=x)) +
 
 2. O&L 3.31. Consumer Reports in its June 1998 issue reports on the typical daily room rate at six luxury and nine budget hotels. The room rates are given in the following table.
     
-      Hotel Type   |   Nightly Rate
-    ---------------|----------------------
-      Luxury	     |  $175,	$180,	$120,	$150,	$120,	$125
-      Budget       |  $50,	$50,	$49,	$45,	$36,	$45,	$50,	$50,	$40
+    |  Hotel Type   |   Nightly Rate                                       |
+    |:-------------:|:----------------------------------------------------:|
+    |  Luxury	      |  $175,	$180,	$120,	$150,	$120,	$125                 |
+    |  Budget       |  $50,	$50,	$49,	$45,	$36,	$45,	$50,	$50,	$40  |
     
     a) By hand, compute the means and standard deviations of the room rates for each class of hotel.
     b) Give a practical reason why luxury hotels might have higher variability than the budget hotels. (Don't just say the standard deviation is higher because there is more spread in the data, but rather think about the Hotel Industry and why you might see greater price variability for upscale goods compared to budget items.)
@@ -389,6 +389,7 @@ ggplot( Area.Data, aes(x=x)) +
 5. For the hotel data, create side-by-side box-and-whisker plots to compare the prices.
 
 6. Match the following histograms to the appropriate boxplot.
+    
     ```{r, echo=FALSE}
     n <- 20000 
     m1 <- rnorm(n, mean=20, sd=2.5) 

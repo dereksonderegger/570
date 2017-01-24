@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Introduction to Statistical Methodology</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="Introduction to Statistical Methodology">
+  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Introduction to Statistical Methodology" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="dereksonderegger/STA_570_Book" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Introduction to Statistical Methodology" />
+  
+  
+  
+
+<meta name="author" content="Derek L. Sonderegger">
+
+
+<meta name="date" content="2017-01-23">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="4-sampling-distribution-of-barx.html">
+
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Statistical Methods I</a></li>
+<li><a href="https://dereksonderegger.github.io/570/Statistical_Methods_I.pdf" target="blank">PDF version</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Summary Statistics and Graphing</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#graphical-summaries-of-data"><i class="fa fa-check"></i><b>1.1</b> Graphical summaries of data</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#univariate---categorical"><i class="fa fa-check"></i><b>1.1.1</b> Univariate - Categorical</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#univariate---continuous"><i class="fa fa-check"></i><b>1.1.2</b> Univariate - Continuous</a></li>
+<li class="chapter" data-level="1.1.3" data-path="index.html"><a href="index.html#bivariate---categorical-vs-continuous"><i class="fa fa-check"></i><b>1.1.3</b> Bivariate - Categorical vs Continuous</a></li>
+<li class="chapter" data-level="1.1.4" data-path="index.html"><a href="index.html#bivariate---continuous-vs-continuous"><i class="fa fa-check"></i><b>1.1.4</b> Bivariate - Continuous vs Continuous</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#measures-of-centrality"><i class="fa fa-check"></i><b>1.2</b> Measures of Centrality</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#mean"><i class="fa fa-check"></i><b>1.2.1</b> Mean</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#median"><i class="fa fa-check"></i><b>1.2.2</b> Median</a></li>
+<li class="chapter" data-level="1.2.3" data-path="index.html"><a href="index.html#mode"><i class="fa fa-check"></i><b>1.2.3</b> Mode</a></li>
+<li class="chapter" data-level="1.2.4" data-path="index.html"><a href="index.html#examples"><i class="fa fa-check"></i><b>1.2.4</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#measures-of-variation"><i class="fa fa-check"></i><b>1.3</b> Measures of Variation</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#range"><i class="fa fa-check"></i><b>1.3.1</b> Range</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#inter-quartile-range"><i class="fa fa-check"></i><b>1.3.2</b> Inter-Quartile Range</a></li>
+<li class="chapter" data-level="1.3.3" data-path="index.html"><a href="index.html#variance"><i class="fa fa-check"></i><b>1.3.3</b> Variance</a></li>
+<li class="chapter" data-level="1.3.4" data-path="index.html"><a href="index.html#standard-deviation"><i class="fa fa-check"></i><b>1.3.4</b> Standard Deviation</a></li>
+<li class="chapter" data-level="1.3.5" data-path="index.html"><a href="index.html#coefficient-of-variation"><i class="fa fa-check"></i><b>1.3.5</b> Coefficient of Variation</a></li>
+<li class="chapter" data-level="1.3.6" data-path="index.html"><a href="index.html#empirical-rule-of-thumb"><i class="fa fa-check"></i><b>1.3.6</b> Empirical Rule of Thumb</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#exercises"><i class="fa fa-check"></i><b>1.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-probability.html"><a href="2-probability.html"><i class="fa fa-check"></i><b>2</b> Probability</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-probability.html"><a href="2-probability.html#introduction-to-set-theory"><i class="fa fa-check"></i><b>2.1</b> Introduction to Set Theory</a></li>
+<li class="chapter" data-level="2.2" data-path="2-probability.html"><a href="2-probability.html#probability-rules"><i class="fa fa-check"></i><b>2.2</b> Probability Rules</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="2-probability.html"><a href="2-probability.html#simple-rules"><i class="fa fa-check"></i><b>2.2.1</b> Simple Rules</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2-probability.html"><a href="2-probability.html#conditional-probability"><i class="fa fa-check"></i><b>2.2.2</b> Conditional Probability</a></li>
+<li class="chapter" data-level="2.2.3" data-path="2-probability.html"><a href="2-probability.html#summary-of-probability-rules"><i class="fa fa-check"></i><b>2.2.3</b> Summary of Probability Rules</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="2-probability.html"><a href="2-probability.html#discrete-random-variables"><i class="fa fa-check"></i><b>2.3</b> Discrete Random Variables</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="2-probability.html"><a href="2-probability.html#introduction-to-discrete-random-variables"><i class="fa fa-check"></i><b>2.3.1</b> Introduction to Discrete Random Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="2-probability.html"><a href="2-probability.html#common-discrete-distributions"><i class="fa fa-check"></i><b>2.4</b> Common Discrete Distributions</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="2-probability.html"><a href="2-probability.html#binomial-distribution"><i class="fa fa-check"></i><b>2.4.1</b> Binomial Distribution</a></li>
+<li class="chapter" data-level="2.4.2" data-path="2-probability.html"><a href="2-probability.html#poisson-distribution"><i class="fa fa-check"></i><b>2.4.2</b> Poisson Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="2-probability.html"><a href="2-probability.html#continuous-random-variables"><i class="fa fa-check"></i><b>2.5</b> Continuous Random Variables</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="2-probability.html"><a href="2-probability.html#uniform01-distribution"><i class="fa fa-check"></i><b>2.5.1</b> Uniform(0,1) Distribution</a></li>
+<li class="chapter" data-level="2.5.2" data-path="2-probability.html"><a href="2-probability.html#exponential-distribution"><i class="fa fa-check"></i><b>2.5.2</b> Exponential Distribution</a></li>
+<li class="chapter" data-level="2.5.3" data-path="2-probability.html"><a href="2-probability.html#normal-distribution"><i class="fa fa-check"></i><b>2.5.3</b> Normal Distribution</a></li>
+<li class="chapter" data-level="2.5.4" data-path="2-probability.html"><a href="2-probability.html#standardizing"><i class="fa fa-check"></i><b>2.5.4</b> Standardizing</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="2-probability.html"><a href="2-probability.html#exercises-1"><i class="fa fa-check"></i><b>2.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html"><i class="fa fa-check"></i><b>3</b> Confidence Intervals via Bootstrapping</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#theory-of-bootstrapping"><i class="fa fa-check"></i><b>3.1</b> Theory of Bootstrapping</a></li>
+<li class="chapter" data-level="3.2" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#quantile-based-confidence-intervals"><i class="fa fa-check"></i><b>3.2</b> Quantile-based Confidence Intervals</a></li>
+<li class="chapter" data-level="3.3" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#exercises-2"><i class="fa fa-check"></i><b>3.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html"><i class="fa fa-check"></i><b>4</b> Sampling Distribution of <span class="math inline">\(\bar{X}\)</span></a><ul>
+<li class="chapter" data-level="4.1" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#enlightening-example"><i class="fa fa-check"></i><b>4.1</b> Enlightening Example</a></li>
+<li class="chapter" data-level="4.2" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#mathematical-details"><i class="fa fa-check"></i><b>4.2</b> Mathematical details</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#probability-rules-for-expectations-and-variances"><i class="fa fa-check"></i><b>4.2.1</b> Probability Rules for Expectations and Variances</a></li>
+<li class="chapter" data-level="4.2.2" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#mean-and-variance-of-the-sample-mean"><i class="fa fa-check"></i><b>4.2.2</b> Mean and Variance of the Sample Mean</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#distribution-of-barx"><i class="fa fa-check"></i><b>4.3</b> Distribution of <span class="math inline">\(\bar{X}\)</span></a></li>
+<li class="chapter" data-level="4.4" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#central-limit-theorem"><i class="fa fa-check"></i><b>4.4</b> Central Limit Theorem</a></li>
+<li class="chapter" data-level="4.5" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#exercises-3"><i class="fa fa-check"></i><b>4.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html"><i class="fa fa-check"></i><b>5</b> Confidence Intervals for <span class="math inline">\(\mu\)</span></a><ul>
+<li class="chapter" data-level="5.1" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#asymptotic-result-sigma-known"><i class="fa fa-check"></i><b>5.1</b> Asymptotic result (<span class="math inline">\(\sigma\)</span> known)</a></li>
+<li class="chapter" data-level="5.2" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#asymptotoic-result-sigma-unknown"><i class="fa fa-check"></i><b>5.2</b> Asymptotoic result (<span class="math inline">\(\sigma\)</span> unknown)</a></li>
+<li class="chapter" data-level="5.3" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#sample-size-selection"><i class="fa fa-check"></i><b>5.3</b> Sample Size Selection</a></li>
+<li class="chapter" data-level="5.4" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#exercises-4"><i class="fa fa-check"></i><b>5.4</b> Exercises</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Statistical Methodology</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="confidence-intervals-for-mu" class="section level1">
+<h1><span class="header-section-number">Chapter 5</span> Confidence Intervals for <span class="math inline">\(\mu\)</span></h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(mosaic)</code></pre></div>
+<div id="asymptotic-result-sigma-known" class="section level2">
+<h2><span class="header-section-number">5.1</span> Asymptotic result (<span class="math inline">\(\sigma\)</span> known)</h2>
+<p>We know that our sample mean <span class="math inline">\(\bar{x}\)</span>, should be close to the population mean <span class="math inline">\(\mu\)</span>. So when giving a region of values for <span class="math inline">\(\mu\)</span> that are consistent with the observed data, we would expect our CI formula to be something like <span class="math inline">\(\left(\bar{x}-d,\;\bar{x}+d\right)\)</span> for some value <span class="math inline">\(d\)</span>. That value of <span class="math inline">\(d\)</span> should be small if our sample size is big, representing our faith that a large amount of data should result in a statistic that is very close to the true value of <span class="math inline">\(\mu\)</span>. Recall that if our data <span class="math inline">\(X_{i}\sim N\left(\mu,\,\sigma^{2}\right)\)</span> or our sample size was large enough, then we know</p>
+<p><span class="math display">\[\bar{X}\sim N\left(\mu,\,\;\sigma_{\bar{X}}^{2}=\frac{\sigma^{2}}{n}\right)\]</span> or is approximately so. Doing a little re-arranging, we see that <span class="math display">\[\frac{\bar{X}-\mu}{\left(\frac{\sigma}{\sqrt{n}}\right)}\sim N\left(0,1\right)\]</span></p>
+<p>So if we take the 0.025 and 0.975 quantiles of the normal distribution, which are <span class="math inline">\(z_{0.025}=-1.96\)</span> and <span class="math inline">\(z_{0.975}=1.96\)</span>, we could write <span class="math display">\[\begin{aligned}0.95   
+    &amp;=  P\left[ -1.96\le\frac{\bar{X}-\mu}{\sigma/\sqrt{n}}\le1.96 \right] \\
+      &amp;=    P\left[ -1.96\left(\frac{\sigma}{\sqrt{n}}\right)\le\bar{X}-\mu\le1.96\left(\frac{\sigma}{\sqrt{n}}\right) \right] \\
+    &amp;=  P\left[ \bar{X}-1.96\left(\frac{\sigma}{\sqrt{n}}\right)\le\mu\le\bar{X}+1.96\left(\frac{\sigma}{\sqrt{n}}\right) \right]
+    \end{aligned}\]</span> Which suggests that a reasonable 95% Confidence Interval for <span class="math inline">\(\mu\)</span> is <span class="math display">\[\bar{x}\pm1.96\left(\frac{\sigma}{\sqrt{n}}\right)\]</span> In general for a <span class="math inline">\(\left(1-\alpha\right)\cdot100\%\)</span> confidence interval, we would use the formula <span class="math inline">\(\bar{x}\pm z_{1-\alpha/2}\left(\frac{\sigma}{\sqrt{n}}\right)\)</span>. Notice that I could write the formula using <span class="math inline">\(z_{\alpha/2}\)</span> instead of <span class="math inline">\(z_{1-\alpha/2}\)</span> because the normal distribution is symmetric about 0 and we are subtracting and adding the same quantity to <span class="math inline">\(\bar{x}\)</span>.</p>
+<p>The interpretation of a confidence interval is that over repeated sampling, <span class="math inline">\(100(1-\alpha)\%\)</span> of the resulting intervals will contain the population mean <span class="math inline">\(\mu\)</span> but we don’t know if the interval we have actually observed is one of the good intervals that contains the mean <span class="math inline">\(\mu\)</span> or not. Because this is quite the mouthful, we will say “we are <span class="math inline">\(100\left(1-\alpha\right)\%\)</span> confident that the observed interval contains the mean <span class="math inline">\(\mu\)</span>.”</p>
+<p>Example: Suppose a bottling facility has a machine that supposedly fills bottles to 300 milliliters (ml) and is known to have a standard deviation of <span class="math inline">\(\sigma=3\)</span> ml. However, the machine occasionally gets out of calibration and might be consistently overfilling or under-filling bottles. To discover if the machine is calibrated correctly, we take a random sample of <span class="math inline">\(n=40\)</span> bottles and observe the mean amount filled was <span class="math inline">\(\bar{x}=299\)</span> ml. We calculate a <span class="math inline">\(95\%\)</span> confidence interval (CI) to be <span class="math display">\[\begin{aligned} \bar{x}   &amp;\pm    z_{1-\alpha/2}\left(\frac{\sigma}{\sqrt{n}}\right)\\
+                   299    &amp;\pm  1.96\left(\frac{3}{\sqrt{40}}\right) \\
+                   299    &amp;\pm  0.93 \end{aligned}\]</span> and conclude that we are <span class="math inline">\(95\%\)</span> confident that the that the true mean fill amount is in <span class="math inline">\(\left[298.07,299.93\right]\)</span> and that the machine has likely drifted off calibration.</p>
+</div>
+<div id="asymptotoic-result-sigma-unknown" class="section level2">
+<h2><span class="header-section-number">5.2</span> Asymptotoic result (<span class="math inline">\(\sigma\)</span> unknown)</h2>
+<p>It is unrealistic to expect that we know the population variance <span class="math inline">\(\sigma^{2}\)</span> but do not know the population mean <span class="math inline">\(\mu\)</span>. So in calculations that involve <span class="math inline">\(\sigma\)</span>, we want to use the sample standard deviation <span class="math inline">\(s\)</span> instead.</p>
+<p>Our previous results about confidence intervals assumed that <span class="math inline">\(\bar{X}\sim N\left(\mu,\frac{\sigma^{2}}{n}\right)\)</span> (or is approximately so) and therefore <span class="math display">\[\frac{\bar{X}-\mu}{\sqrt{\frac{\sigma^{2}}{n}}}\sim N\left(0,1\right)\]</span> I want to just replace <span class="math inline">\(\sigma^{2}\)</span> with <span class="math inline">\(S^{2}\)</span> but the sample variance <span class="math inline">\(S^{2}\)</span> is also a random variable and incorporating it into the standardization function might affect the distribution. <span class="math display">\[\frac{\bar{X}-\mu}{\sqrt{\frac{S^{2}}{n}}}\sim\;???\]</span> Unfortunately this substitution of <span class="math inline">\(S^{2}\)</span> for <span class="math inline">\(\sigma^{2}\)</span> comes with a cost and this quantity is not normally distributed. Instead it has a <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n-1\)</span> degrees of freedom. However as the sample size increases and <span class="math inline">\(S^{2}\)</span> becomes a more reliable estimator of <span class="math inline">\(\sigma^{2}\)</span>, this penalty should become smaller.</p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-86-1.png" width="672" /></p>
+<p>The <span class="math inline">\(t\)</span>-distribution is named after <a href="http://en.wikipedia.org/wiki/William_Sealy_Gosset">William Gosset</a> who worked at Guinness Brewing and did work with small sample sizes in both the brewery and at the farms that supplied the barley. Because Guinness prevented its employees from publishing any of their work, he published under the pseudonym Student.</p>
+<p>Notice that as the sample size increases, the t-distribution gets closer and closer to the normal distribution. From here on out, we will use the following standardization formula: <span class="math display">\[\frac{\bar{X}-\mu}{\frac{S}{\sqrt{n}}}\sim\;t_{n-1}\]</span> and emphasize that this formula is valid if the sample observations came from a population with a normal distribution or if the sample size is large enough for the Central Limit Theorem to imply that <span class="math inline">\(\bar{X}\)</span> is approximately normally distributed.</p>
+<p>Substituting the sample standard deviation into the confidence interval formula, we also substitute a t-quantile for the standard normal quantile. We will denote <span class="math inline">\(t_{n-1}^{1-\alpha/2}\)</span> as the <span class="math inline">\(1-\alpha/2\)</span> quantile of a <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n-1\)</span> degrees of freedom. Therefore we will use the following formula for the calculation of <span class="math inline">\(100\left(1-\alpha\right)\%\)</span> confidence intervals for the mean <span class="math inline">\(\mu\)</span>: <span class="math display">\[\bar{x}\pm t_{n-1}^{1-\alpha/2}\left(\frac{s}{\sqrt{n}}\right)\]</span></p>
+<p>Notation: We will be calculating confidence intervals for the rest of the course and it is useful to recognize the skeleton of a confidence interval formula. The basic form is always the same <span class="math display">\[Estimate\;\pm\,t_{df}^{1-\alpha/2}\,\,Standard\,Error\left(\,Estimate\,\right)\]</span> In our current problem, <span class="math inline">\(\bar{x}\)</span> is our estimate of <span class="math inline">\(\mu\)</span> and the estimated standard deviation (which is commonly called the standard error) is <span class="math inline">\(s/\sqrt{n}\)</span> and the appropriate degrees of freedom are <span class="math inline">\(df=n-1\)</span>.</p>
+<p>Example: Suppose we are interested in calculating a <span class="math inline">\(95\%\)</span> confidence interval for the mean weight of adult black bears. We collect a random sample of <span class="math inline">\(40\)</span> individuals (large enough for the CLT to kick in) and observe the following data:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bears &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">weight =</span> 
+   <span class="kw">c</span>(<span class="dv">306</span>, <span class="dv">446</span>, <span class="dv">276</span>, <span class="dv">235</span>, <span class="dv">295</span>, <span class="dv">302</span>, <span class="dv">374</span>, <span class="dv">339</span>, <span class="dv">624</span>, <span class="dv">266</span>,
+     <span class="dv">497</span>, <span class="dv">384</span>,  <span class="dv">429</span>, <span class="dv">497</span>, <span class="dv">224</span>, <span class="dv">157</span>, <span class="dv">248</span>, <span class="dv">349</span>, <span class="dv">388</span>, <span class="dv">391</span>,
+     <span class="dv">266</span>, <span class="dv">230</span>, <span class="dv">621</span>, <span class="dv">314</span>, <span class="dv">344</span>,  <span class="dv">413</span>, <span class="dv">267</span>, <span class="dv">380</span>, <span class="dv">225</span>, <span class="dv">418</span>,
+     <span class="dv">257</span>, <span class="dv">466</span>, <span class="dv">230</span>, <span class="dv">548</span>, <span class="dv">277</span>, <span class="dv">354</span>, <span class="dv">271</span>, <span class="dv">369</span>,  <span class="dv">275</span>, <span class="dv">272</span>))
+xbar &lt;-<span class="st"> </span><span class="kw">mean</span>(bears$weight)
+s    &lt;-<span class="st"> </span><span class="kw">sd</span>(  bears$weight)
+<span class="kw">cbind</span>(xbar, s)</code></pre></div>
+<pre><code>##       xbar        s
+## [1,] 345.6 108.8527</code></pre>
+<p>Notice that the data do not appear to come from a normal distribution, but a slightly heavier right tail. We’ll plot the histogram of data along with a normal distribution with the same mean and standard deviation as our data.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">normal.data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">weight=</span><span class="kw">seq</span>(<span class="dv">100</span>,<span class="dv">700</span>,<span class="dt">length=</span><span class="dv">1000</span>)) %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>( <span class="dt">y =</span> <span class="kw">dnorm</span>(weight, <span class="dt">mean=</span>xbar, <span class="dt">sd=</span>s))
+<span class="kw">ggplot</span>() +
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">y=</span><span class="st">&#39;density&#39;</span>) +
+<span class="st">  </span><span class="kw">geom_area</span>( <span class="dt">data=</span>normal.data, <span class="kw">aes</span>(<span class="dt">x=</span>weight, <span class="dt">y=</span>y), <span class="dt">fill=</span><span class="st">&#39;light blue&#39;</span> ) +
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">data=</span>bears, <span class="kw">aes</span>(<span class="dt">x=</span>weight, <span class="dt">y=</span>..density..),
+                 <span class="dt">binwidth=</span><span class="dv">30</span>, <span class="dt">alpha=</span>.<span class="dv">6</span>)  </code></pre></div>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-88-1.png" width="672" /></p>
+<p>The observed sample mean is <span class="math inline">\(\bar{x}=345.6\)</span> pounds and a sample standard deviation <span class="math inline">\(s=108.8527\)</span> pounds. Because we want a <span class="math inline">\(95\%\)</span> $confidence interval <span class="math inline">\(\alpha=0.05\)</span>. Using t-tables or the following R code</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qt</span>(.<span class="dv">975</span>, <span class="dt">df=</span><span class="dv">39</span>)</code></pre></div>
+<pre><code>## [1] 2.022691</code></pre>
+<p>we find that <span class="math inline">\(t_{n-1}^{1-\alpha/2}=2.022691\)</span>. Therefore the <span class="math inline">\(95\%\)</span> confidence interval is <span class="math display">\[\bar{x}   \pm t_{n-1}^{1-\alpha/2}\left(\frac{s}{\sqrt{n}}\right)\]</span> <span class="math display">\[345.6 \pm 2.022691\left(\frac{108.8527}{\sqrt{40}}\right)\]</span> <span class="math display">\[345.6 \pm 34.8\]</span> or <span class="math inline">\(\left(310.8, \, 380.4\right)\)</span> which is interpreted as “We are 95% confident that the true mean <span class="math inline">\(\mu\)</span> is in this interval” which is shorthand for “The process that resulted in this interval (taking a random sample, and then calculating an interval using the algorithm presented) will result in intervals such that 95% of them contain the mean <span class="math inline">\(\mu\)</span>, but we cannot know of this particular interval is one of the good ones or not.”</p>
+<p>We can wonder how well this interval matches up with the interval we would have gotten if we had used the bootstrap method to create a confidence interval for <span class="math inline">\(\mu\)</span>. In this case, where the sample size <span class="math inline">\(n\)</span> is relatively large, the Central Limit Theorem is certainly working and the distribution of the sample mean certainly looks fairly normal.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">SampDist &lt;-<span class="st"> </span>mosaic::<span class="kw">do</span>(<span class="dv">10000</span>) *<span class="st"> </span><span class="kw">resample</span>(bears) %&gt;%<span class="st"> </span><span class="kw">summarise</span>(<span class="dt">xbar=</span><span class="kw">mean</span>(weight)) 
+<span class="kw">ggplot</span>(SampDist, <span class="kw">aes</span>(<span class="dt">x=</span>xbar, <span class="dt">y=</span>..density..)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>()</code></pre></div>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-90-1.png" width="672" /></p>
+<p>Grabbing the appropriate quantiles from the bootstrap estimate of the sampling distribution, we see that the bootstrap <span class="math inline">\(95\%\)</span> confidence interval matches up will with the confidence interval we obtained from asymptotic theory.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">quantile</span>( SampDist$xbar, <span class="dt">probs=</span><span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>) )</code></pre></div>
+<pre><code>##     2.5%    97.5% 
+## 313.1750 380.4756</code></pre>
+<p>Example: Assume that the percent of alcohol in casks of whisky is normally distributed. From the last batch of casks produced, the brewer samples <span class="math inline">\(n=5\)</span> casks and wants to calculate a <span class="math inline">\(90\%\)</span> confidence interval for the mean percent alcohol in the latest batch produced. The sample mean was <span class="math inline">\(\bar{x}=55\)</span> percent and the sample standard deviation was <span class="math inline">\(s=4\)</span> percent.</p>
+<p><span class="math display">\[\bar{x}   \pm t_{n-1}^{1-\alpha/2}\left(\frac{s}{\sqrt{n}}\right)\]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qt</span>( <span class="dv">1</span> -<span class="st"> </span>.<span class="dv">1</span>/<span class="dv">2</span>, <span class="dt">df=</span><span class="dv">4</span>)  <span class="co"># 1-(.1)/2 = 1-.05 = .95</span></code></pre></div>
+<pre><code>## [1] 2.131847</code></pre>
+<p><span class="math display">\[55    \pm 2.13\left(\frac{4}{\sqrt{5}}\right)\]</span> <span class="math display">\[55    \pm 3.8\]</span></p>
+<p>Question: If we wanted a <span class="math inline">\(95\%\)</span> confidence interval, would it have been wider or narrower?</p>
+<p>Question: If this interval is too wide to be useful, what could we do to make it smaller?</p>
+</div>
+<div id="sample-size-selection" class="section level2">
+<h2><span class="header-section-number">5.3</span> Sample Size Selection</h2>
+<p>Often a researcher is in the position of asking how many sample observations are necessary to achieve a specific width of confidence interval. Let the margin of error, which we denote <span class="math inline">\(ME\)</span>, be the half-width desired (so the confidence interval would be <span class="math inline">\(\bar{x}\pm ME\)</span>). So given the desired confidence level, and if we know <span class="math inline">\(\sigma\)</span>, then we can calculate the necessary number of samples to achieve a particular <span class="math inline">\(ME\)</span>. To do this calculation, we must also have some estimate of the population standard deviation <span class="math inline">\(\sigma\)</span>.</p>
+<p><span class="math display">\[ME=z_{1-\alpha/2}\left(\frac{\sigma}{\sqrt{n}}\right)\]</span> and therefore <span class="math display">\[n\approx\left[z_{1-\alpha/2}\left(\frac{\sigma}{ME}\right)\right]^{2}\]</span></p>
+<p>Notice that because <span class="math display">\[n\propto\left[\frac{1}{ME}\right]^{2}\]</span> then if we want a margin of error that is twice as precise (i.e. the CI is half as wide) then we need to quadruple our sample size! Second, this result requires having some knowledge of <span class="math inline">\(\sigma\)</span>. We could acquire an estimate through: 1. a literature search 2. a pilot study 3. expert opinion.</p>
+<p>A researcher is interested in estimating the mean weight of an adult elk in Yellowstone’s northern herd after the winter and wants to obtain a <span class="math inline">\(90\%\)</span> confidence interval with a half-width <span class="math inline">\(ME=10\)</span> pounds. Using prior collection data from the fall harvest (road side checks by game wardens), the researcher believes that <span class="math inline">\(\sigma=60\)</span> lbs is a reasonable standard deviation number to use. <span class="math display">\[\begin{aligned}
+  n &amp;\approx    \left[ z_{0.95} \left(\frac{\sigma}{ME}\right)\right]^{2} \\
+      &amp;=    \left[1.645\left(\frac{60}{10}\right)\right]^{2}              \\
+      &amp;=    97.41  \end{aligned}\]</span></p>
+<p>Notice that I don’t bother using the <span class="math inline">\(t\)</span>-distribution in this calculations because because I am assuming that <span class="math inline">\(\sigma\)</span> is known. While this is a horrible assumption, the difference between using a <span class="math inline">\(t\)</span> quantile instead of <span class="math inline">\(z\)</span> quantile is small and what really matters is how good the estimate of <span class="math inline">\(\sigma\)</span> is. As with many things, the quality of the input values is reflected in the quality of the output. Typically this sort of calculation is done with only a rough estimate of <span class="math inline">\(\sigma\)</span> and therefore I would subsequently regard the resulting sample size <span class="math inline">\(n\)</span> as an equally rough estimate.</p>
+<p>We could be a bit more precise and use the <span class="math inline">\(t\)</span>-quantile, but because the degrees of freedom depend on <span class="math inline">\(n\)</span> as well, then we would have <span class="math inline">\(n\)</span> on both sides of the equation and there is no convenient algebraic solution to solving for <span class="math inline">\(n\)</span>. Later on we’ll use an R function that accounts for this, but for now we will use the rough approximation.</p>
+</div>
+<div id="exercises-4" class="section level2">
+<h2><span class="header-section-number">5.4</span> Exercises</h2>
+<ol style="list-style-type: decimal">
+<li><p>An experiment is conducted to examine the susceptibility of root stocks of a variety of lemon trees to a specific larva. Forty of the plants are subjected to the larvae and examined after a fixed period of time. The response of interest is the logarithm of the number of larvae per gram of of root stock. For these 40 plants, the sample mean is <span class="math inline">\(\bar{x}=11.2\)</span> and the sample standard deviation is <span class="math inline">\(s=1.3\)</span>. Use these data to construct a <span class="math inline">\(90\%\)</span> confidence interval for <span class="math inline">\(\mu\)</span>, the mean susceptibility of lemon tree root stocks from which the sample was taken.</p></li>
+<li><p>A social worker is interested in estimating the average length of time spent outside of prison for first offenders who later commit a second crime and are sent to prison again. A random sample of <span class="math inline">\(n=100\)</span> prison records in the count courthouse indicates that the average length of prison-free life between first and second offenses is <span class="math inline">\(4.2\)</span> years, with a standard deviation of <span class="math inline">\(1.1\)</span> years. Use this information to construct a <span class="math inline">\(95\%\)</span> confidence interval for <span class="math inline">\(\mu\)</span>, the average time between first and second offenses for all prisoners on record in the county courthouse.</p></li>
+<li><p>A biologist wishes to estimate the effect of an antibiotic on the growth of a particular bacterium by examining the number of colony forming units (CFUs) per plate of culture when a fixed amount of antibiotic is applied. Previous experimentation with the antibiotic on this type of bacteria indicates that the standard deviation of CFUs is approximately <span class="math inline">\(4\)</span>. Using this information, determine the number of observations (i.e. cultures developed) necessary to calculate a <span class="math inline">\(99\%\)</span> confidence interval with a half-width of <span class="math inline">\(1\)</span>.</p></li>
+<li>In the R package <code>Lock5Data</code>, the dataset <code>FloridaLakes</code> contains information about the mercury content of fish in 53 Florida lakes. For this question, we’ll be concerned with the average ppm of mercury in fish from those lakes which is encoded in the column AvgMercury.
+<ol style="list-style-type: lower-alpha">
+<li>Using the bootstrapping method, calculate a 95% confidence interval for <span class="math inline">\(\mu\)</span>, the average ppm of mercury in fish in all Florida lakes.</li>
+<li>Using the asymptotic approximations discussed in this chapter, calculate a 95% confidence interval for <span class="math inline">\(\mu\)</span>, the average ppm of mercury in fish in all Florida lakes.</li>
+<li>Comment on the similarity of these two intervals.</li>
+</ol></li>
+<li>In the R package <code>Lock5Data</code>, the dataset Cereal contains nutrition information about a random sample of 30 cereals taken from an on-line nutrition information website (see the help file for the dataset to get the link). For this problem, we’ll consider the column Sugars which records the grams of sugar per cup.
+<ol style="list-style-type: lower-alpha">
+<li>Using the bootstrapping method, calculate a 90% confidence interval for <span class="math inline">\(\mu\)</span>, the average grams of sugar per cup of all cereals listed on the website.</li>
+<li>Using the asymptotic approximations discussed in this chapter, calculate a 90% confidence interval for <span class="math inline">\(\mu\)</span>, the average grams of sugar per cup of all cereals listed on this website.</li>
+<li>Comment on the similarity of these two intervals.</li>
+<li>We could easily write a little program (or pay an undergrad) to obtain the nutritional information about all the cereals on the website so the random sampling of 30 cereals is unnecessary. However, a bigger concern is that the website cereals aren’t representative of cereals Americans eat. Why? For example, consider what would happen if we added 30 new cereals that were very nutritious but were never sold.</li>
+</ol></li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="4-sampling-distribution-of-barx.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/dereksonderegger/STA_570_Book/raw/master/05_ConfidenceIntervals.Rmd",
+"text": "Edit"
+},
+"download": null,
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -396,19 +396,19 @@ This identity is just breaking the event $A$ into two disjoint pieces.
 
 We are given the following data about insurance claims. Notice that the data is given as $P(\;Category\;\cap\;PolicyType\;)$ which is apparent because the sum of all the elements in the table is $100\%$
 
-  $\,$               |  Fire  | Auto  |  Other
--------------------- | ------ | ----- | ---------  
- **Fraudulant**      |    6%  |  1%   |   3%
- **non-Fraudulant**  |   14%  |  29%  |   47%
+|  $\,$              |  Fire  | Auto  |  Other   |
+|-------------------:|:------:|:-----:|:--------:|  
+| **Fraudulant**     |    6%  |  1%   |   3%     |
+| **non-Fraudulant** |   14%  |  29%  |   47%    |
 
 
 Summing across the rows and columns, we can find the probabilities of for each category and policy type.
 
-  $\,$               |  Fire    |  Auto   |  Other    |  $\,$
--------------------- | -------- | ------- | --------- | ---------- 
- **Fraudulant**      |    6%    |   1%    |   3%      |  **10%**
- **non-Fraudulant**  |   14%    |   29%   |   47%     |  **90%**
- $\,$                |  **20%** | **30%** | **50%**   |  **100%**
+|  $\,$               |  Fire    |  Auto   |  Other    |  $\,$      |
+|--------------------:|:--------:|:-------:|:---------:|:----------:| 
+|**Fraudulant**       |    6%    |   1%    |   3%      |  **10%**   |
+| **non-Fraudulant**  |   14%    |   29%   |   47%     |  **90%**   |
+| $\,$                |  **20%** | **30%** | **50%**   |  **100%**  |
 
 It is clear that fire claims are more likely fraudulent than auto or other claims. In fact, the proportion of fraudulent claims, given that the claim is against a fire policy is 
 $$\begin{aligned}
@@ -453,11 +453,11 @@ Suppose that convertibles make up just 10% of the domestic automobile market. Th
 
 Given the above information, we can create the following table:
 
-   $\,$       |    Convertable      |  Not Convertable   |  $\,$
-------------- | ------------------- | ------------------ | ----------   
- **Red**      |                     |                    |
- **Not Red**  |                     |                    |
- $\,$         |     **10%**         |     **90%**        |  **100%**
+|   $\,$       |    Convertable      |  Not Convertable   |  $\,$      |
+|-------------:|:-------------------:|:------------------:|:----------:|   
+| **Red**      |                     |                    |            |
+| **Not Red**  |                     |                    |            |
+| $\,$         |     **10%**         |     **90%**        |  **100%**  |
 
 We can fill in some of the table using our the definition of conditional probability. For example:
 $$\begin{aligned}
@@ -556,12 +556,11 @@ $$\begin{aligned} \sigma^{2}=V[S]
 	
  We could interpret the expectation as the sample mean of an infinitely large sample, and the variance as the sample variance of the same infinitely large sample. These are two very important numbers that describe the distribution.
 
-**Example 7**. My wife is a massage therapist and over the last year, the number of clients she sees per work day (denoted Y
- ) varied according the following table:
+**Example 7**. My wife is a massage therapist and over the last year, the number of clients she sees per work day (denoted Y) varied according the following table:
 
-  Number of Clients         |   0   |   1   |   2   |   3   |   4
---------------------------- | ----- | ----- | ----- | ----- | ----- 
-  **Frequency/Probability** |  0.30 |  0.35 |  0.20 |  0.10 |  0.05
+|  Number of Clients         |   0   |   1   |   2   |   3   |   4   |
+|---------------------------:|:-----:|:-----:|:-----:|:-----:|:-----:| 
+|  **Frequency/Probability** |  0.30 |  0.35 |  0.20 |  0.10 |  0.05 |
 
 ```{r}
 distr <- data.frame(    clients = c( 0,   1,    2,    3,    4   ),    # two columns 
@@ -573,6 +572,7 @@ ggplot(distr, aes(x=clients)) +                   # graph with clients as the x-
   theme_bw()                                      # set background color...
 ```
 Because this is the long term relative frequency of the number of clients (over 200 working days!), it is appropriate to interpret these frequencies as probabilities. This table and graph is often called a probability mass function (pmf) because it lists how the probability is spread across the possible values of the random variable. We might next ask ourselves what is the average number of clients per day? It looks like it ought to be between 1 and 2 clients per day. 
+
 $$\begin{aligned} E\left(Y\right)	
   &=	\sum_{\textrm{possible }y}y\,P\left(Y=y\right) \\
 	&=	\sum_{y=0}^{4}y\,P\left(Y=y\right) \\
@@ -603,16 +603,16 @@ Note on Notation: There is a difference between the upper and lower case letters
 
 The possible outcomes are 
   
-  Outcome           |  $\,$
-------------------- | ------
-  $E_1, E_2, E_3$   |  $\,$
-  $C_1, E_2, E_3$   |  $\,$
-  $E_1, C_2, E_3$   |  $\,$
-  $E_1, E_2, C_3$   |  $\,$
-  $C_1, C_2, E_3$   |  $\,$
-  $C_1, E_2, C_3$   |  $\,$
-  $E_1, C_2, C_3$   |  $\,$
-  $C_1, C_2, C_3$   |  $\,$
+|  Outcome           |  $\,$  |
+|:------------------:|:------:|
+|  $E_1, E_2, E_3$   |  $\,$  |
+|  $C_1, E_2, E_3$   |  $\,$  |
+|  $E_1, C_2, E_3$   |  $\,$  |
+|  $E_1, E_2, C_3$   |  $\,$  |
+|  $C_1, C_2, E_3$   |  $\,$  |
+|  $C_1, E_2, C_3$   |  $\,$  |
+|  $E_1, C_2, C_3$   |  $\,$  |
+|  $C_1, C_2, C_3$   |  $\,$  |
 
 Because these are far apart enough in space that the outcome of Trap1 is independent of Trap2 and Trap3, then 
 $$P(E_{1}\cap C_{2}\cap E_{3})	=	P(E_{1})P(C_{2})P(E_{3})
@@ -620,29 +620,29 @@ $$P(E_{1}\cap C_{2}\cap E_{3})	=	P(E_{1})P(C_{2})P(E_{3})
 	=	0.032$$
 **Notice how important the assumption of independence is!!!** Similarly we could calculate the probabilities for the rest of the table.
 
-  Outcome           |   Probability   |  $S$ Outcome  |   Probability
-------------------- | --------------- | ------------- | ---------------
-  $E_1, E_2, E_3$   |     0.008       |   $S=0$       |     0.008
-------------------- | --------------- | ------------- | ---------------
-  $C_1, E_2, E_3$   |     0.032       |               |
-  $E_1, C_2, E_3$   |     0.032       |   $S=1$       |  $3(0.032) = 0.096$
-  $E_1, E_2, C_3$   |     0.032       |               |
-------------------- | --------------- | ------------- | ---------------
-  $C_1, C_2, E_3$   |     0.128       |               |
-  $C_1, E_2, C_3$   |     0.128       |   $S=2$       |  $3(0.128) = 0.384$
-  $E_1, C_2, C_3$   |     0.128       |               |
-------------------- | --------------- | ------------- | ---------------
-  $C_1, C_2, C_3$   |     0.512       |   $S=3$       |  $0.512$
+|  Outcome           |   Probability   |  $S$ Outcome  |   Probability        |
+|:------------------:|:---------------:|:-------------:|:--------------------:|
+|  $E_1, E_2, E_3$   |     0.008       |   $S=0$       |     0.008            |
+|------------------- | --------------- | ------------- | ---------------      |
+|  $C_1, E_2, E_3$   |     0.032       |               |                      |
+|  $E_1, C_2, E_3$   |     0.032       |   $S=1$       |  $3(0.032) = 0.096$  |
+|  $E_1, E_2, C_3$   |     0.032       |               |                      |
+|------------------- | --------------- | ------------- | ---------------      |
+|  $C_1, C_2, E_3$   |     0.128       |               |                      | 
+|  $C_1, E_2, C_3$   |     0.128       |   $S=2$       |  $3(0.128) = 0.384$  |
+|  $E_1, C_2, C_3$   |     0.128       |               |                      |
+|------------------- | --------------- | ------------- | ---------------      |
+|  $C_1, C_2, C_3$   |     0.512       |   $S=3$       |  $0.512$             |
 
 
 Next we are interested in the random variable $S$, the number of traps that were filled:
 
-  $S$ Outcome  |   Probability
- ------------- | ---------------
-   $S=0$       |  $0.008$
-   $S=1$       |  $0.096$
-   $S=2$       |  $0.384$
-   $S=3$       |  $0.512$
+|  $S$ Outcome  |   Probability   |
+|:-------------:|:---------------:|
+|   $S=0$       |  $0.008$        |
+|   $S=1$       |  $0.096$        |
+|   $S=2$       |  $0.384$        |
+|   $S=3$       |  $0.512$        |
 
 
 $S$ is an example of a Binomial Random Variable. A binomial experiment is one that:
@@ -892,7 +892,7 @@ data <- rbind(data.frame(x=seq(-5,8,length=2000), grp=1, mu=0, sigma=1),
          mu = paste('mu == ', mu),
          sigma = paste('sigma ==', sigma))
 label.df <- data.frame( grp=rep(1:3, each=2), label=c('mu == 0','sigma == 1', 'mu == 2','sigma == 2', 'mu==-3','sigma == 0.6'),
-                        x = c(0,0, 4.8,4.8, -4.15,-4.15), y= c(.45,.43,  .15,.13, .55,.53))
+                        x = c(0,0, 4.8,4.8, -4.15,-4.15), y= c(.46,.43,  .16,.13, .56,.53))
 ggplot(data, aes(x=x, y=y, color=factor(grp))) +
   geom_line() +
   geom_text(data=label.df, aes(label=label), parse=TRUE) +
@@ -982,15 +982,15 @@ There will be a variety of distributions we'll be interested in and R refers to 
 +--------------+-------------+---------------+------------------------------------+
 | Distribution |  Stem       | Parameters    | Parameter Interpretation           |
 +==============+=============+===============+====================================+
-| Binomial     | `binom`     | `size`        | Number of Trials                   |
+| Binomial     | `binom`     | `size`        | Number of Trials,                  |
 |              |             | `prob`        | Probability of Success (per Trial) |
 +--------------+-------------+---------------+------------------------------------+
 | Exponential  | `exp`       | `rate`        | Mean of the distribution           |
 +--------------+-------------+---------------+------------------------------------+
-| Normal       | `norm`      | `mean=0`      | Center of the distribution         |
+| Normal       | `norm`      | `mean=0`      | Center of the distribution,        |
 |              |             | `sd=1`        | Standard deviation                 |
 +--------------+-------------+---------------+------------------------------------+
-| Uniform      | `unif`      | `min=0`       | Minimum of the distribution        |
+| Uniform      | `unif`      | `min=0`       | Minimum and                        |
 |              |             | `max=1`       | Maximum of the distribution        | 
 +--------------+-------------+---------------+------------------------------------+
 
@@ -1058,9 +1058,9 @@ All the probability distributions available in R are accessed in exactly the sam
 
 6. Suppose that the number of runners I see on a morning walk on the trails near my house has the following distribution (Notice I've never seen four or more runners on a morning walk):
     
-       y         |    0    |   1    |    2   |   3   |   4+
----------------- | ------- | ------ | ------ | ----- | ------
- **Probabilty**  |   0.45  |  0.25  |  0.20  |       |   0.0
+|       y         |    0    |   1    |    2   |   3   |   4+   |
+|----------------:|:-------:|:------:|:------:|:-----:|:------:|
+| **Probabilty**  |   0.45  |  0.25  |  0.20  |       |   0.0  |
     
     a) What is the probability that I see 3 runners on a morning walk?
     b) What is the expected number of runners that I will encounter?

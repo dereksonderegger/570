@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Introduction to Statistical Methodology</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="Introduction to Statistical Methodology">
+  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Introduction to Statistical Methodology" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="dereksonderegger/STA_570_Book" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Introduction to Statistical Methodology" />
+  
+  
+  
+
+<meta name="author" content="Derek L. Sonderegger">
+
+
+<meta name="date" content="2017-01-24">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="5-confidence-intervals-for-mu.html">
+
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Statistical Methods I</a></li>
+<li><a href="https://dereksonderegger.github.io/570/Statistical_Methods_I.pdf" target="blank">PDF version</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Summary Statistics and Graphing</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#graphical-summaries-of-data"><i class="fa fa-check"></i><b>1.1</b> Graphical summaries of data</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#univariate---categorical"><i class="fa fa-check"></i><b>1.1.1</b> Univariate - Categorical</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#univariate---continuous"><i class="fa fa-check"></i><b>1.1.2</b> Univariate - Continuous</a></li>
+<li class="chapter" data-level="1.1.3" data-path="index.html"><a href="index.html#bivariate---categorical-vs-continuous"><i class="fa fa-check"></i><b>1.1.3</b> Bivariate - Categorical vs Continuous</a></li>
+<li class="chapter" data-level="1.1.4" data-path="index.html"><a href="index.html#bivariate---continuous-vs-continuous"><i class="fa fa-check"></i><b>1.1.4</b> Bivariate - Continuous vs Continuous</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#measures-of-centrality"><i class="fa fa-check"></i><b>1.2</b> Measures of Centrality</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#mean"><i class="fa fa-check"></i><b>1.2.1</b> Mean</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#median"><i class="fa fa-check"></i><b>1.2.2</b> Median</a></li>
+<li class="chapter" data-level="1.2.3" data-path="index.html"><a href="index.html#mode"><i class="fa fa-check"></i><b>1.2.3</b> Mode</a></li>
+<li class="chapter" data-level="1.2.4" data-path="index.html"><a href="index.html#examples"><i class="fa fa-check"></i><b>1.2.4</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#measures-of-variation"><i class="fa fa-check"></i><b>1.3</b> Measures of Variation</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#range"><i class="fa fa-check"></i><b>1.3.1</b> Range</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#inter-quartile-range"><i class="fa fa-check"></i><b>1.3.2</b> Inter-Quartile Range</a></li>
+<li class="chapter" data-level="1.3.3" data-path="index.html"><a href="index.html#variance"><i class="fa fa-check"></i><b>1.3.3</b> Variance</a></li>
+<li class="chapter" data-level="1.3.4" data-path="index.html"><a href="index.html#standard-deviation"><i class="fa fa-check"></i><b>1.3.4</b> Standard Deviation</a></li>
+<li class="chapter" data-level="1.3.5" data-path="index.html"><a href="index.html#coefficient-of-variation"><i class="fa fa-check"></i><b>1.3.5</b> Coefficient of Variation</a></li>
+<li class="chapter" data-level="1.3.6" data-path="index.html"><a href="index.html#empirical-rule-of-thumb"><i class="fa fa-check"></i><b>1.3.6</b> Empirical Rule of Thumb</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#exercises"><i class="fa fa-check"></i><b>1.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-probability.html"><a href="2-probability.html"><i class="fa fa-check"></i><b>2</b> Probability</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-probability.html"><a href="2-probability.html#introduction-to-set-theory"><i class="fa fa-check"></i><b>2.1</b> Introduction to Set Theory</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="2-probability.html"><a href="2-probability.html#composition-of-events"><i class="fa fa-check"></i><b>2.1.1</b> Composition of events</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2-probability.html"><a href="2-probability.html#probability-rules"><i class="fa fa-check"></i><b>2.2</b> Probability Rules</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="2-probability.html"><a href="2-probability.html#simple-rules"><i class="fa fa-check"></i><b>2.2.1</b> Simple Rules</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2-probability.html"><a href="2-probability.html#conditional-probability"><i class="fa fa-check"></i><b>2.2.2</b> Conditional Probability</a></li>
+<li class="chapter" data-level="2.2.3" data-path="2-probability.html"><a href="2-probability.html#summary-of-probability-rules"><i class="fa fa-check"></i><b>2.2.3</b> Summary of Probability Rules</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="2-probability.html"><a href="2-probability.html#discrete-random-variables"><i class="fa fa-check"></i><b>2.3</b> Discrete Random Variables</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="2-probability.html"><a href="2-probability.html#introduction-to-discrete-random-variables"><i class="fa fa-check"></i><b>2.3.1</b> Introduction to Discrete Random Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="2-probability.html"><a href="2-probability.html#common-discrete-distributions"><i class="fa fa-check"></i><b>2.4</b> Common Discrete Distributions</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="2-probability.html"><a href="2-probability.html#binomial-distribution"><i class="fa fa-check"></i><b>2.4.1</b> Binomial Distribution</a></li>
+<li class="chapter" data-level="2.4.2" data-path="2-probability.html"><a href="2-probability.html#poisson-distribution"><i class="fa fa-check"></i><b>2.4.2</b> Poisson Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="2-probability.html"><a href="2-probability.html#continuous-random-variables"><i class="fa fa-check"></i><b>2.5</b> Continuous Random Variables</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="2-probability.html"><a href="2-probability.html#uniform01-distribution"><i class="fa fa-check"></i><b>2.5.1</b> Uniform(0,1) Distribution</a></li>
+<li class="chapter" data-level="2.5.2" data-path="2-probability.html"><a href="2-probability.html#exponential-distribution"><i class="fa fa-check"></i><b>2.5.2</b> Exponential Distribution</a></li>
+<li class="chapter" data-level="2.5.3" data-path="2-probability.html"><a href="2-probability.html#normal-distribution"><i class="fa fa-check"></i><b>2.5.3</b> Normal Distribution</a></li>
+<li class="chapter" data-level="2.5.4" data-path="2-probability.html"><a href="2-probability.html#standardizing"><i class="fa fa-check"></i><b>2.5.4</b> Standardizing</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="2-probability.html"><a href="2-probability.html#exercises-1"><i class="fa fa-check"></i><b>2.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html"><i class="fa fa-check"></i><b>3</b> Confidence Intervals via Bootstrapping</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#theory-of-bootstrapping"><i class="fa fa-check"></i><b>3.1</b> Theory of Bootstrapping</a></li>
+<li class="chapter" data-level="3.2" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#quantile-based-confidence-intervals"><i class="fa fa-check"></i><b>3.2</b> Quantile-based Confidence Intervals</a></li>
+<li class="chapter" data-level="3.3" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#exercises-2"><i class="fa fa-check"></i><b>3.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html"><i class="fa fa-check"></i><b>4</b> Sampling Distribution of <span class="math inline">\(\bar{X}\)</span></a><ul>
+<li class="chapter" data-level="4.1" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#enlightening-example"><i class="fa fa-check"></i><b>4.1</b> Enlightening Example</a></li>
+<li class="chapter" data-level="4.2" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#mathematical-details"><i class="fa fa-check"></i><b>4.2</b> Mathematical details</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#probability-rules-for-expectations-and-variances"><i class="fa fa-check"></i><b>4.2.1</b> Probability Rules for Expectations and Variances</a></li>
+<li class="chapter" data-level="4.2.2" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#mean-and-variance-of-the-sample-mean"><i class="fa fa-check"></i><b>4.2.2</b> Mean and Variance of the Sample Mean</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#distribution-of-barx"><i class="fa fa-check"></i><b>4.3</b> Distribution of <span class="math inline">\(\bar{X}\)</span></a></li>
+<li class="chapter" data-level="4.4" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#central-limit-theorem"><i class="fa fa-check"></i><b>4.4</b> Central Limit Theorem</a></li>
+<li class="chapter" data-level="4.5" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#exercises-3"><i class="fa fa-check"></i><b>4.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html"><i class="fa fa-check"></i><b>5</b> Confidence Intervals for <span class="math inline">\(\mu\)</span></a><ul>
+<li class="chapter" data-level="5.1" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#asymptotic-result-sigma-known"><i class="fa fa-check"></i><b>5.1</b> Asymptotic result (<span class="math inline">\(\sigma\)</span> known)</a></li>
+<li class="chapter" data-level="5.2" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#asymptotoic-result-sigma-unknown"><i class="fa fa-check"></i><b>5.2</b> Asymptotoic result (<span class="math inline">\(\sigma\)</span> unknown)</a></li>
+<li class="chapter" data-level="5.3" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#sample-size-selection"><i class="fa fa-check"></i><b>5.3</b> Sample Size Selection</a></li>
+<li class="chapter" data-level="5.4" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#exercises-4"><i class="fa fa-check"></i><b>5.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html"><i class="fa fa-check"></i><b>6</b> Hypothesis Tests for the mean of a population</a><ul>
+<li class="chapter" data-level="6.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#writing-hypotheses"><i class="fa fa-check"></i><b>6.1</b> Writing Hypotheses</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#null-and-alternative-hypotheses"><i class="fa fa-check"></i><b>6.1.1</b> Null and alternative hypotheses</a></li>
+<li class="chapter" data-level="6.1.2" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#error"><i class="fa fa-check"></i><b>6.1.2</b> Error</a></li>
+<li class="chapter" data-level="6.1.3" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#why-should-hypotheses-use-mu-and-not-barx"><i class="fa fa-check"></i><b>6.1.3</b> Why should hypotheses use <span class="math inline">\(\mu\)</span> and not <span class="math inline">\(\bar{x}\)</span>?</a></li>
+<li class="chapter" data-level="6.1.4" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#calculating-p-values"><i class="fa fa-check"></i><b>6.1.4</b> Calculating p-values</a></li>
+<li class="chapter" data-level="6.1.5" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#calculating-p-values-vs-cutoff-values"><i class="fa fa-check"></i><b>6.1.5</b> Calculating p-values vs cutoff values</a></li>
+<li class="chapter" data-level="6.1.6" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#t-tests-in-r"><i class="fa fa-check"></i><b>6.1.6</b> t-tests in R</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i><b>6.2</b> Type I and Type II Errors</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#power-and-sample-size-selection"><i class="fa fa-check"></i><b>6.2.1</b> Power and Sample Size Selection</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#exercises-5"><i class="fa fa-check"></i><b>6.3</b> Exercises</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Statistical Methodology</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="hypothesis-tests-for-the-mean-of-a-population" class="section level1">
+<h1><span class="header-section-number">Chapter 6</span> Hypothesis Tests for the mean of a population</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(tidyr)
+<span class="kw">library</span>(mosaic)</code></pre></div>
+<p>Science is done by observing how the world works, making a conjecture (or hypothesis) about the mechanism and then performing experiments to see if real data agrees or disagrees with the proposed hypothesis.</p>
+<p><strong>Example</strong>. Suppose a rancher in Texas (my brother-in-law Bryan) wants to buy some calves from another rancher. This rancher claims that the average weight of his calves is 500 pounds. My brother-in-law likes them and buys 10. A few days later he starts looking at the cows and begins to wonder if the average really is 500 pounds. He weighs his 10 cows and the sample mean is <span class="math inline">\(\bar{x}=475\)</span> and the sample standard deviation is <span class="math inline">\(s=50\)</span>. Below are the data</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cows &lt;-<span class="st"> </span><span class="kw">data.frame</span>(    
+  <span class="dt">weight =</span> <span class="kw">c</span>(<span class="dv">553</span>, <span class="dv">466</span>, <span class="dv">451</span>, <span class="dv">421</span>, <span class="dv">523</span>, <span class="dv">517</span>, <span class="dv">451</span>, <span class="dv">510</span>, <span class="dv">392</span>, <span class="dv">466</span>) )
+cows %&gt;%<span class="st"> </span><span class="kw">summarise</span>( <span class="dt">xbar=</span><span class="kw">mean</span>(weight), <span class="dt">s=</span><span class="kw">sd</span>(weight) )</code></pre></div>
+<pre><code>##   xbar        s
+## 1  475 49.99556</code></pre>
+<p>There are two possibilities. Either Bryan was just unlucky the random selection of his 10 cows from the heard, or the true average weight within the herd is less than 500.</p>
+<p><span class="math display">\[H_{0}:\;\mu   =   500\]</span> <span class="math display">\[H_{a}:\;\mu   &lt;   500\]</span></p>
+<p>For this calculation we’ll assume the weight of a steer is normally distributed <span class="math inline">\(N\left(\mu,\sigma\right)\)</span>, and therefore <span class="math inline">\(\bar{X}\)</span> is normally distributed <span class="math inline">\(N\left(\mu,\frac{\sigma}{\sqrt{n}}\right)\)</span>. If true mean is 500, how likely is it to get a sample mean of 475 (or less)? One way to think about this is that we want a measure of how extreme the event is that we observed, and one way to do that is to calculate how much probability there is for events that are even more extreme.</p>
+<p>To calculate how far into the tail our observed sample mean <span class="math inline">\(\bar{x}=475\)</span> is by measuring the area of the distribution that is farther into the tail than the observed value.</p>
+<p><span class="math display">\[\begin{aligned}P\left(\bar{X}\le475\right)    
+    &amp;= P\left(\frac{\bar{X}-\mu}{\left(\frac{s}{\sqrt{n}}\right)}\le\frac{475-500}{\left(\frac{50}{\sqrt{10}}\right)}\right) \\
+      &amp;= P\left(T_{9}\le-1.58\right) \\
+      &amp;=    0.074 \end{aligned}\]</span></p>
+<p>We see that the observed <span class="math inline">\(\bar{X}\)</span> is in the tail of the distribution and tends to not support <span class="math inline">\(H_{0}\)</span>.</p>
+<p>P-value is the probability of seeing the observed data or something more extreme given the null hypothesis is true. By “something more extreme”, we mean samples that would be more evidence for the alternative hypothesis.</p>
+<p><span class="math display">\[\mbox{p-value}=P(T_{9}&lt;-1.58)=0.074\]</span></p>
+<p>The above value is the actual value calculated using R</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#        pt(-1.58, df=9)    # No Graph</span>
+mosaic::<span class="kw">xpt</span>(-<span class="fl">1.58</span>, <span class="dt">df=</span><span class="dv">9</span>)    <span class="co"># With a graph</span></code></pre></div>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-96-1.png" width="672" /></p>
+<pre><code>## [1] 0.07428219</code></pre>
+<p>but using tables typically found in intro statistics books, the most precise thing you would be able to say is <span class="math inline">\(0.05 \le \mbox{p-value} \le 0.10\)</span> So there is a small chance that my brother-in-law just got unlucky with his ten cows. While the data isn’t entirely supportive of <span class="math inline">\(H_{0}\)</span>, we don’t have strong enough data to out right reject <span class="math inline">\(H_{0}\)</span>. So we will say that we fail to reject <span class="math inline">\(H_{0}\)</span>. Notice that we aren’t saying that we accept the null hypothesis, only that there is insufficient evidence to call-out the neighbor as a liar.</p>
+<div id="writing-hypotheses" class="section level2">
+<h2><span class="header-section-number">6.1</span> Writing Hypotheses</h2>
+<div id="null-and-alternative-hypotheses" class="section level3">
+<h3><span class="header-section-number">6.1.1</span> Null and alternative hypotheses</h3>
+<p>In elementary school most students are taught the scientific method follows the following steps:</p>
+<ol style="list-style-type: decimal">
+<li>Ask a question of interest.</li>
+<li>Construct a hypothesis.</li>
+<li>Design and conduct an experiment that challenges the hypothesis.</li>
+<li>Depending on how consistent the data is with the hypothesis:
+<ol style="list-style-type: lower-alpha">
+<li>If the observed data is inconsistent with the hypothesis, then we have proven it wrong and we should consider competing hypotheses.</li>
+<li>If the observed data is consistent with the hypothesis, design a more rigorous experiment to continue testing the hypothesis.</li>
+</ol></li>
+</ol>
+<p>Through the iterative process of testing ideas and refining them under the ever growing body of evidence, we continually improve our understanding of how our universe works. The heart of the scientific method is the falsification of hypothesis and statistics is the tool we’ll use to assess the consistency of our data with a hypothesis.</p>
+<p>Science is done by examining competing ideas for how the world works and throwing evidence at them. Each time a hypothesis is removed, the remaining hypotheses appear to be more credible. This doesn’t mean the remaining hypotheses are correct, only that they are consistent with the available data.</p>
+<ol style="list-style-type: decimal">
+<li><p>In approximately 300 BC, <a href="http://en.wikipedia.org/wiki/Eratosthenes">Eratosthenes</a> showed that the world was not flat. (Carl Sagan has an excellent episode of Cosmos on this <a href="https://www.youtube.com/watch?v=G8cbIWMv0rI">topic</a>. He did this by measuring the different lengths of shadows of identical sticks in two cities that were 580 miles apart but lay on the same meridian (Alexandria is directly north of Aswan). His proposed alternative was that the Earth was a sphere. While his alternative is not technically true (it is actually an oblate spheroid that bulges at the equator), it was substantially better than the flat world hypothesis.</p></li>
+<li><p>At one point it was believed that plants “ate” the soil and turned it into plant mass. A experiment to test this hypothesis was performed by Johannes Baptista van Helmont in 1648 in which he put exactly 200 pounds of soil in a pot and then grew a willow tree out of it for five years. At the end of the experiment, the pot contained 199.875 pounds of soil and 168 pounds of willow tree. He correctly concluded that the plant matter was not substantially taken from the soil but incorrectly jumped to the conclusion that the mass must of have come from the water that was used to irrigate the willow.</p></li>
+</ol>
+<p>It is helpful to our understanding to label the different hypothesis, both the ones being tested and the different alternatives. We’ll label the hypothesis being tested as <span class="math inline">\(H_{0}\)</span> which we often refer to as the “null hypothesis.” The alternative hypothesis, which we’ll denote <span class="math inline">\(H_{a}\)</span>, should be the opposite of the null hypothesis. Had Eratosthenes known about modern scientific methods, he would have correctly considered <span class="math inline">\(H_{0}\)</span>: the world is flat verses <span class="math inline">\(H_{a}\)</span>: the world is not flat and not incorrectly concluded that the world is a sphere. Amusingly Eratosthenes’ data wasn’t inconsistent with the hypothesis that the world was shaped like a donut, but he thought the sphere to be more likely. Likewise Helmont should have considered the hypotheses <span class="math inline">\(H_{0}\)</span>: plants only consume soil versus the alternative <span class="math inline">\(H_{a}\)</span>: plants consume something besides soil.</p>
+<p>In both of cases, the observed data was compared to what would have been expected if the null hypothesis was true. If the null was true Eratosthenes would have seen the same length shadow in both cities and Helmont would have seen 168 pounds of willow tree and <span class="math inline">\(200-168=32\)</span> pounds of soil remaining.</p>
+</div>
+<div id="error" class="section level3">
+<h3><span class="header-section-number">6.1.2</span> Error</h3>
+<p>Unfortunately the world is not a simple place and experiments rarely can isolate exactly the hypothesis being tested. We can repeat an experiment and get slightly different results each time due to variation in weather, temperature, or diligence of the researcher. If we are testing the effectiveness of a new drug to treat a particular disease, we don’t trust the results of a single patient, instead we wish to examine many patients (some that receive the new drug and some the receive the old) to average out the noise between the patients. The questions about how many patients do we need to have and how large of a difference between the treatments is large enough to conclude the new drug is better are the heart of modern statistics.</p>
+<p>Suppose we consider the population of all US men aged 40-60 with high blood pressure (there might be about 20 million people in this population). We want to know if exercise and ACE inhibitors lower systolic blood pressure better than exercise alone for these people. We’ll consider the null hypothesis that exercise is equivalent to exercise and ACE inhibitors versus exercise is different than exercise and ACE inhibitors. If we could take every single member of the population and expose them to exercise or exercise with ACE inhibitors, we would know for certain how the population reacts to the different treatments. Unfortunately this is too expensive and ethically dubious.</p>
+<p>Instead of testing the entire population we’ll take a sample of <span class="math inline">\(n\)</span> men from the population and treat half of them with exercise alone and half of them with exercise and ACE inhibitors. What might our data look like if there is a difference between the two treatments at different samples sizes compared to if there is no difference? At small sample sizes it is difficult to distinguish the effect of the treatment when it is masked by individual variation. At high sample sizes, the individual variation is smoothed out and the difference between the treatments can be readily seen.</p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-97-1.png" width="672" /></p>
+<p>Comparing possible data assuming there is a difference between treatments versus no difference. In the top row of graphs, there is a difference between the Exercise and the Exercise + Inhibitor treatments. However, at small sample sizes, we can’t tell if the observed difference is due to the difference in treatment or just random variation in the data. In the second row, there is no difference between the treatments.</p>
+<p>When the sample size is large it is easy to see if the treatments differ in their effect on systolic blood pressure, but at medium or small sample sizes, the question is much harder. It is important to recognize that the core of the problem is still “is the observed data consistent with the null hypothesis?” but we now have to consider an addition variability term that is unrelated to the research hypothesis of interest. In the above example, the small sample data is consistent with the null hypothesis even when the null hypothesis is false!</p>
+<p>Perhaps the hardest part about conducting a hypothesis test is figuring out what the null and alternative hypothesis should be. The null hypothesis is a statement about a population parameter. <span class="math display">\[H_{0}:\mbox{ population parameter = hypothesized value}\]</span> and the alternative will be one of <span class="math display">\[\begin{aligned} 
+  H_{a}:    \textrm{population parameter }  &amp;&lt;   \textrm{ hypothesized value} \\    
+  H_{a}:    \textrm{population parameter }  &amp;&gt;   \textrm{ hypothesized value} \\    
+  H_{a}:    \textrm{population parameter }  &amp;\ne \textrm{ hypothesized value}
+\end{aligned}\]</span> The hard part is figuring which of the possible alternatives we should examine. The alternative hypothesis is what the researcher believes is true. By showing that the complement of <span class="math inline">\(H_{a}\)</span> (that is <span class="math inline">\(H_{0}\)</span>) can not be true, we support the alternative which we believe to be true.</p>
+<p><span class="math inline">\(H_{0}\)</span> is often a statement of no effect, or no difference between the claimed and observed.</p>
+<p><em>Example</em> A light bulb company advertises that their bulbs last for 1000 hours. Consumers will be unhappy if the bulbs last less time, but will not mind if the bulbs last longer. Therefore Consumer Reports might perform a test and would consider the hypotheses <span class="math display">\[H_{0}:\;\mu   =   1000\]</span> <span class="math display">\[H_{a}:\;\mu   &lt;   1000\]</span></p>
+<p>Suppose we perform an experiment with <span class="math inline">\(n=20\)</span> lightbulbs and observe <span class="math inline">\(\bar{x}=980\)</span> and <span class="math inline">\(s=64\)</span> hours and therefore our test statistic is <span class="math display">\[ t_{19}   =   \frac{\bar{x}-\mu}{s/\sqrt{n}} =    \frac{980-1000}{64/\sqrt{20}} = -1.40\]</span> Then the p-value would be</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#        pt(-1.4, df=19)    # No Graph</span>
+mosaic::<span class="kw">xpt</span>(-<span class="fl">1.4</span>, <span class="dt">df=</span><span class="dv">19</span> )   <span class="co"># With a Graph</span></code></pre></div>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-98-1.png" width="672" /></p>
+<pre><code>## [1] 0.08881538</code></pre>
+<p>and we calculate p-value <span class="math inline">\(=P\left(T_{19}&lt;-1.4\right)=0.0888\)</span></p>
+<p><strong>Example</strong> A computer company is buying resistors from another company. The resistors are supposed to have a resistance of <span class="math inline">\(2\)</span> Ohms and too much or too little resistance is bad. Here we would be testing <span class="math display">\[\begin{aligned} 
+  H_{0}:\mbox{ }\mu &amp;=    2 \\    
+  H_{a}:\mbox{ }\mu &amp;\ne    2 
+  \end{aligned}\]</span></p>
+<p>Suppose we perform a test of a random sample of resistors and obtain a test statistics of <span class="math inline">\(t_{9}=1.8\)</span>. Because the p-value is “the probability of your data or something more extreme” and in this case more extreme implies extreme values in both tails then</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mosaic::<span class="kw">xpt</span>( <span class="kw">c</span>(-<span class="fl">1.8</span>, <span class="fl">1.8</span>), <span class="dt">df=</span><span class="dv">9</span>)</code></pre></div>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-99-1.png" width="672" /></p>
+<pre><code>## [1] 0.05269534 0.94730466</code></pre>
+<p>and we calculate <span class="math display">\[\textrm{p-value} = P\left(\left|T_{9}\right|&gt;1.8\right)=2P\left(T_{9}&lt;-1.8\right)=2\left(0.0527\right)=0.105\]</span></p>
+<p>using the R commands</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2</span> *<span class="st"> </span><span class="kw">pt</span>(-<span class="fl">1.8</span>, <span class="dt">df=</span><span class="dv">9</span>)</code></pre></div>
+<pre><code>## [1] 0.1053907</code></pre>
+</div>
+<div id="why-should-hypotheses-use-mu-and-not-barx" class="section level3">
+<h3><span class="header-section-number">6.1.3</span> Why should hypotheses use <span class="math inline">\(\mu\)</span> and not <span class="math inline">\(\bar{x}\)</span>?</h3>
+<p>There is no need to make a statistical test of the form <span class="math display">\[\begin{aligned} 
+  H_{0}:\;\bar{x}   &amp;=    3  \\
+  H_{a}:\;\bar{x}   &amp;\ne    3 
+\end{aligned}\]</span></p>
+<p>because we know the value of <span class="math inline">\(\bar{x}\)</span>; we calculated the value there is no uncertainty to what it is. However I want to use the sample mean <span class="math inline">\(\bar{x}\)</span> as an estimate of the population mean <span class="math inline">\(\mu\)</span> and because I don’t know what <span class="math inline">\(\mu\)</span> is but know that it should be somewhere near <span class="math inline">\(\bar{x}\)</span>, my hypothesis test is a question about <span class="math inline">\(\mu\)</span> and if it is near the value stated in the null hypothesis.</p>
+<p>Hypotheses are always statements about population parameters such as <span class="math inline">\(\mu\)</span> or <span class="math inline">\(\sigma\)</span> and never about sample statistic values such as <span class="math inline">\(\bar{x}\)</span> or <span class="math inline">\(s\)</span>.</p>
+<p><em>Examples</em></p>
+<ol style="list-style-type: decimal">
+<li>A potato chip manufacturer advertises that it sells 16 ounces of chips per bag. A consumer advocacy group wants to test this claim. They take a sample of <span class="math inline">\(n=18\)</span> bags and carefully weights the contents of each bag and calculate a sample mean <span class="math inline">\(\bar{x}=15.8\)</span> oz and a sample standard deviation of <span class="math inline">\(s=0.2\)</span>.
+<ol style="list-style-type: lower-alpha">
+<li>State an appropriate null and alternative hypothesis. <span class="math display">\[\begin{aligned} H_{0}:\mu  &amp;= 16\mbox{ oz } \\
+              H_{a}:\mu  &amp;&lt; 16\mbox{ oz }
+\end{aligned}\]</span></li>
+<li>Calculate an appropriate test statistic given the sample data. <span class="math display">\[t=\frac{\bar{x}-\mu_{0}}{\frac{s}{\sqrt{n}}}=\frac{15.8-16}{\frac{.2}{\sqrt{18}}}=-4.24\]</span></li>
+<li>Calculate the p-value. <span class="math display">\[\mbox{p-value }=P(T_{17}&lt;-4.24)=0.000276\]</span></li>
+<li>Do you reject or fail to reject the null hypothesis at the <span class="math inline">\(\alpha=0.05\)</span> level? <em>Because the p-value is less than <span class="math inline">\(\alpha=0.05\)</span> we will reject the null hypothesis.</em></li>
+<li>State your conclusion in terms of the problem. <em>There is statistically significant evidence to conclude that the mean weight of chips is less than 16 oz.</em></li>
+</ol></li>
+<li>A pharmaceutical company has developed an improved pain reliever and believes that it acts faster than the leading brand. It is well known that the leading brand takes <span class="math inline">\(25\)</span> minutes to act. They perform an experiment on <span class="math inline">\(16\)</span> people with pain and record the time until the patient notices pain relief. The sample mean is <span class="math inline">\(\bar{x}=23\)</span> minutes, and the sample standard deviation was <span class="math inline">\(s=10\)</span> minutes.
+<ol style="list-style-type: lower-alpha">
+<li>State an appropriate null and alternative hypothesis. <span class="math display">\[\begin{aligned} H_{0}:\mu  &amp;= 25\mbox{ minutes } \\
+              H_{a}:\mu  &amp;&lt; 25\mbox{ minutes }
+\end{aligned}\]</span></li>
+<li>Calculate an appropriate test statistic given the sample data. <span class="math display">\[t_{15}=\frac{\bar{x}-\mu_{0}}{\frac{s}{\sqrt{n}}}=\frac{23-25}{\frac{10}{\sqrt{16}}}=-0.8\]</span></li>
+<li>Calculate the p-value. <span class="math display">\[\mbox{p-value }=P(T_{15}&lt;-0.8)=0.218\]</span></li>
+<li>Do you reject or fail to reject the null hypothesis at the <span class="math inline">\(\alpha=.10\)</span> level?<br />
+<em>Since the p-value is larger than my <span class="math inline">\(\alpha\)</span>-level, I will fail to reject the null hypothesis.</em></li>
+<li>State your conclusion in terms of the problem. <em>These data do not provide statistically significant evidence to conclude that this new pain reliever acts faster than the leading brand.</em></li>
+</ol></li>
+<li>Consider the case of SAT test preparation course. They claim that their students perform better than the national average of 1019. We wish to perform a test to discover whether or not that is true. <span class="math display">\[\begin{aligned} H_{0}:\,\mu    &amp;= 1019  \\
+              H_{a}:\,\mu    &amp;&gt; 1019
+\end{aligned}\]</span> They take a sample of size <span class="math inline">\(n=10\)</span> and the sample mean is <span class="math inline">\(\bar{x}=1020\)</span>, with a sample standard deviation <span class="math inline">\(s=50\)</span>. The test statistic is <span class="math display">\[t_{9}=\frac{\bar{x}-\mu_{0}}{\frac{s}{\sqrt{n}}}=\frac{1}{\frac{50}{\sqrt{10}}}=.06\]</span> So the p-value is <span class="math inline">\(\mbox{p-value }=P(T_{9}&gt;.06)\approx0.5\)</span> and we fail to reject the null hypothesis. However, what if they had performed this experiment with <span class="math inline">\(n=20000\)</span> students and gotten the same results? <span class="math display">\[t_{19999}=\frac{\bar{x}-\mu_{0}}{\frac{s}{\sqrt{n}}}=\frac{1}{\frac{50}{\sqrt{20000}}}=2.83\]</span> and thus <span class="math inline">\(\mbox{p-value }=P(T_{19999}&gt;2.83)=0.0023\)</span> At <span class="math inline">\(\alpha=.05\)</span>, we will reject the null hypothesis and conclude that there is statistically significant evidence that the students who take the course perform better than the national average.</li>
+</ol>
+<p>So what just happened and what does “statistically significant” mean? It appears that there is very slight difference between the students who take the course versus those that don’t. With a small sample size we can not detect that difference, but by taking a large sample size, I can detect the difference of even 1 SAT point. So here I would say that there is a statistical difference between the students who take the course versus those that don’t because given such a large sample, we are very unlikely to see a sample mean of <span class="math inline">\(\bar{x}=1020\)</span> if the true mean is <span class="math inline">\(\mu=1019\)</span>. So statistically significant really means “unlikely to occur by random chance”.</p>
+<p>But is there a practical difference in 1 SAT point? Not really. Since SAT scores are measured in multiple of 5 (you can score 1015, or 1020, but not 1019), there isn’t any practical value of raising a students score by 1 point. By taking a sample so large, I have been able to detect a completely worthless difference.</p>
+<p>Thus we have an example of a statistically significant difference, but it is not a practical difference.</p>
+</div>
+<div id="calculating-p-values" class="section level3">
+<h3><span class="header-section-number">6.1.4</span> Calculating p-values</h3>
+<p>Students often get confused by looking up probabilities in tables and don’t know which tail of the distribution supports the alternative hypothesis. This is further exacerbated by tables sometimes giving area to the left, sometimes area to the right, and R only giving area to the left. In general, your best approach to calculating p-values correctly is to draw the picture of the distribution of the test statistic (usually a t-distribution) and decide which tail(s) supports the alternative and figuring out the area farther out in the tail(s) than your test statistic. However, since some students need a more algorithmic set of instructions, the following will work:</p>
+<ol style="list-style-type: decimal">
+<li>If your alternative has a <span class="math inline">\(\ne\)</span> sign
+<ol style="list-style-type: lower-alpha">
+<li>Look up the value of your test statistic in whatever table you are going to use and get some probability… which I’ll call <span class="math inline">\(p^{*}\)</span>.</li>
+<li>Is <span class="math inline">\(p^{*} &gt; 0.5\)</span>? If so, you just looked up the area in the wrong tail. To fix your error, subtract from one… that is <span class="math inline">\(p^{*} \leftarrow 1-p^{*}\)</span></li>
+<li>Because this is a two sided test, multiply <span class="math inline">\(p^{*}\)</span> by two and that is your p-value. <span class="math inline">\(\textrm{p-value}=2\left(p^{*}\right)\)</span></li>
+<li>A p-value is a probability and therefore must be in the range <span class="math inline">\([0,1]\)</span>. If what you’ve calculated is outside that range, you’ve made a mistake.</li>
+</ol></li>
+<li>If your alternative is <span class="math inline">\(&lt;\)</span> (or <span class="math inline">\(&gt;\)</span>) then the p-value is the area to the left (to the right for the greater than case) of your test statistic.
+<ol style="list-style-type: lower-alpha">
+<li>Look up the value of your test statistic in whatever table you are using and get the probability… which again I’ll call <span class="math inline">\(p^{*}\)</span></li>
+<li>If <span class="math inline">\(p^{*} &gt; 0.5\)</span>, you have most likely screwed up and looked up the area for the wrong tail. Be careful here, because if your alternative is “greater than” and your test statistic is negative, then the p-value <em>really is</em> greater than <span class="math inline">\(0.5\)</span>. This situation is rare and 9 times out of 10, the student has just used the table incorrectly. Most of the time you’ll subtract from one <span class="math inline">\(p^{*}=1-p^{*}\)</span>.</li>
+<li>After possibly adjusting for looking up the wrong tail, your p-value is <span class="math inline">\(p^{*}\)</span> with no multiplication necessary.</li>
+</ol></li>
+</ol>
+</div>
+<div id="calculating-p-values-vs-cutoff-values" class="section level3">
+<h3><span class="header-section-number">6.1.5</span> Calculating p-values vs cutoff values</h3>
+<p>We have been calculating p-values and then comparing those values to the desired alpha level. It is possible, however, to use the alpha level to back-calculate a cutoff level for the test statistic, or even original sample mean. Often these cutoff values are referred to as critical values. Neither approach is wrong, but is generally a matter of preference, although knowing both techniques can be useful.</p>
+<p><strong>Example</strong>. We return to the pharmaceutical company that has developed a new pain reliever. Recall null and alternative hypothesis was <span class="math display">\[\begin{aligned} H_{0}:\mu  &amp;= 25\mbox{ minutes } \\
+                  H_{a}:\mu  &amp;&lt; 25\mbox{ minutes } \end{aligned}\]</span> and we had observed a test statistic <span class="math display">\[t=\frac{\bar{x}-\mu_{0}}{\frac{s}{\sqrt{n}}}=\frac{23-25}{\frac{10}{\sqrt{16}}}=-0.8\]</span> with <span class="math inline">\(15\)</span> degrees of freedom. Using an <span class="math inline">\(\alpha=0.10\)</span> level of significance, if this test statistic is smaller than the <span class="math inline">\(0.10\)</span>th quantile of a <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(15\)</span> degrees of freedom, then we will reject the null hypothesis. This cutoff value is <span class="math inline">\(t_{crit}=-1.341\)</span> and can be using either R or the t-table. Because the observed test statistic is less extreme than the cutoff value, we failed to reject the null hypothesis.</p>
+<p>We can push this idea even farther and calculate a critical value on the original scale of <span class="math inline">\(\bar{x}\)</span> by solving <span class="math display">\[\begin{aligned}
+t_{crit}    &amp;=  \frac{\bar{x}_{crit}-\mu_{0}}{\left( \frac{s}{\sqrt{n}} \right)} \\
+\\
+-1.341    &amp;=    \frac{\bar{x}_{crit}-25}{\left( \frac{10}{\sqrt{16}} \right) }    \\
+-1.341\left(\frac{10}{\sqrt{16}}\right)+25  &amp;=  \bar{x}_{crit}  \\
+21.65   &amp;=  \bar{x}_{crit}
+\end{aligned}\]</span> So if we observe a sample mean <span class="math inline">\(\bar{x}&lt;21.65\)</span> then we would reject the null hypothesis. Here we actually observed <span class="math inline">\(\bar{x}=23\)</span> so this comparison still fails to reject the null hypothesis and concludes there is insufficient evidence to reject that the new pain reliever has the same time till relief as the old medicine.</p>
+<p>In general, I prefer to calculate and report p-values because they already account for any ambiguity in if we are dealing with a 1 sided or 2 sided test and how many degrees of freedom there are.</p>
+</div>
+<div id="t-tests-in-r" class="section level3">
+<h3><span class="header-section-number">6.1.6</span> t-tests in R</h3>
+<p>While it is possible to do t-tests by hand, most people will use a software package to perform these calculations. Here we will use the R function <code>t.test()</code>. This function expects a vector of data (so that it can calculate <span class="math inline">\(\bar{x}\)</span> and <span class="math inline">\(s\)</span>) and a hypothesized value of <span class="math inline">\(\mu\)</span>.</p>
+<p><em>Example</em>. Suppose we have data regarding fuel economy of <span class="math inline">\(5\)</span> vehicles of the same make and model and we wish to test if the observed fuel economy is consistent with the advertised <span class="math inline">\(31\)</span> mpg at highway speeds. Assuming the fuel economy varies normally amongst cars of the same make and model, we test <span class="math display">\[\begin{aligned} H_{0}:\,\mu    &amp;= 31 \\
+                  H_{a}:\,\mu    &amp;\ne   31 \end{aligned}\]</span> and calculate</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cars &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">mpg =</span> <span class="kw">c</span>(<span class="fl">31.8</span>, <span class="fl">32.1</span>, <span class="fl">32.5</span>, <span class="fl">30.9</span>, <span class="fl">31.3</span>))
+cars %&gt;%<span class="st"> </span><span class="kw">summarise</span>(<span class="kw">mean</span>(mpg), <span class="kw">sd</span>(mpg))</code></pre></div>
+<pre><code>##   mean(mpg)   sd(mpg)
+## 1     31.72 0.6340347</code></pre>
+<p>The test statistic is: <span class="math display">\[t=\frac{\bar{x}-\mu_{0}}{s/\sqrt{n}}=\frac{31.72-31}{\left(\frac{0.634}{\sqrt{5}}\right)}=2.54\]</span></p>
+<p>The p-value is <span class="math display">\[\textrm{p-value}=2\cdot P\left(T_{4}&gt;2.54\right)=0.064\]</span></p>
+<p>and a <span class="math inline">\(95\%\)</span> confidence interval is <span class="math display">\[\begin{aligned} 
+\bar{x} &amp;\pm    t_{n-1}^{1-\alpha/2}\left(\frac{s}{\sqrt{n}}\right) \\
+31.72     &amp;\pm  2.776445\left(\frac{0.63403}{\sqrt{5}}\right)       \\
+31.72     &amp;\pm  0.7872 \\
+        [30.93,\; &amp; 32.51]
+\end{aligned}\]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>( cars$mpg, <span class="dt">mu=</span><span class="dv">31</span>, <span class="dt">alternative=</span><span class="st">&#39;two.sided&#39;</span> )</code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  cars$mpg
+## t = 2.5392, df = 4, p-value = 0.06403
+## alternative hypothesis: true mean is not equal to 31
+## 95 percent confidence interval:
+##  30.93274 32.50726
+## sample estimates:
+## mean of x 
+##     31.72</code></pre>
+<p>The <code>t.test()</code> function supports testing one-sided alternatives and more information can be found in the R help system using <code>help(t.test)</code>.</p>
+</div>
+</div>
+<div id="type-i-and-type-ii-errors" class="section level2">
+<h2><span class="header-section-number">6.2</span> Type I and Type II Errors</h2>
+<p>We can think of the p-value as measuring how much evidence we have for the null hypothesis. If the p-value is small, the evidence for the null hypothesis is small. Conversely if the p-value is large, then the data is supporting the null hypothesis.</p>
+<p>There is an important philosophical debate about how much evidence do we need in order to reject the null hypothesis. My brother-in-law would have to have extremely strong evidence before he stated the other rancher was wrong. Likewise, researchers needed solid evidence before concluding that Newton’s Laws of Motion were incorrect.</p>
+<p>Since the p-value is a measure of support for the null hypothesis, if the p-value drops below a specified threshold (call it <span class="math inline">\(\alpha\)</span>), I will chose to reject the null hypothesis. Different scientific disciplines have different levels of rigor. Therefore they set commonly used <span class="math inline">\(\alpha\)</span> levels differently. For example physicists demand a high degree of accuracy and consistency, thus might use <span class="math inline">\(\alpha=0.01\)</span>, while ecologists deal with very messy data and might use an <span class="math inline">\(\alpha=0.10\)</span>.</p>
+<p>The most commonly used <span class="math inline">\(\alpha\)</span>-level is <span class="math inline">\(\alpha=0.05\)</span>, which is traditional due to an off-hand comment by R.A. Fisher. There is nothing that fundamentally forces us to use <span class="math inline">\(\alpha=0.05\)</span> other than tradition. However, when sociologists do experiments presenting subjects with unlikely events, it is usually when the events have a probability around <span class="math inline">\(0.05\)</span> that the subjects begin to suspect they are being duped.</p>
+<p>People who demand rigor might want to set <span class="math inline">\(\alpha\)</span> as low as possible, but there is a trade off. Consider the following possibilities, where the “True State of Nature” is along the top, and the decision is along the side.</p>
+<table style="width:72%;">
+<colgroup>
+<col width="23%" />
+<col width="23%" />
+<col width="25%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td></td>
+<td><p><span class="math inline">\(H_0\)</span> <strong>True</strong></p></td>
+<td><p><span class="math inline">\(H_0\)</span> <strong>False</strong></p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Fail to reject</strong> <span class="math inline">\(H_0\)</span></p></td>
+<td><p>:)</p></td>
+<td><p>Type II Error</p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Reject</strong> <span class="math inline">\(H_0\)</span></p></td>
+<td><p>Type II Error</p></td>
+<td><p>:)</p></td>
+</tr>
+</tbody>
+</table>
+<p>There are two ways to make a mistake. The type I error is to reject <span class="math inline">\(H_{0}\)</span> when it is true. This error is controlled by <span class="math inline">\(\alpha\)</span>. We can think of <span class="math inline">\(\alpha\)</span> as the probability of rejecting <span class="math inline">\(H_{0}\)</span> when we shouldn’t. However there is a trade off. If <span class="math inline">\(\alpha\)</span> is very small then we will fail to reject <span class="math inline">\(H_{0}\)</span> in cases where <span class="math inline">\(H_{0}\)</span> is not true. This is called a type II error and we will define <span class="math inline">\(\beta\)</span> as the probability of failing to reject <span class="math inline">\(H_{0}\)</span> when it is false.</p>
+<p>This trade off between type I and type II errors can be seen by examining our legal system. A person is presumed innocent until proven guilty. So the hypothesis being tested in the court of law are</p>
+<p><span class="math display">\[\begin{aligned} H_{0}: &amp;  \textrm{ defendent is innocent}  \\
+                  H_{a}: &amp;  \textrm{ defendent is guilty} \end{aligned}\]</span></p>
+<p>Our legal system theoretically operates under the rule that it is better to let 10 guilty people go free, than wrongly convict 1 innocent. In other words, it is worse to make a type I mistake (concluding guilty when innocent), than to make a type II mistake (concluding not guilty when guilty). Critically, when a jury finds a person “not guilty” they are not saying that defense team has proven that the defendant is innocent, but rather that the prosecution has not proven the defendant guilty.</p>
+<p>This same idea manifests itself in science with the <span class="math inline">\(\alpha\)</span>-level. Typically we decide that it is better to make a type II mistake. An experiment that results in a large p-value does not prove that <span class="math inline">\(H_{0}\)</span> is true, but that there is insufficient evidence to conclude <span class="math inline">\(H_{a}\)</span>.</p>
+<p>If we still suspect that <span class="math inline">\(H_{a}\)</span> is true, then we must repeat the experiment with a larger samples size. A larger sample size makes it possible to detect smaller differences.</p>
+<div id="power-and-sample-size-selection" class="section level3">
+<h3><span class="header-section-number">6.2.1</span> Power and Sample Size Selection</h3>
+<p>Just as we calculated the necessary sample size to achieve a confidence interval of a specified width, we are also often interested in calculating the necessary sample size to to find a significant difference from the hypothesized mean <span class="math inline">\(\mu_{0}\)</span>. Just as in the confidence interval case where we had to specify the half-width <span class="math inline">\(E\)</span> and some estimate of the population standard deviation <span class="math inline">\(\hat{\sigma}\)</span>, we now must specify a difference we want to be able to detect <span class="math inline">\(\delta\)</span> and an estimate of the population standard deviation <span class="math inline">\(\hat{\sigma}\)</span>.</p>
+<p><em>Example</em>. Suppose that I work in Quality Control for a company that manufactures a type of rope. This rope is supposed to have a mean breaking strength of <span class="math inline">\(5000\)</span> pounds and long experience with the process suggests that the standard deviation is approximately <span class="math inline">\(s=50\)</span>. As with many manufacturing processes, sometimes the machines that create the rope get out of calibration. So each morning we take a random sample of <span class="math inline">\(n=7\)</span> pieces of rope and using <span class="math inline">\(\alpha=0.05\)</span>, test the hypothesis <span class="math display">\[\begin{aligned} H_{0}:\;\mu    &amp;= 5000  \\
+                  H_{a}:\;\mu    &amp;&lt; 5000  \end{aligned}\]</span> Notice that I will reject the null hypothesis if <span class="math inline">\(\bar{x}\)</span> is less than some cut-off value (which we denote <span class="math inline">\(\bar{x}_{crit}\)</span>), which we calculate by first recognizing that the critical t-value is <span class="math display">\[t_{crit}=t_{n-1}^{\alpha}=-1.943\]</span> and then solving the following equation for <span class="math inline">\(\bar{x}_{crit}\)</span> <span class="math display">\[\begin{aligned}
+t_{crit}    &amp;=  \frac{\bar{x}_{crit}-\mu_{0}}{\frac{s}{\sqrt{n}}} \\
+t_{crit}\left(\frac{s}{\sqrt{n}}\right)+\mu_{0} &amp;=  \bar{x}_{crit} \\
+-1.943\left(\frac{50}{\sqrt{7}}\right)+5000 &amp;=  \bar{x}_{crit} \\
+4963    &amp;=  \bar{x}_{crit}
+\end{aligned}\]</span></p>
+<p>There is a trade off between the Type I and Type II errors. By making a Type I error, I will reject the null hypothesis when the null hypothesis is true. Here I would stop manufacturing for the day while recalibrating the machine. Clearly a Type I error is not good. The probability of making a Type I error is denoted <span class="math inline">\(\alpha\)</span>.</p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-103-1.png" width="672" /></p>
+<p>A type II error occurs when I fail to reject the null hypothesis when the alternative is true. This would mean that we would be selling ropes that have a breaking point less than the advertised amount. This opens the company up to a lawsuit. We denote the probability of making a Type II error is denoted as <span class="math inline">\(\beta\)</span> and define Power <span class="math inline">\(=1-\beta\)</span>. But consider that I don’t want to be shutting down the plant when the breaking point is just a few pounds from the true mean. The head of engineering tells me that if the average breaking point is more than <span class="math inline">\(50\)</span> pounds less than <span class="math inline">\(5000\)</span>, we have a problem, but less than <span class="math inline">\(50\)</span> pounds is acceptable.</p>
+<p>So I want to be able to detect if the true mean is less than <span class="math inline">\(4950\)</span> pounds. Consider the following where we assume <span class="math inline">\(\mu=4950\)</span>.</p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-104-1.png" width="672" /></p>
+<p>The the probability of a type II error is <span class="math display">\[\begin{aligned}
+\beta   &amp;=  P\left(\bar{X}&gt;4963.3\;|\,\mu=4950\right) \\
+        &amp;=  P\left(\frac{\bar{X}-4950}{50/\sqrt{7}}&gt;\frac{4963.3-4950}{50/\sqrt{7}}\right) \\
+        &amp;=  P\left(T_{6}&gt;0.703\right) \\
+        &amp;=  0.254 \end{aligned}\]</span></p>
+<p>and therefore my power for detecting a mean breaking strength less than or equal to 4950 is <span class="math inline">\(1-\beta=0.7457\)</span> which is very close to what any statistical package will calculate for us.The power calculation should done using a t-distribution with non-centrality parameter instead of just shifting the distribution. The difference is slight, but is enough to cause our calculation to be slightly off. This power is rather low and I would prefer to have the power be near <span class="math inline">\(0.95\)</span>. We can improve our power by using a larger sample size. We’ll repeat these calculations using <span class="math inline">\(n=15\)</span>.</p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-105-1.png" width="672" /></p>
+<p>Power calculations are relatively tedious to do by hand, but fortunately there are several very good resources for exploring how power and sample size interact. My favorite is a Java Applet web page maintained by Dr. Russ Lenth at <a href="http://www.stat.uiowa.edu/~rlenth/Power/" class="uri">http://www.stat.uiowa.edu/~rlenth/Power/</a>. It will provide you a list of analysis to do the calculations for and the user is responsible for knowing that we are doing a one-sample t-test with a one-sided alternative.</p>
+<p>Alternatively, we can do these calculations in R using the function <code>power.t.test()</code>.</p>
+<p>Fundamentally there are five values that can be used and all power calculators will allow a user to input four of them and the calculator will calculate the fifth.</p>
+<ol style="list-style-type: decimal">
+<li>The difference <span class="math inline">\(\delta\)</span> from the hypothesized mean <span class="math inline">\(\mu_{0}\)</span> that we wish to detect.</li>
+<li>The population standard deviation <span class="math inline">\(\sigma\)</span>.</li>
+<li>The significance level of the test <span class="math inline">\(\alpha\)</span>.</li>
+<li>The power of the test <span class="math inline">\(1-\beta\)</span>.</li>
+<li>The sample size <span class="math inline">\(n\)</span>.</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">power.t.test</span>(<span class="dt">delta=</span><span class="dv">50</span>, <span class="dt">sd=</span><span class="dv">50</span>, <span class="dt">sig.level=</span><span class="fl">0.05</span>, <span class="dt">n=</span><span class="dv">7</span>, 
+             <span class="dt">type=</span><span class="st">&quot;one.sample&quot;</span>, <span class="dt">alternative=</span><span class="st">&quot;one.sided&quot;</span>)</code></pre></div>
+<pre><code>## 
+##      One-sample t test power calculation 
+## 
+##               n = 7
+##           delta = 50
+##              sd = 50
+##       sig.level = 0.05
+##           power = 0.7543959
+##     alternative = one.sided</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">power.t.test</span>(<span class="dt">delta=</span><span class="dv">50</span>, <span class="dt">sd=</span><span class="dv">50</span>, <span class="dt">sig.level=</span><span class="fl">0.05</span>, <span class="dt">power=</span><span class="fl">0.95</span>, 
+             <span class="dt">type=</span><span class="st">&quot;one.sample&quot;</span>, <span class="dt">alternative=</span><span class="st">&quot;one.sided&quot;</span>)</code></pre></div>
+<pre><code>## 
+##      One-sample t test power calculation 
+## 
+##               n = 12.32052
+##           delta = 50
+##              sd = 50
+##       sig.level = 0.05
+##           power = 0.95
+##     alternative = one.sided</code></pre>
+<p>The general process for selecting a sample size is to</p>
+<ol style="list-style-type: decimal">
+<li>Pick a <span class="math inline">\(\alpha\)</span>-level. Usually this is easy and people use <span class="math inline">\(\alpha=0.05\)</span>.</li>
+<li>Come up with an estimate for the standard deviation <span class="math inline">\(\sigma\)</span>. If you don’t have an estimate, then a pilot study should be undertaken to get a rough idea what the variability is. Often this is the only good data that comes out of the first field season in a dissertation.</li>
+<li>Decide how large of an effect is scientifically interesting.</li>
+<li>Plug the results of steps 1-3 into a power calculator and see how large a study you need to achieve a power of <span class="math inline">\(90\%\)</span> or <span class="math inline">\(95\%\)</span>.</li>
+</ol>
+</div>
+</div>
+<div id="exercises-5" class="section level2">
+<h2><span class="header-section-number">6.3</span> Exercises</h2>
+<ol style="list-style-type: decimal">
+<li><p>One way the amount of sewage and industrial pollutants dumped into a body of water affects the health of the water is by reducing the amount of dissolved oxygen available for aquatic life. Over a 2-month period, 8 samples were taken from a river at a location 1 mile downstream from a sewage treatment plant. The amount of dissolved oxygen in the samples was determined and is reported in the following table.</p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="center">5.1</td>
+<td align="center">4.9</td>
+<td align="center">5.6</td>
+<td align="center">4.2</td>
+<td align="center">4.8</td>
+<td align="center">4.5</td>
+<td align="center">5.3</td>
+<td align="center">5.2</td>
+</tr>
+</tbody>
+</table>
+Current research suggests that the mean dissolved oxygen level must be at least 5.0 parts per million (ppm) for fish to survive. Do the calculations in parts (b) and (e) by hand.
+<ol style="list-style-type: lower-alpha">
+<li>Use R to calculate the sample mean and standard deviation.</li>
+<li>Using the asymptotic results and the quantities you calculated, by hand calculation create a <span class="math inline">\(95\%\)</span> two-sided confidence interval for the mean dissolved oxygen level during the 2-month period. What assumption is being made for this calculation to be valid?</li>
+<li>Calculate a 95% two-sided confidence interval using the bootstrap method. Examine the bootstrap distribution of the sample means, does it appear normal? If so, what does that imply about the assumption you made in the calculation in the previous part?</li>
+<li>Using the confidence interval calculated in part (b), do the data support the hypothesis that the mean dissolved oxygen level is equal to 5 ppm?</li>
+<li>Using the quantities you calculated in part (a), by hand perform a 1-sided hypothesis test that the mean oxygen level is less that 5 ppm with a significance level of <span class="math inline">\(\alpha=0.05\)</span>.</li>
+<li>Use the function <code>t.test</code> in R to repeat the calculations you made in parts (b) and (e).</li>
+</ol></li>
+<li><p>We are interested in investigating how accurate radon detectors sold to homeowners are. We take a randomly selection of <span class="math inline">\(n=12\)</span> detectors and expose them to <span class="math inline">\(105\)</span> pico-curies per liter (pCi/l) of radon. The following values were given by the radon detectors.</p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="center">91.9</td>
+<td align="center">97.8</td>
+<td align="center">111.4</td>
+<td align="center">122.3</td>
+<td align="center">105.4</td>
+<td align="center">95</td>
+<td align="center">103.8</td>
+<td align="center">99.6</td>
+<td align="center">96.6</td>
+<td align="center">119.3</td>
+<td align="center">104.8</td>
+<td align="center">101.7</td>
+</tr>
+</tbody>
+</table>
+<p>Do all of the following calculations by hand (except for the calculations of the mean and standard deviation).</p>
+<ol style="list-style-type: lower-alpha">
+<li>Calculate a <span class="math inline">\(90\%\)</span> confidence interval using the asymptotic method.</li>
+<li>State an appropriate null and alternative hypothesis for a two-sided t-test. Why is a two-sided test appropriate here?</li>
+<li>Calculate an appropriate test statistic.</li>
+<li>Calculate a p-value.</li>
+<li>At an <span class="math inline">\(\alpha=0.10\)</span> level, what is your conclusion. Be sure to state your conclusion in terms of the problem.</li>
+<li>Use the function t.test() to redo the the hand calculations you did in parts (a), (c), (d).</li>
+</ol></li>
+<li><p>Given data such that <span class="math inline">\(X_{i}\sim N\left(\mu,\sigma^{2}=5^{2}\right)\)</span>, the following graph shows the distribution of a sample mean of <span class="math inline">\(n=8\)</span> observations under the null hypothesis <span class="math inline">\(H_{0}:\mu=5\)</span>. We are interested in testing the alternative <span class="math inline">\(H_{a}:\mu&gt;5\)</span> at the <span class="math inline">\(\alpha=0.05\)</span> level and therefore the cut off point for rejecting the null hypothesis is <span class="math inline">\(t_{crit}=1.895\)</span> and <span class="math inline">\(\bar{x}_{crit}=1.895*5+5=8.35\)</span>.</p>
+<ol style="list-style-type: lower-alpha">
+<li>Add the plot of the distribution of the sample mean if <span class="math inline">\(\mu=11\)</span> and denote which areas represent <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span>, and the power in the figure below. <em>I expect most people will print out the graph and shade/label everything by hand.</em></li>
+</ol>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-110-1.png" width="672" /></p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Under the same alternative value of <span class="math inline">\(\mu=11\)</span>, find the probability of a Type II error. That is, calculate the value of <span class="math inline">\(\beta=P\left(\bar{X}&lt;8.35\,|\,\mu=11\right)\)</span>.</li>
+</ol></li>
+<li>A study is to be undertaken to study the effectiveness of connective tissue massage therapy on the range of motion of the hip joint for elderly clients. Practitioners think that a reasonable standard deviation of the differences (post - pre) would be <span class="math inline">\(\sigma=20\)</span> degrees.
+<ol style="list-style-type: lower-alpha">
+<li>Suppose an increase of 5 degrees in the range would be a clinically significant result. How large of a sample would be necessary if we wanted to control the Type I error rate by <span class="math inline">\(\alpha=0.1\)</span> and the Type II error rate with <span class="math inline">\(\beta=0.1\)</span> (therefore the power is <span class="math inline">\(1-\beta=0.90\)</span>)? Use the use the <code>power.t.test()</code> function available in the package <code>pwr</code> to find the necessary sample size.</li>
+<li>Suppose we were thought that only increases greater than 10 degrees were substantive. How large must our minimum sample size be in this case? Comment on how much larger a sample size must be to detect a difference half as small.</li>
+</ol></li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="5-confidence-intervals-for-mu.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/dereksonderegger/STA_570_Book/raw/master/06_HypothesisTests.Rmd",
+"text": "Edit"
+},
+"download": null,
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -575,6 +575,7 @@ ggplot(distr, aes(x=clients)) +                   # graph with clients as the x-
   geom_linerange(aes(ymax=probability, ymin=0)) + # the vertical lines       
   theme_bw()                                      # set background color...
 ```
+
 Because this is the long term relative frequency of the number of clients (over 200 working days!), it is appropriate to interpret these frequencies as probabilities. This table and graph is often called a probability mass function (pmf) because it lists how the probability is spread across the possible values of the random variable. We might next ask ourselves what is the average number of clients per day? It looks like it ought to be between 1 and 2 clients per day. 
 
 $$\begin{aligned} E\left(Y\right)	
@@ -584,7 +585,24 @@ $$\begin{aligned} E\left(Y\right)
 	&=	0\left(0.3\right)+1\left(0.35\right)+2\left(0.20\right)+3\left(0.10\right)+4\left(0.05\right) \\
 	&=	1.25 \end{aligned}$$
  
-Assuming that successive days are independent (which might be a bad assumption) what is the probability she has two days in a row with no clients?
+Notice that this number is not an integer and therefore is not a value that $Y$ could actually take on.  You might be tempted to therefore round it to the nearest integer.  That would be wrong. The rational is that if I wanted to estimate the number of clients she has per month (and thus her income), we would have a worse estimate if we used the rounded number.
+
+There are many cases were the expected value is not a value that could occur, but rounding it to the nearst value that could occur would be inappropriate. A Roulette wheel has 18 red and 18 black slots along with 2 green. If you bet $\$$1 on red, you could either win a dollar or lose a dollar. Because the probabilities are
+
+|                   |    Win ( + $1 )        |  Lose (- $1)      |
+|------------------:|:----------------------:|:-----------------:|
+| **Probability**   |  $\frac{18}{38}$       |  $\frac{20}{38}$  |
+
+Then the persons expected winnings per play are:
+
+$$ \begin{aligned}E[W] 
+  =	\sum_{\textrm{possible }w}w\,P\left(W=w\right) 
+  =  1 \left(\frac{18}{38} \right) + -1 \left( \frac{20}{38} \right) 
+  =  -0.0526 \end{aligned}$$
+  
+So for every Black/Red bet, the player should expect to lose 5.2 cents. While this number is small, it is enough to make the casino millions of dollars over the long run.
+ 
+Returning to the massage therapy example, assuming that successive days are independent (which might be a bad assumption) what is the probability she has two days in a row with no clients?
 $$\begin{aligned}P\left(\textrm{0 on day1 }and\textrm{ 0 on day2}\right)	
   &=	P\left(\textrm{0 on day 1}\right)P\left(\textrm{0 on day 2}\right) \\
 	&=	\left(0.3\right)\left(0.3\right) \\

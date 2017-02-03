@@ -13,7 +13,7 @@ if( length(pkgs > 0)){
 }
 
 # Set my default chunk options 
-knitr::opts_chunk$set( fig.height=3 )
+knitr::opts_chunk$set( fig.height=3, cache=TRUE )
 ```
 
 ```{r, message=FALSE, warning=FALSE}
@@ -1080,9 +1080,9 @@ All the probability distributions available in R are accessed in exactly the sam
 
 6. Suppose that the number of runners I see on a morning walk on the trails near my house has the following distribution (Notice I've never seen four or more runners on a morning walk):
     
-|       y         |    0    |   1    |    2   |   3   |   4+   |
-|----------------:|:-------:|:------:|:------:|:-----:|:------:|
-| **Probabilty**  |   0.45  |  0.25  |  0.20  |       |   0.0  |
+    |       y         |    0    |   1    |    2   |   3   |   4+   |
+    |----------------:|:-------:|:------:|:------:|:-----:|:------:|
+    | **Probabilty**  |   0.45  |  0.25  |  0.20  |       |   0.0  |
     
     a) What is the probability that I see 3 runners on a morning walk?
     b) What is the expected number of runners that I will encounter?

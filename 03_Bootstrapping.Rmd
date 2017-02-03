@@ -17,7 +17,7 @@ if( length(pkgs > 0)){
   }
 }
 # Set my default chunk options 
-knitr::opts_chunk$set( fig.height=3 )
+knitr::opts_chunk$set( fig.height=3, cache=TRUE )
 ```
 
 ```{r, message=FALSE, warning=FALSE}

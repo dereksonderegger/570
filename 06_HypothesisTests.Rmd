@@ -18,9 +18,8 @@ knitr::opts_chunk$set( fig.height=3, cache=TRUE )
 
 ```{r, message=FALSE, warning=FALSE}
 library(dplyr)
-library(ggplot2)
 library(tidyr)
-library(mosaic)
+library(ggplot2)
 ```
 
 Science is done by observing how the world works, making a conjecture (or hypothesis) about the mechanism and then performing experiments to see if real data agrees or disagrees with the proposed hypothesis. 
@@ -102,7 +101,6 @@ Suppose we consider the population of all US men aged 40-60 with high blood pres
 Instead of testing the entire population we'll take a sample of $n$ men from the population and treat half of them with exercise alone and half of them with exercise and ACE inhibitors. What might our data look like if there is a difference between the two treatments at different samples sizes compared to if there is no difference? At small sample sizes it is difficult to distinguish the effect of the treatment when it is masked by individual variation. At high sample sizes, the individual variation is smoothed out and the difference between the treatments can be readily seen.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-library(ggplot2)
 set.seed(325)
 bp <- NULL 
 for(n in c(5, 20, 100)){

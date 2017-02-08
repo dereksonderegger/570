@@ -26,7 +26,7 @@
 <meta name="author" content="Derek L. Sonderegger">
 
 
-<meta name="date" content="2017-02-03">
+<meta name="date" content="2017-02-08">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -190,6 +190,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="6.3" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#exercises-5"><i class="fa fa-check"></i><b>6.3</b> Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="7" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><i class="fa fa-check"></i><b>7</b> Two-Sample Hypothesis Tests and Confidence Intervals</a><ul>
+<li class="chapter" data-level="7.1" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#difference-in-means-between-two-groups"><i class="fa fa-check"></i><b>7.1</b> Difference in means between two groups</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#inference-via-resampling"><i class="fa fa-check"></i><b>7.1.1</b> Inference via resampling</a></li>
+<li class="chapter" data-level="7.1.2" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#inference-via-asymptotic-results-unequal-variance-assumption"><i class="fa fa-check"></i><b>7.1.2</b> Inference via asymptotic results (unequal variance assumption)</a></li>
+<li class="chapter" data-level="7.1.3" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#inference-via-asymptotic-results-equal-variance-assumption"><i class="fa fa-check"></i><b>7.1.3</b> Inference via asymptotic results (equal variance assumption)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#difference-in-means-between-two-groups-paired-data"><i class="fa fa-check"></i><b>7.2</b> Difference in means between two groups: Paired Data</a></li>
+<li class="chapter" data-level="7.3" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#exercises-6"><i class="fa fa-check"></i><b>7.3</b> Exercises</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -210,8 +219,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="confidence-intervals-for-mu" class="section level1">
 <h1><span class="header-section-number">Chapter 5</span> Confidence Intervals for <span class="math inline">\(\mu\)</span></h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
-<span class="kw">library</span>(dplyr)
-<span class="kw">library</span>(mosaic)</code></pre></div>
+<span class="kw">library</span>(dplyr)</code></pre></div>
 <div id="asymptotic-result-sigma-known" class="section level2">
 <h2><span class="header-section-number">5.1</span> Asymptotic result (<span class="math inline">\(\sigma\)</span> known)</h2>
 <p>We know that our sample mean <span class="math inline">\(\bar{x}\)</span>, should be close to the population mean <span class="math inline">\(\mu\)</span>. So when giving a region of values for <span class="math inline">\(\mu\)</span> that are consistent with the observed data, we would expect our CI formula to be something like <span class="math inline">\(\left(\bar{x}-d,\;\bar{x}+d\right)\)</span> for some value <span class="math inline">\(d\)</span>. That value of <span class="math inline">\(d\)</span> should be small if our sample size is big, representing our faith that a large amount of data should result in a statistic that is very close to the true value of <span class="math inline">\(\mu\)</span>. Recall that if our data <span class="math inline">\(X_{i}\sim N\left(\mu,\,\sigma^{2}\right)\)</span> or our sample size was large enough, then we know</p>
@@ -260,7 +268,10 @@ s    &lt;-<span class="st"> </span><span class="kw">sd</span>(  bears$weight)
 <pre><code>## [1] 2.022691</code></pre>
 <p>we find that <span class="math inline">\(t_{n-1}^{1-\alpha/2}=2.022691\)</span>. Therefore the <span class="math inline">\(95\%\)</span> confidence interval is <span class="math display">\[\bar{x}   \pm t_{n-1}^{1-\alpha/2}\left(\frac{s}{\sqrt{n}}\right)\]</span> <span class="math display">\[345.6 \pm 2.022691\left(\frac{108.8527}{\sqrt{40}}\right)\]</span> <span class="math display">\[345.6 \pm 34.8\]</span> or <span class="math inline">\(\left(310.8, \, 380.4\right)\)</span> which is interpreted as “We are 95% confident that the true mean <span class="math inline">\(\mu\)</span> is in this interval” which is shorthand for “The process that resulted in this interval (taking a random sample, and then calculating an interval using the algorithm presented) will result in intervals such that 95% of them contain the mean <span class="math inline">\(\mu\)</span>, but we cannot know of this particular interval is one of the good ones or not.”</p>
 <p>We can wonder how well this interval matches up with the interval we would have gotten if we had used the bootstrap method to create a confidence interval for <span class="math inline">\(\mu\)</span>. In this case, where the sample size <span class="math inline">\(n\)</span> is relatively large, the Central Limit Theorem is certainly working and the distribution of the sample mean certainly looks fairly normal.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">SampDist &lt;-<span class="st"> </span>mosaic::<span class="kw">do</span>(<span class="dv">10000</span>) *<span class="st"> </span><span class="kw">resample</span>(bears) %&gt;%<span class="st"> </span><span class="kw">summarise</span>(<span class="dt">xbar=</span><span class="kw">mean</span>(weight)) 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">SampDist &lt;-<span class="st"> </span>mosaic::<span class="kw">do</span>(<span class="dv">10000</span>) *<span class="st"> </span>{
+  mosaic::<span class="kw">resample</span>(bears) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">xbar=</span><span class="kw">mean</span>(weight)) 
+}
 <span class="kw">ggplot</span>(SampDist, <span class="kw">aes</span>(<span class="dt">x=</span>xbar, <span class="dt">y=</span>..density..)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_histogram</span>()</code></pre></div>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-90-1.png" width="672" /></p>

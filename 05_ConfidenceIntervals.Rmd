@@ -20,7 +20,6 @@ knitr::opts_chunk$set( fig.height=3, cache=TRUE )
 ```{r, message=FALSE, warning=FALSE}
 library(ggplot2)
 library(dplyr)
-library(mosaic)
 ```
 
 ## Asymptotic result ($\sigma$ known)
@@ -128,7 +127,10 @@ or  $\left(310.8, \, 380.4\right)$ which is interpreted as “We are 95% confide
 We can wonder how well this interval matches up with the interval we would have gotten if we had used the bootstrap method to create a confidence interval for $\mu$. In this case, where the sample size $n$ is relatively large, the Central Limit Theorem is certainly working and the distribution of the sample mean certainly looks fairly normal.
 
 ```{r, cache=TRUE, message=FALSE, warning=FALSE}
-SampDist <- mosaic::do(10000) * resample(bears) %>% summarise(xbar=mean(weight)) 
+SampDist <- mosaic::do(10000) * {
+  mosaic::resample(bears) %>% 
+  summarise(xbar=mean(weight)) 
+}
 ggplot(SampDist, aes(x=xbar, y=..density..)) + 
   geom_histogram()
 ```

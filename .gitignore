@@ -35,3 +35,4 @@
 # GitHub, they should live in the docs/ directory
 _book/
 _bookdown_files/
+.Rproj.user

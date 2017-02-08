@@ -1,10 +1,5 @@
 base
-dplyr
-lattice
 ggplot2
-mosaicData
-Matrix
-mosaic
+dplyr
 ggdendro
-Lock5Data
 tidyr

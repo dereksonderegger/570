@@ -23,7 +23,7 @@ knitr::opts_chunk$set( fig.height=3, cache=TRUE )
 ```{r, message=FALSE, warning=FALSE}
 # Every chapter, we will load all the librarys we will use at the beginning
 # of the chapter.
-library(mosaic)     # for the resample, shuffle, and do functions
+# library(mosaic)     # for the resample, shuffle, and do functions
 library(ggplot2)    # graphing functions
 library(dplyr)      # data summary tools
 ```
@@ -38,8 +38,6 @@ Next suppose we wish to ask if a particular value for $\mu$, say $\mu_{0}$, is c
 Therefore, if we could take many, many repeated samples from the population and calculate our test statistic $\bar{x}$ for each sample, we could rule out possible values of $\mu$. Unfortunately we don't have the time or money to repeatedly sample from the actual population, but we could sample from our best approximation to what the population is like.
 
 ```{r, echo=FALSE}
-library(mosaic)
-
 # define the multiplot function
 # Multiple plot function 
 # 
@@ -127,10 +125,10 @@ set.seed(2)
 ```
 ```{r}
 Testing.Data <- data.frame(
-  name=c('Alison','Brandon','Chelsea','Derek','Elise'))
+  name=c('Alison','Brandon','Casey','Derek','Elise'))
 Testing.Data
 # Sample rows from the Testing Data (with replacement)
-resample(Testing.Data)
+mosaic::resample(Testing.Data)
 ```
 
 Notice Alison has selected twice, while Brandon has not been selected at all. 
@@ -161,14 +159,16 @@ The sample mean is greater than $0.5$ but not by too much. Is a true population 
 The first step in answering these questions is to create an estimate of the sampling distribution of $\bar{x}_{Hg}$. To do this, we will sample from the approximate population of lakes, which is just many many replicated copies of our sample data. 
 
 ```{r, cache=TRUE, warning=FALSE, message=FALSE}
-# create the sampling distribution of xbar
-SamplingDist <- do(10000) * resample(Lakes) %>% summarise(xbar = mean(AvgMercury))
+# create the Estimated Sampling Distribution of xbar
+BootDist <- mosaic::do(10000) * 
+  mosaic::resample(Lakes) %>% 
+  summarise(xbar = mean(AvgMercury))
 
-# what columns does the data frame "SamplingDist" have?
-head(SamplingDist)
+# what columns does the data frame "BootDist" have?
+head(BootDist)
 
-# show a histogram of the sampling distribution of xbar
-ggplot(SamplingDist, aes(x=xbar)) +
+# show a histogram of the estimated sampling distribution of xbar
+ggplot(BootDist, aes(x=xbar)) +
   geom_histogram() + 
   ggtitle('Estimated Sampling distribution of xbar' )
 ```
@@ -275,15 +275,17 @@ Most of these intervals contain the true parameter $\mu$, that we are trying to 
 After the sample is taken and the interval is calculated, the numbers lower and upper bounds of the confidence interval are fixed. Because $\mu$ is a constant value and the confidence interval is fixed, nothing is changing. To distinguish between a future random event and the fixed (but unknown) outcome of if I ended up with an interval that contains $\mu$ and we use the term confidence interval instead of probability interval. 
 
 ```{r, cache=TRUE, warning=FALSE, message=FALSE}
-# create the sampling distribution of xbar
-SamplingDist <- do(10000) * resample(Lakes) %>% summarise(xbar=mean(AvgMercury))
+# create the Estimated Sampling Distribution of xbar
+BootDist <- mosaic::do(10) * 
+  mosaic::resample(Lakes) %>% 
+  summarise(xbar=mean(AvgMercury))
 
-# show a histogram of the sampling distribution of xbar
-ggplot(SamplingDist, aes(x=xbar, y=..density..)) +
+# show a histogram of the estimated sampling distribution of xbar
+ggplot(BootDist, aes(x=xbar, y=..density..)) +
   geom_histogram() +
   ggtitle('Estimated Sampling distribution of xbar')
 # calculate the 95% confidence interval using middle 95% of xbars
-quantile( SamplingDist$xbar, probs=c(.025, .975) )
+quantile( BootDist$xbar, probs=c(.025, .975) )
 ```
 
 There are several ways to interpret this interval. 
@@ -306,13 +308,17 @@ CarMPG %>% summarise( xbar=mean(mpg) )
 We will use the sample mean to assess if the sample fuel efficiency is consistent with the advertised number. Because these cars could be considered a random sample of all new cars of this make, we will create the estimated sampling distribution using the bootstrap resampling of the data.
 
 ```{r, cache=TRUE}
-SamplingDist <- do(10000) * resample(CarMPG) %>% summarise(xbar=mean(mpg))
+BootDist <- mosaic::do(10000) * 
+  mosaic::resample(CarMPG) %>% 
+  summarise(xbar=mean(mpg))
+
 # show a histogram of the sampling distribution of xbar
-ggplot(SamplingDist, aes(x=xbar)) +
+ggplot(BootDist, aes(x=xbar)) +
   geom_histogram() +
   ggtitle('Estimated Sampling distribution of xbar')
+
 # calculate the 95% confidence interval using middle 95% of xbars
-quantile( SamplingDist$xbar, probs=c(.025, .975) )
+quantile( BootDist$xbar, probs=c(.025, .975) )
 ```
 
 We see that the $95\%$ confidence interval is $\left(31.2,\,32.2\right)$ and does not actually contain the advertised $31$ mpg. However, I don't think we would object to a car manufacturer selling us a car that is better than advertised.
@@ -324,8 +330,7 @@ In the package Lock5Data, the dataset `GPAGender` contains information taken fro
 First we'll look at the raw data.
 
 ```{r}
-library(Lock5Data)  # load the package
-data(GPAGender)     # from the package, load the dataset
+data(GPAGender, package='Lock5Data')     # load the dataset
 
 # Now a nice histogram
 ggplot(GPAGender, aes(x=Pulse, y=..density..)) +
@@ -345,9 +350,11 @@ So the sample mean is $\bar{x}=69.9$ but how much should we expect our sample me
 
 ```{r}
 # Create the bootstrap replicates
-SampDist <- do(10000) * resample(GPAGender) %>% summarise(xbar = mean(Pulse))
+BootDist <- mosaic::do(10000) * 
+  mosaic::resample(GPAGender) %>% 
+  summarise(xbar = mean(Pulse))
 
-ggplot(SampDist, aes(x=xbar, y=..density..)) +
+ggplot(BootDist, aes(x=xbar, y=..density..)) +
   geom_histogram(binwidth=.2) +
   ggtitle('Sampling Distribution of Mean(Pulse)')
 ```
@@ -355,7 +362,7 @@ ggplot(SampDist, aes(x=xbar, y=..density..)) +
 Just by sampling variability, we expect the sampling mean $\bar{X}$ to vary from approximately 68 to 72. The appropriate quantiles for a $95\%$ bootstrap confidence interval are actually
 
 ```{r}
-quantile( SampDist$xbar, probs=c(0.025, 0.975) )
+quantile( BootDist$xbar, probs=c(0.025, 0.975) )
 ```
 
 ## Exercises
@@ -364,8 +371,7 @@ For several of these exercises, we will use data sets from the R package `Lock5D
 
 1. Load the dataset `BodyTemp50` from the Lock5Data package. This is a dataset of 50 healthy adults. Unfortunately the documentation doesn't give how the data was collected, but for this problem we'll assume that it is a representative sample of healthy US adults.
     ```{r}
-    library(Lock5Data)
-    data( BodyTemp50 )
+    data( BodyTemp50, packag='Lock5Data' )
     ?BodyTemp50
     ```
     One of the columns of this dataset is the Pulse of the 50 data points, which is the number of heartbeats per minute.
@@ -373,9 +379,8 @@ For several of these exercises, we will use data sets from the R package `Lock5D
     a) Create a histogram of the observed pulse values. Comment on the graph and aspects of the graph that might be of scientific interest.
     b) Calculate the sample mean $\bar{x}$ and sample standard deviation $s$ of the pulses.
     c) Create a dataset of 10000 bootstrap replicates of $\bar{x}^{*}$.
-    d) Create a histogram of the bootstrap replicates. Calculate the mean and standard deviation of this distribution. Notice that the standard deviation of the distribution is often called the Standard Error of $\bar{x}$ and we'll denote it as $\sigma_{\bar{x}}$.
-    e) Using the bootstrap replicates, create a 95% confidence interval for $\mu$
- , the average adult heart rate.
+    d) Create a histogram of the bootstrap replicates. Calculate the mean and standard deviation of this distribution. Notice that the standard deviation of the distribution is often called the Standard Error of $\bar{x}$ and we'll denote it as $\hat{\sigma}_{\bar{x}}$.
+    e) Using the bootstrap replicates, create a 95% confidence interval for $\mu$, the average adult heart rate.
     f) Calculate the interval 
     $$\left(\bar{x}-2\cdot\hat{\sigma}_{\bar{x}}\,,\,\;\;\bar{x}+2\cdot\hat{\sigma}_{\bar{x}}\right)$$
     and comment on its similarity to the interval you calculated in part (e).

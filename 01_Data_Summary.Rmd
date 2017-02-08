@@ -24,7 +24,6 @@ When confronted with a large amount of data, we seek to summarize the data into 
 ```{r, message=FALSE, warning=FALSE}
 # Every chapter, we will load all the librarys we will use at the beginning
 # of the chapter. If you
-library(mosaicData) # library of datasets we'll use
 library(ggplot2)    # graphing functions
 library(dplyr)      # data summary tools
 ```
@@ -32,6 +31,7 @@ library(dplyr)      # data summary tools
 For this chapter, we will consider data from a the 2005 Cherry Blossom 10 mile run that occurs in Washington DC. This data set has 8636 observations that includes the runners state of residence, official time (gun to finish, in seconds), net time (start line to finish, in seconds), age, and gender of the runners. 
 
 ```{r}
+data( TenMileRace, package='mosaicData')
 head(TenMileRace)   # examine the first few rows of the data
 ```
 

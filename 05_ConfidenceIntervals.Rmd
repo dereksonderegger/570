@@ -73,7 +73,7 @@ ggplot(data, aes(x=x, y=y, color=dist)) +
   theme(legend.text.align=0)
 ```
 
-The $t$-distribution is named after [William Gosset](http://en.wikipedia.org/wiki/William_Sealy_Gosset) who worked at Guinness Brewing and did work with small sample sizes in both the brewery and at the farms that supplied the barley. Because Guinness prevented its employees from publishing any of their work, he published under the pseudonym Student.
+The $t$-distribution is often call "Student's t-distribution" is named after [William Gosset](http://en.wikipedia.org/wiki/William_Sealy_Gosset) who worked at Guinness Brewing and did work with small sample sizes in both the brewery and at the farms that supplied the barley. Because Guinness prevented its employees from publishing any of their work, he published under the pseudonym "Student".
 
 Notice that as the sample size increases, the t-distribution gets closer and closer to the normal distribution. From here on out, we will use the following standardization formula:
 $$\frac{\bar{X}-\mu}{\frac{S}{\sqrt{n}}}\sim\;t_{n-1}$$

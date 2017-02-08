@@ -24,9 +24,9 @@ Because the mathematical and statistical background of typical students varies w
 I hope you'll find these notes useful.
 
 ## Acknowledgements {-}
-I have had the pleasure of interacting with a great number of talented mathematicians and statisticians in my schooling.  In particular I am deeply indebted to Dr Robert Boik and Dr Warren Esty as well as my Ph.D. advisor Dr Jan Hannig. 
+I have had the pleasure of interacting with a great number of talented mathematicians and statisticians in my schooling.  In particular I am deeply indebted to Dr Robert Boik and Dr Warren Esty as well as my Ph.D. adviser Dr Jan Hannig. 
 
-As a professor, I am grateful for the feedback and comaradary from by fellow statisticans, particularly Dr St. Laurent.
+As a professor at Northern Arizona University, I am grateful for the feedback and comradery of my fellow statisticans, particularly Dr St. Laurent.
 
 Finally, I am deeply appreciative of the support given to me by my wife, Aubrey.
 

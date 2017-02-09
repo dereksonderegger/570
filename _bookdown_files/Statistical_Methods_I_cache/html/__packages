@@ -1,5 +1,7 @@
 base
-ggplot2
 dplyr
-tidyr
+ggplot2
+ggfortify
+multcompView
 ggdendro
+tidyr

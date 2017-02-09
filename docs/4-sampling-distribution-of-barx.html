@@ -212,6 +212,22 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8.4" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#theoretical-distribution-vs-bootstrap"><i class="fa fa-check"></i><b>8.4</b> Theoretical distribution vs bootstrap</a></li>
 <li class="chapter" data-level="8.5" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#exercises-7"><i class="fa fa-check"></i><b>8.5</b> Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="9" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html"><i class="fa fa-check"></i><b>9</b> Analysis of Variance (ANOVA)</a><ul>
+<li class="chapter" data-level="9.1" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#model"><i class="fa fa-check"></i><b>9.1</b> Model</a></li>
+<li class="chapter" data-level="9.2" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#theory"><i class="fa fa-check"></i><b>9.2</b> Theory</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#anova-table"><i class="fa fa-check"></i><b>9.2.1</b> Anova Table</a></li>
+<li class="chapter" data-level="9.2.2" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#anova-using-simple-vs-complex-models."><i class="fa fa-check"></i><b>9.2.2</b> ANOVA using Simple vs Complex models.</a></li>
+<li class="chapter" data-level="9.2.3" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#parameter-estimates-and-confidence-intervals"><i class="fa fa-check"></i><b>9.2.3</b> Parameter Estimates and Confidence Intervals</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#anova-in-r"><i class="fa fa-check"></i><b>9.3</b> Anova in R</a></li>
+<li class="chapter" data-level="9.4" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#multiple-comparisons"><i class="fa fa-check"></i><b>9.4</b> Multiple comparisons</a></li>
+<li class="chapter" data-level="9.5" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#different-model-representations"><i class="fa fa-check"></i><b>9.5</b> Different Model Representations</a><ul>
+<li class="chapter" data-level="9.5.1" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#theory-1"><i class="fa fa-check"></i><b>9.5.1</b> Theory</a></li>
+<li class="chapter" data-level="9.5.2" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#model-representations-in-r"><i class="fa fa-check"></i><b>9.5.2</b> Model Representations in R</a></li>
+<li class="chapter" data-level="9.5.3" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#implications-on-the-anova-table"><i class="fa fa-check"></i><b>9.5.3</b> Implications on the ANOVA table</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#exercises-8"><i class="fa fa-check"></i><b>9.6</b> Exercises</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -256,9 +272,9 @@ mosaic::<span class="kw">do</span>(<span class="dv">3</span>) *<span class="st">
   Sample.Data %&gt;%<span class="st"> </span><span class="kw">summarise</span>( <span class="dt">xbar =</span> <span class="kw">mean</span>(x) )
 }</code></pre></div>
 <pre><code>##       xbar
-## 1 3.582744
-## 2 4.105642
-## 3 3.324081</code></pre>
+## 1 4.842655
+## 2 4.636505
+## 3 5.550255</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="dv">5</span>
 SampDist &lt;-<span class="st"> </span>mosaic::<span class="kw">do</span>(<span class="dv">10000</span>) *<span class="st"> </span>{
   Sample.Data &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">x =</span> <span class="kw">rchisq</span>(n,<span class="dt">df=</span><span class="dv">5</span>) )
@@ -368,7 +384,7 @@ SampDist %&gt;%<span class="st">                                         </span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Greater =</span> <span class="kw">ifelse</span>(xbar &gt;=<span class="st"> </span><span class="fl">2.5</span>, <span class="dv">1</span>, <span class="dv">0</span>)) %&gt;%<span class="st">    </span><span class="co"># xbar values are</span>
 <span class="st">  </span><span class="kw">summarise</span>( <span class="dt">ProportionGreater =</span> <span class="kw">mean</span>(Greater) )     <span class="co"># greater than 2.5?</span></code></pre></div>
 <pre><code>##   ProportionGreater
-## 1            0.0704</code></pre>
+## 1            0.0687</code></pre>
 <p><strong>Summary</strong></p>
 <p>Often we have sampled <span class="math inline">\(n\)</span> elements from some population <span class="math inline">\(Y_{1},Y_{2},\dots,Y_{n}\)</span> independently and <span class="math inline">\(E\left(Y_{i}\right)=\mu\)</span> and <span class="math inline">\(Var\left(Y_{i}\right)=\sigma^{2}\)</span> and we want to understand the distribution of the sample mean, that is we want to understand how the sample mean varies from sample to sample.</p>
 <p><span class="math inline">\(E\left(\bar{Y}\right)=\mu\)</span>. That states that the distribution of the sample mean will centered at <span class="math inline">\(\mu\)</span>. We expect to sometimes take samples where the sample mean is higher than <span class="math inline">\(\mu\)</span> and sometimes less than <span class="math inline">\(\mu\)</span>, but the average underestimate is the same magnitude as the average overestimate.</p>

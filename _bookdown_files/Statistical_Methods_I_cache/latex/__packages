@@ -3,3 +3,5 @@ ggplot2
 dplyr
 ggdendro
 tidyr
+ggfortify
+multcompView

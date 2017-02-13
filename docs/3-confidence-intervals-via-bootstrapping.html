@@ -26,7 +26,7 @@
 <meta name="author" content="Derek L. Sonderegger">
 
 
-<meta name="date" content="2017-02-08">
+<meta name="date" content="2017-02-12">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -408,12 +408,8 @@ BootDist &lt;-<span class="st"> </span>mosaic::<span class="kw">do</span>(<span 
 <p>For several of these exercises, we will use data sets from the R package <code>Lock5Data</code>, which greatly contributed to the pedagogical approach of these notes. Install the package from CRAN using the RStudio point-and-click interface <code>Tools -&gt; Install Packages</code>….</p>
 <ol style="list-style-type: decimal">
 <li><p>Load the dataset <code>BodyTemp50</code> from the Lock5Data package. This is a dataset of 50 healthy adults. Unfortunately the documentation doesn’t give how the data was collected, but for this problem we’ll assume that it is a representative sample of healthy US adults.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>( BodyTemp50, <span class="dt">packag=</span><span class="st">&#39;Lock5Data&#39;</span> )</code></pre></div>
-<pre><code>## Warning in data(BodyTemp50, packag = &quot;Lock5Data&quot;): data set &#39;BodyTemp50&#39;
-## not found</code></pre>
-<pre><code>## Warning in data(BodyTemp50, packag = &quot;Lock5Data&quot;): data set &#39;Lock5Data&#39; not
-## found</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?BodyTemp50</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>( BodyTemp50, <span class="dt">package=</span><span class="st">&#39;Lock5Data&#39;</span> )
+?BodyTemp50</code></pre></div>
 <pre><code>## No documentation for &#39;BodyTemp50&#39; in specified packages and libraries:
 ## you could try &#39;??BodyTemp50&#39;</code></pre>
 <p>One of the columns of this dataset is the Pulse of the 50 data points, which is the number of heartbeats per minute.</p>

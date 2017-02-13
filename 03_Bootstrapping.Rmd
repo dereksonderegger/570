@@ -371,7 +371,7 @@ For several of these exercises, we will use data sets from the R package `Lock5D
 
 1. Load the dataset `BodyTemp50` from the Lock5Data package. This is a dataset of 50 healthy adults. Unfortunately the documentation doesn't give how the data was collected, but for this problem we'll assume that it is a representative sample of healthy US adults.
     ```{r}
-    data( BodyTemp50, packag='Lock5Data' )
+    data( BodyTemp50, package='Lock5Data' )
     ?BodyTemp50
     ```
     One of the columns of this dataset is the Pulse of the 50 data points, which is the number of heartbeats per minute.

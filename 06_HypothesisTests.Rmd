@@ -326,7 +326,7 @@ People who demand rigor might want to set $\alpha$ as low as possible, but there
 | **Fail to      |  :)            | Type II         |
 | reject** $H_0$ |                | Error           |
 +----------------+----------------+-----------------+
-| **Reject**     | Type II        |  :)             |
+| **Reject**     | Type I         |  :)             |
 |    $H_0$       | Error          |                 |
 +----------------+----------------+-----------------+
 

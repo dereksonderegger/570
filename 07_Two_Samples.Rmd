@@ -173,7 +173,7 @@ The creation of the sampling distribution of the mean difference $d^*$ is identi
 
 ```{r}
 PermutationDist %>% 
-  summarize( p.value = mean( abs(d.star) >= 3.5 ))
+  summarize( p.value = mean( d.star <= -3.5 ))
 ```
 
 and we see that the p-value is approximately cut in half by ignoring the upper tail, which makes sense considering the observed symmetry in the sampling distribution of $d^*$.

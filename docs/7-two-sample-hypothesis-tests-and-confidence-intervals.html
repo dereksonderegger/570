@@ -26,7 +26,7 @@
 <meta name="author" content="Derek L. Sonderegger">
 
 
-<meta name="date" content="2017-02-24">
+<meta name="date" content="2017-03-06">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -228,6 +228,20 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="9.6" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#exercises-8"><i class="fa fa-check"></i><b>9.6</b> Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="10" data-path="10-regression.html"><a href="10-regression.html"><i class="fa fa-check"></i><b>10</b> Regression</a><ul>
+<li class="chapter" data-level="10.1" data-path="10-regression.html"><a href="10-regression.html#pearsons-correlation-coefficient"><i class="fa fa-check"></i><b>10.1</b> Pearson’s Correlation Coefficient</a></li>
+<li class="chapter" data-level="10.2" data-path="10-regression.html"><a href="10-regression.html#model-theory"><i class="fa fa-check"></i><b>10.2</b> Model Theory</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="10-regression.html"><a href="10-regression.html#anova-interpretation"><i class="fa fa-check"></i><b>10.2.1</b> Anova Interpretation</a></li>
+<li class="chapter" data-level="10.2.2" data-path="10-regression.html"><a href="10-regression.html#confidence-intervals-vs-prediction-intervals"><i class="fa fa-check"></i><b>10.2.2</b> Confidence Intervals vs Prediction Intervals</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="10-regression.html"><a href="10-regression.html#extrapolation"><i class="fa fa-check"></i><b>10.3</b> Extrapolation</a></li>
+<li class="chapter" data-level="10.4" data-path="10-regression.html"><a href="10-regression.html#checking-model-assumptions"><i class="fa fa-check"></i><b>10.4</b> Checking Model Assumptions</a></li>
+<li class="chapter" data-level="10.5" data-path="10-regression.html"><a href="10-regression.html#common-problems"><i class="fa fa-check"></i><b>10.5</b> Common Problems</a><ul>
+<li class="chapter" data-level="10.5.1" data-path="10-regression.html"><a href="10-regression.html#influential-points"><i class="fa fa-check"></i><b>10.5.1</b> Influential Points</a></li>
+<li class="chapter" data-level="10.5.2" data-path="10-regression.html"><a href="10-regression.html#transformations"><i class="fa fa-check"></i><b>10.5.2</b> Transformations</a></li>
+</ul></li>
+<li class="chapter" data-level="10.6" data-path="10-regression.html"><a href="10-regression.html#exercises-9"><i class="fa fa-check"></i><b>10.6</b> Exercises</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -385,9 +399,9 @@ H_{a}:\,\delta  &amp;  &lt;    0
 \end{aligned}\]</span></p>
 <p>The creation of the sampling distribution of the mean difference <span class="math inline">\(d^*\)</span> is identical to our previous technique because if our observed difference d is so negative that it is incompatible with the hypothesis that <span class="math inline">\(\delta=0\)</span> then it must also be incompatible with any positive value of <span class="math inline">\(\delta\)</span>, so we evaluate the consistency of our data with the value of <span class="math inline">\(\delta\)</span> that is closest to the observed d while still being true to the null hypothesis. Thus for either the the one-sided (i.e. <span class="math inline">\(\delta&lt;0\)</span>) or the two-sided case (i.e. <span class="math inline">\(\delta \ne 0\)</span>), we generate the sampling distribution of <span class="math inline">\(d^*\)</span> in the same way. The only difference in the analysis is at the end when we calculate the p-value and don’t consider the positive tail. That is, the p-value is the percent of simulations where <span class="math inline">\(d^*&lt;d\)</span>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">PermutationDist %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">summarize</span>( <span class="dt">p.value =</span> <span class="kw">mean</span>( <span class="kw">abs</span>(d.star) &gt;=<span class="st"> </span><span class="fl">3.5</span> ))</code></pre></div>
+<span class="st">  </span><span class="kw">summarize</span>( <span class="dt">p.value =</span> <span class="kw">mean</span>( d.star &lt;=<span class="st"> </span>-<span class="fl">3.5</span> ))</code></pre></div>
 <pre><code>##   p.value
-## 1  0.0058</code></pre>
+## 1  0.0028</code></pre>
 <p>and we see that the p-value is approximately cut in half by ignoring the upper tail, which makes sense considering the observed symmetry in the sampling distribution of <span class="math inline">\(d^*\)</span>.</p>
 <p>In general, we prefer to use a two-sided test because if the two-sided test leads us to reject the null hypothesis then so would the appropriate one-sided hypothesis (except in the case where the alternative was chosen before the data was collected and the observed data was in the other tail). Second, by using a two-sample test, it prevents us from from “tricking” ourselves when we don’t know the which group should have a higher mean going into the experiment, but after seeing the data, thinking we should have known and using the less stringent test. Some statisticians go so far as to say that using a 1-sided test is outright fraudulent. Generally, we’ll concentrate on two-sided tests as they are the most widely acceptable.</p>
 <p>Notice that the corresponding confidence interval gives a similar inference.</p>

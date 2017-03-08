@@ -26,7 +26,7 @@
 <meta name="author" content="Derek L. Sonderegger">
 
 
-<meta name="date" content="2017-02-24">
+<meta name="date" content="2017-03-06">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -227,6 +227,20 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="9.5.3" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#implications-on-the-anova-table"><i class="fa fa-check"></i><b>9.5.3</b> Implications on the ANOVA table</a></li>
 </ul></li>
 <li class="chapter" data-level="9.6" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#exercises-8"><i class="fa fa-check"></i><b>9.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="10-regression.html"><a href="10-regression.html"><i class="fa fa-check"></i><b>10</b> Regression</a><ul>
+<li class="chapter" data-level="10.1" data-path="10-regression.html"><a href="10-regression.html#pearsons-correlation-coefficient"><i class="fa fa-check"></i><b>10.1</b> Pearson’s Correlation Coefficient</a></li>
+<li class="chapter" data-level="10.2" data-path="10-regression.html"><a href="10-regression.html#model-theory"><i class="fa fa-check"></i><b>10.2</b> Model Theory</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="10-regression.html"><a href="10-regression.html#anova-interpretation"><i class="fa fa-check"></i><b>10.2.1</b> Anova Interpretation</a></li>
+<li class="chapter" data-level="10.2.2" data-path="10-regression.html"><a href="10-regression.html#confidence-intervals-vs-prediction-intervals"><i class="fa fa-check"></i><b>10.2.2</b> Confidence Intervals vs Prediction Intervals</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="10-regression.html"><a href="10-regression.html#extrapolation"><i class="fa fa-check"></i><b>10.3</b> Extrapolation</a></li>
+<li class="chapter" data-level="10.4" data-path="10-regression.html"><a href="10-regression.html#checking-model-assumptions"><i class="fa fa-check"></i><b>10.4</b> Checking Model Assumptions</a></li>
+<li class="chapter" data-level="10.5" data-path="10-regression.html"><a href="10-regression.html#common-problems"><i class="fa fa-check"></i><b>10.5</b> Common Problems</a><ul>
+<li class="chapter" data-level="10.5.1" data-path="10-regression.html"><a href="10-regression.html#influential-points"><i class="fa fa-check"></i><b>10.5.1</b> Influential Points</a></li>
+<li class="chapter" data-level="10.5.2" data-path="10-regression.html"><a href="10-regression.html#transformations"><i class="fa fa-check"></i><b>10.5.2</b> Transformations</a></li>
+</ul></li>
+<li class="chapter" data-level="10.6" data-path="10-regression.html"><a href="10-regression.html#exercises-9"><i class="fa fa-check"></i><b>10.6</b> Exercises</a></li>
 </ul></li>
 </ul>
 
@@ -566,14 +580,18 @@ Current research suggests that the mean dissolved oxygen level must be at least 
 </ol></li>
 <li><p>We are interested in investigating how accurate radon detectors sold to homeowners are. We take a randomly selection of <span class="math inline">\(n=12\)</span> detectors and expose them to <span class="math inline">\(105\)</span> pico-curies per liter (pCi/l) of radon. The following values were given by the radon detectors.</p>
 <table>
+<thead>
+<tr class="header">
+<th align="center">91.9</th>
+<th align="center">97.8</th>
+<th align="center">111.4</th>
+<th align="center">122.3</th>
+<th align="center">105.4</th>
+<th align="center">95.0</th>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
-<td align="center">91.9</td>
-<td align="center">97.8</td>
-<td align="center">111.4</td>
-<td align="center">122.3</td>
-<td align="center">105.4</td>
-<td align="center">95</td>
 <td align="center">103.8</td>
 <td align="center">99.6</td>
 <td align="center">96.6</td>

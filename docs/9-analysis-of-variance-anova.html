@@ -286,9 +286,9 @@ H_{a} &amp;:        \textrm{at least on mean is different than the others}
 \end{aligned}\]</span></p>
 <p><strong>Example 1</strong>. Suppose that we have three hybrids of a particular plant and we measure the leaf area for each hybrid.</p>
 <p>In the following graph, there does not appear to be a difference between the hybrid means:</p>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-193-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-195-1.png" width="672" /></p>
 <p>However, in this case, it looks like there is a difference in the means of each hybrid:</p>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-194-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-196-1.png" width="672" /></p>
 <p>What is the difference between these two?</p>
 <ol style="list-style-type: decimal">
 <li><p>If the variance between hybrids is small compared the variance within a hybrid variance is huge compared, then I would fail to reject the null hypothesis of equal means (this would be the first case). In this case, the additional model complexity doesn’t result in more accurate model, so Occam’s Razor would lead us to prefer the simpler model where each group has the same mean.</p></li>
@@ -318,7 +318,7 @@ H_{a} &amp;:        \textrm{at least on mean is different than the others}
 <p><strong>SSW</strong>: Sum of Squares Within - This is the variability within sample groups. <span class="math display">\[SSW=\sum_{i=1}^{k}\sum_{j=1}^{n_{i}}\left(y_{ij}-\bar{y}_{i\cdot}\right)^{2}\;\;\;\;\;\;\;\;df_{W}=n-k\]</span></p>
 <p><strong>SSB</strong>: Sum of Squares Between - This is the variability between sample groups. <span class="math display">\[SSB=\sum_{i=1}^{k}n_{i}\left(\bar{y}_{i\cdot}-\bar{y}_{\cdot\cdot}\right)^{2} \;\;\;\;\;\;\;\;\;df_{B}=k-1\]</span></p>
 <p>SST: Sum of Squares Total - This is the total variability in the data set. It has an associated df=n-1 because under the null hypothesis there is only one mean <span class="math inline">\(\mu\)</span>. <span class="math display">\[SST=\sum_{i=1}^{k}\sum_{j=1}^{n_{j}}\left(y_{ij}-\bar{y}_{\cdot\cdot}\right)^{2} \;\;\;\;\;\;\;\;\;df_{T}=n-1\]</span></p>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-195-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-197-1.png" width="672" /></p>
 <p>An anova table is usually set up the in the following way (although the total row is sometimes removed):</p>
 <table>
 <thead>
@@ -453,13 +453,13 @@ H_{a} &amp;:        \textrm{at least on mean is different than the others}
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span><span class="kw">lm</span>(LAI ~<span class="st"> </span>Species, <span class="dt">data=</span>data)</code></pre></div>
 <p>As is always good practice, the first thing we should do is graph our data.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x=</span>Species, <span class="dt">y=</span>LAI)) +<span class="st"> </span><span class="kw">geom_boxplot</span>()</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-197-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-199-1.png" width="672" /></p>
 <p>It looks like the equal variance question isn’t a worry and it certainly appears that the mean value for each species is not the same. I expect that we will certainly prefer the complex model in this case.</p>
 <p>The <code>lm()</code> command is the command that does all the calculations necessary to fit an ANOVA model. This command returns a list object that is useful for subsequent analysis and it is up to the use to know what subsequent functions to call that answer questions of interest.</p>
 <p>In the call to <code>lm()</code> we created a formula. Formulas in R always are of the form <code>Y ~ X</code> where <code>Y</code> is the dependent variable and the <code>X</code> variables are the independent variables.</p>
 <p>Before we examine the anova table and make any conclusion, we should double check that the anova assumptions have been satisfied. To check the normality assumption, we will look at the qqplot of the residuals <span class="math inline">\(e_{ij}=y_{ij}-\bar{y}_{i\cdot}\)</span>. These residuals are easily accessed in R using the <code>resid</code> function on the model object. To check the variance assumption, we will examine the boxplot of the data</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">autoplot</span>( model, <span class="dt">which=</span><span class="dv">2</span>)  <span class="co"># The which argument specifies which plot to make</span></code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-198-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-200-1.png" width="672" /></p>
 <p>The qqplot doesn’t look too bad, with only two observations far from the normality line. To get the Analysis of Variance table, we’ll extract it from the model object using the function <code>anova()</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(model)</code></pre></div>
 <pre><code>## Analysis of Variance Table
@@ -500,7 +500,7 @@ lsmeans::<span class="kw">lsmeans</span>(model, ~Species)</code></pre></div>
 <div id="multiple-comparisons" class="section level2">
 <h2><span class="header-section-number">9.4</span> Multiple comparisons</h2>
 <p>Recall that for every statistical test there is some probability of making a type I error and we controlled that probability by setting a desired <span class="math inline">\(\alpha\)</span>-level. If I were to do 20 t-tests of samples with identical means, I would expect, on average, that one of them would turn up to be significantly different just by chance. If I am making a large number of tests, each with a type I error rate of <span class="math inline">\(\alpha\)</span>, I am practically guaranteed to make at least one type I error.</p>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-201-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-203-1.png" width="672" /></p>
 <p>With 5 groups, there are 10 different comparisons to be made, and just by random chance, one of those comparisons might come up significant. In this sampled data, performing 10 different two sample t-tests without making any adjustments to our <span class="math inline">\(\alpha\)</span>-level, we find one statistically significant difference even though all of the data came from a standard normal distribution.</p>
 <p>I want to be able to control the family-wise error rate so that the probability that I make one or more type I errors in the set of m of tests I’m considering is <span class="math inline">\(\alpha\)</span>. One general way to do this is called the Bonferroni method. In this method each test is performed using a significance level of <span class="math inline">\(\alpha/m\)</span>. (In practice I will multiple each p-value by m and compare each p-value to my desired family-wise <span class="math inline">\(\alpha\)</span>-level). Unfortunately for large <span class="math inline">\(m\)</span>, this results in unacceptably high levels of type II errors. Fortunately there are other methods for addressing the multiple comparisons issue and they are built into R.</p>
 <p>John Tukey’s test of “Honestly Significant Differences” is commonly used to address the multiple comparisons issue when examining all possible pairwise contrasts. This method is available in R by the function in several different methods. This test is near optimal when each group has the same number of samples (which is often termed “a balanced design”), but becomes more conservative (fails to detect differences) as the design becomes more unbalanced. In extremely unbalanced cases, it is preferable to use a Bonferroni adjustment.</p>
@@ -548,13 +548,13 @@ Hostility &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
 <p>The first thing we will do (as we should do in all data analyses) is to graph our data.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(Hostility, <span class="kw">aes</span>(<span class="dt">x=</span>Method, <span class="dt">y=</span>HLT)) +
 <span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-205-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-207-1.png" width="672" /></p>
 <p>These box plots make it clear that there is a difference between the three groups (at least group M1 is different from M2 or M3). An ANOVA model assumes equal variance between groups and that the residuals are normally distributed. Based on the box plot, the equal variance assumption might be suspect (although with only <span class="math inline">\(\approx 8\)</span> observations per group, it might not be bad). We’ll examine a QQ-plot of the residuals to consider the normality.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Is there equal variance in residuals across groups?</span>
 <span class="co"># Are the residuals approximately normal?</span>
 model &lt;-<span class="st"> </span><span class="kw">lm</span>( HLT ~<span class="st"> </span>Method, <span class="dt">data=</span>Hostility )
 <span class="kw">autoplot</span>(model, <span class="dt">which=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-206-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-208-1.png" width="672" /></p>
 <p>To examine the Normality of the residuals, we’ll use a Shapiro-Wilk’s test and we’ll also use Bartlett’s test for homogeneity of variances.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Test for equal variances between groups</span>
 <span class="kw">bartlett.test</span>(HLT~Method, <span class="dt">data=</span>Hostility)</code></pre></div>
@@ -631,9 +631,9 @@ model &lt;-<span class="st"> </span><span class="kw">lm</span>( HLT ~<span class
 <div id="theory-1" class="section level3">
 <h3><span class="header-section-number">9.5.1</span> Theory</h3>
 <p>We started with what I will call the “cell means model” <span class="math display">\[Y_{ij}=\mu_{i}+\epsilon_{ij}\;\;\;\textrm{where}\;\;\epsilon_{ij}\stackrel{iid}{\sim}N\left(0,\sigma^{2}\right)\]</span> so that the <span class="math inline">\(E\left(Y_{ij}\right)=\mu_{i}\)</span> where I interpret <span class="math inline">\(\mu_{i}\)</span> as the mean of each population. Given some data, we the following graph where the red lines and numbers denote the observed mean of the data in each group :</p>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-211-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-213-1.png" width="672" /></p>
 <p>But I am often interested in the difference between one group and another. For example, suppose this data comes from an experiment and group 1 is the control group. Then perhaps what I’m really interested is not that group 2 has a mean of 9, but rather that it is 5 units larger than the control. In this case perhaps what we care about is the differences. I could re-write the group means in terms of these differences from group 1. So looking at the model this way, the values that define the group means are the mean of group 1 (here it is 4), and the offsets from group 1 to group 2 (which is 5), and the offset from group 1 to group 3 (which is 10).</p>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-212-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-214-1.png" width="672" /></p>
 <p>I could write this interpretation of the model as the “offset” model which is <span class="math display">\[Y_{ij}=\mu+\tau_{i}+\epsilon_{ij}\]</span> where <span class="math inline">\(\mu\)</span> is the mean of group 1 and <span class="math inline">\(\tau_{i}\)</span> is each population’s offset from group 1. Because group 1 can’t be offset from itself, this forces <span class="math inline">\(\tau_{1}=0\)</span>.</p>
 <p>Notice that this representation of the complex model has 4 parameters (aside from <span class="math inline">\(\sigma\)</span>), but it has an additional constraint so we still only have 3 parameters that can vary (just as the cell means model has 3 means).</p>
 <p>The cell means model and the offset model really are the same model, just looked at slightly differently. They have the same number of parameters, and produce the same predicted values for <span class="math inline">\(\hat{y}_{ij}\)</span> and therefore have the same sum of squares, etc. The only difference is that one is might be more convenient depending on the question the investigator is asking. Actually in all the previous work in this chapter, we’ve been using the offset representation but <code>lsmeans::lsmeans()</code> is smart enough to recognize when we want the cell means model.</p>
@@ -687,7 +687,7 @@ c.model<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw"
 <div id="implications-on-the-anova-table" class="section level3">
 <h3><span class="header-section-number">9.5.3</span> Implications on the ANOVA table</h3>
 <p>We have been talking about the complex and simple models for our data but there is one more possible model, albeit not a very good one. I will refer to this as the bad model because it is almost always a poor fitting model. <span class="math display">\[Y_{ij}=\epsilon_{ij}where \epsilon_{ij}\stackrel{iid}{\sim}N\left(0,\sigma^{2}\right).\]</span></p>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-217-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-219-1.png" width="672" /></p>
 <p>Notice that the complex model has three parameters that define “signal” part of the model (i.e. the three group means). The simple has one parameter that defines the “signal” (the overall mean). The bad model has no parameters that define the model (i.e. the red line is always at zero).</p>
 <p>These three models can be denoted in R by:</p>
 <ul>
@@ -748,7 +748,7 @@ cell.representation   &lt;-<span class="st"> </span><span class="kw">lm</span>(H
 <h2><span class="header-section-number">9.6</span> Exercises</h2>
 <ol style="list-style-type: decimal">
 <li><p>For this exercise, we will compare the Sums of Squared Error for the simple <span class="math inline">\(y_{ij}=\mu+\epsilon_{ij}\)</span> and complex <span class="math inline">\(y_{ij}=\mu_{i}+\epsilon_{ij}\)</span> model and clearly, in the data presented below, the complex model fits the data better. The group means <span class="math inline">\(\bar{y}_{i\cdot}\)</span> are 3, 13, 5, and 9, while the overall mean is <span class="math inline">\(\bar{y}_{\cdot\cdot}=7.5\)</span>.<br />
-<img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-220-1.png" width="672" /></p>
+<img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-222-1.png" width="672" /></p>
 <ol style="list-style-type: lower-alpha">
 <li><p>For the simple model graph, draw a horizontal line at the height of the overall mean, representing predicted value of a new observation. Next, draw the the corresponding residuals <span class="math inline">\(y_{ij}-\bar{y}_{\cdot\cdot}\)</span> as vertical lines from the data points to the overall mean. Similarly draw horizontal lines for the group means in the complex model and represent the residuals for the complex model <span class="math inline">\(y_{ij}-\bar{y}_{i\cdot}\)</span> as vertical lines from the data points to the group means. In this case, does it appear that the average residual is significantly larger in the simple model than the complex?</p></li>
 <li><p>To show that the complex is a significantly better model, fill in the empty boxes in the ANOVA table.</p>
@@ -792,7 +792,7 @@ cell.representation   &lt;-<span class="st"> </span><span class="kw">lm</span>(H
 </table></li>
 </ol></li>
 <li><p>We will essentially repeat the previous exercise, except this time, the simple model will be preferred.</p>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-221-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-223-1.png" width="672" /></p>
 <p>For this data, the following means can be calculated:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
 <span class="kw">str</span>(p2.data)</code></pre></div>

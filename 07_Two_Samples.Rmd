@@ -461,18 +461,23 @@ Notice that we didn't specify the order for the subtraction and the `mosaic:t.te
 
 If the context of study is such that we can logically pair an observation from the first population to a particular observation in the second, then we can perform what is called a Paired Test. In a paired test, we will take each set of paired observations, calculate the difference, and then perform a 1-sample regular hypothesis test on the differences.
 
-For example, in the package Lock5Data there is a dataset that examines the age in which men and women get married. The data was obtained by taking a random sample from publicly available marriage licenses in St. Lawrence County, NY. Below is a visualization of the data.
+For example, in the package Lock5Data there is a dataset that examines the age in which men and women get married. The data was obtained by taking a random sample from publicly available marriage licenses in St. Lawrence County, NY. 
 
 ```{r}
 data(MarriageAges, package='Lock5Data')
+head(MarriageAges)
+```
+Unfortunately the format of this dataset is not particularly convenient for making graphs. Instead I want to turn this data into a "long" dataset where I have one row per person, not one row per marraige.
+```{r}
+# Make a dataset that is more convenient for graphing.
 MarriageAges.Long <- MarriageAges %>%
   mutate(Marriage = factor(1:n())) %>%        # Give each row a unique ID 
   gather('Spouse', 'Age', Husband, Wife) %>%  # pivot from Husband/Wife to Spouse/Age
   arrange(Marriage, desc(Spouse))             # Sort by Marriage, then (Wife,Husband)
-head(MarriageAges)
 ```
 
 ```{r}
+# Make a graph of ages, by Spouse Type
 ggplot(MarriageAges.Long, aes(x=Age)) +
   geom_histogram(binwidth=5) +
   facet_grid(Spouse ~ .) 
@@ -482,17 +487,16 @@ Looking at this view of the data, it doesn't appear that the husbands tend to be
 
 ```{r}
 mosaic::t.test( Age ~ Spouse, data=MarriageAges.Long )
+# t.test( MarriageAges$Husband, MarriageAges$Wife )  # Another way to run the t.test
 ```
 
 But critically, we are ignoring that while the average ages might not be different, for a given marriage, the husband tends to be older than the wife. Instead of looking at the difference in the means (i.e $d=\bar{h}-\bar{w}$) we should actually be looking at the mean of the differences $\bar{d}=\frac{1}{n}\sum d_{i}$ where $d_{i}=h_{i}-w_{i}$.
 
 ```{r}
-data(MarriageAges)
-AgeDifferences <- MarriageAges.Long %>%
-  group_by(Marriage) %>%
-  summarise( d = diff(Age) )   # diff(a,b) = b-a, so this will be Husband-Wife 
+MarriageAges <- MarriageAges  %>%
+  mutate( d = Husband - Wife )   
 
-ggplot(AgeDifferences, aes(x = d)) +
+ggplot(MarriageAges, aes(x = d)) +
   geom_histogram(binwidth=2)
 ```
 
@@ -505,27 +509,30 @@ H_{A}:\;\delta	&>	0
 Because we have reduced our problem to a 1-sample test, we can perform the asymptotic t-test easily enough in R.
 
 ```{r}
-t.test( AgeDifferences$d )
+t.test( MarriageAges$d )
+#t.test( MarriageAges$Husband, MarriageAges$Wife, paired=TRUE )  # Another way to run the t.test
 ```
 
 The result is highly statistically significant, and we see the mean difference in ages for the husband to be 2.8 years older. 
 
 To perform the same analysis using resampling methods, we need to be careful to do the resampling correctly. To perform the hypothesis test, we want to create data where the null hypothesis is true. To do this, we'll shuffle the ages within the marriage so that the husband and the wife have equal probability of being the older spouse. For the bootstrap CI, we need to be certain that we are resampling marriages, not people.
 
-```{r}
+```{r, cache=TRUE}
 # Permutation t-test of delta == 0
 PermDist <- mosaic::do(10000)*{ 
   MarriageAges.Long            %>%
     group_by(Marriage)         %>% 
-    mutate(age = mosaic::shuffle(Age)) %>%  # shuffle the ages within each marriage
+    mutate(Age = mosaic::shuffle(Age)) %>%  # shuffle the ages within each marriage
     summarize(d.i = diff(Age))         %>%  # Calc Husband - Wife age difference
     summarize(d.bar = mean(d.i))            # calc the mean difference
 }
+ggplot(PermDist, aes(x=d.bar)) + 
+  geom_histogram()
 PermDist %>%
   summarize( p.value = mean(d.bar >= 2.83) )
 ```
 
-```{r}
+```{r, cache=TRUE}
 # Bootstrap CI for delta
 BootDist <- mosaic::do(10000)*{ 
   MarriageAges.Long            %>%
@@ -550,6 +557,7 @@ head(TrafficFlow)
 ```
 
 ```{r}
+# A data set more convenient for Graphing and Permutation Tests.
 TrafficFlow.Long <- TrafficFlow           %>%
   mutate(Light = factor(1:n()))           %>% # Give each row a unique ID 
   gather('Seq', 'Delay', Flexible, Timed) %>% # pivot to SequenceType and Delay amount
@@ -576,7 +584,7 @@ All of the differences were positive, so it is almost ridiculous to do a hypothe
 t.test( TrafficFlow$Difference )
 ```
 
-```{r}
+```{r, cache=TRUE}
 # Permutation t-test of delta == 0
 PermDist <- mosaic::do(10000)*{ 
   TrafficFlow.Long                         %>%
@@ -592,7 +600,7 @@ PermDist %>%
 
 Our p-value is 0, but because we we actually only did 10,000 permutations, the most we can say is that the p-value is less than 1/ 10,000.
 
-```{r}
+```{r, cache=TRUE}
 # Bootstrap CI for delta
 BootDist <- mosaic::do(10000)*{ 
   TrafficFlow.Long               %>%
@@ -622,14 +630,14 @@ The confidence interval suggests that these data support that the mean differenc
     d) At an significance level of $\alpha=0.05$, do you reject or fail to reject the null hypothesis?
     e) Restate your conclusion in terms of the problem.
 
-3. In the Lock5Data package, the dataset `Smiles` gives data “...from a study examining the effect of a smile on the leniency of disciplinary action for wrongdoers. Participants in the experiment took on the role of members of a college disciplinary panel judging students accused of cheating. For each suspect, along with a description of the offense, a picture was provided with either a smile or neutral facial expression. A leniency score was calculated based on the disciplinary decisions made by the participants.”
+3. In the Lock5Data package, the dataset `Smiles` gives data “...from a study examining the effect of a smile on the leniency of disciplinary action for wrongdoers. Participants in the experiment took on the role of members of a college disciplinary panel judging students accused of cheating. For each suspect, along with a description of the offense, a picture was provided with either a smile or neutral facial expression. Note, that for each individual only one picture was submitted. A leniency score was calculated based on the disciplinary decisions made by the participants.”
     a) Graph the leniency score for the smiling and non-smiling groups. Comment on if you can visually detect any difference in leniency score.
     b) Calculate the mean and standard deviation of the leniencies for each group. Does it seem reasonable that the standard deviation of each group is the same?
     c) Do a two-sided two-sample t-test using pooled variance using the asymptotic method. Report the test statistic, p-value, and a $95\%$ CI.
     d) Do a two-side two-sample t-test using resampling methods. Report the p-value and a $95\%$ CI.
     e) What do you conclude at an $\alpha=0.05$ level? Do you feel we should have used a more stringent $\alpha$ level?
 
-4. In the Lock5Data package, the dataset `StorySpoilers` is data from an experiment where the researchers are testing if a “spoiler” at the beginning of a short story negatively affects the enjoyment of the story. A set of $n=12$ stories were selected and a spoiler introduction was created. Each version of each story was read by at least $30$ people and rated. Reported are the average ratings for the spoiler and non-spoiler versions. The following code creates the “long” version of the data.
+4. In the Lock5Data package, the dataset `StorySpoilers` is data from an experiment where the researchers are testing if a “spoiler” at the beginning of a short story negatively affects the enjoyment of the story. A set of $n=12$ stories were selected and a spoiler introduction was created. Each version of each story was read by at least $30$ people and rated. Reported are the average ratings for the spoiler and non-spoiler versions of each story. The following code creates the “long” version of the data.
     ```{r}
     library(dplyr)
     library(tidyr)
@@ -646,7 +654,18 @@ The confidence interval suggests that these data support that the mean differenc
     e) Do a paired t-test using the permutation method. Also calculate a $95\%$ confidence interval using the bootstrap. 
     f) Based on your results in parts (c) and (d), what do you conclude? 
 
-5. In the Lock5Data package, the dataset `Wetsuit` describes an experiment with the goal of quantifying the effect of wearing a wetsuit on the speed of swimming. (It is often debated among triathletes whether or not to wear a wetsuit when it is optional.) A set of $n=12$ swimmers and triathletes did a 1500 m swim in both the wetsuit and again in regular swimwear. The order in which they swam (wetsuit first or non-wetsuit first) was randomized for each participant. Reported is the maximum velocity during each swim.
+5. In the Lock5Data package, the dataset `Wetsuits` describes an experiment with the goal of quantifying the effect of wearing a wetsuit on the speed of swimming. (It is often debated among triathletes whether or not to wear a wetsuit when it is optional.) A set of $n=12$ swimmers and triathletes did a 1500 m swim in both the wetsuit and again in regular swimwear. The order in which they swam (wetsuit first or non-wetsuit first) was randomized for each participant. Reported is the maximum velocity during each swim.
+    ```{r}
+    # Code for creating the "long" version of the data
+    library(dplyr)
+    library(tidyr)
+    data('Wetsuits', package='Lock5Data')
+    Wetsuits.long <- Wetsuits %>%
+      mutate( Participant = 1:n() ) %>%
+      group_by(Participant, Gender, Type) %>%
+      gather('Suit', 'Time', Wetsuit, NoWetsuit ) %>%
+      arrange(Participant, Suit)
+    ```
     a) Why did the researcher randomize which suit was worn first?
     b) Plot the velocities for the wetsuit and non-wetsuit for each participant. Comment on if you detect any difference in the means of these two distributions. 
     c) Ignore the pairing and do a two-sample t-test using the asymptotic method. What do you conclude?

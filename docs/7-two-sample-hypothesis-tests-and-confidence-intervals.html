@@ -639,12 +639,8 @@ p.value</code></pre></div>
 <div id="difference-in-means-between-two-groups-paired-data" class="section level2">
 <h2><span class="header-section-number">7.2</span> Difference in means between two groups: Paired Data</h2>
 <p>If the context of study is such that we can logically pair an observation from the first population to a particular observation in the second, then we can perform what is called a Paired Test. In a paired test, we will take each set of paired observations, calculate the difference, and then perform a 1-sample regular hypothesis test on the differences.</p>
-<p>For example, in the package Lock5Data there is a dataset that examines the age in which men and women get married. The data was obtained by taking a random sample from publicly available marriage licenses in St. Lawrence County, NY. Below is a visualization of the data.</p>
+<p>For example, in the package Lock5Data there is a dataset that examines the age in which men and women get married. The data was obtained by taking a random sample from publicly available marriage licenses in St. Lawrence County, NY.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(MarriageAges, <span class="dt">package=</span><span class="st">&#39;Lock5Data&#39;</span>)
-MarriageAges.Long &lt;-<span class="st"> </span>MarriageAges %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Marriage =</span> <span class="kw">factor</span>(<span class="dv">1</span>:<span class="kw">n</span>())) %&gt;%<span class="st">        </span><span class="co"># Give each row a unique ID </span>
-<span class="st">  </span><span class="kw">gather</span>(<span class="st">&#39;Spouse&#39;</span>, <span class="st">&#39;Age&#39;</span>, Husband, Wife) %&gt;%<span class="st">  </span><span class="co"># pivot from Husband/Wife to Spouse/Age</span>
-<span class="st">  </span><span class="kw">arrange</span>(Marriage, <span class="kw">desc</span>(Spouse))             <span class="co"># Sort by Marriage, then (Wife,Husband)</span>
 <span class="kw">head</span>(MarriageAges)</code></pre></div>
 <pre><code>##   Husband Wife
 ## 1      53   50
@@ -653,10 +649,17 @@ MarriageAges.Long &lt;-<span class="st"> </span>MarriageAges %&gt;%
 ## 4      30   36
 ## 5      31   23
 ## 6      26   31</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(MarriageAges.Long, <span class="kw">aes</span>(<span class="dt">x=</span>Age)) +
+<p>Unfortunately the format of this dataset is not particularly convenient for making graphs. Instead I want to turn this data into a “long” dataset where I have one row per person, not one row per marraige.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Make a dataset that is more convenient for graphing.</span>
+MarriageAges.Long &lt;-<span class="st"> </span>MarriageAges %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Marriage =</span> <span class="kw">factor</span>(<span class="dv">1</span>:<span class="kw">n</span>())) %&gt;%<span class="st">        </span><span class="co"># Give each row a unique ID </span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="st">&#39;Spouse&#39;</span>, <span class="st">&#39;Age&#39;</span>, Husband, Wife) %&gt;%<span class="st">  </span><span class="co"># pivot from Husband/Wife to Spouse/Age</span>
+<span class="st">  </span><span class="kw">arrange</span>(Marriage, <span class="kw">desc</span>(Spouse))             <span class="co"># Sort by Marriage, then (Wife,Husband)</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Make a graph of ages, by Spouse Type</span>
+<span class="kw">ggplot</span>(MarriageAges.Long, <span class="kw">aes</span>(<span class="dt">x=</span>Age)) +
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">5</span>) +
 <span class="st">  </span><span class="kw">facet_grid</span>(Spouse ~<span class="st"> </span>.) </code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-145-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-146-1.png" width="672" /></p>
 <p>Looking at this view of the data, it doesn’t appear that the husbands tend to be older than the wives. A t-test to see if the average age of husbands is greater than the average age of wives gives an insignificant difference.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mosaic::<span class="kw">t.test</span>( Age ~<span class="st"> </span>Spouse, <span class="dt">data=</span>MarriageAges.Long )</code></pre></div>
 <pre><code>## 
@@ -670,26 +673,24 @@ MarriageAges.Long &lt;-<span class="st"> </span>MarriageAges %&gt;%
 ## sample estimates:
 ## mean in group Husband    mean in group Wife 
 ##              34.66667              31.83810</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># t.test( MarriageAges$Husband, MarriageAges$Wife )  # Another way to run the t.test</span></code></pre></div>
 <p>But critically, we are ignoring that while the average ages might not be different, for a given marriage, the husband tends to be older than the wife. Instead of looking at the difference in the means (i.e <span class="math inline">\(d=\bar{h}-\bar{w}\)</span>) we should actually be looking at the mean of the differences <span class="math inline">\(\bar{d}=\frac{1}{n}\sum d_{i}\)</span> where <span class="math inline">\(d_{i}=h_{i}-w_{i}\)</span>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(MarriageAges)</code></pre></div>
-<pre><code>## Warning in data(MarriageAges): data set &#39;MarriageAges&#39; not found</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">AgeDifferences &lt;-<span class="st"> </span>MarriageAges.Long %&gt;%
-<span class="st">  </span><span class="kw">group_by</span>(Marriage) %&gt;%
-<span class="st">  </span><span class="kw">summarise</span>( <span class="dt">d =</span> <span class="kw">diff</span>(Age) )   <span class="co"># diff(a,b) = b-a, so this will be Husband-Wife </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">MarriageAges &lt;-<span class="st"> </span>MarriageAges  %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>( <span class="dt">d =</span> Husband -<span class="st"> </span>Wife )   
 
-<span class="kw">ggplot</span>(AgeDifferences, <span class="kw">aes</span>(<span class="dt">x =</span> d)) +
+<span class="kw">ggplot</span>(MarriageAges, <span class="kw">aes</span>(<span class="dt">x =</span> d)) +
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">2</span>)</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-147-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-148-1.png" width="672" /></p>
 <p>Given this set of differences, we’d like to know if this data is compatible with the null hypothesis that husbands and wives tend to be the same age versus the alternative that husbands tend to be older. (We could chose the two-sided test as well). <span class="math display">\[\begin{aligned}
 H_{0}:\;\delta  &amp;=  0  \\
 H_{A}:\;\delta  &amp;&gt;  0
 \end{aligned}\]</span></p>
 <p>Because we have reduced our problem to a 1-sample test, we can perform the asymptotic t-test easily enough in R.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>( AgeDifferences$d )</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>( MarriageAges$d )</code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
-## data:  AgeDifferences$d
+## data:  MarriageAges$d
 ## t = 5.8025, df = 104, p-value = 7.121e-08
 ## alternative hypothesis: true mean is not equal to 0
 ## 95 percent confidence interval:
@@ -697,17 +698,22 @@ H_{A}:\;\delta  &amp;&gt;  0
 ## sample estimates:
 ## mean of x 
 ##  2.828571</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#t.test( MarriageAges$Husband, MarriageAges$Wife, paired=TRUE )  # Another way to run the t.test</span></code></pre></div>
 <p>The result is highly statistically significant, and we see the mean difference in ages for the husband to be 2.8 years older.</p>
 <p>To perform the same analysis using resampling methods, we need to be careful to do the resampling correctly. To perform the hypothesis test, we want to create data where the null hypothesis is true. To do this, we’ll shuffle the ages within the marriage so that the husband and the wife have equal probability of being the older spouse. For the bootstrap CI, we need to be certain that we are resampling marriages, not people.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Permutation t-test of delta == 0</span>
 PermDist &lt;-<span class="st"> </span>mosaic::<span class="kw">do</span>(<span class="dv">10000</span>)*{ 
   MarriageAges.Long            %&gt;%
 <span class="st">    </span><span class="kw">group_by</span>(Marriage)         %&gt;%<span class="st"> </span>
-<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">age =</span> mosaic::<span class="kw">shuffle</span>(Age)) %&gt;%<span class="st">  </span><span class="co"># shuffle the ages within each marriage</span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">Age =</span> mosaic::<span class="kw">shuffle</span>(Age)) %&gt;%<span class="st">  </span><span class="co"># shuffle the ages within each marriage</span>
 <span class="st">    </span><span class="kw">summarize</span>(<span class="dt">d.i =</span> <span class="kw">diff</span>(Age))         %&gt;%<span class="st">  </span><span class="co"># Calc Husband - Wife age difference</span>
 <span class="st">    </span><span class="kw">summarize</span>(<span class="dt">d.bar =</span> <span class="kw">mean</span>(d.i))            <span class="co"># calc the mean difference</span>
 }
-PermDist %&gt;%
+<span class="kw">ggplot</span>(PermDist, <span class="kw">aes</span>(<span class="dt">x=</span>d.bar)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>()</code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-150-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">PermDist %&gt;%
 <span class="st">  </span><span class="kw">summarize</span>( <span class="dt">p.value =</span> <span class="kw">mean</span>(d.bar &gt;=<span class="st"> </span><span class="fl">2.83</span>) )</code></pre></div>
 <pre><code>##   p.value
 ## 1       0</code></pre>
@@ -734,7 +740,8 @@ BootDist &lt;-<span class="st"> </span>mosaic::<span class="kw">do</span>(<span 
 ## 4    99       51         48
 ## 5   101       48         53
 ## 6   101       48         53</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">TrafficFlow.Long &lt;-<span class="st"> </span>TrafficFlow           %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># A data set more convenient for Graphing and Permutation Tests.</span>
+TrafficFlow.Long &lt;-<span class="st"> </span>TrafficFlow           %&gt;%
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Light =</span> <span class="kw">factor</span>(<span class="dv">1</span>:<span class="kw">n</span>()))           %&gt;%<span class="st"> </span><span class="co"># Give each row a unique ID </span>
 <span class="st">  </span><span class="kw">gather</span>(<span class="st">&#39;Seq&#39;</span>, <span class="st">&#39;Delay&#39;</span>, Flexible, Timed) %&gt;%<span class="st"> </span><span class="co"># pivot to SequenceType and Delay amount</span>
 <span class="st">  </span><span class="kw">arrange</span>(Light, Seq)                         <span class="co"># Sort by Light, then by SequenceType</span>
@@ -750,11 +757,11 @@ BootDist &lt;-<span class="st"> </span>mosaic::<span class="kw">do</span>(<span 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(TrafficFlow.Long, <span class="kw">aes</span>(<span class="dt">x=</span>Delay)) +
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">2</span>) +<span class="st">              </span><span class="co"># histograms of Delay time</span>
 <span class="st">  </span><span class="kw">facet_grid</span>(Seq ~<span class="st"> </span>.)                       <span class="co"># two plots, stacked by SequenceType</span></code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-153-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-154-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(TrafficFlow, <span class="kw">aes</span>(<span class="dt">x=</span>Difference)) +
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">2</span>) +
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&#39;Difference (Standard - Flexible)&#39;</span>)</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-154-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-155-1.png" width="672" /></p>
 <p>All of the differences were positive, so it is almost ridiculous to do a hypothesis test that there is no decrease in delays with the flexible timing system, but we might as well walk through the analysis.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>( TrafficFlow$Difference )</code></pre></div>
 <pre><code>## 
@@ -814,7 +821,7 @@ BootDist &lt;-<span class="st"> </span>mosaic::<span class="kw">do</span>(<span 
 <li>At an significance level of <span class="math inline">\(\alpha=0.05\)</span>, do you reject or fail to reject the null hypothesis?</li>
 <li>Restate your conclusion in terms of the problem.</li>
 </ol></li>
-<li>In the Lock5Data package, the dataset <code>Smiles</code> gives data “…from a study examining the effect of a smile on the leniency of disciplinary action for wrongdoers. Participants in the experiment took on the role of members of a college disciplinary panel judging students accused of cheating. For each suspect, along with a description of the offense, a picture was provided with either a smile or neutral facial expression. A leniency score was calculated based on the disciplinary decisions made by the participants.”
+<li>In the Lock5Data package, the dataset <code>Smiles</code> gives data “…from a study examining the effect of a smile on the leniency of disciplinary action for wrongdoers. Participants in the experiment took on the role of members of a college disciplinary panel judging students accused of cheating. For each suspect, along with a description of the offense, a picture was provided with either a smile or neutral facial expression. Note, that for each individual only one picture was submitted. A leniency score was calculated based on the disciplinary decisions made by the participants.”
 <ol style="list-style-type: lower-alpha">
 <li>Graph the leniency score for the smiling and non-smiling groups. Comment on if you can visually detect any difference in leniency score.</li>
 <li>Calculate the mean and standard deviation of the leniencies for each group. Does it seem reasonable that the standard deviation of each group is the same?</li>
@@ -822,7 +829,7 @@ BootDist &lt;-<span class="st"> </span>mosaic::<span class="kw">do</span>(<span 
 <li>Do a two-side two-sample t-test using resampling methods. Report the p-value and a <span class="math inline">\(95\%\)</span> CI.</li>
 <li>What do you conclude at an <span class="math inline">\(\alpha=0.05\)</span> level? Do you feel we should have used a more stringent <span class="math inline">\(\alpha\)</span> level?</li>
 </ol></li>
-<li><p>In the Lock5Data package, the dataset <code>StorySpoilers</code> is data from an experiment where the researchers are testing if a “spoiler” at the beginning of a short story negatively affects the enjoyment of the story. A set of <span class="math inline">\(n=12\)</span> stories were selected and a spoiler introduction was created. Each version of each story was read by at least <span class="math inline">\(30\)</span> people and rated. Reported are the average ratings for the spoiler and non-spoiler versions. The following code creates the “long” version of the data.</p>
+<li><p>In the Lock5Data package, the dataset <code>StorySpoilers</code> is data from an experiment where the researchers are testing if a “spoiler” at the beginning of a short story negatively affects the enjoyment of the story. A set of <span class="math inline">\(n=12\)</span> stories were selected and a spoiler introduction was created. Each version of each story was read by at least <span class="math inline">\(30\)</span> people and rated. Reported are the average ratings for the spoiler and non-spoiler versions of each story. The following code creates the “long” version of the data.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
 <span class="kw">library</span>(tidyr)
 <span class="kw">data</span>(StorySpoilers, <span class="dt">package=</span><span class="st">&#39;Lock5Data&#39;</span>)
@@ -838,7 +845,16 @@ StorySpoilers.Long &lt;-<span class="st"> </span>StorySpoilers %&gt;%
 <li>Do a paired t-test using the permutation method. Also calculate a <span class="math inline">\(95\%\)</span> confidence interval using the bootstrap.</li>
 <li>Based on your results in parts (c) and (d), what do you conclude?</li>
 </ol></li>
-<li>In the Lock5Data package, the dataset <code>Wetsuit</code> describes an experiment with the goal of quantifying the effect of wearing a wetsuit on the speed of swimming. (It is often debated among triathletes whether or not to wear a wetsuit when it is optional.) A set of <span class="math inline">\(n=12\)</span> swimmers and triathletes did a 1500 m swim in both the wetsuit and again in regular swimwear. The order in which they swam (wetsuit first or non-wetsuit first) was randomized for each participant. Reported is the maximum velocity during each swim.
+<li><p>In the Lock5Data package, the dataset <code>Wetsuits</code> describes an experiment with the goal of quantifying the effect of wearing a wetsuit on the speed of swimming. (It is often debated among triathletes whether or not to wear a wetsuit when it is optional.) A set of <span class="math inline">\(n=12\)</span> swimmers and triathletes did a 1500 m swim in both the wetsuit and again in regular swimwear. The order in which they swam (wetsuit first or non-wetsuit first) was randomized for each participant. Reported is the maximum velocity during each swim.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Code for creating the &quot;long&quot; version of the data</span>
+<span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(tidyr)
+<span class="kw">data</span>(<span class="st">&#39;Wetsuits&#39;</span>, <span class="dt">package=</span><span class="st">&#39;Lock5Data&#39;</span>)
+Wetsuits.long &lt;-<span class="st"> </span>Wetsuits %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>( <span class="dt">Participant =</span> <span class="dv">1</span>:<span class="kw">n</span>() ) %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(Participant, Gender, Type) %&gt;%
+<span class="st">  </span><span class="kw">gather</span>(<span class="st">&#39;Suit&#39;</span>, <span class="st">&#39;Time&#39;</span>, Wetsuit, NoWetsuit ) %&gt;%
+<span class="st">  </span><span class="kw">arrange</span>(Participant, Suit)</code></pre></div>
 <ol style="list-style-type: lower-alpha">
 <li>Why did the researcher randomize which suit was worn first?</li>
 <li>Plot the velocities for the wetsuit and non-wetsuit for each participant. Comment on if you detect any difference in the means of these two distributions.</li>

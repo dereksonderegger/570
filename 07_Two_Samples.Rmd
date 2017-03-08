@@ -207,7 +207,7 @@ Notice that the null hypothesis value, $\delta=0$, is not a value supported by t
 ### Inference via asymptotic results (unequal variance assumption)
 
 Previously we've seen that the Central Limit Theorem gives us a way to estimate the distribution of the sample mean. So it should be reasonable to assume that for our two groups (1=NonCaffeine, 2=Caffeine),
-$$\bar{X}_{1}\stackrel{\cdot}{\sim}N\left(\mu_{1},\,\sigma_{1}^{2}\right)\;\;\;\textrm{and}\;\;\;\bar{X}_{2}\stackrel{\cdot}{\sim}N\left(\mu_{2},\;\sigma_{2}^{2}\right)$$
+$$\bar{X}_{1}\stackrel{\cdot}{\sim}N\left(\mu_{1},\, \frac{\sigma_{1}^{2}}{n_1}\right)\;\;\;\textrm{and}\;\;\;\bar{X}_{2}\stackrel{\cdot}{\sim}N\left(\mu_{2},\; \frac{\sigma_{2}^{2}}{n_2}\right)$$
 
 It turns out that because $\bar{X}_{C}$ and $\bar{X}_{NC}$ both have approximately normal distributions, then the difference between them also does. This shouldn't be too surprising after looking at the permutation and bootstrap distributions of the $d^*$ values. 
 
@@ -277,9 +277,9 @@ mosaic::t.test(Taps ~ Group, data=CaffeineTaps)
 ### Inference via asymptotic results (equal variance assumption)
 
 In the CaffeineTaps example, the standard deviations of each group are quite similar. Instead of thinking of the data as 
-$$\bar{X}_{1}\stackrel{\cdot}{\sim}N\left(\mu_{1},\,\sigma_{1}^{2}\right)\;\;\;\textrm{and}\;\;\;\bar{X}_{2}\stackrel{\cdot}{\sim}N\left(\mu_{2},\;\sigma_{2}^{2}\right)$$
+$$\bar{X}_{1}\stackrel{\cdot}{\sim}N\left(\mu_{1},\,\frac{\sigma_{1}^{2}}{n_1}\right)\;\;\;\textrm{and}\;\;\;\bar{X}_{2}\stackrel{\cdot}{\sim}N\left(\mu_{2},\;\frac{\sigma_{2}^{2}}{n_2}\right)$$
 we could consider the model where we assume that the variance term is the same for each sample.
-$$\bar{X}_{1}\stackrel{\cdot}{\sim}N\left(\mu_{1},\,\sigma^{2}\right)\;\;\;\textrm{and}\;\;\;\bar{X}_{2}\stackrel{\cdot}{\sim}N\left(\mu_{2},\;\sigma^{2}\right)$$
+$$\bar{X}_{1}\stackrel{\cdot}{\sim}N\left(\mu_{1},\,\frac{\sigma^{2}}{n_1}\right)\;\;\;\textrm{and}\;\;\;\bar{X}_{2}\stackrel{\cdot}{\sim}N\left(\mu_{2},\; \frac{\sigma^{2}}{n_2}\right)$$
 
 First, we can estimate $\mu_{1}$ and $\mu_{2}$ with the appropriate sample means $\bar{x}_{1}$ and $\bar{x}_{2}$. Next we need to calculate an estimate of $\sigma$ using all of the data. First recall the formula for the sample variance for one group was
 $$s^{2}=\frac{1}{n-1}\left[\sum_{j=1}^{n}\left(x_{j}-\bar{x}\right)^{2}\right]$$

@@ -1,7 +1,7 @@
 base
-dplyr
 ggplot2
-ggfortify
-multcompView
+dplyr
 ggdendro
 tidyr
+ggfortify
+multcompView

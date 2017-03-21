@@ -623,7 +623,7 @@ The confidence interval suggests that these data support that the mean differenc
     d) At an significance level of $\alpha=0.05$, do you reject or fail to reject the null hypothesis?
     e) Restate your conclusion in terms of the problem.
 
-2. All persons running for public office must report the amount of money raised and spent during their campaign. Political scientists contend that it is more difficult for female candidates to raise money. Suppose that we randomly sample $30$ male and $30$ female candidates for state legislature and observe the male candidates raised, on average, $\bar{y}=\$350,000$ with a standard deviation of $s_{y}=\$61,900$ and the females raised on average $\bar{x}=\$245,000$ with a standard deviation of $s_{x}=\$52,100$. Perform a one-sided, two-sample t-test with pooled variance to test if female candidates generally raise and spend less in their campaigns that male candidates. Notice that because I don't give you the data, you can only analyze the data using the asymptotic method and plugging in the give quantities into the formulas presented.
+2. All persons running for public office must report the amount of money raised and spent during their campaign. Political scientists contend that it is more difficult for female candidates to raise money. Suppose that we randomly sample $30$ male and $30$ female candidates for state legislature and observe the male candidates raised, on average, $\bar{y}=\$350,000$ with a standard deviation of $s_{y}=\$61,900$ and the females raised on average $\bar{x}=\$245,000$ with a standard deviation of $s_{x}=\$52,100$. Perform a one-sided, two-sample t-test with pooled variance to test if female candidates generally raise less in their campaigns that male candidates. _Notice that because I don't give you the data, you can only analyze the data using the asymptotic method and plugging in the give quantities into the formulas presented._
     a) State an appropriate null and alternative hypothesis. (Be sure to use correct notation!)
     b) Calculate an appropriate test statistic (making sure to denote the appropriate degrees of freedom, if necessary).
     c) Calculate an appropriate p-value.
@@ -650,9 +650,9 @@ The confidence interval suggests that these data support that the mean differenc
     a) Based on the description, a 1-sided test is appropriate. Explain why.
     b) Graph the ratings for the original stories and the modified spoiler version. Comment on if you detect any difference in ratings between the two.
     c) Graph the difference in ratings for each story. Comment on if the distribution of the differences seems to suggest that a spoiler lowers the rating.
-    d) Do a paired t-test using the asymptotic method. Also calculate a $95\%$ confidence interval. 
-    e) Do a paired t-test using the permutation method. Also calculate a $95\%$ confidence interval using the bootstrap. 
-    f) Based on your results in parts (c) and (d), what do you conclude? 
+    d) Do a paired one-sided t-test using the asymptotic method. Also calculate a $95\%$ confidence interval. 
+    e) Do a paired one-sided t-test using the permutation method. Also calculate a $95\%$ confidence interval using the bootstrap. 
+    f) Based on your results in parts (d) and (e), what do you conclude? 
 
 5. In the Lock5Data package, the dataset `Wetsuits` describes an experiment with the goal of quantifying the effect of wearing a wetsuit on the speed of swimming. (It is often debated among triathletes whether or not to wear a wetsuit when it is optional.) A set of $n=12$ swimmers and triathletes did a 1500 m swim in both the wetsuit and again in regular swimwear. The order in which they swam (wetsuit first or non-wetsuit first) was randomized for each participant. Reported is the maximum velocity during each swim.
     ```{r}
@@ -663,12 +663,12 @@ The confidence interval suggests that these data support that the mean differenc
     Wetsuits.long <- Wetsuits %>%
       mutate( Participant = 1:n() ) %>%
       group_by(Participant, Gender, Type) %>%
-      gather('Suit', 'Time', Wetsuit, NoWetsuit ) %>%
+      gather('Suit', 'MaxVelocity', Wetsuit, NoWetsuit ) %>%
       arrange(Participant, Suit)
     ```
     a) Why did the researcher randomize which suit was worn first?
     b) Plot the velocities for the wetsuit and non-wetsuit for each participant. Comment on if you detect any difference in the means of these two distributions. 
-    c) Ignore the pairing and do a two-sample t-test using the asymptotic method. What do you conclude?
+    c) Ignore the pairing and do a two-sided two-sample t-test using the asymptotic method. What would you conclude doing the t-test this way?
     d) Plot the difference in velocity for each swimmer. Comment on if the observed difference in velocity seems to indicate that which should be preferred (wetsuit or non-wetsuit).
-    e) Do a paired t-test using the asymptotic method. Also calculate the 95% confidence interval. What do you conclude?
-    f) Do a paired t-test using the permutation method. Also calculate the 95% confidence interval using the bootstrap method. What do you conclude?
+    e) Do a paired two-sided t-test using the asymptotic method. Also calculate the 95% confidence interval. What do you conclude?
+    f) Do a paired two-sided t-test using the permutation method. Also calculate the 95% confidence interval using the bootstrap method. What do you conclude?

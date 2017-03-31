@@ -346,7 +346,7 @@ If we still suspect that $H_{a}$ is true, then we must repeat the experiment wit
 
 ### Power and Sample Size Selection
 
-Just as we calculated the necessary sample size to achieve a confidence interval of a specified width, we are also often interested in calculating the necessary sample size to to find a significant difference from the hypothesized mean $\mu_{0}$. Just as in the confidence interval case where we had to specify the half-width $E$ and some estimate of the population standard deviation $\hat{\sigma}$, we now must specify a difference we want to be able to detect $\delta$ and an estimate of the population standard deviation $\hat{\sigma}$. 
+Just as we calculated the necessary sample size to achieve a confidence interval of a specified width, we are also often interested in calculating the necessary sample size to find a significant difference from the hypothesized mean $\mu_{0}$. Just as in the confidence interval case where we had to specify the half-width $E$ and some estimate of the population standard deviation $\hat{\sigma}$, we now must specify a difference we want to be able to detect $\delta$ and an estimate of the population standard deviation $\hat{\sigma}$. 
 
 *Example*. Suppose that I work in Quality Control for a company that manufactures a type of rope. This rope is supposed to have a mean breaking strength of $5000$ pounds and long experience with the process suggests that the standard deviation is approximately $s=50$. As with many manufacturing processes, sometimes the machines that create the rope get out of calibration. So each morning we take a random sample of $n=7$ pieces of rope and using $\alpha=0.05$, test the hypothesis 
 $$\begin{aligned} H_{0}:\;\mu	 &=	5000  \\

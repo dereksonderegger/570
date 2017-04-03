@@ -229,7 +229,7 @@ $$Y_{ij}=\mu+\epsilon_{ij}\;\;\;\textrm{where}\;\epsilon_{ij}\stackrel{iid}{\sim
 and has each observation having the same expectation $\mu$. Thus we use the overall mean of the data $\bar{y}_{\cdot\cdot}$ as the estimate of $\mu$ and therefore our error terms are
 $$e_{ij}=y_{ij}-\bar{y}_{\cdot\cdot}$$
 The sum of squared error associated with the simple model is thus
-$$\begin{aligned} SSE_{simple}	=	
+$$\begin{aligned} SSE_{simple}		
   &= \sum_{i=1}^{k}\sum_{j=1}^{n_{i}}e_{ij}^{2} \\
 	&=	\sum_{i=1}^{k}\sum_{j=1}^{n_{i}}\left(y_{ij}-\bar{y}_{\cdot\cdot}\right)^{2} \\
 	&=	SST 
@@ -264,7 +264,7 @@ These calculations are preformed in the ANOVA table, and the following table is 
 |  Source    |  df   |    Sum of Sq.   |     Mean Sq.                              |               F-Stat                 |        p-value        |
 |:----------:|:-----:|:---------------:|:-----------------------------------------:|:------------------------------------:|:----------------------|
 | Difference | $k-1$ | $SSE_{diff}$    | $MSE_{diff}=\frac{SSE_{diff}}{k-1}$       | $f=\frac{MSE_{diff}}{MSE_{complex}}$ | $P(F_{k-1,n-k}\ge f)$ |
-| Complex    | $n-k$ | $SSE_{complex}$ | $MSE_{complex}=\frac{SSE_{complex}}{k-1}$ |                                      |                       |
+| Complex    | $n-k$ | $SSE_{complex}$ | $MSE_{complex}=\frac{SSE_{complex}}{n-k}$ |                                      |                       |
 | Simple     | $n-1$ | $SSE_{simple}$  |                                           |                                      |                       |
 
 
@@ -763,7 +763,13 @@ My recommendation is to always fit the offset model and if you are interested in
         ii. Calculate $$SSE_{simple}=\sum_{i=1}^{3}\sum_{j=1}^{4} e_{ij}^2=\sum_{i=1}^{3}\sum_{j=1}^{4}\left(y_{ij}-\hat{y}_{ij}\right)^{2}=\sum_{i=1}^{3}\sum_{j=1}^{4}\left(y_{ij}-\bar{y}_{\cdot\cdot}\right)^{2}$$
     c) Recreate the ANOVA table using R by typing in the data set and fitting the appropriate model using the `lm()` and `anova()` commands.
 
-4. Suppose that for a project I did four separate t-tests and the resulting p-values were If I wanted to control my overall type I error rate at an $\alpha=0.05$ and used the Bonferroni multiple comparisons procedure, which tests would be statistically significant?
+4. Suppose that for a project I did four separate t-tests and the resulting p-values were
+    
+    | $p_1$ | $p_2$ | $p_3$ | $p_4$ |
+    |:-----:|:-----:|:-----:|:-----:|
+    | 0.03  | 0.14  | 0.01  | 0.001 |
+    
+If I wanted to control my overall type I error rate at an $\alpha=0.05$ and used the Bonferroni multiple comparisons procedure, which tests would be statistically significant?
 
 5. We will examine the amount of waste produced at five different plants that manufacture Levi Jeans. The Waste amount is the amount of cloth wasted in cutting out designs compared to a computer program, so negative values for Waste indicate that the human engineer did a better job planning the cuts than the computer algorithm. There are two columns, `Plant` and `Waste`. 
     a) Read the data into R using the following:

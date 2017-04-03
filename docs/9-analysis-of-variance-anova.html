@@ -26,7 +26,7 @@
 <meta name="author" content="Derek L. Sonderegger">
 
 
-<meta name="date" content="2017-03-21">
+<meta name="date" content="2017-04-03">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -365,7 +365,7 @@ H_{a} &amp;:        \textrm{at least on mean is different than the others}
 <p>The problem under consideration can also be considered as a question about how complicated of a model should we fit to the observed data. If a more complicated model doesn’t “fit” the data better, then I am better of keeping a simple model and view of the process at hand.</p>
 <p>Upon the second reading of these notes, the student is likely asking why we even bothered introducing the ANOVA table using SST, SSW, SSB. The answer is that these notations are common in the ANOVA literature and that we can’t justify using an F-test without variance estimates. Both interpretations are valid, but the Simple/Complex models are a better paradigm as we move forward.</p>
 <p><strong>Simple Model</strong></p>
-<p>The simple model is <span class="math display">\[Y_{ij}=\mu+\epsilon_{ij}\;\;\;\textrm{where}\;\epsilon_{ij}\stackrel{iid}{\sim}N\left(0,\sigma^{2}\right)\]</span> and has each observation having the same expectation <span class="math inline">\(\mu\)</span>. Thus we use the overall mean of the data <span class="math inline">\(\bar{y}_{\cdot\cdot}\)</span> as the estimate of <span class="math inline">\(\mu\)</span> and therefore our error terms are <span class="math display">\[e_{ij}=y_{ij}-\bar{y}_{\cdot\cdot}\]</span> The sum of squared error associated with the simple model is thus <span class="math display">\[\begin{aligned} SSE_{simple}  =   
+<p>The simple model is <span class="math display">\[Y_{ij}=\mu+\epsilon_{ij}\;\;\;\textrm{where}\;\epsilon_{ij}\stackrel{iid}{\sim}N\left(0,\sigma^{2}\right)\]</span> and has each observation having the same expectation <span class="math inline">\(\mu\)</span>. Thus we use the overall mean of the data <span class="math inline">\(\bar{y}_{\cdot\cdot}\)</span> as the estimate of <span class="math inline">\(\mu\)</span> and therefore our error terms are <span class="math display">\[e_{ij}=y_{ij}-\bar{y}_{\cdot\cdot}\]</span> The sum of squared error associated with the simple model is thus <span class="math display">\[\begin{aligned} SSE_{simple}      
   &amp;= \sum_{i=1}^{k}\sum_{j=1}^{n_{i}}e_{ij}^{2} \\
     &amp;=  \sum_{i=1}^{k}\sum_{j=1}^{n_{i}}\left(y_{ij}-\bar{y}_{\cdot\cdot}\right)^{2} \\
     &amp;=  SST 
@@ -416,7 +416,7 @@ H_{a} &amp;:        \textrm{at least on mean is different than the others}
 <td align="center">Complex</td>
 <td align="center"><span class="math inline">\(n-k\)</span></td>
 <td align="center"><span class="math inline">\(SSE_{complex}\)</span></td>
-<td align="center"><span class="math inline">\(MSE_{complex}=\frac{SSE_{complex}}{k-1}\)</span></td>
+<td align="center"><span class="math inline">\(MSE_{complex}=\frac{SSE_{complex}}{n-k}\)</span></td>
 <td align="center"></td>
 <td align="left"></td>
 </tr>
@@ -886,7 +886,28 @@ p2.data %&gt;%<span class="st"> </span>
 </ol></li>
 <li>Recreate the ANOVA table using R by typing in the data set and fitting the appropriate model using the <code>lm()</code> and <code>anova()</code> commands.</li>
 </ol></li>
-<li><p>Suppose that for a project I did four separate t-tests and the resulting p-values were If I wanted to control my overall type I error rate at an <span class="math inline">\(\alpha=0.05\)</span> and used the Bonferroni multiple comparisons procedure, which tests would be statistically significant?</p></li>
+<li><p>Suppose that for a project I did four separate t-tests and the resulting p-values were</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(p_1\)</span></th>
+<th align="center"><span class="math inline">\(p_2\)</span></th>
+<th align="center"><span class="math inline">\(p_3\)</span></th>
+<th align="center"><span class="math inline">\(p_4\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">0.03</td>
+<td align="center">0.14</td>
+<td align="center">0.01</td>
+<td align="center">0.001</td>
+</tr>
+</tbody>
+</table></li>
+</ol>
+<p>If I wanted to control my overall type I error rate at an <span class="math inline">\(\alpha=0.05\)</span> and used the Bonferroni multiple comparisons procedure, which tests would be statistically significant?</p>
+<ol start="5" style="list-style-type: decimal">
 <li>We will examine the amount of waste produced at five different plants that manufacture Levi Jeans. The Waste amount is the amount of cloth wasted in cutting out designs compared to a computer program, so negative values for Waste indicate that the human engineer did a better job planning the cuts than the computer algorithm. There are two columns, <code>Plant</code> and <code>Waste</code>.
 <ol style="list-style-type: lower-alpha">
 <li><p>Read the data into R using the following:</p>

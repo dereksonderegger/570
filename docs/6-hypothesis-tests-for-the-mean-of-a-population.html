@@ -26,7 +26,7 @@
 <meta name="author" content="Derek L. Sonderegger">
 
 
-<meta name="date" content="2017-03-21">
+<meta name="date" content="2017-04-03">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -490,7 +490,7 @@ cars %&gt;%<span class="st"> </span><span class="kw">summarise</span>(<span clas
 <p>If we still suspect that <span class="math inline">\(H_{a}\)</span> is true, then we must repeat the experiment with a larger samples size. A larger sample size makes it possible to detect smaller differences.</p>
 <div id="power-and-sample-size-selection" class="section level3">
 <h3><span class="header-section-number">6.2.1</span> Power and Sample Size Selection</h3>
-<p>Just as we calculated the necessary sample size to achieve a confidence interval of a specified width, we are also often interested in calculating the necessary sample size to to find a significant difference from the hypothesized mean <span class="math inline">\(\mu_{0}\)</span>. Just as in the confidence interval case where we had to specify the half-width <span class="math inline">\(E\)</span> and some estimate of the population standard deviation <span class="math inline">\(\hat{\sigma}\)</span>, we now must specify a difference we want to be able to detect <span class="math inline">\(\delta\)</span> and an estimate of the population standard deviation <span class="math inline">\(\hat{\sigma}\)</span>.</p>
+<p>Just as we calculated the necessary sample size to achieve a confidence interval of a specified width, we are also often interested in calculating the necessary sample size to find a significant difference from the hypothesized mean <span class="math inline">\(\mu_{0}\)</span>. Just as in the confidence interval case where we had to specify the half-width <span class="math inline">\(E\)</span> and some estimate of the population standard deviation <span class="math inline">\(\hat{\sigma}\)</span>, we now must specify a difference we want to be able to detect <span class="math inline">\(\delta\)</span> and an estimate of the population standard deviation <span class="math inline">\(\hat{\sigma}\)</span>.</p>
 <p><em>Example</em>. Suppose that I work in Quality Control for a company that manufactures a type of rope. This rope is supposed to have a mean breaking strength of <span class="math inline">\(5000\)</span> pounds and long experience with the process suggests that the standard deviation is approximately <span class="math inline">\(s=50\)</span>. As with many manufacturing processes, sometimes the machines that create the rope get out of calibration. So each morning we take a random sample of <span class="math inline">\(n=7\)</span> pieces of rope and using <span class="math inline">\(\alpha=0.05\)</span>, test the hypothesis <span class="math display">\[\begin{aligned} H_{0}:\;\mu    &amp;= 5000  \\
                   H_{a}:\;\mu    &amp;&lt; 5000  \end{aligned}\]</span> Notice that I will reject the null hypothesis if <span class="math inline">\(\bar{x}\)</span> is less than some cut-off value (which we denote <span class="math inline">\(\bar{x}_{crit}\)</span>), which we calculate by first recognizing that the critical t-value is <span class="math display">\[t_{crit}=t_{n-1}^{\alpha}=-1.943\]</span> and then solving the following equation for <span class="math inline">\(\bar{x}_{crit}\)</span> <span class="math display">\[\begin{aligned}
 t_{crit}    &amp;=  \frac{\bar{x}_{crit}-\mu_{0}}{\frac{s}{\sqrt{n}}} \\

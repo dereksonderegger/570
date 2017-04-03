@@ -643,8 +643,9 @@ The confidence interval suggests that these data support that the mean differenc
     library(tidyr)
     data(StorySpoilers, package='Lock5Data')
     StorySpoilers.Long <- StorySpoilers %>%
-      mutate( Story = factor(Story) ) %>%  # make Story into a categorical variable
       gather('Type', 'Rating', Spoiler, Original) %>%
+      mutate( Story = factor(Story),      # make Story and Type into
+              Type  = factor(Type) ) %>%  # categorical variables
       arrange(Story)
     ```
     a) Based on the description, a 1-sided test is appropriate. Explain why.
@@ -660,11 +661,11 @@ The confidence interval suggests that these data support that the mean differenc
     library(dplyr)
     library(tidyr)
     data('Wetsuits', package='Lock5Data')
-    Wetsuits.long <- Wetsuits %>%
-      mutate( Participant = 1:n() ) %>%
-      group_by(Participant, Gender, Type) %>%
-      gather('Suit', 'MaxVelocity', Wetsuit, NoWetsuit ) %>%
-      arrange(Participant, Suit)
+    Wetsuits.Long <- Wetsuits %>%
+      mutate(Participant = factor(1:12) ) %>%
+      gather('Suit', 'MaxVelocity', Wetsuit,NoWetsuit) %>%
+      arrange( Participant, Suit) %>%
+      mutate(Suit = factor(Suit))
     ```
     a) Why did the researcher randomize which suit was worn first?
     b) Plot the velocities for the wetsuit and non-wetsuit for each participant. Comment on if you detect any difference in the means of these two distributions. 

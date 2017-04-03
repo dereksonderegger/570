@@ -26,7 +26,7 @@
 <meta name="author" content="Derek L. Sonderegger">
 
 
-<meta name="date" content="2017-03-21">
+<meta name="date" content="2017-04-03">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -834,8 +834,9 @@ BootDist &lt;-<span class="st"> </span>mosaic::<span class="kw">do</span>(<span 
 <span class="kw">library</span>(tidyr)
 <span class="kw">data</span>(StorySpoilers, <span class="dt">package=</span><span class="st">&#39;Lock5Data&#39;</span>)
 StorySpoilers.Long &lt;-<span class="st"> </span>StorySpoilers %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>( <span class="dt">Story =</span> <span class="kw">factor</span>(Story) ) %&gt;%<span class="st">  </span><span class="co"># make Story into a categorical variable</span>
 <span class="st">  </span><span class="kw">gather</span>(<span class="st">&#39;Type&#39;</span>, <span class="st">&#39;Rating&#39;</span>, Spoiler, Original) %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>( <span class="dt">Story =</span> <span class="kw">factor</span>(Story),      <span class="co"># make Story and Type into</span>
+          <span class="dt">Type  =</span> <span class="kw">factor</span>(Type) ) %&gt;%<span class="st">  </span><span class="co"># categorical variables</span>
 <span class="st">  </span><span class="kw">arrange</span>(Story)</code></pre></div>
 <ol style="list-style-type: lower-alpha">
 <li>Based on the description, a 1-sided test is appropriate. Explain why.</li>
@@ -850,11 +851,11 @@ StorySpoilers.Long &lt;-<span class="st"> </span>StorySpoilers %&gt;%
 <span class="kw">library</span>(dplyr)
 <span class="kw">library</span>(tidyr)
 <span class="kw">data</span>(<span class="st">&#39;Wetsuits&#39;</span>, <span class="dt">package=</span><span class="st">&#39;Lock5Data&#39;</span>)
-Wetsuits.long &lt;-<span class="st"> </span>Wetsuits %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>( <span class="dt">Participant =</span> <span class="dv">1</span>:<span class="kw">n</span>() ) %&gt;%
-<span class="st">  </span><span class="kw">group_by</span>(Participant, Gender, Type) %&gt;%
-<span class="st">  </span><span class="kw">gather</span>(<span class="st">&#39;Suit&#39;</span>, <span class="st">&#39;MaxVelocity&#39;</span>, Wetsuit, NoWetsuit ) %&gt;%
-<span class="st">  </span><span class="kw">arrange</span>(Participant, Suit)</code></pre></div>
+Wetsuits.Long &lt;-<span class="st"> </span>Wetsuits %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Participant =</span> <span class="kw">factor</span>(<span class="dv">1</span>:<span class="dv">12</span>) ) %&gt;%
+<span class="st">  </span><span class="kw">gather</span>(<span class="st">&#39;Suit&#39;</span>, <span class="st">&#39;MaxVelocity&#39;</span>, Wetsuit,NoWetsuit) %&gt;%
+<span class="st">  </span><span class="kw">arrange</span>( Participant, Suit) %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Suit =</span> <span class="kw">factor</span>(Suit))</code></pre></div>
 <ol style="list-style-type: lower-alpha">
 <li>Why did the researcher randomize which suit was worn first?</li>
 <li>Plot the velocities for the wetsuit and non-wetsuit for each participant. Comment on if you detect any difference in the means of these two distributions.</li>

@@ -816,17 +816,9 @@ cell.representation   &lt;-<span class="st"> </span><span class="kw">lm</span>(H
 </ol></li>
 <li><p>We will essentially repeat the previous exercise, except this time, the simple model will be preferred. Again for each group, we have <span class="math inline">\(n_i=3\)</span> observations.</p>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-225-1.png" width="672" /></p>
-<p>For this data, the following group means and overall mean can be calculated:</p>
-<pre><code>## # A tibble: 3 × 2
-##      grp   xbar.i
-##   &lt;fctr&gt;    &lt;dbl&gt;
-## 1      A 4.419685
-## 2      B 5.205504
-## 3      C 4.579385</code></pre>
-<pre><code>##       xbar
-## 1 4.734858</code></pre>
+For this data, the following group means can be calculated as <span class="math inline">\(\bar{y}_{i\cdot} = (4.42, 5.21, 4.58)\)</span> and the overall mean is <span class="math inline">\(\bar{y}_{\cdot \cdot}=4.73\)</span>.
 <ol style="list-style-type: lower-alpha">
-<li>For the simple model graph, draw the corresponding residuals <span class="math inline">\(y_{ij}-\bar{y}_{\cdot\cdot}\)</span> as vertical lines from the data point to the overall mean. Similarly draw the residuals for the complex model <span class="math inline">\(y_{ij}-\bar{y}_{i\cdot}\)</span> as vertical lines from the data points to the group means. (Visually estimate the group and overall means). In this case, does it appear that the average residual is significantly larger in the simple model than the complex?</li>
+<li>For the simple model graph, draw the corresponding residuals <span class="math inline">\(y_{ij}-\bar{y}_{\cdot\cdot}\)</span> as vertical lines from the data point to the overall mean. Similarly draw the residuals for the complex model <span class="math inline">\(y_{ij}-\bar{y}_{i\cdot}\)</span> as vertical lines from the data points to the group means. In this case, does it appear that the average residual is significantly larger in the simple model than the complex?</li>
 <li><p>To show that the complex not a significantly better model, fill in the empty boxes in the ANOVA table.</p>
 <table>
 <thead>
@@ -885,7 +877,7 @@ cell.representation   &lt;-<span class="st"> </span><span class="kw">lm</span>(H
 </tbody>
 </table>
 <ol style="list-style-type: lower-alpha">
-<li>The complex model assumes different means for each group. That is <span class="math inline">\(Y_{ij}=\mu_{i}+\epsilon_{ij}\)</span>. Calculate SSE_{complex} via the following:
+<li>The complex model assumes different means for each group. That is <span class="math inline">\(Y_{ij}=\mu_{i}+\epsilon_{ij}\)</span>. Calculate <span class="math inline">\(SSE_{complex}\)</span> via the following:
 <ol style="list-style-type: lower-roman">
 <li>Find the estimate of <span class="math inline">\(\mu_{i}\)</span>. That is, calculate <span class="math inline">\(\hat{\mu}_{i}=\bar{y}_{i\cdot}\)</span> which is the mean of each group. Therefore the predicted value for a new observation in group <span class="math inline">\(i\)</span> would be <span class="math inline">\(\hat{y}_{ij}=\hat{\mu}_{i}=\bar{y}_{i\cdot}\)</span> and you can now calculate <span class="math inline">\(SSE_{complex}\)</span>.</li>
 <li>Calculate <span class="math display">\[SSE_{complex} = \sum_{i=1}^{3}\sum_{j=1}^{4} e_{ij}^2 =\sum_{i=1}^{3}\sum_{j=1}^{4}\left(y_{ij}-\hat{y}_{ij}\right)^{2}=\sum_{i=1}^{3}\sum_{j=1}^{4}\left(y_{ij}-\bar{y}_{i\cdot}\right)^{2}\]</span></li>

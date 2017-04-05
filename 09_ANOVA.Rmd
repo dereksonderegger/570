@@ -332,7 +332,6 @@ and can be found using the `coef()` and `confint()` functions.
 # We'll explore this later in this chapter.
 model.2 <- lm(LAI ~ Species - 1, data=data)
 coef(model.2)
-confint(model.2)
 
 # alternatively we could use the lsmeans package
 # using either model representation 
@@ -345,26 +344,21 @@ Are the all the species different from each other? In practice I will want to ex
 
 Recall that for every statistical test there is some probability of making a type I error and we controlled that probability by setting a desired $\alpha$-level. If I were to do 20 t-tests of samples with identical means, I would expect, on average, that one of them would turn up to be significantly different just by chance. If I am making a large number of tests, each with a type I error rate of $\alpha$, I am practically guaranteed to make at least one type I error.
 
-```{r, echo=FALSE}
-library(multcompView)
-set.seed(-1035) 
-k <- 5 
-n <- 10 
-Grp <- factor(rep(1:k, each=n)) 
-mu  <- rep(0, k*n) 
-y <- mu + rnorm(k*n) 
-mydata <- data.frame(Y=y, Group=Grp) 
-
-p.values <- pairwise.t.test(mydata$Y, mydata$Group, pool.sd=FALSE,p.adjust.method='none')$p.value
-p.values <- cbind(rbind(rep(NA,k-1),p.values), rep(NA,k)) 
-rownames(p.values)[1] <- '1' 
-colnames(p.values)[k] <- k 
-letter <- multcompView::multcompLetters(p.values, threshold=0.05) 
-letterdata <- data.frame(Grp=factor(1:k), letter=letter$Letters, Y=3)
-
+```{r}
+set.seed(-1035) # So that I get the same dataset each time I build the book.
+k <- 5 ; n <- 10 
+mydata <- data.frame(mu=rep(0,k*n), Grp=factor(rep(1:k, each=n))) %>%
+  mutate( Y=mu+rnorm(k*n), Group=Grp) 
+letterdata <- lm( Y~Grp, data=mydata ) %>%
+  lsmeans::lsmeans( pairwise~Grp) %>%
+  lsmeans::cld( Letters=letters, adjust='none' ) %>%  # Force no p-value adjustment
+  dplyr::select(Grp, .group)
+```
+```{r}
+# Visualize a made up data set: mydata
 ggplot(mydata, aes(x=Grp, y=Y)) +
   geom_boxplot() +
-  geom_text(data=letterdata, aes(label=letter)) +
+  geom_text(data=letterdata, aes(label=.group), y=3) +
   ggtitle( expression(paste(X[ij],' ~ N(0,1)   where ', n[i], ' = 10')) ) +
   xlab('Group') + ylab('Response')
 ```
@@ -376,12 +370,20 @@ I want to be able to control the family-wise error rate so that the probability 
 
 John Tukey's test of “Honestly Significant Differences” is commonly used to address the multiple comparisons issue when examining all possible pairwise contrasts. This method is available in R by the function in several different methods. This test is near optimal when each group has the same number of samples (which is often termed “a balanced design”), but becomes more conservative (fails to detect differences) as the design becomes more unbalanced. In extremely unbalanced cases, it is preferable to use a Bonferroni adjustment.
 
-Using function `lsmeans::lsmeans()` function, the adjusted p-value for the difference between groups 1 and 4 is no longer significant. 
+Using function `lsmeans::lsmeans()` function, which by default does Tukey's adjustment, the adjusted p-value for the difference between groups 1 and 4 is no longer significant. 
 
 ```{r}
 model <- lm(Y ~ Grp, mydata)
-lsmeans::lsmeans(model, pairwise ~ Grp)
+t1 <- lsmeans::lsmeans(model, pairwise ~ Grp)
+t1
 ```
+
+It is also straightforward to generate the letter display using the function `cld()` which stands for _compact letter display_.
+
+```{r}
+lsmeans::cld( t1, Letters=letters )
+```
+
 
 Likewise if we are testing the ANOVA assumption of equal variance, we cannot rely on doing all pairwise F-tests and we must use a method that controls the overall error rate. The multiple comparisons version of `var.test()` is Bartlett's test which is called similarly to `lm()`.
 
@@ -563,7 +565,7 @@ Neither representation is more powerful because on a very deep mathematical leve
 ### Implications on the ANOVA table
 
 We have been talking about the complex and simple models for our data but there is one more possible model, albeit not a very good one. I will refer to this as the bad model because it is almost always a poor fitting model.
-$$Y_{ij}=\epsilon_{ij}where \epsilon_{ij}\stackrel{iid}{\sim}N\left(0,\sigma^{2}\right).$$
+$$Y_{ij}=\epsilon_{ij} \;\;\; \textrm{ where }\;\;\; \epsilon_{ij}\stackrel{iid}{\sim}N\left(0,\sigma^{2}\right).$$
 
 ```{r, echo=FALSE}
 par(mfrow=c(1,3))
@@ -691,10 +693,10 @@ My recommendation is to always fit the offset model and if you are interested in
     Complex.data$model <- 'Complex Model'
     Full.data <- rbind(Simple.data, Complex.data) 
     ggplot(Full.data, aes(x=grp, y=y, grp=rep, shape=grp, color=grp)) +
-    geom_pointrange(aes(ymin=y, ymax=y), position=position_dodge(width=.6)) + 
-    scale_y_continuous(breaks=c(3,5,7,9,11,13,15)) + 
-    xlab('Group') + 
-    facet_grid(. ~ model) 
+      geom_pointrange(aes(ymin=y, ymax=y), position=position_dodge(width=.6)) + 
+      scale_y_continuous(breaks=c(3,5,7,9,11,13,15)) + 
+      xlab('Group') + 
+      facet_grid(. ~ model) 
     ```
     
     a) For the simple model graph, draw a horizontal line at the height of the overall mean, representing predicted value of a new observation. Next, draw the the corresponding residuals $y_{ij}-\bar{y}_{\cdot\cdot}$ as vertical lines from the data points to the overall mean. Similarly draw horizontal lines for the group means in the complex model and represent the residuals for the complex model $y_{ij}-\bar{y}_{i\cdot}$ as vertical lines from the data points to the group means. In this case, does it appear that the average residual is significantly larger in the simple model than the complex?
@@ -704,10 +706,10 @@ My recommendation is to always fit the offset model and if you are interested in
         |  Source    |     df     |      SS        |       MS      |     F      |   p-value    |
         |:----------:|:----------:|:--------------:|:-------------:|:----------:|:------------:|
         | Difference |            |                |               |            |              |
-        | Complex    |   20       |                |               |            |              |
-        | Simple     |  256       |                |               |            |              |
+        | Complex    |            |      20        |               |            |              |
+        | Simple     |            |     256        |               |            |              |
         
-2. We will essentially repeat the previous exercise, except this time, the simple model will be preferred.  
+2. We will essentially repeat the previous exercise, except this time, the simple model will be preferred.  Again for each group, we have $n_i=3$ observations.
     
     ```{r, echo=FALSE}
     set.seed(238)
@@ -720,17 +722,16 @@ My recommendation is to always fit the offset model and if you are interested in
     Complex.data$model <- 'Complex Model'
     Full.data <- rbind(Simple.data, Complex.data) 
     ggplot(Full.data, aes(x=grp, y=y, grp=rep, shape=grp, color=grp)) +
-    geom_pointrange(aes(ymin=y, ymax=y), position=position_dodge(width=.6)) + 
-    xlab('Group') + 
-    facet_grid(. ~ model) 
+      geom_pointrange(aes(ymin=y, ymax=y), position=position_dodge(width=.6)) + 
+      xlab('Group') + 
+      facet_grid(. ~ model) 
     # make a data frame to show the students...
     p2.data <- Simple.data[,c('y','grp')]
     ```
     
-    For this data, the following means can be calculated:
-    ```{r}
+    For this data, the following group means and overall mean can be calculated:
+    ```{r, echo=FALSE}
     library(dplyr)
-    str(p2.data)
     # calculate the group means ??
     p2.data %>% 
       group_by(grp) %>% 
@@ -744,9 +745,9 @@ My recommendation is to always fit the offset model and if you are interested in
     
         |  Source    |     df     |      SS        |       MS      |     F      |   p-value    |
         |:----------:|:----------:|:--------------:|:-------------:|:----------:|:------------:|
-        | Difference |            |                |               |            |              |
-        | Complex    |   20       |                |               |            |              |
-        | Simple     |  256       |                |               |            |              |
+        | Difference |            |   1.035        |               |            |              |
+        | Complex    |            |   8.7498       |               |            |              |
+        | Simple     |            |                |               |            |              |
 
 3. The following data were collected and we wish to perform an analysis of variance to determine if the group means are statistically different.
     
@@ -781,7 +782,7 @@ If I wanted to control my overall type I error rate at an $\alpha=0.05$ and used
     c) Test the equal variance assumption using Bartlett's test.
     d) Fit an ANOVA model to these data and test if the residuals have a normal distribution using the Shapiro-Wilks test.
 
-6. The dataset `iris` is available on R and can be loaded by the entering the command data('iris') at your R prompt. This famous data set contains the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for n_{i}=50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica. We will be examining the relationship between sepal width and the species of these irises. Denote the mean value of all setosa flowers as $\mu_{setosa}$ and similar notation for the other species.
+6. The dataset `iris` is available on R and can be loaded by the entering the command `data('iris')` at your R prompt. This famous data set contains the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for $n_{i}=50$ flowers from each of $3$ species of iris. The species are Iris setosa, versicolor, and virginica. We will be examining the relationship between sepal width and the species of these irises. Denote the mean value of all setosa flowers as $\mu_{setosa}$ and similar notation for the other species.
     a) Make a boxplot of the data. Do any assumptions necessary for ANOVA appear to be violated?
     b) Test the equal variance assumption of ANOVA using Bartlett's test.
     c) Do the ANOVA test and test the normality of the residual terms by making a QQplot and doing the Shapiro-Wilk's test.

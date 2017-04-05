@@ -26,7 +26,7 @@
 <meta name="author" content="Derek L. Sonderegger">
 
 
-<meta name="date" content="2017-04-03">
+<meta name="date" content="2017-04-05">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -265,13 +265,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="kw">library</span>(dplyr)
 <span class="kw">library</span>(ggfortify)  <span class="co"># for diagnostic plots in ggplot2 via autoplot()</span></code></pre></div>
 <p>We continue to want to examine the relationship between a predictor variable and a response but now we consider the case that the predictor is continuous and the response is also continuous. In general we are going to be interested in finding the line that best fits the observed data and determining if we should include the predictor variable in the model.</p>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-229-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-231-1.png" width="672" /></p>
 <div id="pearsons-correlation-coefficient" class="section level2">
 <h2><span class="header-section-number">10.1</span> Pearson’s Correlation Coefficient</h2>
 <p>We first consider Pearson’s correlation coefficient, which is a statistics that measures the strength of the linear relationship between the predictor and response. Consider the following Pearson’s correlation statistic <span class="math display">\[r=\frac{\sum_{i=1}^{n}\left(\frac{x_{i}-\bar{x}}{s_{x}}\right)\left(\frac{y_{i}-\bar{y}}{s_{y}}\right)}{n-1}\]</span> where <span class="math inline">\(x_{i}\)</span> and <span class="math inline">\(y_{i}\)</span> are the x and y coordinate of the <span class="math inline">\(i\)</span>th observation. Notice that each parenthesis value is the standardized value of each observation. If the x-value is big (greater than <span class="math inline">\(\bar{x}\)</span>) and the y-value is large (greater than <span class="math inline">\(\bar{y}\)</span>), then after multiplication, the result is positive. Likewise if the x-value is small and the y-value is small, both standardized values are negative and therefore after multiplication the result is positive. If a large x-value is paired with a small y-value, then the first value is positive, but the second is negative and so the multiplication result is negative.</p>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-230-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-232-1.png" width="672" /></p>
 <p>The following are true about Pearson’s correlation coefficient: 1. <span class="math inline">\(r\)</span> is unit-less because we have standardized the <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> values. 2. <span class="math inline">\(-1\le r\le1\)</span> because of the scaling by <span class="math inline">\(n-1\)</span> 3. A negative <span class="math inline">\(r\)</span> denotes a negative relationship between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, while a positive value of <span class="math inline">\(r\)</span> represents a positive relationship. 4. <span class="math inline">\(r\)</span> measures the strength of the linear relationship between the predictor and response.</p>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-231-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-233-1.png" width="672" /></p>
 </div>
 <div id="model-theory" class="section level2">
 <h2><span class="header-section-number">10.2</span> Model Theory</h2>
@@ -315,13 +315,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><em>The error terms are independent.</em></li>
 </ol>
 <p>Under this model, the expected value of an observation with covariate <span class="math inline">\(X=x\)</span> is <span class="math inline">\(E\left(Y\,|\,X=x\right)=\beta_{0}+\beta_{1}\)</span> and a new observation has a standard deviation of <span class="math inline">\(\sigma\)</span> about the line.</p>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-232-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-234-1.png" width="672" /></p>
 <p>Given this model, how do we find estimates of <span class="math inline">\(\beta_{0}\)</span> and <span class="math inline">\(\beta_{1}\)</span>? In the past we have always relied on using some sort of sample mean, but it is not obvious what we can use here. Instead of a mean, we will use the values of <span class="math inline">\(\hat{\beta}_{0}\)</span> and <span class="math inline">\(\hat{\beta}_{1}\)</span> that minimize the sum of squared error (SSE) where <span class="math display">\[\begin{aligned}
 \hat{y}_{i} &amp;=  \hat{\beta}_{0}+\hat{\beta}_{1}x_{i} \\
 e_{i}         &amp;=    y_{i}-\hat{y}_{i} \\
 SSE         &amp;=  \sum_{i=1}^{n}e_{i}^{2}
 \end{aligned}\]</span></p>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-233-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-235-1.png" width="672" /></p>
 <p>Fortunately there are simple closed form solutions for <span class="math inline">\(\hat{\beta}_{0}\)</span> and <span class="math inline">\(\hat{\beta}_{1}\)</span> <span class="math display">\[\begin{aligned}
 \hat{\beta}_{1} &amp;=  r\,\left(\frac{s_{y}}{s_{x}}\right)\\
 \hat{\beta_{0}} &amp;=  \bar{y}-\hat{\beta}_{1}\bar{x} 
@@ -346,7 +346,7 @@ SSE         &amp;=  \sum_{i=1}^{n}e_{i}^{2}
 <span class="kw">ggplot</span>(setosa, <span class="kw">aes</span>(<span class="dt">x=</span>Sepal.Length, <span class="dt">y=</span>Sepal.Width)) +
 <span class="st">  </span><span class="kw">geom_point</span>() +
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;Sepal Length&quot;</span>, <span class="dt">y=</span><span class="st">&quot;Sepal Width&quot;</span>, <span class="dt">title=</span><span class="st">&#39;Setosa Irises&#39;</span>) </code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-234-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-236-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Do all the crazy calculations &quot;By Hand!&quot;</span>
 x &lt;-<span class="st"> </span>setosa$Sepal.Length
 y &lt;-<span class="st"> </span>setosa$Sepal.Width
@@ -528,12 +528,12 @@ stderr.b1 &lt;-<span class="st"> </span><span class="kw">sqrt</span>(s2) *<span 
 <p><span class="math display">\[StdErr\left(\hat{y}_{new}\right)=\hat{\sigma}\sqrt{1+\frac{1}{n}+\frac{\left(x_{new}-\bar{x}\right)^{2}}{S_{xx}}}\]</span></p>
 <p>So the prediction interval for a new observation will be: <span class="math display">\[\left(\hat{\beta}_{0}+\hat{\beta}_{1}x_{new}\right)\pm t_{n-2}^{1-\alpha/2}\;\;\hat{\sigma}\sqrt{1+\frac{1}{n}+\frac{\left(x_{new}-\bar{x}\right)^{2}}{S_{xx}}}\]</span></p>
 <p>To emphasize the difference between confidence regions (capturing where we believe the regression line to lay) versus prediction regions (where new data observations will lay) we note that as the sample size increases, the uncertainty as to where the regression line lays decreases, but the prediction intervals will always contain a minimum width due to the error associated with an individual observation. Below are confidence (red) and prediction (blue) regions for two different sample sizes.</p>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-241-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-243-1.png" width="672" /></p>
 <p>In general, you will not want to calculate the confidence intervals and prediction intervals by hand. Fortunately R makes it easy to calculate the intervals. The function <code>predict()</code> will calculate the point estimates along with confidence and prediction intervals. The function requires the <code>lm()</code> output along with an optional data frame (if you want to predict values not in the original data).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(setosa, <span class="kw">aes</span>(<span class="dt">x=</span>Sepal.Length, <span class="dt">y=</span>Sepal.Width)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>() +
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&#39;Sepal Length vs Sepal Width&#39;</span>)</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-242-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-244-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#fit the regression</span>
 model &lt;-<span class="st"> </span><span class="kw">lm</span>(Sepal.Width ~<span class="st"> </span>Sepal.Length, <span class="dt">data=</span>setosa)
 
@@ -570,7 +570,7 @@ setosa &lt;-<span class="st"> </span>setosa %&gt;%
 <span class="st">  </span><span class="kw">geom_line</span>(   <span class="kw">aes</span>(<span class="dt">x=</span>Sepal.Length, <span class="dt">y=</span>fit), <span class="dt">col=</span><span class="st">&#39;red&#39;</span> ) +
 <span class="st">  </span><span class="kw">geom_ribbon</span>( <span class="kw">aes</span>(<span class="dt">x=</span>Sepal.Length, <span class="dt">ymin=</span>conf.lwr, <span class="dt">ymax=</span>conf.upr), <span class="dt">fill=</span><span class="st">&#39;red&#39;</span>,  <span class="dt">alpha=</span>.<span class="dv">4</span>) +
 <span class="st">  </span><span class="kw">geom_ribbon</span>( <span class="kw">aes</span>(<span class="dt">x=</span>Sepal.Length, <span class="dt">ymin=</span>pred.lwr, <span class="dt">ymax=</span>pred.upr), <span class="dt">fill=</span><span class="st">&#39;blue&#39;</span>, <span class="dt">alpha=</span>.<span class="dv">4</span>)</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-245-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-247-1.png" width="672" /></p>
 <p>It is worth noting that these confidence intervals are all point-wise confidence intervals. If I want to calculate confidence or prediction intervals for a large number of <span class="math inline">\(x_{new}\)</span> values, then I have to deal with the multiple comparisons issue. Fortunately this is easy to do in the simple linear regression case. Instead of using the <span class="math inline">\(t_{n-2}^{1-\alpha/2}\)</span> quantile in the interval formulas, we should use <span class="math inline">\(W=\sqrt{2*F_{1-\alpha,\,2,\,n-2}}\)</span>. Many books ignore this issue as does the <code>predict()</code> function in R.</p>
 </div>
 </div>
@@ -590,7 +590,7 @@ small &lt;-<span class="st"> </span><span class="kw">cbind</span>(small, <span c
 <span class="st">  </span><span class="kw">geom_ribbon</span>( <span class="dt">fill=</span><span class="st">&#39;light blue&#39;</span>,  <span class="dt">alpha=</span>.<span class="dv">4</span>) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">labs</span>( <span class="dt">x=</span><span class="st">&#39;Year&#39;</span>, <span class="dt">y=</span><span class="st">&#39;Time (s)&#39;</span>, <span class="dt">title=</span><span class="st">&#39;Winning times of Mens 1500 m&#39;</span> ) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-246-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-248-1.png" width="672" /></p>
 <p>If we are interested in predicting the results of the 2008 and 2012 Olympic race, what would we predict?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">predict</span>(model, 
         <span class="dt">newdata=</span><span class="kw">data.frame</span>(<span class="dt">year=</span><span class="kw">c</span>(<span class="dv">2008</span>, <span class="dv">2012</span>)), 
@@ -620,7 +620,7 @@ for(i in <span class="dv">1</span>:<span class="dv">3</span>){
        <span class="dt">xlab=</span><span class="st">&#39;Fitted&#39;</span>, <span class="dt">ylab=</span><span class="st">&#39;Residual&#39;</span>, <span class="dt">main=</span>data$Type[index[<span class="dv">1</span>]] );
   <span class="kw">abline</span>(<span class="dv">0</span>,<span class="dv">0</span>, <span class="dt">lty=</span><span class="dv">2</span>);
 }</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-249-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-251-1.png" width="672" /></p>
 <p>To illustrate this, we’ll consider the cherry tree dataset that comes with R. The goal will be predicting the volume of lumber produced by a cherry tree of a given diameter. The data are given in a dataset pre-loaded in R called <code>trees</code>.</p>
 <p>Step one: Graph the data. The first step in a regression analysis is to graph the data and think about if a linear relationship makes sense.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(trees)  <span class="co"># 3 columns Girth, Height, Volume</span></code></pre></div>
@@ -634,12 +634,12 @@ for(i in <span class="dv">1</span>:<span class="dv">3</span>){
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(trees, <span class="kw">aes</span>(<span class="dt">x=</span>Girth, <span class="dt">y=</span>Volume)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>() +<span class="st"> </span>
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&#39;Volume vs Girth&#39;</span>)</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-250-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-252-1.png" width="672" /></p>
 <p>Initially, it looks like a line is a pretty good description of this relationship.</p>
 <p>Step two: Fit a regression and examine the diagnostic plots.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span><span class="kw">lm</span>( Volume ~<span class="st"> </span>Girth, <span class="dt">data=</span>trees )
 <span class="kw">autoplot</span>(model, <span class="dt">which=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-251-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-253-1.png" width="672" /></p>
 <p>The normality assumption isn’t too bad, but there is a strong trend in the residual plot. The curvature we see in the residual group is present in the original scatterplot, but it is more obvious. At this point I would think about a slightly more complicated model, e.g. should we include height in the model or perhaps <code>Girth^2</code>? The implications of both of these possibilities will be explored in STA 571 but for now we’ll just continue using the model we have.</p>
 <p>Step three: Plot the data and the regression model.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">trees &lt;-<span class="st"> </span><span class="kw">cbind</span>( trees, <span class="kw">predict</span>(model, <span class="dt">interval=</span><span class="st">&#39;confidence&#39;</span>) )
@@ -655,7 +655,7 @@ for(i in <span class="dv">1</span>:<span class="dv">3</span>){
 <span class="st">  </span><span class="kw">geom_ribbon</span>( <span class="kw">aes</span>( <span class="dt">ymin=</span>lwr, <span class="dt">ymax=</span>upr), <span class="dt">alpha=</span>.<span class="dv">4</span>, <span class="dt">fill=</span><span class="st">&#39;pink&#39;</span> ) +
 <span class="st">  </span><span class="kw">geom_line</span>( <span class="kw">aes</span>(<span class="dt">y=</span>fit), <span class="dt">color=</span><span class="st">&#39;red&#39;</span>) +
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">y=</span>Volume)) </code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-252-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-254-1.png" width="672" /></p>
 <p>In this graph we see that we underestimate the volume for small girths, overestimate for medium values, and underestimate for large girths. So we see the same pattern of the residuals in this graph as we saw in the residual graph. While the model we’ve selected isn’t as good as it could be, this isn’t horribly bad and might suffice for a first pass</p>
 <blockquote>
 <p>“All models are wrong, but some are useful.” George Box.</p>
@@ -698,14 +698,14 @@ for(i in <span class="dv">1</span>:<span class="dv">3</span>){
 <div id="influential-points" class="section level3">
 <h3><span class="header-section-number">10.5.1</span> Influential Points</h3>
 <p>Sometimes a dataset will contain one observation that has a large effect on the outcome of the model. Consider the following datasets where the red denotes a highly influential point and the red line is the regression line including the point.</p>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-254-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-256-1.png" width="672" /></p>
 <p>The question of what to do with influential points is not easy to answer. Sometimes these are data points that are a result of lab technician error and should be removed. Sometimes they are the result of an important process that is not well understood by the researcher. It is up to the scientist to figure out which is the case and take appropriate action.</p>
 <p>One solution is to run the analysis both with and without the influential point and see how much it affects your inferences.</p>
 </div>
 <div id="transformations" class="section level3">
 <h3><span class="header-section-number">10.5.2</span> Transformations</h3>
 <p>When the normality or constant variance assumption is violated, sometimes it is possible to transform the data to make it satisfy the assumption. Often times count data is analyzed as log(count) and weights are analyzed after taking a square root or cube root transform.</p>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-255-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-257-1.png" width="672" /></p>
 <p>We have the option of either transforming the x-variable or transforming the y-variable or possibly both. One thing to keep in mind, however, is that transforming the x-variable only effects the linearity of the relationship. Transforming the y-variable effects both the linearity and the variance.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(-<span class="dv">838</span>)
 <span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))
@@ -716,20 +716,20 @@ y &lt;-<span class="st"> </span><span class="kw">abs</span>(y)
 <span class="kw">plot</span>(x,y); <span class="kw">abline</span>(<span class="kw">coef</span>(<span class="kw">lm</span>(y~x)));
 <span class="kw">plot</span>(x, <span class="kw">log</span>(y)); <span class="kw">abline</span>(<span class="kw">coef</span>(<span class="kw">lm</span>(<span class="kw">I</span>(<span class="kw">log</span>(y))~x)));
 <span class="kw">plot</span>(x^(<span class="dv">1</span>/<span class="dv">3</span>), y); <span class="kw">abline</span>(<span class="kw">coef</span>(<span class="kw">lm</span>(y~<span class="kw">I</span>(x^(<span class="dv">1</span>/<span class="dv">3</span>)))));</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-256-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-258-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydata &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>y)</code></pre></div>
 <p>Unfortunately it is not always obvious what transformation is most appropriate. The Box-Cox family of transformations for the y-variable is <span class="math display">\[ f(y\,|\,\lambda) =   \begin{cases}
     y^{\lambda} &amp; \;\;\textrm{if}\,\,\lambda\ne0\\
     \log y &amp; \;\;\textrm{if}\,\,\lambda=0
   \end{cases}\]</span> which includes squaring (<span class="math inline">\(\lambda=2\)</span>), square root (<span class="math inline">\(\lambda=1/2\)</span>) and as <span class="math inline">\(\lambda \to 0\)</span> the transformation converges to <span class="math inline">\(\log y\)</span>. (To do this correctly we should define the transformation in a more complicated fashion, but that level of detail is unnecessary here.) The transformation is selected by looking at the profile log-likelihood value of different values of <span class="math inline">\(\lambda\)</span> and we want to use the <span class="math inline">\(\lambda\)</span> that maximizes the log-likelihood.</p>
 <p>Of course, we also want to use a transformation that isn’t completely obscure and is commonly used in the scientific field, so square roots, reciprocals, and logs are preferred.</p>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-257-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-259-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(mydata)</code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    40 obs. of  2 variables:
 ##  $ x: num  0 0.769 1.538 2.308 3.077 ...
 ##  $ y: num  2 3.08 2.92 4.17 5.44 ...</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">MASS::<span class="kw">boxcox</span>(y~x, <span class="dt">data=</span>mydata, <span class="dt">plotit=</span><span class="ot">TRUE</span>)</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-258-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-260-1.png" width="672" /></p>
 <p>Here we see the resulting confidence interval for <span class="math inline">\(\lambda\)</span> contains 0, so a <span class="math inline">\(\log\)</span> transformation would be most appropriate.</p>
 <p>Unfortunately there isn’t a matching procedure for deciding how to transform the <span class="math inline">\(x\)</span> covariate. Usually we spend a great deal of time trying different transformations and see how they affect the scatterplot and using transformations that are common in whatever field the researcher is working in.</p>
 <p>In general, deciding on a transformation to use is often a trade-off between statistical pragmatism and interpretability. In cases that a transformation is not possible, or the interpretation is difficult, it is necessary to build more complicated models that are hopefully interpretable. We will explore these issues in great length in STA 571.</p>

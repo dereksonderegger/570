@@ -502,11 +502,12 @@ mydata &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span cl
 letterdata &lt;-<span class="st"> </span><span class="kw">lm</span>( Y~Grp, <span class="dt">data=</span>mydata ) %&gt;%
 <span class="st">  </span>lsmeans::<span class="kw">lsmeans</span>( pairwise~Grp) %&gt;%
 <span class="st">  </span>lsmeans::<span class="kw">cld</span>( <span class="dt">Letters=</span>letters, <span class="dt">adjust=</span><span class="st">&#39;none&#39;</span> ) %&gt;%<span class="st">  </span><span class="co"># Force no p-value adjustment</span>
-<span class="st">  </span>dplyr::<span class="kw">select</span>(Grp, .group)</code></pre></div>
+<span class="st">  </span>dplyr::<span class="kw">select</span>(Grp, .group) %&gt;%
+<span class="st">  </span>dplyr::<span class="kw">mutate</span>( <span class="dt">Y =</span> <span class="dv">3</span> )</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Visualize a made up data set: mydata</span>
 <span class="kw">ggplot</span>(mydata, <span class="kw">aes</span>(<span class="dt">x=</span>Grp, <span class="dt">y=</span>Y)) +
 <span class="st">  </span><span class="kw">geom_boxplot</span>() +
-<span class="st">  </span><span class="kw">geom_text</span>(<span class="dt">data=</span>letterdata, <span class="kw">aes</span>(<span class="dt">label=</span>.group), <span class="dt">y=</span><span class="dv">3</span>) +
+<span class="st">  </span><span class="kw">geom_text</span>(<span class="dt">data=</span>letterdata, <span class="kw">aes</span>(<span class="dt">label=</span>.group)) +
 <span class="st">  </span><span class="kw">ggtitle</span>( <span class="kw">expression</span>(<span class="kw">paste</span>(X[ij],<span class="st">&#39; ~ N(0,1)   where &#39;</span>, n[i], <span class="st">&#39; = 10&#39;</span>)) ) +
 <span class="st">  </span><span class="kw">xlab</span>(<span class="st">&#39;Group&#39;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&#39;Response&#39;</span>)</code></pre></div>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-204-1.png" width="672" /></p>

@@ -352,13 +352,14 @@ mydata <- data.frame(mu=rep(0,k*n), Grp=factor(rep(1:k, each=n))) %>%
 letterdata <- lm( Y~Grp, data=mydata ) %>%
   lsmeans::lsmeans( pairwise~Grp) %>%
   lsmeans::cld( Letters=letters, adjust='none' ) %>%  # Force no p-value adjustment
-  dplyr::select(Grp, .group)
+  dplyr::select(Grp, .group) %>%
+  dplyr::mutate( Y = 3 )
 ```
 ```{r}
 # Visualize a made up data set: mydata
 ggplot(mydata, aes(x=Grp, y=Y)) +
   geom_boxplot() +
-  geom_text(data=letterdata, aes(label=.group), y=3) +
+  geom_text(data=letterdata, aes(label=.group)) +
   ggtitle( expression(paste(X[ij],' ~ N(0,1)   where ', n[i], ' = 10')) ) +
   xlab('Group') + ylab('Response')
 ```

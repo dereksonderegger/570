@@ -1,8 +1,3 @@
----
-output:
-  pdf_document: default
-  html_document: default
----
 # Regression
 ```{r, echo=FALSE}
 # Unattach any packages that happen to already be loaded. In general this is unecessary

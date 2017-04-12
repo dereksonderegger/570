@@ -26,7 +26,7 @@
 <meta name="author" content="Derek L. Sonderegger">
 
 
-<meta name="date" content="2017-04-05">
+<meta name="date" content="2017-04-12">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -241,6 +241,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="10.5.2" data-path="10-regression.html"><a href="10-regression.html#transformations"><i class="fa fa-check"></i><b>10.5.2</b> Transformations</a></li>
 </ul></li>
 <li class="chapter" data-level="10.6" data-path="10-regression.html"><a href="10-regression.html#exercises-9"><i class="fa fa-check"></i><b>10.6</b> Exercises</a></li>
+<li class="chapter" data-level="10.7" data-path="10-regression.html"><a href="10-regression.html#contingency-tables"><i class="fa fa-check"></i><b>10.7</b> Contingency Tables</a></li>
+<li class="chapter" data-level="10.8" data-path="10-regression.html"><a href="10-regression.html#expected-counts"><i class="fa fa-check"></i><b>10.8</b> Expected Counts</a><ul>
+<li class="chapter" data-level="10.8.1" data-path="10-regression.html"><a href="10-regression.html#hypothesis-testing"><i class="fa fa-check"></i><b>10.8.1</b> Hypothesis Testing</a></li>
+<li class="chapter" data-level="10.8.2" data-path="10-regression.html"><a href="10-regression.html#rxc-tables"><i class="fa fa-check"></i><b>10.8.2</b> RxC tables</a></li>
+</ul></li>
+<li class="chapter" data-level="10.9" data-path="10-regression.html"><a href="10-regression.html#exercises-10"><i class="fa fa-check"></i><b>10.9</b> Exercises</a></li>
 </ul></li>
 </ul>
 
@@ -969,6 +975,380 @@ p1.data &lt;-<span class="st"> </span>p1.data %&gt;%<span class="st"> </span>
 </ol></li>
 </ol></li>
 </ol>
+
+</div>
+<div id="contingency-tables" class="section level2">
+<h2><span class="header-section-number">10.7</span> Contingency Tables</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(tidyr)</code></pre></div>
+<p>We are often interested in experiments and studies where the response variable is categorical and so is the explanatory.</p>
+<ul>
+<li><p>Treat plots with either Type A or Type B insecticides and after 2 weeks observe if the plots are infested or not infested with some insect.</p></li>
+<li><p>Using survey data, we would like to investigate if there is a relationship between Gender and Political Party affiliation. (Are women more likely to be Democrates?)</p></li>
+<li><p>Are children that are born second or third (or more!) more likely to be gay than the firstborn child?</p></li>
+</ul>
+<p>We will be interested in testing the null hypothesis of “No association” between the explanatory and response variable.</p>
+<p>We will have two questions:</p>
+<ol style="list-style-type: decimal">
+<li><p>What statistic could be calculated from the observed data to measure how far the observed data is from the null hypothesis?</p></li>
+<li><p>Given the statistic in part 1, how should it vary from sample to sample assuming the null hypothesis (no difference in treatments) is true?</p></li>
+</ol>
+</div>
+<div id="expected-counts" class="section level2">
+<h2><span class="header-section-number">10.8</span> Expected Counts</h2>
+<p>We will develope our ideas using a subsample of data from surveys of undergraduate students in an Introductory statistics course. We will utilize <span class="math inline">\(40\)</span> males and <span class="math inline">\(40\)</span> females and consider the historical assumption that women should perform better on the verbal part of the SAT rather than the MATH part compared to their male counterparts.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(StudentSurvey, <span class="dt">package=</span><span class="st">&#39;Lock5Data&#39;</span>)
+StudentSurvey &lt;-<span class="st"> </span>StudentSurvey %&gt;%
+<span class="st">  </span><span class="kw">filter</span>( HigherSAT !=<span class="st"> &#39;&#39;</span>) %&gt;%<span class="st">    </span><span class="co"># remove a student that did not report SAT scores</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">HigherSAT =</span> <span class="kw">factor</span>(HigherSAT)) %&gt;%<span class="st"> </span><span class="co"># remove the MISSING level from the above student</span>
+<span class="st">  </span><span class="kw">group_by</span>(Gender) %&gt;%<span class="st">          </span><span class="co"># Only consider the first 40 males</span>
+<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span>:<span class="dv">40</span>) %&gt;%<span class="st">               </span><span class="co"># and Females... as a first example</span>
+<span class="st">  </span><span class="kw">select</span>(Gender, HigherSAT) </code></pre></div>
+<p>In this example, exactly <span class="math inline">\(60\%\)</span> of the students had a higher score on the math portion of the SAT than on the verbal. If the null hypothesis is true, then <span class="math inline">\(60\%\)</span> of the <span class="math inline">\(40\)</span> males should have a higher Math SAT score than verbal. So under the null, we expect to see <span class="math inline">\(40 * 0.60 = 24\)</span> males and <span class="math inline">\(40*0.60=24\)</span> females to have a higher Math SAT than verbal. Similarly we would expect <span class="math inline">\(40*0.40=16\)</span> males and <span class="math inline">\(16\)</span> females to score higher on the verbal section. Below is a table that summarizes both our observed data and the expected values under the null hypotheses of no association between superior SAT category with gender.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tab &lt;-<span class="st"> </span>mosaic::<span class="kw">tally</span>( HigherSAT ~<span class="st"> </span>Gender, <span class="dt">data=</span>StudentSurvey, <span class="dt">format=</span><span class="st">&#39;count&#39;</span>)
+descr::<span class="kw">CrossTable</span>( tab, <span class="dt">expected =</span> <span class="ot">TRUE</span>,
+                   <span class="dt">prop.r =</span> <span class="ot">FALSE</span>, <span class="dt">prop.c=</span><span class="ot">FALSE</span>, <span class="dt">prop.t=</span><span class="ot">FALSE</span>, <span class="dt">prop.chisq =</span> <span class="ot">FALSE</span> )</code></pre></div>
+<pre><code>##    Cell Contents 
+## |-------------------------|
+## |                       N | 
+## |              Expected N | 
+## |-------------------------|
+## 
+## ============================
+##              Gender
+## HigherSAT     F    M   Total
+## ----------------------------
+## Math         23   25      48
+##              24   24        
+## ----------------------------
+## Verbal       17   15      32
+##              16   16        
+## ----------------------------
+## Total        40   40      80
+## ============================</code></pre>
+<p>Notice that the excected cell counts can be written as <span class="math display">\[E_{ij} = \frac{ n_{i,\cdot}}{n} * n_{\cdot, j} = \frac{n_{i,\cdot} n_{\cdot,j}}{n}\]</span> where <span class="math inline">\(n_{i,\cdot}\)</span> is row total for the <span class="math inline">\(i\)</span>th row, <span class="math inline">\(n_{\cdot,j}\)</span> is the column total for the <span class="math inline">\(j\)</span>th row, and <span class="math inline">\(n\)</span> is the total number of observations in the table.</p>
+<p>This is the first case where our test statistic will not be just plugging in the sample statistic into the null hypothesis. Instead we will consider a test statistic that is more flexible and will handle more general cases (say 3 or more response or treatment groups) Our statistic for assessing how far our observed data is from what we expect under the null hypothesis involves the difference between the observed and the expected for each of the cells, but again we don’t want to just sum the differences, instead will make the differences positive by squaring the differences. Second, a difference of 10 between the observed and expected cell count is very different if the number expected is 1000 than if it is 10, so we will scale the observed difference by dividing by the expected cell count.</p>
+<p>We define <span class="math display">\[\begin{aligned}X^{2}  
+  &amp;=    \sum_{\textrm{all ij cells}}\frac{\left(O_{ij}-E_{ij}\right)^{2}}{E_{ij}} \\
+  &amp;=  \frac{(23-24)^2}{24} + \frac{(25-24)^2}{24} + \frac{(17-16)^2}{16} + \frac{(15-16)^2}{16} \\
+  &amp;=  0.04167 + 0.04167 + 0.0625 + 0.0625 \\
+  &amp;= 0.20834
+  \end{aligned}\]</span></p>
+<p>In the next section we will address if this test statistic is large enough to reject the null hypothesis.</p>
+<p><em>Example</em></p>
+<p>Researchers suspected that attack of a plant by one organism induce resistance to subsequent attack by a different organism. The <span class="math inline">\(47\)</span> individually potted cotton plants were randomly allocated to two groups: infestation by spider mites or no infestation. After two weeks the mites were dutifully removed by a conscientious research assistant, and both groups were inoculated with Verticillium, a fungus that causes Wilt disease.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(Mites, <span class="dt">package=</span><span class="st">&quot;mosaicData&quot;</span>)
+<span class="kw">str</span>(Mites)</code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    47 obs. of  2 variables:
+##  $ treatment: Factor w/ 2 levels &quot;mites&quot;,&quot;no mites&quot;: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ outcome  : Factor w/ 2 levels &quot;no wilt&quot;,&quot;wilt&quot;: 2 2 2 2 2 2 2 2 2 2 ...</code></pre>
+<p>We will summarize the data into a contingency table that counts the number of plants in each treatment/wilt category.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Using mosaic&#39;s tally function</span>
+tab &lt;-<span class="st"> </span>mosaic::<span class="kw">tally</span>(outcome ~<span class="st"> </span>treatment, <span class="dt">data=</span>Mites, <span class="co"># table of outcome by treatment</span>
+              <span class="dt">format=</span><span class="st">&#39;count&#39;</span>)                  <span class="co"># give the raw counts, not percentages</span>
+tab</code></pre></div>
+<pre><code>##          treatment
+## outcome   mites no mites
+##   no wilt    15        4
+##   wilt       11       17</code></pre>
+<p>From this table we can see that <span class="math inline">\(28\)</span> out of the <span class="math inline">\(47\)</span> plants wilted, so the proportion that wilted was <span class="math inline">\(\frac{28}{47}=0.596\)</span>. Therefore under the null hypothesis we would expect that <span class="math inline">\(59.6\%\)</span> of the <span class="math inline">\(26\)</span> mite treated plants would have wilted, or <span class="math display">\[\left( \frac{28}{47} \right) 26 = 15.49\]</span></p>
+<p>Similar calculations revel the rest of the expected cell counts.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">descr::<span class="kw">CrossTable</span>( tab, <span class="dt">expected =</span> <span class="ot">TRUE</span>,
+                   <span class="dt">prop.r =</span> <span class="ot">FALSE</span>, <span class="dt">prop.c=</span><span class="ot">FALSE</span>, <span class="dt">prop.t=</span><span class="ot">FALSE</span>, <span class="dt">prop.chisq =</span> <span class="ot">FALSE</span> )</code></pre></div>
+<pre><code>##    Cell Contents 
+## |-------------------------|
+## |                       N | 
+## |              Expected N | 
+## |-------------------------|
+## 
+## ===================================
+##            treatment
+## outcome    mites   no mites   Total
+## -----------------------------------
+## no wilt       15          4      19
+##             10.5        8.5        
+## -----------------------------------
+## wilt          11         17      28
+##             15.5       12.5        
+## -----------------------------------
+## Total         26         21      47
+## ===================================</code></pre>
+<p>Is this data indicative of mites inferring a disease resistance? More formally we are interested in testing <span class="math display">\[H_{0}:\:  \pi_{w}=\pi_{w|m}\]</span> <span class="math display">\[H_{0}:\:  \pi_{w}\ne\pi_{w|m}\]</span><br />
+where the relevant parameters are <span class="math inline">\(\pi_{w}\)</span>, the probability that a plant will wilt, and <span class="math inline">\(\pi_{w|m}\)</span>, the probability that a plant will wilt given that it has been treated with mites.</p>
+<p>We calculate our test statistic as <span class="math display">\[\begin{aligned}X^{2}  
+  &amp;=    \sum_{\textrm{all ij cells}}\frac{\left(O_{ij}-E_{ij}\right)^{2}}{E_{ij}} \\
+    &amp;=  \frac{\left(15-10.51\right)^{2}}{10.51}+\frac{\left(4-8.49\right)^{2}}{8.49}+\frac{\left(11-15.49\right)^{2}}{15.49}+\frac{\left(17-12.51\right)^{2}}{12.51}\\
+    &amp;=  1.92+2.37+1.30+1.61 \\
+    &amp;=  7.20
+    \end{aligned}\]</span></p>
+<p>If the null hypothesis is true, then this statistic should be small, and a large value of the statistic is indicative of the null hypothesis being incorrect. But how large must the statistic be before we reject the null hypothesis?</p>
+<div id="hypothesis-testing" class="section level3">
+<h3><span class="header-section-number">10.8.1</span> Hypothesis Testing</h3>
+<p>Similarly to the two-sample t-test, we randomly shuffle the treatment assignments and recalculate the statistic many times and examine the sampling distribution of our test statistic, <span class="math inline">\(X^{2}\)</span>.</p>
+<p>To do this efficiently, we’ll need a way of easily calculating this test statistic. In a traditional course I would introduce this test by the name of “Pearson’s Chi-squared test” and we can obtain the test statistic using the following code:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># function is chisq.test() and we need to tell it not to do the Yates continuity </span>
+<span class="co"># correction and just calculate the test statistic as we&#39;ve described </span>
+<span class="kw">chisq.test</span>( <span class="kw">table</span>(Mites), <span class="dt">correct=</span><span class="ot">FALSE</span> )   <span class="co"># do a Chi-sq test </span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  table(Mites)
+## X-squared = 7.2037, df = 1, p-value = 0.007275</code></pre>
+<p>R is performing the traditional Pearson’s Chi-Squared test which assumes our sample sizes are large enough for several approximations to be good. Fortunately, we don’t care about this approximation to the p-value and will use simulation methods which will be more accurate. In order to use the <code>chisq.test()</code> function to do our calculations, we need to extract the test-statistic from the output of the function. &lt;<warning=FALSE>&gt;=</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># extract the X^2 test statistic from the output</span>
+X.sq &lt;-<span class="st"> </span><span class="kw">chisq.test</span>( <span class="kw">table</span>(Mites), <span class="dt">correct=</span><span class="ot">FALSE</span> )$statistic <span class="co"># grab only the test statistic</span>
+X.sq</code></pre></div>
+<pre><code>## X-squared 
+##  7.203748</code></pre>
+<p>Next we wish to repeat our shuffling trick of the treatment labels to calculate the sampling distribution of <span class="math inline">\(X^{2*}\)</span>, which is the distribution of <span class="math inline">\(X^{2}\)</span> when the null hypothesis of no difference between treatments is true.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Mites.star &lt;-<span class="st"> </span>Mites %&gt;%<span class="st"> </span><span class="kw">mutate</span>(<span class="dt">treatment =</span> mosaic::<span class="kw">shuffle</span>(treatment))
+<span class="kw">table</span>(Mites.star)</code></pre></div>
+<pre><code>##           outcome
+## treatment  no wilt wilt
+##   mites         11   15
+##   no mites       8   13</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">chisq.test</span>( <span class="kw">table</span>(Mites.star), <span class="dt">correct=</span><span class="ot">FALSE</span> )$statistic <span class="co"># grab only the test statistic</span></code></pre></div>
+<pre><code>##  X-squared 
+## 0.08559517</code></pre>
+<p>We see that this code is creating a data frame with a single column called <code>X.squared</code> and next we simulate a large number of times and display the sampling distribution of <span class="math inline">\(X^{2*}\)</span>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">SamplingDist &lt;-<span class="st"> </span>mosaic::<span class="kw">do</span>(<span class="dv">10000</span>)*{
+  Mites.star &lt;-<span class="st"> </span>Mites %&gt;%<span class="st"> </span><span class="kw">mutate</span>(<span class="dt">treatment =</span> mosaic::<span class="kw">shuffle</span>(treatment))
+  <span class="kw">chisq.test</span>( <span class="kw">table</span>(Mites.star), <span class="dt">correct=</span><span class="ot">FALSE</span> )$statistic 
+}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>( SamplingDist, <span class="kw">aes</span>(<span class="dt">x=</span>X.squared)) +<span class="st"> </span><span class="kw">geom_histogram</span>()</code></pre></div>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-273-1.png" width="672" /></p>
+<p>At first glance this seems wrong because it is not a nice looking distribution. However there are only a small number of ways to allocate the treatments labels to the two possible outcomes. Second, for the test statistic we have chosen only the right hand side of the distribution (large values of <span class="math inline">\(X^{*}\)</span>) would be evidence against the null hypothesis, so we only look at <span class="math inline">\(X^{2*}&gt;7.20\)</span>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p.value &lt;-<span class="st"> </span>SamplingDist %&gt;%<span class="st"> </span><span class="kw">summarize</span>( <span class="dt">p.value =</span> <span class="kw">mean</span>( X.squared &gt;=<span class="st"> </span>X.sq ) )
+p.value</code></pre></div>
+<pre><code>##   p.value
+## 1  0.0161</code></pre>
+<p>We see that the p-value is 0.0161 and conclude that there is strong evidence to reject the null hypothesis that the mite treatment does not affect the probability of wilting. That is to say, the probability of observing data as extreme as ours is unlikely to occur by random chance when the null hypothesis is true.</p>
+<p>As usual, it is pretty annoying to have to program the permutation test ourselves. Fortunately the <code>chisq.test()</code> function allows us to option to tell it to do a permutation based test. There is an option <code>simulate.p.value</code> which reproduces the simulation test we just performed.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">chisq.test</span>( <span class="kw">table</span>(Mites), <span class="dt">simulate.p.value=</span><span class="ot">TRUE</span>, <span class="dt">B=</span><span class="dv">10000</span> )</code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test with simulated p-value (based on 10000
+##  replicates)
+## 
+## data:  table(Mites)
+## X-squared = 7.2037, df = NA, p-value = 0.0153</code></pre>
+<p>Before we had our excellent computers, we would have to compare the observed <span class="math inline">\(X^{2}\)</span> test statistic to some distribution to determine if it is large enough to be evidence against the null. It can be shown that if the null hypothesis is correct then <span class="math inline">\(X^{2}\stackrel{\cdot}{\sim}\chi_{1}^{2}\)</span> where this is the Chi-squared distribution with 1 degree of freedom. This is the distribution that the <code>chisq.test()</code> compares against if we don’t tell it to do a permutation based test. Furthermore, even if the null hypothesis is true the test statistic is only approximately normal but that approximation gets better and better as the total sample size increases.</p>
+<p>The reason that we compare against a Chi-squared distribution with 1 degree of freedom is because when we shuffle the group labels, we still have the same number of wilted/non-wilted plants as well as the same number of mite/no-mite treated plants. So the row and column totals are identical in all the permuted tables. So once the number of observations in the <span class="math inline">\((1,1)\)</span> cell is decided, the other three cells are also indirectely determined as well due to the row/column totals being constant regardless of permutation. In the general case with <span class="math inline">\(R\)</span> rows and <span class="math inline">\(C\)</span> columns, the number of cells that are not set due to the row/column totals, is <span class="math inline">\((R-1)(C-1)\)</span>.</p>
+<p>The asymptotic approximation is usually acceptable if the observed count in each cell is greater than 5. Even then, a slightly better approximation can be obtained by using the Yates’ continuity correction. Typically I will perform the analysis both ways and confirm we get the same inference. If the two methods disagree, I’d trust the permutation method.</p>
+<p><em>Example</em>:</p>
+<p>In a study to investigate possible treatments for human infertility, researchers (Harrison, R. F., Blades, M., De Louvois, J., &amp; Hurley, R. (1975). Doxycycline treatment and human infertility. The Lancet, 305(7907), 605-607.) performed a double-blind study and randomly divided 58 patients into two groups. The treatment group (<span class="math inline">\(n_{t}=30\)</span>) received 100 mg per day of Doxycycline and the placebo group (<span class="math inline">\(n_{p}=28\)</span>) received a placebo but were unaware that it was a placebo. Within 5 months, the treatment group had 5 pregnancies, while the placebo group had 4. Just looking at the observed vs expected there doesn’t seem to be much difference between the treatments. In fact, due to the discrete nature of the data (i.e. integer values) we can’t imagine data that any closer to the expected value that what we observed. The p-value here ought to be 1! To confirm this we do a similar test as before.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Conceived &lt;-<span class="st">  </span><span class="kw">data.frame</span>(
+  <span class="dt">Treatment=</span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&#39;Doxycyline&#39;</span>,<span class="dv">30</span>), <span class="kw">rep</span>(<span class="st">&#39;Placebo&#39;</span>,<span class="dv">28</span>)),
+  <span class="dt">Outcome=</span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&#39;Conceived&#39;</span>,<span class="dv">5</span>), <span class="kw">rep</span>(<span class="st">&#39;Not Conceived&#39;</span>,<span class="dv">25</span>),
+            <span class="kw">rep</span>(<span class="st">&#39;Conceived&#39;</span>,<span class="dv">4</span>), <span class="kw">rep</span>(<span class="st">&#39;Not Conceived&#39;</span>,<span class="dv">24</span>)))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Use the CrossTable function to generate the Expected Cell values</span>
+descr::<span class="kw">CrossTable</span>(<span class="kw">table</span>(Conceived), <span class="dt">expected=</span><span class="ot">TRUE</span>, 
+                  <span class="dt">prop.r=</span><span class="ot">FALSE</span>, <span class="dt">prop.c=</span><span class="ot">FALSE</span>, <span class="dt">prop.t=</span><span class="ot">FALSE</span>, <span class="dt">prop.chisq=</span><span class="ot">FALSE</span>)</code></pre></div>
+<pre><code>##    Cell Contents 
+## |-------------------------|
+## |                       N | 
+## |              Expected N | 
+## |-------------------------|
+## 
+## ===============================================
+##               Outcome
+## Treatment     Conceived   Not Conceived   Total
+## -----------------------------------------------
+## Doxycyline            5              25      30
+##                     4.7            25.3        
+## -----------------------------------------------
+## Placebo               4              24      28
+##                     4.3            23.7        
+## -----------------------------------------------
+## Total                 9              49      58
+## ===============================================</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">chisq.test</span>( <span class="kw">table</span>(Conceived), <span class="dt">simulate.p.value=</span><span class="ot">TRUE</span>, <span class="dt">B=</span><span class="dv">10000</span> )</code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test with simulated p-value (based on 10000
+##  replicates)
+## 
+## data:  table(Conceived)
+## X-squared = 0.062628, df = NA, p-value = 1</code></pre>
+</div>
+<div id="rxc-tables" class="section level3">
+<h3><span class="header-section-number">10.8.2</span> RxC tables</h3>
+<p>We next expand this same analysis to consider cases where we have explantory variable with <span class="math inline">\(C\)</span> levels and the response variable has <span class="math inline">\(R\)</span> levels, and so the table of observations has <span class="math inline">\(R\)</span> rows and <span class="math inline">\(C\)</span> columns.</p>
+<p>There was nothing special about the analysis that required only 2x2 tables. Exanding this the expected value for the <span class="math inline">\(i,j\)</span> cell in the table is still <span class="math display">\[E_{ij} = \frac{n_{i\cdot} n_{\cdot j}}{n}\]</span></p>
+<p>As before we define the test statistic as <span class="math display">\[\begin{aligned}X^{2}  
+  &amp;=    \sum_{\textrm{all ij cells}}\frac{\left(O_{ij}-E_{ij}\right)^{2}}{E_{ij}}
+  \end{aligned}\]</span></p>
+<p>If we have sufficient samples sizes in each cell (general rule-of-thumb is greater than 5 per cell), then we could compare this test statistic to a Chi-Squared distribution with <span class="math inline">\((R-1)(C-1)\)</span> degrees of freedom. <span class="math display">\[p.value = Pr( \chi_{(r-1)(c-1)} &gt; X^2 )\]</span></p>
+<p>We consider some data from the American Community Survey, which is a survey administered by the US Census Bureau and given to approximately 3% of all US households. The package <code>Lock5Data</code> has a dataset, <code>ACS</code>, which is a subsample of <span class="math inline">\(n=1000\)</span> respondents of that 2010 survey. In particular, we want to examine the relationship between race and marriage status. In particular if white respondents are more likely to be married than asian or black (or other) races.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(ACS, <span class="dt">package=</span><span class="st">&#39;Lock5Data&#39;</span>)
+ACS &lt;-<span class="st"> </span>ACS %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Married =</span> <span class="kw">ifelse</span>(Married==<span class="dv">1</span>, <span class="st">&#39;Married&#39;</span>,<span class="st">&#39;Single&#39;</span>))
+tab &lt;-<span class="st"> </span>mosaic::<span class="kw">tally</span>(Married ~<span class="st"> </span>Race, <span class="dt">data=</span>ACS)
+tab</code></pre></div>
+<pre><code>##          Race
+## Married   asian black other white
+##   Married    37    25    20   355
+##   Single     33    81    43   406</code></pre>
+<p>Often I find it is difficult to really understand a table and find a good graph more insightful.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">temp &lt;-<span class="st"> </span>ACS %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(Race, Married) %&gt;%<span class="st"> </span>
+<span class="st">  </span>dplyr::<span class="kw">count</span>() %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(Race) %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">proportion =</span> n/<span class="kw">sum</span>(n))
+<span class="kw">ggplot</span>(temp, <span class="kw">aes</span>(<span class="dt">x=</span>Race, <span class="dt">y=</span>proportion, <span class="dt">fill=</span>Married)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&#39;identity&#39;</span>)</code></pre></div>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-278-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Use the CrossTable function to generate the Expected Cell values</span>
+descr::<span class="kw">CrossTable</span>(tab, <span class="dt">expected=</span><span class="ot">TRUE</span>, 
+                  <span class="dt">prop.r=</span><span class="ot">FALSE</span>, <span class="dt">prop.c=</span><span class="ot">FALSE</span>, <span class="dt">prop.t=</span><span class="ot">FALSE</span>, <span class="dt">prop.chisq=</span><span class="ot">FALSE</span>)</code></pre></div>
+<pre><code>##    Cell Contents 
+## |-------------------------|
+## |                       N | 
+## |              Expected N | 
+## |-------------------------|
+## 
+## ================================================
+##            Race
+## Married    asian   black   other   white   Total
+## ------------------------------------------------
+## Married       37      25      20     355     437
+##             30.6    46.3    27.5   332.6        
+## ------------------------------------------------
+## Single        33      81      43     406     563
+##             39.4    59.7    35.5   428.4        
+## ------------------------------------------------
+## Total         70     106      63     761    1000
+## ================================================</code></pre>
+<p>Because the cell counts are quite large, the asymptotic approximations should be fine. We will compare the test statistic against a Chi-squared distribution with <span class="math inline">\((2-1)(4-1)=1*3=3\)</span> degrees of freedom.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> -<span class="st"> </span><span class="kw">pchisq</span>(<span class="fl">26.168</span>, <span class="dt">df=</span><span class="dv">3</span>)</code></pre></div>
+<pre><code>## [1] 8.795319e-06</code></pre>
+<p>therefore <span class="math display">\[p.value = Pr( \chi^2_3 &gt; 26.168 ) = 8.795\textrm{e-}06\]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">chisq.test</span>( tab )</code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  tab
+## X-squared = 26.168, df = 3, p-value = 8.797e-06</code></pre>
+<p>If we are worried about the sample size begin large enough, we could perform a permutation based test by repeatedly shuffling the <code>Race</code> labels calculating the test statistic and then comparing the observed test statistic <span class="math inline">\(X^2=26.168\)</span> to the permutation</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">chisq.test</span>( tab, <span class="dt">simulate.p.value=</span><span class="ot">TRUE</span>, <span class="dt">B=</span><span class="dv">100000</span> )</code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test with simulated p-value (based on 1e+05
+##  replicates)
+## 
+## data:  tab
+## X-squared = 26.168, df = NA, p-value = 2e-05</code></pre>
+<p>With such a small p-value, we know that we are unlikey to have observed such a large difference in marriage rates among our different races. It appears that white respondents are much more likely to be married than the other races listed, but is there a difference in rates between blacks and asians? What about asian and other?</p>
+<p>Just as we wanted to perform an analysis on all pairwise comparisons amongst levels in an ANOVA analysis and control the overall Type I error rate, we will do the same thing but now using the Chi-squared test.</p>
+<p>Conceptually we will just perform all possible pairwise tests and then adjust the resulting p-values to control for the number of comparisons.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># We will use a function from the package fifer</span>
+<span class="co"># chisq.post.hoc  wants the table arranged with the </span>
+<span class="co"># factor you want to pairwise contasts as the rows</span>
+<span class="kw">t</span>( tab )   <span class="co"># transpose the rows and columns</span></code></pre></div>
+<pre><code>##        Married
+## Race    Married Single
+##   asian      37     33
+##   black      25     81
+##   other      20     43
+##   white     355    406</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">result &lt;-<span class="st"> </span>fifer::<span class="kw">chisq.post.hoc</span>( <span class="kw">t</span>(tab),
+    <span class="dt">test=</span>chisq.test, <span class="dt">simulate.p.value=</span><span class="ot">TRUE</span>, <span class="dt">B=</span><span class="dv">10000</span> ) </code></pre></div>
+<pre><code>## Adjusted p-values used the fdr method.</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">result</code></pre></div>
+<pre><code>##        comparison  raw.p  adj.p
+## 1 asian vs. black 0.0001 0.0003
+## 2 asian vs. other 0.0202 0.0366
+## 3 asian vs. white 0.3856 0.3856
+## 4 black vs. other 0.2758 0.3309
+## 5 black vs. white 0.0001 0.0003
+## 6 other vs. white 0.0244 0.0366</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># We really want to get the compact letter display for </span>
+<span class="co"># graphing purposes, but there is some annoying details</span>
+<span class="co"># that we really ought not have to think about.  So lets</span>
+<span class="co"># make a little function to handle this stuff.</span>
+<span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(stringr)
+<span class="kw">library</span>(multcompView)
+cld.chisq.post.hoc &lt;-<span class="st"> </span>function( obj, name ){
+  p.values &lt;-<span class="st"> </span>obj$adj.p                <span class="co"># just the p-values</span>
+  contrasts &lt;-<span class="st"> </span>obj$comparison %&gt;%
+<span class="st">    </span><span class="kw">as.character</span>( ) %&gt;%
+<span class="st">    </span><span class="kw">str_replace</span>( <span class="dt">pattern=</span><span class="kw">fixed</span>(<span class="st">&#39; vs. &#39;</span>), <span class="dt">replacement =</span> <span class="kw">fixed</span>(<span class="st">&#39;-&#39;</span>))
+  <span class="kw">names</span>(p.values) &lt;-<span class="st"> </span>contrasts
+
+  <span class="co"># finally we can pass p.values into a letters function</span>
+  my.letters &lt;-<span class="st"> </span>multcompView::<span class="kw">multcompLetters</span>(p.values)
+  letter.df &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">TEMP=</span><span class="kw">names</span>(my.letters$Letters), 
+                           <span class="dt">.group =</span> my.letters$Letters ) 
+  <span class="kw">colnames</span>(letter.df)[<span class="dv">1</span>] &lt;-<span class="st"> </span>name
+  <span class="kw">rownames</span>(letter.df) &lt;-<span class="st"> </span><span class="ot">NULL</span>
+  <span class="kw">return</span>(letter.df)
+}  </code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cld.chisq.post.hoc</span>(result, <span class="st">&#39;Race&#39;</span>)</code></pre></div>
+<pre><code>##    Race .group
+## 1 asian      a
+## 2 black      b
+## 3 other      b
+## 4 white      a</code></pre>
+<p>There are a number of other questions that I might consider, such as confidence intervals for the proportions married in each race. However, those questions require a few more assumptions about the structure of the data and will be addressed when we study logistic regression.</p>
+</div>
+</div>
+<div id="exercises-10" class="section level2">
+<h2><span class="header-section-number">10.9</span> Exercises</h2>
+<ol style="list-style-type: decimal">
+<li><p>Is gender independent of education level? A random sample of <span class="math inline">\(n=395\)</span> people were surveyed and each person was asked to report the highest education level they obtained. The data that resulted from the survey is summarized in the following table:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center"><strong>High School</strong></th>
+<th align="center"><strong>Bachelors</strong></th>
+<th align="center"><strong>Masters</strong></th>
+<th align="center"><strong>Ph.d.</strong></th>
+<th align="center"><strong>Total</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>Female</strong></td>
+<td align="center">60</td>
+<td align="center">54</td>
+<td align="center">46</td>
+<td align="center">41</td>
+<td align="center">201</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>Male</strong></td>
+<td align="center">40</td>
+<td align="center">44</td>
+<td align="center">53</td>
+<td align="center">57</td>
+<td align="center">194</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>Total</strong></td>
+<td align="center">100</td>
+<td align="center">98</td>
+<td align="center">99</td>
+<td align="center">98</td>
+<td align="center">395</td>
+</tr>
+</tbody>
+</table>
+<ol style="list-style-type: lower-alpha">
+<li>Calculate the expected cell counts for each Gender and Degree combination.</li>
+<li>Calculate the <span class="math inline">\(X^2\)</span> test statistic.</li>
+<li>Calculate the appropriate p-value using the asymptotic approximation.</li>
+</ol></li>
+<li><p>We consider some data from the American Community Survey, which is a survey administered by the US Census Bureau and given to approximately 3% of all US households. The package <code>Lock5Data</code> has a dataset, <code>ACS</code>, which is a subsample of <span class="math inline">\(n=1000\)</span> respondents of that 2010 survey. In particular, we want to examine the relationship between race and having health insurance.</p></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">temp &lt;-<span class="st"> </span>ACS %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">HealthInsurance =</span> <span class="kw">factor</span>(<span class="kw">ifelse</span>(HealthInsurance ==<span class="st"> </span><span class="dv">1</span>, <span class="st">&quot;Have&quot;</span>,<span class="st">&quot;None&quot;</span>))) %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(Race, HealthInsurance) %&gt;%<span class="st"> </span>
+<span class="st">  </span>dplyr::<span class="kw">count</span>() %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(Race) %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">proportion =</span> n/<span class="kw">sum</span>(n))
+<span class="kw">ggplot</span>(temp, <span class="kw">aes</span>(<span class="dt">x=</span>Race, <span class="dt">y=</span>proportion, <span class="dt">fill=</span>HealthInsurance)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&#39;identity&#39;</span>)</code></pre></div>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-285-1.png" width="672" /> a) Generate a table summarizing how many respondents of each race has health insurance. b) Test the hypothesis that there is no association between race and having health insurance. using both the asymptotic method and the permutation method. Is your inference the same in both cases? c) Establish which racial groups are different in the proportion of respondents that have health insurance.</p>
 
 </div>
 </div>

@@ -243,11 +243,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="10.6" data-path="10-regression.html"><a href="10-regression.html#exercises-9"><i class="fa fa-check"></i><b>10.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="11-contingency-tables.html"><a href="11-contingency-tables.html"><i class="fa fa-check"></i><b>11</b> Contingency Tables</a><ul>
-<li class="chapter" data-level="11.1" data-path="11-contingency-tables.html"><a href="11-contingency-tables.html#expected-counts"><i class="fa fa-check"></i><b>11.1</b> Expected Counts</a><ul>
-<li class="chapter" data-level="11.1.1" data-path="11-contingency-tables.html"><a href="11-contingency-tables.html#hypothesis-testing"><i class="fa fa-check"></i><b>11.1.1</b> Hypothesis Testing</a></li>
-<li class="chapter" data-level="11.1.2" data-path="11-contingency-tables.html"><a href="11-contingency-tables.html#rxc-tables"><i class="fa fa-check"></i><b>11.1.2</b> RxC tables</a></li>
-</ul></li>
-<li class="chapter" data-level="11.2" data-path="11-contingency-tables.html"><a href="11-contingency-tables.html#exercises-10"><i class="fa fa-check"></i><b>11.2</b> Exercises</a></li>
+<li class="chapter" data-level="11.1" data-path="11-contingency-tables.html"><a href="11-contingency-tables.html#expected-counts"><i class="fa fa-check"></i><b>11.1</b> Expected Counts</a></li>
+<li class="chapter" data-level="11.2" data-path="11-contingency-tables.html"><a href="11-contingency-tables.html#hypothesis-testing"><i class="fa fa-check"></i><b>11.2</b> Hypothesis Testing</a></li>
+<li class="chapter" data-level="11.3" data-path="11-contingency-tables.html"><a href="11-contingency-tables.html#rxc-tables"><i class="fa fa-check"></i><b>11.3</b> RxC tables</a></li>
+<li class="chapter" data-level="11.4" data-path="11-contingency-tables.html"><a href="11-contingency-tables.html#exercises-10"><i class="fa fa-check"></i><b>11.4</b> Exercises</a></li>
 </ul></li>
 </ul>
 
@@ -371,8 +370,9 @@ where the relevant parameters are <span class="math inline">\(\pi_{w}\)</span>, 
     &amp;=  7.20
     \end{aligned}\]</span></p>
 <p>If the null hypothesis is true, then this statistic should be small, and a large value of the statistic is indicative of the null hypothesis being incorrect. But how large must the statistic be before we reject the null hypothesis?</p>
-<div id="hypothesis-testing" class="section level3">
-<h3><span class="header-section-number">11.1.1</span> Hypothesis Testing</h3>
+</div>
+<div id="hypothesis-testing" class="section level2">
+<h2><span class="header-section-number">11.2</span> Hypothesis Testing</h2>
 <p>Similarly to the two-sample t-test, we randomly shuffle the treatment assignments and recalculate the statistic many times and examine the sampling distribution of our test statistic, <span class="math inline">\(X^{2}\)</span>.</p>
 <p>To do this efficiently, we’ll need a way of easily calculating this test statistic. In a traditional course I would introduce this test by the name of “Pearson’s Chi-squared test” and we can obtain the test statistic using the following code:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># function is chisq.test() and we need to tell it not to do the Yates continuity </span>
@@ -458,8 +458,8 @@ descr::<span class="kw">CrossTable</span>(<span class="kw">table</span>(Conceive
 ## data:  table(Conceived)
 ## X-squared = 0.062628, df = NA, p-value = 1</code></pre>
 </div>
-<div id="rxc-tables" class="section level3">
-<h3><span class="header-section-number">11.1.2</span> RxC tables</h3>
+<div id="rxc-tables" class="section level2">
+<h2><span class="header-section-number">11.3</span> RxC tables</h2>
 <p>We next expand this same analysis to consider cases where we have explantory variable with <span class="math inline">\(C\)</span> levels and the response variable has <span class="math inline">\(R\)</span> levels, and so the table of observations has <span class="math inline">\(R\)</span> rows and <span class="math inline">\(C\)</span> columns.</p>
 <p>There was nothing special about the analysis that required only 2x2 tables. Exanding this the expected value for the <span class="math inline">\(i,j\)</span> cell in the table is still <span class="math display">\[E_{ij} = \frac{n_{i\cdot} n_{\cdot j}}{n}\]</span></p>
 <p>As before we define the test statistic as <span class="math display">\[\begin{aligned}X^{2}  
@@ -578,9 +578,8 @@ cld.chisq.post.hoc &lt;-<span class="st"> </span>function( obj, name ){
 ## 4 white      a</code></pre>
 <p>There are a number of other questions that I might consider, such as confidence intervals for the proportions married in each race. However, those questions require a few more assumptions about the structure of the data and will be addressed when we study logistic regression.</p>
 </div>
-</div>
 <div id="exercises-10" class="section level2">
-<h2><span class="header-section-number">11.2</span> Exercises</h2>
+<h2><span class="header-section-number">11.4</span> Exercises</h2>
 <ol style="list-style-type: decimal">
 <li><p>Is gender independent of education level? A random sample of <span class="math inline">\(n=395\)</span> people were surveyed and each person was asked to report the highest education level they obtained. The data that resulted from the survey is summarized in the following table:</p>
 <table>

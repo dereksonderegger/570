@@ -121,7 +121,7 @@ $$\begin{aligned}X^{2}
 	
 If the null hypothesis is true, then this statistic should be small, and a large value of the statistic is indicative of the null hypothesis being incorrect. But how large must the statistic be before we reject the null hypothesis? 
 
-### Hypothesis Testing 
+## Hypothesis Testing 
 Similarly to the two-sample t-test, we randomly shuffle the treatment assignments and recalculate the statistic many times and examine the sampling distribution of our test statistic, $X^{2}$. 
 
 To do this efficiently, we'll need a way of easily calculating this test statistic. In a traditional course I would introduce this test by the name of “Pearson's Chi-squared test” and we can obtain the test statistic using the following code:
@@ -203,7 +203,7 @@ chisq.test( table(Conceived), simulate.p.value=TRUE, B=10000 )
 
 
 
-### RxC tables
+## RxC tables
 We next expand this same analysis to consider cases where we have explantory variable with $C$ levels and the response variable has $R$ levels, and so the table of observations has $R$ rows and $C$ columns.
 
 There was nothing special about the analysis that required only 2x2 tables.  Exanding this the expected value for the $i,j$ cell in the table is still 

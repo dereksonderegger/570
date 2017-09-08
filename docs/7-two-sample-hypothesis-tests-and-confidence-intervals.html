@@ -6,9 +6,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Introduction to Statistical Methodology</title>
-  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="Introduction to Statistical Methodology">
-  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
 
   <meta property="og:title" content="Introduction to Statistical Methodology" />
   <meta property="og:type" content="book" />
@@ -26,7 +25,7 @@
 <meta name="author" content="Derek L. Sonderegger">
 
 
-<meta name="date" content="2017-04-13">
+<meta name="date" content="2017-06-18">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -35,7 +34,6 @@
   
 <link rel="prev" href="6-hypothesis-tests-for-the-mean-of-a-population.html">
 <link rel="next" href="8-testing-model-assumptions.html">
-
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -93,6 +91,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </head>
 
 <body>
+
 
 
   <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
@@ -256,13 +255,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="11.3.3" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#basic-intervals"><i class="fa fa-check"></i><b>11.3.3</b> Basic intervals</a></li>
 <li class="chapter" data-level="11.3.4" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#towards-bias-corrected-and-accelerated-intervals-bca"><i class="fa fa-check"></i><b>11.3.4</b> Towards bias-corrected and accelerated intervals (BCa)</a></li>
 </ul></li>
-<li class="chapter" data-level="11.4" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#using-carboot-function"><i class="fa fa-check"></i><b>11.4</b> Using <code>car::Boot()</code> function</a></li>
-<li class="chapter" data-level="11.5" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#using-the-boot-package"><i class="fa fa-check"></i><b>11.5</b> Using the <code>boot</code> package</a><ul>
-<li class="chapter" data-level="11.5.1" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#case-resampling"><i class="fa fa-check"></i><b>11.5.1</b> Case resampling</a></li>
-<li class="chapter" data-level="11.5.2" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#residual-resampling"><i class="fa fa-check"></i><b>11.5.2</b> Residual Resampling</a></li>
-<li class="chapter" data-level="11.5.3" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#including-blockingstratifying-variables"><i class="fa fa-check"></i><b>11.5.3</b> Including Blocking/Stratifying Variables</a></li>
+<li class="chapter" data-level="11.4" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#bootstrap-confidence-intervals-in-r"><i class="fa fa-check"></i><b>11.4</b> Bootstrap Confidence Intervals in R</a><ul>
+<li class="chapter" data-level="11.4.1" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#using-carboot-function"><i class="fa fa-check"></i><b>11.4.1</b> Using <code>car::Boot()</code> function</a></li>
+<li class="chapter" data-level="11.4.2" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#using-the-boot-package"><i class="fa fa-check"></i><b>11.4.2</b> Using the <code>boot</code> package</a></li>
 </ul></li>
-<li class="chapter" data-level="11.6" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#exercises-10"><i class="fa fa-check"></i><b>11.6</b> Exercises</a></li>
+<li class="chapter" data-level="11.5" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#exercises-10"><i class="fa fa-check"></i><b>11.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html"><i class="fa fa-check"></i><b>12</b> Contingency Tables</a><ul>
 <li class="chapter" data-level="12.1" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html#expected-counts"><i class="fa fa-check"></i><b>12.1</b> Expected Counts</a></li>
@@ -324,12 +321,12 @@ H_{a}:\,\delta  &amp;\ne    0
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(CaffeineTaps, <span class="kw">aes</span>(<span class="dt">x=</span>Taps)) +
 <span class="st">  </span><span class="kw">geom_dotplot</span>( <span class="dt">binwidth=</span>.<span class="dv">2</span>) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">facet_grid</span>( Group ~<span class="st"> </span>. )  <span class="co"># two graphs stacked by Group (Caffeine vs non)</span></code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-114-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-115-1.png" width="672" /></p>
 <p>From this view, it looks like the caffeine group has a higher tapping rate. It will be helpful to summarize the difference between these two groups with a single statistic by calculating the mean for each group and then calculate the difference between the group means.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">CaffeineTaps %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">group_by</span>(Group) %&gt;%<span class="st">  </span><span class="co"># group the summary stats by Treatment group</span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">xbar=</span><span class="kw">mean</span>(Taps), <span class="dt">s=</span><span class="kw">sd</span>(Taps))</code></pre></div>
-<pre><code>## # A tibble: 2 × 3
+<pre><code>## # A tibble: 2 x 3
 ##        Group  xbar        s
 ##       &lt;fctr&gt; &lt;dbl&gt;    &lt;dbl&gt;
 ## 1   Caffeine 248.3 2.213594
@@ -340,7 +337,7 @@ H_{a}:\,\delta  &amp;\ne    0
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">CaffeineTaps %&gt;%<span class="st"> </span><span class="kw">group_by</span>(Group) %&gt;%
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">xbar=</span><span class="kw">mean</span>(Taps)) %&gt;%
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">d =</span> <span class="kw">diff</span>(xbar))</code></pre></div>
-<pre><code>## # A tibble: 1 × 1
+<pre><code>## # A tibble: 1 x 1
 ##       d
 ##   &lt;dbl&gt;
 ## 1  -3.5</code></pre>
@@ -378,7 +375,7 @@ CaffeineTaps %&gt;%<span class="st"> </span><span class="kw">mutate</span>(<span
 <span class="st">  </span><span class="kw">group_by</span>( ShuffledGroup )  %&gt;%
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">xbar=</span><span class="kw">mean</span>(Taps)) %&gt;%
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">d.star =</span> <span class="kw">diff</span>(xbar)) </code></pre></div>
-<pre><code>## # A tibble: 1 × 1
+<pre><code>## # A tibble: 1 x 1
 ##   d.star
 ##    &lt;dbl&gt;
 ## 1    2.1</code></pre>
@@ -408,7 +405,7 @@ CaffeineTaps %&gt;%<span class="st"> </span><span class="kw">mutate</span>(<span
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span>.<span class="dv">2</span>) +
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&#39;Permutation dist. of d* assuming H0 is true&#39;</span>) +
 <span class="st">  </span><span class="kw">xlab</span>(<span class="st">&#39;d*&#39;</span>)</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-122-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-123-1.png" width="672" /></p>
 <p>We have almost no cases where the randomly assigned groups produced a difference as extreme as the actual observed difference of <span class="math inline">\(d=-3.5\)</span>. We can calculate the percentage of the sampling distribution of the difference in means that is farther from zero</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">PermutationDist %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">mutate</span>( <span class="dt">MoreExtreme =</span> <span class="kw">ifelse</span>( <span class="kw">abs</span>(d.star) &gt;=<span class="st"> </span><span class="fl">3.5</span>, <span class="dv">1</span>, <span class="dv">0</span>)) %&gt;%
@@ -442,7 +439,7 @@ H_{a}:\,\delta  &amp;  &lt;    0
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(BootDist, <span class="kw">aes</span>(<span class="dt">x=</span>d.star)) +
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span>.<span class="dv">2</span>) +
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&#39;Bootstrap distribution of d*&#39;</span>)</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-126-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-127-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">CI &lt;-<span class="st"> </span><span class="kw">quantile</span>( BootDist$d.star, <span class="dt">probs=</span><span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>) )
 CI</code></pre></div>
 <pre><code>##      2.5%     97.5% 
@@ -471,7 +468,7 @@ CI</code></pre></div>
 <p>So now we can compute our p-value as</p>
 <p><span class="math display">\[\textrm{p.value}=P\left(T_{17.89}&lt;-3.39\right)\]</span></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mosaic::<span class="kw">xpt</span>(-<span class="fl">3.39</span>, <span class="dt">df=</span><span class="fl">17.89</span>)</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-128-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-129-1.png" width="672" /></p>
 <pre><code>## [1] 0.00164277</code></pre>
 <p>In a similar fashion, we can calculate the confidence interval in our usual fashion</p>
 <p><span class="math display">\[\begin{aligned}
@@ -529,7 +526,7 @@ H_{a}:  &amp;\mu_{nc}-\mu_{c} \ne 0
             <span class="dt">s2.i   =</span> <span class="kw">var</span>(Taps),    <span class="co"># sample variances for each group</span>
             <span class="dt">s.i    =</span> <span class="kw">sd</span>(Taps),     <span class="co"># sample standard deviations for each group</span>
             <span class="dt">n.i    =</span> <span class="kw">n</span>()      )    <span class="co"># sample sizes for each group</span></code></pre></div>
-<pre><code>## # A tibble: 2 × 5
+<pre><code>## # A tibble: 2 x 5
 ##        Group xbar.i     s2.i      s.i   n.i
 ##       &lt;fctr&gt;  &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;int&gt;
 ## 1   Caffeine  248.3 4.900000 2.213594    10
@@ -540,7 +537,7 @@ H_{a}:  &amp;\mu_{nc}-\mu_{c} \ne 0
              <span class="dt">s2.i =</span> <span class="kw">var</span>(Taps) ) %&gt;%<span class="st">     </span>
 <span class="st">  </span><span class="kw">summarize</span>( <span class="dt">s2.p =</span> <span class="kw">sum</span>( (n.i<span class="dv">-1</span>)*s2.i ) /<span class="st"> </span>( <span class="kw">sum</span>(n.i)-<span class="dv">2</span> ),
              <span class="dt">s.p  =</span> <span class="kw">sqrt</span>(s2.p) ) </code></pre></div>
-<pre><code>## # A tibble: 1 × 2
+<pre><code>## # A tibble: 1 x 2
 ##       s2.p     s.p
 ##      &lt;dbl&gt;   &lt;dbl&gt;
 ## 1 5.316667 2.30579</code></pre>
@@ -598,14 +595,14 @@ Mosquitoes &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
 <span class="kw">ggplot</span>(Mosquitoes, <span class="kw">aes</span>(<span class="dt">x=</span>Number)) +
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">1</span>) +
 <span class="st">  </span><span class="kw">facet_grid</span>( Treat ~<span class="st"> </span>. )</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-135-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-136-1.png" width="672" /></p>
 <p>For this experiment and the summary statistic that captures the difference we are trying to understand is <span class="math inline">\(d=\bar{x}_{w}-\bar{x}_{b}\)</span> where <span class="math inline">\(\bar{x}_{w}\)</span> is the sample mean number of mosquitoes attracted by the water group and <span class="math inline">\(\bar{x}_{b}\)</span> is the sample mean number of mosquitoes attracted by the beer group. Because of the order we chose for the subtraction, a negative value for d is supportive of the alternative hypothesis that mosquitoes are more attracted to beer drinkers.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Mosquitoes %&gt;%<span class="st"> </span><span class="kw">group_by</span>(Treat) %&gt;%
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">xbar.i =</span> <span class="kw">mean</span>(Number),
             <span class="dt">s2.i   =</span> <span class="kw">var</span>(Number),
             <span class="dt">s.i    =</span> <span class="kw">sd</span>(Number),
             <span class="dt">n.i    =</span> <span class="kw">n</span>())</code></pre></div>
-<pre><code>## # A tibble: 2 × 5
+<pre><code>## # A tibble: 2 x 5
 ##    Treat   xbar.i     s2.i      s.i   n.i
 ##   &lt;fctr&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;int&gt;
 ## 1   Beer 23.60000 17.08333 4.133199    25
@@ -625,7 +622,7 @@ Mosquitoes &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(PermutationDist, <span class="kw">aes</span>(<span class="dt">x=</span>d.star)) +
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span>.<span class="dv">5</span>) +
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&#39;Sampling Dist. of d* assuming H0 is true&#39;</span>)</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-138-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-139-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p.value &lt;-<span class="st"> </span>PermutationDist %&gt;%
 <span class="st">  </span><span class="kw">summarise</span>( <span class="kw">mean</span>( d.star &lt;=<span class="st"> </span>-<span class="fl">4.377</span> ))
 p.value</code></pre></div>
@@ -642,7 +639,7 @@ p.value</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(BootDist, <span class="kw">aes</span>(<span class="dt">x=</span>d.star)) +
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span>.<span class="dv">5</span>) +
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&#39;Bootstrap dist. of d*&#39;</span>)</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-141-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-142-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">quantile</span>( BootDist$d.star, <span class="dt">probs=</span><span class="kw">c</span>(.<span class="dv">05</span>, .<span class="dv">95</span>))</code></pre></div>
 <pre><code>##        5%       95% 
 ## -6.336262 -2.449065</code></pre>
@@ -687,7 +684,7 @@ MarriageAges.Long &lt;-<span class="st"> </span>MarriageAges %&gt;%
 <span class="kw">ggplot</span>(MarriageAges.Long, <span class="kw">aes</span>(<span class="dt">x=</span>Age)) +
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">5</span>) +
 <span class="st">  </span><span class="kw">facet_grid</span>(Spouse ~<span class="st"> </span>.) </code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-146-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-147-1.png" width="672" /></p>
 <p>Looking at this view of the data, it doesn’t appear that the husbands tend to be older than the wives. A t-test to see if the average age of husbands is greater than the average age of wives gives an insignificant difference.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mosaic::<span class="kw">t.test</span>( Age ~<span class="st"> </span>Spouse, <span class="dt">data=</span>MarriageAges.Long )</code></pre></div>
 <pre><code>## 
@@ -708,7 +705,7 @@ MarriageAges.Long &lt;-<span class="st"> </span>MarriageAges %&gt;%
 
 <span class="kw">ggplot</span>(MarriageAges, <span class="kw">aes</span>(<span class="dt">x =</span> d)) +
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">2</span>)</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-148-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-149-1.png" width="672" /></p>
 <p>Given this set of differences, we’d like to know if this data is compatible with the null hypothesis that husbands and wives tend to be the same age versus the alternative that husbands tend to be older. (We could chose the two-sided test as well). <span class="math display">\[\begin{aligned}
 H_{0}:\;\delta  &amp;=  0  \\
 H_{A}:\;\delta  &amp;&gt;  0
@@ -740,7 +737,7 @@ PermDist &lt;-<span class="st"> </span>mosaic::<span class="kw">do</span>(<span 
 <span class="kw">ggplot</span>(PermDist, <span class="kw">aes</span>(<span class="dt">x=</span>d.bar)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_histogram</span>()</code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-150-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-151-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">PermDist %&gt;%
 <span class="st">  </span><span class="kw">summarize</span>( <span class="dt">p.value =</span> <span class="kw">mean</span>(d.bar &gt;=<span class="st"> </span><span class="fl">2.83</span>) )</code></pre></div>
 <pre><code>##   p.value
@@ -785,11 +782,11 @@ TrafficFlow.Long &lt;-<span class="st"> </span>TrafficFlow           %&gt;%
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(TrafficFlow.Long, <span class="kw">aes</span>(<span class="dt">x=</span>Delay)) +
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">2</span>) +<span class="st">              </span><span class="co"># histograms of Delay time</span>
 <span class="st">  </span><span class="kw">facet_grid</span>(Seq ~<span class="st"> </span>.)                       <span class="co"># two plots, stacked by SequenceType</span></code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-154-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-155-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(TrafficFlow, <span class="kw">aes</span>(<span class="dt">x=</span>Difference)) +
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">2</span>) +
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&#39;Difference (Standard - Flexible)&#39;</span>)</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-155-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-156-1.png" width="672" /></p>
 <p>All of the differences were positive, so it is almost ridiculous to do a hypothesis test that there is no decrease in delays with the flexible timing system, but we might as well walk through the analysis.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>( TrafficFlow$Difference )</code></pre></div>
 <pre><code>## 
@@ -902,8 +899,9 @@ Wetsuits.Long &lt;-<span class="st"> </span>Wetsuits %&gt;%
         </div>
       </div>
 <a href="6-hypothesis-tests-for-the-mean-of-a-population.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="8-testing-model-assumptions.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
-
+<a href="8-testing-model-assumptions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
@@ -948,7 +946,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(script.src))
       script.src  = script.src.replace(/^https?:/, '');
     document.getElementsByTagName("head")[0].appendChild(script);

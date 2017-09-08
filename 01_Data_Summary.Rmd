@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 
 
 ```{r, echo=FALSE}
@@ -408,4 +413,29 @@ ggplot( Area.Data, aes(x=x)) +
 
 7. Twenty-five employees of a corporation have a mean salary of $62,000 and the sample standard deviation of those salaries is $15,000. If each employee receives a bonus of $1,000, does the standard deviation of the salaries change? Explain your reasoning.
 
+8. The chemicals in clay used to make pottery can differ depending on the geographical region where the clay originated. Sometimes, archaeologists use a chemical analysis of clay to help identify where a piece of pottery originated. Such an analysis measures the amount of a chemical in the clay as a percent of the total weight of the piece of pottery. The boxplots below summarize analyses done for three chemicals—X, Y, and Z—on pieces of pottery that originated at one of three sites: I, II, or III.
+    
+    ```{r, echo=FALSE}
+    ni <- 100
+    data <- rbind(
+      data.frame( Site='I',   Chemical='X', Y=runif(ni,  6,  8) ),
+      data.frame( Site='I',   Chemical='Y', Y=runif(ni, 11, 15) ),
+      data.frame( Site='I',   Chemical='Z', Y=runif(ni,  4, 10) ),
+      data.frame( Site='II',  Chemical='X', Y=runif(ni,  5,  7) ),
+      data.frame( Site='II',  Chemical='Y', Y=runif(ni, 1.8, 4) ),
+      data.frame( Site='II',  Chemical='Z', Y=runif(ni,  6,  8) ),
+      data.frame( Site='III', Chemical='X', Y=runif(ni,  5, 7.5) ),
+      data.frame( Site='III', Chemical='Y', Y=runif(ni,  6,  8) ),
+      data.frame( Site='III', Chemical='Z', Y=runif(ni,  3,  11) )
+    )
+    ggplot(data, aes(x=Chemical, y=Y)) +
+      geom_boxplot() +
+      facet_grid(.~Site, labeller=label_both) +
+      ylab('Percent of Total Weight') +
+      scale_y_continuous(breaks=seq(0,16,by=2))
+    ```
+    a) For chemical Z, describe how the percents found in the pieces of pottery are similar and how they differ among the three sites.
+    b) Consider a piece of pottery known to have originated at one of the three sites, but the actual site is not known.
+        i) Suppose an analysis of the clay reveals that the sum of the percents of the three chemicals X, Y, and Z is $20.5\%$. Based on the boxplots, which site—I, II, or III—is the most likely site where the piece of pottery originated? Justify your choice.
+        ii) Suppose only one chemical could be analyzed in the piece of pottery. Which chemical—X, Y, or Z— would be the most useful in identifying the site where the piece of pottery originated? Justify your choice.
 

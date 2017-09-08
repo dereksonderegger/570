@@ -6,9 +6,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Introduction to Statistical Methodology</title>
-  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="Introduction to Statistical Methodology">
-  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
 
   <meta property="og:title" content="Introduction to Statistical Methodology" />
   <meta property="og:type" content="book" />
@@ -26,7 +25,7 @@
 <meta name="author" content="Derek L. Sonderegger">
 
 
-<meta name="date" content="2017-04-13">
+<meta name="date" content="2017-06-18">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -34,7 +33,6 @@
   
   
 <link rel="prev" href="11-resampling-linear-models.html">
-
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -93,6 +91,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </head>
 
 <body>
+
 
 
   <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
@@ -256,13 +255,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="11.3.3" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#basic-intervals"><i class="fa fa-check"></i><b>11.3.3</b> Basic intervals</a></li>
 <li class="chapter" data-level="11.3.4" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#towards-bias-corrected-and-accelerated-intervals-bca"><i class="fa fa-check"></i><b>11.3.4</b> Towards bias-corrected and accelerated intervals (BCa)</a></li>
 </ul></li>
-<li class="chapter" data-level="11.4" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#using-carboot-function"><i class="fa fa-check"></i><b>11.4</b> Using <code>car::Boot()</code> function</a></li>
-<li class="chapter" data-level="11.5" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#using-the-boot-package"><i class="fa fa-check"></i><b>11.5</b> Using the <code>boot</code> package</a><ul>
-<li class="chapter" data-level="11.5.1" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#case-resampling"><i class="fa fa-check"></i><b>11.5.1</b> Case resampling</a></li>
-<li class="chapter" data-level="11.5.2" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#residual-resampling"><i class="fa fa-check"></i><b>11.5.2</b> Residual Resampling</a></li>
-<li class="chapter" data-level="11.5.3" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#including-blockingstratifying-variables"><i class="fa fa-check"></i><b>11.5.3</b> Including Blocking/Stratifying Variables</a></li>
+<li class="chapter" data-level="11.4" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#bootstrap-confidence-intervals-in-r"><i class="fa fa-check"></i><b>11.4</b> Bootstrap Confidence Intervals in R</a><ul>
+<li class="chapter" data-level="11.4.1" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#using-carboot-function"><i class="fa fa-check"></i><b>11.4.1</b> Using <code>car::Boot()</code> function</a></li>
+<li class="chapter" data-level="11.4.2" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#using-the-boot-package"><i class="fa fa-check"></i><b>11.4.2</b> Using the <code>boot</code> package</a></li>
 </ul></li>
-<li class="chapter" data-level="11.6" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#exercises-10"><i class="fa fa-check"></i><b>11.6</b> Exercises</a></li>
+<li class="chapter" data-level="11.5" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#exercises-10"><i class="fa fa-check"></i><b>11.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html"><i class="fa fa-check"></i><b>12</b> Contingency Tables</a><ul>
 <li class="chapter" data-level="12.1" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html#expected-counts"><i class="fa fa-check"></i><b>12.1</b> Expected Counts</a></li>
@@ -427,7 +424,7 @@ X.sq</code></pre></div>
   <span class="kw">chisq.test</span>( <span class="kw">table</span>(Mites.star), <span class="dt">correct=</span><span class="ot">FALSE</span> )$statistic 
 }</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>( SamplingDist, <span class="kw">aes</span>(<span class="dt">x=</span>X.squared)) +<span class="st"> </span><span class="kw">geom_histogram</span>()</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-313-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-314-1.png" width="672" /></p>
 <p>At first glance this seems wrong because it is not a nice looking distribution. However there are only a small number of ways to allocate the treatments labels to the two possible outcomes. Second, for the test statistic we have chosen only the right hand side of the distribution (large values of <span class="math inline">\(X^{*}\)</span>) would be evidence against the null hypothesis, so we only look at <span class="math inline">\(X^{2*}&gt;7.20\)</span>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p.value &lt;-<span class="st"> </span>SamplingDist %&gt;%<span class="st"> </span><span class="kw">summarize</span>( <span class="dt">p.value =</span> <span class="kw">mean</span>( X.squared &gt;=<span class="st"> </span>X.sq ) )
 p.value</code></pre></div>
@@ -506,7 +503,7 @@ tab</code></pre></div>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">proportion =</span> n/<span class="kw">sum</span>(n))
 <span class="kw">ggplot</span>(temp, <span class="kw">aes</span>(<span class="dt">x=</span>Race, <span class="dt">y=</span>proportion, <span class="dt">fill=</span>Married)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&#39;identity&#39;</span>)</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-318-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-319-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Use the CrossTable function to generate the Expected Cell values</span>
 descr::<span class="kw">CrossTable</span>(tab, <span class="dt">expected=</span><span class="ot">TRUE</span>, 
                   <span class="dt">prop.r=</span><span class="ot">FALSE</span>, <span class="dt">prop.c=</span><span class="ot">FALSE</span>, <span class="dt">prop.t=</span><span class="ot">FALSE</span>, <span class="dt">prop.chisq=</span><span class="ot">FALSE</span>)</code></pre></div>
@@ -603,61 +600,77 @@ cld.chisq.post.hoc &lt;-<span class="st"> </span>function( obj, name ){
 <div id="exercises-11" class="section level2">
 <h2><span class="header-section-number">12.4</span> Exercises</h2>
 <ol style="list-style-type: decimal">
-<li><p>Is gender independent of education level? A random sample of <span class="math inline">\(n=395\)</span> people were surveyed and each person was asked to report the highest education level they obtained. The data that resulted from the survey is summarized in the following table:</p>
+<li><p>Is gender independent of education level? A random sample of <span class="math inline">\(n=501\)</span> people were surveyed and each person was asked to report the highest education level they obtained. The data that resulted from the survey is summarized in the following table:</p>
 <table>
+<colgroup>
+<col width="16%" />
+<col width="21%" />
+<col width="19%" />
+<col width="15%" />
+<col width="17%" />
+<col width="8%" />
+</colgroup>
 <thead>
 <tr class="header">
-<th align="center"></th>
-<th align="center"><strong>High School</strong></th>
-<th align="center"><strong>Bachelors</strong></th>
-<th align="center"><strong>Masters</strong></th>
-<th align="center"><strong>Ph.d.</strong></th>
-<th align="center"><strong>Total</strong></th>
+<th align="center"> </th>
+<th align="center">&lt;= High School</th>
+<th align="center">Some College</th>
+<th align="center">Bachelors</th>
+<th align="center">Adv. Degree</th>
+<th align="center">Total</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center"><strong>Female</strong></td>
-<td align="center">60</td>
-<td align="center">54</td>
-<td align="center">46</td>
-<td align="center">41</td>
-<td align="center">201</td>
+<td align="center"><strong>Male</strong></td>
+<td align="center">96</td>
+<td align="center">72</td>
+<td align="center">59</td>
+<td align="center">34</td>
+<td align="center">261</td>
 </tr>
 <tr class="even">
-<td align="center"><strong>Male</strong></td>
-<td align="center">40</td>
-<td align="center">44</td>
-<td align="center">53</td>
-<td align="center">57</td>
-<td align="center">194</td>
+<td align="center"><strong>Female</strong></td>
+<td align="center">56</td>
+<td align="center">78</td>
+<td align="center">67</td>
+<td align="center">39</td>
+<td align="center">240</td>
 </tr>
 <tr class="odd">
 <td align="center"><strong>Total</strong></td>
-<td align="center">100</td>
-<td align="center">98</td>
-<td align="center">99</td>
-<td align="center">98</td>
-<td align="center">395</td>
+<td align="center">152</td>
+<td align="center">150</td>
+<td align="center">126</td>
+<td align="center">73</td>
+<td align="center">501</td>
 </tr>
 </tbody>
 </table>
 <ol style="list-style-type: lower-alpha">
 <li>Calculate the expected cell counts for each Gender and Degree combination.</li>
 <li>Calculate the <span class="math inline">\(X^2\)</span> test statistic.</li>
-<li>Calculate the appropriate p-value using the asymptotic approximation.</li>
+<li>Calculate the appropriate p-value using the asymptotic approximation and interprete the results in terms of the problem.</li>
+<li>Double check your hand-calculations using the <code>chisq.test()</code> function in R.</li>
 </ol></li>
-<li><p>We consider some data from the American Community Survey, which is a survey administered by the US Census Bureau and given to approximately 3% of all US households. The package <code>Lock5Data</code> has a dataset, <code>ACS</code>, which is a subsample of <span class="math inline">\(n=1000\)</span> respondents of that 2010 survey. In particular, we want to examine the relationship between race and having health insurance.</p></li>
-</ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">temp &lt;-<span class="st"> </span>ACS %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">HealthInsurance =</span> <span class="kw">factor</span>(<span class="kw">ifelse</span>(HealthInsurance ==<span class="st"> </span><span class="dv">1</span>, <span class="st">&quot;Have&quot;</span>,<span class="st">&quot;None&quot;</span>))) %&gt;%
+<li><p>We consider some data from the American Community Survey, which is a survey administered by the US Census Bureau and given to approximately 3% of all US households. The package <code>Lock5Data</code> has a dataset, <code>ACS</code>, which is a subsample of <span class="math inline">\(n=1000\)</span> respondents of that 2010 survey. In particular, we want to examine the relationship between race and having health insurance.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(ACS, <span class="dt">package=</span><span class="st">&#39;Lock5Data&#39;</span>)
+temp &lt;-<span class="st"> </span>ACS %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">HealthInsurance =</span> <span class="kw">factor</span>(<span class="kw">ifelse</span>(HealthInsurance ==<span class="st"> </span><span class="dv">1</span>, <span class="st">&quot;Have&quot;</span>,<span class="st">&quot;None&quot;</span>)),
+         <span class="dt">Race =</span> <span class="kw">factor</span>(Race, <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&#39;white&#39;</span>,<span class="st">&#39;asian&#39;</span>,<span class="st">&#39;black&#39;</span>,<span class="st">&#39;other&#39;</span>) ) ) %&gt;%
 <span class="st">  </span><span class="kw">group_by</span>(Race, HealthInsurance) %&gt;%<span class="st"> </span>
 <span class="st">  </span>dplyr::<span class="kw">count</span>() %&gt;%
 <span class="st">  </span><span class="kw">group_by</span>(Race) %&gt;%
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">proportion =</span> n/<span class="kw">sum</span>(n))
 <span class="kw">ggplot</span>(temp, <span class="kw">aes</span>(<span class="dt">x=</span>Race, <span class="dt">y=</span>proportion, <span class="dt">fill=</span>HealthInsurance)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&#39;identity&#39;</span>)</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-325-1.png" width="672" /> a) Generate a table summarizing how many respondents of each race has health insurance. b) Test the hypothesis that there is no association between race and having health insurance. using both the asymptotic method and the permutation method. Is your inference the same in both cases? c) Establish which racial groups are different in the proportion of respondents that have health insurance.</p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-327-1.png" width="672" /></p>
+<ol style="list-style-type: lower-alpha">
+<li>Generate a table summarizing how many respondents of each race has health insurance.</li>
+<li>Test the hypothesis that there is no association between race and having health insurance using both the asymptotic method and the permutation method. Is your inference the same in both cases?</li>
+<li>Establish which racial groups are different in the proportion of respondents that have health insurance.</li>
+</ol></li>
+</ol>
 
 </div>
 </div>
@@ -668,7 +681,8 @@ cld.chisq.post.hoc &lt;-<span class="st"> </span>function( obj, name ){
       </div>
 <a href="11-resampling-linear-models.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-
+    </div>
+  </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
@@ -713,7 +727,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(script.src))
       script.src  = script.src.replace(/^https?:/, '');
     document.getElementsByTagName("head")[0].appendChild(script);

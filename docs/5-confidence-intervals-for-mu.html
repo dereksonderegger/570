@@ -6,9 +6,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Introduction to Statistical Methodology</title>
-  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="Introduction to Statistical Methodology">
-  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
 
   <meta property="og:title" content="Introduction to Statistical Methodology" />
   <meta property="og:type" content="book" />
@@ -26,7 +25,7 @@
 <meta name="author" content="Derek L. Sonderegger">
 
 
-<meta name="date" content="2017-04-13">
+<meta name="date" content="2017-06-18">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -35,7 +34,6 @@
   
 <link rel="prev" href="4-sampling-distribution-of-barx.html">
 <link rel="next" href="6-hypothesis-tests-for-the-mean-of-a-population.html">
-
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -93,6 +91,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </head>
 
 <body>
+
 
 
   <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
@@ -256,13 +255,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="11.3.3" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#basic-intervals"><i class="fa fa-check"></i><b>11.3.3</b> Basic intervals</a></li>
 <li class="chapter" data-level="11.3.4" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#towards-bias-corrected-and-accelerated-intervals-bca"><i class="fa fa-check"></i><b>11.3.4</b> Towards bias-corrected and accelerated intervals (BCa)</a></li>
 </ul></li>
-<li class="chapter" data-level="11.4" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#using-carboot-function"><i class="fa fa-check"></i><b>11.4</b> Using <code>car::Boot()</code> function</a></li>
-<li class="chapter" data-level="11.5" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#using-the-boot-package"><i class="fa fa-check"></i><b>11.5</b> Using the <code>boot</code> package</a><ul>
-<li class="chapter" data-level="11.5.1" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#case-resampling"><i class="fa fa-check"></i><b>11.5.1</b> Case resampling</a></li>
-<li class="chapter" data-level="11.5.2" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#residual-resampling"><i class="fa fa-check"></i><b>11.5.2</b> Residual Resampling</a></li>
-<li class="chapter" data-level="11.5.3" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#including-blockingstratifying-variables"><i class="fa fa-check"></i><b>11.5.3</b> Including Blocking/Stratifying Variables</a></li>
+<li class="chapter" data-level="11.4" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#bootstrap-confidence-intervals-in-r"><i class="fa fa-check"></i><b>11.4</b> Bootstrap Confidence Intervals in R</a><ul>
+<li class="chapter" data-level="11.4.1" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#using-carboot-function"><i class="fa fa-check"></i><b>11.4.1</b> Using <code>car::Boot()</code> function</a></li>
+<li class="chapter" data-level="11.4.2" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#using-the-boot-package"><i class="fa fa-check"></i><b>11.4.2</b> Using the <code>boot</code> package</a></li>
 </ul></li>
-<li class="chapter" data-level="11.6" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#exercises-10"><i class="fa fa-check"></i><b>11.6</b> Exercises</a></li>
+<li class="chapter" data-level="11.5" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#exercises-10"><i class="fa fa-check"></i><b>11.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html"><i class="fa fa-check"></i><b>12</b> Contingency Tables</a><ul>
 <li class="chapter" data-level="12.1" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html#expected-counts"><i class="fa fa-check"></i><b>12.1</b> Expected Counts</a></li>
@@ -309,7 +306,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">5.2</span> Asymptotoic result (<span class="math inline">\(\sigma\)</span> unknown)</h2>
 <p>It is unrealistic to expect that we know the population variance <span class="math inline">\(\sigma^{2}\)</span> but do not know the population mean <span class="math inline">\(\mu\)</span>. So in calculations that involve <span class="math inline">\(\sigma\)</span>, we want to use the sample standard deviation <span class="math inline">\(s\)</span> instead.</p>
 <p>Our previous results about confidence intervals assumed that <span class="math inline">\(\bar{X}\sim N\left(\mu,\frac{\sigma^{2}}{n}\right)\)</span> (or is approximately so) and therefore <span class="math display">\[\frac{\bar{X}-\mu}{\sqrt{\frac{\sigma^{2}}{n}}}\sim N\left(0,1\right)\]</span> I want to just replace <span class="math inline">\(\sigma^{2}\)</span> with <span class="math inline">\(S^{2}\)</span> but the sample variance <span class="math inline">\(S^{2}\)</span> is also a random variable and incorporating it into the standardization function might affect the distribution. <span class="math display">\[\frac{\bar{X}-\mu}{\sqrt{\frac{S^{2}}{n}}}\sim\;???\]</span> Unfortunately this substitution of <span class="math inline">\(S^{2}\)</span> for <span class="math inline">\(\sigma^{2}\)</span> comes with a cost and this quantity is not normally distributed. Instead it has a <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n-1\)</span> degrees of freedom. However as the sample size increases and <span class="math inline">\(S^{2}\)</span> becomes a more reliable estimator of <span class="math inline">\(\sigma^{2}\)</span>, this penalty should become smaller.</p>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-86-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-87-1.png" width="672" /></p>
 <p>The <span class="math inline">\(t\)</span>-distribution is often call “Student’s t-distribution” is named after <a href="http://en.wikipedia.org/wiki/William_Sealy_Gosset">William Gosset</a> who worked at Guinness Brewing and did work with small sample sizes in both the brewery and at the farms that supplied the barley. Because Guinness prevented its employees from publishing any of their work, he published under the pseudonym “Student”.</p>
 <p>Notice that as the sample size increases, the t-distribution gets closer and closer to the normal distribution. From here on out, we will use the following standardization formula: <span class="math display">\[\frac{\bar{X}-\mu}{\frac{S}{\sqrt{n}}}\sim\;t_{n-1}\]</span> and emphasize that this formula is valid if the sample observations came from a population with a normal distribution or if the sample size is large enough for the Central Limit Theorem to imply that <span class="math inline">\(\bar{X}\)</span> is approximately normally distributed.</p>
 <p>Substituting the sample standard deviation into the confidence interval formula, we also substitute a t-quantile for the standard normal quantile. We will denote <span class="math inline">\(t_{n-1}^{1-\alpha/2}\)</span> as the <span class="math inline">\(1-\alpha/2\)</span> quantile of a <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n-1\)</span> degrees of freedom. Therefore we will use the following formula for the calculation of <span class="math inline">\(100\left(1-\alpha\right)\%\)</span> confidence intervals for the mean <span class="math inline">\(\mu\)</span>: <span class="math display">\[\bar{x}\pm t_{n-1}^{1-\alpha/2}\left(\frac{s}{\sqrt{n}}\right)\]</span></p>
@@ -333,7 +330,7 @@ s    &lt;-<span class="st"> </span><span class="kw">sd</span>(  bears$weight)
 <span class="st">  </span><span class="kw">geom_area</span>( <span class="dt">data=</span>normal.data, <span class="kw">aes</span>(<span class="dt">x=</span>weight, <span class="dt">y=</span>y), <span class="dt">fill=</span><span class="st">&#39;light blue&#39;</span> ) +
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">data=</span>bears, <span class="kw">aes</span>(<span class="dt">x=</span>weight, <span class="dt">y=</span>..density..),
                  <span class="dt">binwidth=</span><span class="dv">30</span>, <span class="dt">alpha=</span>.<span class="dv">6</span>)  </code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-88-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-89-1.png" width="672" /></p>
 <p>The observed sample mean is <span class="math inline">\(\bar{x}=345.6\)</span> pounds and a sample standard deviation <span class="math inline">\(s=108.8527\)</span> pounds. Because we want a <span class="math inline">\(95\%\)</span> $confidence interval <span class="math inline">\(\alpha=0.05\)</span>. Using t-tables or the following R code</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qt</span>(.<span class="dv">975</span>, <span class="dt">df=</span><span class="dv">39</span>)</code></pre></div>
 <pre><code>## [1] 2.022691</code></pre>
@@ -345,7 +342,7 @@ s    &lt;-<span class="st"> </span><span class="kw">sd</span>(  bears$weight)
 }
 <span class="kw">ggplot</span>(SampDist, <span class="kw">aes</span>(<span class="dt">x=</span>xbar, <span class="dt">y=</span>..density..)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_histogram</span>()</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-90-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-91-1.png" width="672" /></p>
 <p>Grabbing the appropriate quantiles from the bootstrap estimate of the sampling distribution, we see that the bootstrap <span class="math inline">\(95\%\)</span> confidence interval matches up will with the confidence interval we obtained from asymptotic theory.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">quantile</span>( SampDist$xbar, <span class="dt">probs=</span><span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>) )</code></pre></div>
 <pre><code>##     2.5%    97.5% 
@@ -399,8 +396,9 @@ s    &lt;-<span class="st"> </span><span class="kw">sd</span>(  bears$weight)
         </div>
       </div>
 <a href="4-sampling-distribution-of-barx.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="6-hypothesis-tests-for-the-mean-of-a-population.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
-
+<a href="6-hypothesis-tests-for-the-mean-of-a-population.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
@@ -445,7 +443,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(script.src))
       script.src  = script.src.replace(/^https?:/, '');
     document.getElementsByTagName("head")[0].appendChild(script);

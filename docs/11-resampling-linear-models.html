@@ -6,9 +6,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Introduction to Statistical Methodology</title>
-  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="Introduction to Statistical Methodology">
-  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
 
   <meta property="og:title" content="Introduction to Statistical Methodology" />
   <meta property="og:type" content="book" />
@@ -26,7 +25,7 @@
 <meta name="author" content="Derek L. Sonderegger">
 
 
-<meta name="date" content="2017-04-13">
+<meta name="date" content="2017-06-18">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -35,7 +34,6 @@
   
 <link rel="prev" href="10-regression.html">
 <link rel="next" href="12-contingency-tables.html">
-
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -93,6 +91,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </head>
 
 <body>
+
 
 
   <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
@@ -256,13 +255,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="11.3.3" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#basic-intervals"><i class="fa fa-check"></i><b>11.3.3</b> Basic intervals</a></li>
 <li class="chapter" data-level="11.3.4" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#towards-bias-corrected-and-accelerated-intervals-bca"><i class="fa fa-check"></i><b>11.3.4</b> Towards bias-corrected and accelerated intervals (BCa)</a></li>
 </ul></li>
-<li class="chapter" data-level="11.4" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#using-carboot-function"><i class="fa fa-check"></i><b>11.4</b> Using <code>car::Boot()</code> function</a></li>
-<li class="chapter" data-level="11.5" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#using-the-boot-package"><i class="fa fa-check"></i><b>11.5</b> Using the <code>boot</code> package</a><ul>
-<li class="chapter" data-level="11.5.1" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#case-resampling"><i class="fa fa-check"></i><b>11.5.1</b> Case resampling</a></li>
-<li class="chapter" data-level="11.5.2" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#residual-resampling"><i class="fa fa-check"></i><b>11.5.2</b> Residual Resampling</a></li>
-<li class="chapter" data-level="11.5.3" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#including-blockingstratifying-variables"><i class="fa fa-check"></i><b>11.5.3</b> Including Blocking/Stratifying Variables</a></li>
+<li class="chapter" data-level="11.4" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#bootstrap-confidence-intervals-in-r"><i class="fa fa-check"></i><b>11.4</b> Bootstrap Confidence Intervals in R</a><ul>
+<li class="chapter" data-level="11.4.1" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#using-carboot-function"><i class="fa fa-check"></i><b>11.4.1</b> Using <code>car::Boot()</code> function</a></li>
+<li class="chapter" data-level="11.4.2" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#using-the-boot-package"><i class="fa fa-check"></i><b>11.4.2</b> Using the <code>boot</code> package</a></li>
 </ul></li>
-<li class="chapter" data-level="11.6" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#exercises-10"><i class="fa fa-check"></i><b>11.6</b> Exercises</a></li>
+<li class="chapter" data-level="11.5" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#exercises-10"><i class="fa fa-check"></i><b>11.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html"><i class="fa fa-check"></i><b>12</b> Contingency Tables</a><ul>
 <li class="chapter" data-level="12.1" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html#expected-counts"><i class="fa fa-check"></i><b>12.1</b> Expected Counts</a></li>
@@ -422,7 +419,7 @@ test.data &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <spa
 <p>The basic goal of statistics is that we are interested in some population (which is described by some parameter <span class="math inline">\(\mu,\delta,\tau,\beta\)</span>, or generally, <span class="math inline">\(\theta\)</span>) and we take a random sample of size <span class="math inline">\(n\)</span> from the population of interest and we truly believe that the sample is representative of the population of interest. Then we use some statistic of the data <span class="math inline">\(\hat{\theta}\)</span> as an estimate <span class="math inline">\(\theta\)</span>. However we know that this estimates, <span class="math inline">\(\hat{\theta}\)</span>, vary from sample to sample. Previously we’ve used that the Central Limit Theorem gives <span class="math display">\[\hat{\theta}\stackrel{\cdot}{\sim}N\left(\theta,\,\sigma_{\hat{\theta}}\right)\]</span> to construct confidence intervals and perform hypothesis tests, but we don’t necessarily like this approximation. If we could somehow take repeated samples (call these repeated samples <span class="math inline">\(\mathbb{Y}_{j}\)</span> for <span class="math inline">\(j\in1,2,\dots,M\)</span>) from the population we would understand the distribution of <span class="math inline">\(\hat{\theta}\)</span> by just examining the distribution of many observed values of <span class="math inline">\(\hat{\theta}_{j}\)</span> where <span class="math inline">\(\hat{\theta}_{j}\)</span> is the statistic calculated from the ith sample data <span class="math inline">\(\mathbb{Y}_{j}\)</span>.</p>
 <p>However, for practical reasons, we can’t just take 1000s of samples of size n from the population. However, because we truly believe that <span class="math inline">\(\mathbb{Y}\)</span> is representative of the entire population, then our best guess of what the population is just many repeated copies of our data.</p>
 <p>Suppose we were to sample from a population of shapes, and we observed 4/9 of the sample were squares, 3/9 were circles, and a triangle and a diamond. Then our best guess of what the population that we sampled from was a population with 4/9 squares, 3/9 circles, and 1/9 of triangles and diamonds.</p>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-271-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-272-1.png" width="672" /></p>
 <p>Using this approximated population (which is just many many copies of our sample data), we can take many samples of size <span class="math inline">\(n\)</span>. We denote these bootstrap samples as <span class="math inline">\(\mathbb{Y}_{j}^{*}\)</span>, where the star denotes that the sample was taken from the approximate population, not the actual population. From each bootstrap sample <span class="math inline">\(\mathbb{Y}_{j}^{*}\)</span> a statistic of interest can be taken <span class="math inline">\(\hat{\theta}_{j}^{*}\)</span>.</p>
 <p>Because our approximate population is just an infinite number of copies of our sample data, then sampling from the approximate population is equivalent to sampling with replacement from our sample data. If I take <span class="math inline">\(n\)</span> samples from <span class="math inline">\(n\)</span> distinct objects with replacement, then the process can be thought of as mixing the <span class="math inline">\(n\)</span> objects in a bowl and taking an object at random, noting which it is, replace it into the bowl, and then draw the next sample. Practically, this means some objects will be selected more than once and some will not be chosen at all. To sample our observed data with replacement, we’ll use the <code>resample()</code> function in the <code>mosaic</code> package. We see that some rows will be selected multiple times, and some will not be selected at all.</p>
 <div id="observational-studies-vs-designed-experiments" class="section level3">
@@ -476,7 +473,7 @@ Boot.Data</code></pre></div>
 <div id="confidence-interval-types" class="section level2">
 <h2><span class="header-section-number">11.3</span> Confidence Interval Types</h2>
 <p>We want to understand the relationship between the sample statistic <span class="math inline">\(\hat{\theta}\)</span> to the population parameter <span class="math inline">\(\theta\)</span>. We create an estimated population using many repeated copies of our data. By examining how the simulated <span class="math inline">\(\hat{\theta}^{*}\)</span> vary relative to <span class="math inline">\(\hat{\theta}\)</span>, we will understand how possible <span class="math inline">\(\hat{\theta}\)</span> values vary relative to <span class="math inline">\(\theta\)</span>.</p>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-277-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-278-1.png" width="672" /></p>
 <p>We will outline several methods for producing confidence intervals (in the order of most assumptions to fewest).</p>
 <div id="normal-intervals" class="section level3">
 <h3><span class="header-section-number">11.3.1</span> Normal intervals</h3>
@@ -492,7 +489,7 @@ Boot.Data</code></pre></div>
 <h3><span class="header-section-number">11.3.3</span> Basic intervals</h3>
 <p>Unlike the percentile bootstrap interval, the basic interval does not assume the bootstrap distribution is symmetric but does assume that <span class="math inline">\(\hat{\theta}\)</span> is an unbiased estimate for <span class="math inline">\(\theta\)</span>.</p>
 <p>To address this, we will using the observed distribution of our replicates <span class="math inline">\(\hat{\theta}^{*}\)</span>. Let <span class="math inline">\(\hat{\theta}_{\alpha/2}^{*}\)</span> and <span class="math inline">\(\hat{\theta}_{1-\alpha/2}^{*}\)</span> be the <span class="math inline">\(\alpha/2\)</span> and <span class="math inline">\(1-\alpha/2\)</span> quantiles of the replicates <span class="math inline">\(\hat{\theta}^{*}\)</span>. Then another way to form a confidence interval would be <span class="math display">\[\left[\hat{\theta}-\left(\hat{\theta}_{1-\alpha/2}^{*}-\hat{\theta}\right),\;\;\;\;\hat{\theta}-\left(\hat{\theta}_{\alpha/2}^{*}-\hat{\theta}\right)\right]\]</span> where the minus sign on the upper limit is because <span class="math inline">\(\left(\hat{\theta}_{\alpha/2}^{*}-\hat{\theta}\right)\)</span> is already negative. The idea behind this interval is that the sampling variability of <span class="math inline">\(\hat{\theta}\)</span> from <span class="math inline">\(\theta\)</span> is the same as the sampling variability of the replicates <span class="math inline">\(\hat{\theta}^{*}\)</span> from <span class="math inline">\(\hat{\theta}\)</span>, and that the distribution of <span class="math inline">\(\hat{\theta}\)</span> is possibly skewed, so we can’t add/subtract the same amounts. Suppose we observe the distribution of <span class="math inline">\(\hat{\theta}^{*}\)</span> as</p>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-278-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-279-1.png" width="672" /></p>
 <p>Then any particular value of <span class="math inline">\(\hat{\theta}^{*}\)</span> could be much larger than <span class="math inline">\(\hat{\theta}\)</span>. Therefore <span class="math inline">\(\hat{\theta}\)</span> could be much larger than <span class="math inline">\(\theta\)</span>. Therefore our confidence interval should be <span class="math inline">\(\left[\hat{\theta}-\textrm{big},\;\hat{\theta}+\textrm{small}\right]\)</span>.</p>
 <p>This formula can be simplified to<br />
 <span class="math display">\[\left[\hat{\theta}-\left(\hat{\theta}_{1-\alpha/2}^{*}-\hat{\theta}\right)\;,\,\hat{\theta}+\left(\hat{\theta}-\hat{\theta}_{\alpha/2}^{*}\right)\right]  
@@ -503,8 +500,10 @@ Boot.Data</code></pre></div>
 <p>Different schemes for creating confidence intervals can get quite complicated. There is a thriving research community investigating different ways of creating intervals and which are better in what instances. The BCa interval is the most general of the bootstrap intervals and makes the fewest assumptions. Unfortunately is can sometimes fail to converge. The details of this method are too complicated to be presented here but can be found in texts such as chapter 12 in Efron and Tibshirani’s book An Introduction to the Bootstrap (1998).</p>
 </div>
 </div>
-<div id="using-carboot-function" class="section level2">
-<h2><span class="header-section-number">11.4</span> Using <code>car::Boot()</code> function</h2>
+<div id="bootstrap-confidence-intervals-in-r" class="section level2">
+<h2><span class="header-section-number">11.4</span> Bootstrap Confidence Intervals in R</h2>
+<div id="using-carboot-function" class="section level3">
+<h3><span class="header-section-number">11.4.1</span> Using <code>car::Boot()</code> function</h3>
 <p>For every model we’ve examined we can create simulated data sets using either case or residual resampling and produce confidence intervals for any of the parameters of interest. We won’t bother to do this by hand, but rather let R do the work for us. The package that contains most of the primary programs for bootstrapping is the package <code>boot</code>. The functions within this package are quite flexible but they are a little complex. While we will use this package directly later, for now we will use the package <code>car</code> which has a very convenient function <code>car::Boot()</code>.</p>
 <p>We return to our ANOVA example of hostility scores after three different treatment methods. The first thing we will do (as we should do in all data analyses) is to graph our data.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># define the data</span>
@@ -515,7 +514,7 @@ Hostility &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
   <span class="dt">Method =</span> <span class="kw">c</span>( <span class="kw">rep</span>(<span class="st">&#39;M1&#39;</span>,<span class="dv">8</span>), <span class="kw">rep</span>(<span class="st">&#39;M2&#39;</span>,<span class="dv">7</span>), <span class="kw">rep</span>(<span class="st">&#39;M3&#39;</span>,<span class="dv">9</span>) ) )</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(Hostility, <span class="kw">aes</span>(<span class="dt">x=</span>Method, <span class="dt">y=</span>HLT)) +
 <span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-280-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-281-1.png" width="672" /></p>
 <p>We can fit the cell-means model and examine the summary statistics using the following code.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span><span class="kw">lm</span>( HLT ~<span class="st"> </span>-<span class="dv">1</span> +<span class="st"> </span>Method, <span class="dt">data=</span>Hostility )
 <span class="kw">summary</span>(model)</code></pre></div>
@@ -549,7 +548,7 @@ Hostility &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
 boot.model &lt;-<span class="st"> </span><span class="kw">Boot</span>(model, <span class="dt">method=</span><span class="st">&#39;residual&#39;</span>, <span class="dt">R=</span><span class="dv">999</span>) <span class="co"># residual resampling </span></code></pre></div>
 <p>The <code>car::Boot()</code> function has done all work of doing the resampling and storing values of <span class="math inline">\(\hat{\mu}_{1},\hat{\mu}_{2}\)</span>, and <span class="math inline">\(\hat{\mu}_{3}\)</span> for each bootstrap replicate data set created using case resampling. To look at the bootstrap estimate of the sampling distribution of these statistics, we use the <code>hist()</code> function. The <code>hist()</code> function is actually overloaded and will act differently depending on the type of object. We will send it an object of class boot and the <code>hist()</code> function looks for a function name <code>hist.boot()</code> and when it finds it, just calls it with the function arguments we passed.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(boot.model, <span class="dt">layout=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)) <span class="co"># 1 row, 3 columns of plots</span></code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-284-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-285-1.png" width="672" /></p>
 <p>While this plot is aesthetically displeasing (we could do so much better using ggplot2!) this shows the observed bootstrap histogram of <span class="math inline">\(\hat{\mu}_{i}^{*}\)</span>, along with the normal distribution centered at <span class="math inline">\(\hat{\mu}_{i}\)</span> with spread equal to the <span class="math inline">\(StdDev\left(\hat{\mu}_{i}^{*}\right)\)</span>. In this case, the sampling distribution looks very normal and the bootstrap confidence intervals should line up well with the asymptotic intervals. The function <code>confint()</code> will report the BCa intervals by default, but you can ask for “bca”, “norm”, “basic”, “perc”.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">confint</span>(boot.model)</code></pre></div>
 <pre><code>## Bootstrap quantiles, type =  bca 
@@ -579,11 +578,11 @@ boot.model &lt;-<span class="st"> </span><span class="kw">Boot</span>(model, <sp
          <span class="fl">12.94</span>, <span class="fl">13.26</span>, <span class="fl">12.65</span>, <span class="fl">12.33</span>, <span class="fl">12.04</span>, 
          <span class="fl">11.19</span>, <span class="fl">13.76</span>, <span class="fl">10.95</span>, <span class="fl">10.36</span>, <span class="fl">10.63</span>))
 <span class="kw">ggplot</span>(my.data, <span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>y)) +<span class="st"> </span><span class="kw">geom_point</span>()</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-286-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-287-1.png" width="672" /></p>
 <p>Fitting a linear model, we see a problem that the residuals don’t appear to be balanced. The large residuals are all positive. The Shapiro-Wilks test firmly rejects normality of the residuals.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span><span class="kw">lm</span>( y ~<span class="st"> </span>x, <span class="dt">data=</span>my.data)
 <span class="kw">plot</span>(model, <span class="dt">which=</span><span class="dv">1</span>)</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-287-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-288-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">shapiro.test</span>( <span class="kw">resid</span>(model) )</code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
@@ -593,7 +592,7 @@ boot.model &lt;-<span class="st"> </span><span class="kw">Boot</span>(model, <sp
 <p>As a result, we don’t might not feel comfortable using the asymptotic distribution of <span class="math inline">\(\hat{\beta}_{0}\)</span> and <span class="math inline">\(\hat{\beta}_{1}\)</span> for the creation of our confidence intervals. The bootstrap procedure can give reasonable good intervals, however.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">boot.model &lt;-<span class="st"> </span><span class="kw">Boot</span>( model )  <span class="co"># by default method=&#39;case&#39;</span>
 <span class="kw">hist</span>( boot.model )</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-289-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-290-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">confint</span>( boot.model )</code></pre></div>
 <pre><code>## Bootstrap quantiles, type =  bca 
 ## 
@@ -602,11 +601,11 @@ boot.model &lt;-<span class="st"> </span><span class="kw">Boot</span>(model, <sp
 ## x           -0.6498092 -0.3817759</code></pre>
 <p>Notice that both of the bootstrap distribution for both <span class="math inline">\(\hat{\beta}_{0}^{*}\)</span> and <span class="math inline">\(\hat{\beta}_{1}^{*}\)</span> are skewed, and the BCa intervals are likely to be the most appropriate intervals to use.</p>
 </div>
-<div id="using-the-boot-package" class="section level2">
-<h2><span class="header-section-number">11.5</span> Using the <code>boot</code> package</h2>
+<div id="using-the-boot-package" class="section level3">
+<h3><span class="header-section-number">11.4.2</span> Using the <code>boot</code> package</h3>
 <p>The <code>car::Boot()</code> function is very handy, but it lacks flexibility; it assumes that you just want to create bootstrap confidence intervals for the model coefficients. The <code>car::Boot()</code> function is actually a nice simple user interface to the boot package which is more flexible, but requires the user to be more precise about what statistic should be stored and how the bootstrap samples should be created. We will next examine how to use this package.</p>
-<div id="case-resampling" class="section level3">
-<h3><span class="header-section-number">11.5.1</span> Case resampling</h3>
+<div id="case-resampling" class="section level4">
+<h4><span class="header-section-number">11.4.2.1</span> Case resampling</h4>
 <p>Suppose that we have n observations in our sample data. Given some vector of numbers resampled from <code>1:n</code>, we need to either resample those cases or those residuals and then using the new dataset calculate some statistic. The function <code>boot()</code> will require the user to write a function that does this.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span><span class="kw">lm</span>( y ~<span class="st"> </span>x, <span class="dt">data=</span>my.data )
 <span class="kw">coef</span>(model)</code></pre></div>
@@ -642,8 +641,8 @@ my.stat &lt;-<span class="st"> </span>function(sample.data, indices){
 ## 1 15.4340761 17.013663
 ## 2 -0.6507547 -0.374097</code></pre>
 </div>
-<div id="residual-resampling" class="section level3">
-<h3><span class="header-section-number">11.5.2</span> Residual Resampling</h3>
+<div id="residual-resampling" class="section level4">
+<h4><span class="header-section-number">11.4.2.2</span> Residual Resampling</h4>
 <p>We will now consider the ANOVA problem and in this case we will resample the residuals.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Fit the ANOVA model to the Hostility Data</span>
 model &lt;-<span class="st"> </span><span class="kw">lm</span>( HLT ~<span class="st"> </span>Method, <span class="dt">data=</span>Hostility )
@@ -671,7 +670,7 @@ boot.model &lt;-<span class="st"> </span><span class="kw">boot</span>(Hostility,
 ## 3 -19.55282 -12.069872</code></pre>
 <p>Fortunately the <code>hist()</code> command can print the nice histogram from the output of the <code>boot()</code> command.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>( boot.model, <span class="dt">layout=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)) <span class="co"># 1 row, 3 columns)</span></code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-294-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-295-1.png" width="672" /></p>
 <p>Notice that we don’t need to have the model coefficients <span class="math inline">\(\hat{\mu}_{i}\)</span> be our statistic of interest, we could just as easily produce a confidence interval for the residual standard error <span class="math inline">\(\hat{\sigma}\)</span>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Do residual resampling with the regression example</span>
 model &lt;-<span class="st"> </span><span class="kw">lm</span>( y ~<span class="st"> </span>x, <span class="dt">data=</span>my.data )
@@ -689,15 +688,15 @@ my.stat &lt;-<span class="st"> </span>function(sample.data, indices){
 
 boot.model &lt;-<span class="st"> </span><span class="kw">boot</span>(my.data, my.stat, <span class="dt">R=</span><span class="dv">10000</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(boot.model, <span class="dt">layout=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-296-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-297-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">confint</span>(boot.model)</code></pre></div>
 <pre><code>## Bootstrap quantiles, type =  bca 
 ## 
 ##      2.5 %   97.5 %
 ## 1 0.566195 1.220835</code></pre>
 </div>
-<div id="including-blockingstratifying-variables" class="section level3">
-<h3><span class="header-section-number">11.5.3</span> Including Blocking/Stratifying Variables</h3>
+<div id="including-blockingstratifying-variables" class="section level4">
+<h4><span class="header-section-number">11.4.2.3</span> Including Blocking/Stratifying Variables</h4>
 <p>When we introduced the ANOVA model we assumed that the groups had equal variance but we don’t have to. If we consider the model with unequal variances among groups <span class="math display">\[Y_{ij}=\mu_{i}+\epsilon_{ij}\;\;\;\;\textrm{where}\;\;\;E\left(\epsilon_{ij}\right)=0\;\;Var\left(\epsilon_{ij}\right)=\sigma_{i}^{2}\]</span> then our usual analysis is inappropriate but we could easily bootstrap our confidence intervals for <span class="math inline">\(\mu_{i}\)</span>. If we do case resampling, this isn’t an issue because each included observation is an <span class="math inline">\(\left(group,\ response\right)\)</span> pair and our groups will have large or small variances similar to the observed data. However if we do residual resampling, then we must continue to have this. We do this by only resampling residuals within the same group. One way to think of this is if your model has a subscript on the variance term, then your bootstrap samples must respect that.</p>
 <p>If you want to perform the bootstrap by hand using dplyr commands, it can be done by using the <code>group_by()</code> with whatever the blocking/Stratifying variable is prior to the <code>mosaic::resample()</code> command. You could also use the optional group argument to the <code>mosaic::resample()</code> command.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">y  =</span><span class="kw">c</span>(<span class="fl">9.8</span>,<span class="fl">9.9</span>,<span class="fl">10.1</span>,<span class="fl">10.2</span>,   <span class="dv">18</span>,<span class="dv">19</span>,<span class="dv">21</span>,<span class="dv">22</span>),
@@ -712,6 +711,7 @@ data.star</code></pre></div>
 <pre><code>## Source: local data frame [8 x 6]
 ## Groups: grp [2]
 ## 
+## # A tibble: 8 x 6
 ##       y    grp   fit resid resid.star y.star
 ##   &lt;dbl&gt; &lt;fctr&gt; &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt;
 ## 1   9.8      A    10  -0.2        0.2   10.2
@@ -755,7 +755,7 @@ my.stat &lt;-<span class="st"> </span>function(sample.data, indices){
 <span class="co"># strata is a vector of the categorical variable we block/stratify on</span>
 boot.model &lt;-<span class="st"> </span><span class="kw">boot</span>( Hostility, my.stat, <span class="dt">R=</span><span class="dv">1000</span>, <span class="dt">strata=</span>Hostility$Method )</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(boot.model, <span class="dt">layout=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-300-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-301-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">confint</span>(boot.model)</code></pre></div>
 <pre><code>## Bootstrap quantiles, type =  bca 
 ## 
@@ -765,10 +765,51 @@ boot.model &lt;-<span class="st"> </span><span class="kw">boot</span>( Hostility
 ## 3 -20.29828 -11.599394</code></pre>
 </div>
 </div>
+</div>
 <div id="exercises-10" class="section level2">
-<h2><span class="header-section-number">11.6</span> Exercises</h2>
+<h2><span class="header-section-number">11.5</span> Exercises</h2>
 <ol style="list-style-type: decimal">
-<li>We will perform a regression analysis on the following data and use different bootstrap resampling methods to create a confidence interval for the slope parameter. In this case the residuals are symmetric, though perhaps we don’t want to assume normality.
+<li><p>We will perform a regression analysis on the following data and use different bootstrap resampling methods to create a confidence interval for the slope parameter. In this case the residuals are symmetric, though perhaps we don’t want to assume normality.</p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(x_{i}\)</span></td>
+<td align="center">3</td>
+<td align="center">4</td>
+<td align="center">5</td>
+<td align="center">6</td>
+<td align="center">7</td>
+<td align="center">8</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(y_{i}\)</span></td>
+<td align="center">5</td>
+<td align="center">9</td>
+<td align="center">10</td>
+<td align="center">12</td>
+<td align="center">15</td>
+<td align="center">15</td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\hat{y}_{i}\)</span></td>
+<td align="center">6</td>
+<td align="center">8</td>
+<td align="center">10</td>
+<td align="center">12</td>
+<td align="center">14</td>
+<td align="center">16</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(\hat{\epsilon}_{i}\)</span></td>
+<td align="center">-1</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">-1</td>
+</tr>
+</tbody>
+</table>
 <ol style="list-style-type: lower-alpha">
 <li>We will first use case resampling.
 <ol style="list-style-type: lower-roman">
@@ -784,15 +825,28 @@ boot.model &lt;-<span class="st"> </span><span class="kw">boot</span>( Hostility
 </ol></li>
 </ol></li>
 <li><p>The ratio of DDE (related to DDT) to PCB concentrations in bird eggs has been shown to have had a number of biological implications. The ratio is used as an indication of the movement of contamination through the food chain. The paper “The ratio of DDE to PCB concentrations in Great Lakes herring gull eggs and its us in interpreting contaminants data” reports the following ratios for eggs collected at sites from the five Great Lakes. The eggs were collected from both terrestrial and aquatic feeding birds. Suppose that we are interested in estimating <span class="math inline">\(\rho=\frac{\mu_{terrestial}}{\mu_{aquatic}}\)</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Pollution &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
+  <span class="dt">value =</span> <span class="kw">c</span>(<span class="fl">76.50</span>, <span class="fl">6.03</span>, <span class="fl">3.51</span>, <span class="fl">9.96</span>, <span class="fl">4.24</span>, <span class="fl">7.74</span>, <span class="fl">9.54</span>, <span class="fl">41.70</span>, <span class="fl">1.84</span>, <span class="fl">2.50</span>, <span class="fl">1.54</span>,
+             <span class="fl">0.27</span>, <span class="fl">0.61</span>, <span class="fl">0.54</span>, <span class="fl">0.14</span>, <span class="fl">0.63</span>, <span class="fl">0.23</span>, <span class="fl">0.56</span>,  <span class="fl">0.48</span>, <span class="fl">0.16</span>, <span class="fl">0.18</span>       ),
+  <span class="dt">type  =</span> <span class="kw">c</span>( <span class="kw">rep</span>(<span class="st">&#39;Terrestrial&#39;</span>,<span class="dv">11</span>), <span class="kw">rep</span>(<span class="st">&#39;Aquatic&#39;</span>,<span class="dv">10</span>) ) )
+model &lt;-<span class="st"> </span><span class="kw">lm</span>( value ~<span class="st"> </span>-<span class="dv">1</span> +<span class="st"> </span>type, <span class="dt">data=</span>Pollution)
+<span class="kw">coef</span>(model)</code></pre></div>
+<pre><code>##     typeAquatic typeTerrestrial 
+##         0.38000        15.00909</code></pre>
 <ol style="list-style-type: lower-alpha">
 <li>Recall that the ANOVA with the cell mean representation will calculate the group means. Use the lm() function to calculate the means of the two groups. Notice that the p-values and any confidence intervals from this model are useless because we are egregiously violating the equal variance and normality assumptions on the residuals.</li>
-<li>Using R, calculate the ratio <span class="math inline">\(\hat{\rho}=\bar{y}_{T}/\bar{y}_{A}\)</span>. Hint: what is returned by coef(model)[1]?</li>
+<li>Using R, calculate the ratio <span class="math inline">\(\hat{\rho}=\bar{y}_{T}/\bar{y}_{A}\)</span>. <em>Hint: what is returned by <code>coef(model)[1]</code></em>?</li>
 <li>Use the <code>mosaic::resample()</code> function to generate several bootstrap datasets using case resampling. Do you get 11 Terrestrial observations in each dataset? Do this ten or twenty times (don’t show these computations) and note the most unbalanced data set.</li>
 <li>Use the <code>mosaic::resample()</code> function to generate several bootstrap datasets using residual resampling? Do you get data sets where a simulated aquatic observation has been paired with a huge residual term from the terrestrial. Does this seem appropriate?</li>
-<li>The <code>mosaic::resample()</code> function includes an optional groups argument that does the resampling within a specified group (thus we will always get 11 Terrestrial observations and 10 Aquatic). Use this to generate several bootstrap datasets.</li>
+<li>The <code>mosaic::resample()</code> function includes an optional <code>groups=</code> argument that does the resampling within a specified group (thus we will always get 11 Terrestrial observations and 10 Aquatic). Use this to generate several bootstrap datasets.</li>
 <li>The <code>car::Boot()</code> function cannot handle the grouping, but <code>boot::boot()</code> can.
 <ol style="list-style-type: lower-roman">
-<li><p>The following function will calculate <code>\hat{\rho}</code>, the statistic of interest, given the original data and a set of indices to use. Notice that we’ve chosen to do case resampling here.</p></li>
+<li><p>The following function will calculate <span class="math inline">\(\hat{\rho}\)</span>, the statistic of interest, given the original data and a set of indices to use. Notice that we’ve chosen to do case resampling here.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">calc_rhohat &lt;-<span class="st"> </span>function(data, indices){
+  data.star &lt;-<span class="st"> </span>data[indices, ]
+  model.star &lt;-<span class="st"> </span><span class="kw">lm</span>( value ~<span class="st"> </span>-<span class="dv">1</span> +<span class="st"> </span>type, <span class="dt">data=</span>data.star )
+  <span class="kw">return</span>( <span class="kw">coef</span>(model.star)[<span class="dv">2</span>] /<span class="st"> </span><span class="kw">coef</span>(model.star)[<span class="dv">1</span>] )
+}</code></pre></div></li>
 <li>Call this function using the Pollution data set and indices 1:21. Notice that this calculates the sample statistic <span class="math inline">\(\hat{\rho}\)</span> that we calculated previously.</li>
 <li>Call this function using <code>indices = resample(1:21, groups=Pollution$type)</code>. Notice that this calculates the sample statistic <span class="math inline">\(\hat{\rho}^{*}\)</span> where we are doing case resampling within each group.</li>
 <li>Use the <code>boot::boot()</code> to perform the full bootstrap analysis. Use the option <code>strata=Pollution$type</code> option, which is causes R to do the resampling within each group.</li>
@@ -809,8 +863,9 @@ boot.model &lt;-<span class="st"> </span><span class="kw">boot</span>( Hostility
         </div>
       </div>
 <a href="10-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="12-contingency-tables.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
-
+<a href="12-contingency-tables.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
@@ -855,7 +910,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(script.src))
       script.src  = script.src.replace(/^https?:/, '');
     document.getElementsByTagName("head")[0].appendChild(script);

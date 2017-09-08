@@ -6,9 +6,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Introduction to Statistical Methodology</title>
-  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="Introduction to Statistical Methodology">
-  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
 
   <meta property="og:title" content="Introduction to Statistical Methodology" />
   <meta property="og:type" content="book" />
@@ -26,7 +25,7 @@
 <meta name="author" content="Derek L. Sonderegger">
 
 
-<meta name="date" content="2017-04-13">
+<meta name="date" content="2017-06-18">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -35,7 +34,6 @@
   
 <link rel="prev" href="7-two-sample-hypothesis-tests-and-confidence-intervals.html">
 <link rel="next" href="9-analysis-of-variance-anova.html">
-
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -93,6 +91,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </head>
 
 <body>
+
 
 
   <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
@@ -256,13 +255,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="11.3.3" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#basic-intervals"><i class="fa fa-check"></i><b>11.3.3</b> Basic intervals</a></li>
 <li class="chapter" data-level="11.3.4" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#towards-bias-corrected-and-accelerated-intervals-bca"><i class="fa fa-check"></i><b>11.3.4</b> Towards bias-corrected and accelerated intervals (BCa)</a></li>
 </ul></li>
-<li class="chapter" data-level="11.4" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#using-carboot-function"><i class="fa fa-check"></i><b>11.4</b> Using <code>car::Boot()</code> function</a></li>
-<li class="chapter" data-level="11.5" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#using-the-boot-package"><i class="fa fa-check"></i><b>11.5</b> Using the <code>boot</code> package</a><ul>
-<li class="chapter" data-level="11.5.1" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#case-resampling"><i class="fa fa-check"></i><b>11.5.1</b> Case resampling</a></li>
-<li class="chapter" data-level="11.5.2" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#residual-resampling"><i class="fa fa-check"></i><b>11.5.2</b> Residual Resampling</a></li>
-<li class="chapter" data-level="11.5.3" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#including-blockingstratifying-variables"><i class="fa fa-check"></i><b>11.5.3</b> Including Blocking/Stratifying Variables</a></li>
+<li class="chapter" data-level="11.4" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#bootstrap-confidence-intervals-in-r"><i class="fa fa-check"></i><b>11.4</b> Bootstrap Confidence Intervals in R</a><ul>
+<li class="chapter" data-level="11.4.1" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#using-carboot-function"><i class="fa fa-check"></i><b>11.4.1</b> Using <code>car::Boot()</code> function</a></li>
+<li class="chapter" data-level="11.4.2" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#using-the-boot-package"><i class="fa fa-check"></i><b>11.4.2</b> Using the <code>boot</code> package</a></li>
 </ul></li>
-<li class="chapter" data-level="11.6" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#exercises-10"><i class="fa fa-check"></i><b>11.6</b> Exercises</a></li>
+<li class="chapter" data-level="11.5" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#exercises-10"><i class="fa fa-check"></i><b>11.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html"><i class="fa fa-check"></i><b>12</b> Contingency Tables</a><ul>
 <li class="chapter" data-level="12.1" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html#expected-counts"><i class="fa fa-check"></i><b>12.1</b> Expected Counts</a></li>
@@ -298,7 +295,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h3><span class="header-section-number">8.1.1</span> Visual Inspection - QQplots</h3>
 <p>If we are taking a sample of size <span class="math inline">\(n=10\)</span> from a standard normal distribution, then I should expect that the smallest observation will be negative. Intuitively, you would expect the smallest observation to be near the 10th percentile of the standard normal, and likewise the second smallest should be near the 20th percentile.</p>
 <p>This idea needs a little modification because the largest observation cannot be near the 100th percentile (because that is <span class="math inline">\(\infty\)</span>). So we’ll adjust the estimates to still be spaced at (1/n) quantile increments, but starting at the 0.5/n quantile instead of the 1/n quantile. So the smallest observation should be near the 0.05 quantile, the second smallest should be near the 0.15 quantile, and the largest observation should be near the 0.95 quantile. I will refer to these as the theoretical quantiles.</p>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-163-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-164-1.png" width="672" /></p>
 <p>I can then graph the theoretical quantiles vs my observed values and if they lie on the 1-to-1 line, then my data comes from a standard normal distribution.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="dv">10</span>
 data &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">observed    =</span> <span class="kw">sort</span>( <span class="kw">rnorm</span>(n, <span class="dt">mean=</span><span class="dv">0</span>, <span class="dt">sd=</span><span class="dv">1</span>) ),
@@ -308,16 +305,16 @@ data &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span cla
 <span class="st">  </span><span class="kw">geom_point</span>( <span class="kw">aes</span>(<span class="dt">x=</span>theoretical, <span class="dt">y=</span>observed) ) +
 <span class="st">  </span><span class="kw">geom_line</span>(  <span class="kw">aes</span>(<span class="dt">x=</span>theoretical, <span class="dt">y=</span>theoretical) ) +
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&#39;Theoretical&#39;</span>, <span class="dt">y=</span><span class="st">&#39;Observed&#39;</span>, <span class="dt">title=</span><span class="st">&#39;Q-Q Plot: Observed vs Normal Distribution&#39;</span>)</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-164-1.png" width="672" /></p>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-165-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-166-1.png" width="672" /></p>
 <p>If I think my data are normal, but with some mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>, we still make the same graph, but the 1-to-1 line will be moved to pass through the 1st and 3rd quartiles. Again, the data points should be near the line. This is common enough that R has built in functions to make this graph:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="dv">10</span>
 x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(n, <span class="dt">mean=</span><span class="dv">100</span>, <span class="dt">sd=</span><span class="dv">10</span>)
 <span class="kw">qqnorm</span>(x)
 <span class="kw">qqline</span>(x)</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-166-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-167-1.png" width="672" /></p>
 <p>We now will examine a sample of <span class="math inline">\(n=40\)</span> from a bunch of different distributions that are not normal and see what the normal QQ plot looks like. In the following graphs, pay particular attention to the tails. Notice the the t-distribution has significantly heavier tails than the normal distribution and that is reflected in the dots being lower than the line on the left and higher on the right. Likewise the logNormal distribution, which is defined by <span class="math inline">\(\log(X)\sim\)</span> Normal has too light of a tail on the left (because logNormal variables must be greater than 0) and too heavy on the right. The uniform distribution, which is cut off at 0 and 1, has too light of tails in both directions.</p>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-167-1.png" width="576" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-168-1.png" width="576" /></p>
 </div>
 <div id="tests-for-normality" class="section level3">
 <h3><span class="header-section-number">8.1.2</span> Tests for Normality</h3>
@@ -358,7 +355,7 @@ H_{a} &amp;:\,  \textrm{data are not normally distributed}
 
 <span class="kw">ggplot</span>(Alcohol, <span class="kw">aes</span>(<span class="dt">x=</span>trt, <span class="dt">y=</span>time)) +
 <span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-170-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-171-1.png" width="672" /></p>
 </div>
 <div id="tests-for-equal-variance" class="section level3">
 <h3><span class="header-section-number">8.2.2</span> Tests for Equal Variance</h3>
@@ -368,7 +365,7 @@ H_{0} &amp;:\,\sigma_{1}^{2}    =   \sigma_{2}^{2} \\
 H_{a} &amp;:\,\sigma_{1}^{2}    \ne \sigma_{2}^{2}
 \end{aligned}\]</span> If the null hypothesis is true, then the ratio <span class="math inline">\(s_{1}^{2}/s_{2}^{2}\)</span> should be approximately one. It can be shown that under the null hypothesis, <span class="math display">\[f=\frac{s_{1}^{2}}{s_{2}^{2}}\sim F_{df_{1},df_{2}}\]</span> where <span class="math inline">\(df_{1}\)</span> and <span class="math inline">\(df_{2}\)</span> are the associated degrees of freedom for <span class="math inline">\(s_{1}^{2}\)</span> and <span class="math inline">\(s_{2}^{2}\)</span>. The order of these is traditionally given with the degrees of freedom of the top term first and the degrees of freedom of the bottom term second.</p>
 <p>Variables that follow a F distribution must be non-negative and two F distributions are shown below. The F distribution is centered at <span class="math inline">\(E\left(F_{df_{1},df_{2}}\right)=\frac{df_{2}}{df_{2}-2}\approx 1\)</span> for large values of <span class="math inline">\(df_{2}\)</span>. The variance of this distribution goes to 0 as <span class="math inline">\(df_{1}\)</span> and <span class="math inline">\(df_{2}\)</span> get large.</p>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-171-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-172-1.png" width="672" /></p>
 <p>If the value of my test statistic <span class="math inline">\(f=s_{1}^{2}/s_{2}^{2}\)</span> is too large or too small, then we will reject the null hypothesis. If we preform an F-test with an <span class="math inline">\(\alpha=0.05\)</span> level of significance then we’ll reject <span class="math inline">\(H_{0}\)</span> if <span class="math inline">\(f&lt;F_{0.025,n_{1}-1,n_{2}-1}\)</span> or if <span class="math inline">\(f&gt;F_{0.975,n_{1}-1,n_{2}-1}\)</span>.</p>
 <p><strong>Example</strong>. Suppose we have two samples drawn from normally distributed populations. The first has <span class="math inline">\(n_{1}=7\)</span> observations and a sample variance of <span class="math inline">\(s_{1}^{2}=25\)</span> and the second sample has <span class="math inline">\(n_{2}=10\)</span> and <span class="math inline">\(s_{2}^{2}=64\)</span>. Then <span class="math inline">\(f_{6,9}=\frac{25}{64}=0.391\)</span> and we notice this value is is in between the lower and upper cut-off values</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qf</span>( <span class="kw">c</span>(<span class="fl">0.025</span>, .<span class="dv">975</span>), <span class="dv">6</span>, <span class="dv">9</span>)</code></pre></div>
@@ -394,7 +391,7 @@ P\left(F_{df_{1},\,df_{2}}&gt;\frac{s_{1}^{2}}{s_{2}^{2}}\right)=P\left(F_{df_{2
 <pre><code>## [1] 0.1354182</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pf</span>(<span class="dv">3</span>/<span class="dv">6</span>, <span class="dv">19</span>, <span class="dv">4</span>)</code></pre></div>
 <pre><code>## [1] 0.1354182</code></pre>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-175-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-176-1.png" width="672" /></p>
 </div>
 </div>
 <div id="power-of-the-f-test" class="section level2">
@@ -441,7 +438,7 @@ F &lt;-<span class="st"> </span>Alcohol %&gt;%
 <span class="st">  </span><span class="kw">summarise</span>( <span class="dt">s2 =</span> <span class="kw">var</span>(time)) %&gt;%<span class="st">   </span><span class="co"># calculate variance.</span>
 <span class="st">  </span><span class="kw">summarise</span>( <span class="dt">F =</span> s2[<span class="dv">1</span>] /<span class="st"> </span>s2[<span class="dv">2</span>] )   <span class="co"># and then take the ratio</span>
 F</code></pre></div>
-<pre><code>## # A tibble: 1 × 1
+<pre><code>## # A tibble: 1 x 1
 ##          F
 ##      &lt;dbl&gt;
 ## 1 1.704753</code></pre>
@@ -476,7 +473,7 @@ PermDist &lt;-<span class="st"> </span>PermDist %&gt;%<span class="st">   </span
 <span class="st">  </span><span class="kw">geom_area</span>( <span class="dt">data=</span><span class="kw">data.frame</span>(<span class="dt">x=</span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="dt">length=</span><span class="dv">1000</span>)) %&gt;%
 <span class="st">                             </span><span class="kw">mutate</span>(<span class="dt">y=</span><span class="kw">df</span>(x, <span class="dv">9</span>,<span class="dv">9</span>)),
              <span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>y), <span class="dt">alpha=</span>.<span class="dv">3</span>, <span class="dt">fill=</span><span class="st">&#39;red&#39;</span>)</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-183-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-184-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># p-value... what percent is more extreme than what I observed?</span>
 PermDist %&gt;%<span class="st"> </span><span class="kw">summarise</span>(<span class="dt">p.value =</span> <span class="kw">mean</span>(extreme))</code></pre></div>
 <pre><code>##   p.value
@@ -495,7 +492,7 @@ PermDist %&gt;%<span class="st"> </span><span class="kw">summarise</span>(<span 
 <span class="st">  </span><span class="kw">geom_boxplot</span>() +
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title=</span><span class="st">&#39;Commute Times&#39;</span>, <span class="dt">y=</span><span class="st">&#39;Time (minutes)&#39;</span>, <span class="dt">x=</span><span class="st">&#39;Time of Day&#39;</span>) +
 <span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-185-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-186-1.png" width="672" /></p>
 <p>We now test to see if there is a significant difference between the variances of these two groups. If we feel comfortable with assuming that these data come from normal distributions, then the theoretical method is appropriate.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">var.test</span>( time ~<span class="st"> </span>type, <span class="dt">data=</span>Commute )</code></pre></div>
 <pre><code>## 
@@ -526,7 +523,7 @@ PermDist &lt;-<span class="st"> </span>PermDist %&gt;%<span class="st">   </span
 <span class="st">  </span><span class="kw">geom_area</span>( <span class="dt">data=</span><span class="kw">data.frame</span>(<span class="dt">x=</span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="dt">length=</span><span class="dv">1000</span>)) %&gt;%
 <span class="st">                             </span><span class="kw">mutate</span>(<span class="dt">y=</span><span class="kw">df</span>(x, <span class="dv">13</span>, <span class="dv">11</span>)),
              <span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>y), <span class="dt">alpha=</span>.<span class="dv">3</span>, <span class="dt">fill=</span><span class="st">&#39;red&#39;</span>)</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-188-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-189-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># p-value... what proportion is more extreme than what I observed?</span>
 PermDist %&gt;%<span class="st"> </span><span class="kw">summarise</span>(<span class="dt">p.value =</span> <span class="kw">mean</span>(extreme))</code></pre></div>
 <pre><code>##   p.value
@@ -667,8 +664,9 @@ my.data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span c
         </div>
       </div>
 <a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="9-analysis-of-variance-anova.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
-
+<a href="9-analysis-of-variance-anova.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
@@ -713,7 +711,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(script.src))
       script.src  = script.src.replace(/^https?:/, '');
     document.getElementsByTagName("head")[0].appendChild(script);

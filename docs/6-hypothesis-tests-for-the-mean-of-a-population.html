@@ -6,9 +6,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Introduction to Statistical Methodology</title>
-  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="Introduction to Statistical Methodology">
-  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
 
   <meta property="og:title" content="Introduction to Statistical Methodology" />
   <meta property="og:type" content="book" />
@@ -26,7 +25,7 @@
 <meta name="author" content="Derek L. Sonderegger">
 
 
-<meta name="date" content="2017-04-13">
+<meta name="date" content="2017-06-18">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -35,7 +34,6 @@
   
 <link rel="prev" href="5-confidence-intervals-for-mu.html">
 <link rel="next" href="7-two-sample-hypothesis-tests-and-confidence-intervals.html">
-
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -93,6 +91,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </head>
 
 <body>
+
 
 
   <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
@@ -256,13 +255,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="11.3.3" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#basic-intervals"><i class="fa fa-check"></i><b>11.3.3</b> Basic intervals</a></li>
 <li class="chapter" data-level="11.3.4" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#towards-bias-corrected-and-accelerated-intervals-bca"><i class="fa fa-check"></i><b>11.3.4</b> Towards bias-corrected and accelerated intervals (BCa)</a></li>
 </ul></li>
-<li class="chapter" data-level="11.4" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#using-carboot-function"><i class="fa fa-check"></i><b>11.4</b> Using <code>car::Boot()</code> function</a></li>
-<li class="chapter" data-level="11.5" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#using-the-boot-package"><i class="fa fa-check"></i><b>11.5</b> Using the <code>boot</code> package</a><ul>
-<li class="chapter" data-level="11.5.1" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#case-resampling"><i class="fa fa-check"></i><b>11.5.1</b> Case resampling</a></li>
-<li class="chapter" data-level="11.5.2" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#residual-resampling"><i class="fa fa-check"></i><b>11.5.2</b> Residual Resampling</a></li>
-<li class="chapter" data-level="11.5.3" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#including-blockingstratifying-variables"><i class="fa fa-check"></i><b>11.5.3</b> Including Blocking/Stratifying Variables</a></li>
+<li class="chapter" data-level="11.4" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#bootstrap-confidence-intervals-in-r"><i class="fa fa-check"></i><b>11.4</b> Bootstrap Confidence Intervals in R</a><ul>
+<li class="chapter" data-level="11.4.1" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#using-carboot-function"><i class="fa fa-check"></i><b>11.4.1</b> Using <code>car::Boot()</code> function</a></li>
+<li class="chapter" data-level="11.4.2" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#using-the-boot-package"><i class="fa fa-check"></i><b>11.4.2</b> Using the <code>boot</code> package</a></li>
 </ul></li>
-<li class="chapter" data-level="11.6" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#exercises-10"><i class="fa fa-check"></i><b>11.6</b> Exercises</a></li>
+<li class="chapter" data-level="11.5" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#exercises-10"><i class="fa fa-check"></i><b>11.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html"><i class="fa fa-check"></i><b>12</b> Contingency Tables</a><ul>
 <li class="chapter" data-level="12.1" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html#expected-counts"><i class="fa fa-check"></i><b>12.1</b> Expected Counts</a></li>
@@ -313,7 +310,7 @@ cows %&gt;%<span class="st"> </span><span class="kw">summarise</span>( <span cla
 <p>The above value is the actual value calculated using R</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#        pt(-1.58, df=9)    # No Graph</span>
 mosaic::<span class="kw">xpt</span>(-<span class="fl">1.58</span>, <span class="dt">df=</span><span class="dv">9</span>)    <span class="co"># With a graph</span></code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-96-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-97-1.png" width="672" /></p>
 <pre><code>## [1] 0.07428219</code></pre>
 <p>but using tables typically found in intro statistics books, the most precise thing you would be able to say is <span class="math inline">\(0.05 \le \mbox{p-value} \le 0.10\)</span> So there is a small chance that my brother-in-law just got unlucky with his ten cows. While the data isn’t entirely supportive of <span class="math inline">\(H_{0}\)</span>, we don’t have strong enough data to out right reject <span class="math inline">\(H_{0}\)</span>. So we will say that we fail to reject <span class="math inline">\(H_{0}\)</span>. Notice that we aren’t saying that we accept the null hypothesis, only that there is insufficient evidence to call-out the neighbor as a liar.</p>
 <div id="writing-hypotheses" class="section level2">
@@ -345,7 +342,7 @@ mosaic::<span class="kw">xpt</span>(-<span class="fl">1.58</span>, <span class="
 <p>Unfortunately the world is not a simple place and experiments rarely can isolate exactly the hypothesis being tested. We can repeat an experiment and get slightly different results each time due to variation in weather, temperature, or diligence of the researcher. If we are testing the effectiveness of a new drug to treat a particular disease, we don’t trust the results of a single patient, instead we wish to examine many patients (some that receive the new drug and some the receive the old) to average out the noise between the patients. The questions about how many patients do we need to have and how large of a difference between the treatments is large enough to conclude the new drug is better are the heart of modern statistics.</p>
 <p>Suppose we consider the population of all US men aged 40-60 with high blood pressure (there might be about 20 million people in this population). We want to know if exercise and ACE inhibitors lower systolic blood pressure better than exercise alone for these people. We’ll consider the null hypothesis that exercise is equivalent to exercise and ACE inhibitors versus exercise is different than exercise and ACE inhibitors. If we could take every single member of the population and expose them to exercise or exercise with ACE inhibitors, we would know for certain how the population reacts to the different treatments. Unfortunately this is too expensive and ethically dubious.</p>
 <p>Instead of testing the entire population we’ll take a sample of <span class="math inline">\(n\)</span> men from the population and treat half of them with exercise alone and half of them with exercise and ACE inhibitors. What might our data look like if there is a difference between the two treatments at different samples sizes compared to if there is no difference? At small sample sizes it is difficult to distinguish the effect of the treatment when it is masked by individual variation. At high sample sizes, the individual variation is smoothed out and the difference between the treatments can be readily seen.</p>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-97-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-98-1.png" width="672" /></p>
 <p>Comparing possible data assuming there is a difference between treatments versus no difference. In the top row of graphs, there is a difference between the Exercise and the Exercise + Inhibitor treatments. However, at small sample sizes, we can’t tell if the observed difference is due to the difference in treatment or just random variation in the data. In the second row, there is no difference between the treatments.</p>
 <p>When the sample size is large it is easy to see if the treatments differ in their effect on systolic blood pressure, but at medium or small sample sizes, the question is much harder. It is important to recognize that the core of the problem is still “is the observed data consistent with the null hypothesis?” but we now have to consider an addition variability term that is unrelated to the research hypothesis of interest. In the above example, the small sample data is consistent with the null hypothesis even when the null hypothesis is false!</p>
 <p>Perhaps the hardest part about conducting a hypothesis test is figuring out what the null and alternative hypothesis should be. The null hypothesis is a statement about a population parameter. <span class="math display">\[H_{0}:\mbox{ population parameter = hypothesized value}\]</span> and the alternative will be one of <span class="math display">\[\begin{aligned} 
@@ -358,7 +355,7 @@ mosaic::<span class="kw">xpt</span>(-<span class="fl">1.58</span>, <span class="
 <p>Suppose we perform an experiment with <span class="math inline">\(n=20\)</span> lightbulbs and observe <span class="math inline">\(\bar{x}=980\)</span> and <span class="math inline">\(s=64\)</span> hours and therefore our test statistic is <span class="math display">\[ t_{19}   =   \frac{\bar{x}-\mu}{s/\sqrt{n}} =    \frac{980-1000}{64/\sqrt{20}} = -1.40\]</span> Then the p-value would be</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#        pt(-1.4, df=19)    # No Graph</span>
 mosaic::<span class="kw">xpt</span>(-<span class="fl">1.4</span>, <span class="dt">df=</span><span class="dv">19</span> )   <span class="co"># With a Graph</span></code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-98-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-99-1.png" width="672" /></p>
 <pre><code>## [1] 0.08881538</code></pre>
 <p>and we calculate p-value <span class="math inline">\(=P\left(T_{19}&lt;-1.4\right)=0.0888\)</span></p>
 <p><strong>Example</strong> A computer company is buying resistors from another company. The resistors are supposed to have a resistance of <span class="math inline">\(2\)</span> Ohms and too much or too little resistance is bad. Here we would be testing <span class="math display">\[\begin{aligned} 
@@ -367,7 +364,7 @@ mosaic::<span class="kw">xpt</span>(-<span class="fl">1.4</span>, <span class="d
   \end{aligned}\]</span></p>
 <p>Suppose we perform a test of a random sample of resistors and obtain a test statistics of <span class="math inline">\(t_{9}=1.8\)</span>. Because the p-value is “the probability of your data or something more extreme” and in this case more extreme implies extreme values in both tails then</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mosaic::<span class="kw">xpt</span>( <span class="kw">c</span>(-<span class="fl">1.8</span>, <span class="fl">1.8</span>), <span class="dt">df=</span><span class="dv">9</span>)</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-99-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-100-1.png" width="672" /></p>
 <pre><code>## [1] 0.05269534 0.94730466</code></pre>
 <p>and we calculate <span class="math display">\[\textrm{p-value} = P\left(\left|T_{9}\right|&gt;1.8\right)=2P\left(T_{9}&lt;-1.8\right)=2\left(0.0527\right)=0.105\]</span></p>
 <p>using the R commands</p>
@@ -527,17 +524,17 @@ t_{crit}\left(\frac{s}{\sqrt{n}}\right)+\mu_{0} &amp;=  \bar{x}_{crit} \\
 4963    &amp;=  \bar{x}_{crit}
 \end{aligned}\]</span></p>
 <p>There is a trade off between the Type I and Type II errors. By making a Type I error, I will reject the null hypothesis when the null hypothesis is true. Here I would stop manufacturing for the day while recalibrating the machine. Clearly a Type I error is not good. The probability of making a Type I error is denoted <span class="math inline">\(\alpha\)</span>.</p>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-103-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-104-1.png" width="672" /></p>
 <p>A type II error occurs when I fail to reject the null hypothesis when the alternative is true. This would mean that we would be selling ropes that have a breaking point less than the advertised amount. This opens the company up to a lawsuit. We denote the probability of making a Type II error is denoted as <span class="math inline">\(\beta\)</span> and define Power <span class="math inline">\(=1-\beta\)</span>. But consider that I don’t want to be shutting down the plant when the breaking point is just a few pounds from the true mean. The head of engineering tells me that if the average breaking point is more than <span class="math inline">\(50\)</span> pounds less than <span class="math inline">\(5000\)</span>, we have a problem, but less than <span class="math inline">\(50\)</span> pounds is acceptable.</p>
 <p>So I want to be able to detect if the true mean is less than <span class="math inline">\(4950\)</span> pounds. Consider the following where we assume <span class="math inline">\(\mu=4950\)</span>.</p>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-104-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-105-1.png" width="672" /></p>
 <p>The the probability of a type II error is <span class="math display">\[\begin{aligned}
 \beta   &amp;=  P\left(\bar{X}&gt;4963.3\;|\,\mu=4950\right) \\
         &amp;=  P\left(\frac{\bar{X}-4950}{50/\sqrt{7}}&gt;\frac{4963.3-4950}{50/\sqrt{7}}\right) \\
         &amp;=  P\left(T_{6}&gt;0.703\right) \\
         &amp;=  0.254 \end{aligned}\]</span></p>
 <p>and therefore my power for detecting a mean breaking strength less than or equal to 4950 is <span class="math inline">\(1-\beta=0.7457\)</span> which is very close to what any statistical package will calculate for us.The power calculation should done using a t-distribution with non-centrality parameter instead of just shifting the distribution. The difference is slight, but is enough to cause our calculation to be slightly off. This power is rather low and I would prefer to have the power be near <span class="math inline">\(0.95\)</span>. We can improve our power by using a larger sample size. We’ll repeat these calculations using <span class="math inline">\(n=15\)</span>.</p>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-105-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-106-1.png" width="672" /></p>
 <p>Power calculations are relatively tedious to do by hand, but fortunately there are several very good resources for exploring how power and sample size interact. My favorite is a Java Applet web page maintained by Dr. Russ Lenth at <a href="http://www.stat.uiowa.edu/~rlenth/Power/" class="uri">http://www.stat.uiowa.edu/~rlenth/Power/</a>. It will provide you a list of analysis to do the calculations for and the user is responsible for knowing that we are doing a one-sample t-test with a one-sided alternative.</p>
 <p>Alternatively, we can do these calculations in R using the function <code>power.t.test()</code>.</p>
 <p>Fundamentally there are five values that can be used and all power calculators will allow a user to input four of them and the calculator will calculate the fifth.</p>
@@ -642,7 +639,7 @@ Current research suggests that the mean dissolved oxygen level must be at least 
 <ol style="list-style-type: lower-alpha">
 <li>Add the plot of the distribution of the sample mean if <span class="math inline">\(\mu=11\)</span> and denote which areas represent <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span>, and the power in the figure below. <em>I expect most people will print out the graph and shade/label everything by hand.</em></li>
 </ol>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-110-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-111-1.png" width="672" /></p>
 <ol start="2" style="list-style-type: lower-alpha">
 <li>Under the same alternative value of <span class="math inline">\(\mu=11\)</span>, find the probability of a Type II error. That is, calculate the value of <span class="math inline">\(\beta=P\left(\bar{X}&lt;8.35\,|\,\mu=11\right)\)</span>.</li>
 </ol></li>
@@ -661,8 +658,9 @@ Current research suggests that the mean dissolved oxygen level must be at least 
         </div>
       </div>
 <a href="5-confidence-intervals-for-mu.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
-
+<a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
@@ -707,7 +705,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(script.src))
       script.src  = script.src.replace(/^https?:/, '');
     document.getElementsByTagName("head")[0].appendChild(script);

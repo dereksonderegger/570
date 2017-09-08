@@ -314,32 +314,45 @@ cld.chisq.post.hoc(result, 'Race')
 There are a number of other questions that I might consider, such as confidence intervals for the proportions married in each race. However, those questions require a few more assumptions about the structure of the data and will be addressed when we study logistic regression.
 
 ## Exercises
-1. Is gender independent of education level? A random sample of $n=395$ people were surveyed and each person was asked to report the highest education level they obtained. The data that resulted from the survey is summarized in the following table:
-
-    |            | **High School** | **Bachelors** |	**Masters**	| **Ph.d.** |	**Total**  |
-    |:----------:|:---------------:|:-------------:|:------------:|:---------:|:----------:|
-    | **Female** |	60             |	54           |	46          | 41        |	201        |
-    | **Male**   |	40             | 	44           |	53          |	57        |	194        |
-    | **Total**  |	100            |	98           |	99          |	98        |	395        |
+1. Is gender independent of education level? A random sample of $n=501$ people were surveyed and each person was asked to report the highest education level they obtained. The data that resulted from the survey is summarized in the following table:
+    ```{r, echo=FALSE}
+    calc.totals <- function(tab){
+      out <- cbind(tab, apply(tab, 1, sum))
+      out <- rbind(out, apply(out, 2, sum))
+      colnames(out) <- c( colnames(tab), 'Total' )
+      rownames(out) <- c( rownames(tab), 'Total' )
+      return(out)
+    }
+    set.seed(562)
+    data <- rbind( t(rmultinom(1, 261, c(.304, .253, .203, .12) )),
+                   t(rmultinom(1, 240, c(.287, .274, .207, .12) )) )
+    rownames(data) <- c('Male', 'Female')
+    colnames(data) <- c('<= High School', 'Some College', 'Bachelors', 'Adv. Degree')
+    pander::pander( calc.totals(data) )
+    ```
     
     a) Calculate the expected cell counts for each Gender and Degree combination.
     b) Calculate the $X^2$ test statistic.
-    c) Calculate the appropriate p-value using the asymptotic approximation.
+    c) Calculate the appropriate p-value using the asymptotic approximation and interprete the results in terms of the problem.
+    d) Double check your hand-calculations using the `chisq.test()` function in R.
 
 
-1.  We consider some data from the American Community Survey, which is a survey administered by the US Census Bureau and given to approximately 3% of all US households.  The package `Lock5Data` has a dataset, `ACS`, which is a subsample of $n=1000$ respondents of that 2010 survey. In particular, we want to examine the relationship between race and having health insurance.
-```{r}
-temp <- ACS %>% 
-  mutate(HealthInsurance = factor(ifelse(HealthInsurance == 1, "Have","None"))) %>%
-  group_by(Race, HealthInsurance) %>% 
-  dplyr::count() %>%
-  group_by(Race) %>%
-  mutate(proportion = n/sum(n))
-ggplot(temp, aes(x=Race, y=proportion, fill=HealthInsurance)) + 
-  geom_bar(stat='identity')
-```
+2.  We consider some data from the American Community Survey, which is a survey administered by the US Census Bureau and given to approximately 3% of all US households.  The package `Lock5Data` has a dataset, `ACS`, which is a subsample of $n=1000$ respondents of that 2010 survey. In particular, we want to examine the relationship between race and having health insurance.
+    ```{r}
+    data(ACS, package='Lock5Data')
+    temp <- ACS %>% 
+      mutate(HealthInsurance = factor(ifelse(HealthInsurance == 1, "Have","None")),
+             Race = factor(Race, levels=c('white','asian','black','other') ) ) %>%
+      group_by(Race, HealthInsurance) %>% 
+      dplyr::count() %>%
+      group_by(Race) %>%
+      mutate(proportion = n/sum(n))
+    ggplot(temp, aes(x=Race, y=proportion, fill=HealthInsurance)) + 
+      geom_bar(stat='identity')
+    ```
+    
     a) Generate a table summarizing how many respondents of each race has health insurance.
-    b) Test the hypothesis that there is no association between race and having health insurance. using both the asymptotic method and the permutation method. Is your inference the same in both cases?
+    b) Test the hypothesis that there is no association between race and having health insurance using both the asymptotic method and the permutation method. Is your inference the same in both cases?
     c) Establish which racial groups are different in the proportion of respondents that have health insurance.
     
     

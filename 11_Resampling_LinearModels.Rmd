@@ -345,7 +345,9 @@ $$\left[\hat{\theta}-\left(\hat{\theta}_{1-\alpha/2}^{*}-\hat{\theta}\right)\;,\
 
 Different schemes for creating confidence intervals can get quite complicated. There is a thriving research community investigating different ways of creating intervals and which are better in what instances. The BCa interval is the most general of the bootstrap intervals and makes the fewest assumptions. Unfortunately is can sometimes fail to converge. The details of this method are too complicated to be presented here but can be found in texts such as chapter 12 in Efron and Tibshirani’s book An Introduction to the Bootstrap (1998).
 
-## Using `car::Boot()` function
+## Bootstrap Confidence Intervals in R
+
+### Using `car::Boot()` function
 
 For every model we've examined we can create simulated data sets using either case or residual resampling and produce confidence intervals for any of the parameters of interest. We won't bother to do this by hand, but rather let R do the work for us. The package that contains most of the primary programs for bootstrapping is the package `boot`. The functions within this package are quite flexible but they are a little complex. While we will use this package directly later, for now we will use the package `car` which has a very convenient function `car::Boot()`. 
 
@@ -445,11 +447,11 @@ confint( boot.model )
 
 Notice that both of the bootstrap distribution for both $\hat{\beta}_{0}^{*}$ and $\hat{\beta}_{1}^{*}$ are skewed, and the BCa intervals are likely to be the most appropriate intervals to use.
 
-## Using the `boot` package
+### Using the `boot` package
 
 The `car::Boot()` function is very handy, but it lacks flexibility; it assumes that you just want to create bootstrap confidence intervals for the model coefficients. The `car::Boot()` function is actually a nice simple user interface to the boot package which is more flexible, but requires the user to be more precise about what statistic should be stored and how the bootstrap samples should be created. We will next examine how to use this package.
 
-### Case resampling 
+#### Case resampling 
 
 Suppose that we have n observations in our sample data. Given some vector of numbers resampled from `1:n`, we need to either resample those cases or those residuals and then using the new dataset calculate some statistic. The function `boot()` will require the user to write a function that does this.
 
@@ -486,7 +488,7 @@ confint(boot.model)
 
 
 
-### Residual Resampling
+#### Residual Resampling
 
 We will now consider the ANOVA problem and in this case we will resample the residuals.
 
@@ -547,7 +549,7 @@ confint(boot.model)
 ```
 
 
-### Including Blocking/Stratifying Variables
+#### Including Blocking/Stratifying Variables
 
 When we introduced the ANOVA model we assumed that the groups had equal variance but we don't have to. If we consider the model with unequal variances among groups
 $$Y_{ij}=\mu_{i}+\epsilon_{ij}\;\;\;\;\textrm{where}\;\;\;E\left(\epsilon_{ij}\right)=0\;\;Var\left(\epsilon_{ij}\right)=\sigma_{i}^{2}$$
@@ -610,6 +612,14 @@ confint(boot.model)
 ## Exercises
 
 1. We will perform a regression analysis on the following data and use different bootstrap resampling methods to create a confidence interval for the slope parameter. In this case the residuals are symmetric, though perhaps we don't want to assume normality. 
+    
+    |                       |     |     |      |      |      |      |
+    |:---------------------:|:---:|:---:|:----:|:----:|:----:|:----:|
+    |    $x_{i}$	          |  3	|  4	|   5	 |  6	  |   7	 |   8  |
+    |    $y_{i}$	          |  5	|  9	|  10	 | 12	  |  15	 |  15  |
+    | $\hat{y}_{i}$	        |  6	|  8	|  10	 | 12	  |  14	 |  16  |
+    | $\hat{\epsilon}_{i}$	| -1	|  1	|   0	 |  0	  |   1	 |  -1  |
+    
     a) We will first use case resampling.
         i. Suppose that the bootstrap indices are selected to be cases 1,3,3,4,6,6. Create a new dataset with those cases and calculate the regression coefficients $\hat{\beta}_{0}^{*}$ and $\hat{\beta}_{1}^{*}$ using R's `lm()` function. Notice that the residual $\hat{\epsilon}_{i}$ is always paired with its value of $x_{i}$ and that in case resampling we don't get the same x-values as our data.
         ii. Using the `mosaic::resample()` command, calculate several values of $\hat{\beta}_{1}^{*}$ using case resampling.
@@ -621,19 +631,29 @@ confint(boot.model)
 
 2. The ratio of DDE (related to DDT) to PCB concentrations in bird eggs has been shown to have had a number of biological implications. The ratio is used as an indication of the movement of contamination through the food chain. The paper “The ratio of DDE to PCB concentrations in Great Lakes herring gull eggs and its us in interpreting contaminants data” reports the following ratios for eggs collected at sites from the five Great Lakes. The eggs were collected from both terrestrial and aquatic feeding birds. Suppose that we are interested in estimating $\rho=\frac{\mu_{terrestial}}{\mu_{aquatic}}$
 
-```{r}
-
-```
+    ```{r}
+    Pollution <- data.frame(
+      value = c(76.50, 6.03, 3.51, 9.96, 4.24, 7.74, 9.54, 41.70, 1.84, 2.50, 1.54,
+                 0.27, 0.61, 0.54, 0.14, 0.63, 0.23, 0.56,  0.48, 0.16, 0.18       ),
+      type  = c( rep('Terrestrial',11), rep('Aquatic',10) ) )
+    model <- lm( value ~ -1 + type, data=Pollution)
+    coef(model)
+    ```
+    
     a) Recall that the ANOVA with the cell mean representation will calculate the group means. Use the lm() function to calculate the means of the two groups. Notice that the p-values and any confidence intervals from this model are useless because we are egregiously violating the equal variance and normality assumptions on the residuals.
-    b) Using R, calculate the ratio $\hat{\rho}=\bar{y}_{T}/\bar{y}_{A}$. Hint: what is returned by coef(model)[1]?
+    b) Using R, calculate the ratio $\hat{\rho}=\bar{y}_{T}/\bar{y}_{A}$. _Hint: what is returned by `coef(model)[1]`_?
     c) Use the `mosaic::resample()` function to generate several bootstrap datasets using case resampling. Do you get 11 Terrestrial observations in each dataset? Do this ten or twenty times (don't show these computations) and note the most unbalanced data set.
     d) Use the `mosaic::resample()` function to generate several bootstrap datasets using residual resampling? Do you get data sets where a simulated aquatic observation has been paired with a huge residual term from the terrestrial. Does this seem appropriate?
-    e) The `mosaic::resample()` function includes an optional groups argument that does the resampling within a specified group (thus we will always get 11 Terrestrial observations and 10 Aquatic). Use this to generate several bootstrap datasets. 
+    e) The `mosaic::resample()` function includes an optional `groups=` argument that does the resampling within a specified group (thus we will always get 11 Terrestrial observations and 10 Aquatic). Use this to generate several bootstrap datasets. 
     f) The `car::Boot()` function cannot handle the grouping, but `boot::boot()` can. 
-        i. The following function will calculate `\hat{\rho}`, the statistic of interest, given the original data and a set of indices to use. Notice that we've chosen to do case resampling here.
-```{r}
-
-```
+        i. The following function will calculate $\hat{\rho}$, the statistic of interest, given the original data and a set of indices to use. Notice that we've chosen to do case resampling here.
+            ```{r}
+            calc_rhohat <- function(data, indices){
+              data.star <- data[indices, ]
+              model.star <- lm( value ~ -1 + type, data=data.star )
+              return( coef(model.star)[2] / coef(model.star)[1] )
+            }
+            ```
         ii. Call this function using the Pollution data set and indices 1:21. Notice that this calculates the sample statistic $\hat{\rho}$ that we calculated previously.
         iii. Call this function using `indices = resample(1:21, groups=Pollution$type)`. Notice that this calculates the sample statistic $\hat{\rho}^{*}$ where we are doing case resampling within each group.
         iv. Use the `boot::boot()` to perform the full bootstrap analysis. Use the option `strata=Pollution$type` option, which is causes R to do the resampling within each group.

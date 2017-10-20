@@ -386,10 +386,11 @@ lsmeans::cld( t1, Letters=letters )
 ```
 
 
-Likewise if we are testing the ANOVA assumption of equal variance, we cannot rely on doing all pairwise F-tests and we must use a method that controls the overall error rate. The multiple comparisons version of `var.test()` is Bartlett's test which is called similarly to `lm()`.
+Likewise if we are testing the ANOVA assumption of equal variance, we cannot rely on doing all pairwise F-tests and we must use a method that controls the overall error rate. The multiple comparisons version of `var.test()` is Levene's test which is called similarly to `lm()`.
 
 ```{r}
-bartlett.test(Y~Group, mydata)
+# leveneTest() is a function that is defined in the "car" package.
+car::leveneTest(Y~Group, mydata)
 ```
 
 
@@ -426,12 +427,12 @@ To examine the Normality of the residuals, we'll use a Shapiro-Wilk's test and w
 
 ```{r}
 # Test for equal variances between groups
-bartlett.test(HLT~Method, data=Hostility)
+car::leveneTest(HLT~Method, data=Hostility)
 # Test for Normality
 shapiro.test(resid(model))
 ```
 
-The results of the Shapiro-Wilks test agree with the QQ-plot, and Bartlett's test fails to detect differences in the variances between the two groups. This is not to say that there might not be a difference, only that we do not detect one.
+The results of the Shapiro-Wilks test agree with the QQ-plot, and Levene's test fails to detect differences in the variances between the two groups. This is not to say that there might not be a difference, only that we do not detect one.
 
 ```{r}
 model <- lm( HLT ~ Method, data=Hostility )
@@ -782,7 +783,7 @@ If I wanted to control my overall type I error rate at an $\alpha=0.05$ and used
     c) Test the equal variance assumption using Bartlett's test.
     d) Fit an ANOVA model to these data and test if the residuals have a normal distribution using the Shapiro-Wilks test.
 
-6. The dataset `iris` is available on R and can be loaded by the entering the command `data('iris')` at your R prompt. This famous data set contains the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for $n_{i}=50$ flowers from each of $3$ species of iris. The species are Iris setosa, versicolor, and virginica. We will be examining the relationship between sepal width and the species of these irises. Denote the mean value of all setosa flowers as $\mu_{setosa}$ and similar notation for the other species.
+6. The dataset `iris` is available on R and can be loaded by the entering the command `data('iris')` at your R prompt. This famous data set contains the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for $n_{i}=50$ flowers from each of $3$ species of iris. The species of iris are  _setosa_, _versicolor_, and _virginica_. We will be examining the relationship between sepal width and the species of these irises. Denote the mean value of all setosa flowers as $\mu_{setosa}$ and similar notation for the other species.
     a) Make a boxplot of the data. Do any assumptions necessary for ANOVA appear to be violated?
     b) Test the equal variance assumption of ANOVA using Bartlett's test.
     c) Do the ANOVA test and test the normality of the residual terms by making a QQplot and doing the Shapiro-Wilk's test.

@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Introduction to Statistical Methodology</title>
   <meta name="description" content="Introduction to Statistical Methodology">
-  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
 
   <meta property="og:title" content="Introduction to Statistical Methodology" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Derek L. Sonderegger">
 
 
-<meta name="date" content="2017-06-18">
+<meta name="date" content="2017-10-20">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -579,13 +579,13 @@ t1</code></pre></div>
 ## Confidence level used: 0.95 
 ## P value adjustment: tukey method for comparing a family of 5 estimates 
 ## significance level used: alpha = 0.05</code></pre>
-<p>Likewise if we are testing the ANOVA assumption of equal variance, we cannot rely on doing all pairwise F-tests and we must use a method that controls the overall error rate. The multiple comparisons version of <code>var.test()</code> is Bartlett’s test which is called similarly to <code>lm()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">bartlett.test</span>(Y~Group, mydata)</code></pre></div>
-<pre><code>## 
-##  Bartlett test of homogeneity of variances
-## 
-## data:  Y by Group
-## Bartlett&#39;s K-squared = 3.1397, df = 4, p-value = 0.5347</code></pre>
+<p>Likewise if we are testing the ANOVA assumption of equal variance, we cannot rely on doing all pairwise F-tests and we must use a method that controls the overall error rate. The multiple comparisons version of <code>var.test()</code> is Levene’s test which is called similarly to <code>lm()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># leveneTest() is a function that is defined in the &quot;car&quot; package.</span>
+car::<span class="kw">leveneTest</span>(Y~Group, mydata)</code></pre></div>
+<pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
+##       Df F value Pr(&gt;F)
+## group  4  0.6173 0.6524
+##       45</code></pre>
 <p><strong>Example 2</strong>. (Example 8.2 from the Ott and Longnecker) A clinical psychologist wished to compare three methods for reducing hostility levels in university students, and used a certain test (HLT) to measure the degree of hostility. A high score on the test indicated great hostility. The psychologist used <span class="math inline">\(24\)</span> students who obtained high and nearly equal scores in the experiment. Eight subjects were selected at random from among the <span class="math inline">\(24\)</span> problem cases and were treated with method 1, seven of the remaining <span class="math inline">\(16\)</span> students were selected at random and treated with method 2 while the remaining nine students were treated with method 3. All treatments were continued for a one-semester period. Each student was given the HLT test at the end of the semester, with the results show in the following table. Use these dat to perform an analysis of variance to determine whether there are differences among the mean scores for the three methods using a significance level of <span class="math inline">\(\alpha=0.05\)</span>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># define the data</span>
 Hostility &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
@@ -605,12 +605,11 @@ model &lt;-<span class="st"> </span><span class="kw">lm</span>( HLT ~<span class
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-211-1.png" width="672" /></p>
 <p>To examine the Normality of the residuals, we’ll use a Shapiro-Wilk’s test and we’ll also use Bartlett’s test for homogeneity of variances.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Test for equal variances between groups</span>
-<span class="kw">bartlett.test</span>(HLT~Method, <span class="dt">data=</span>Hostility)</code></pre></div>
-<pre><code>## 
-##  Bartlett test of homogeneity of variances
-## 
-## data:  HLT by Method
-## Bartlett&#39;s K-squared = 2.4594, df = 2, p-value = 0.2924</code></pre>
+car::<span class="kw">leveneTest</span>(HLT~Method, <span class="dt">data=</span>Hostility)</code></pre></div>
+<pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
+##       Df F value Pr(&gt;F)
+## group  2  1.6817 0.2102
+##       21</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Test for Normality</span>
 <span class="kw">shapiro.test</span>(<span class="kw">resid</span>(model))</code></pre></div>
 <pre><code>## 
@@ -618,7 +617,7 @@ model &lt;-<span class="st"> </span><span class="kw">lm</span>( HLT ~<span class
 ## 
 ## data:  resid(model)
 ## W = 0.98358, p-value = 0.9516</code></pre>
-<p>The results of the Shapiro-Wilks test agree with the QQ-plot, and Bartlett’s test fails to detect differences in the variances between the two groups. This is not to say that there might not be a difference, only that we do not detect one.</p>
+<p>The results of the Shapiro-Wilks test agree with the QQ-plot, and Levene’s test fails to detect differences in the variances between the two groups. This is not to say that there might not be a difference, only that we do not detect one.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span><span class="kw">lm</span>( HLT ~<span class="st"> </span>Method, <span class="dt">data=</span>Hostility )
 <span class="kw">anova</span>(model)</code></pre></div>
 <pre><code>## Analysis of Variance Table
@@ -952,7 +951,7 @@ For this data, the following group means can be calculated as <span class="math 
 <li>Test the equal variance assumption using Bartlett’s test.</li>
 <li><p>Fit an ANOVA model to these data and test if the residuals have a normal distribution using the Shapiro-Wilks test.</p></li>
 </ol></li>
-<li>The dataset <code>iris</code> is available on R and can be loaded by the entering the command <code>data('iris')</code> at your R prompt. This famous data set contains the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for <span class="math inline">\(n_{i}=50\)</span> flowers from each of <span class="math inline">\(3\)</span> species of iris. The species are Iris setosa, versicolor, and virginica. We will be examining the relationship between sepal width and the species of these irises. Denote the mean value of all setosa flowers as <span class="math inline">\(\mu_{setosa}\)</span> and similar notation for the other species.
+<li>The dataset <code>iris</code> is available on R and can be loaded by the entering the command <code>data('iris')</code> at your R prompt. This famous data set contains the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for <span class="math inline">\(n_{i}=50\)</span> flowers from each of <span class="math inline">\(3\)</span> species of iris. The species of iris are <em>setosa</em>, <em>versicolor</em>, and <em>virginica</em>. We will be examining the relationship between sepal width and the species of these irises. Denote the mean value of all setosa flowers as <span class="math inline">\(\mu_{setosa}\)</span> and similar notation for the other species.
 <ol style="list-style-type: lower-alpha">
 <li>Make a boxplot of the data. Do any assumptions necessary for ANOVA appear to be violated?</li>
 <li>Test the equal variance assumption of ANOVA using Bartlett’s test.</li>
@@ -991,7 +990,7 @@ H_{a} &amp;:\:      \mu_{setosa}\ne\mu_{virginica}
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
 <script>
-require(["gitbook"], function(gitbook) {
+gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": false,

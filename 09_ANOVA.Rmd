@@ -386,10 +386,11 @@ lsmeans::cld( t1, Letters=letters )
 ```
 
 
-Likewise if we are testing the ANOVA assumption of equal variance, we cannot rely on doing all pairwise F-tests and we must use a method that controls the overall error rate. The multiple comparisons version of `var.test()` is Bartlett's test which is called similarly to `lm()`.
+Likewise if we are testing the ANOVA assumption of equal variance, we cannot rely on doing all pairwise F-tests and we must use a method that controls the overall error rate. The multiple comparisons version of `var.test()` is Levene's test which is called similarly to `lm()`.
 
 ```{r}
-bartlett.test(Y~Group, mydata)
+# leveneTest() is a function that is defined in the "car" package.
+car::leveneTest(Y~Group, mydata)
 ```
 
 
@@ -426,12 +427,12 @@ To examine the Normality of the residuals, we'll use a Shapiro-Wilk's test and w
 
 ```{r}
 # Test for equal variances between groups
-bartlett.test(HLT~Method, data=Hostility)
+car::leveneTest(HLT~Method, data=Hostility)
 # Test for Normality
 shapiro.test(resid(model))
 ```
 
-The results of the Shapiro-Wilks test agree with the QQ-plot, and Bartlett's test fails to detect differences in the variances between the two groups. This is not to say that there might not be a difference, only that we do not detect one.
+The results of the Shapiro-Wilks test agree with the QQ-plot, and Levene's test fails to detect differences in the variances between the two groups. This is not to say that there might not be a difference, only that we do not detect one.
 
 ```{r}
 model <- lm( HLT ~ Method, data=Hostility )
@@ -682,6 +683,10 @@ My recommendation is to always fit the offset model and if you are interested in
 
 ## Exercises
 
+_In previous chapters, the exercises have been quite blunt about asking you to interpret your results when appropriate. In this chapter (and subsequent chapters) the questions don't explicitly ask your interpretation, but rather it is implied that and the end of a calculation or whenever you produce a graph or table, there should always be some sort of comment about the result (e.g. this result shows that the residuals are not normally distributed). Your job is to interpret the results, not just produce them._ 
+
+_Eventually, your job will be to figure out what analysis to conduct, what assumptions should be checked, and how to interpret all of your results in the context of the problem. But for now, it will be up to you to know when to interpret your results._ 
+
 1. For this exercise, we will compare the Sums of Squared Error for the simple $y_{ij}=\mu+\epsilon_{ij}$ and complex $y_{ij}=\mu_{i}+\epsilon_{ij}$ model and clearly, in the data presented below, the complex model fits the data better. The group means $\bar{y}_{i\cdot}$ are 3, 13, 5, and 9, while the overall mean is $\bar{y}_{\cdot\cdot}=7.5$. \
         
     ```{r, echo=FALSE}
@@ -709,6 +714,8 @@ My recommendation is to always fit the offset model and if you are interested in
         | Difference |            |                |               |            |              |
         | Complex    |            |      20        |               |            |              |
         | Simple     |            |     256        |               |            |              |
+        
+        Interpret the p-value you have produced.
         
 2. We will essentially repeat the previous exercise, except this time, the simple model will be preferred.  Again for each group, we have $n_i=3$ observations.
     
@@ -739,6 +746,8 @@ My recommendation is to always fit the offset model and if you are interested in
         | Difference |            |   1.035        |               |            |              |
         | Complex    |            |   8.7498       |               |            |              |
         | Simple     |            |                |               |            |              |
+        
+        Interpret the p-value you have produced.
 
 3. The following data were collected and we wish to perform an analysis of variance to determine if the group means are statistically different.
     
@@ -762,7 +771,7 @@ My recommendation is to always fit the offset model and if you are interested in
     |:-----:|:-----:|:-----:|:-----:|
     | 0.03  | 0.14  | 0.01  | 0.001 |
     
-If I wanted to control my overall type I error rate at an $\alpha=0.05$ and used the Bonferroni multiple comparisons procedure, which tests would be statistically significant?
+If I wanted to control my overall type I error rate at an $\alpha=0.05$ and used the Bonferroni multiple comparisons procedure, which tests would be statistically significant? _Notice that this problem does not mention any pairwise contrasts as the Bonferroni correction can be done in a variety of situations. So just use the fact that we are making four different tests and we want to control the overall Type I Error rate._
 
 5. We will examine the amount of waste produced at five different plants that manufacture Levi Jeans. The Waste amount is the amount of cloth wasted in cutting out designs compared to a computer program, so negative values for Waste indicate that the human engineer did a better job planning the cuts than the computer algorithm. There are two columns, `Plant` and `Waste`. 
     a) Read the data into R using the following:
@@ -774,7 +783,7 @@ If I wanted to control my overall type I error rate at an $\alpha=0.05$ and used
     c) Test the equal variance assumption using Bartlett's test.
     d) Fit an ANOVA model to these data and test if the residuals have a normal distribution using the Shapiro-Wilks test.
 
-6. The dataset `iris` is available on R and can be loaded by the entering the command `data('iris')` at your R prompt. This famous data set contains the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for $n_{i}=50$ flowers from each of $3$ species of iris. The species are Iris setosa, versicolor, and virginica. We will be examining the relationship between sepal width and the species of these irises. Denote the mean value of all setosa flowers as $\mu_{setosa}$ and similar notation for the other species.
+6. The dataset `iris` is available on R and can be loaded by the entering the command `data('iris')` at your R prompt. This famous data set contains the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for $n_{i}=50$ flowers from each of $3$ species of iris. The species of iris are  _setosa_, _versicolor_, and _virginica_. We will be examining the relationship between sepal width and the species of these irises. Denote the mean value of all setosa flowers as $\mu_{setosa}$ and similar notation for the other species.
     a) Make a boxplot of the data. Do any assumptions necessary for ANOVA appear to be violated?
     b) Test the equal variance assumption of ANOVA using Bartlett's test.
     c) Do the ANOVA test and test the normality of the residual terms by making a QQplot and doing the Shapiro-Wilk's test.

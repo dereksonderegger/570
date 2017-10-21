@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Introduction to Statistical Methodology</title>
+  <meta name="description" content="Introduction to Statistical Methodology">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Introduction to Statistical Methodology" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="dereksonderegger/STA_570_Book" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Introduction to Statistical Methodology" />
+  
+  
+  
+
+<meta name="author" content="Derek L. Sonderegger">
+
+
+<meta name="date" content="2017-10-20">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="12-contingency-tables.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="https://dereksonderegger.github.io/570/Statistical_Methods_I.pdf" target="blank">PDF version</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html"><i class="fa fa-check"></i><b>1</b> Summary Statistics and Graphing</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#graphical-summaries-of-data"><i class="fa fa-check"></i><b>1.1</b> Graphical summaries of data</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#univariate---categorical"><i class="fa fa-check"></i><b>1.1.1</b> Univariate - Categorical</a></li>
+<li class="chapter" data-level="1.1.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#univariate---continuous"><i class="fa fa-check"></i><b>1.1.2</b> Univariate - Continuous</a></li>
+<li class="chapter" data-level="1.1.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#bivariate---categorical-vs-continuous"><i class="fa fa-check"></i><b>1.1.3</b> Bivariate - Categorical vs Continuous</a></li>
+<li class="chapter" data-level="1.1.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#bivariate---continuous-vs-continuous"><i class="fa fa-check"></i><b>1.1.4</b> Bivariate - Continuous vs Continuous</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#measures-of-centrality"><i class="fa fa-check"></i><b>1.2</b> Measures of Centrality</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#mean"><i class="fa fa-check"></i><b>1.2.1</b> Mean</a></li>
+<li class="chapter" data-level="1.2.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#median"><i class="fa fa-check"></i><b>1.2.2</b> Median</a></li>
+<li class="chapter" data-level="1.2.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#mode"><i class="fa fa-check"></i><b>1.2.3</b> Mode</a></li>
+<li class="chapter" data-level="1.2.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#examples"><i class="fa fa-check"></i><b>1.2.4</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#measures-of-variation"><i class="fa fa-check"></i><b>1.3</b> Measures of Variation</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#range"><i class="fa fa-check"></i><b>1.3.1</b> Range</a></li>
+<li class="chapter" data-level="1.3.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#inter-quartile-range"><i class="fa fa-check"></i><b>1.3.2</b> Inter-Quartile Range</a></li>
+<li class="chapter" data-level="1.3.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#variance"><i class="fa fa-check"></i><b>1.3.3</b> Variance</a></li>
+<li class="chapter" data-level="1.3.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#standard-deviation"><i class="fa fa-check"></i><b>1.3.4</b> Standard Deviation</a></li>
+<li class="chapter" data-level="1.3.5" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#coefficient-of-variation"><i class="fa fa-check"></i><b>1.3.5</b> Coefficient of Variation</a></li>
+<li class="chapter" data-level="1.3.6" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#empirical-rule-of-thumb"><i class="fa fa-check"></i><b>1.3.6</b> Empirical Rule of Thumb</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>1.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-probability.html"><a href="2-probability.html"><i class="fa fa-check"></i><b>2</b> Probability</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-probability.html"><a href="2-probability.html#introduction-to-set-theory"><i class="fa fa-check"></i><b>2.1</b> Introduction to Set Theory</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="2-probability.html"><a href="2-probability.html#composition-of-events"><i class="fa fa-check"></i><b>2.1.1</b> Composition of events</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2-probability.html"><a href="2-probability.html#probability-rules"><i class="fa fa-check"></i><b>2.2</b> Probability Rules</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="2-probability.html"><a href="2-probability.html#simple-rules"><i class="fa fa-check"></i><b>2.2.1</b> Simple Rules</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2-probability.html"><a href="2-probability.html#conditional-probability"><i class="fa fa-check"></i><b>2.2.2</b> Conditional Probability</a></li>
+<li class="chapter" data-level="2.2.3" data-path="2-probability.html"><a href="2-probability.html#summary-of-probability-rules"><i class="fa fa-check"></i><b>2.2.3</b> Summary of Probability Rules</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="2-probability.html"><a href="2-probability.html#discrete-random-variables"><i class="fa fa-check"></i><b>2.3</b> Discrete Random Variables</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="2-probability.html"><a href="2-probability.html#introduction-to-discrete-random-variables"><i class="fa fa-check"></i><b>2.3.1</b> Introduction to Discrete Random Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="2-probability.html"><a href="2-probability.html#common-discrete-distributions"><i class="fa fa-check"></i><b>2.4</b> Common Discrete Distributions</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="2-probability.html"><a href="2-probability.html#binomial-distribution"><i class="fa fa-check"></i><b>2.4.1</b> Binomial Distribution</a></li>
+<li class="chapter" data-level="2.4.2" data-path="2-probability.html"><a href="2-probability.html#poisson-distribution"><i class="fa fa-check"></i><b>2.4.2</b> Poisson Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="2-probability.html"><a href="2-probability.html#continuous-random-variables"><i class="fa fa-check"></i><b>2.5</b> Continuous Random Variables</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="2-probability.html"><a href="2-probability.html#uniform01-distribution"><i class="fa fa-check"></i><b>2.5.1</b> Uniform(0,1) Distribution</a></li>
+<li class="chapter" data-level="2.5.2" data-path="2-probability.html"><a href="2-probability.html#exponential-distribution"><i class="fa fa-check"></i><b>2.5.2</b> Exponential Distribution</a></li>
+<li class="chapter" data-level="2.5.3" data-path="2-probability.html"><a href="2-probability.html#normal-distribution"><i class="fa fa-check"></i><b>2.5.3</b> Normal Distribution</a></li>
+<li class="chapter" data-level="2.5.4" data-path="2-probability.html"><a href="2-probability.html#standardizing"><i class="fa fa-check"></i><b>2.5.4</b> Standardizing</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="2-probability.html"><a href="2-probability.html#exercises-1"><i class="fa fa-check"></i><b>2.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html"><i class="fa fa-check"></i><b>3</b> Confidence Intervals via Bootstrapping</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#theory-of-bootstrapping"><i class="fa fa-check"></i><b>3.1</b> Theory of Bootstrapping</a></li>
+<li class="chapter" data-level="3.2" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#quantile-based-confidence-intervals"><i class="fa fa-check"></i><b>3.2</b> Quantile-based Confidence Intervals</a></li>
+<li class="chapter" data-level="3.3" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#exercises-2"><i class="fa fa-check"></i><b>3.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html"><i class="fa fa-check"></i><b>4</b> Sampling Distribution of <span class="math inline">\(\bar{X}\)</span></a><ul>
+<li class="chapter" data-level="4.1" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#enlightening-example"><i class="fa fa-check"></i><b>4.1</b> Enlightening Example</a></li>
+<li class="chapter" data-level="4.2" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#mathematical-details"><i class="fa fa-check"></i><b>4.2</b> Mathematical details</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#probability-rules-for-expectations-and-variances"><i class="fa fa-check"></i><b>4.2.1</b> Probability Rules for Expectations and Variances</a></li>
+<li class="chapter" data-level="4.2.2" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#mean-and-variance-of-the-sample-mean"><i class="fa fa-check"></i><b>4.2.2</b> Mean and Variance of the Sample Mean</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#distribution-of-barx"><i class="fa fa-check"></i><b>4.3</b> Distribution of <span class="math inline">\(\bar{X}\)</span></a></li>
+<li class="chapter" data-level="4.4" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#central-limit-theorem"><i class="fa fa-check"></i><b>4.4</b> Central Limit Theorem</a></li>
+<li class="chapter" data-level="4.5" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#exercises-3"><i class="fa fa-check"></i><b>4.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html"><i class="fa fa-check"></i><b>5</b> Confidence Intervals for <span class="math inline">\(\mu\)</span></a><ul>
+<li class="chapter" data-level="5.1" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#asymptotic-result-sigma-known"><i class="fa fa-check"></i><b>5.1</b> Asymptotic result (<span class="math inline">\(\sigma\)</span> known)</a></li>
+<li class="chapter" data-level="5.2" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#asymptotoic-result-sigma-unknown"><i class="fa fa-check"></i><b>5.2</b> Asymptotoic result (<span class="math inline">\(\sigma\)</span> unknown)</a></li>
+<li class="chapter" data-level="5.3" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#sample-size-selection"><i class="fa fa-check"></i><b>5.3</b> Sample Size Selection</a></li>
+<li class="chapter" data-level="5.4" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#exercises-4"><i class="fa fa-check"></i><b>5.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html"><i class="fa fa-check"></i><b>6</b> Hypothesis Tests for the mean of a population</a><ul>
+<li class="chapter" data-level="6.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#writing-hypotheses"><i class="fa fa-check"></i><b>6.1</b> Writing Hypotheses</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#null-and-alternative-hypotheses"><i class="fa fa-check"></i><b>6.1.1</b> Null and alternative hypotheses</a></li>
+<li class="chapter" data-level="6.1.2" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#error"><i class="fa fa-check"></i><b>6.1.2</b> Error</a></li>
+<li class="chapter" data-level="6.1.3" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#why-should-hypotheses-use-mu-and-not-barx"><i class="fa fa-check"></i><b>6.1.3</b> Why should hypotheses use <span class="math inline">\(\mu\)</span> and not <span class="math inline">\(\bar{x}\)</span>?</a></li>
+<li class="chapter" data-level="6.1.4" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#calculating-p-values"><i class="fa fa-check"></i><b>6.1.4</b> Calculating p-values</a></li>
+<li class="chapter" data-level="6.1.5" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#calculating-p-values-vs-cutoff-values"><i class="fa fa-check"></i><b>6.1.5</b> Calculating p-values vs cutoff values</a></li>
+<li class="chapter" data-level="6.1.6" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#t-tests-in-r"><i class="fa fa-check"></i><b>6.1.6</b> t-tests in R</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i><b>6.2</b> Type I and Type II Errors</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#power-and-sample-size-selection"><i class="fa fa-check"></i><b>6.2.1</b> Power and Sample Size Selection</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#exercises-5"><i class="fa fa-check"></i><b>6.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><i class="fa fa-check"></i><b>7</b> Two-Sample Hypothesis Tests and Confidence Intervals</a><ul>
+<li class="chapter" data-level="7.1" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#difference-in-means-between-two-groups"><i class="fa fa-check"></i><b>7.1</b> Difference in means between two groups</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#inference-via-resampling"><i class="fa fa-check"></i><b>7.1.1</b> Inference via resampling</a></li>
+<li class="chapter" data-level="7.1.2" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#inference-via-asymptotic-results-unequal-variance-assumption"><i class="fa fa-check"></i><b>7.1.2</b> Inference via asymptotic results (unequal variance assumption)</a></li>
+<li class="chapter" data-level="7.1.3" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#inference-via-asymptotic-results-equal-variance-assumption"><i class="fa fa-check"></i><b>7.1.3</b> Inference via asymptotic results (equal variance assumption)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#difference-in-means-between-two-groups-paired-data"><i class="fa fa-check"></i><b>7.2</b> Difference in means between two groups: Paired Data</a></li>
+<li class="chapter" data-level="7.3" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#exercises-6"><i class="fa fa-check"></i><b>7.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html"><i class="fa fa-check"></i><b>8</b> Testing Model Assumptions</a><ul>
+<li class="chapter" data-level="8.1" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#testing-normality"><i class="fa fa-check"></i><b>8.1</b> Testing Normality</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#visual-inspection---qqplots"><i class="fa fa-check"></i><b>8.1.1</b> Visual Inspection - QQplots</a></li>
+<li class="chapter" data-level="8.1.2" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#tests-for-normality"><i class="fa fa-check"></i><b>8.1.2</b> Tests for Normality</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#testing-equal-variance"><i class="fa fa-check"></i><b>8.2</b> Testing Equal Variance</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#visual-inspection"><i class="fa fa-check"></i><b>8.2.1</b> Visual Inspection</a></li>
+<li class="chapter" data-level="8.2.2" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#tests-for-equal-variance"><i class="fa fa-check"></i><b>8.2.2</b> Tests for Equal Variance</a></li>
+<li class="chapter" data-level="8.2.3" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#symmetry-of-the-f-distribution"><i class="fa fa-check"></i><b>8.2.3</b> Symmetry of the F-distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#power-of-the-f-test"><i class="fa fa-check"></i><b>8.3</b> Power of the F-test</a></li>
+<li class="chapter" data-level="8.4" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#theoretical-distribution-vs-bootstrap"><i class="fa fa-check"></i><b>8.4</b> Theoretical distribution vs bootstrap</a></li>
+<li class="chapter" data-level="8.5" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#exercises-7"><i class="fa fa-check"></i><b>8.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html"><i class="fa fa-check"></i><b>9</b> Analysis of Variance (ANOVA)</a><ul>
+<li class="chapter" data-level="9.1" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#model"><i class="fa fa-check"></i><b>9.1</b> Model</a></li>
+<li class="chapter" data-level="9.2" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#theory"><i class="fa fa-check"></i><b>9.2</b> Theory</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#anova-table"><i class="fa fa-check"></i><b>9.2.1</b> Anova Table</a></li>
+<li class="chapter" data-level="9.2.2" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#anova-using-simple-vs-complex-models."><i class="fa fa-check"></i><b>9.2.2</b> ANOVA using Simple vs Complex models.</a></li>
+<li class="chapter" data-level="9.2.3" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#parameter-estimates-and-confidence-intervals"><i class="fa fa-check"></i><b>9.2.3</b> Parameter Estimates and Confidence Intervals</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#anova-in-r"><i class="fa fa-check"></i><b>9.3</b> Anova in R</a></li>
+<li class="chapter" data-level="9.4" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#multiple-comparisons"><i class="fa fa-check"></i><b>9.4</b> Multiple comparisons</a></li>
+<li class="chapter" data-level="9.5" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#different-model-representations"><i class="fa fa-check"></i><b>9.5</b> Different Model Representations</a><ul>
+<li class="chapter" data-level="9.5.1" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#theory-1"><i class="fa fa-check"></i><b>9.5.1</b> Theory</a></li>
+<li class="chapter" data-level="9.5.2" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#model-representations-in-r"><i class="fa fa-check"></i><b>9.5.2</b> Model Representations in R</a></li>
+<li class="chapter" data-level="9.5.3" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#implications-on-the-anova-table"><i class="fa fa-check"></i><b>9.5.3</b> Implications on the ANOVA table</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#exercises-8"><i class="fa fa-check"></i><b>9.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="10-regression.html"><a href="10-regression.html"><i class="fa fa-check"></i><b>10</b> Regression</a><ul>
+<li class="chapter" data-level="10.1" data-path="10-regression.html"><a href="10-regression.html#pearsons-correlation-coefficient"><i class="fa fa-check"></i><b>10.1</b> Pearson’s Correlation Coefficient</a></li>
+<li class="chapter" data-level="10.2" data-path="10-regression.html"><a href="10-regression.html#model-theory"><i class="fa fa-check"></i><b>10.2</b> Model Theory</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="10-regression.html"><a href="10-regression.html#anova-interpretation"><i class="fa fa-check"></i><b>10.2.1</b> Anova Interpretation</a></li>
+<li class="chapter" data-level="10.2.2" data-path="10-regression.html"><a href="10-regression.html#confidence-intervals-vs-prediction-intervals"><i class="fa fa-check"></i><b>10.2.2</b> Confidence Intervals vs Prediction Intervals</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="10-regression.html"><a href="10-regression.html#extrapolation"><i class="fa fa-check"></i><b>10.3</b> Extrapolation</a></li>
+<li class="chapter" data-level="10.4" data-path="10-regression.html"><a href="10-regression.html#checking-model-assumptions"><i class="fa fa-check"></i><b>10.4</b> Checking Model Assumptions</a></li>
+<li class="chapter" data-level="10.5" data-path="10-regression.html"><a href="10-regression.html#common-problems"><i class="fa fa-check"></i><b>10.5</b> Common Problems</a><ul>
+<li class="chapter" data-level="10.5.1" data-path="10-regression.html"><a href="10-regression.html#influential-points"><i class="fa fa-check"></i><b>10.5.1</b> Influential Points</a></li>
+<li class="chapter" data-level="10.5.2" data-path="10-regression.html"><a href="10-regression.html#transformations"><i class="fa fa-check"></i><b>10.5.2</b> Transformations</a></li>
+</ul></li>
+<li class="chapter" data-level="10.6" data-path="10-regression.html"><a href="10-regression.html#exercises-9"><i class="fa fa-check"></i><b>10.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html"><i class="fa fa-check"></i><b>11</b> Resampling Linear Models</a><ul>
+<li class="chapter" data-level="11.1" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#using-lm-for-many-analyses"><i class="fa fa-check"></i><b>11.1</b> Using <code>lm()</code> for many analyses</a><ul>
+<li class="chapter" data-level="11.1.1" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#one-sample-t-tests"><i class="fa fa-check"></i><b>11.1.1</b> One-sample t-tests</a></li>
+<li class="chapter" data-level="11.1.2" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#two-sample-t-tests"><i class="fa fa-check"></i><b>11.1.2</b> Two-sample t-tests</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#creating-simulated-data"><i class="fa fa-check"></i><b>11.2</b> Creating Simulated Data</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#observational-studies-vs-designed-experiments"><i class="fa fa-check"></i><b>11.2.1</b> Observational Studies vs Designed Experiments</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#confidence-interval-types"><i class="fa fa-check"></i><b>11.3</b> Confidence Interval Types</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#normal-intervals"><i class="fa fa-check"></i><b>11.3.1</b> Normal intervals</a></li>
+<li class="chapter" data-level="11.3.2" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#percentile-intervals"><i class="fa fa-check"></i><b>11.3.2</b> Percentile intervals</a></li>
+<li class="chapter" data-level="11.3.3" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#basic-intervals"><i class="fa fa-check"></i><b>11.3.3</b> Basic intervals</a></li>
+<li class="chapter" data-level="11.3.4" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#towards-bias-corrected-and-accelerated-intervals-bca"><i class="fa fa-check"></i><b>11.3.4</b> Towards bias-corrected and accelerated intervals (BCa)</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#bootstrap-confidence-intervals-in-r"><i class="fa fa-check"></i><b>11.4</b> Bootstrap Confidence Intervals in R</a><ul>
+<li class="chapter" data-level="11.4.1" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#using-carboot-function"><i class="fa fa-check"></i><b>11.4.1</b> Using <code>car::Boot()</code> function</a></li>
+<li class="chapter" data-level="11.4.2" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#using-the-boot-package"><i class="fa fa-check"></i><b>11.4.2</b> Using the <code>boot</code> package</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#exercises-10"><i class="fa fa-check"></i><b>11.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html"><i class="fa fa-check"></i><b>12</b> Contingency Tables</a><ul>
+<li class="chapter" data-level="12.1" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html#expected-counts"><i class="fa fa-check"></i><b>12.1</b> Expected Counts</a></li>
+<li class="chapter" data-level="12.2" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html#hypothesis-testing"><i class="fa fa-check"></i><b>12.2</b> Hypothesis Testing</a></li>
+<li class="chapter" data-level="12.3" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html#rxc-tables"><i class="fa fa-check"></i><b>12.3</b> RxC tables</a></li>
+<li class="chapter" data-level="12.4" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html#exercises-11"><i class="fa fa-check"></i><b>12.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="13-nonparametric-rank-based-tests.html"><a href="13-nonparametric-rank-based-tests.html"><i class="fa fa-check"></i><b>13</b> Nonparametric Rank-Based Tests</a><ul>
+<li class="chapter" data-level="13.1" data-path="13-nonparametric-rank-based-tests.html"><a href="13-nonparametric-rank-based-tests.html#alternatives-to-one-sample-and-paired-t-tests"><i class="fa fa-check"></i><b>13.1</b> Alternatives to one sample and paired t-tests</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="13-nonparametric-rank-based-tests.html"><a href="13-nonparametric-rank-based-tests.html#sign-test"><i class="fa fa-check"></i><b>13.1.1</b> Sign Test</a></li>
+<li class="chapter" data-level="13.1.2" data-path="13-nonparametric-rank-based-tests.html"><a href="13-nonparametric-rank-based-tests.html#wilcoxon-sign-rank-test"><i class="fa fa-check"></i><b>13.1.2</b> Wilcoxon Sign Rank Test</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Statistical Methodology</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="nonparametric-rank-based-tests" class="section level1">
+<h1><span class="header-section-number">Chapter 13</span> Nonparametric Rank-Based Tests</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(pander)
+<span class="kw">library</span>(ggplot2)</code></pre></div>
+<p>The common statistical methods that are introduced in introductory classes rely on the condition that the distribution of the sample statistic of interest (<span class="math inline">\(\bar{x}\)</span> or <span class="math inline">\(\hat{p}\)</span>) is either normal or approximately normal If the population that the data is drawn from is normal, then the sample mean is normal and for the non-normal populations, if the sample size is large (n&gt;30 is usually sufficient) then the Central Limit Theorem states that the sample mean is approximately normally distributed. We then used this normal distribution to create confidence intervals and do t-tests. If the approximate normality condition does not hold, then we must turn to some alternative analysis that has fewer necessary. Commonly we will use bootstrap and permutation based methodology in this case, but there is a large body of statistical theory created prior to the ubiquity of modern computing that is useful to know about.</p>
+<p>We have already introduced the idea of doing a standard analysis on <em>transformed</em> variables (either the independent or dependent). We considered only a few simple transformations (<span class="math inline">\(log(y)\)</span>, <span class="math inline">\(log(x)\)</span>, etc) but there are more exotic transformations possible. In this chapter we will focus first on the <em>sign</em> transformation, which is just the sign of the value. Secondly, we will examine the <em>rank</em> transformation. The rank transformation takes a vector of <span class="math inline">\(n\)</span> observations and assigns the rank ordering value to each observations. The smallest value is assigned rank <span class="math inline">\(1\)</span>, the next smallest is rank <span class="math inline">\(2\)</span> all the way to the largest value with rank <span class="math inline">\(n\)</span>. If two or more observations have the same value, then the mean rank of the identical items is assigned to all items.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">y =</span> <span class="kw">c</span>(-<span class="dv">1</span>,-<span class="dv">3</span>,<span class="dv">9</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">5</span>) ) %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>( <span class="dt">sign_value =</span> <span class="kw">sign</span>(y),
+          <span class="dt">rank_value =</span> <span class="kw">rank</span>(y) ) %&gt;%
+<span class="st">  </span><span class="kw">arrange</span>(y)
+<span class="kw">pander</span>(data)</code></pre></div>
+<table style="width:43%;">
+<colgroup>
+<col width="6%" />
+<col width="18%" />
+<col width="18%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">y</th>
+<th align="center">sign_value</th>
+<th align="center">rank_value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">-3</td>
+<td align="center">-1</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">-1</td>
+<td align="center">-1</td>
+<td align="center">2</td>
+</tr>
+<tr class="odd">
+<td align="center">2</td>
+<td align="center">1</td>
+<td align="center">3</td>
+</tr>
+<tr class="even">
+<td align="center">5</td>
+<td align="center">1</td>
+<td align="center">4.5</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td align="center">1</td>
+<td align="center">4.5</td>
+</tr>
+<tr class="even">
+<td align="center">9</td>
+<td align="center">1</td>
+<td align="center">6</td>
+</tr>
+</tbody>
+</table>
+<p>Rank based methods rely on looking at the order of the data and not the magnitude. For example, if we have 10 independent observations from a population, all of which are greater than zero, I feel comfortable concluding that the population median is greater than zero. If nine out of ten are larger, I’d still feel comfortable about concluding the population median is greater than zero, but if I had only six out of ten observations larger than zero then I would not reject a null hypothesis that the population median was equal to ten. Because we are going to consider ranks, we naturally find our selves asking questions about the middle value of the data. Therefore it makes sense to make null and alternative hypotheses statements about the median of the population and not the mean.</p>
+<p>These methods are typically referred to as nonparametric methods and care should be taken to recognize that these tests are not condition-less as we will require the observations to be independent and identically distributed.</p>
+<p>Finally, there is a price to be paid for using a more general method. If the normality condition is true, these nonparametric tests will have less power to reject the null hypothesis than the corresponding method that uses normality. Therefore, the standard methods should be used when appropriate and the nonparametric alternative only used when the normality condition is substantially violated.</p>
+<div id="alternatives-to-one-sample-and-paired-t-tests" class="section level2">
+<h2><span class="header-section-number">13.1</span> Alternatives to one sample and paired t-tests</h2>
+<p>We often want to take a sample of observed values and make statistical inference about the mean or median of the population that the observations came from. Suppose we have a sample of data <span class="math inline">\(z_i\)</span> coming from a non-normal distribution and want to test if the mean <span class="math inline">\(\mu\)</span> or median <span class="math inline">\(M\)</span> is equal to some specified value <span class="math inline">\(\mu_{0}\)</span> or <span class="math inline">\(M_{0}\)</span>.</p>
+<p>The literature commonly introduces these tests as alternatives to the paired t-test. However, recall that the paired t-test was just a single-sample t-test performed on the differences between paired observations. In that case our observed data is just <span class="math inline">\(z_{i}=x_{i}-y_{i}\)</span> for <span class="math inline">\(i=1\dots n\)</span>. Keeping with standard practice and the most likely use of these tests, we present these tests in the paired t-test context, and note that the modification to a one-sampled t-test is usually a trivial subtraction of the null hypothesis value.</p>
+<div id="sign-test" class="section level3">
+<h3><span class="header-section-number">13.1.1</span> Sign Test</h3>
+<p>This is the most easily understood of the classic nonparametric tests, but suffers from a lack of power. Typically the Wilcoxon Sign Rank test is preferred, but we present the Sign Test as it is an extremely flexible test and is a good introduction to thinking about rank based tests.</p>
+<p>This test can be thought of as a sign transformation of the response variable followed by the desired t-test.</p>
+<div id="hypothesis" class="section level4">
+<h4><span class="header-section-number">13.1.1.1</span> Hypothesis</h4>
+<p>We are interested in testing if the medians of two populations are equal versus an alternative of not equal. <span class="math display">\[H_{0}:\,M_{1}-M_{2}   =   0\]</span> <span class="math display">\[H_{a}:\,M_{1}-M_{2}   \ne 0\]</span> One sided tests are also possible, <span class="math display">\[H_{a}:\,M_{1}-M_{2}&gt;0\]</span></p>
+</div>
+<div id="conditions" class="section level4">
+<h4><span class="header-section-number">13.1.1.2</span> Conditions</h4>
+<p>One very nice aspect of the Sign Test is that it has very few conditions, only that the paired observations <span class="math inline">\(\left(x_{i},y_{i}\right)\)</span> are independent and identically distributed. In particular we note that there is no symmetry condition on the distribution of <span class="math inline">\(z_{i}\)</span>.</p>
+</div>
+<div id="calculation" class="section level4">
+<h4><span class="header-section-number">13.1.1.3</span> Calculation</h4>
+<p>Calculate <span class="math inline">\(z_{i}=x_{i}-y_{i}\)</span> and observe the sign. In the case one sample case, we observe the sign of <span class="math inline">\(z_{i}=x_{i}-M_{0}\)</span>. We define our test statistic <span class="math inline">\(T\)</span> to be the number of positive values of <span class="math inline">\(z_{i}\)</span>. If an observation is equal zero, <span class="math inline">\(z_{i}=0\)</span>, remove it from the analysis.</p>
+</div>
+<div id="sampling-distribution" class="section level4">
+<h4><span class="header-section-number">13.1.1.4</span> Sampling Distribution</h4>
+<p>Under the null hypothesis, the two samples have the same median and so the sign of the difference, <span class="math inline">\(z_{i}\)</span>, should be negative approximately half the time and positive half the time. We could easily simulate this distribution using a permutation test, but in this case, we actually already know what this distribution is! Under the null hypothesis, if we define a positive <span class="math inline">\(z_{i}\)</span> value to be a success, then our test statistic <span class="math inline">\(T\)</span> has a binomial distribution with success probability <span class="math inline">\(\pi=1/2\)</span>. That is under <span class="math inline">\(H_0\)</span>, <span class="math inline">\(T\sim Binomial\left(m,\pi=\frac{1}{2}\right)\)</span> where m is the number of non-zero <span class="math inline">\(z_{i}\)</span> values.</p>
+</div>
+<div id="example" class="section level4">
+<h4><span class="header-section-number">13.1.1.5</span> Example</h4>
+<p>Suppose we have data for 7 students from two exams of a class and we want to evaluate if the first exam was harder than the second.</p>
+<table style="width:56%;">
+<colgroup>
+<col width="13%" />
+<col width="11%" />
+<col width="11%" />
+<col width="9%" />
+<col width="9%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Student</th>
+<th align="center">Exam1</th>
+<th align="center">Exam2</th>
+<th align="center">diff</th>
+<th align="center">sign</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">66</td>
+<td align="center">71</td>
+<td align="center">-5</td>
+<td align="center">-1</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">74</td>
+<td align="center">76</td>
+<td align="center">-2</td>
+<td align="center">-1</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center">85</td>
+<td align="center">84</td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="center">81</td>
+<td align="center">85</td>
+<td align="center">-4</td>
+<td align="center">-1</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td align="center">93</td>
+<td align="center">93</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">6</td>
+<td align="center">88</td>
+<td align="center">90</td>
+<td align="center">-2</td>
+<td align="center">-1</td>
+</tr>
+<tr class="odd">
+<td align="center">7</td>
+<td align="center">79</td>
+<td align="center">78</td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+<p>Here we have <span class="math inline">\(t=2\)</span> positive values out of <span class="math inline">\(m=6\)</span> nonzero observations.</p>
+<p>Recall that a p-value is the probability of seeing your data or something more extreme given the null hypothesis is true. In this case our p-value is the probability that <span class="math inline">\(T\le2\)</span>. Using the binomial distribution, the p-value for this test is</p>
+<p><span class="math display">\[p-value=P\left(T\le2\right)=\sum_{i=0}^{2}P\left(T=i\right)=0.34375\]</span></p>
+<p>which can be found using the binomial distribution in R</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pbinom</span>( <span class="dv">2</span>, <span class="dt">size=</span><span class="dv">6</span>, <span class="dt">prob=</span><span class="dv">1</span>/<span class="dv">2</span> )</code></pre></div>
+<pre><code>## [1] 0.34375</code></pre>
+<p>or via simulation</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">t &lt;-<span class="st"> </span><span class="dv">2</span>
+m &lt;-<span class="st"> </span><span class="dv">6</span>
+PermDist &lt;-<span class="st"> </span>mosaic::<span class="kw">do</span>(<span class="dv">1000</span>) *<span class="st"> </span>
+<span class="st">  </span><span class="kw">sum</span>( <span class="kw">rbinom</span>(m, <span class="dt">size=</span><span class="dv">1</span>, <span class="dt">prob=</span><span class="dv">1</span>/<span class="dv">2</span>) )
+pvalue &lt;-<span class="st"> </span><span class="kw">mean</span>( PermDist &lt;=<span class="st"> </span>t )
+pvalue</code></pre></div>
+<pre><code>## [1] 0.35</code></pre>
+<p>As usual, if we had been interested in a two-sided alternative, we would multiply the p-value by two.</p>
+</div>
+</div>
+<div id="wilcoxon-sign-rank-test" class="section level3">
+<h3><span class="header-section-number">13.1.2</span> Wilcoxon Sign Rank Test</h3>
+<p>While the sign test is quite flexible, ignoring the magnitude of the differences is undesirable. The Wilcoxon Sign Rank test will utilize that information and is typically a more powerful test. The idea will be to transform the response variable using the <em>rank</em> transformation and then do a permutation based t-test. The classic Wilcoxen Sign test removes cases where the difference is zero, but when we perform the test using permutations, we could just as easily keep them.</p>
+<div id="hypothesis-1" class="section level4">
+<h4><span class="header-section-number">13.1.2.1</span> Hypothesis</h4>
+<p>As with the Sign Test, we are interested in testing if the medians of two populations are equal versus an alternative of not equal. <span class="math display">\[H_{0}:\,M_{1}-M_{2}   =   0\]</span> <span class="math display">\[H_{a}:\,M_{1}-M_{2}   \ne 0\]</span> One sided tests are also possible, <span class="math display">\[H_{a}:\,M_{1}-M_{2}   &gt;   0\]</span> <span class="math display">\[H_{a}:\,M_{1}-M_{2}   &lt;   0\]</span></p>
+</div>
+<div id="conditions-1" class="section level4">
+<h4><span class="header-section-number">13.1.2.2</span> Conditions</h4>
+<p>As with the Sign Test, we require that the paired observations <span class="math inline">\(\left(x_{i},y_{i}\right)\)</span> are independent and identically distributed. We further impose an additional condition the the differences are symmetric around some value.</p>
+</div>
+<div id="calculation-1" class="section level4">
+<h4><span class="header-section-number">13.1.2.3</span> Calculation</h4>
+<p>As with the Sign Test, we calculateIn the case one sample case, calculate and order the values <span class="math inline">\(z_{i}=x_{i}-M_{0}\)</span> or <span class="math inline">\(z_{i}=x_{i}-y_{i}\)</span>. Next order the absolute values <span class="math inline">\(\left|z_{i}\right|\)</span>, and as in the Sign Test, observations with z_{i}=0 are removed from the data set. Using the sorted values calculate the rank R_{i} of each observation where the rank of 1 is the observation with the smallest magnitude, and m is corresponds to the largest observation. In the case of ties, use the average rank.</p>
+<p>Next define <span class="math display">\[\phi_{i}=\begin{cases}
+0 &amp; \;\;\textrm{if}\;z_{i}&lt;0\\
+1 &amp; \;\;\textrm{if}\;z_{i}&gt;0
+\end{cases}\]</span></p>
+<p>to be an indicator function denoting if <span class="math inline">\(z_{i}&gt;0\)</span>. Finally we define <span class="math display">\[W_{+}=\sum_{i=1}^{m}\phi_{i}R_{i}\]</span> and <span class="math display">\[W_{-}=\sum_{i=1}^{m}\left(1-\phi_{i}\right)R_{i}\]</span> so that <span class="math inline">\(W_{+}\)</span> is the sum of the ranks of the positive <span class="math inline">\(z_{i}\)</span> values and <span class="math inline">\(W_{-}\)</span> is the sum of the ranks of the negative <span class="math inline">\(z_{i}\)</span> values. If there are no positive ranks, then define <span class="math inline">\(W_{+}=0\)</span>. Likewise if there are no negative ranks, define <span class="math inline">\(W_{-}=0\)</span>. Let <span class="math inline">\(S=\min\left[W_{+},W_{-}\right]\)</span>. (For the alternative <span class="math inline">\(M_{1}-M_{2}&gt;0\)</span> then <span class="math inline">\(S=W_{-}\)</span>. For the alternative <span class="math inline">\(M_{1}-M_{2}&lt;0\)</span> use <span class="math inline">\(S=W_{+}\)</span>)</p>
+</div>
+<div id="sampling-distribution-1" class="section level4">
+<h4><span class="header-section-number">13.1.2.4</span> Sampling Distribution</h4>
+<p>Under the null hypothesis, we would expect <span class="math inline">\(W_{+}\)</span> and <span class="math inline">\(W_{-}\)</span> to be approximately the same. Unfortunately the distribution of <span class="math inline">\(S\)</span> under the null hypothesis is not a distribution that we recognize, but it can be calculated (via brute force) and is known as the <em>SignRank</em> distribution. The quantiles of the distribution can be found in tables in statistics books or using R using the standard d,p,q functions, e.g. psignrank() where the sample size n is the necessary distribution parameter. Alternatively, we could just simulate the distribution under the null hypothesis by randomly assigning group labels to the ranks <span class="math inline">\(1,2,\dots,n\)</span>.</p>
+</div>
+<div id="example-1" class="section level4">
+<h4><span class="header-section-number">13.1.2.5</span> Example</h4>
+<p>We again use the student test data and we wish to test if median of Exam 1 is less than the median of Exam 2. First we calculate the differences, remove the zeros, and calculate the ranks on the magnitude of the diffeences.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Student=</span><span class="dv">1</span>:<span class="dv">7</span>,
+                   <span class="dt">Exam1 =</span> <span class="kw">c</span>(<span class="dv">66</span>,<span class="dv">74</span>,<span class="dv">85</span>,<span class="dv">81</span>,<span class="dv">93</span>,<span class="dv">88</span>,<span class="dv">79</span>),
+                   <span class="dt">Exam2 =</span> <span class="kw">c</span>(<span class="dv">71</span>,<span class="dv">76</span>,<span class="dv">84</span>,<span class="dv">85</span>,<span class="dv">93</span>,<span class="dv">90</span>,<span class="dv">78</span>)) %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">diff =</span> Exam1-Exam2) %&gt;%
+<span class="st">  </span><span class="kw">filter</span>( diff !=<span class="st"> </span><span class="dv">0</span> ) %&gt;%<span class="st">  </span><span class="co">#remove the zeros!</span>
+<span class="st">  </span><span class="kw">mutate</span>( <span class="dt">r =</span> <span class="kw">rank</span>(<span class="kw">abs</span>(diff))) <span class="co"># rank on magnitude!</span>
+<span class="kw">pander</span>(data)</code></pre></div>
+<table style="width:56%;">
+<colgroup>
+<col width="13%" />
+<col width="11%" />
+<col width="11%" />
+<col width="9%" />
+<col width="9%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Student</th>
+<th align="center">Exam1</th>
+<th align="center">Exam2</th>
+<th align="center">diff</th>
+<th align="center">r</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">66</td>
+<td align="center">71</td>
+<td align="center">-5</td>
+<td align="center">6</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">74</td>
+<td align="center">76</td>
+<td align="center">-2</td>
+<td align="center">3.5</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center">85</td>
+<td align="center">84</td>
+<td align="center">1</td>
+<td align="center">1.5</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="center">81</td>
+<td align="center">85</td>
+<td align="center">-4</td>
+<td align="center">5</td>
+</tr>
+<tr class="odd">
+<td align="center">6</td>
+<td align="center">88</td>
+<td align="center">90</td>
+<td align="center">-2</td>
+<td align="center">3.5</td>
+</tr>
+<tr class="even">
+<td align="center">7</td>
+<td align="center">79</td>
+<td align="center">78</td>
+<td align="center">1</td>
+<td align="center">1.5</td>
+</tr>
+</tbody>
+</table>
+<p>Next we cacluate <span class="math display">\[W_{-}   =   6+5+3.5+3.5=18\]</span> and <span class="math display">\[W_{+} =   1.5+1.5=3\]</span> and thus we will use <span class="math inline">\(S=3\)</span>.</p>
+<p>To calculate a p-value we want to find <span class="math inline">\(P\left(S\le3\right)\)</span>.</p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-335-1.png" width="672" /></p>
+<p>which we do using a table look up in R. Notice I could look up either the probability of observing a 3 or less or the probability of observing 18 or more.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># less than or equal to 3</span>
+<span class="kw">psignrank</span>(<span class="dv">3</span>, <span class="dv">6</span>)</code></pre></div>
+<pre><code>## [1] 0.078125</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># greater than or equal to 18</span>
+<span class="dv">1</span> -<span class="st"> </span><span class="kw">psignrank</span>( <span class="dv">17</span>, <span class="dv">6</span> )</code></pre></div>
+<pre><code>## [1] 0.078125</code></pre>
+<p>If we had chosen to do this using permutations we could have calculated:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">PermDist &lt;-<span class="st"> </span>mosaic::<span class="kw">do</span>(<span class="dv">1000</span>)*{
+}
+data</code></pre></div>
+<pre><code>##   Student Exam1 Exam2 diff   r
+## 1       1    66    71   -5 6.0
+## 2       2    74    76   -2 3.5
+## 3       3    85    84    1 1.5
+## 4       4    81    85   -4 5.0
+## 5       6    88    90   -2 3.5
+## 6       7    79    78    1 1.5</code></pre>
+<p>Example in R</p>
+<p>The function that we will use for both Wilcoxon’s Sign Rank and Rank Sum tests is wilcox.test(). You can pass the function either one vector of data or two and can indicate if the test should be a paired test.</p>
+<p>&lt;&lt;&gt;&gt;=</p>
+<p>Notice that the p-value is slightly different than when we used the signrank() distribution. This is due to an approximation to the actual sign rank distribution being used whenever ties occur in the data. Because the only tie occurred in the same group, we could have used the actual distribution, but the function wilcox.test immediately jumped to the approximation.</p>
+<p>Also notice how we are interested in testing if exam 1 was harder than exam 2 and so we want the alternative to beH_{a}:,;exam_{1}<exam_{2}so because I input exam.1 first and exam.2 second, then the appropriate alternative is 'less' because I want to test is first.argument < second.argument. If we had changed the order of the exam vectors, I would have to also switch the alternative to 'greater'.
+
+1.2 Alternatives to the two sample t-test
+
+1.2.1 Wilcoxon Rank Sum Test 
+
+The Wilcoxon Rank Sum Test is the nonparametric alternative to the two sample t-test. We are interested in testing if the medians of two populations are equal versus an alternative of not equal, but we have independent samples from each population and there is no way to pair an observations from the two populations. 
+
+Let n_{1} be the number of observations from the first group, and n_{2} be the number from the second group.
+
+conditions 
+
+The conditions for the Rank Sum Test are that all the observations are independent (both between and within samples).
+
+Hypothesis
+
+Again our hypotheses 
+
+H_{0}:\,M_{1}-M_{2} =   0
+H_{a}:\,M_{1}-M_{2} \ne 0One sided tests are also possible, H_{a}:\,M_{1}-M_{2} > 0 H_{a}:,M_{1}-M_{2} &lt; 0</p>
+<p>Calculation</p>
+<p>Combine observations from both samples and order them. In the case of ties, assign the average rank. Next define T_{1} as the sum of the ranks for observations in sample 1 and likewise define T_{2}.</p>
+<p>Sampling Distribution</p>
+<p>Under the null hypothesis, T_{1} and T_{2} should be approximately equivalent and if they have an extremely large difference we should reject the null hypothesis. We’ll compare the smaller of T_{1} and T_{2} against the null distribution and the null distribution quantiles can be found in tables in various statistics books or using R.</p>
+<p>Example</p>
+<p>Ten tents using plain camouflage (group 1) and ten using patterned camouflage (group 2) are set up in a wooded area, and a team of observers is sent out to find them. The team reports the distance at which they first sight each tent until all 20 tents are found. The distances at which each tent is detected are reported:</p>
+<p>We calculated T_{1} = <em>{j=1}^{n</em>{1}}R_{1j}=4.5+9.5+12+14+15+16+17+18+19+20=145 T_{2} = <em>{j=1}^{n</em>{2}}R_{2j}=1+2+3+4.5+6+7.5+7.5+9.5+11+13=65</p>
+<p>and compare T_{2} to the sampling distribution of under the null hypothesis.</p>
+<p>Unfortunately the literature is somewhat inconsistent as to the definition of T_{1} and T_{2}. It seems that Wilcoxon’s original paper used the unadjusted ranks while subsequent tables subtracted the minimum rank. Further complicating the matter is that there are corrections that should be made if there are too many ties. The end result is that calculating the test statistic by hand and comparing it to the “right” Wilcoxon distribution is troublesome.</p>
+<p>The Wilcoxon Rank Sum test is completely equivalent to the Mann-Whitney test and the Mann-Whitney test became more widely used because it dealt with unequal sample sizes more easily. Since the tests are equivalent, disturbingly, some software programs will return the test statistic for one when the user asked for the other. While the p-values will be identical, the test statistic will not.R returns the results of the Mann-Whitney test from the function wilcox.test() in the two sample case.</p>
+<p>1.2.2 Mann-Whitney</p>
+<p>We have the same conditions and hypotheses as the Wilcoxon Rank Sum Test. For notational convenience, let x_{i} be an observation from sample 1 and y_{j} be an observation from sample 2.</p>
+<p>Calculation</p>
+<p>For all n_{1}n_{2} combinations of pairs of observations (x_{i},y_{j}), let U be the number of times x_{i}&gt;y_{j}. If they are equal, count the combination as 1/2.</p>
+<p>Sampling Distribution</p>
+<p>Under the null hypothesis, we would expect Un_{1}n_{2}/2. If U is too big or too small, we should reject the null hypothesis. Give the large sample normal approximation and notice that it is close to the approximation of a binomial. The U-distribution is close to binomial, but not quite due to possibilities of ties.</p>
+<p>Example - Camouflage Tents</p>
+<p>The Mann-Whitney U statistic is 10, with 9 instances where a group 1 observation is less than a group 2 observation and two instances of ties.</p>
+<p>&lt;&lt;&gt;&gt;=</p>
+<p>1.3 Alternatives to 1-way ANOVA</p>
+<p>An extension to the Mann-Whitney U-test is known as the Kruskal-Wallis test. This will test if the ranks are evenly distributed among k groups or if there is at least one group with average rank that is statistically different than the other groups.</p>
+<p>conditions</p>
+<p>The conditions for the Kruskal-Wallis are the same as for the Mann-Whitney with all the observations are independent (both between and within samples).</p>
+<p>Hypothesis</p>
+<p>Again our hypotheses</p>
+<p>H_{0}:, M_{1}=M_{2}==M_{k} H_{a}:, </p>
+<p>Calculation</p>
+<p>Combine observations from all k samples and rank/order them. In the case of ties, assign the average rank. The Kruskal-Wallis test statistic is H=(n-1)where n_{i} is the number of observations in group i, n is the total number of observations n=n_{1}+n_{2}++n_{k}, {R}<em>{}=(n+1) is the average of all the ranks, and {R}</em>{i} is the average rank within group i.</p>
+<p>Sampling Distribution</p>
+<p>Under the null hypothesis the average rank within a group {R}<em>{i} should be similar to the overall average rank {R}</em>{} and so large discrepancies between those will lead to a large value of H and so we’ll reject if H is big enough. Under the null hypothesis, H<em>{k-1}^{2} which is the Chi-squared distribution with k-1 degrees of freedom. This is only an approximation and will be more appropriate as n</em>{i} gets large for every group. The common rule of thumb is that we need at least n_{i}5 for all groups.</p>
+<p>Example - Levi</p>
+<p>We will examine the amount of waste produced at k=5 different plants that manufacture Levi Jeans. The Waste amount is the amount of cloth wasted in cutting out designs compared to a computer program, so negative values for Waste indicate that the human engineer did a better job planning the cuts than the computer algorithm. The data are available in the file “Levi.csv” available on the GitHub for the book. There are two columns, Plant and Waste. &lt;&lt;fig.height=2.5&gt;&gt;=</p>
+<p>Due to the large outliers in Plant 2, I’m not happy about doing a standard ANOVA analysis and we’ll instead do a Kruskal-Wallis test for equality of the medians in each group.</p>
+<p>&lt;&lt;&gt;&gt;=</p>
+<p>&lt;&lt;&gt;&gt;=</p>
+<p>The Kruskal-Wallis test has a very interesting theoretical motivation. Notice that the test statistic H=(n-1)looks very similar to the test statistic in the usual ANOVA model, only instead of working with the raw y_{ij} values, we are using the ranks!. We can do a regular ANOVA and look at the SSE_{diff} and SSE_{simple} and notice those are the exact same terms as the Numerator and Denominator.&lt;&lt;&gt;&gt;=</p>
+<p>This is a very interesting thing to notice. Many of the classic non-parametric tests can be regarded as doing standard tests not on the actual y_{i} values but rather on the rank transformation of those responses. In this case you would might have expected the test statistic to be based on SSE_{diff} / SSE_{complex} instead, but that quantity has an F-distribution if the data is normally distributed, and the ranks certainly are not. Instead we consider SSE_{diff} / SSE_{simple} which is analogous to an R^{2} value.</p>
+<p>1.4 Exercises</p>
+<ol style="list-style-type: decimal">
+<li><p>The length of time it takes me to get home in the evening is highly variable. Below are the 8 independent observations of the length of time (in minutes) between when I told my wife I was leaving my office to when I arrived home.Use the Sign Test to test the null hypothesis that the median commute time is 20 minutes vs the alternative that it is greater than 20 minutes.</p></li>
+<li><p>After a mining operation is completed, the mining company is (theoretically) required to restore the land to the prior condition. Suppose that soil pH measurements are taken at 7 randomly selected locations prior to the mining and after the mining is complete and restoration has occurred, soil pH measurements for those same plots are taken again. Perform a Wilcoxen Sign Rank test on this paired data and test the null hypothesis that the median soil pH is the same versus that it has increased after the mining.</p></li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><p>By hand, calculate the Wilcoxen Sign Rank test statistic.</p></li>
+<li><p>Compare your test statistic to the signrank distribution in R and calculate a p-value.</p></li>
+<li><p>Repeat the above analysis using the wilcox.test() function in R.</p></li>
+</ol>
+<ol start="3" style="list-style-type: decimal">
+<li>The ratio of DDE (related to DDT) to PCB concentrations in bird eggs has been shown to have had a number of biological implications. The ratio is used as an indication of the movement of contamination through the food chain. Suppose the following ratios for eggs are reported for terrestrial and aquatic feeding birds.We will perform a Mann-Whitney test the null hypothesis of the median terrestrial ratio is equal to the aquatic ratio vs the alternative that they are not equal.</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><p>We are using the Mann-Whitney test due to the non-normality of the data. Looking at the raw data, what is indicative of that non-normality?</p></li>
+<li><p>By hand, calculate the Mann-Whitney test statistic (give enough details to indicate how the statistic is calculated).</p></li>
+<li><p>Use R to calculate the p-value for the test using the wilcox.test() function.</p></li>
+</ol>
+<ol start="4" style="list-style-type: decimal">
+<li>Load the built in data set airquality in R. This gives the daily air quality measurements in New York in the summer of 1973. We are interested in testing if the median ozone level is the same for all five months (May-September).</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><p>Fit the usual ANOVA model using the following code&lt;&lt;&gt;&gt;=Examine the QQ-plot of the residuals for assessing normality. Also use the Shapiro-Wilks test for assessing normality of the residuals. What do you conclude?</p></li>
+<li><p>Use R to perform a Kruskal-Wallis test to determine if the median ozone levels are the same for each month.</p></li>
+</ol>
+
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="12-contingency-tables.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/dereksonderegger/570/raw/master/12_NonParametricMethods.Rmd",
+"text": "Edit"
+},
+"download": [["Statistical_Methods_I.pdf", "PDF"], ["Statistical_Methods_I.epub", "EPUB"]],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

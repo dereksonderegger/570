@@ -6,9 +6,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Introduction to Statistical Methodology</title>
-  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="Introduction to Statistical Methodology">
-  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
 
   <meta property="og:title" content="Introduction to Statistical Methodology" />
   <meta property="og:type" content="book" />
@@ -26,7 +25,7 @@
 <meta name="author" content="Derek L. Sonderegger">
 
 
-<meta name="date" content="2017-04-13">
+<meta name="date" content="2017-10-20">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -35,7 +34,6 @@
   
 <link rel="prev" href="1-summary-statistics-and-graphing.html">
 <link rel="next" href="3-confidence-intervals-via-bootstrapping.html">
-
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -93,6 +91,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </head>
 
 <body>
+
 
 
   <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
@@ -256,13 +255,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="11.3.3" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#basic-intervals"><i class="fa fa-check"></i><b>11.3.3</b> Basic intervals</a></li>
 <li class="chapter" data-level="11.3.4" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#towards-bias-corrected-and-accelerated-intervals-bca"><i class="fa fa-check"></i><b>11.3.4</b> Towards bias-corrected and accelerated intervals (BCa)</a></li>
 </ul></li>
-<li class="chapter" data-level="11.4" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#using-carboot-function"><i class="fa fa-check"></i><b>11.4</b> Using <code>car::Boot()</code> function</a></li>
-<li class="chapter" data-level="11.5" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#using-the-boot-package"><i class="fa fa-check"></i><b>11.5</b> Using the <code>boot</code> package</a><ul>
-<li class="chapter" data-level="11.5.1" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#case-resampling"><i class="fa fa-check"></i><b>11.5.1</b> Case resampling</a></li>
-<li class="chapter" data-level="11.5.2" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#residual-resampling"><i class="fa fa-check"></i><b>11.5.2</b> Residual Resampling</a></li>
-<li class="chapter" data-level="11.5.3" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#including-blockingstratifying-variables"><i class="fa fa-check"></i><b>11.5.3</b> Including Blocking/Stratifying Variables</a></li>
+<li class="chapter" data-level="11.4" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#bootstrap-confidence-intervals-in-r"><i class="fa fa-check"></i><b>11.4</b> Bootstrap Confidence Intervals in R</a><ul>
+<li class="chapter" data-level="11.4.1" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#using-carboot-function"><i class="fa fa-check"></i><b>11.4.1</b> Using <code>car::Boot()</code> function</a></li>
+<li class="chapter" data-level="11.4.2" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#using-the-boot-package"><i class="fa fa-check"></i><b>11.4.2</b> Using the <code>boot</code> package</a></li>
 </ul></li>
-<li class="chapter" data-level="11.6" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#exercises-10"><i class="fa fa-check"></i><b>11.6</b> Exercises</a></li>
+<li class="chapter" data-level="11.5" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#exercises-10"><i class="fa fa-check"></i><b>11.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html"><i class="fa fa-check"></i><b>12</b> Contingency Tables</a><ul>
 <li class="chapter" data-level="12.1" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html#expected-counts"><i class="fa fa-check"></i><b>12.1</b> Expected Counts</a></li>
@@ -300,9 +297,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Events are properties of a particular outcome. For a coin flip, the event “Heads” would be the event that a heads was flipped. For the single roll of a six-sided die, a possible event might be that the result is even. For the NAU student, we might be interested in the event that the student is a biology student. A second event of interest might be if the student is an undergraduate.</p>
 <p>1.1.1 Venn Diagrams</p>
 <p>Let <span class="math inline">\(S\)</span> be the set of all outcomes of my random trial. Suppose I am interested in two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>. The traditional way of representing these events is using a Venn diagram.</p>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
-<p>For example, suppose that my random experiment is rolling a fair 6-sided die once. The possible outcomes are <span class="math inline">\(S=\{1,2,3,4,5,6\}\)</span>. Suppose I then define events <span class="math inline">\(A=\)</span> roll is odd and <span class="math inline">\(B=\)</span> roll is 5 or greater. In this case our picture is:</p>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<p>For example, suppose that my random experiment is rolling a fair 6-sided die once. The possible outcomes are <span class="math inline">\(S=\{1,2,3,4,5,6\}\)</span>. Suppose I then define events <span class="math inline">\(A=\)</span> roll is odd and <span class="math inline">\(B=\)</span> roll is 5 or greater. In this case our picture is:</p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
 <p>All of our possible events are present, and distributed amongst our possible events.</p>
 <div id="composition-of-events" class="section level3">
 <h3><span class="header-section-number">2.1.1</span> Composition of events</h3>
@@ -310,17 +307,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ul>
 <li>Union: Denote the event that either <span class="math inline">\(A\)</span> or <span class="math inline">\(B\)</span> occurs as <span class="math inline">\(A\cup B\)</span>.</li>
 </ul>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
 <ul>
 <li>Denote the event that <strong>both</strong> <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> occur as <span class="math inline">\(A\cap B\)</span></li>
 </ul>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
 <ul>
 <li>Denote the event that <span class="math inline">\(A\)</span> does not occur as <span class="math inline">\(\bar{A}\)</span> or <span class="math inline">\(A^{C}\)</span> (different people use different notations)</li>
 </ul>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
-<p><strong>Definition 1</strong>. Two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are said to be mutually exclusive (or disjoint) if the occurrence of one event precludes the occurrence of the other. For example, on a single roll of a die, a two and a five cannot both come up. For a second example, define <span class="math inline">\(A\)</span> to be the event that the die is even, and <span class="math inline">\(B\)</span> to be the event that the die comes up as a <span class="math inline">\(5\)</span>.</p>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<p><strong>Definition 1</strong>. Two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are said to be mutually exclusive (or disjoint) if the occurrence of one event precludes the occurrence of the other. For example, on a single roll of a die, a two and a five cannot both come up. For a second example, define <span class="math inline">\(A\)</span> to be the event that the die is even, and <span class="math inline">\(B\)</span> to be the event that the die comes up as a <span class="math inline">\(5\)</span>.</p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
 </div>
 </div>
 <div id="probability-rules" class="section level2">
@@ -332,7 +329,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p><strong>Fact</strong>. <em>For any event <span class="math inline">\(A\)</span> the probability of the event <span class="math inline">\(P(A)\)</span> satisfies <span class="math inline">\(0\le P(A) \le 1\)</span> because proportions always lie in <span class="math inline">\([0,1]\)</span>.</em></p>
 <p>Because <span class="math inline">\(S\)</span> is the set of all events that might occur, the area of our bounding rectangle will be <span class="math inline">\(1\)</span> and the probability of event <span class="math inline">\(A\)</span> occurring will be represented by the area in the circle <span class="math inline">\(A\)</span>.</p>
 <p><strong>Fact</strong>. <em>If two events are mutually exclusive, then <span class="math inline">\(P(A\cup B)=P(A)+P(B)\)</span></em></p>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
 <p><strong>Example</strong>. Let <span class="math inline">\(R\)</span> be the sum of two different colored dice. Suppose we are interested in <span class="math inline">\(P(R \le 4)\)</span>. Notice that the pair of dice can fall 36 different ways (6 ways for the first die and six for the second results in 6x6 possible outcomes, and each way has equal probability <span class="math inline">\(1/36\)</span>. Because the dice cannot simultaneously sum to <span class="math inline">\(2\)</span> and to <span class="math inline">\(3\)</span>, we could write <span class="math display">\[\begin{aligned} P(R \le 4 )   
   &amp;=    P(R=2)+P(R=3)+P(R=4) \\
     &amp;=  P(\left\{ 1,1\right\} )+P(\left\{ 1,2\right\} \mathrm{\textrm{ or }}\left\{ 2,1\right\} )+P(\{1,3\}\textrm{ or }\{2,2\}\textrm{ or }\{3,1\}) \\
@@ -340,13 +337,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
     &amp;=  \frac{6}{36} \\
     &amp;=  \frac{1}{6} \end{aligned}\]</span></p>
 <p><strong>Fact</strong>. <span class="math inline">\(P(A)+P(\bar{A})=1\)</span></p>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
 <p>The above statement is true because the probability of whole space <span class="math inline">\(S\)</span> is one (remember <span class="math inline">\(S\)</span> is all possible outcomes), then either we get an outcome in which <span class="math inline">\(A\)</span> occurs or we get an outcome in which <span class="math inline">\(A\)</span> does not occur.</p>
 <p><strong>Fact</strong>. <span class="math inline">\(P(A\cup B)=P(A)+P(B)-P(A\cap B)\)</span></p>
 <p>The reason behind this fact is that if there is if <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are not disjoint, then some area is added twice when I calculate <span class="math inline">\(P\left(A\right)+P\left(B\right)\)</span>. To account for this, I simply subtract off the area that was double counted.</p>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
-<p><strong>Fact 3</strong>. <span class="math inline">\(P(A)=P(A\cap B)+P(A\cap\bar{B})\)</span></p>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+<p><strong>Fact 3</strong>. <span class="math inline">\(P(A)=P(A\cap B)+P(A\cap\bar{B})\)</span></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
 <p>This identity is just breaking the event <span class="math inline">\(A\)</span> into two disjoint pieces.</p>
 </div>
 <div id="conditional-probability" class="section level3">
@@ -514,7 +511,7 @@ P(A)P(B)\;\; &amp; \textrm{ if A,B are independent}
 <div id="expected-value" class="section level4">
 <h4><span class="header-section-number">2.3.1.1</span> Expected Value</h4>
 <p>Example: Consider the discrete random variable <span class="math inline">\(S\)</span>, the sum of two fair dice.</p>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
 <p>We often want to ask ‘What is expected value of this distribution?’ You might think about taking a really, really large number of samples from this distribution and then taking the mean of that really really big sample. We define the expected value (often denoted by <span class="math inline">\(\mu\)</span>) as a weighted average of the possible values and the weights are the proportions with which those values occur. <span class="math display">\[\mu=E[S]  =   \sum_{\textrm{possible }s}\;s\cdot P\left(S=s\right)\]</span> In this case, we have that <span class="math display">\[\begin{aligned} \mu = E[S] 
 &amp;=  \sum_{s=2}^{12}s\cdot P(S=s) \\
 &amp;=  2\cdot P\left(S=2\right)+3\cdot P\left(S=3\right)+\dots+11\cdot P\left(S=11\right)+12\cdot P\left(S=12\right) \\
@@ -560,7 +557,7 @@ P(A)P(B)\;\; &amp; \textrm{ if A,B are independent}
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">y=</span>probability)) +<span class="st">                </span><span class="co"># where the dots go</span>
 <span class="st">  </span><span class="kw">geom_linerange</span>(<span class="kw">aes</span>(<span class="dt">ymax=</span>probability, <span class="dt">ymin=</span><span class="dv">0</span>)) +<span class="st"> </span><span class="co"># the vertical lines       </span>
 <span class="st">  </span><span class="kw">theme_bw</span>()                                      <span class="co"># set background color...</span></code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
 <p>Because this is the long term relative frequency of the number of clients (over 200 working days!), it is appropriate to interpret these frequencies as probabilities. This table and graph is often called a probability mass function (pmf) because it lists how the probability is spread across the possible values of the random variable. We might next ask ourselves what is the average number of clients per day? It looks like it ought to be between 1 and 2 clients per day.</p>
 <p><span class="math display">\[\begin{aligned} E\left(Y\right)   
   &amp;=    \sum_{\textrm{possible }y}y\,P\left(Y=y\right) \\
@@ -780,7 +777,7 @@ P(A)P(B)\;\; &amp; \textrm{ if A,B are independent}
 <span class="st">  </span><span class="kw">geom_linerange</span>(<span class="kw">aes</span>(<span class="dt">ymax=</span>probability, <span class="dt">ymin=</span><span class="dv">0</span>)) +
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&#39;Binomial distribution: n=3, p=0.8&#39;</span>) +
 <span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
 <p>To calculate the height of any of these bars, we can evaluate the pmf at the desired point. For example, to calculate the probability the number of full traps is 2, we calculate the following</p>
 <p><span class="math display">\[\begin{aligned} P(X=2)    
   &amp;=    {3 \choose 2}\left(0.8\right)^{2}\left(1-0.8\right)^{3-2} \\
@@ -812,7 +809,7 @@ P(A)P(B)\;\; &amp; \textrm{ if A,B are independent}
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&#39;Binomial distribution: n=20, p=0.1&#39;</span>) +
 <span class="st">  </span><span class="kw">xlab</span>(<span class="st">&#39;Number of Sites Occupied&#39;</span>) +
 <span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
 <p>Often we are interested in questions such as <span class="math inline">\(P(X\le2)\)</span> which is the probability that we see 2 or fewer of the sites being occupied by mountain chickadee. These calculations can be tedious to calculate by hand but R will calculate these cumulative distribution function values for you using the “p-function”. This cumulative distribution function gives the sum of all values up to and including the number given.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># P(X=0) + P(X=1) + P(X=2)</span>
 sum &lt;-<span class="st"> </span><span class="kw">dbinom</span>(<span class="dv">0</span>, <span class="dt">size=</span><span class="dv">20</span>, <span class="dt">prob=</span><span class="fl">0.1</span>) +<span class="st"> </span>
@@ -862,7 +859,7 @@ sum</code></pre></div>
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&#39;Poisson Distribution with  &#39;</span>, lambda ==<span class="st"> </span><span class="fl">2.3</span>))) +
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&#39;Number Caught&#39;</span>) +
 <span class="st">  </span><span class="kw">theme_bw</span>()            </code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># P( Y = 4)</span>
 <span class="kw">dpois</span>(<span class="dv">4</span>, <span class="dt">lambda=</span><span class="fl">2.3</span>)</code></pre></div>
 <pre><code>## [1] 0.1169022</code></pre>
@@ -882,8 +879,8 @@ sum</code></pre></div>
 <p>Suppose you wish to draw a random number number between 0 and 1 and any two intervals of equal size should have the same probability of the value being in them. This random variable is said to have a Uniform(0,1) distribution.</p>
 <p>Because there are an infinite number of rational numbers between 0 and 1, the probability of any particular number being selected is <span class="math inline">\(1/\infty=0\)</span>. But even though each number has 0 probability of being selected, some number must end up being selected. Because of this conundrum, probability theory doesn’t look at the probability of a single number, but rather focuses on a region of numbers.</p>
 <p>To make this distinction, we will define the distribution using a probability density function (pdf) instead of the probability mass function. In the discrete case, we had to constrain the probability mass function to sum to 1. In the continuous case, we have to constrain the probability density function to integrate to 1.</p>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
 <p>Finding the area under the curve of a particular density function <span class="math inline">\(f(x)\)</span> usually requires the use of calculus, but since this isn’t a calculus course, we will resort to using R or tables of calculated values.</p>
 </div>
 <div id="exponential-distribution" class="section level3">
@@ -894,7 +891,7 @@ sum</code></pre></div>
 \end{cases}\]</span></p>
 <p>Analogous to the discrete distributions, we can define the Expectation and Variance of these distributions by replacing the summation with an integral <span class="math display">\[\mu = E[X] =  \int_{0}^{\infty}x\,f(x)\,dx = \dots = \frac{1}{\lambda} \]</span> <span class="math display">\[\sigma^2 = Var[X] =   \int_{0}^{\infty}\left(x-\mu\right)^{2}\,f\left(x\right)\,dx =  \dots = \frac{1}{\lambda^{2}}\]</span></p>
 <p>Because the exponential distribution is defined by the rate of occurrence of an event, increasing that rate decreases the time between events. Furthermore because the rate of occurrence cannot be negative, we restrict <span class="math inline">\(\lambda&gt;0\)</span>.</p>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
 <p><strong>Example 10</strong>. Suppose the time between insect captures <span class="math inline">\(X\)</span> during a summer evening for a species of bat follows a exponential distribution with capture rate of <span class="math inline">\(\lambda=2\)</span> insects per minute and therefore the expected waiting time between captures is <span class="math inline">\(1/\lambda=1/2\)</span> minute. Suppose that we are interested in the probability that it takes a bat more than 1 minute to capture its next insect.</p>
 <p><span class="math display">\[P(X&gt;1)=\]</span></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x=</span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">5</span>,<span class="dt">length=</span><span class="dv">1000</span>), <span class="dt">lambda =</span> <span class="dv">2</span>) %&gt;%
@@ -904,7 +901,7 @@ sum</code></pre></div>
 <span class="st">  </span><span class="kw">geom_area</span>() +
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">y=</span><span class="st">&#39;density&#39;</span>) +
 <span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
 <p>We now must resort to calculus to find this area. Or use tables of pre-calculated values. Or use R, remembering that p-functions give the area under the curve to the left of the given value.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># P(X &gt; 1)  == 1 - P(X &lt;= 1)</span>
 <span class="dv">1</span> -<span class="st"> </span><span class="kw">pexp</span>(<span class="dv">1</span>, <span class="dt">rate=</span><span class="dv">2</span>)</code></pre></div>
@@ -915,7 +912,7 @@ sum</code></pre></div>
 <p>Undoubtably the most important distribution in statistics is the normal distribution. If my RV <span class="math inline">\(X\)</span> is normally distributed with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>, its probability density function is given by <span class="math display">\[f(x)=\frac{1}{\sqrt{2\pi}\sigma}\exp\left[\frac{-(x-\mu)^{2}}{2\sigma^{2}}\right]\]</span> where <span class="math inline">\(\exp[y]\)</span> is the exponential function <span class="math inline">\(e^{y}\)</span>. We could slightly rearrange the function to</p>
 <p><span class="math display">\[f(x)=\frac{1}{\sqrt{2\pi}\sigma}\exp\left[-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^{2}\right]\]</span></p>
 <p>and see this distribution is defined by its expectation <span class="math inline">\(E[X]=\mu\)</span> and its variance <span class="math inline">\(Var[X]=\sigma^{2}\)</span>. Notice I could define it using the standard deviation <span class="math inline">\(\sigma\)</span>, and different software packages will expect it to be defined by one or the other. R defines the normal distribution using the standard deviation.</p>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
 <p><strong>Example 11</strong>. It is known that the heights of adult males in the US is approximately normal with a mean of 5 feet 10 inches (<span class="math inline">\(\mu=70\)</span> inches) and a standard deviation of <span class="math inline">\(\sigma=3\)</span> inches. Your instructor is a mere 5 feet 4 inches (64 inches). What proportion of the population is shorter than your professor?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">distr &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x=</span><span class="kw">seq</span>(<span class="dv">57</span>, <span class="dv">82</span>, <span class="dt">length=</span><span class="dv">1000</span>)) %&gt;%
 <span class="st">  </span><span class="kw">mutate</span>( <span class="dt">density =</span> <span class="kw">dnorm</span>(x, <span class="dt">mean=</span><span class="dv">70</span>, <span class="dt">sd=</span><span class="dv">3</span>),
@@ -924,7 +921,7 @@ sum</code></pre></div>
 <span class="st">  </span><span class="kw">geom_line</span>() +
 <span class="st">  </span><span class="kw">geom_area</span>() +
 <span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
 <p>Using R you can easily find this</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pnorm</span>(<span class="dv">64</span>, <span class="dt">mean=</span><span class="dv">70</span>, <span class="dt">sd=</span><span class="dv">3</span>)</code></pre></div>
 <pre><code>## [1] 0.02275013</code></pre>
@@ -949,7 +946,7 @@ x       &amp;=  3(0.84)+70 \\
     &amp;=  P(Z \le 1) - P(Z \le -1) \\
     &amp;\approx    0.8413-0.1587 \\
     &amp;=  0.6826 \end{aligned}\]</span></p>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-55-1.png" width="672" /></p>
 <p>1.6 R Comments</p>
 <p>There will be a variety of distributions we’ll be interested in and R refers to them using the following abbreviations</p>
 <table>
@@ -1183,8 +1180,9 @@ Notice that the numbers given in the table sum to 100%, so the data presented ar
         </div>
       </div>
 <a href="1-summary-statistics-and-graphing.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="3-confidence-intervals-via-bootstrapping.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
-
+<a href="3-confidence-intervals-via-bootstrapping.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
@@ -1193,7 +1191,7 @@ Notice that the numbers given in the table sum to 100%, so the data presented ar
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
 <script>
-require(["gitbook"], function(gitbook) {
+gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": false,
@@ -1229,7 +1227,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(script.src))
       script.src  = script.src.replace(/^https?:/, '');
     document.getElementsByTagName("head")[0].appendChild(script);

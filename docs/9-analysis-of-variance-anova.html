@@ -6,9 +6,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Introduction to Statistical Methodology</title>
-  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="Introduction to Statistical Methodology">
-  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
 
   <meta property="og:title" content="Introduction to Statistical Methodology" />
   <meta property="og:type" content="book" />
@@ -26,7 +25,7 @@
 <meta name="author" content="Derek L. Sonderegger">
 
 
-<meta name="date" content="2017-04-13">
+<meta name="date" content="2017-10-20">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -35,7 +34,6 @@
   
 <link rel="prev" href="8-testing-model-assumptions.html">
 <link rel="next" href="10-regression.html">
-
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -93,6 +91,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </head>
 
 <body>
+
 
 
   <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
@@ -256,13 +255,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="11.3.3" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#basic-intervals"><i class="fa fa-check"></i><b>11.3.3</b> Basic intervals</a></li>
 <li class="chapter" data-level="11.3.4" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#towards-bias-corrected-and-accelerated-intervals-bca"><i class="fa fa-check"></i><b>11.3.4</b> Towards bias-corrected and accelerated intervals (BCa)</a></li>
 </ul></li>
-<li class="chapter" data-level="11.4" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#using-carboot-function"><i class="fa fa-check"></i><b>11.4</b> Using <code>car::Boot()</code> function</a></li>
-<li class="chapter" data-level="11.5" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#using-the-boot-package"><i class="fa fa-check"></i><b>11.5</b> Using the <code>boot</code> package</a><ul>
-<li class="chapter" data-level="11.5.1" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#case-resampling"><i class="fa fa-check"></i><b>11.5.1</b> Case resampling</a></li>
-<li class="chapter" data-level="11.5.2" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#residual-resampling"><i class="fa fa-check"></i><b>11.5.2</b> Residual Resampling</a></li>
-<li class="chapter" data-level="11.5.3" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#including-blockingstratifying-variables"><i class="fa fa-check"></i><b>11.5.3</b> Including Blocking/Stratifying Variables</a></li>
+<li class="chapter" data-level="11.4" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#bootstrap-confidence-intervals-in-r"><i class="fa fa-check"></i><b>11.4</b> Bootstrap Confidence Intervals in R</a><ul>
+<li class="chapter" data-level="11.4.1" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#using-carboot-function"><i class="fa fa-check"></i><b>11.4.1</b> Using <code>car::Boot()</code> function</a></li>
+<li class="chapter" data-level="11.4.2" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#using-the-boot-package"><i class="fa fa-check"></i><b>11.4.2</b> Using the <code>boot</code> package</a></li>
 </ul></li>
-<li class="chapter" data-level="11.6" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#exercises-10"><i class="fa fa-check"></i><b>11.6</b> Exercises</a></li>
+<li class="chapter" data-level="11.5" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#exercises-10"><i class="fa fa-check"></i><b>11.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html"><i class="fa fa-check"></i><b>12</b> Contingency Tables</a><ul>
 <li class="chapter" data-level="12.1" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html#expected-counts"><i class="fa fa-check"></i><b>12.1</b> Expected Counts</a></li>
@@ -314,9 +311,9 @@ H_{a} &amp;:        \textrm{at least on mean is different than the others}
 \end{aligned}\]</span></p>
 <p><strong>Example 1</strong>. Suppose that we have three hybrids of a particular plant and we measure the leaf area for each hybrid.</p>
 <p>In the following graph, there does not appear to be a difference between the hybrid means:</p>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-195-1.png" width="672" /></p>
-<p>However, in this case, it looks like there is a difference in the means of each hybrid:</p>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-196-1.png" width="672" /></p>
+<p>However, in this case, it looks like there is a difference in the means of each hybrid:</p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-197-1.png" width="672" /></p>
 <p>What is the difference between these two?</p>
 <ol style="list-style-type: decimal">
 <li><p>If the variance between hybrids is small compared the variance within a hybrid variance is huge compared, then I would fail to reject the null hypothesis of equal means (this would be the first case). In this case, the additional model complexity doesn’t result in more accurate model, so Occam’s Razor would lead us to prefer the simpler model where each group has the same mean.</p></li>
@@ -346,7 +343,7 @@ H_{a} &amp;:        \textrm{at least on mean is different than the others}
 <p><strong>SSW</strong>: Sum of Squares Within - This is the variability within sample groups. <span class="math display">\[SSW=\sum_{i=1}^{k}\sum_{j=1}^{n_{i}}\left(y_{ij}-\bar{y}_{i\cdot}\right)^{2}\;\;\;\;\;\;\;\;df_{W}=n-k\]</span></p>
 <p><strong>SSB</strong>: Sum of Squares Between - This is the variability between sample groups. <span class="math display">\[SSB=\sum_{i=1}^{k}n_{i}\left(\bar{y}_{i\cdot}-\bar{y}_{\cdot\cdot}\right)^{2} \;\;\;\;\;\;\;\;\;df_{B}=k-1\]</span></p>
 <p>SST: Sum of Squares Total - This is the total variability in the data set. It has an associated df=n-1 because under the null hypothesis there is only one mean <span class="math inline">\(\mu\)</span>. <span class="math display">\[SST=\sum_{i=1}^{k}\sum_{j=1}^{n_{j}}\left(y_{ij}-\bar{y}_{\cdot\cdot}\right)^{2} \;\;\;\;\;\;\;\;\;df_{T}=n-1\]</span></p>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-197-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-198-1.png" width="672" /></p>
 <p>An anova table is usually set up the in the following way (although the total row is sometimes removed):</p>
 <table>
 <thead>
@@ -481,13 +478,13 @@ H_{a} &amp;:        \textrm{at least on mean is different than the others}
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span><span class="kw">lm</span>(LAI ~<span class="st"> </span>Species, <span class="dt">data=</span>data)</code></pre></div>
 <p>As is always good practice, the first thing we should do is graph our data.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x=</span>Species, <span class="dt">y=</span>LAI)) +<span class="st"> </span><span class="kw">geom_boxplot</span>()</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-199-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-200-1.png" width="672" /></p>
 <p>It looks like the equal variance question isn’t a worry and it certainly appears that the mean value for each species is not the same. I expect that we will certainly prefer the complex model in this case.</p>
 <p>The <code>lm()</code> command is the command that does all the calculations necessary to fit an ANOVA model. This command returns a list object that is useful for subsequent analysis and it is up to the use to know what subsequent functions to call that answer questions of interest.</p>
 <p>In the call to <code>lm()</code> we created a formula. Formulas in R always are of the form <code>Y ~ X</code> where <code>Y</code> is the dependent variable and the <code>X</code> variables are the independent variables.</p>
 <p>Before we examine the anova table and make any conclusion, we should double check that the anova assumptions have been satisfied. To check the normality assumption, we will look at the qqplot of the residuals <span class="math inline">\(e_{ij}=y_{ij}-\bar{y}_{i\cdot}\)</span>. These residuals are easily accessed in R using the <code>resid</code> function on the model object. To check the variance assumption, we will examine the boxplot of the data</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">autoplot</span>( model, <span class="dt">which=</span><span class="dv">2</span>)  <span class="co"># The which argument specifies which plot to make</span></code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-200-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-201-1.png" width="672" /></p>
 <p>The qqplot doesn’t look too bad, with only two observations far from the normality line. To get the Analysis of Variance table, we’ll extract it from the model object using the function <code>anova()</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(model)</code></pre></div>
 <pre><code>## Analysis of Variance Table
@@ -538,7 +535,7 @@ letterdata &lt;-<span class="st"> </span><span class="kw">lm</span>( Y~Grp, <spa
 <span class="st">  </span><span class="kw">geom_text</span>(<span class="dt">data=</span>letterdata, <span class="kw">aes</span>(<span class="dt">label=</span>.group)) +
 <span class="st">  </span><span class="kw">ggtitle</span>( <span class="kw">expression</span>(<span class="kw">paste</span>(X[ij],<span class="st">&#39; ~ N(0,1)   where &#39;</span>, n[i], <span class="st">&#39; = 10&#39;</span>)) ) +
 <span class="st">  </span><span class="kw">xlab</span>(<span class="st">&#39;Group&#39;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&#39;Response&#39;</span>)</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-204-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-205-1.png" width="672" /></p>
 <p>With 5 groups, there are 10 different comparisons to be made, and just by random chance, one of those comparisons might come up significant. In this sampled data, performing 10 different two sample t-tests without making any adjustments to our <span class="math inline">\(\alpha\)</span>-level, we find one statistically significant difference even though all of the data came from a standard normal distribution.</p>
 <p>I want to be able to control the family-wise error rate so that the probability that I make one or more type I errors in the set of m of tests I’m considering is <span class="math inline">\(\alpha\)</span>. One general way to do this is called the Bonferroni method. In this method each test is performed using a significance level of <span class="math inline">\(\alpha/m\)</span>. (In practice I will multiple each p-value by m and compare each p-value to my desired family-wise <span class="math inline">\(\alpha\)</span>-level). Unfortunately for large <span class="math inline">\(m\)</span>, this results in unacceptably high levels of type II errors. Fortunately there are other methods for addressing the multiple comparisons issue and they are built into R.</p>
 <p>John Tukey’s test of “Honestly Significant Differences” is commonly used to address the multiple comparisons issue when examining all possible pairwise contrasts. This method is available in R by the function in several different methods. This test is near optimal when each group has the same number of samples (which is often termed “a balanced design”), but becomes more conservative (fails to detect differences) as the design becomes more unbalanced. In extremely unbalanced cases, it is preferable to use a Bonferroni adjustment.</p>
@@ -582,13 +579,13 @@ t1</code></pre></div>
 ## Confidence level used: 0.95 
 ## P value adjustment: tukey method for comparing a family of 5 estimates 
 ## significance level used: alpha = 0.05</code></pre>
-<p>Likewise if we are testing the ANOVA assumption of equal variance, we cannot rely on doing all pairwise F-tests and we must use a method that controls the overall error rate. The multiple comparisons version of <code>var.test()</code> is Bartlett’s test which is called similarly to <code>lm()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">bartlett.test</span>(Y~Group, mydata)</code></pre></div>
-<pre><code>## 
-##  Bartlett test of homogeneity of variances
-## 
-## data:  Y by Group
-## Bartlett&#39;s K-squared = 3.1397, df = 4, p-value = 0.5347</code></pre>
+<p>Likewise if we are testing the ANOVA assumption of equal variance, we cannot rely on doing all pairwise F-tests and we must use a method that controls the overall error rate. The multiple comparisons version of <code>var.test()</code> is Levene’s test which is called similarly to <code>lm()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># leveneTest() is a function that is defined in the &quot;car&quot; package.</span>
+car::<span class="kw">leveneTest</span>(Y~Group, mydata)</code></pre></div>
+<pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
+##       Df F value Pr(&gt;F)
+## group  4  0.6173 0.6524
+##       45</code></pre>
 <p><strong>Example 2</strong>. (Example 8.2 from the Ott and Longnecker) A clinical psychologist wished to compare three methods for reducing hostility levels in university students, and used a certain test (HLT) to measure the degree of hostility. A high score on the test indicated great hostility. The psychologist used <span class="math inline">\(24\)</span> students who obtained high and nearly equal scores in the experiment. Eight subjects were selected at random from among the <span class="math inline">\(24\)</span> problem cases and were treated with method 1, seven of the remaining <span class="math inline">\(16\)</span> students were selected at random and treated with method 2 while the remaining nine students were treated with method 3. All treatments were continued for a one-semester period. Each student was given the HLT test at the end of the semester, with the results show in the following table. Use these dat to perform an analysis of variance to determine whether there are differences among the mean scores for the three methods using a significance level of <span class="math inline">\(\alpha=0.05\)</span>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># define the data</span>
 Hostility &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
@@ -599,21 +596,20 @@ Hostility &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
 <p>The first thing we will do (as we should do in all data analyses) is to graph our data.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(Hostility, <span class="kw">aes</span>(<span class="dt">x=</span>Method, <span class="dt">y=</span>HLT)) +
 <span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-209-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-210-1.png" width="672" /></p>
 <p>These box plots make it clear that there is a difference between the three groups (at least group M1 is different from M2 or M3). An ANOVA model assumes equal variance between groups and that the residuals are normally distributed. Based on the box plot, the equal variance assumption might be suspect (although with only <span class="math inline">\(\approx 8\)</span> observations per group, it might not be bad). We’ll examine a QQ-plot of the residuals to consider the normality.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Is there equal variance in residuals across groups?</span>
 <span class="co"># Are the residuals approximately normal?</span>
 model &lt;-<span class="st"> </span><span class="kw">lm</span>( HLT ~<span class="st"> </span>Method, <span class="dt">data=</span>Hostility )
 <span class="kw">autoplot</span>(model, <span class="dt">which=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-210-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-211-1.png" width="672" /></p>
 <p>To examine the Normality of the residuals, we’ll use a Shapiro-Wilk’s test and we’ll also use Bartlett’s test for homogeneity of variances.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Test for equal variances between groups</span>
-<span class="kw">bartlett.test</span>(HLT~Method, <span class="dt">data=</span>Hostility)</code></pre></div>
-<pre><code>## 
-##  Bartlett test of homogeneity of variances
-## 
-## data:  HLT by Method
-## Bartlett&#39;s K-squared = 2.4594, df = 2, p-value = 0.2924</code></pre>
+car::<span class="kw">leveneTest</span>(HLT~Method, <span class="dt">data=</span>Hostility)</code></pre></div>
+<pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
+##       Df F value Pr(&gt;F)
+## group  2  1.6817 0.2102
+##       21</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Test for Normality</span>
 <span class="kw">shapiro.test</span>(<span class="kw">resid</span>(model))</code></pre></div>
 <pre><code>## 
@@ -621,7 +617,7 @@ model &lt;-<span class="st"> </span><span class="kw">lm</span>( HLT ~<span class
 ## 
 ## data:  resid(model)
 ## W = 0.98358, p-value = 0.9516</code></pre>
-<p>The results of the Shapiro-Wilks test agree with the QQ-plot, and Bartlett’s test fails to detect differences in the variances between the two groups. This is not to say that there might not be a difference, only that we do not detect one.</p>
+<p>The results of the Shapiro-Wilks test agree with the QQ-plot, and Levene’s test fails to detect differences in the variances between the two groups. This is not to say that there might not be a difference, only that we do not detect one.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span><span class="kw">lm</span>( HLT ~<span class="st"> </span>Method, <span class="dt">data=</span>Hostility )
 <span class="kw">anova</span>(model)</code></pre></div>
 <pre><code>## Analysis of Variance Table
@@ -682,9 +678,9 @@ model &lt;-<span class="st"> </span><span class="kw">lm</span>( HLT ~<span class
 <div id="theory-1" class="section level3">
 <h3><span class="header-section-number">9.5.1</span> Theory</h3>
 <p>We started with what I will call the “cell means model” <span class="math display">\[Y_{ij}=\mu_{i}+\epsilon_{ij}\;\;\;\textrm{where}\;\;\epsilon_{ij}\stackrel{iid}{\sim}N\left(0,\sigma^{2}\right)\]</span> so that the <span class="math inline">\(E\left(Y_{ij}\right)=\mu_{i}\)</span> where I interpret <span class="math inline">\(\mu_{i}\)</span> as the mean of each population. Given some data, we the following graph where the red lines and numbers denote the observed mean of the data in each group :</p>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-215-1.png" width="672" /></p>
-<p>But I am often interested in the difference between one group and another. For example, suppose this data comes from an experiment and group 1 is the control group. Then perhaps what I’m really interested is not that group 2 has a mean of 9, but rather that it is 5 units larger than the control. In this case perhaps what we care about is the differences. I could re-write the group means in terms of these differences from group 1. So looking at the model this way, the values that define the group means are the mean of group 1 (here it is 4), and the offsets from group 1 to group 2 (which is 5), and the offset from group 1 to group 3 (which is 10).</p>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-216-1.png" width="672" /></p>
+<p>But I am often interested in the difference between one group and another. For example, suppose this data comes from an experiment and group 1 is the control group. Then perhaps what I’m really interested is not that group 2 has a mean of 9, but rather that it is 5 units larger than the control. In this case perhaps what we care about is the differences. I could re-write the group means in terms of these differences from group 1. So looking at the model this way, the values that define the group means are the mean of group 1 (here it is 4), and the offsets from group 1 to group 2 (which is 5), and the offset from group 1 to group 3 (which is 10).</p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-217-1.png" width="672" /></p>
 <p>I could write this interpretation of the model as the “offset” model which is <span class="math display">\[Y_{ij}=\mu+\tau_{i}+\epsilon_{ij}\]</span> where <span class="math inline">\(\mu\)</span> is the mean of group 1 and <span class="math inline">\(\tau_{i}\)</span> is each population’s offset from group 1. Because group 1 can’t be offset from itself, this forces <span class="math inline">\(\tau_{1}=0\)</span>.</p>
 <p>Notice that this representation of the complex model has 4 parameters (aside from <span class="math inline">\(\sigma\)</span>), but it has an additional constraint so we still only have 3 parameters that can vary (just as the cell means model has 3 means).</p>
 <p>The cell means model and the offset model really are the same model, just looked at slightly differently. They have the same number of parameters, and produce the same predicted values for <span class="math inline">\(\hat{y}_{ij}\)</span> and therefore have the same sum of squares, etc. The only difference is that one is might be more convenient depending on the question the investigator is asking. Actually in all the previous work in this chapter, we’ve been using the offset representation but <code>lsmeans::lsmeans()</code> is smart enough to recognize when we want the cell means model.</p>
@@ -738,7 +734,7 @@ c.model<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw"
 <div id="implications-on-the-anova-table" class="section level3">
 <h3><span class="header-section-number">9.5.3</span> Implications on the ANOVA table</h3>
 <p>We have been talking about the complex and simple models for our data but there is one more possible model, albeit not a very good one. I will refer to this as the bad model because it is almost always a poor fitting model. <span class="math display">\[Y_{ij}=\epsilon_{ij} \;\;\; \textrm{ where }\;\;\; \epsilon_{ij}\stackrel{iid}{\sim}N\left(0,\sigma^{2}\right).\]</span></p>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-221-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-222-1.png" width="672" /></p>
 <p>Notice that the complex model has three parameters that define “signal” part of the model (i.e. the three group means). The simple has one parameter that defines the “signal” (the overall mean). The bad model has no parameters that define the model (i.e. the red line is always at zero).</p>
 <p>These three models can be denoted in R by:</p>
 <ul>
@@ -797,9 +793,11 @@ cell.representation   &lt;-<span class="st"> </span><span class="kw">lm</span>(H
 </div>
 <div id="exercises-8" class="section level2">
 <h2><span class="header-section-number">9.6</span> Exercises</h2>
+<p><em>In previous chapters, the exercises have been quite blunt about asking you to interpret your results when appropriate. In this chapter (and subsequent chapters) the questions don’t explicitly ask your interpretation, but rather it is implied that and the end of a calculation or whenever you produce a graph or table, there should always be some sort of comment about the result (e.g. this result shows that the residuals are not normally distributed). Your job is to interpret the results, not just produce them.</em></p>
+<p><em>Eventually, your job will be to figure out what analysis to conduct, what assumptions should be checked, and how to interpret all of your results in the context of the problem. But for now, it will be up to you to know when to interpret your results.</em></p>
 <ol style="list-style-type: decimal">
 <li><p>For this exercise, we will compare the Sums of Squared Error for the simple <span class="math inline">\(y_{ij}=\mu+\epsilon_{ij}\)</span> and complex <span class="math inline">\(y_{ij}=\mu_{i}+\epsilon_{ij}\)</span> model and clearly, in the data presented below, the complex model fits the data better. The group means <span class="math inline">\(\bar{y}_{i\cdot}\)</span> are 3, 13, 5, and 9, while the overall mean is <span class="math inline">\(\bar{y}_{\cdot\cdot}=7.5\)</span>.<br />
-<img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-224-1.png" width="672" /></p>
+<img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-225-1.png" width="672" /></p>
 <ol style="list-style-type: lower-alpha">
 <li><p>For the simple model graph, draw a horizontal line at the height of the overall mean, representing predicted value of a new observation. Next, draw the the corresponding residuals <span class="math inline">\(y_{ij}-\bar{y}_{\cdot\cdot}\)</span> as vertical lines from the data points to the overall mean. Similarly draw horizontal lines for the group means in the complex model and represent the residuals for the complex model <span class="math inline">\(y_{ij}-\bar{y}_{i\cdot}\)</span> as vertical lines from the data points to the group means. In this case, does it appear that the average residual is significantly larger in the simple model than the complex?</p></li>
 <li><p>To show that the complex is a significantly better model, fill in the empty boxes in the ANOVA table.</p>
@@ -840,10 +838,11 @@ cell.representation   &lt;-<span class="st"> </span><span class="kw">lm</span>(H
 <td align="center"></td>
 </tr>
 </tbody>
-</table></li>
+</table>
+<p>Interpret the p-value you have produced.</p></li>
 </ol></li>
 <li><p>We will essentially repeat the previous exercise, except this time, the simple model will be preferred. Again for each group, we have <span class="math inline">\(n_i=3\)</span> observations.</p>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-225-1.png" width="672" /></p>
+<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-226-1.png" width="672" /></p>
 For this data, the following group means can be calculated as <span class="math inline">\(\bar{y}_{i\cdot} = (4.42, 5.21, 4.58)\)</span> and the overall mean is <span class="math inline">\(\bar{y}_{\cdot \cdot}=4.73\)</span>.
 <ol style="list-style-type: lower-alpha">
 <li>For the simple model graph, draw the corresponding residuals <span class="math inline">\(y_{ij}-\bar{y}_{\cdot\cdot}\)</span> as vertical lines from the data point to the overall mean. Similarly draw the residuals for the complex model <span class="math inline">\(y_{ij}-\bar{y}_{i\cdot}\)</span> as vertical lines from the data points to the group means. In this case, does it appear that the average residual is significantly larger in the simple model than the complex?</li>
@@ -885,7 +884,8 @@ For this data, the following group means can be calculated as <span class="math 
 <td align="center"></td>
 </tr>
 </tbody>
-</table></li>
+</table>
+<p>Interpret the p-value you have produced.</p></li>
 </ol></li>
 <li><p>The following data were collected and we wish to perform an analysis of variance to determine if the group means are statistically different.</p>
 <table>
@@ -938,7 +938,7 @@ For this data, the following group means can be calculated as <span class="math 
 </tbody>
 </table></li>
 </ol>
-<p>If I wanted to control my overall type I error rate at an <span class="math inline">\(\alpha=0.05\)</span> and used the Bonferroni multiple comparisons procedure, which tests would be statistically significant?</p>
+<p>If I wanted to control my overall type I error rate at an <span class="math inline">\(\alpha=0.05\)</span> and used the Bonferroni multiple comparisons procedure, which tests would be statistically significant? <em>Notice that this problem does not mention any pairwise contrasts as the Bonferroni correction can be done in a variety of situations. So just use the fact that we are making four different tests and we want to control the overall Type I Error rate.</em></p>
 <ol start="5" style="list-style-type: decimal">
 <li>We will examine the amount of waste produced at five different plants that manufacture Levi Jeans. The Waste amount is the amount of cloth wasted in cutting out designs compared to a computer program, so negative values for Waste indicate that the human engineer did a better job planning the cuts than the computer algorithm. There are two columns, <code>Plant</code> and <code>Waste</code>.
 <ol style="list-style-type: lower-alpha">
@@ -951,7 +951,7 @@ For this data, the following group means can be calculated as <span class="math 
 <li>Test the equal variance assumption using Bartlett’s test.</li>
 <li><p>Fit an ANOVA model to these data and test if the residuals have a normal distribution using the Shapiro-Wilks test.</p></li>
 </ol></li>
-<li>The dataset <code>iris</code> is available on R and can be loaded by the entering the command <code>data('iris')</code> at your R prompt. This famous data set contains the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for <span class="math inline">\(n_{i}=50\)</span> flowers from each of <span class="math inline">\(3\)</span> species of iris. The species are Iris setosa, versicolor, and virginica. We will be examining the relationship between sepal width and the species of these irises. Denote the mean value of all setosa flowers as <span class="math inline">\(\mu_{setosa}\)</span> and similar notation for the other species.
+<li>The dataset <code>iris</code> is available on R and can be loaded by the entering the command <code>data('iris')</code> at your R prompt. This famous data set contains the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for <span class="math inline">\(n_{i}=50\)</span> flowers from each of <span class="math inline">\(3\)</span> species of iris. The species of iris are <em>setosa</em>, <em>versicolor</em>, and <em>virginica</em>. We will be examining the relationship between sepal width and the species of these irises. Denote the mean value of all setosa flowers as <span class="math inline">\(\mu_{setosa}\)</span> and similar notation for the other species.
 <ol style="list-style-type: lower-alpha">
 <li>Make a boxplot of the data. Do any assumptions necessary for ANOVA appear to be violated?</li>
 <li>Test the equal variance assumption of ANOVA using Bartlett’s test.</li>
@@ -979,8 +979,9 @@ H_{a} &amp;:\:      \mu_{setosa}\ne\mu_{virginica}
         </div>
       </div>
 <a href="8-testing-model-assumptions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="10-regression.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
-
+<a href="10-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
@@ -989,7 +990,7 @@ H_{a} &amp;:\:      \mu_{setosa}\ne\mu_{virginica}
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
 <script>
-require(["gitbook"], function(gitbook) {
+gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": false,
@@ -1025,7 +1026,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(script.src))
       script.src  = script.src.replace(/^https?:/, '');
     document.getElementsByTagName("head")[0].appendChild(script);

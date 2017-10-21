@@ -8,3 +8,5 @@ car
 boot
 stringr
 multcompView
+pander
+bindrcpp

@@ -423,7 +423,7 @@ autoplot(model, which=c(1,2))
 ```
 
 
-To examine the Normality of the residuals, we'll use a Shapiro-Wilk's test and we'll also use Bartlett's test for homogeneity of variances.
+To examine the Normality of the residuals, we'll use a Shapiro-Wilk's test and we'll also use Levene's test for homogeneity of variances.
 
 ```{r}
 # Test for equal variances between groups
@@ -780,12 +780,12 @@ If I wanted to control my overall type I error rate at an $\alpha=0.05$ and used
         ```
         i. Examine the data frame using the `str(Levi)` command. Is the Plant column already a factor, or do you need to convert it to a factor?
     b) Make a boxplot of the data. Do any assumptions necessary for ANOVA appear to be violated?
-    c) Test the equal variance assumption using Bartlett's test.
+    c) Test the equal variance assumption using Levene's test.
     d) Fit an ANOVA model to these data and test if the residuals have a normal distribution using the Shapiro-Wilks test.
 
 6. The dataset `iris` is available on R and can be loaded by the entering the command `data('iris')` at your R prompt. This famous data set contains the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for $n_{i}=50$ flowers from each of $3$ species of iris. The species of iris are  _setosa_, _versicolor_, and _virginica_. We will be examining the relationship between sepal width and the species of these irises. Denote the mean value of all setosa flowers as $\mu_{setosa}$ and similar notation for the other species.
     a) Make a boxplot of the data. Do any assumptions necessary for ANOVA appear to be violated?
-    b) Test the equal variance assumption of ANOVA using Bartlett's test.
+    b) Test the equal variance assumption of ANOVA using Levene's test.
     c) Do the ANOVA test and test the normality of the residual terms by making a QQplot and doing the Shapiro-Wilk's test.
     d) Examine the ANOVA table. What is the p-value for testing the hypotheses
     $$\begin{aligned}

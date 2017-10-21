@@ -25,7 +25,7 @@
 <meta name="author" content="Derek L. Sonderegger">
 
 
-<meta name="date" content="2017-10-20">
+<meta name="date" content="2017-10-21">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -603,7 +603,7 @@ Hostility &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
 model &lt;-<span class="st"> </span><span class="kw">lm</span>( HLT ~<span class="st"> </span>Method, <span class="dt">data=</span>Hostility )
 <span class="kw">autoplot</span>(model, <span class="dt">which=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</code></pre></div>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-211-1.png" width="672" /></p>
-<p>To examine the Normality of the residuals, we’ll use a Shapiro-Wilk’s test and we’ll also use Bartlett’s test for homogeneity of variances.</p>
+<p>To examine the Normality of the residuals, we’ll use a Shapiro-Wilk’s test and we’ll also use Levene’s test for homogeneity of variances.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Test for equal variances between groups</span>
 car::<span class="kw">leveneTest</span>(HLT~Method, <span class="dt">data=</span>Hostility)</code></pre></div>
 <pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
@@ -948,13 +948,13 @@ For this data, the following group means can be calculated as <span class="math 
 <li>Examine the data frame using the <code>str(Levi)</code> command. Is the Plant column already a factor, or do you need to convert it to a factor?</li>
 </ol></li>
 <li>Make a boxplot of the data. Do any assumptions necessary for ANOVA appear to be violated?</li>
-<li>Test the equal variance assumption using Bartlett’s test.</li>
+<li>Test the equal variance assumption using Levene’s test.</li>
 <li><p>Fit an ANOVA model to these data and test if the residuals have a normal distribution using the Shapiro-Wilks test.</p></li>
 </ol></li>
 <li>The dataset <code>iris</code> is available on R and can be loaded by the entering the command <code>data('iris')</code> at your R prompt. This famous data set contains the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for <span class="math inline">\(n_{i}=50\)</span> flowers from each of <span class="math inline">\(3\)</span> species of iris. The species of iris are <em>setosa</em>, <em>versicolor</em>, and <em>virginica</em>. We will be examining the relationship between sepal width and the species of these irises. Denote the mean value of all setosa flowers as <span class="math inline">\(\mu_{setosa}\)</span> and similar notation for the other species.
 <ol style="list-style-type: lower-alpha">
 <li>Make a boxplot of the data. Do any assumptions necessary for ANOVA appear to be violated?</li>
-<li>Test the equal variance assumption of ANOVA using Bartlett’s test.</li>
+<li>Test the equal variance assumption of ANOVA using Levene’s test.</li>
 <li>Do the ANOVA test and test the normality of the residual terms by making a QQplot and doing the Shapiro-Wilk’s test.</li>
 <li>Examine the ANOVA table. What is the p-value for testing the hypotheses <span class="math display">\[\begin{aligned}
 H_{0} &amp;:\,      \mu_{setosa}=\mu_{virginica}=\mu_{versicolor} \\

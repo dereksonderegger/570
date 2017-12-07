@@ -705,7 +705,7 @@ _Eventually, your job will be to figure out what analysis to conduct, what assum
       facet_grid(. ~ model) 
     ```
     
-    a) For the simple model graph, draw a horizontal line at the height of the overall mean, representing predicted value of a new observation. Next, draw the the corresponding residuals $y_{ij}-\bar{y}_{\cdot\cdot}$ as vertical lines from the data points to the overall mean. Similarly draw horizontal lines for the group means in the complex model and represent the residuals for the complex model $y_{ij}-\bar{y}_{i\cdot}$ as vertical lines from the data points to the group means. In this case, does it appear that the average residual is significantly larger in the simple model than the complex?
+    a) For the simple model graph, draw a horizontal line at the height of the overall mean, representing predicted value of a new observation. Next, draw the the corresponding residuals $y_{ij}-\bar{y}_{\cdot\cdot}$ as vertical lines from the data points to the overall mean. Similarly draw horizontal lines for the group means in the complex model and represent the residuals for the complex model $y_{ij}-\bar{y}_{i\cdot}$ as vertical lines from the data points to the group means. In this case, does it appear that the average residual is significantly larger in the simple model than the complex? _Hint: Don't try to do this in R, but rather do this using a pencil and paper._
     
     b) To show that the complex is a significantly better model, fill in the empty boxes in the ANOVA table.
         
@@ -738,7 +738,7 @@ _Eventually, your job will be to figure out what analysis to conduct, what assum
     ```
     
     For this data, the following group means can be calculated as $\bar{y}_{i\cdot} = (4.42, 5.21, 4.58)$ and the overall mean is $\bar{y}_{\cdot \cdot}=4.73$.
-    a) For the simple model graph, draw the corresponding residuals $y_{ij}-\bar{y}_{\cdot\cdot}$ as vertical lines from the data point to the overall mean. Similarly draw the residuals for the complex model $y_{ij}-\bar{y}_{i\cdot}$ as vertical lines from the data points to the group means.  In this case, does it appear that the average residual is significantly larger in the simple model than the complex?
+    a) For the simple model graph, draw the corresponding residuals $y_{ij}-\bar{y}_{\cdot\cdot}$ as vertical lines from the data point to the overall mean. Similarly draw the residuals for the complex model $y_{ij}-\bar{y}_{i\cdot}$ as vertical lines from the data points to the group means.  In this case, does it appear that the average residual is significantly larger in the simple model than the complex? _Again, just draw predicted values and residuals by hand._
     b) To show that the complex not a significantly better model, fill in the empty boxes in the ANOVA table.
     
         |  Source    |     df     |      SS        |       MS      |     F      |   p-value    |
@@ -763,7 +763,7 @@ _Eventually, your job will be to figure out what analysis to conduct, what assum
         i. Find the estimate of $\mu$. That is, calculate $\hat{\mu}=\bar{y}_{\cdot\cdot}$ which is the overall mean of all the data. Therefore the predicted value for a new observation in any group would be $\hat{y}_{ij}=\hat{\mu}=\bar{y}_{\cdot\cdot}$ and we can calculate $SSE_{simple}$
         ii. Calculate $$SSE_{simple}=\sum_{i=1}^{3}\sum_{j=1}^{4} e_{ij}^2=\sum_{i=1}^{3}\sum_{j=1}^{4}\left(y_{ij}-\hat{y}_{ij}\right)^{2}=\sum_{i=1}^{3}\sum_{j=1}^{4}\left(y_{ij}-\bar{y}_{\cdot\cdot}\right)^{2}$$
     c) Create the ANOVA table using your results in part (b).
-    d) Create the ANOVA tablue using R by typing in the data set and fitting the appropriate model using the `lm()` and `anova()` commands.
+    d) Create the ANOVA table using R by typing in the data set and fitting the appropriate model using the `lm()` and `anova()` commands.
 
 4. Suppose that for a project I did four separate t-tests and the resulting p-values were
     

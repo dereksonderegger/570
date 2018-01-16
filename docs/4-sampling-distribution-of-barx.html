@@ -25,7 +25,7 @@
 <meta name="author" content="Derek L. Sonderegger">
 
 
-<meta name="date" content="2017-10-21">
+<meta name="date" content="2018-01-16">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -297,31 +297,31 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">4.1</span> Enlightening Example</h2>
 <p>Suppose we are sampling from a population that has a mean of <span class="math inline">\(\mu=5\)</span> and is skewed. For this example, I’ll use a Chi-squared distribution with parameter <span class="math inline">\(\nu=5\)</span>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Population is a Chi-sq distribution with df=5 </span>
-PopDist &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">20</span>,<span class="dt">length=</span><span class="dv">10000</span>)) %&gt;%
+PopDist &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">20</span>,<span class="dt">length=</span><span class="dv">10000</span>)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">density=</span><span class="kw">dchisq</span>(x,<span class="dt">df=</span><span class="dv">5</span>))
 
-<span class="kw">ggplot</span>(PopDist, <span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>density)) +
-<span class="st">  </span><span class="kw">geom_area</span>(<span class="dt">fill=</span><span class="st">&#39;salmon&#39;</span>) +
+<span class="kw">ggplot</span>(PopDist, <span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>density)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_area</span>(<span class="dt">fill=</span><span class="st">&#39;salmon&#39;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&#39;Population Distribution&#39;</span>)</code></pre></div>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-79-1.png" width="672" /></p>
 <p>We want to estimate the mean <span class="math inline">\(\mu\)</span> and take a random sample of <span class="math inline">\(n=5\)</span>. Lets do this a few times and notice that the sample mean is never exactly 5, but is a bit off from that.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="dv">5</span>  <span class="co"># Our Sample Size!</span>
-mosaic::<span class="kw">do</span>(<span class="dv">3</span>) *<span class="st"> </span>{
+mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">3</span>) <span class="op">*</span><span class="st"> </span>{
   Sample.Data &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">x =</span> <span class="kw">rchisq</span>(n,<span class="dt">df=</span><span class="dv">5</span>) )
-  Sample.Data %&gt;%<span class="st"> </span><span class="kw">summarise</span>( <span class="dt">xbar =</span> <span class="kw">mean</span>(x) )
+  Sample.Data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>( <span class="dt">xbar =</span> <span class="kw">mean</span>(x) )
 }</code></pre></div>
 <pre><code>##       xbar
 ## 1 4.842655
 ## 2 4.636505
 ## 3 5.550255</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="dv">5</span>
-SampDist &lt;-<span class="st"> </span>mosaic::<span class="kw">do</span>(<span class="dv">10000</span>) *<span class="st"> </span>{
+SampDist &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">10000</span>) <span class="op">*</span><span class="st"> </span>{
   Sample.Data &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">x =</span> <span class="kw">rchisq</span>(n,<span class="dt">df=</span><span class="dv">5</span>) )
-  Sample.Data %&gt;%<span class="st"> </span><span class="kw">summarise</span>( <span class="dt">xbar =</span> <span class="kw">mean</span>(x)     ) 
+  Sample.Data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>( <span class="dt">xbar =</span> <span class="kw">mean</span>(x)     ) 
 }</code></pre></div>
 <p>We will compare the population distribution to the sampling distribution graphically.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>() +
-<span class="st">  </span><span class="kw">geom_area</span>(<span class="dt">data=</span>PopDist, <span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>density), <span class="dt">fill=</span><span class="st">&#39;salmon&#39;</span>) +
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_area</span>(<span class="dt">data=</span>PopDist, <span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>density), <span class="dt">fill=</span><span class="st">&#39;salmon&#39;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">data=</span>SampDist, <span class="kw">aes</span>(<span class="dt">x=</span>xbar, <span class="dt">y=</span>..density..),
                   <span class="dt">binwidth=</span>.<span class="dv">1</span>,
                   <span class="dt">alpha=</span>.<span class="dv">6</span>)     <span class="co"># alpha is the opacity of the layer</span></code></pre></div>
@@ -385,11 +385,11 @@ SampDist &lt;-<span class="st"> </span>mosaic::<span class="kw">do</span>(<span 
 <p><span class="math display">\[\frac{-10}{\left(\frac{50}{\sqrt{n}}\right)}  \le\frac{\bar{X}-\mu_{\bar{X}}}{\sigma_{\bar{X}}}\le    \frac{10}{\left(\frac{50}{\sqrt{n}}\right)}\]</span></p>
 <p><span class="math display">\[\frac{-10}{\left(\frac{50}{\sqrt{n}}\right)}  \le Z\le    \frac{10}{\left(\frac{50}{\sqrt{n}}\right)}\]</span></p>
 <p>Next we look in our standard normal table to find a <span class="math inline">\(z\)</span>-value such that <span class="math inline">\(P\left(-z\le Z\le z\right)=0.95\)</span> and that value is <span class="math inline">\(z=1.96\)</span>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">z=</span> <span class="kw">seq</span>(-<span class="dv">3</span>, <span class="dv">3</span>, <span class="dt">length=</span><span class="dv">1000</span>) ) %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">z=</span> <span class="kw">seq</span>(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="dt">length=</span><span class="dv">1000</span>) ) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>( <span class="dt">y =</span> <span class="kw">dnorm</span>(z) )
-<span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x=</span>z, <span class="dt">y=</span>y)) +
-<span class="st">  </span><span class="kw">geom_line</span>() +
-<span class="st">  </span><span class="kw">geom_area</span>( <span class="dt">data =</span> data %&gt;%<span class="st"> </span><span class="kw">filter</span>(<span class="kw">abs</span>(z) &lt;=<span class="st"> </span><span class="fl">1.96</span>), <span class="dt">fill=</span><span class="st">&#39;grey&#39;</span>, <span class="dt">alpha=</span>.<span class="dv">7</span>) +
+<span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x=</span>z, <span class="dt">y=</span>y)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_area</span>( <span class="dt">data =</span> data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="kw">abs</span>(z) <span class="op">&lt;=</span><span class="st"> </span><span class="fl">1.96</span>), <span class="dt">fill=</span><span class="st">&#39;grey&#39;</span>, <span class="dt">alpha=</span>.<span class="dv">7</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_text</span>( <span class="dt">x=</span><span class="dv">0</span>, <span class="dt">y=</span>.<span class="dv">2</span>, <span class="dt">label=</span><span class="st">&#39;95%&#39;</span>)</code></pre></div>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-83-1.png" width="672" /></p>
 <p>So all we need to do is solve the following equation for <span class="math inline">\(n\)</span> <span class="math display">\[1.96  =   \frac{10}{ \left( \frac{50}{\sqrt{n}} \right) }\]</span> <span class="math display">\[\frac{1.96}{10}\left(50\right)    =   \sqrt{n}\]</span> <span class="math display">\[96    \approx n\]</span></p>
@@ -415,12 +415,12 @@ SampDist &lt;-<span class="st"> </span>mosaic::<span class="kw">do</span>(<span 
     &amp;=  P\left(Z\ge1.58\right) \\
     &amp;=  0.0571 \end{aligned}\]</span></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Answer obtained via simulation</span>
-SampDist &lt;-<span class="st"> </span>mosaic::<span class="kw">do</span>(<span class="dv">10000</span>) *{                     <span class="co"># make 10,000</span>
-  Sample &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">x=</span> <span class="kw">rexp</span>(<span class="dt">n=</span><span class="dv">40</span>, <span class="dt">rate=</span><span class="dv">1</span>/<span class="dv">2</span> ) )   <span class="co"># simulated xbar </span>
-  Sample %&gt;%<span class="st"> </span><span class="kw">summarise</span>( <span class="dt">xbar =</span> <span class="kw">mean</span>( x )         )   <span class="co"># values</span>
+SampDist &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">10000</span>) <span class="op">*</span>{                     <span class="co"># make 10,000</span>
+  Sample &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">x=</span> <span class="kw">rexp</span>(<span class="dt">n=</span><span class="dv">40</span>, <span class="dt">rate=</span><span class="dv">1</span><span class="op">/</span><span class="dv">2</span> ) )   <span class="co"># simulated xbar </span>
+  Sample <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>( <span class="dt">xbar =</span> <span class="kw">mean</span>( x )         )   <span class="co"># values</span>
 }
-SampDist %&gt;%<span class="st">                                         </span><span class="co"># What proportion of those</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Greater =</span> <span class="kw">ifelse</span>(xbar &gt;=<span class="st"> </span><span class="fl">2.5</span>, <span class="dv">1</span>, <span class="dv">0</span>)) %&gt;%<span class="st">    </span><span class="co"># xbar values are</span>
+SampDist <span class="op">%&gt;%</span><span class="st">                                         </span><span class="co"># What proportion of those</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Greater =</span> <span class="kw">ifelse</span>(xbar <span class="op">&gt;=</span><span class="st"> </span><span class="fl">2.5</span>, <span class="dv">1</span>, <span class="dv">0</span>)) <span class="op">%&gt;%</span><span class="st">    </span><span class="co"># xbar values are</span>
 <span class="st">  </span><span class="kw">summarise</span>( <span class="dt">ProportionGreater =</span> <span class="kw">mean</span>(Greater) )     <span class="co"># greater than 2.5?</span></code></pre></div>
 <pre><code>##   ProportionGreater
 ## 1            0.0687</code></pre>

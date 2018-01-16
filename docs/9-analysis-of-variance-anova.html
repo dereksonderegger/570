@@ -25,7 +25,7 @@
 <meta name="author" content="Derek L. Sonderegger">
 
 
-<meta name="date" content="2017-10-21">
+<meta name="date" content="2018-01-16">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -470,14 +470,14 @@ H_{a} &amp;:        \textrm{at least on mean is different than the others}
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">LAI =</span> <span class="kw">c</span>(<span class="fl">2.88</span>, <span class="fl">2.87</span>, <span class="fl">3.23</span>, <span class="fl">3.24</span>, <span class="fl">3.33</span>, 
                            <span class="fl">3.83</span>, <span class="fl">3.86</span>, <span class="fl">4.03</span>, <span class="fl">3.87</span>, <span class="fl">4.16</span>,
                            <span class="fl">4.79</span>, <span class="fl">5.03</span>, <span class="fl">4.99</span>, <span class="fl">4.79</span>, <span class="fl">5.05</span>),
-                   <span class="dt">Species =</span> <span class="kw">factor</span>( <span class="kw">rep</span>(<span class="dv">1</span>:<span class="dv">3</span>, <span class="dt">each=</span><span class="dv">5</span>) ) )
+                   <span class="dt">Species =</span> <span class="kw">factor</span>( <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">each=</span><span class="dv">5</span>) ) )
 <span class="kw">str</span>(data)</code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    15 obs. of  2 variables:
 ##  $ LAI    : num  2.88 2.87 3.23 3.24 3.33 3.83 3.86 4.03 3.87 4.16 ...
 ##  $ Species: Factor w/ 3 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;: 1 1 1 1 1 2 2 2 2 2 ...</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span><span class="kw">lm</span>(LAI ~<span class="st"> </span>Species, <span class="dt">data=</span>data)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span><span class="kw">lm</span>(LAI <span class="op">~</span><span class="st"> </span>Species, <span class="dt">data=</span>data)</code></pre></div>
 <p>As is always good practice, the first thing we should do is graph our data.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x=</span>Species, <span class="dt">y=</span>LAI)) +<span class="st"> </span><span class="kw">geom_boxplot</span>()</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x=</span>Species, <span class="dt">y=</span>LAI)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>()</code></pre></div>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-200-1.png" width="672" /></p>
 <p>It looks like the equal variance question isn’t a worry and it certainly appears that the mean value for each species is not the same. I expect that we will certainly prefer the complex model in this case.</p>
 <p>The <code>lm()</code> command is the command that does all the calculations necessary to fit an ANOVA model. This command returns a list object that is useful for subsequent analysis and it is up to the use to know what subsequent functions to call that answer questions of interest.</p>
@@ -502,14 +502,14 @@ H_{a} &amp;:        \textrm{at least on mean is different than the others}
 <span class="co"># complex model (which we will call the cell means model), we </span>
 <span class="co"># must add a -1 to the formula passed to lm()</span>
 <span class="co"># We&#39;ll explore this later in this chapter.</span>
-model<span class="fl">.2</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(LAI ~<span class="st"> </span>Species -<span class="st"> </span><span class="dv">1</span>, <span class="dt">data=</span>data)
-<span class="kw">coef</span>(model<span class="fl">.2</span>)</code></pre></div>
+model.<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(LAI <span class="op">~</span><span class="st"> </span>Species <span class="op">-</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data=</span>data)
+<span class="kw">coef</span>(model.<span class="dv">2</span>)</code></pre></div>
 <pre><code>## Species1 Species2 Species3 
 ##     3.11     3.95     4.93</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># alternatively we could use the lsmeans package</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># alternatively we could use the emmeans package</span>
 <span class="co"># using either model representation </span>
-lsmeans::<span class="kw">lsmeans</span>(model, ~Species)</code></pre></div>
-<pre><code>##  Species lsmean         SE df lower.CL upper.CL
+emmeans<span class="op">::</span><span class="kw">emmeans</span>(model, <span class="op">~</span>Species)</code></pre></div>
+<pre><code>##  Species emmean         SE df lower.CL upper.CL
 ##  1         3.11 0.07492218 12 2.946759 3.273241
 ##  2         3.95 0.07492218 12 3.786759 4.113241
 ##  3         4.93 0.07492218 12 4.766759 5.093241
@@ -520,31 +520,31 @@ lsmeans::<span class="kw">lsmeans</span>(model, ~Species)</code></pre></div>
 <div id="multiple-comparisons" class="section level2">
 <h2><span class="header-section-number">9.4</span> Multiple comparisons</h2>
 <p>Recall that for every statistical test there is some probability of making a type I error and we controlled that probability by setting a desired <span class="math inline">\(\alpha\)</span>-level. If I were to do 20 t-tests of samples with identical means, I would expect, on average, that one of them would turn up to be significantly different just by chance. If I am making a large number of tests, each with a type I error rate of <span class="math inline">\(\alpha\)</span>, I am practically guaranteed to make at least one type I error.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(-<span class="dv">1035</span>) <span class="co"># So that I get the same dataset each time I build the book.</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="op">-</span><span class="dv">1035</span>) <span class="co"># So that I get the same dataset each time I build the book.</span>
 k &lt;-<span class="st"> </span><span class="dv">5</span> ; n &lt;-<span class="st"> </span><span class="dv">10</span> 
-mydata &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">mu=</span><span class="kw">rep</span>(<span class="dv">0</span>,k*n), <span class="dt">Grp=</span><span class="kw">factor</span>(<span class="kw">rep</span>(<span class="dv">1</span>:k, <span class="dt">each=</span>n))) %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>( <span class="dt">Y=</span>mu+<span class="kw">rnorm</span>(k*n), <span class="dt">Group=</span>Grp) 
-letterdata &lt;-<span class="st"> </span><span class="kw">lm</span>( Y~Grp, <span class="dt">data=</span>mydata ) %&gt;%
-<span class="st">  </span>lsmeans::<span class="kw">lsmeans</span>( pairwise~Grp) %&gt;%
-<span class="st">  </span>lsmeans::<span class="kw">cld</span>( <span class="dt">Letters=</span>letters, <span class="dt">adjust=</span><span class="st">&#39;none&#39;</span> ) %&gt;%<span class="st">  </span><span class="co"># Force no p-value adjustment</span>
-<span class="st">  </span>dplyr::<span class="kw">select</span>(Grp, .group) %&gt;%
-<span class="st">  </span>dplyr::<span class="kw">mutate</span>( <span class="dt">Y =</span> <span class="dv">3</span> )</code></pre></div>
+mydata &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">mu=</span><span class="kw">rep</span>(<span class="dv">0</span>,k<span class="op">*</span>n), <span class="dt">Grp=</span><span class="kw">factor</span>(<span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span>k, <span class="dt">each=</span>n))) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>( <span class="dt">Y=</span>mu<span class="op">+</span><span class="kw">rnorm</span>(k<span class="op">*</span>n), <span class="dt">Group=</span>Grp) 
+letterdata &lt;-<span class="st"> </span><span class="kw">lm</span>( Y<span class="op">~</span>Grp, <span class="dt">data=</span>mydata ) <span class="op">%&gt;%</span>
+<span class="st">  </span>emmeans<span class="op">::</span><span class="kw">emmeans</span>( <span class="op">~</span><span class="st"> </span>Grp) <span class="op">%&gt;%</span>
+<span class="st">  </span>emmeans<span class="op">::</span><span class="kw">cld</span>( <span class="dt">Letters=</span>letters, <span class="dt">adjust=</span><span class="st">&#39;none&#39;</span> ) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># Force no p-value adjustment</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(Grp, .group) <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>( <span class="dt">Y =</span> <span class="dv">3</span> )</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Visualize a made up data set: mydata</span>
-<span class="kw">ggplot</span>(mydata, <span class="kw">aes</span>(<span class="dt">x=</span>Grp, <span class="dt">y=</span>Y)) +
-<span class="st">  </span><span class="kw">geom_boxplot</span>() +
-<span class="st">  </span><span class="kw">geom_text</span>(<span class="dt">data=</span>letterdata, <span class="kw">aes</span>(<span class="dt">label=</span>.group)) +
-<span class="st">  </span><span class="kw">ggtitle</span>( <span class="kw">expression</span>(<span class="kw">paste</span>(X[ij],<span class="st">&#39; ~ N(0,1)   where &#39;</span>, n[i], <span class="st">&#39; = 10&#39;</span>)) ) +
-<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&#39;Group&#39;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&#39;Response&#39;</span>)</code></pre></div>
+<span class="kw">ggplot</span>(mydata, <span class="kw">aes</span>(<span class="dt">x=</span>Grp, <span class="dt">y=</span>Y)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_text</span>(<span class="dt">data=</span>letterdata, <span class="kw">aes</span>(<span class="dt">label=</span>.group)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">ggtitle</span>( <span class="kw">expression</span>(<span class="kw">paste</span>(X[ij],<span class="st">&#39; ~ N(0,1)   where &#39;</span>, n[i], <span class="st">&#39; = 10&#39;</span>)) ) <span class="op">+</span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&#39;Group&#39;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&#39;Response&#39;</span>)</code></pre></div>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-205-1.png" width="672" /></p>
 <p>With 5 groups, there are 10 different comparisons to be made, and just by random chance, one of those comparisons might come up significant. In this sampled data, performing 10 different two sample t-tests without making any adjustments to our <span class="math inline">\(\alpha\)</span>-level, we find one statistically significant difference even though all of the data came from a standard normal distribution.</p>
 <p>I want to be able to control the family-wise error rate so that the probability that I make one or more type I errors in the set of m of tests I’m considering is <span class="math inline">\(\alpha\)</span>. One general way to do this is called the Bonferroni method. In this method each test is performed using a significance level of <span class="math inline">\(\alpha/m\)</span>. (In practice I will multiple each p-value by m and compare each p-value to my desired family-wise <span class="math inline">\(\alpha\)</span>-level). Unfortunately for large <span class="math inline">\(m\)</span>, this results in unacceptably high levels of type II errors. Fortunately there are other methods for addressing the multiple comparisons issue and they are built into R.</p>
 <p>John Tukey’s test of “Honestly Significant Differences” is commonly used to address the multiple comparisons issue when examining all possible pairwise contrasts. This method is available in R by the function in several different methods. This test is near optimal when each group has the same number of samples (which is often termed “a balanced design”), but becomes more conservative (fails to detect differences) as the design becomes more unbalanced. In extremely unbalanced cases, it is preferable to use a Bonferroni adjustment.</p>
-<p>Using function <code>lsmeans::lsmeans()</code> function, which by default does Tukey’s adjustment, the adjusted p-value for the difference between groups 1 and 4 is no longer significant.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span><span class="kw">lm</span>(Y ~<span class="st"> </span>Grp, mydata)
-t1 &lt;-<span class="st"> </span>lsmeans::<span class="kw">lsmeans</span>(model, pairwise ~<span class="st"> </span>Grp)
+<p>Using function <code>emmeans::emmeans()</code> function, which by default does Tukey’s adjustment, the adjusted p-value for the difference between groups 1 and 4 is no longer significant.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>Grp, mydata)
+t1 &lt;-<span class="st"> </span>emmeans<span class="op">::</span><span class="kw">emmeans</span>(model, pairwise <span class="op">~</span><span class="st"> </span>Grp)
 t1</code></pre></div>
-<pre><code>## $lsmeans
-##  Grp     lsmean        SE df   lower.CL   upper.CL
+<pre><code>## $emmeans
+##  Grp     emmean        SE df   lower.CL   upper.CL
 ##  1    0.4408853 0.3161521 45 -0.1958777 1.07764834
 ##  2   -0.1164715 0.3161521 45 -0.7532346 0.52029152
 ##  3    0.2009232 0.3161521 45 -0.4358399 0.83768620
@@ -568,8 +568,9 @@ t1</code></pre></div>
 ## 
 ## P value adjustment: tukey method for comparing a family of 5 estimates</code></pre>
 <p>It is also straightforward to generate the letter display using the function <code>cld()</code> which stands for <em>compact letter display</em>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lsmeans::<span class="kw">cld</span>( t1, <span class="dt">Letters=</span>letters )</code></pre></div>
-<pre><code>##  Grp     lsmean        SE df   lower.CL   upper.CL .group
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">emmeans<span class="op">::</span><span class="kw">emmeans</span>(model, <span class="op">~</span><span class="st"> </span>Grp) <span class="op">%&gt;%</span><span class="st">    </span><span class="co"># don&#39;t have the pairwise here or else</span>
+<span class="st">  </span>emmeans<span class="op">::</span><span class="kw">cld</span>( <span class="dt">Letters=</span>letters )     <span class="co"># the cld() function gets confused...</span></code></pre></div>
+<pre><code>##  Grp     emmean        SE df   lower.CL   upper.CL .group
 ##  4   -0.5476682 0.3161521 45 -1.1844312 0.08909484  a    
 ##  5   -0.1835186 0.3161521 45 -0.8202817 0.45324440  a    
 ##  2   -0.1164715 0.3161521 45 -0.7532346 0.52029152  a    
@@ -581,7 +582,7 @@ t1</code></pre></div>
 ## significance level used: alpha = 0.05</code></pre>
 <p>Likewise if we are testing the ANOVA assumption of equal variance, we cannot rely on doing all pairwise F-tests and we must use a method that controls the overall error rate. The multiple comparisons version of <code>var.test()</code> is Levene’s test which is called similarly to <code>lm()</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># leveneTest() is a function that is defined in the &quot;car&quot; package.</span>
-car::<span class="kw">leveneTest</span>(Y~Group, mydata)</code></pre></div>
+car<span class="op">::</span><span class="kw">leveneTest</span>(Y<span class="op">~</span>Group, mydata)</code></pre></div>
 <pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
 ##       Df F value Pr(&gt;F)
 ## group  4  0.6173 0.6524
@@ -594,18 +595,18 @@ Hostility &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
           <span class="dv">66</span>,<span class="dv">73</span>,<span class="dv">69</span>,<span class="dv">66</span>,<span class="dv">77</span>,<span class="dv">73</span>,<span class="dv">71</span>,<span class="dv">70</span>,<span class="dv">74</span>),
   <span class="dt">Method =</span> <span class="kw">c</span>( <span class="kw">rep</span>(<span class="st">&#39;M1&#39;</span>,<span class="dv">8</span>), <span class="kw">rep</span>(<span class="st">&#39;M2&#39;</span>,<span class="dv">7</span>), <span class="kw">rep</span>(<span class="st">&#39;M3&#39;</span>,<span class="dv">9</span>) ) )</code></pre></div>
 <p>The first thing we will do (as we should do in all data analyses) is to graph our data.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(Hostility, <span class="kw">aes</span>(<span class="dt">x=</span>Method, <span class="dt">y=</span>HLT)) +
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(Hostility, <span class="kw">aes</span>(<span class="dt">x=</span>Method, <span class="dt">y=</span>HLT)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre></div>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-210-1.png" width="672" /></p>
 <p>These box plots make it clear that there is a difference between the three groups (at least group M1 is different from M2 or M3). An ANOVA model assumes equal variance between groups and that the residuals are normally distributed. Based on the box plot, the equal variance assumption might be suspect (although with only <span class="math inline">\(\approx 8\)</span> observations per group, it might not be bad). We’ll examine a QQ-plot of the residuals to consider the normality.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Is there equal variance in residuals across groups?</span>
 <span class="co"># Are the residuals approximately normal?</span>
-model &lt;-<span class="st"> </span><span class="kw">lm</span>( HLT ~<span class="st"> </span>Method, <span class="dt">data=</span>Hostility )
+model &lt;-<span class="st"> </span><span class="kw">lm</span>( HLT <span class="op">~</span><span class="st"> </span>Method, <span class="dt">data=</span>Hostility )
 <span class="kw">autoplot</span>(model, <span class="dt">which=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</code></pre></div>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-211-1.png" width="672" /></p>
 <p>To examine the Normality of the residuals, we’ll use a Shapiro-Wilk’s test and we’ll also use Levene’s test for homogeneity of variances.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Test for equal variances between groups</span>
-car::<span class="kw">leveneTest</span>(HLT~Method, <span class="dt">data=</span>Hostility)</code></pre></div>
+car<span class="op">::</span><span class="kw">leveneTest</span>(HLT<span class="op">~</span>Method, <span class="dt">data=</span>Hostility)</code></pre></div>
 <pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
 ##       Df F value Pr(&gt;F)
 ## group  2  1.6817 0.2102
@@ -618,7 +619,7 @@ car::<span class="kw">leveneTest</span>(HLT~Method, <span class="dt">data=</span
 ## data:  resid(model)
 ## W = 0.98358, p-value = 0.9516</code></pre>
 <p>The results of the Shapiro-Wilks test agree with the QQ-plot, and Levene’s test fails to detect differences in the variances between the two groups. This is not to say that there might not be a difference, only that we do not detect one.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span><span class="kw">lm</span>( HLT ~<span class="st"> </span>Method, <span class="dt">data=</span>Hostility )
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span><span class="kw">lm</span>( HLT <span class="op">~</span><span class="st"> </span>Method, <span class="dt">data=</span>Hostility )
 <span class="kw">anova</span>(model)</code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
@@ -630,9 +631,9 @@ car::<span class="kw">leveneTest</span>(HLT~Method, <span class="dt">data=</span
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Because the p-value in the ANOVA table is smaller than <span class="math inline">\(\alpha=0.05\)</span>, we can reject the null hypothesis of equal means and conclude that at least one of the means is different from the others. Our estimate of <span class="math inline">\(\sigma^{2}\)</span> is <span class="math inline">\(\hat{\sigma}^2=18.44\)</span> so the estimate of <span class="math inline">\(\sigma\)</span> is <span class="math inline">\(\hat{\sigma}=\sqrt{18.44}=4.294\)</span>.</p>
 <p>To find out which means are different we look at the group means and confidence intervals as well as all the pairwise contrasts between the groups. We will control for the multiple comparisons issue by using Tukey’s method.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lsmeans::<span class="kw">lsmeans</span>(model, pairwise~Method)</code></pre></div>
-<pre><code>## $lsmeans
-##  Method   lsmean       SE df lower.CL upper.CL
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">emmeans<span class="op">::</span><span class="kw">emmeans</span>(model, pairwise<span class="op">~</span>Method)</code></pre></div>
+<pre><code>## $emmeans
+##  Method   emmean       SE df lower.CL upper.CL
 ##  M1     86.75000 1.518172 21 83.59279 89.90721
 ##  M2     75.57143 1.622994 21 72.19623 78.94663
 ##  M3     71.00000 1.431347 21 68.02335 73.97665
@@ -647,7 +648,7 @@ car::<span class="kw">leveneTest</span>(HLT~Method, <span class="dt">data=</span
 ## 
 ## P value adjustment: tukey method for comparing a family of 3 estimates</code></pre>
 <p>If we feel uncomfortable with the equal variance assumption, we can do each pairwise t-test using non-pooled variance and then correct for the multiple comparisons using Bonferroni’s p-value correction. If we have <span class="math inline">\(k=3\)</span> groups, the we have <span class="math inline">\(k(k-1)/2=3\)</span> different comparisons, so I will calculate each p-value and multiply by <span class="math inline">\(3\)</span>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pairwise.t.test</span>(Hostility$HLT, Hostility$Method, 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pairwise.t.test</span>(Hostility<span class="op">$</span>HLT, Hostility<span class="op">$</span>Method, 
                 <span class="dt">pool.sd=</span><span class="ot">FALSE</span>, <span class="dt">p.adjust.method=</span><span class="st">&#39;none&#39;</span>)</code></pre></div>
 <pre><code>## 
 ##  Pairwise comparisons using t tests with non-pooled SD 
@@ -659,7 +660,7 @@ car::<span class="kw">leveneTest</span>(HLT~Method, <span class="dt">data=</span
 ## M3 2.2e-05 0.0175
 ## 
 ## P value adjustment method: none</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pairwise.t.test</span>(Hostility$HLT, Hostility$Method, 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pairwise.t.test</span>(Hostility<span class="op">$</span>HLT, Hostility<span class="op">$</span>Method, 
                 <span class="dt">pool.sd=</span><span class="ot">FALSE</span>, <span class="dt">p.adjust.method=</span><span class="st">&#39;bonferroni&#39;</span>)</code></pre></div>
 <pre><code>## 
 ##  Pairwise comparisons using t tests with non-pooled SD 
@@ -683,7 +684,7 @@ car::<span class="kw">leveneTest</span>(HLT~Method, <span class="dt">data=</span
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-217-1.png" width="672" /></p>
 <p>I could write this interpretation of the model as the “offset” model which is <span class="math display">\[Y_{ij}=\mu+\tau_{i}+\epsilon_{ij}\]</span> where <span class="math inline">\(\mu\)</span> is the mean of group 1 and <span class="math inline">\(\tau_{i}\)</span> is each population’s offset from group 1. Because group 1 can’t be offset from itself, this forces <span class="math inline">\(\tau_{1}=0\)</span>.</p>
 <p>Notice that this representation of the complex model has 4 parameters (aside from <span class="math inline">\(\sigma\)</span>), but it has an additional constraint so we still only have 3 parameters that can vary (just as the cell means model has 3 means).</p>
-<p>The cell means model and the offset model really are the same model, just looked at slightly differently. They have the same number of parameters, and produce the same predicted values for <span class="math inline">\(\hat{y}_{ij}\)</span> and therefore have the same sum of squares, etc. The only difference is that one is might be more convenient depending on the question the investigator is asking. Actually in all the previous work in this chapter, we’ve been using the offset representation but <code>lsmeans::lsmeans()</code> is smart enough to recognize when we want the cell means model.</p>
+<p>The cell means model and the offset model really are the same model, just looked at slightly differently. They have the same number of parameters, and produce the same predicted values for <span class="math inline">\(\hat{y}_{ij}\)</span> and therefore have the same sum of squares, etc. The only difference is that one is might be more convenient depending on the question the investigator is asking. Actually in all the previous work in this chapter, we’ve been using the offset representation but <code>emmeans::emmeans()</code> is smart enough to recognize when we want the cell means model.</p>
 <p>Another way to write the cell means model is as <span class="math inline">\(Y_{ij}=\mu+\tau_{i}+\epsilon_{ij}\)</span> but with the constraint that <span class="math inline">\(\mu=0\)</span>. It doesn’t matter which constraint you use so long as you know which is being used because the interpretation of the values changes (group mean versus an offset from the reference group).</p>
 </div>
 <div id="model-representations-in-r" class="section level3">
@@ -695,19 +696,19 @@ car::<span class="kw">leveneTest</span>(HLT~Method, <span class="dt">data=</span
 <span class="co">#   Unless you have a -1, R implicitly  </span>
 <span class="co">#   adds a &quot;+1&quot; to the formula, so </span>
 <span class="co">#   so the following statements are equivalent</span>
-c.model<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(y ~<span class="st">     </span>grp, <span class="dt">data=</span>fake.data)
-c.model<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(y ~<span class="st"> </span><span class="dv">1</span> +<span class="st"> </span>grp, <span class="dt">data=</span>fake.data)
-<span class="kw">coef</span>(c.model<span class="fl">.1</span>)</code></pre></div>
+c.model.<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st">     </span>grp, <span class="dt">data=</span>fake.data)
+c.model.<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>grp, <span class="dt">data=</span>fake.data)
+<span class="kw">coef</span>(c.model.<span class="dv">1</span>)</code></pre></div>
 <pre><code>## (Intercept)        grp2        grp3 
 ##           4           5          10</code></pre>
 <p>In the above case, we see R is giving the mean of group 1 and then the two offsets.</p>
 <p>To force R to use the cell means model, we force R to use the constraint that <span class="math inline">\(\mu=0\)</span> by including a -1 in the model formula.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">c.model<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(y ~<span class="st"> </span>-<span class="dv">1</span> +<span class="st"> </span>grp, <span class="dt">data=</span>fake.data)
-<span class="kw">coef</span>(c.model<span class="fl">.1</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">c.model.<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span><span class="op">-</span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>grp, <span class="dt">data=</span>fake.data)
+<span class="kw">coef</span>(c.model.<span class="dv">1</span>)</code></pre></div>
 <pre><code>## grp1 grp2 grp3 
 ##    4    9   14</code></pre>
 <p>Returning the hostility example, recall we used the cell means model and we can extract parameter coefficient estimates using the coef function and ask for the appropriate confidence intervals using <code>confint()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span><span class="kw">lm</span>(HLT ~<span class="st"> </span>-<span class="dv">1</span> +<span class="st"> </span>Method, <span class="dt">data=</span>Hostility)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span><span class="kw">lm</span>(HLT <span class="op">~</span><span class="st"> </span><span class="op">-</span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>Method, <span class="dt">data=</span>Hostility)
 <span class="kw">coef</span>(model)</code></pre></div>
 <pre><code>## MethodM1 MethodM2 MethodM3 
 ## 86.75000 75.57143 71.00000</code></pre>
@@ -717,7 +718,7 @@ c.model<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw"
 ## MethodM2 72.19623 78.94663
 ## MethodM3 68.02335 73.97665</code></pre>
 <p>We can use the offset model by removing -1 term from the formula.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span><span class="kw">lm</span>(HLT ~<span class="st"> </span>Method, <span class="dt">data=</span>Hostility)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span><span class="kw">lm</span>(HLT <span class="op">~</span><span class="st"> </span>Method, <span class="dt">data=</span>Hostility)
 <span class="kw">coef</span>(model)</code></pre></div>
 <pre><code>## (Intercept)    MethodM2    MethodM3 
 ##    86.75000   -11.17857   -15.75000</code></pre>
@@ -745,8 +746,8 @@ c.model<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw"
 <p>In the analysis of variance table calculated by <code>anova()</code>, R has to decide which simple model to compare the complex model to. If you used the offset representation, then when group is removed from the model, we are left with the model <code>Y ~ 1</code>, which is the simple model. If we wrote the complex model using the cell means representation, then when group is removed, we are left with the model <code>Y ~ -1</code> which is the bad model.</p>
 <p>When we produce the ANOVA table compare the complex to the bad model, the difference in number of parameters between the models will be 3 (because I have to add three parameters to go from a signal line of 0, to three estimated group means). The ANOVA table comparing simple model to the complex will have a difference in number of parameters of 2 (because the simple mean has 1 estimated value compared to 3 estimated values).</p>
 <p><strong>Example</strong>. Hostility Scores We return to the hostility scores example and we will create the two different model representations in R and see how the ANOVA table produced by R differs between the two.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">offset.representation &lt;-<span class="st"> </span><span class="kw">lm</span>(HLT ~<span class="st"> </span>Method, <span class="dt">data=</span>Hostility)
-cell.representation   &lt;-<span class="st"> </span><span class="kw">lm</span>(HLT ~<span class="st"> </span>Method -<span class="dv">1</span>, <span class="dt">data=</span> Hostility)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">offset.representation &lt;-<span class="st"> </span><span class="kw">lm</span>(HLT <span class="op">~</span><span class="st"> </span>Method, <span class="dt">data=</span>Hostility)
+cell.representation   &lt;-<span class="st"> </span><span class="kw">lm</span>(HLT <span class="op">~</span><span class="st"> </span>Method <span class="op">-</span><span class="dv">1</span>, <span class="dt">data=</span> Hostility)
 
 <span class="co"># This is the ANOVA table we want, comparing Complex to Simple</span>
 <span class="co"># Notice the df of the difference between the models is 3-1 = 2</span>
@@ -772,7 +773,7 @@ cell.representation   &lt;-<span class="st"> </span><span class="kw">lm</span>(H
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Because the bad model is extremely bad in this case, the F-statistic for comparing the complex to the bad model is extremely large (<span class="math inline">\(F=2631\)</span>). The complex model is also superior to the simple model, but not by as emphatically (<span class="math inline">\(F=29\)</span>).</p>
 <p>One way to be certain which models you are comparing is to explicitly choose the two models.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">simple &lt;-<span class="st"> </span><span class="kw">lm</span>(HLT ~<span class="st"> </span><span class="dv">1</span>, <span class="dt">data=</span>Hostility)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">simple &lt;-<span class="st"> </span><span class="kw">lm</span>(HLT <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data=</span>Hostility)
 
 <span class="co"># create the ANOVA table comparing the complex model (using the </span>
 <span class="co"># cell means representation) to the simple model. </span>
@@ -788,7 +789,7 @@ cell.representation   &lt;-<span class="st"> </span><span class="kw">lm</span>(H
 ## 2     21  387.21  2    1090.6 29.574 7.806e-07 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<p>My recommendation is to always fit the offset model and if you are interested in all of the mean values, just access those using the <code>lsmeans::lsmeans()</code> function. If you are interested in the offsets, then you access them through the base functions <code>coef()</code> and <code>conf()</code>.</p>
+<p>My recommendation is to always fit the offset model and, if you are interested in all of the mean values, just access the group means and difference between groups using the <code>emmeans::emmeans()</code> function. If you are interested in the just the offsets, then you can access them through the base functions <code>coef()</code> and <code>conf()</code> or pick them out of your <code>emmeans</code> output.</p>
 </div>
 </div>
 <div id="exercises-8" class="section level2">
@@ -799,7 +800,7 @@ cell.representation   &lt;-<span class="st"> </span><span class="kw">lm</span>(H
 <li><p>For this exercise, we will compare the Sums of Squared Error for the simple <span class="math inline">\(y_{ij}=\mu+\epsilon_{ij}\)</span> and complex <span class="math inline">\(y_{ij}=\mu_{i}+\epsilon_{ij}\)</span> model and clearly, in the data presented below, the complex model fits the data better. The group means <span class="math inline">\(\bar{y}_{i\cdot}\)</span> are 3, 13, 5, and 9, while the overall mean is <span class="math inline">\(\bar{y}_{\cdot\cdot}=7.5\)</span>.<br />
 <img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-225-1.png" width="672" /></p>
 <ol style="list-style-type: lower-alpha">
-<li><p>For the simple model graph, draw a horizontal line at the height of the overall mean, representing predicted value of a new observation. Next, draw the the corresponding residuals <span class="math inline">\(y_{ij}-\bar{y}_{\cdot\cdot}\)</span> as vertical lines from the data points to the overall mean. Similarly draw horizontal lines for the group means in the complex model and represent the residuals for the complex model <span class="math inline">\(y_{ij}-\bar{y}_{i\cdot}\)</span> as vertical lines from the data points to the group means. In this case, does it appear that the average residual is significantly larger in the simple model than the complex?</p></li>
+<li><p>For the simple model graph, draw a horizontal line at the height of the overall mean, representing predicted value of a new observation. Next, draw the the corresponding residuals <span class="math inline">\(y_{ij}-\bar{y}_{\cdot\cdot}\)</span> as vertical lines from the data points to the overall mean. Similarly draw horizontal lines for the group means in the complex model and represent the residuals for the complex model <span class="math inline">\(y_{ij}-\bar{y}_{i\cdot}\)</span> as vertical lines from the data points to the group means. In this case, does it appear that the average residual is significantly larger in the simple model than the complex? <em>Hint: Don’t try to do this in R, but rather do this using a pencil and paper.</em></p></li>
 <li><p>To show that the complex is a significantly better model, fill in the empty boxes in the ANOVA table.</p>
 <table>
 <thead>
@@ -845,7 +846,7 @@ cell.representation   &lt;-<span class="st"> </span><span class="kw">lm</span>(H
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-226-1.png" width="672" /></p>
 For this data, the following group means can be calculated as <span class="math inline">\(\bar{y}_{i\cdot} = (4.42, 5.21, 4.58)\)</span> and the overall mean is <span class="math inline">\(\bar{y}_{\cdot \cdot}=4.73\)</span>.
 <ol style="list-style-type: lower-alpha">
-<li>For the simple model graph, draw the corresponding residuals <span class="math inline">\(y_{ij}-\bar{y}_{\cdot\cdot}\)</span> as vertical lines from the data point to the overall mean. Similarly draw the residuals for the complex model <span class="math inline">\(y_{ij}-\bar{y}_{i\cdot}\)</span> as vertical lines from the data points to the group means. In this case, does it appear that the average residual is significantly larger in the simple model than the complex?</li>
+<li>For the simple model graph, draw the corresponding residuals <span class="math inline">\(y_{ij}-\bar{y}_{\cdot\cdot}\)</span> as vertical lines from the data point to the overall mean. Similarly draw the residuals for the complex model <span class="math inline">\(y_{ij}-\bar{y}_{i\cdot}\)</span> as vertical lines from the data points to the group means. In this case, does it appear that the average residual is significantly larger in the simple model than the complex? <em>Again, just draw predicted values and residuals by hand.</em></li>
 <li><p>To show that the complex not a significantly better model, fill in the empty boxes in the ANOVA table.</p>
 <table>
 <thead>
@@ -916,7 +917,7 @@ For this data, the following group means can be calculated as <span class="math 
 <li>Calculate <span class="math display">\[SSE_{simple}=\sum_{i=1}^{3}\sum_{j=1}^{4} e_{ij}^2=\sum_{i=1}^{3}\sum_{j=1}^{4}\left(y_{ij}-\hat{y}_{ij}\right)^{2}=\sum_{i=1}^{3}\sum_{j=1}^{4}\left(y_{ij}-\bar{y}_{\cdot\cdot}\right)^{2}\]</span></li>
 </ol></li>
 <li>Create the ANOVA table using your results in part (b).</li>
-<li>Create the ANOVA tablue using R by typing in the data set and fitting the appropriate model using the <code>lm()</code> and <code>anova()</code> commands.</li>
+<li>Create the ANOVA table using R by typing in the data set and fitting the appropriate model using the <code>lm()</code> and <code>anova()</code> commands.</li>
 </ol></li>
 <li><p>Suppose that for a project I did four separate t-tests and the resulting p-values were</p>
 <table>

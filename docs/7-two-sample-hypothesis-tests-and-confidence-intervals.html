@@ -25,7 +25,7 @@
 <meta name="author" content="Derek L. Sonderegger">
 
 
-<meta name="date" content="2017-10-21">
+<meta name="date" content="2018-01-16">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -318,13 +318,13 @@ H_{a}:\,\delta  &amp;\ne    0
 ##  $ Taps : int  246 248 250 252 248 250 246 248 245 250 ...
 ##  $ Group: Factor w/ 2 levels &quot;Caffeine&quot;,&quot;NoCaffeine&quot;: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
 <p>The first thing we should do is, as always, graph the data.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(CaffeineTaps, <span class="kw">aes</span>(<span class="dt">x=</span>Taps)) +
-<span class="st">  </span><span class="kw">geom_dotplot</span>( <span class="dt">binwidth=</span>.<span class="dv">2</span>) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">facet_grid</span>( Group ~<span class="st"> </span>. )  <span class="co"># two graphs stacked by Group (Caffeine vs non)</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(CaffeineTaps, <span class="kw">aes</span>(<span class="dt">x=</span>Taps)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_dotplot</span>( <span class="dt">binwidth=</span>.<span class="dv">2</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">facet_grid</span>( Group <span class="op">~</span><span class="st"> </span>. )  <span class="co"># two graphs stacked by Group (Caffeine vs non)</span></code></pre></div>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-115-1.png" width="672" /></p>
 <p>From this view, it looks like the caffeine group has a higher tapping rate. It will be helpful to summarize the difference between these two groups with a single statistic by calculating the mean for each group and then calculate the difference between the group means.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">CaffeineTaps %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">group_by</span>(Group) %&gt;%<span class="st">  </span><span class="co"># group the summary stats by Treatment group</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">CaffeineTaps <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(Group) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># group the summary stats by Treatment group</span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">xbar=</span><span class="kw">mean</span>(Taps), <span class="dt">s=</span><span class="kw">sd</span>(Taps))</code></pre></div>
 <pre><code>## # A tibble: 2 x 3
 ##        Group  xbar        s
@@ -332,10 +332,10 @@ H_{a}:\,\delta  &amp;\ne    0
 ## 1   Caffeine 248.3 2.213594
 ## 2 NoCaffeine 244.8 2.394438</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># No Caffeine  -  Caffeine</span>
-<span class="fl">244.8</span> -<span class="st"> </span><span class="fl">248.3</span></code></pre></div>
+<span class="fl">244.8</span> <span class="op">-</span><span class="st"> </span><span class="fl">248.3</span></code></pre></div>
 <pre><code>## [1] -3.5</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">CaffeineTaps %&gt;%<span class="st"> </span><span class="kw">group_by</span>(Group) %&gt;%
-<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">xbar=</span><span class="kw">mean</span>(Taps)) %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">CaffeineTaps <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Group) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">xbar=</span><span class="kw">mean</span>(Taps)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">d =</span> <span class="kw">diff</span>(xbar))</code></pre></div>
 <pre><code>## # A tibble: 1 x 1
 ##       d
@@ -347,7 +347,7 @@ H_{a}:\,\delta  &amp;\ne    0
 <p>The key idea is “How could the data have turned out if the null hypothesis is true?” If the null hypothesis is true, then the caffeinated/non-caffeinated group treatment had no effect on the tap rate and it was just random chance that the caffeinated group got a larger percentage of fast tappers. That is to say the group variable has no relationship to tap rate. I could have just as easily assigned the fast tappers to the non-caffeinated group purely by random chance. So our simulation technique is <strong>to shuffle the group labels and then calculate a difference between the group means</strong>!</p>
 <p>We can perform this shuffling with the following code:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># shuffle(): takes an input column and reorders it randomly</span>
-CaffeineTaps %&gt;%<span class="st"> </span><span class="kw">mutate</span>(<span class="dt">ShuffledGroup =</span> mosaic::<span class="kw">shuffle</span>(Group))</code></pre></div>
+CaffeineTaps <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">ShuffledGroup =</span> mosaic<span class="op">::</span><span class="kw">shuffle</span>(Group))</code></pre></div>
 <pre><code>##    Taps      Group ShuffledGroup
 ## 1   246   Caffeine      Caffeine
 ## 2   248   Caffeine      Caffeine
@@ -370,21 +370,21 @@ CaffeineTaps %&gt;%<span class="st"> </span><span class="kw">mutate</span>(<span
 ## 19  246 NoCaffeine    NoCaffeine
 ## 20  242 NoCaffeine      Caffeine</code></pre>
 <p>We can then calculate the mean difference but this time using the randomly generated groups, and now the non-caffeinated group just happens to have a slightly higher mean tap rate just by the random sorting into two groups.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">CaffeineTaps %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>( <span class="dt">ShuffledGroup =</span> mosaic::<span class="kw">shuffle</span>(Group) ) %&gt;%
-<span class="st">  </span><span class="kw">group_by</span>( ShuffledGroup )  %&gt;%
-<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">xbar=</span><span class="kw">mean</span>(Taps)) %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">CaffeineTaps <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>( <span class="dt">ShuffledGroup =</span> mosaic<span class="op">::</span><span class="kw">shuffle</span>(Group) ) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>( ShuffledGroup )  <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">xbar=</span><span class="kw">mean</span>(Taps)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">d.star =</span> <span class="kw">diff</span>(xbar)) </code></pre></div>
 <pre><code>## # A tibble: 1 x 1
 ##   d.star
 ##    &lt;dbl&gt;
 ## 1    2.1</code></pre>
 <p>We could repeat this shuffling several times and see the possible values we might have seen if the null hypothesis is correct and the treatment group doesn’t matter at all.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mosaic::<span class="kw">do</span>(<span class="dv">5</span>) *<span class="st"> </span>{
-  CaffeineTaps %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>( <span class="dt">ShuffledGroup =</span> mosaic::<span class="kw">shuffle</span>(Group) ) %&gt;%
-<span class="st">  </span><span class="kw">group_by</span>( ShuffledGroup )  %&gt;%
-<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">xbar=</span><span class="kw">mean</span>(Taps)) %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">5</span>) <span class="op">*</span><span class="st"> </span>{
+  CaffeineTaps <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>( <span class="dt">ShuffledGroup =</span> mosaic<span class="op">::</span><span class="kw">shuffle</span>(Group) ) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>( ShuffledGroup )  <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">xbar=</span><span class="kw">mean</span>(Taps)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">d.star =</span> <span class="kw">diff</span>(xbar))  
 }</code></pre></div>
 <pre><code>##   d.star
@@ -394,24 +394,24 @@ CaffeineTaps %&gt;%<span class="st"> </span><span class="kw">mutate</span>(<span
 ## 4    0.3
 ## 5   -0.1</code></pre>
 <p>Of course, five times isn’t sufficient to understand the sampling distribution of the mean difference under the null hypothesis, we should do more.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">PermutationDist &lt;-<span class="st"> </span>mosaic::<span class="kw">do</span>(<span class="dv">10000</span>) *<span class="st"> </span>{
-  CaffeineTaps %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>( <span class="dt">ShuffledGroup =</span> mosaic::<span class="kw">shuffle</span>(Group) ) %&gt;%
-<span class="st">  </span><span class="kw">group_by</span>( ShuffledGroup )  %&gt;%
-<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">xbar=</span><span class="kw">mean</span>(Taps)) %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">PermutationDist &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">10000</span>) <span class="op">*</span><span class="st"> </span>{
+  CaffeineTaps <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>( <span class="dt">ShuffledGroup =</span> mosaic<span class="op">::</span><span class="kw">shuffle</span>(Group) ) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>( ShuffledGroup )  <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">xbar=</span><span class="kw">mean</span>(Taps)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">d.star =</span> <span class="kw">diff</span>(xbar))  
 }</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(PermutationDist, <span class="kw">aes</span>(<span class="dt">x=</span>d.star)) +
-<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span>.<span class="dv">2</span>) +
-<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&#39;Permutation dist. of d* assuming H0 is true&#39;</span>) +
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(PermutationDist, <span class="kw">aes</span>(<span class="dt">x=</span>d.star)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span>.<span class="dv">2</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&#39;Permutation dist. of d* assuming H0 is true&#39;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">xlab</span>(<span class="st">&#39;d*&#39;</span>)</code></pre></div>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-123-1.png" width="672" /></p>
 <p>We have almost no cases where the randomly assigned groups produced a difference as extreme as the actual observed difference of <span class="math inline">\(d=-3.5\)</span>. We can calculate the percentage of the sampling distribution of the difference in means that is farther from zero</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">PermutationDist %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>( <span class="dt">MoreExtreme =</span> <span class="kw">ifelse</span>( <span class="kw">abs</span>(d.star) &gt;=<span class="st"> </span><span class="fl">3.5</span>, <span class="dv">1</span>, <span class="dv">0</span>)) %&gt;%
-<span class="st">  </span><span class="kw">summarise</span>( <span class="dt">p.value1 =</span> <span class="kw">sum</span>(MoreExtreme)/<span class="kw">n</span>(),        <span class="co"># these are all the</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">PermutationDist <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>( <span class="dt">MoreExtreme =</span> <span class="kw">ifelse</span>( <span class="kw">abs</span>(d.star) <span class="op">&gt;=</span><span class="st"> </span><span class="fl">3.5</span>, <span class="dv">1</span>, <span class="dv">0</span>)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>( <span class="dt">p.value1 =</span> <span class="kw">sum</span>(MoreExtreme)<span class="op">/</span><span class="kw">n</span>(),        <span class="co"># these are all the</span>
              <span class="dt">p.value2 =</span> <span class="kw">mean</span>(MoreExtreme),           <span class="co"># same calculation</span>
-             <span class="dt">p.value3 =</span> <span class="kw">mean</span>( <span class="kw">abs</span>(d.star) &gt;=<span class="st"> </span><span class="fl">3.5</span> ) ) <span class="co"># but more verbose</span></code></pre></div>
+             <span class="dt">p.value3 =</span> <span class="kw">mean</span>( <span class="kw">abs</span>(d.star) <span class="op">&gt;=</span><span class="st"> </span><span class="fl">3.5</span> ) ) <span class="co"># but more verbose</span></code></pre></div>
 <pre><code>##   p.value1 p.value2 p.value3
 ## 1   0.0058   0.0058   0.0058</code></pre>
 <p>We see that only 58/10,000 simulations of data produced assuming <span class="math inline">\(H_{0}\)</span> is true produced a <span class="math inline">\(d^{*}\)</span> value more extreme than our observed difference in sample means so we can reject the null hypothesis <span class="math inline">\(H_{0}:\mu_{nc}-\mu_{c}=0\)</span> in favor of the alternative <span class="math inline">\(H_{a}:\mu_{nc}-\mu_{c}\ne 0\)</span> at an <span class="math inline">\(\alpha=0.05\)</span> or any other reasonable <span class="math inline">\(\alpha\)</span> level.</p>
@@ -423,24 +423,24 @@ H_{0}:\,\delta  &amp;\ge    0 \\
 H_{a}:\,\delta  &amp;  &lt;    0 
 \end{aligned}\]</span></p>
 <p>The creation of the sampling distribution of the mean difference <span class="math inline">\(d^*\)</span> is identical to our previous technique because if our observed difference d is so negative that it is incompatible with the hypothesis that <span class="math inline">\(\delta=0\)</span> then it must also be incompatible with any positive value of <span class="math inline">\(\delta\)</span>, so we evaluate the consistency of our data with the value of <span class="math inline">\(\delta\)</span> that is closest to the observed d while still being true to the null hypothesis. Thus for either the the one-sided (i.e. <span class="math inline">\(\delta&lt;0\)</span>) or the two-sided case (i.e. <span class="math inline">\(\delta \ne 0\)</span>), we generate the sampling distribution of <span class="math inline">\(d^*\)</span> in the same way. The only difference in the analysis is at the end when we calculate the p-value and don’t consider the positive tail. That is, the p-value is the percent of simulations where <span class="math inline">\(d^*&lt;d\)</span>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">PermutationDist %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">summarize</span>( <span class="dt">p.value =</span> <span class="kw">mean</span>( d.star &lt;=<span class="st"> </span>-<span class="fl">3.5</span> ))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">PermutationDist <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">summarize</span>( <span class="dt">p.value =</span> <span class="kw">mean</span>( d.star <span class="op">&lt;=</span><span class="st"> </span><span class="op">-</span><span class="fl">3.5</span> ))</code></pre></div>
 <pre><code>##   p.value
 ## 1  0.0028</code></pre>
 <p>and we see that the p-value is approximately cut in half by ignoring the upper tail, which makes sense considering the observed symmetry in the sampling distribution of <span class="math inline">\(d^*\)</span>.</p>
 <p>In general, we prefer to use a two-sided test because if the two-sided test leads us to reject the null hypothesis then so would the appropriate one-sided hypothesis (except in the case where the alternative was chosen before the data was collected and the observed data was in the other tail). Second, by using a two-sample test, it prevents us from from “tricking” ourselves when we don’t know the which group should have a higher mean going into the experiment, but after seeing the data, thinking we should have known and using the less stringent test. Some statisticians go so far as to say that using a 1-sided test is outright fraudulent. Generally, we’ll concentrate on two-sided tests as they are the most widely acceptable.</p>
 <p>Notice that the corresponding confidence interval gives a similar inference.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">BootDist &lt;-<span class="st"> </span>mosaic::<span class="kw">do</span>(<span class="dv">10000</span>)*{
-  CaffeineTaps %&gt;%
-<span class="st">    </span><span class="kw">group_by</span>(Group) %&gt;%
-<span class="st">    </span>mosaic::<span class="kw">resample</span>() %&gt;%
-<span class="st">    </span><span class="kw">summarise</span>( <span class="dt">xbar=</span><span class="kw">mean</span>(Taps) ) %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">BootDist &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">10000</span>)<span class="op">*</span>{
+  CaffeineTaps <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">group_by</span>(Group) <span class="op">%&gt;%</span>
+<span class="st">    </span>mosaic<span class="op">::</span><span class="kw">resample</span>() <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">summarise</span>( <span class="dt">xbar=</span><span class="kw">mean</span>(Taps) ) <span class="op">%&gt;%</span>
 <span class="st">    </span><span class="kw">summarise</span>( <span class="dt">d.star =</span> <span class="kw">diff</span>(xbar)  ) }</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(BootDist, <span class="kw">aes</span>(<span class="dt">x=</span>d.star)) +
-<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span>.<span class="dv">2</span>) +
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(BootDist, <span class="kw">aes</span>(<span class="dt">x=</span>d.star)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span>.<span class="dv">2</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&#39;Bootstrap distribution of d*&#39;</span>)</code></pre></div>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-127-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">CI &lt;-<span class="st"> </span><span class="kw">quantile</span>( BootDist$d.star, <span class="dt">probs=</span><span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>) )
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">CI &lt;-<span class="st"> </span><span class="kw">quantile</span>( BootDist<span class="op">$</span>d.star, <span class="dt">probs=</span><span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>) )
 CI</code></pre></div>
 <pre><code>##      2.5%     97.5% 
 ## -5.400000 -1.515152</code></pre>
@@ -467,7 +467,7 @@ CI</code></pre></div>
 <p><span class="math display">\[V_{1}=\frac{2.39^{2}}{10}=0.5712\;\;\;\textrm{and}\;\;\;V_{2}=\frac{2.21^{2}}{10}=0.4884\]</span> and <span class="math display">\[df=\frac{\left(0.5712+0.4884\right)^{2}}{\frac{\left(0.5712\right)^{2}}{9}+\frac{\left(0.4884\right)^{2}}{9}}=17.89\]</span></p>
 <p>So now we can compute our p-value as</p>
 <p><span class="math display">\[\textrm{p.value}=P\left(T_{17.89}&lt;-3.39\right)\]</span></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mosaic::<span class="kw">xpt</span>(-<span class="fl">3.39</span>, <span class="dt">df=</span><span class="fl">17.89</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mosaic<span class="op">::</span><span class="kw">xpt</span>(<span class="op">-</span><span class="fl">3.39</span>, <span class="dt">df=</span><span class="fl">17.89</span>)</code></pre></div>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-129-1.png" width="672" /></p>
 <pre><code>## [1] 0.00164277</code></pre>
 <p>In a similar fashion, we can calculate the confidence interval in our usual fashion</p>
@@ -485,7 +485,7 @@ CI</code></pre></div>
 <span class="co"># t.test( NonCaffeine, Caffeine )</span>
 
 <span class="co"># Using the mosaic version that allows me to give it a formula</span>
-mosaic::<span class="kw">t.test</span>(Taps ~<span class="st"> </span>Group, <span class="dt">data=</span>CaffeineTaps)</code></pre></div>
+mosaic<span class="op">::</span><span class="kw">t.test</span>(Taps <span class="op">~</span><span class="st"> </span>Group, <span class="dt">data=</span>CaffeineTaps)</code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
@@ -520,8 +520,8 @@ H_{0}:  &amp;\mu_{nc}-\mu_{c}  =  0   \\
 H_{a}:  &amp;\mu_{nc}-\mu_{c} \ne 0 
 \end{aligned}\]</span></p>
 <p>First we have to calculate the summary statistics (along with the pooled <span class="math inline">\(\sigma_{pooled}\)</span>).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">CaffeineTaps %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">group_by</span>(Group) %&gt;%<span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">CaffeineTaps <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(Group) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">xbar.i =</span> <span class="kw">mean</span>(Taps),   <span class="co"># sample mean for each group</span>
             <span class="dt">s2.i   =</span> <span class="kw">var</span>(Taps),    <span class="co"># sample variances for each group</span>
             <span class="dt">s.i    =</span> <span class="kw">sd</span>(Taps),     <span class="co"># sample standard deviations for each group</span>
@@ -531,18 +531,18 @@ H_{a}:  &amp;\mu_{nc}-\mu_{c} \ne 0
 ##       &lt;fctr&gt;  &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;int&gt;
 ## 1   Caffeine  248.3 4.900000 2.213594    10
 ## 2 NoCaffeine  244.8 5.733333 2.394438    10</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">CaffeineTaps %&gt;%
-<span class="st">  </span><span class="kw">group_by</span>(Group) %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">CaffeineTaps <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(Group) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarize</span>(  <span class="dt">n.i =</span> <span class="kw">n</span>(),             
-             <span class="dt">s2.i =</span> <span class="kw">var</span>(Taps) ) %&gt;%<span class="st">     </span>
-<span class="st">  </span><span class="kw">summarize</span>( <span class="dt">s2.p =</span> <span class="kw">sum</span>( (n.i<span class="dv">-1</span>)*s2.i ) /<span class="st"> </span>( <span class="kw">sum</span>(n.i)-<span class="dv">2</span> ),
+             <span class="dt">s2.i =</span> <span class="kw">var</span>(Taps) ) <span class="op">%&gt;%</span><span class="st">     </span>
+<span class="st">  </span><span class="kw">summarize</span>( <span class="dt">s2.p =</span> <span class="kw">sum</span>( (n.i<span class="op">-</span><span class="dv">1</span>)<span class="op">*</span>s2.i ) <span class="op">/</span><span class="st"> </span>( <span class="kw">sum</span>(n.i)<span class="op">-</span><span class="dv">2</span> ),
              <span class="dt">s.p  =</span> <span class="kw">sqrt</span>(s2.p) ) </code></pre></div>
 <pre><code>## # A tibble: 1 x 2
 ##       s2.p     s.p
 ##      &lt;dbl&gt;   &lt;dbl&gt;
 ## 1 5.316667 2.30579</code></pre>
 <p>Next we can calculate <span class="math display">\[t_{18}=\frac{\left(244.8-248.3\right)-0}{2.31\sqrt{\frac{1}{10}+\frac{1}{10}}}=-3.39\]</span></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p.value &lt;-<span class="st"> </span><span class="dv">2</span> *<span class="st"> </span><span class="kw">pt</span>(-<span class="fl">3.39</span>, <span class="dt">df=</span><span class="dv">18</span>)   <span class="co"># 2-sided test, so multiply by 2</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p.value &lt;-<span class="st"> </span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="kw">pt</span>(<span class="op">-</span><span class="fl">3.39</span>, <span class="dt">df=</span><span class="dv">18</span>)   <span class="co"># 2-sided test, so multiply by 2</span>
 p.value</code></pre></div>
 <pre><code>## [1] 0.003262969</code></pre>
 <p>The associated <span class="math inline">\(95\%\)</span> confidence interval is <span class="math display">\[\left(\bar{x}_{1}-\bar{x}_{2}\right)\pm t_{n_{1}+n_{2}-2}^{1-\alpha/2}\;\left(s_{pool}\sqrt{\frac{1}{n_{1}}+\frac{1}{n_{2}}}\right)\]</span></p>
@@ -555,7 +555,7 @@ p.value</code></pre></div>
 <p>This p-value and <span class="math inline">\(95\%\)</span> confidence interval are quite similar to the values we got in the case where we assumed unequal variances.</p>
 <p>As usual, these calculations are pretty annoying to do by hand and we wish to instead do them using R. Again the function <code>t.test()</code> will do the annoying calculations for us.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Do the t-test</span>
-mosaic::<span class="kw">t.test</span>( Taps ~<span class="st"> </span>Group, <span class="dt">data=</span>CaffeineTaps, <span class="dt">var.equal=</span><span class="ot">TRUE</span> ) </code></pre></div>
+mosaic<span class="op">::</span><span class="kw">t.test</span>( Taps <span class="op">~</span><span class="st"> </span>Group, <span class="dt">data=</span>CaffeineTaps, <span class="dt">var.equal=</span><span class="ot">TRUE</span> ) </code></pre></div>
 <pre><code>## 
 ##  Two Sample t-test
 ## 
@@ -568,7 +568,7 @@ mosaic::<span class="kw">t.test</span>( Taps ~<span class="st"> </span>Group, <s
 ##   mean in group Caffeine mean in group NoCaffeine 
 ##                    248.3                    244.8</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Do the t-test</span>
-mosaic::<span class="kw">t.test</span>( Taps ~<span class="st"> </span>Group, <span class="dt">data=</span>CaffeineTaps, <span class="dt">var.equal=</span><span class="ot">TRUE</span>, <span class="dt">conf.level=</span>.<span class="dv">99</span> ) </code></pre></div>
+mosaic<span class="op">::</span><span class="kw">t.test</span>( Taps <span class="op">~</span><span class="st"> </span>Group, <span class="dt">data=</span>CaffeineTaps, <span class="dt">var.equal=</span><span class="ot">TRUE</span>, <span class="dt">conf.level=</span>.<span class="dv">99</span> ) </code></pre></div>
 <pre><code>## 
 ##  Two Sample t-test
 ## 
@@ -592,12 +592,12 @@ Mosquitoes &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
   <span class="dt">Treat =</span> <span class="kw">c</span>( <span class="kw">rep</span>(<span class="st">&#39;Beer&#39;</span>, <span class="dv">25</span>), <span class="kw">rep</span>(<span class="st">&#39;Water&#39;</span>,<span class="dv">18</span>) ) )
 
 <span class="co"># Plot the data</span>
-<span class="kw">ggplot</span>(Mosquitoes, <span class="kw">aes</span>(<span class="dt">x=</span>Number)) +
-<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">1</span>) +
-<span class="st">  </span><span class="kw">facet_grid</span>( Treat ~<span class="st"> </span>. )</code></pre></div>
+<span class="kw">ggplot</span>(Mosquitoes, <span class="kw">aes</span>(<span class="dt">x=</span>Number)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">1</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_grid</span>( Treat <span class="op">~</span><span class="st"> </span>. )</code></pre></div>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-136-1.png" width="672" /></p>
 <p>For this experiment and the summary statistic that captures the difference we are trying to understand is <span class="math inline">\(d=\bar{x}_{w}-\bar{x}_{b}\)</span> where <span class="math inline">\(\bar{x}_{w}\)</span> is the sample mean number of mosquitoes attracted by the water group and <span class="math inline">\(\bar{x}_{b}\)</span> is the sample mean number of mosquitoes attracted by the beer group. Because of the order we chose for the subtraction, a negative value for d is supportive of the alternative hypothesis that mosquitoes are more attracted to beer drinkers.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Mosquitoes %&gt;%<span class="st"> </span><span class="kw">group_by</span>(Treat) %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Mosquitoes <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Treat) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">xbar.i =</span> <span class="kw">mean</span>(Number),
             <span class="dt">s2.i   =</span> <span class="kw">var</span>(Number),
             <span class="dt">s.i    =</span> <span class="kw">sd</span>(Number),
@@ -612,40 +612,40 @@ Mosquitoes &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
     &amp;=  19.22-23.6              \\
     &amp;=  -4.37\bar{7}
     \end{aligned}\]</span> The hypothesis test and confidence interval to see if this is statistically significant evidence to conclude that beer increases attractiveness to mosquitos is as follows. First we perform the hypothesis test by creating the sampling distribution of <span class="math inline">\(d^*\)</span> assuming <span class="math inline">\(H_0\)</span> is true by repeatedly shuffling the group labels and calculating differences.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">PermutationDist &lt;-<span class="st"> </span>mosaic::<span class="kw">do</span>(<span class="dv">10000</span>) *{
-  Mosquitoes %&gt;%
-<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">ShuffledTreat =</span> mosaic::<span class="kw">shuffle</span>(Treat)) %&gt;%
-<span class="st">    </span><span class="kw">group_by</span>( ShuffledTreat )              %&gt;%<span class="st"> </span>
-<span class="st">    </span><span class="kw">summarise</span>( <span class="dt">xbar.i =</span> <span class="kw">mean</span>(Number) )     %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">PermutationDist &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">10000</span>) <span class="op">*</span>{
+  Mosquitoes <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">ShuffledTreat =</span> mosaic<span class="op">::</span><span class="kw">shuffle</span>(Treat)) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">group_by</span>( ShuffledTreat )              <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">summarise</span>( <span class="dt">xbar.i =</span> <span class="kw">mean</span>(Number) )     <span class="op">%&gt;%</span>
 <span class="st">    </span><span class="kw">summarise</span>( <span class="dt">d.star =</span> <span class="kw">diff</span>(xbar.i) )
 }</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(PermutationDist, <span class="kw">aes</span>(<span class="dt">x=</span>d.star)) +
-<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span>.<span class="dv">5</span>) +
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(PermutationDist, <span class="kw">aes</span>(<span class="dt">x=</span>d.star)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span>.<span class="dv">5</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&#39;Sampling Dist. of d* assuming H0 is true&#39;</span>)</code></pre></div>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-139-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p.value &lt;-<span class="st"> </span>PermutationDist %&gt;%
-<span class="st">  </span><span class="kw">summarise</span>( <span class="kw">mean</span>( d.star &lt;=<span class="st"> </span>-<span class="fl">4.377</span> ))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p.value &lt;-<span class="st"> </span>PermutationDist <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>( <span class="kw">mean</span>( d.star <span class="op">&lt;=</span><span class="st"> </span><span class="op">-</span><span class="fl">4.377</span> ))
 p.value</code></pre></div>
 <pre><code>##   mean(d.star &lt;= -4.377)
 ## 1                  2e-04</code></pre>
 <p>The associated confidence interval (lets do a <span class="math inline">\(90\%\)</span> confidence level), is created via bootstrapping.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">BootDist &lt;-<span class="st"> </span>mosaic::<span class="kw">do</span>(<span class="dv">10000</span>)*{
-  Mosquitoes %&gt;%
-<span class="st">    </span><span class="kw">group_by</span>(Treat)                     %&gt;%
-<span class="st">    </span>mosaic::<span class="kw">resample</span>()                  %&gt;%
-<span class="st">    </span><span class="kw">summarise</span>( <span class="dt">xbar.i =</span> <span class="kw">mean</span>(Number) )  %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">BootDist &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">10000</span>)<span class="op">*</span>{
+  Mosquitoes <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">group_by</span>(Treat)                     <span class="op">%&gt;%</span>
+<span class="st">    </span>mosaic<span class="op">::</span><span class="kw">resample</span>()                  <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">summarise</span>( <span class="dt">xbar.i =</span> <span class="kw">mean</span>(Number) )  <span class="op">%&gt;%</span>
 <span class="st">    </span><span class="kw">summarise</span>( <span class="dt">d.star =</span> <span class="kw">diff</span>(xbar.i) )    
 }</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(BootDist, <span class="kw">aes</span>(<span class="dt">x=</span>d.star)) +
-<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span>.<span class="dv">5</span>) +
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(BootDist, <span class="kw">aes</span>(<span class="dt">x=</span>d.star)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span>.<span class="dv">5</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&#39;Bootstrap dist. of d*&#39;</span>)</code></pre></div>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-142-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">quantile</span>( BootDist$d.star, <span class="dt">probs=</span><span class="kw">c</span>(.<span class="dv">05</span>, .<span class="dv">95</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">quantile</span>( BootDist<span class="op">$</span>d.star, <span class="dt">probs=</span><span class="kw">c</span>(.<span class="dv">05</span>, .<span class="dv">95</span>))</code></pre></div>
 <pre><code>##        5%       95% 
 ## -6.336262 -2.449065</code></pre>
 <p>The calculated p-value is extremely small and the associated two-sided 90% confidence interval does not contain 0, so we can conclude that the choice of drink does cause a change in attractiveness to mosquitoes.</p>
 <p>If we wanted to perform the same analysis using asymptotic methods we could do the calculations by hand, or just use R.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mosaic::<span class="kw">t.test</span>( Number ~<span class="st"> </span>Treat, <span class="dt">data=</span>Mosquitoes, 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mosaic<span class="op">::</span><span class="kw">t.test</span>( Number <span class="op">~</span><span class="st"> </span>Treat, <span class="dt">data=</span>Mosquitoes, 
         <span class="dt">var.equal=</span><span class="ot">TRUE</span>, <span class="dt">conf.level=</span><span class="fl">0.90</span>)</code></pre></div>
 <pre><code>## 
 ##  Two Sample t-test
@@ -676,17 +676,17 @@ p.value</code></pre></div>
 ## 6      26   31</code></pre>
 <p>Unfortunately the format of this dataset is not particularly convenient for making graphs. Instead I want to turn this data into a “long” dataset where I have one row per person, not one row per marraige.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Make a dataset that is more convenient for graphing.</span>
-MarriageAges.Long &lt;-<span class="st"> </span>MarriageAges %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Marriage =</span> <span class="kw">factor</span>(<span class="dv">1</span>:<span class="kw">n</span>())) %&gt;%<span class="st">        </span><span class="co"># Give each row a unique ID </span>
-<span class="st">  </span><span class="kw">gather</span>(<span class="st">&#39;Spouse&#39;</span>, <span class="st">&#39;Age&#39;</span>, Husband, Wife) %&gt;%<span class="st">  </span><span class="co"># pivot from Husband/Wife to Spouse/Age</span>
+MarriageAges.Long &lt;-<span class="st"> </span>MarriageAges <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Marriage =</span> <span class="kw">factor</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">n</span>())) <span class="op">%&gt;%</span><span class="st">        </span><span class="co"># Give each row a unique ID </span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="st">&#39;Spouse&#39;</span>, <span class="st">&#39;Age&#39;</span>, Husband, Wife) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># pivot from Husband/Wife to Spouse/Age</span>
 <span class="st">  </span><span class="kw">arrange</span>(Marriage, <span class="kw">desc</span>(Spouse))             <span class="co"># Sort by Marriage, then (Wife,Husband)</span></code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Make a graph of ages, by Spouse Type</span>
-<span class="kw">ggplot</span>(MarriageAges.Long, <span class="kw">aes</span>(<span class="dt">x=</span>Age)) +
-<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">5</span>) +
-<span class="st">  </span><span class="kw">facet_grid</span>(Spouse ~<span class="st"> </span>.) </code></pre></div>
+<span class="kw">ggplot</span>(MarriageAges.Long, <span class="kw">aes</span>(<span class="dt">x=</span>Age)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">5</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_grid</span>(Spouse <span class="op">~</span><span class="st"> </span>.) </code></pre></div>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-147-1.png" width="672" /></p>
 <p>Looking at this view of the data, it doesn’t appear that the husbands tend to be older than the wives. A t-test to see if the average age of husbands is greater than the average age of wives gives an insignificant difference.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mosaic::<span class="kw">t.test</span>( Age ~<span class="st"> </span>Spouse, <span class="dt">data=</span>MarriageAges.Long )</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mosaic<span class="op">::</span><span class="kw">t.test</span>( Age <span class="op">~</span><span class="st"> </span>Spouse, <span class="dt">data=</span>MarriageAges.Long )</code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
@@ -700,10 +700,10 @@ MarriageAges.Long &lt;-<span class="st"> </span>MarriageAges %&gt;%
 ##              34.66667              31.83810</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># t.test( MarriageAges$Husband, MarriageAges$Wife )  # Another way to run the t.test</span></code></pre></div>
 <p>But critically, we are ignoring that while the average ages might not be different, for a given marriage, the husband tends to be older than the wife. Instead of looking at the difference in the means (i.e <span class="math inline">\(d=\bar{h}-\bar{w}\)</span>) we should actually be looking at the mean of the differences <span class="math inline">\(\bar{d}=\frac{1}{n}\sum d_{i}\)</span> where <span class="math inline">\(d_{i}=h_{i}-w_{i}\)</span>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">MarriageAges &lt;-<span class="st"> </span>MarriageAges  %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>( <span class="dt">d =</span> Husband -<span class="st"> </span>Wife )   
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">MarriageAges &lt;-<span class="st"> </span>MarriageAges  <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>( <span class="dt">d =</span> Husband <span class="op">-</span><span class="st"> </span>Wife )   
 
-<span class="kw">ggplot</span>(MarriageAges, <span class="kw">aes</span>(<span class="dt">x =</span> d)) +
+<span class="kw">ggplot</span>(MarriageAges, <span class="kw">aes</span>(<span class="dt">x =</span> d)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">2</span>)</code></pre></div>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-149-1.png" width="672" /></p>
 <p>Given this set of differences, we’d like to know if this data is compatible with the null hypothesis that husbands and wives tend to be the same age versus the alternative that husbands tend to be older. (We could chose the two-sided test as well). <span class="math display">\[\begin{aligned}
@@ -711,7 +711,7 @@ H_{0}:\;\delta  &amp;=  0  \\
 H_{A}:\;\delta  &amp;&gt;  0
 \end{aligned}\]</span></p>
 <p>Because we have reduced our problem to a 1-sample test, we can perform the asymptotic t-test easily enough in R.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>( MarriageAges$d )</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>( MarriageAges<span class="op">$</span>d )</code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -727,30 +727,30 @@ H_{A}:\;\delta  &amp;&gt;  0
 <p>The result is highly statistically significant, and we see the mean difference in ages for the husband to be 2.8 years older.</p>
 <p>To perform the same analysis using resampling methods, we need to be careful to do the resampling correctly. To perform the hypothesis test, we want to create data where the null hypothesis is true. To do this, we’ll shuffle the ages within the marriage so that the husband and the wife have equal probability of being the older spouse. For the bootstrap CI, we need to be certain that we are resampling marriages, not people.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Permutation t-test of delta == 0</span>
-PermDist &lt;-<span class="st"> </span>mosaic::<span class="kw">do</span>(<span class="dv">10000</span>)*{ 
-  MarriageAges.Long            %&gt;%
-<span class="st">    </span><span class="kw">group_by</span>(Marriage)         %&gt;%<span class="st"> </span>
-<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">Age =</span> mosaic::<span class="kw">shuffle</span>(Age)) %&gt;%<span class="st">  </span><span class="co"># shuffle the ages within each marriage</span>
-<span class="st">    </span><span class="kw">summarize</span>(<span class="dt">d.i =</span> <span class="kw">diff</span>(Age))         %&gt;%<span class="st">  </span><span class="co"># Calc Husband - Wife age difference</span>
+PermDist &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">10000</span>)<span class="op">*</span>{ 
+  MarriageAges.Long            <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">group_by</span>(Marriage)         <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">Age =</span> mosaic<span class="op">::</span><span class="kw">shuffle</span>(Age)) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># shuffle the ages within each marriage</span>
+<span class="st">    </span><span class="kw">summarize</span>(<span class="dt">d.i =</span> <span class="kw">diff</span>(Age))         <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># Calc Husband - Wife age difference</span>
 <span class="st">    </span><span class="kw">summarize</span>(<span class="dt">d.bar =</span> <span class="kw">mean</span>(d.i))            <span class="co"># calc the mean difference</span>
 }
-<span class="kw">ggplot</span>(PermDist, <span class="kw">aes</span>(<span class="dt">x=</span>d.bar)) +<span class="st"> </span>
+<span class="kw">ggplot</span>(PermDist, <span class="kw">aes</span>(<span class="dt">x=</span>d.bar)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_histogram</span>()</code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-151-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">PermDist %&gt;%
-<span class="st">  </span><span class="kw">summarize</span>( <span class="dt">p.value =</span> <span class="kw">mean</span>(d.bar &gt;=<span class="st"> </span><span class="fl">2.83</span>) )</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">PermDist <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>( <span class="dt">p.value =</span> <span class="kw">mean</span>(d.bar <span class="op">&gt;=</span><span class="st"> </span><span class="fl">2.83</span>) )</code></pre></div>
 <pre><code>##   p.value
 ## 1       0</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Bootstrap CI for delta</span>
-BootDist &lt;-<span class="st"> </span>mosaic::<span class="kw">do</span>(<span class="dv">10000</span>)*{ 
-  MarriageAges.Long            %&gt;%
-<span class="st">    </span><span class="kw">group_by</span>(Marriage)         %&gt;%<span class="st"> </span>
-<span class="st">    </span><span class="kw">summarize</span>(<span class="dt">d.i =</span> <span class="kw">diff</span>(Age)) %&gt;%<span class="st">  </span><span class="co"># Calc observed Husband - Wife age differences</span>
-<span class="st">      </span>mosaic::<span class="kw">resample</span>()         %&gt;%<span class="st">  </span><span class="co"># resample from the observed differences</span>
+BootDist &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">10000</span>)<span class="op">*</span>{ 
+  MarriageAges.Long            <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">group_by</span>(Marriage)         <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">summarize</span>(<span class="dt">d.i =</span> <span class="kw">diff</span>(Age)) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># Calc observed Husband - Wife age differences</span>
+<span class="st">      </span>mosaic<span class="op">::</span><span class="kw">resample</span>()         <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># resample from the observed differences</span>
 <span class="st">    </span><span class="kw">summarize</span>(<span class="dt">d.bar =</span> <span class="kw">mean</span>(d.i))    <span class="co"># calc the mean difference</span>
 }
-<span class="kw">quantile</span>( BootDist$d.bar, <span class="dt">probs=</span><span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>) )</code></pre></div>
+<span class="kw">quantile</span>( BootDist<span class="op">$</span>d.bar, <span class="dt">probs=</span><span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>) )</code></pre></div>
 <pre><code>##     2.5%    97.5% 
 ## 1.895238 3.809524</code></pre>
 <p>We observe a similar p-value and confidence interval as we did using the asymptotic test as expected. The code for calculating the bootstrap CI is a bit inefficient because I keep recalculating the observed differences with each bootstrap. However, it is nice to have the code “recipe” for the hypothesis test and the associated CI to be fairly similar.</p>
@@ -766,9 +766,9 @@ BootDist &lt;-<span class="st"> </span>mosaic::<span class="kw">do</span>(<span 
 ## 5   101       48         53
 ## 6   101       48         53</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># A data set more convenient for Graphing and Permutation Tests.</span>
-TrafficFlow.Long &lt;-<span class="st"> </span>TrafficFlow           %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Light =</span> <span class="kw">factor</span>(<span class="dv">1</span>:<span class="kw">n</span>()))           %&gt;%<span class="st"> </span><span class="co"># Give each row a unique ID </span>
-<span class="st">  </span><span class="kw">gather</span>(<span class="st">&#39;Seq&#39;</span>, <span class="st">&#39;Delay&#39;</span>, Flexible, Timed) %&gt;%<span class="st"> </span><span class="co"># pivot to SequenceType and Delay amount</span>
+TrafficFlow.Long &lt;-<span class="st"> </span>TrafficFlow           <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Light =</span> <span class="kw">factor</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">n</span>()))           <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Give each row a unique ID </span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="st">&#39;Seq&#39;</span>, <span class="st">&#39;Delay&#39;</span>, Flexible, Timed) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># pivot to SequenceType and Delay amount</span>
 <span class="st">  </span><span class="kw">arrange</span>(Light, Seq)                         <span class="co"># Sort by Light, then by SequenceType</span>
 <span class="kw">head</span>(TrafficFlow.Long)</code></pre></div>
 <pre><code>##   Difference Light      Seq Delay
@@ -779,16 +779,16 @@ TrafficFlow.Long &lt;-<span class="st"> </span>TrafficFlow           %&gt;%
 ## 5         46     3 Flexible    45
 ## 6         46     3    Timed    91</code></pre>
 <p>As usual, we’ll first examine the data with a graph.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(TrafficFlow.Long, <span class="kw">aes</span>(<span class="dt">x=</span>Delay)) +
-<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">2</span>) +<span class="st">              </span><span class="co"># histograms of Delay time</span>
-<span class="st">  </span><span class="kw">facet_grid</span>(Seq ~<span class="st"> </span>.)                       <span class="co"># two plots, stacked by SequenceType</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(TrafficFlow.Long, <span class="kw">aes</span>(<span class="dt">x=</span>Delay)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">2</span>) <span class="op">+</span><span class="st">              </span><span class="co"># histograms of Delay time</span>
+<span class="st">  </span><span class="kw">facet_grid</span>(Seq <span class="op">~</span><span class="st"> </span>.)                       <span class="co"># two plots, stacked by SequenceType</span></code></pre></div>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-155-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(TrafficFlow, <span class="kw">aes</span>(<span class="dt">x=</span>Difference)) +
-<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">2</span>) +
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(TrafficFlow, <span class="kw">aes</span>(<span class="dt">x=</span>Difference)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">2</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&#39;Difference (Standard - Flexible)&#39;</span>)</code></pre></div>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-156-1.png" width="672" /></p>
 <p>All of the differences were positive, so it is almost ridiculous to do a hypothesis test that there is no decrease in delays with the flexible timing system, but we might as well walk through the analysis.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>( TrafficFlow$Difference )</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>( TrafficFlow<span class="op">$</span>Difference )</code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -801,28 +801,28 @@ TrafficFlow.Long &lt;-<span class="st"> </span>TrafficFlow           %&gt;%
 ## mean of x 
 ##        61</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Permutation t-test of delta == 0</span>
-PermDist &lt;-<span class="st"> </span>mosaic::<span class="kw">do</span>(<span class="dv">10000</span>)*{ 
-  TrafficFlow.Long                         %&gt;%
-<span class="st">    </span><span class="kw">group_by</span>(Light)                        %&gt;%<span class="st"> </span>
-<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">Delay =</span> mosaic::<span class="kw">shuffle</span>(Delay)) %&gt;%<span class="st">  </span><span class="co"># shuffle the delays within each intersection</span>
-<span class="st">    </span><span class="kw">arrange</span>(Light, Seq)                    %&gt;%<span class="st">  </span><span class="co"># Put into the Flexible, SeqType order</span>
-<span class="st">    </span><span class="kw">summarize</span>(<span class="dt">d.i =</span> <span class="kw">diff</span>(Delay))           %&gt;%<span class="st">  </span><span class="co"># Calc Timed - Flexible delay difference</span>
+PermDist &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">10000</span>)<span class="op">*</span>{ 
+  TrafficFlow.Long                         <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">group_by</span>(Light)                        <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">Delay =</span> mosaic<span class="op">::</span><span class="kw">shuffle</span>(Delay)) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># shuffle the delays within each intersection</span>
+<span class="st">    </span><span class="kw">arrange</span>(Light, Seq)                    <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># Put into the Flexible, SeqType order</span>
+<span class="st">    </span><span class="kw">summarize</span>(<span class="dt">d.i =</span> <span class="kw">diff</span>(Delay))           <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># Calc Timed - Flexible delay difference</span>
 <span class="st">    </span><span class="kw">summarize</span>(<span class="dt">d.bar =</span> <span class="kw">mean</span>(d.i))                <span class="co"># calc the mean difference</span>
 }
-PermDist %&gt;%
-<span class="st">  </span><span class="kw">summarize</span>( <span class="dt">p.value =</span> <span class="kw">mean</span>(d.bar &gt;=<span class="st"> </span><span class="dv">61</span>) )</code></pre></div>
+PermDist <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>( <span class="dt">p.value =</span> <span class="kw">mean</span>(d.bar <span class="op">&gt;=</span><span class="st"> </span><span class="dv">61</span>) )</code></pre></div>
 <pre><code>##   p.value
 ## 1       0</code></pre>
 <p>Our p-value is 0, but because we we actually only did 10,000 permutations, the most we can say is that the p-value is less than 1/ 10,000.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Bootstrap CI for delta</span>
-BootDist &lt;-<span class="st"> </span>mosaic::<span class="kw">do</span>(<span class="dv">10000</span>)*{ 
-  TrafficFlow.Long               %&gt;%
-<span class="st">    </span><span class="kw">group_by</span>(Light)              %&gt;%<span class="st"> </span>
-<span class="st">    </span><span class="kw">summarize</span>(<span class="dt">d.i =</span> <span class="kw">diff</span>(Delay)) %&gt;%<span class="st">  </span><span class="co"># Calc observed Timed-Flexible delay differences</span>
-<span class="st">    </span>mosaic::<span class="kw">resample</span>()           %&gt;%<span class="st">  </span><span class="co"># resample from the observed differences</span>
+BootDist &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">10000</span>)<span class="op">*</span>{ 
+  TrafficFlow.Long               <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">group_by</span>(Light)              <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">summarize</span>(<span class="dt">d.i =</span> <span class="kw">diff</span>(Delay)) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># Calc observed Timed-Flexible delay differences</span>
+<span class="st">    </span>mosaic<span class="op">::</span><span class="kw">resample</span>()           <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># resample from the observed differences</span>
 <span class="st">    </span><span class="kw">summarize</span>(<span class="dt">d.bar =</span> <span class="kw">mean</span>(d.i))      <span class="co"># calc the mean difference</span>
 }
-<span class="kw">quantile</span>( BootDist$d.bar, <span class="dt">probs=</span><span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>) )</code></pre></div>
+<span class="kw">quantile</span>( BootDist<span class="op">$</span>d.bar, <span class="dt">probs=</span><span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>) )</code></pre></div>
 <pre><code>##     2.5%    97.5% 
 ## 55.54167 67.33333</code></pre>
 <p>The confidence interval suggests that these data support that the mean difference between the flexible timing sequence versus the standard fixed timing sequence in Dresden is in the interval <span class="math inline">\(\left(55.5,\,67.3\right)\)</span> seconds.</p>
@@ -858,10 +858,10 @@ BootDist &lt;-<span class="st"> </span>mosaic::<span class="kw">do</span>(<span 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
 <span class="kw">library</span>(tidyr)
 <span class="kw">data</span>(StorySpoilers, <span class="dt">package=</span><span class="st">&#39;Lock5Data&#39;</span>)
-StorySpoilers.Long &lt;-<span class="st"> </span>StorySpoilers %&gt;%
-<span class="st">  </span><span class="kw">gather</span>(<span class="st">&#39;Type&#39;</span>, <span class="st">&#39;Rating&#39;</span>, Spoiler, Original) %&gt;%
+StorySpoilers.Long &lt;-<span class="st"> </span>StorySpoilers <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="st">&#39;Type&#39;</span>, <span class="st">&#39;Rating&#39;</span>, Spoiler, Original) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>( <span class="dt">Story =</span> <span class="kw">factor</span>(Story),      <span class="co"># make Story and Type into</span>
-          <span class="dt">Type  =</span> <span class="kw">factor</span>(Type) ) %&gt;%<span class="st">  </span><span class="co"># categorical variables</span>
+          <span class="dt">Type  =</span> <span class="kw">factor</span>(Type) ) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># categorical variables</span>
 <span class="st">  </span><span class="kw">arrange</span>(Story)</code></pre></div>
 <ol style="list-style-type: lower-alpha">
 <li>Based on the description, a 1-sided test is appropriate. Explain why.</li>
@@ -876,10 +876,10 @@ StorySpoilers.Long &lt;-<span class="st"> </span>StorySpoilers %&gt;%
 <span class="kw">library</span>(dplyr)
 <span class="kw">library</span>(tidyr)
 <span class="kw">data</span>(<span class="st">&#39;Wetsuits&#39;</span>, <span class="dt">package=</span><span class="st">&#39;Lock5Data&#39;</span>)
-Wetsuits.Long &lt;-<span class="st"> </span>Wetsuits %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Participant =</span> <span class="kw">factor</span>(<span class="dv">1</span>:<span class="dv">12</span>) ) %&gt;%
-<span class="st">  </span><span class="kw">gather</span>(<span class="st">&#39;Suit&#39;</span>, <span class="st">&#39;MaxVelocity&#39;</span>, Wetsuit,NoWetsuit) %&gt;%
-<span class="st">  </span><span class="kw">arrange</span>( Participant, Suit) %&gt;%
+Wetsuits.Long &lt;-<span class="st"> </span>Wetsuits <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Participant =</span> <span class="kw">factor</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>) ) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="st">&#39;Suit&#39;</span>, <span class="st">&#39;MaxVelocity&#39;</span>, Wetsuit,NoWetsuit) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">arrange</span>( Participant, Suit) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Suit =</span> <span class="kw">factor</span>(Suit))</code></pre></div>
 <ol style="list-style-type: lower-alpha">
 <li>Why did the researcher randomize which suit was worn first?</li>

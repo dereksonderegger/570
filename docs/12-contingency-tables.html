@@ -25,7 +25,7 @@
 <meta name="author" content="Derek L. Sonderegger">
 
 
-<meta name="date" content="2017-10-21">
+<meta name="date" content="2018-01-16">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -305,15 +305,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">12.1</span> Expected Counts</h2>
 <p>We will develope our ideas using a subsample of data from surveys of undergraduate students in an Introductory statistics course. We will utilize <span class="math inline">\(40\)</span> males and <span class="math inline">\(40\)</span> females and consider the historical assumption that women should perform better on the verbal part of the SAT rather than the MATH part compared to their male counterparts.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(StudentSurvey, <span class="dt">package=</span><span class="st">&#39;Lock5Data&#39;</span>)
-StudentSurvey &lt;-<span class="st"> </span>StudentSurvey %&gt;%
-<span class="st">  </span><span class="kw">filter</span>( HigherSAT !=<span class="st"> &#39;&#39;</span>) %&gt;%<span class="st">    </span><span class="co"># remove a student that did not report SAT scores</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">HigherSAT =</span> <span class="kw">factor</span>(HigherSAT)) %&gt;%<span class="st"> </span><span class="co"># remove the MISSING level from the above student</span>
-<span class="st">  </span><span class="kw">group_by</span>(Gender) %&gt;%<span class="st">          </span><span class="co"># Only consider the first 40 males</span>
-<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span>:<span class="dv">40</span>) %&gt;%<span class="st">               </span><span class="co"># and Females... as a first example</span>
+StudentSurvey &lt;-<span class="st"> </span>StudentSurvey <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>( HigherSAT <span class="op">!=</span><span class="st"> &#39;&#39;</span>) <span class="op">%&gt;%</span><span class="st">    </span><span class="co"># remove a student that did not report SAT scores</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">HigherSAT =</span> <span class="kw">factor</span>(HigherSAT)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># remove the MISSING level from the above student</span>
+<span class="st">  </span><span class="kw">group_by</span>(Gender) <span class="op">%&gt;%</span><span class="st">          </span><span class="co"># Only consider the first 40 males</span>
+<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">40</span>) <span class="op">%&gt;%</span><span class="st">               </span><span class="co"># and Females... as a first example</span>
 <span class="st">  </span><span class="kw">select</span>(Gender, HigherSAT) </code></pre></div>
 <p>In this example, exactly <span class="math inline">\(60\%\)</span> of the students had a higher score on the math portion of the SAT than on the verbal. If the null hypothesis is true, then <span class="math inline">\(60\%\)</span> of the <span class="math inline">\(40\)</span> males should have a higher Math SAT score than verbal. So under the null, we expect to see <span class="math inline">\(40 * 0.60 = 24\)</span> males and <span class="math inline">\(40*0.60=24\)</span> females to have a higher Math SAT than verbal. Similarly we would expect <span class="math inline">\(40*0.40=16\)</span> males and <span class="math inline">\(16\)</span> females to score higher on the verbal section. Below is a table that summarizes both our observed data and the expected values under the null hypotheses of no association between superior SAT category with gender.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tab &lt;-<span class="st"> </span>mosaic::<span class="kw">tally</span>( HigherSAT ~<span class="st"> </span>Gender, <span class="dt">data=</span>StudentSurvey, <span class="dt">format=</span><span class="st">&#39;count&#39;</span>)
-descr::<span class="kw">CrossTable</span>( tab, <span class="dt">expected =</span> <span class="ot">TRUE</span>,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tab &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">tally</span>( HigherSAT <span class="op">~</span><span class="st"> </span>Gender, <span class="dt">data=</span>StudentSurvey, <span class="dt">format=</span><span class="st">&#39;count&#39;</span>)
+descr<span class="op">::</span><span class="kw">CrossTable</span>( tab, <span class="dt">expected =</span> <span class="ot">TRUE</span>,
                    <span class="dt">prop.r =</span> <span class="ot">FALSE</span>, <span class="dt">prop.c=</span><span class="ot">FALSE</span>, <span class="dt">prop.t=</span><span class="ot">FALSE</span>, <span class="dt">prop.chisq =</span> <span class="ot">FALSE</span> )</code></pre></div>
 <pre><code>##    Cell Contents 
 ## |-------------------------|
@@ -351,7 +351,7 @@ descr::<span class="kw">CrossTable</span>( tab, <span class="dt">expected =</spa
 ##  $ outcome  : Factor w/ 2 levels &quot;no wilt&quot;,&quot;wilt&quot;: 2 2 2 2 2 2 2 2 2 2 ...</code></pre>
 <p>We will summarize the data into a contingency table that counts the number of plants in each treatment/wilt category.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Using mosaic&#39;s tally function</span>
-tab &lt;-<span class="st"> </span>mosaic::<span class="kw">tally</span>(outcome ~<span class="st"> </span>treatment, <span class="dt">data=</span>Mites, <span class="co"># table of outcome by treatment</span>
+tab &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">tally</span>(outcome <span class="op">~</span><span class="st"> </span>treatment, <span class="dt">data=</span>Mites, <span class="co"># table of outcome by treatment</span>
               <span class="dt">format=</span><span class="st">&#39;count&#39;</span>)                  <span class="co"># give the raw counts, not percentages</span>
 tab</code></pre></div>
 <pre><code>##          treatment
@@ -360,7 +360,7 @@ tab</code></pre></div>
 ##   wilt       11       17</code></pre>
 <p>From this table we can see that <span class="math inline">\(28\)</span> out of the <span class="math inline">\(47\)</span> plants wilted, so the proportion that wilted was <span class="math inline">\(\frac{28}{47}=0.596\)</span>. Therefore under the null hypothesis we would expect that <span class="math inline">\(59.6\%\)</span> of the <span class="math inline">\(26\)</span> mite treated plants would have wilted, or <span class="math display">\[\left( \frac{28}{47} \right) 26 = 15.49\]</span></p>
 <p>Similar calculations revel the rest of the expected cell counts.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">descr::<span class="kw">CrossTable</span>( tab, <span class="dt">expected =</span> <span class="ot">TRUE</span>,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">descr<span class="op">::</span><span class="kw">CrossTable</span>( tab, <span class="dt">expected =</span> <span class="ot">TRUE</span>,
                    <span class="dt">prop.r =</span> <span class="ot">FALSE</span>, <span class="dt">prop.c=</span><span class="ot">FALSE</span>, <span class="dt">prop.t=</span><span class="ot">FALSE</span>, <span class="dt">prop.chisq =</span> <span class="ot">FALSE</span> )</code></pre></div>
 <pre><code>##    Cell Contents 
 ## |-------------------------|
@@ -404,29 +404,29 @@ where the relevant parameters are <span class="math inline">\(\pi_{w}\)</span>, 
 ## X-squared = 7.2037, df = 1, p-value = 0.007275</code></pre>
 <p>R is performing the traditional Pearson’s Chi-Squared test which assumes our sample sizes are large enough for several approximations to be good. Fortunately, we don’t care about this approximation to the p-value and will use simulation methods which will be more accurate. In order to use the <code>chisq.test()</code> function to do our calculations, we need to extract the test-statistic from the output of the function. &lt;<warning=FALSE>&gt;=</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># extract the X^2 test statistic from the output</span>
-X.sq &lt;-<span class="st"> </span><span class="kw">chisq.test</span>( <span class="kw">table</span>(Mites), <span class="dt">correct=</span><span class="ot">FALSE</span> )$statistic <span class="co"># grab only the test statistic</span>
+X.sq &lt;-<span class="st"> </span><span class="kw">chisq.test</span>( <span class="kw">table</span>(Mites), <span class="dt">correct=</span><span class="ot">FALSE</span> )<span class="op">$</span>statistic <span class="co"># grab only the test statistic</span>
 X.sq</code></pre></div>
 <pre><code>## X-squared 
 ##  7.203748</code></pre>
 <p>Next we wish to repeat our shuffling trick of the treatment labels to calculate the sampling distribution of <span class="math inline">\(X^{2*}\)</span>, which is the distribution of <span class="math inline">\(X^{2}\)</span> when the null hypothesis of no difference between treatments is true.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Mites.star &lt;-<span class="st"> </span>Mites %&gt;%<span class="st"> </span><span class="kw">mutate</span>(<span class="dt">treatment =</span> mosaic::<span class="kw">shuffle</span>(treatment))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Mites.star &lt;-<span class="st"> </span>Mites <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">treatment =</span> mosaic<span class="op">::</span><span class="kw">shuffle</span>(treatment))
 <span class="kw">table</span>(Mites.star)</code></pre></div>
 <pre><code>##           outcome
 ## treatment  no wilt wilt
 ##   mites          7   19
 ##   no mites      12    9</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">chisq.test</span>( <span class="kw">table</span>(Mites.star), <span class="dt">correct=</span><span class="ot">FALSE</span> )$statistic <span class="co"># grab only the test statistic</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">chisq.test</span>( <span class="kw">table</span>(Mites.star), <span class="dt">correct=</span><span class="ot">FALSE</span> )<span class="op">$</span>statistic <span class="co"># grab only the test statistic</span></code></pre></div>
 <pre><code>## X-squared 
 ##  4.405158</code></pre>
 <p>We see that this code is creating a data frame with a single column called <code>X.squared</code> and next we simulate a large number of times and display the sampling distribution of <span class="math inline">\(X^{2*}\)</span>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">SamplingDist &lt;-<span class="st"> </span>mosaic::<span class="kw">do</span>(<span class="dv">10000</span>)*{
-  Mites.star &lt;-<span class="st"> </span>Mites %&gt;%<span class="st"> </span><span class="kw">mutate</span>(<span class="dt">treatment =</span> mosaic::<span class="kw">shuffle</span>(treatment))
-  <span class="kw">chisq.test</span>( <span class="kw">table</span>(Mites.star), <span class="dt">correct=</span><span class="ot">FALSE</span> )$statistic 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">SamplingDist &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">10000</span>)<span class="op">*</span>{
+  Mites.star &lt;-<span class="st"> </span>Mites <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">treatment =</span> mosaic<span class="op">::</span><span class="kw">shuffle</span>(treatment))
+  <span class="kw">chisq.test</span>( <span class="kw">table</span>(Mites.star), <span class="dt">correct=</span><span class="ot">FALSE</span> )<span class="op">$</span>statistic 
 }</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>( SamplingDist, <span class="kw">aes</span>(<span class="dt">x=</span>X.squared)) +<span class="st"> </span><span class="kw">geom_histogram</span>()</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>( SamplingDist, <span class="kw">aes</span>(<span class="dt">x=</span>X.squared)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>()</code></pre></div>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-314-1.png" width="672" /></p>
 <p>At first glance this seems wrong because it is not a nice looking distribution. However there are only a small number of ways to allocate the treatments labels to the two possible outcomes. Second, for the test statistic we have chosen only the right hand side of the distribution (large values of <span class="math inline">\(X^{*}\)</span>) would be evidence against the null hypothesis, so we only look at <span class="math inline">\(X^{2*}&gt;7.20\)</span>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p.value &lt;-<span class="st"> </span>SamplingDist %&gt;%<span class="st"> </span><span class="kw">summarize</span>( <span class="dt">p.value =</span> <span class="kw">mean</span>( X.squared &gt;=<span class="st"> </span>X.sq ) )
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p.value &lt;-<span class="st"> </span>SamplingDist <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarize</span>( <span class="dt">p.value =</span> <span class="kw">mean</span>( X.squared <span class="op">&gt;=</span><span class="st"> </span>X.sq ) )
 p.value</code></pre></div>
 <pre><code>##   p.value
 ## 1  0.0175</code></pre>
@@ -449,7 +449,7 @@ p.value</code></pre></div>
   <span class="dt">Outcome=</span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&#39;Conceived&#39;</span>,<span class="dv">5</span>), <span class="kw">rep</span>(<span class="st">&#39;Not Conceived&#39;</span>,<span class="dv">25</span>),
             <span class="kw">rep</span>(<span class="st">&#39;Conceived&#39;</span>,<span class="dv">4</span>), <span class="kw">rep</span>(<span class="st">&#39;Not Conceived&#39;</span>,<span class="dv">24</span>)))</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Use the CrossTable function to generate the Expected Cell values</span>
-descr::<span class="kw">CrossTable</span>(<span class="kw">table</span>(Conceived), <span class="dt">expected=</span><span class="ot">TRUE</span>, 
+descr<span class="op">::</span><span class="kw">CrossTable</span>(<span class="kw">table</span>(Conceived), <span class="dt">expected=</span><span class="ot">TRUE</span>, 
                   <span class="dt">prop.r=</span><span class="ot">FALSE</span>, <span class="dt">prop.c=</span><span class="ot">FALSE</span>, <span class="dt">prop.t=</span><span class="ot">FALSE</span>, <span class="dt">prop.chisq=</span><span class="ot">FALSE</span>)</code></pre></div>
 <pre><code>##    Cell Contents 
 ## |-------------------------|
@@ -487,25 +487,25 @@ descr::<span class="kw">CrossTable</span>(<span class="kw">table</span>(Conceive
 <p>If we have sufficient samples sizes in each cell (general rule-of-thumb is greater than 5 per cell), then we could compare this test statistic to a Chi-Squared distribution with <span class="math inline">\((R-1)(C-1)\)</span> degrees of freedom. <span class="math display">\[p.value = Pr( \chi_{(r-1)(c-1)} &gt; X^2 )\]</span></p>
 <p>We consider some data from the American Community Survey, which is a survey administered by the US Census Bureau and given to approximately 3% of all US households. The package <code>Lock5Data</code> has a dataset, <code>ACS</code>, which is a subsample of <span class="math inline">\(n=1000\)</span> respondents of that 2010 survey. In particular, we want to examine the relationship between race and marriage status. In particular if white respondents are more likely to be married than asian or black (or other) races.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(ACS, <span class="dt">package=</span><span class="st">&#39;Lock5Data&#39;</span>)
-ACS &lt;-<span class="st"> </span>ACS %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Married =</span> <span class="kw">ifelse</span>(Married==<span class="dv">1</span>, <span class="st">&#39;Married&#39;</span>,<span class="st">&#39;Single&#39;</span>))
-tab &lt;-<span class="st"> </span>mosaic::<span class="kw">tally</span>(Married ~<span class="st"> </span>Race, <span class="dt">data=</span>ACS)
+ACS &lt;-<span class="st"> </span>ACS <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Married =</span> <span class="kw">ifelse</span>(Married<span class="op">==</span><span class="dv">1</span>, <span class="st">&#39;Married&#39;</span>,<span class="st">&#39;Single&#39;</span>))
+tab &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">tally</span>(Married <span class="op">~</span><span class="st"> </span>Race, <span class="dt">data=</span>ACS)
 tab</code></pre></div>
 <pre><code>##          Race
 ## Married   asian black other white
 ##   Married    37    25    20   355
 ##   Single     33    81    43   406</code></pre>
 <p>Often I find it is difficult to really understand a table and find a good graph more insightful.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">temp &lt;-<span class="st"> </span>ACS %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">group_by</span>(Race, Married) %&gt;%<span class="st"> </span>
-<span class="st">  </span>dplyr::<span class="kw">count</span>() %&gt;%
-<span class="st">  </span><span class="kw">group_by</span>(Race) %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">proportion =</span> n/<span class="kw">sum</span>(n))
-<span class="kw">ggplot</span>(temp, <span class="kw">aes</span>(<span class="dt">x=</span>Race, <span class="dt">y=</span>proportion, <span class="dt">fill=</span>Married)) +<span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">temp &lt;-<span class="st"> </span>ACS <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(Race, Married) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">count</span>() <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(Race) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">proportion =</span> n<span class="op">/</span><span class="kw">sum</span>(n))
+<span class="kw">ggplot</span>(temp, <span class="kw">aes</span>(<span class="dt">x=</span>Race, <span class="dt">y=</span>proportion, <span class="dt">fill=</span>Married)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&#39;identity&#39;</span>)</code></pre></div>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-319-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Use the CrossTable function to generate the Expected Cell values</span>
-descr::<span class="kw">CrossTable</span>(tab, <span class="dt">expected=</span><span class="ot">TRUE</span>, 
+descr<span class="op">::</span><span class="kw">CrossTable</span>(tab, <span class="dt">expected=</span><span class="ot">TRUE</span>, 
                   <span class="dt">prop.r=</span><span class="ot">FALSE</span>, <span class="dt">prop.c=</span><span class="ot">FALSE</span>, <span class="dt">prop.t=</span><span class="ot">FALSE</span>, <span class="dt">prop.chisq=</span><span class="ot">FALSE</span>)</code></pre></div>
 <pre><code>##    Cell Contents 
 ## |-------------------------|
@@ -526,7 +526,7 @@ descr::<span class="kw">CrossTable</span>(tab, <span class="dt">expected=</span>
 ## Total         70     106      63     761    1000
 ## ================================================</code></pre>
 <p>Because the cell counts are quite large, the asymptotic approximations should be fine. We will compare the test statistic against a Chi-squared distribution with <span class="math inline">\((2-1)(4-1)=1*3=3\)</span> degrees of freedom.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> -<span class="st"> </span><span class="kw">pchisq</span>(<span class="fl">26.168</span>, <span class="dt">df=</span><span class="dv">3</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pchisq</span>(<span class="fl">26.168</span>, <span class="dt">df=</span><span class="dv">3</span>)</code></pre></div>
 <pre><code>## [1] 8.795319e-06</code></pre>
 <p>therefore <span class="math display">\[p.value = Pr( \chi^2_3 &gt; 26.168 ) = 8.795\textrm{e-}06\]</span></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">chisq.test</span>( tab )</code></pre></div>
@@ -556,7 +556,7 @@ descr::<span class="kw">CrossTable</span>(tab, <span class="dt">expected=</span>
 ##   black      25     81
 ##   other      20     43
 ##   white     355    406</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">result &lt;-<span class="st"> </span>fifer::<span class="kw">chisq.post.hoc</span>( <span class="kw">t</span>(tab),
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">result &lt;-<span class="st"> </span>fifer<span class="op">::</span><span class="kw">chisq.post.hoc</span>( <span class="kw">t</span>(tab),
     <span class="dt">test=</span>chisq.test, <span class="dt">simulate.p.value=</span><span class="ot">TRUE</span>, <span class="dt">B=</span><span class="dv">10000</span> ) </code></pre></div>
 <pre><code>## Adjusted p-values used the fdr method.</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">result</code></pre></div>
@@ -574,17 +574,17 @@ descr::<span class="kw">CrossTable</span>(tab, <span class="dt">expected=</span>
 <span class="kw">library</span>(dplyr)
 <span class="kw">library</span>(stringr)
 <span class="kw">library</span>(multcompView)
-cld.chisq.post.hoc &lt;-<span class="st"> </span>function( obj, name ){
-  p.values &lt;-<span class="st"> </span>obj$adj.p                <span class="co"># just the p-values</span>
-  contrasts &lt;-<span class="st"> </span>obj$comparison %&gt;%
-<span class="st">    </span><span class="kw">as.character</span>( ) %&gt;%
+cld.chisq.post.hoc &lt;-<span class="st"> </span><span class="cf">function</span>( obj, name ){
+  p.values &lt;-<span class="st"> </span>obj<span class="op">$</span>adj.p                <span class="co"># just the p-values</span>
+  contrasts &lt;-<span class="st"> </span>obj<span class="op">$</span>comparison <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">as.character</span>( ) <span class="op">%&gt;%</span>
 <span class="st">    </span><span class="kw">str_replace</span>( <span class="dt">pattern=</span><span class="kw">fixed</span>(<span class="st">&#39; vs. &#39;</span>), <span class="dt">replacement =</span> <span class="kw">fixed</span>(<span class="st">&#39;-&#39;</span>))
   <span class="kw">names</span>(p.values) &lt;-<span class="st"> </span>contrasts
 
   <span class="co"># finally we can pass p.values into a letters function</span>
-  my.letters &lt;-<span class="st"> </span>multcompView::<span class="kw">multcompLetters</span>(p.values)
-  letter.df &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">TEMP=</span><span class="kw">names</span>(my.letters$Letters), 
-                           <span class="dt">.group =</span> my.letters$Letters ) 
+  my.letters &lt;-<span class="st"> </span>multcompView<span class="op">::</span><span class="kw">multcompLetters</span>(p.values)
+  letter.df &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">TEMP=</span><span class="kw">names</span>(my.letters<span class="op">$</span>Letters), 
+                           <span class="dt">.group =</span> my.letters<span class="op">$</span>Letters ) 
   <span class="kw">colnames</span>(letter.df)[<span class="dv">1</span>] &lt;-<span class="st"> </span>name
   <span class="kw">rownames</span>(letter.df) &lt;-<span class="st"> </span><span class="ot">NULL</span>
   <span class="kw">return</span>(letter.df)
@@ -655,14 +655,14 @@ cld.chisq.post.hoc &lt;-<span class="st"> </span>function( obj, name ){
 </ol></li>
 <li><p>We consider some data from the American Community Survey, which is a survey administered by the US Census Bureau and given to approximately 3% of all US households. The package <code>Lock5Data</code> has a dataset, <code>ACS</code>, which is a subsample of <span class="math inline">\(n=1000\)</span> respondents of that 2010 survey. In particular, we want to examine the relationship between race and having health insurance.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(ACS, <span class="dt">package=</span><span class="st">&#39;Lock5Data&#39;</span>)
-temp &lt;-<span class="st"> </span>ACS %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">HealthInsurance =</span> <span class="kw">factor</span>(<span class="kw">ifelse</span>(HealthInsurance ==<span class="st"> </span><span class="dv">1</span>, <span class="st">&quot;Have&quot;</span>,<span class="st">&quot;None&quot;</span>)),
-         <span class="dt">Race =</span> <span class="kw">factor</span>(Race, <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&#39;white&#39;</span>,<span class="st">&#39;asian&#39;</span>,<span class="st">&#39;black&#39;</span>,<span class="st">&#39;other&#39;</span>) ) ) %&gt;%
-<span class="st">  </span><span class="kw">group_by</span>(Race, HealthInsurance) %&gt;%<span class="st"> </span>
-<span class="st">  </span>dplyr::<span class="kw">count</span>() %&gt;%
-<span class="st">  </span><span class="kw">group_by</span>(Race) %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">proportion =</span> n/<span class="kw">sum</span>(n))
-<span class="kw">ggplot</span>(temp, <span class="kw">aes</span>(<span class="dt">x=</span>Race, <span class="dt">y=</span>proportion, <span class="dt">fill=</span>HealthInsurance)) +<span class="st"> </span>
+temp &lt;-<span class="st"> </span>ACS <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">HealthInsurance =</span> <span class="kw">factor</span>(<span class="kw">ifelse</span>(HealthInsurance <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, <span class="st">&quot;Have&quot;</span>,<span class="st">&quot;None&quot;</span>)),
+         <span class="dt">Race =</span> <span class="kw">factor</span>(Race, <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&#39;white&#39;</span>,<span class="st">&#39;asian&#39;</span>,<span class="st">&#39;black&#39;</span>,<span class="st">&#39;other&#39;</span>) ) ) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(Race, HealthInsurance) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">count</span>() <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(Race) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">proportion =</span> n<span class="op">/</span><span class="kw">sum</span>(n))
+<span class="kw">ggplot</span>(temp, <span class="kw">aes</span>(<span class="dt">x=</span>Race, <span class="dt">y=</span>proportion, <span class="dt">fill=</span>HealthInsurance)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&#39;identity&#39;</span>)</code></pre></div>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-327-1.png" width="672" /></p>
 <ol style="list-style-type: lower-alpha">

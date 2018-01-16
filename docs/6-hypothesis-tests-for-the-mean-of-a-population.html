@@ -25,7 +25,7 @@
 <meta name="author" content="Derek L. Sonderegger">
 
 
-<meta name="date" content="2017-10-21">
+<meta name="date" content="2018-01-16">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -293,7 +293,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p><strong>Example</strong>. Suppose a rancher in Texas (my brother-in-law Bryan) wants to buy some calves from another rancher. This rancher claims that the average weight of his calves is 500 pounds. My brother-in-law likes them and buys 10. A few days later he starts looking at the cows and begins to wonder if the average really is 500 pounds. He weighs his 10 cows and the sample mean is <span class="math inline">\(\bar{x}=475\)</span> and the sample standard deviation is <span class="math inline">\(s=50\)</span>. Below are the data</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cows &lt;-<span class="st"> </span><span class="kw">data.frame</span>(    
   <span class="dt">weight =</span> <span class="kw">c</span>(<span class="dv">553</span>, <span class="dv">466</span>, <span class="dv">451</span>, <span class="dv">421</span>, <span class="dv">523</span>, <span class="dv">517</span>, <span class="dv">451</span>, <span class="dv">510</span>, <span class="dv">392</span>, <span class="dv">466</span>) )
-cows %&gt;%<span class="st"> </span><span class="kw">summarise</span>( <span class="dt">xbar=</span><span class="kw">mean</span>(weight), <span class="dt">s=</span><span class="kw">sd</span>(weight) )</code></pre></div>
+cows <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>( <span class="dt">xbar=</span><span class="kw">mean</span>(weight), <span class="dt">s=</span><span class="kw">sd</span>(weight) )</code></pre></div>
 <pre><code>##   xbar        s
 ## 1  475 49.99556</code></pre>
 <p>There are two possibilities. Either Bryan was just unlucky the random selection of his 10 cows from the heard, or the true average weight within the herd is less than 500.</p>
@@ -309,7 +309,7 @@ cows %&gt;%<span class="st"> </span><span class="kw">summarise</span>( <span cla
 <p><span class="math display">\[\mbox{p-value}=P(T_{9}&lt;-1.58)=0.074\]</span></p>
 <p>The above value is the actual value calculated using R</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#        pt(-1.58, df=9)    # No Graph</span>
-mosaic::<span class="kw">xpt</span>(-<span class="fl">1.58</span>, <span class="dt">df=</span><span class="dv">9</span>)    <span class="co"># With a graph</span></code></pre></div>
+mosaic<span class="op">::</span><span class="kw">xpt</span>(<span class="op">-</span><span class="fl">1.58</span>, <span class="dt">df=</span><span class="dv">9</span>)    <span class="co"># With a graph</span></code></pre></div>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-97-1.png" width="672" /></p>
 <pre><code>## [1] 0.07428219</code></pre>
 <p>but using tables typically found in intro statistics books, the most precise thing you would be able to say is <span class="math inline">\(0.05 \le \mbox{p-value} \le 0.10\)</span> So there is a small chance that my brother-in-law just got unlucky with his ten cows. While the data isn’t entirely supportive of <span class="math inline">\(H_{0}\)</span>, we don’t have strong enough data to out right reject <span class="math inline">\(H_{0}\)</span>. So we will say that we fail to reject <span class="math inline">\(H_{0}\)</span>. Notice that we aren’t saying that we accept the null hypothesis, only that there is insufficient evidence to call-out the neighbor as a liar.</p>
@@ -354,7 +354,7 @@ mosaic::<span class="kw">xpt</span>(-<span class="fl">1.58</span>, <span class="
 <p><em>Example</em> A light bulb company advertises that their bulbs last for 1000 hours. Consumers will be unhappy if the bulbs last less time, but will not mind if the bulbs last longer. Therefore Consumer Reports might perform a test and would consider the hypotheses <span class="math display">\[H_{0}:\;\mu   =   1000\]</span> <span class="math display">\[H_{a}:\;\mu   &lt;   1000\]</span></p>
 <p>Suppose we perform an experiment with <span class="math inline">\(n=20\)</span> lightbulbs and observe <span class="math inline">\(\bar{x}=980\)</span> and <span class="math inline">\(s=64\)</span> hours and therefore our test statistic is <span class="math display">\[ t_{19}   =   \frac{\bar{x}-\mu}{s/\sqrt{n}} =    \frac{980-1000}{64/\sqrt{20}} = -1.40\]</span> Then the p-value would be</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#        pt(-1.4, df=19)    # No Graph</span>
-mosaic::<span class="kw">xpt</span>(-<span class="fl">1.4</span>, <span class="dt">df=</span><span class="dv">19</span> )   <span class="co"># With a Graph</span></code></pre></div>
+mosaic<span class="op">::</span><span class="kw">xpt</span>(<span class="op">-</span><span class="fl">1.4</span>, <span class="dt">df=</span><span class="dv">19</span> )   <span class="co"># With a Graph</span></code></pre></div>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-99-1.png" width="672" /></p>
 <pre><code>## [1] 0.08881538</code></pre>
 <p>and we calculate p-value <span class="math inline">\(=P\left(T_{19}&lt;-1.4\right)=0.0888\)</span></p>
@@ -363,12 +363,12 @@ mosaic::<span class="kw">xpt</span>(-<span class="fl">1.4</span>, <span class="d
   H_{a}:\mbox{ }\mu &amp;\ne    2 
   \end{aligned}\]</span></p>
 <p>Suppose we perform a test of a random sample of resistors and obtain a test statistics of <span class="math inline">\(t_{9}=1.8\)</span>. Because the p-value is “the probability of your data or something more extreme” and in this case more extreme implies extreme values in both tails then</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mosaic::<span class="kw">xpt</span>( <span class="kw">c</span>(-<span class="fl">1.8</span>, <span class="fl">1.8</span>), <span class="dt">df=</span><span class="dv">9</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mosaic<span class="op">::</span><span class="kw">xpt</span>( <span class="kw">c</span>(<span class="op">-</span><span class="fl">1.8</span>, <span class="fl">1.8</span>), <span class="dt">df=</span><span class="dv">9</span>)</code></pre></div>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-100-1.png" width="672" /></p>
 <pre><code>## [1] 0.05269534 0.94730466</code></pre>
 <p>and we calculate <span class="math display">\[\textrm{p-value} = P\left(\left|T_{9}\right|&gt;1.8\right)=2P\left(T_{9}&lt;-1.8\right)=2\left(0.0527\right)=0.105\]</span></p>
 <p>using the R commands</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2</span> *<span class="st"> </span><span class="kw">pt</span>(-<span class="fl">1.8</span>, <span class="dt">df=</span><span class="dv">9</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="kw">pt</span>(<span class="op">-</span><span class="fl">1.8</span>, <span class="dt">df=</span><span class="dv">9</span>)</code></pre></div>
 <pre><code>## [1] 0.1053907</code></pre>
 </div>
 <div id="why-should-hypotheses-use-mu-and-not-barx" class="section level3">
@@ -449,7 +449,7 @@ t_{crit}    &amp;=  \frac{\bar{x}_{crit}-\mu_{0}}{\left( \frac{s}{\sqrt{n}} \rig
 <p><em>Example</em>. Suppose we have data regarding fuel economy of <span class="math inline">\(5\)</span> vehicles of the same make and model and we wish to test if the observed fuel economy is consistent with the advertised <span class="math inline">\(31\)</span> mpg at highway speeds. Assuming the fuel economy varies normally amongst cars of the same make and model, we test <span class="math display">\[\begin{aligned} H_{0}:\,\mu    &amp;= 31 \\
                   H_{a}:\,\mu    &amp;\ne   31 \end{aligned}\]</span> and calculate</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cars &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">mpg =</span> <span class="kw">c</span>(<span class="fl">31.8</span>, <span class="fl">32.1</span>, <span class="fl">32.5</span>, <span class="fl">30.9</span>, <span class="fl">31.3</span>))
-cars %&gt;%<span class="st"> </span><span class="kw">summarise</span>(<span class="kw">mean</span>(mpg), <span class="kw">sd</span>(mpg))</code></pre></div>
+cars <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="kw">mean</span>(mpg), <span class="kw">sd</span>(mpg))</code></pre></div>
 <pre><code>##   mean(mpg)   sd(mpg)
 ## 1     31.72 0.6340347</code></pre>
 <p>The test statistic is: <span class="math display">\[t=\frac{\bar{x}-\mu_{0}}{s/\sqrt{n}}=\frac{31.72-31}{\left(\frac{0.634}{\sqrt{5}}\right)}=2.54\]</span></p>
@@ -460,7 +460,7 @@ cars %&gt;%<span class="st"> </span><span class="kw">summarise</span>(<span clas
 31.72     &amp;\pm  0.7872 \\
         [30.93,\; &amp; 32.51]
 \end{aligned}\]</span></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>( cars$mpg, <span class="dt">mu=</span><span class="dv">31</span>, <span class="dt">alternative=</span><span class="st">&#39;two.sided&#39;</span> )</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>( cars<span class="op">$</span>mpg, <span class="dt">mu=</span><span class="dv">31</span>, <span class="dt">alternative=</span><span class="st">&#39;two.sided&#39;</span> )</code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 

@@ -25,7 +25,7 @@
 <meta name="author" content="Derek L. Sonderegger">
 
 
-<meta name="date" content="2017-10-21">
+<meta name="date" content="2018-01-16">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -312,43 +312,43 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="univariate---categorical" class="section level3">
 <h3><span class="header-section-number">1.1.1</span> Univariate - Categorical</h3>
 <p>If we have univariate data about a number of groups, often the best way to display it is using barplots. They have the advantage over pie-charts that groups are easily compared.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(TenMileRace, <span class="kw">aes</span>(<span class="dt">x=</span>sex)) +<span class="st"> </span><span class="kw">geom_bar</span>()</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(TenMileRace, <span class="kw">aes</span>(<span class="dt">x=</span>sex)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>()</code></pre></div>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>One thing that can be misleading is if the zero on the y-axis is removed. In the following graph it looks like there are twice as many female runners as male until you examin the y-axis closely. In general, the following is a very misleading graph.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(TenMileRace, <span class="kw">aes</span>(<span class="dt">x=</span>sex)) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_bar</span>() +
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(TenMileRace, <span class="kw">aes</span>(<span class="dt">x=</span>sex)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">coord_cartesian</span>(<span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">4300</span>, <span class="dv">4330</span>))</code></pre></div>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 </div>
 <div id="univariate---continuous" class="section level3">
 <h3><span class="header-section-number">1.1.2</span> Univariate - Continuous</h3>
 <p>A histogram looks very similar to a bar plot, but is used to represent continuous data instead of categorical and therefore the bars will actually be touching.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(TenMileRace, <span class="kw">aes</span>(<span class="dt">x=</span>net)) +<span class="st"> </span><span class="kw">geom_histogram</span>()</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(TenMileRace, <span class="kw">aes</span>(<span class="dt">x=</span>net)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>()</code></pre></div>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>Often when a histogram is presented, the y-axis is labeled as “frequency” or “count” which is the number of observations that fall within a particular bin. However, it is often desirable to scale the y-axis so that if we were to sum up the area <span class="math inline">\((height * width)\)</span> then the total area would sum to 1. The rescaling that accomplishes this is <span class="math display">\[density=\frac{\#\;observations\;in\;bin}{total\;number\;observations}\cdot\frac{1}{bin\;width}\]</span></p>
 </div>
 <div id="bivariate---categorical-vs-continuous" class="section level3">
 <h3><span class="header-section-number">1.1.3</span> Bivariate - Categorical vs Continuous</h3>
 <p>We often wish to compare response levels from two or more groups of interest. To do this, we often use side-by-side boxplots. Notice that each observation is associated with a continuous response value and a categorical value.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(TenMileRace, <span class="kw">aes</span>(<span class="dt">x=</span>sex, <span class="dt">y=</span>net)) +<span class="st"> </span><span class="kw">geom_boxplot</span>()</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(TenMileRace, <span class="kw">aes</span>(<span class="dt">x=</span>sex, <span class="dt">y=</span>net)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>()</code></pre></div>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>In this graph, the edges of the box are defined by the 25% and 75% quantiles. That is to say, 25% of the data is to the below of the box, 50% of the data is in the box, and the final 25% of the data is to the above of the box. The dots are data points that traditionally considered outliers.Define the Inter-Quartile Range (IQR) as the length of the box. Then any observation more than 1.5*IQR from the box is considered an outlier.</p>
 <p>Sometimes I think that box-and-whisker plot obscures too much of the details of the data and we should look at the side-by-side histograms instead.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(TenMileRace, <span class="kw">aes</span>(<span class="dt">x=</span>net)) +
-<span class="st">  </span><span class="kw">geom_histogram</span>() +
-<span class="st">  </span><span class="kw">facet_grid</span>( . ~<span class="st"> </span>sex )  <span class="co"># side-by-side plots based on sex</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(TenMileRace, <span class="kw">aes</span>(<span class="dt">x=</span>net)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_grid</span>( . <span class="op">~</span><span class="st"> </span>sex )  <span class="co"># side-by-side plots based on sex</span></code></pre></div>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>Orientation of graphs can certainly matter. In this case, it makes sense to stack the two graphs to facilitate comparisons.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(TenMileRace, <span class="kw">aes</span>(<span class="dt">x=</span>net)) +
-<span class="st">  </span><span class="kw">geom_histogram</span>() +
-<span class="st">  </span><span class="kw">facet_grid</span>( sex ~<span class="st"> </span>. )  <span class="co"># side-by-side plots based on sex</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(TenMileRace, <span class="kw">aes</span>(<span class="dt">x=</span>net)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_grid</span>( sex <span class="op">~</span><span class="st"> </span>. )  <span class="co"># side-by-side plots based on sex</span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 </div>
 <div id="bivariate---continuous-vs-continuous" class="section level3">
 <h3><span class="header-section-number">1.1.4</span> Bivariate - Continuous vs Continuous</h3>
 <p>Finally we might want to examine the relationship between two continuous random variables.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(TenMileRace, <span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y=</span>net, <span class="dt">color=</span>sex)) +
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(TenMileRace, <span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y=</span>net, <span class="dt">color=</span>sex)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 </div>
@@ -364,9 +364,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
     =   23/5
     =   4.6\]</span></p>
 <p>This can easily be calculated in R by using the function <code>mean()</code>. We first extract the column we are interested in using the notation: <code>DataSet$ColumnName</code> where the $ signifies grabbing the column.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>( TenMileRace$net ) <span class="co"># Simplest way of doing this calculation</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>( TenMileRace<span class="op">$</span>net ) <span class="co"># Simplest way of doing this calculation</span></code></pre></div>
 <pre><code>## [1] 5599.065</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">TenMileRace %&gt;%<span class="st"> </span><span class="kw">summarise</span>( <span class="kw">mean</span>(net) )  <span class="co"># using the dplyr package</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">TenMileRace <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>( <span class="kw">mean</span>(net) )  <span class="co"># using the dplyr package</span></code></pre></div>
 <pre><code>##   mean(net)
 ## 1  5599.065</code></pre>
 </div>
@@ -376,7 +376,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>In our simple case of five observations <span class="math inline">\(\left\{ 3,6,4,8,2\right\}\)</span>, we first sort the data into <span class="math inline">\(\left\{ 2,3,4,6,8\right\}\)</span> and then the middle observation is clearly <span class="math inline">\(4\)</span>.</p>
 <p>In R the median is easily calculated by the function <code>median()</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># median( TenMileRace$net )</span>
-TenMileRace %&gt;%<span class="st"> </span><span class="kw">summarise</span>( <span class="kw">median</span>(net) ) </code></pre></div>
+TenMileRace <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>( <span class="kw">median</span>(net) ) </code></pre></div>
 <pre><code>##   median(net)
 ## 1        5555</code></pre>
 </div>
@@ -405,7 +405,7 @@ TenMileRace %&gt;%<span class="st"> </span><span class="kw">summarise</span>( <s
 <h3><span class="header-section-number">1.3.1</span> Range</h3>
 <p>Range is the distance from the largest to the smallest value in the dataset.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#vmax( TenMileRace$net ) - min( TenMileRace$net )</span>
-TenMileRace %&gt;%<span class="st"> </span><span class="kw">summarise</span>( <span class="dt">range =</span> <span class="kw">max</span>(net) -<span class="st"> </span><span class="kw">min</span>(net) )</code></pre></div>
+TenMileRace <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>( <span class="dt">range =</span> <span class="kw">max</span>(net) <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(net) )</code></pre></div>
 <pre><code>##   range
 ## 1  7722</code></pre>
 </div>
@@ -413,14 +413,14 @@ TenMileRace %&gt;%<span class="st"> </span><span class="kw">summarise</span>( <s
 <h3><span class="header-section-number">1.3.2</span> Inter-Quartile Range</h3>
 <p>The p-th percentile is the observation (or observations) that has at most <span class="math inline">\(p\)</span> percent of the observations below it and <span class="math inline">\((1-p)\)</span> above it, where <span class="math inline">\(p\)</span> is between 0 and 100. The median is the <span class="math inline">\(50\)</span>th percentile. Often we are interested in splitting the data into four equal sections using the <span class="math inline">\(25\)</span>th, <span class="math inline">\(50\)</span>th, and <span class="math inline">\(75\)</span>th percentiles (which, because it splits the data into four sections, we often call these the <span class="math inline">\(1\)</span>st, <span class="math inline">\(2\)</span>nd, and <span class="math inline">\(3\)</span>rd quartiles).</p>
 <p>In general I could be interested in dividing my data up into an arbitrary number of sections, and refer to those as quantiles of my data.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">quantile</span>( TenMileRace$net ) <span class="co"># this works</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">quantile</span>( TenMileRace<span class="op">$</span>net ) <span class="co"># this works</span></code></pre></div>
 <pre><code>##    0%   25%   50%   75%  100% 
 ##  2814  4950  5555  6169 10536</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># I can&#39;t do the following because the quantile() function spits out 5 values, not 1</span>
 <span class="co"># TenMileRace %&gt;% summarise( quantile(net) )  </span></code></pre></div>
 <p>The inter-quartile range (IQR) is defined as the distance from the <span class="math inline">\(3\)</span>rd quartile to the <span class="math inline">\(1\)</span>st.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># IQR( TenMileRace$net )</span>
-TenMileRace %&gt;%<span class="st"> </span><span class="kw">summarise</span>( <span class="kw">IQR</span>(net) ) </code></pre></div>
+TenMileRace <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>( <span class="kw">IQR</span>(net) ) </code></pre></div>
 <pre><code>##   IQR(net)
 ## 1     1219</code></pre>
 <p>Notice that we’ve defined IQR before when we looked at box-and-whisker plots and this is exactly the length of the box.</p>
@@ -492,12 +492,12 @@ TenMileRace %&gt;%<span class="st"> </span><span class="kw">summarise</span>( <s
 <p>Clearly this calculation would get very tedious to do by hand and computers will be much more accurate in these calculations. In R, the sample variance is easily calculated by the function var().</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ToyData &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">x=</span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">2</span>) )
 <span class="co"># var( ToyData$x )</span>
-ToyData %&gt;%<span class="st"> </span><span class="kw">summarise</span>( <span class="dt">s2 =</span> <span class="kw">var</span>(x) )</code></pre></div>
+ToyData <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>( <span class="dt">s2 =</span> <span class="kw">var</span>(x) )</code></pre></div>
 <pre><code>##    s2
 ## 1 5.8</code></pre>
 <p>For the larger TenMileRace data set, the variance is just as easily calculated.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># var( TenMileRace$net )</span>
-TenMileRace %&gt;%<span class="st"> </span><span class="kw">summarise</span>( <span class="dt">s2 =</span> <span class="kw">var</span>(net) )</code></pre></div>
+TenMileRace <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>( <span class="dt">s2 =</span> <span class="kw">var</span>(net) )</code></pre></div>
 <pre><code>##         s2
 ## 1 940233.5</code></pre>
 </div>
@@ -506,7 +506,7 @@ TenMileRace %&gt;%<span class="st"> </span><span class="kw">summarise</span>( <s
 <p>The biggest problem with the sample variance statistic is that the units are in the original units-squared. That means if you are looking at data about car fuel efficiency, then the values would be in mpg<span class="math inline">\(^{2}\)</span> which are units that I can’t really understand. The solution is to take the positive square root, which we will call the sample standard deviation. <span class="math display">\[s=\sqrt{s^{2}}\]</span> But why do we take the jog through through variance? Mathematically the variance is more useful and most distributions (such as the normal) are defined by the variance term. Practically though, standard deviation is easier to think about.</p>
 <p>The sample standard deviation is important enough for R to have function that will calculate it for you.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># sd( TenMileRace$net )</span>
-TenMileRace %&gt;%<span class="st"> </span><span class="kw">summarise</span>( <span class="dt">s =</span> <span class="kw">sd</span>(net) )</code></pre></div>
+TenMileRace <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>( <span class="dt">s =</span> <span class="kw">sd</span>(net) )</code></pre></div>
 <pre><code>##          s
 ## 1 969.6564</code></pre>
 </div>
@@ -514,17 +514,17 @@ TenMileRace %&gt;%<span class="st"> </span><span class="kw">summarise</span>( <s
 <h3><span class="header-section-number">1.3.5</span> Coefficient of Variation</h3>
 <p>Suppose we had a group of animals and the sample standard deviation of the animals lengths was 15 cm. If the animals were elephants, you would be amazed at their uniformity in size, but if they were insects, you would be astounded at the variability. To account for that, the coefficient of variation takes the sample standard deviation and divides by the absolute value of the sample mean (to keep everything positive)</p>
 <p><span class="math display">\[CV=\frac{s}{\vert\bar{x}\vert}\]</span></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">TenMileRace %&gt;%<span class="st"> </span><span class="kw">summarise</span>( <span class="dt">s =</span> <span class="kw">sd</span>(net),
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">TenMileRace <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>( <span class="dt">s =</span> <span class="kw">sd</span>(net),
                            <span class="dt">xbar =</span> <span class="kw">mean</span>(net),
-                           <span class="dt">cv =</span> s /<span class="st"> </span><span class="kw">abs</span>(xbar) )</code></pre></div>
+                           <span class="dt">cv =</span> s <span class="op">/</span><span class="st"> </span><span class="kw">abs</span>(xbar) )</code></pre></div>
 <pre><code>##          s     xbar        cv
 ## 1 969.6564 5599.065 0.1731818</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># For fun, lets calculate these same statistics but separated by sex...</span>
-TenMileRace %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">group_by</span>(sex) %&gt;%
+TenMileRace <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(sex) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarise</span>( <span class="dt">xbar =</span> <span class="kw">mean</span>(net),
              <span class="dt">s    =</span> <span class="kw">sd</span>(net),
-             <span class="dt">cv   =</span> s /<span class="st"> </span><span class="kw">abs</span>(xbar) )</code></pre></div>
+             <span class="dt">cv   =</span> s <span class="op">/</span><span class="st"> </span><span class="kw">abs</span>(xbar) )</code></pre></div>
 <pre><code>## # A tibble: 2 x 4
 ##      sex     xbar        s        cv
 ##   &lt;fctr&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;

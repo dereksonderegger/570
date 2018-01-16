@@ -25,7 +25,7 @@
 <meta name="author" content="Derek L. Sonderegger">
 
 
-<meta name="date" content="2017-10-21">
+<meta name="date" content="2018-01-16">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -299,11 +299,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>I can then graph the theoretical quantiles vs my observed values and if they lie on the 1-to-1 line, then my data comes from a standard normal distribution.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="dv">10</span>
 data &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">observed    =</span> <span class="kw">sort</span>( <span class="kw">rnorm</span>(n, <span class="dt">mean=</span><span class="dv">0</span>, <span class="dt">sd=</span><span class="dv">1</span>) ),
-                    <span class="dt">theoretical =</span> <span class="kw">qnorm</span>( (<span class="dv">1</span>:n -.<span class="dv">5</span>)/n, <span class="dt">mean=</span><span class="dv">0</span>, <span class="dt">sd=</span><span class="dv">1</span> ) )
+                    <span class="dt">theoretical =</span> <span class="kw">qnorm</span>( (<span class="dv">1</span><span class="op">:</span>n <span class="op">-</span>.<span class="dv">5</span>)<span class="op">/</span>n, <span class="dt">mean=</span><span class="dv">0</span>, <span class="dt">sd=</span><span class="dv">1</span> ) )
 <span class="kw">library</span>(ggplot2)
-<span class="kw">ggplot</span>(data) +
-<span class="st">  </span><span class="kw">geom_point</span>( <span class="kw">aes</span>(<span class="dt">x=</span>theoretical, <span class="dt">y=</span>observed) ) +
-<span class="st">  </span><span class="kw">geom_line</span>(  <span class="kw">aes</span>(<span class="dt">x=</span>theoretical, <span class="dt">y=</span>theoretical) ) +
+<span class="kw">ggplot</span>(data) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>( <span class="kw">aes</span>(<span class="dt">x=</span>theoretical, <span class="dt">y=</span>observed) ) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>(  <span class="kw">aes</span>(<span class="dt">x=</span>theoretical, <span class="dt">y=</span>theoretical) ) <span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&#39;Theoretical&#39;</span>, <span class="dt">y=</span><span class="st">&#39;Observed&#39;</span>, <span class="dt">title=</span><span class="st">&#39;Q-Q Plot: Observed vs Normal Distribution&#39;</span>)</code></pre></div>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-165-1.png" width="672" /></p>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-166-1.png" width="672" /></p>
@@ -331,7 +331,7 @@ H_{a} &amp;:\,  \textrm{data are not normally distributed}
 ## data:  x
 ## W = 0.39539, p-value = 2.207e-07</code></pre>
 <p>So the Shapiro-Wilks test detects the non-normality in the extreme case of a logNormal distribution, but what about something closer to normal like the gamma distribution?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">rgamma</span>(<span class="dt">n=</span><span class="dv">10</span>, <span class="dt">shape=</span><span class="dv">5</span>, <span class="dt">rate=</span><span class="dv">1</span>/<span class="dv">5</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">rgamma</span>(<span class="dt">n=</span><span class="dv">10</span>, <span class="dt">shape=</span><span class="dv">5</span>, <span class="dt">rate=</span><span class="dv">1</span><span class="op">/</span><span class="dv">5</span>)
 <span class="kw">shapiro.test</span>(x)</code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
@@ -353,7 +353,7 @@ H_{a} &amp;:\,  \textrm{data are not normally distributed}
           <span class="fl">1.46</span>, <span class="fl">1.45</span>, <span class="fl">1.76</span>, <span class="fl">1.44</span>, <span class="fl">1.11</span>, <span class="fl">3.07</span>, <span class="fl">0.98</span>, <span class="fl">1.27</span>, <span class="fl">2.56</span>, <span class="fl">1.32</span> ),
   <span class="dt">trt =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&#39;control&#39;</span>,<span class="st">&#39;alcohol&#39;</span>), <span class="dt">each=</span><span class="dv">10</span>))
 
-<span class="kw">ggplot</span>(Alcohol, <span class="kw">aes</span>(<span class="dt">x=</span>trt, <span class="dt">y=</span>time)) +
+<span class="kw">ggplot</span>(Alcohol, <span class="kw">aes</span>(<span class="dt">x=</span>trt, <span class="dt">y=</span>time)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre></div>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-171-1.png" width="672" /></p>
 </div>
@@ -374,7 +374,7 @@ H_{a} &amp;:\,\sigma_{1}^{2}    \ne \sigma_{2}^{2}
   &amp;=    2\cdot P(F_{n_{1}-1,n_{2}-1}&lt;0.391) \\
     &amp;=  2\cdot P\left(F_{6,9}&lt;0.391\right)
 \end{aligned}\]</span></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2</span>*<span class="kw">pf</span>(<span class="fl">0.391</span>, <span class="dv">6</span>, <span class="dv">9</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2</span><span class="op">*</span><span class="kw">pf</span>(<span class="fl">0.391</span>, <span class="dv">6</span>, <span class="dv">9</span>)</code></pre></div>
 <pre><code>## [1] 0.2654714</code></pre>
 <p>We calculate the p-value by finding the area to the left and multiplying by two because my test statistic was less than 1 (the expected value of f if <span class="math inline">\(H_{0}\)</span> is true). If my test statistic was greater than 1, we would have found the area to the right of <span class="math inline">\(f\)</span> and multiplied by two.</p>
 </div>
@@ -387,9 +387,9 @@ H_{a} &amp;:        \sigma_{1}^{2}\ne\sigma_{2}^{2}
 <p>The labeling of group <span class="math inline">\(1\)</span> and group <span class="math inline">\(2\)</span> is completely arbitrary and I should view <span class="math inline">\(f=s_{1}^{2}/s_{2}^{2}\)</span> as the same evidence against null as <span class="math inline">\(f^{*}=s_{2}^{2}/s_{1}^{2}\)</span>. Therefore we have <span class="math display">\[
 P\left(F_{df_{1},\,df_{2}}&gt;\frac{s_{1}^{2}}{s_{2}^{2}}\right)=P\left(F_{df_{2},\,df_{1}}&lt;\frac{s_{2}^{2}}{s_{1}^{2}}\right)
 \]</span> For example, suppose that <span class="math inline">\(n_{1}=5\)</span> and <span class="math inline">\(n_{2}=20\)</span> and <span class="math inline">\(s_{1}^{2}=6\)</span> and <span class="math inline">\(s_{2}^{2}=3\)</span> then <span class="math display">\[P\left(F_{4,\,19}&gt;\frac{6}{3}\right)=P\left(F_{19,\,4}&lt;\frac{3}{6}\right)\]</span></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> -<span class="st"> </span><span class="kw">pf</span>(<span class="dv">6</span>/<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">19</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pf</span>(<span class="dv">6</span><span class="op">/</span><span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">19</span>)</code></pre></div>
 <pre><code>## [1] 0.1354182</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pf</span>(<span class="dv">3</span>/<span class="dv">6</span>, <span class="dv">19</span>, <span class="dv">4</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pf</span>(<span class="dv">3</span><span class="op">/</span><span class="dv">6</span>, <span class="dv">19</span>, <span class="dv">4</span>)</code></pre></div>
 <pre><code>## [1] 0.1354182</code></pre>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-176-1.png" width="672" /></p>
 </div>
@@ -404,11 +404,11 @@ n1 &lt;-<span class="st"> </span><span class="dv">10</span>
 n2 &lt;-<span class="st"> </span><span class="dv">10</span>
 v1 &lt;-<span class="st"> </span><span class="kw">var</span>(<span class="kw">rnorm</span>(n1, <span class="dt">mean=</span><span class="dv">0</span>, <span class="dt">sd=</span>sigma1))
 v2 &lt;-<span class="st"> </span><span class="kw">var</span>(<span class="kw">rnorm</span>(n2, <span class="dt">mean=</span><span class="dv">0</span>, <span class="dt">sd=</span>sigma2))
-f &lt;-<span class="st"> </span>v1/v2
-if( f &lt;<span class="st"> </span><span class="dv">1</span> ){
-  p.value &lt;-<span class="st"> </span><span class="dv">2</span> *<span class="st">      </span><span class="kw">pf</span>( f, <span class="dt">df1 =</span> n1<span class="dv">-1</span>, <span class="dt">df2 =</span> n2<span class="dv">-1</span> )
-}else{
-  p.value &lt;-<span class="st"> </span><span class="dv">2</span> *<span class="st"> </span>(<span class="dv">1</span> -<span class="st"> </span><span class="kw">pf</span>( f, <span class="dt">df1 =</span> n1<span class="dv">-1</span>, <span class="dt">df2 =</span> n2<span class="dv">-1</span>))
+f &lt;-<span class="st"> </span>v1<span class="op">/</span>v2
+<span class="cf">if</span>( f <span class="op">&lt;</span><span class="st"> </span><span class="dv">1</span> ){
+  p.value &lt;-<span class="st"> </span><span class="dv">2</span> <span class="op">*</span><span class="st">      </span><span class="kw">pf</span>( f, <span class="dt">df1 =</span> n1<span class="op">-</span><span class="dv">1</span>, <span class="dt">df2 =</span> n2<span class="op">-</span><span class="dv">1</span> )
+}<span class="cf">else</span>{
+  p.value &lt;-<span class="st"> </span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pf</span>( f, <span class="dt">df1 =</span> n1<span class="op">-</span><span class="dv">1</span>, <span class="dt">df2 =</span> n2<span class="op">-</span><span class="dv">1</span>))
 }
 p.value</code></pre></div>
 <pre><code>## [1] 0.1142902</code></pre>
@@ -419,11 +419,11 @@ n1 &lt;-<span class="st"> </span><span class="dv">30</span>
 n2 &lt;-<span class="st"> </span><span class="dv">30</span>
 v1 &lt;-<span class="st"> </span><span class="kw">var</span>(<span class="kw">rnorm</span>(n1, <span class="dt">mean=</span><span class="dv">0</span>, <span class="dt">sd=</span>sigma1))
 v2 &lt;-<span class="st"> </span><span class="kw">var</span>(<span class="kw">rnorm</span>(n2, <span class="dt">mean=</span><span class="dv">0</span>, <span class="dt">sd=</span>sigma2))
-f &lt;-<span class="st"> </span>v1/v2
-if( f &lt;<span class="st"> </span><span class="dv">1</span> ){
-  p.value &lt;-<span class="st"> </span><span class="dv">2</span> *<span class="st">      </span><span class="kw">pf</span>( f, <span class="dt">df1 =</span> n1<span class="dv">-1</span>, <span class="dt">df2 =</span> n2<span class="dv">-1</span> )
-}else{
-  p.value &lt;-<span class="st"> </span><span class="dv">2</span> *<span class="st"> </span>(<span class="dv">1</span> -<span class="st"> </span><span class="kw">pf</span>( f, <span class="dt">df1 =</span> n1<span class="dv">-1</span>, <span class="dt">df2 =</span> n2<span class="dv">-1</span>))
+f &lt;-<span class="st"> </span>v1<span class="op">/</span>v2
+<span class="cf">if</span>( f <span class="op">&lt;</span><span class="st"> </span><span class="dv">1</span> ){
+  p.value &lt;-<span class="st"> </span><span class="dv">2</span> <span class="op">*</span><span class="st">      </span><span class="kw">pf</span>( f, <span class="dt">df1 =</span> n1<span class="op">-</span><span class="dv">1</span>, <span class="dt">df2 =</span> n2<span class="op">-</span><span class="dv">1</span> )
+}<span class="cf">else</span>{
+  p.value &lt;-<span class="st"> </span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pf</span>( f, <span class="dt">df1 =</span> n1<span class="op">-</span><span class="dv">1</span>, <span class="dt">df2 =</span> n2<span class="op">-</span><span class="dv">1</span>))
 }
 p.value</code></pre></div>
 <pre><code>## [1] 4.276443e-06</code></pre>
@@ -433,21 +433,21 @@ p.value</code></pre></div>
 <h2><span class="header-section-number">8.4</span> Theoretical distribution vs bootstrap</h2>
 <p>Returning to the research example with the alcohol and control group, an F-test for different variances results in a p-value of</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Calculating everything by hand</span>
-F &lt;-<span class="st"> </span>Alcohol %&gt;%
-<span class="st">  </span><span class="kw">group_by</span>(trt) %&gt;%<span class="st">                </span><span class="co"># for each trt group,</span>
-<span class="st">  </span><span class="kw">summarise</span>( <span class="dt">s2 =</span> <span class="kw">var</span>(time)) %&gt;%<span class="st">   </span><span class="co"># calculate variance.</span>
-<span class="st">  </span><span class="kw">summarise</span>( <span class="dt">F =</span> s2[<span class="dv">1</span>] /<span class="st"> </span>s2[<span class="dv">2</span>] )   <span class="co"># and then take the ratio</span>
+F &lt;-<span class="st"> </span>Alcohol <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(trt) <span class="op">%&gt;%</span><span class="st">                </span><span class="co"># for each trt group,</span>
+<span class="st">  </span><span class="kw">summarise</span>( <span class="dt">s2 =</span> <span class="kw">var</span>(time)) <span class="op">%&gt;%</span><span class="st">   </span><span class="co"># calculate variance.</span>
+<span class="st">  </span><span class="kw">summarise</span>( <span class="dt">F =</span> s2[<span class="dv">1</span>] <span class="op">/</span><span class="st"> </span>s2[<span class="dv">2</span>] )   <span class="co"># and then take the ratio</span>
 F</code></pre></div>
 <pre><code>## # A tibble: 1 x 1
 ##          F
 ##      &lt;dbl&gt;
 ## 1 1.704753</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">obs.F &lt;-<span class="st"> </span><span class="kw">as.numeric</span>( F )           <span class="co"># Convert 1-by-1 data frame to simple number</span>
-pvalue &lt;-<span class="st"> </span><span class="dv">2</span>*<span class="st"> </span>(<span class="dv">1</span>-<span class="kw">pf</span>( obs.F, <span class="dv">9</span>,<span class="dv">9</span> ))
+pvalue &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="st"> </span>(<span class="dv">1</span><span class="op">-</span><span class="kw">pf</span>( obs.F, <span class="dv">9</span>,<span class="dv">9</span> ))
 pvalue</code></pre></div>
 <pre><code>## [1] 0.4390223</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Using Rs built in function</span>
-<span class="kw">var.test</span>( time ~<span class="st"> </span>trt, <span class="dt">data=</span>Alcohol )</code></pre></div>
+<span class="kw">var.test</span>( time <span class="op">~</span><span class="st"> </span>trt, <span class="dt">data=</span>Alcohol )</code></pre></div>
 <pre><code>## 
 ##  F test to compare two variances
 ## 
@@ -461,21 +461,21 @@ pvalue</code></pre></div>
 ##           1.704753</code></pre>
 <p>We can wonder how well the theoretical estimate of the sampling distribution (F_{9,9}) compares to the simulation based estimate of the sampling distribution.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Permutation distribution of Observed F-statistic assuming H0 is true. </span>
-PermDist &lt;-<span class="st"> </span>mosaic::<span class="kw">do</span>(<span class="dv">10000</span>) *<span class="st"> </span>
-<span class="st">  </span><span class="kw">var.test</span>(time ~<span class="st"> </span>mosaic::<span class="kw">shuffle</span>(trt), <span class="dt">data=</span>Alcohol)$statistic
+PermDist &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">10000</span>) <span class="op">*</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">var.test</span>(time <span class="op">~</span><span class="st"> </span>mosaic<span class="op">::</span><span class="kw">shuffle</span>(trt), <span class="dt">data=</span>Alcohol)<span class="op">$</span>statistic
 
 <span class="co"># Figure which parts of the distribution are more extreme than my observed F </span>
-PermDist &lt;-<span class="st"> </span>PermDist %&gt;%<span class="st">   </span>
-<span class="st">  </span><span class="kw">mutate</span>( <span class="dt">extreme =</span> F &gt;<span class="st"> </span>obs.F |<span class="st"> </span>F &lt;<span class="st"> </span><span class="dv">1</span>/obs.F )</code></pre></div>
+PermDist &lt;-<span class="st"> </span>PermDist <span class="op">%&gt;%</span><span class="st">   </span>
+<span class="st">  </span><span class="kw">mutate</span>( <span class="dt">extreme =</span> F <span class="op">&gt;</span><span class="st"> </span>obs.F <span class="op">|</span><span class="st"> </span>F <span class="op">&lt;</span><span class="st"> </span><span class="dv">1</span><span class="op">/</span>obs.F )</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Make a histogram of the permutation distribution along with the theoretical</span>
-<span class="kw">ggplot</span>(PermDist, <span class="kw">aes</span>(<span class="dt">x=</span>F, <span class="dt">y=</span>..density..)) +
-<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span>.<span class="dv">25</span>) +
-<span class="st">  </span><span class="kw">geom_area</span>( <span class="dt">data=</span><span class="kw">data.frame</span>(<span class="dt">x=</span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="dt">length=</span><span class="dv">1000</span>)) %&gt;%
+<span class="kw">ggplot</span>(PermDist, <span class="kw">aes</span>(<span class="dt">x=</span>F, <span class="dt">y=</span>..density..)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span>.<span class="dv">25</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_area</span>( <span class="dt">data=</span><span class="kw">data.frame</span>(<span class="dt">x=</span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="dt">length=</span><span class="dv">1000</span>)) <span class="op">%&gt;%</span>
 <span class="st">                             </span><span class="kw">mutate</span>(<span class="dt">y=</span><span class="kw">df</span>(x, <span class="dv">9</span>,<span class="dv">9</span>)),
              <span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>y), <span class="dt">alpha=</span>.<span class="dv">3</span>, <span class="dt">fill=</span><span class="st">&#39;red&#39;</span>)</code></pre></div>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-184-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># p-value... what percent is more extreme than what I observed?</span>
-PermDist %&gt;%<span class="st"> </span><span class="kw">summarise</span>(<span class="dt">p.value =</span> <span class="kw">mean</span>(extreme))</code></pre></div>
+PermDist <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">p.value =</span> <span class="kw">mean</span>(extreme))</code></pre></div>
 <pre><code>##   p.value
 ## 1  0.6141</code></pre>
 <p>The theoretical sampling distribution is more concentrated near 1 than the simulation estimate. As a result, the p-value is a bit larger, but in both cases, we cannot reject equal variances.</p>
@@ -488,13 +488,13 @@ PermDist %&gt;%<span class="st"> </span><span class="kw">summarise</span>(<span 
            <span class="fl">25.8</span>, <span class="fl">27.1</span>),
   <span class="dt">type =</span> <span class="kw">c</span>( <span class="kw">rep</span>(<span class="st">&#39;Morning&#39;</span>,<span class="dv">12</span>), <span class="kw">rep</span>(<span class="st">&#39;Evening&#39;</span>,<span class="dv">14</span>)))
 
-<span class="kw">ggplot</span>(Commute, <span class="kw">aes</span>(<span class="dt">x=</span>type, <span class="dt">y=</span>time)) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_boxplot</span>() +
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title=</span><span class="st">&#39;Commute Times&#39;</span>, <span class="dt">y=</span><span class="st">&#39;Time (minutes)&#39;</span>, <span class="dt">x=</span><span class="st">&#39;Time of Day&#39;</span>) +
+<span class="kw">ggplot</span>(Commute, <span class="kw">aes</span>(<span class="dt">x=</span>type, <span class="dt">y=</span>time)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title=</span><span class="st">&#39;Commute Times&#39;</span>, <span class="dt">y=</span><span class="st">&#39;Time (minutes)&#39;</span>, <span class="dt">x=</span><span class="st">&#39;Time of Day&#39;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-186-1.png" width="672" /></p>
 <p>We now test to see if there is a significant difference between the variances of these two groups. If we feel comfortable with assuming that these data come from normal distributions, then the theoretical method is appropriate.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">var.test</span>( time ~<span class="st"> </span>type, <span class="dt">data=</span>Commute )</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">var.test</span>( time <span class="op">~</span><span class="st"> </span>type, <span class="dt">data=</span>Commute )</code></pre></div>
 <pre><code>## 
 ##  F test to compare two variances
 ## 
@@ -508,24 +508,24 @@ PermDist %&gt;%<span class="st"> </span><span class="kw">summarise</span>(<span 
 ##           3.038978</code></pre>
 <p>But if we are uncomfortable with the normality assumption (the Shapiro-Wilks test indicates moderate evidence to reject normality for both samples due to the positive skew in both) we could compare our observed F-statistic to the simulation based estimate of the sampling distribution.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># obs.F = 3.04</span>
-obs.F &lt;-<span class="st"> </span><span class="kw">var.test</span>(time ~<span class="st"> </span>type, <span class="dt">data=</span>Commute)$statistic
+obs.F &lt;-<span class="st"> </span><span class="kw">var.test</span>(time <span class="op">~</span><span class="st"> </span>type, <span class="dt">data=</span>Commute)<span class="op">$</span>statistic
 
 <span class="co"># create the permutation distribution of F-values </span>
-PermDist &lt;-<span class="st"> </span>mosaic::<span class="kw">do</span>(<span class="dv">10000</span>) *<span class="st"> </span>
-<span class="st">  </span><span class="kw">var.test</span>(time ~<span class="st"> </span>mosaic::<span class="kw">shuffle</span>(type), <span class="dt">data=</span>Commute)$statistic
+PermDist &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">10000</span>) <span class="op">*</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">var.test</span>(time <span class="op">~</span><span class="st"> </span>mosaic<span class="op">::</span><span class="kw">shuffle</span>(type), <span class="dt">data=</span>Commute)<span class="op">$</span>statistic
 
 <span class="co"># Figure which parts of the distribution are more extreme than my observed F </span>
-PermDist &lt;-<span class="st"> </span>PermDist %&gt;%<span class="st">   </span>
-<span class="st">  </span><span class="kw">mutate</span>( <span class="dt">extreme =</span> F &gt;<span class="st"> </span>obs.F |<span class="st"> </span>F &lt;<span class="st"> </span><span class="dv">1</span>/obs.F )  <span class="co"># F &gt; 3.04 or F &lt; 1/3.04</span></code></pre></div>
+PermDist &lt;-<span class="st"> </span>PermDist <span class="op">%&gt;%</span><span class="st">   </span>
+<span class="st">  </span><span class="kw">mutate</span>( <span class="dt">extreme =</span> F <span class="op">&gt;</span><span class="st"> </span>obs.F <span class="op">|</span><span class="st"> </span>F <span class="op">&lt;</span><span class="st"> </span><span class="dv">1</span><span class="op">/</span>obs.F )  <span class="co"># F &gt; 3.04 or F &lt; 1/3.04</span></code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Make a histogram of the permutation distribution and theoretical</span>
-<span class="kw">ggplot</span>(PermDist, <span class="kw">aes</span>(<span class="dt">x=</span>F, <span class="dt">y=</span>..density..)) +
-<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span>.<span class="dv">1</span>) +
-<span class="st">  </span><span class="kw">geom_area</span>( <span class="dt">data=</span><span class="kw">data.frame</span>(<span class="dt">x=</span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="dt">length=</span><span class="dv">1000</span>)) %&gt;%
+<span class="kw">ggplot</span>(PermDist, <span class="kw">aes</span>(<span class="dt">x=</span>F, <span class="dt">y=</span>..density..)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span>.<span class="dv">1</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_area</span>( <span class="dt">data=</span><span class="kw">data.frame</span>(<span class="dt">x=</span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="dt">length=</span><span class="dv">1000</span>)) <span class="op">%&gt;%</span>
 <span class="st">                             </span><span class="kw">mutate</span>(<span class="dt">y=</span><span class="kw">df</span>(x, <span class="dv">13</span>, <span class="dv">11</span>)),
              <span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>y), <span class="dt">alpha=</span>.<span class="dv">3</span>, <span class="dt">fill=</span><span class="st">&#39;red&#39;</span>)</code></pre></div>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-189-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># p-value... what proportion is more extreme than what I observed?</span>
-PermDist %&gt;%<span class="st"> </span><span class="kw">summarise</span>(<span class="dt">p.value =</span> <span class="kw">mean</span>(extreme))</code></pre></div>
+PermDist <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">p.value =</span> <span class="kw">mean</span>(extreme))</code></pre></div>
 <pre><code>##   p.value
 ## 1  0.0019</code></pre>
 <p>We again see that with this small of a data set, our simulation based p-value is different from the theoretical based p-value. This is primarily due to the non-normality of our data along with the small sample sizes. In general as our sample sizes increase the simulation based and theoretical based distributions should give similar inference and p-values.</p>
@@ -572,8 +572,8 @@ sigma &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2
 my.data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">y =</span> <span class="kw">c</span>(<span class="kw">rnorm</span>( n, <span class="dt">mean=</span><span class="dv">0</span>, <span class="dt">sd=</span>sigma[<span class="dv">1</span>] ),
                             <span class="kw">rnorm</span>( n, <span class="dt">mean=</span><span class="dv">0</span>, <span class="dt">sd=</span>sigma[<span class="dv">2</span>] )),
                       <span class="dt">group =</span> <span class="kw">c</span>( <span class="kw">rep</span>(<span class="st">&#39;g1&#39;</span>,n), <span class="kw">rep</span>(<span class="st">&#39;g2&#39;</span>,n)  ))
-<span class="kw">boxplot</span>(y ~<span class="st"> </span>group, <span class="dt">data=</span>my.data) 
-<span class="kw">var.test</span>(y ~<span class="st"> </span>group, <span class="dt">data=</span>my.data)</code></pre></div>
+<span class="kw">boxplot</span>(y <span class="op">~</span><span class="st"> </span>group, <span class="dt">data=</span>my.data) 
+<span class="kw">var.test</span>(y <span class="op">~</span><span class="st"> </span>group, <span class="dt">data=</span>my.data)</code></pre></div>
 <ol style="list-style-type: lower-alpha">
 <li>How often does the F-test reject (at <span class="math inline">\(\alpha=0.05\)</span> level) equal variance when the variances of the two groups are equal? (Run the above code 20 or more times.) Does this appear to change as the sample size gets larger?</li>
 <li>How often does the F-test reject (at <span class="math inline">\(\alpha=0.05\)</span> level) equal variance when the variances are different, say <span class="math inline">\(\sigma_{1}=2\)</span> and <span class="math inline">\(\sigma_{2}=4\)</span>? <em>(Run your code many times!)</em></li>

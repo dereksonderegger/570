@@ -25,7 +25,7 @@
 <meta name="author" content="Derek L. Sonderegger">
 
 
-<meta name="date" content="2017-10-21">
+<meta name="date" content="2018-01-16">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -317,17 +317,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
      <span class="dv">497</span>, <span class="dv">384</span>,  <span class="dv">429</span>, <span class="dv">497</span>, <span class="dv">224</span>, <span class="dv">157</span>, <span class="dv">248</span>, <span class="dv">349</span>, <span class="dv">388</span>, <span class="dv">391</span>,
      <span class="dv">266</span>, <span class="dv">230</span>, <span class="dv">621</span>, <span class="dv">314</span>, <span class="dv">344</span>,  <span class="dv">413</span>, <span class="dv">267</span>, <span class="dv">380</span>, <span class="dv">225</span>, <span class="dv">418</span>,
      <span class="dv">257</span>, <span class="dv">466</span>, <span class="dv">230</span>, <span class="dv">548</span>, <span class="dv">277</span>, <span class="dv">354</span>, <span class="dv">271</span>, <span class="dv">369</span>,  <span class="dv">275</span>, <span class="dv">272</span>))
-xbar &lt;-<span class="st"> </span><span class="kw">mean</span>(bears$weight)
-s    &lt;-<span class="st"> </span><span class="kw">sd</span>(  bears$weight)
+xbar &lt;-<span class="st"> </span><span class="kw">mean</span>(bears<span class="op">$</span>weight)
+s    &lt;-<span class="st"> </span><span class="kw">sd</span>(  bears<span class="op">$</span>weight)
 <span class="kw">cbind</span>(xbar, s)</code></pre></div>
 <pre><code>##       xbar        s
 ## [1,] 345.6 108.8527</code></pre>
 <p>Notice that the data do not appear to come from a normal distribution, but a slightly heavier right tail. We’ll plot the histogram of data along with a normal distribution with the same mean and standard deviation as our data.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">normal.data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">weight=</span><span class="kw">seq</span>(<span class="dv">100</span>,<span class="dv">700</span>,<span class="dt">length=</span><span class="dv">1000</span>)) %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">normal.data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">weight=</span><span class="kw">seq</span>(<span class="dv">100</span>,<span class="dv">700</span>,<span class="dt">length=</span><span class="dv">1000</span>)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>( <span class="dt">y =</span> <span class="kw">dnorm</span>(weight, <span class="dt">mean=</span>xbar, <span class="dt">sd=</span>s))
-<span class="kw">ggplot</span>() +
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">y=</span><span class="st">&#39;density&#39;</span>) +
-<span class="st">  </span><span class="kw">geom_area</span>( <span class="dt">data=</span>normal.data, <span class="kw">aes</span>(<span class="dt">x=</span>weight, <span class="dt">y=</span>y), <span class="dt">fill=</span><span class="st">&#39;light blue&#39;</span> ) +
+<span class="kw">ggplot</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">y=</span><span class="st">&#39;density&#39;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_area</span>( <span class="dt">data=</span>normal.data, <span class="kw">aes</span>(<span class="dt">x=</span>weight, <span class="dt">y=</span>y), <span class="dt">fill=</span><span class="st">&#39;light blue&#39;</span> ) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">data=</span>bears, <span class="kw">aes</span>(<span class="dt">x=</span>weight, <span class="dt">y=</span>..density..),
                  <span class="dt">binwidth=</span><span class="dv">30</span>, <span class="dt">alpha=</span>.<span class="dv">6</span>)  </code></pre></div>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-89-1.png" width="672" /></p>
@@ -336,20 +336,20 @@ s    &lt;-<span class="st"> </span><span class="kw">sd</span>(  bears$weight)
 <pre><code>## [1] 2.022691</code></pre>
 <p>we find that <span class="math inline">\(t_{n-1}^{1-\alpha/2}=2.022691\)</span>. Therefore the <span class="math inline">\(95\%\)</span> confidence interval is <span class="math display">\[\bar{x}   \pm t_{n-1}^{1-\alpha/2}\left(\frac{s}{\sqrt{n}}\right)\]</span> <span class="math display">\[345.6 \pm 2.022691\left(\frac{108.8527}{\sqrt{40}}\right)\]</span> <span class="math display">\[345.6 \pm 34.8\]</span> or <span class="math inline">\(\left(310.8, \, 380.4\right)\)</span> which is interpreted as “We are 95% confident that the true mean <span class="math inline">\(\mu\)</span> is in this interval” which is shorthand for “The process that resulted in this interval (taking a random sample, and then calculating an interval using the algorithm presented) will result in intervals such that 95% of them contain the mean <span class="math inline">\(\mu\)</span>, but we cannot know of this particular interval is one of the good ones or not.”</p>
 <p>We can wonder how well this interval matches up with the interval we would have gotten if we had used the bootstrap method to create a confidence interval for <span class="math inline">\(\mu\)</span>. In this case, where the sample size <span class="math inline">\(n\)</span> is relatively large, the Central Limit Theorem is certainly working and the distribution of the sample mean certainly looks fairly normal.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">SampDist &lt;-<span class="st"> </span>mosaic::<span class="kw">do</span>(<span class="dv">10000</span>) *<span class="st"> </span>{
-  mosaic::<span class="kw">resample</span>(bears) %&gt;%<span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">SampDist &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">10000</span>) <span class="op">*</span><span class="st"> </span>{
+  mosaic<span class="op">::</span><span class="kw">resample</span>(bears) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">xbar=</span><span class="kw">mean</span>(weight)) 
 }
-<span class="kw">ggplot</span>(SampDist, <span class="kw">aes</span>(<span class="dt">x=</span>xbar, <span class="dt">y=</span>..density..)) +<span class="st"> </span>
+<span class="kw">ggplot</span>(SampDist, <span class="kw">aes</span>(<span class="dt">x=</span>xbar, <span class="dt">y=</span>..density..)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_histogram</span>()</code></pre></div>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-91-1.png" width="672" /></p>
 <p>Grabbing the appropriate quantiles from the bootstrap estimate of the sampling distribution, we see that the bootstrap <span class="math inline">\(95\%\)</span> confidence interval matches up will with the confidence interval we obtained from asymptotic theory.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">quantile</span>( SampDist$xbar, <span class="dt">probs=</span><span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>) )</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">quantile</span>( SampDist<span class="op">$</span>xbar, <span class="dt">probs=</span><span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>) )</code></pre></div>
 <pre><code>##     2.5%    97.5% 
 ## 313.0487 380.0256</code></pre>
 <p>Example: Assume that the percent of alcohol in casks of whisky is normally distributed. From the last batch of casks produced, the brewer samples <span class="math inline">\(n=5\)</span> casks and wants to calculate a <span class="math inline">\(90\%\)</span> confidence interval for the mean percent alcohol in the latest batch produced. The sample mean was <span class="math inline">\(\bar{x}=55\)</span> percent and the sample standard deviation was <span class="math inline">\(s=4\)</span> percent.</p>
 <p><span class="math display">\[\bar{x}   \pm t_{n-1}^{1-\alpha/2}\left(\frac{s}{\sqrt{n}}\right)\]</span></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qt</span>( <span class="dv">1</span> -<span class="st"> </span>.<span class="dv">1</span>/<span class="dv">2</span>, <span class="dt">df=</span><span class="dv">4</span>)  <span class="co"># 1-(.1)/2 = 1-.05 = .95</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qt</span>( <span class="dv">1</span> <span class="op">-</span><span class="st"> </span>.<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>, <span class="dt">df=</span><span class="dv">4</span>)  <span class="co"># 1-(.1)/2 = 1-.05 = .95</span></code></pre></div>
 <pre><code>## [1] 2.131847</code></pre>
 <p><span class="math display">\[55    \pm 2.13\left(\frac{4}{\sqrt{5}}\right)\]</span> <span class="math display">\[55    \pm 3.8\]</span></p>
 <p>Question: If we wanted a <span class="math inline">\(95\%\)</span> confidence interval, would it have been wider or narrower?</p>

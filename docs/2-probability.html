@@ -25,7 +25,7 @@
 <meta name="author" content="Derek L. Sonderegger">
 
 
-<meta name="date" content="2017-10-21">
+<meta name="date" content="2018-01-16">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -553,9 +553,9 @@ P(A)P(B)\;\; &amp; \textrm{ if A,B are independent}
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">distr &lt;-<span class="st"> </span><span class="kw">data.frame</span>(    <span class="dt">clients =</span> <span class="kw">c</span>( <span class="dv">0</span>,   <span class="dv">1</span>,    <span class="dv">2</span>,    <span class="dv">3</span>,    <span class="dv">4</span>   ),    <span class="co"># two columns </span>
                     <span class="dt">probability =</span> <span class="kw">c</span>(<span class="fl">0.3</span>, <span class="fl">0.35</span>, <span class="fl">0.20</span>, <span class="fl">0.10</span>, <span class="fl">0.05</span> ) )   <span class="co"># </span>
 
-<span class="kw">ggplot</span>(distr, <span class="kw">aes</span>(<span class="dt">x=</span>clients)) +<span class="st">                   </span><span class="co"># graph with clients as the x-axis</span>
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">y=</span>probability)) +<span class="st">                </span><span class="co"># where the dots go</span>
-<span class="st">  </span><span class="kw">geom_linerange</span>(<span class="kw">aes</span>(<span class="dt">ymax=</span>probability, <span class="dt">ymin=</span><span class="dv">0</span>)) +<span class="st"> </span><span class="co"># the vertical lines       </span>
+<span class="kw">ggplot</span>(distr, <span class="kw">aes</span>(<span class="dt">x=</span>clients)) <span class="op">+</span><span class="st">                   </span><span class="co"># graph with clients as the x-axis</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">y=</span>probability)) <span class="op">+</span><span class="st">                </span><span class="co"># where the dots go</span>
+<span class="st">  </span><span class="kw">geom_linerange</span>(<span class="kw">aes</span>(<span class="dt">ymax=</span>probability, <span class="dt">ymin=</span><span class="dv">0</span>)) <span class="op">+</span><span class="st"> </span><span class="co"># the vertical lines       </span>
 <span class="st">  </span><span class="kw">theme_bw</span>()                                      <span class="co"># set background color...</span></code></pre></div>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
 <p>Because this is the long term relative frequency of the number of clients (over 200 working days!), it is appropriate to interpret these frequencies as probabilities. This table and graph is often called a probability mass function (pmf) because it lists how the probability is spread across the possible values of the random variable. We might next ask ourselves what is the average number of clients per day? It looks like it ought to be between 1 and 2 clients per day.</p>
@@ -770,12 +770,12 @@ P(A)P(B)\;\; &amp; \textrm{ if A,B are independent}
 <p><span class="math display">\[P(X=x)=\underbrace{\frac{n!}{x!(n-x)!}}_{orderings}\;\underbrace{\pi^{x}}_{y\,successes}\;\underbrace{(1-\pi)^{n-x}}_{n-y\,failures}\]</span></p>
 <p>where we define <span class="math inline">\(n!=n(n-1)\dots(2)(1)\)</span> and further define <span class="math inline">\(0!=1\)</span>. Often the ordering term is written more compactly as <span class="math display">\[{n \choose x}=\frac{n!}{x!\left(n-x\right)!}\]</span>.</p>
 <p>For our small mammal example we can create a graph that shows the binomial distribution with the following R code:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dist &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">x=</span><span class="dv">0</span>:<span class="dv">3</span> ) %&gt;%<span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dist &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">x=</span><span class="dv">0</span><span class="op">:</span><span class="dv">3</span> ) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">probability =</span> <span class="kw">dbinom</span>(x, <span class="dt">size=</span><span class="dv">3</span>, <span class="dt">prob=</span><span class="fl">0.8</span>))
-<span class="kw">ggplot</span>(dist, <span class="kw">aes</span>(<span class="dt">x=</span>x)) +
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">y=</span>probability)) +
-<span class="st">  </span><span class="kw">geom_linerange</span>(<span class="kw">aes</span>(<span class="dt">ymax=</span>probability, <span class="dt">ymin=</span><span class="dv">0</span>)) +
-<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&#39;Binomial distribution: n=3, p=0.8&#39;</span>) +
+<span class="kw">ggplot</span>(dist, <span class="kw">aes</span>(<span class="dt">x=</span>x)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">y=</span>probability)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_linerange</span>(<span class="kw">aes</span>(<span class="dt">ymax=</span>probability, <span class="dt">ymin=</span><span class="dv">0</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&#39;Binomial distribution: n=3, p=0.8&#39;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
 <p>To calculate the height of any of these bars, we can evaluate the pmf at the desired point. For example, to calculate the probability the number of full traps is 2, we calculate the following</p>
@@ -801,19 +801,19 @@ P(A)P(B)\;\; &amp; \textrm{ if A,B are independent}
     &amp;=  \vdots \\
     &amp;=  n\pi(1-\pi) \end{aligned}\]</span></p>
 <p><strong>Example 8</strong>. Suppose a bird survey only captures the presence or absence of a particular bird (say the mountain chickadee). Assuming the true presence proportion at national forest sites around Flagstaff <span class="math display">\[\pi=0.1\]</span>, then for <span class="math inline">\(n=20\)</span> randomly chosen sites, the number of sites in which the bird was observed would have the distribution</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dist &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">x =</span> <span class="dv">0</span>:<span class="dv">20</span> ) %&gt;%<span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dist &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">x =</span> <span class="dv">0</span><span class="op">:</span><span class="dv">20</span> ) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">probability =</span> <span class="kw">dbinom</span>(x, <span class="dt">size=</span><span class="dv">20</span>, <span class="dt">prob=</span><span class="fl">0.1</span>))
-<span class="kw">ggplot</span>(dist, <span class="kw">aes</span>(<span class="dt">x=</span>x)) +
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">y=</span>probability)) +
-<span class="st">  </span><span class="kw">geom_linerange</span>(<span class="kw">aes</span>(<span class="dt">ymax=</span>probability, <span class="dt">ymin=</span><span class="dv">0</span>)) +
-<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&#39;Binomial distribution: n=20, p=0.1&#39;</span>) +
-<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&#39;Number of Sites Occupied&#39;</span>) +
+<span class="kw">ggplot</span>(dist, <span class="kw">aes</span>(<span class="dt">x=</span>x)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">y=</span>probability)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_linerange</span>(<span class="kw">aes</span>(<span class="dt">ymax=</span>probability, <span class="dt">ymin=</span><span class="dv">0</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&#39;Binomial distribution: n=20, p=0.1&#39;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&#39;Number of Sites Occupied&#39;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
 <p>Often we are interested in questions such as <span class="math inline">\(P(X\le2)\)</span> which is the probability that we see 2 or fewer of the sites being occupied by mountain chickadee. These calculations can be tedious to calculate by hand but R will calculate these cumulative distribution function values for you using the “p-function”. This cumulative distribution function gives the sum of all values up to and including the number given.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># P(X=0) + P(X=1) + P(X=2)</span>
-sum &lt;-<span class="st"> </span><span class="kw">dbinom</span>(<span class="dv">0</span>, <span class="dt">size=</span><span class="dv">20</span>, <span class="dt">prob=</span><span class="fl">0.1</span>) +<span class="st"> </span>
-<span class="st">       </span><span class="kw">dbinom</span>(<span class="dv">1</span>, <span class="dt">size=</span><span class="dv">20</span>, <span class="dt">prob=</span><span class="fl">0.1</span>) +<span class="st"> </span>
+sum &lt;-<span class="st"> </span><span class="kw">dbinom</span>(<span class="dv">0</span>, <span class="dt">size=</span><span class="dv">20</span>, <span class="dt">prob=</span><span class="fl">0.1</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">       </span><span class="kw">dbinom</span>(<span class="dv">1</span>, <span class="dt">size=</span><span class="dv">20</span>, <span class="dt">prob=</span><span class="fl">0.1</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">       </span><span class="kw">dbinom</span>(<span class="dv">2</span>, <span class="dt">size=</span><span class="dv">20</span>, <span class="dt">prob=</span><span class="fl">0.1</span>)
 sum</code></pre></div>
 <pre><code>## [1] 0.6769268</code></pre>
@@ -851,13 +851,13 @@ sum</code></pre></div>
     &amp;=  0.9163 \end{aligned}\]</span></p>
 <p>What about the probability of finding 5 or more? <span class="math display">\[P(Y\ge5)  =   1-P(Y\le4) =    1-0.9163 =  0.0837\]</span></p>
 <p>These calculations can be done using the distribution function (d-function) for the poisson and the cumulative distribution function (p-function).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dist &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">NumCaught =</span> <span class="dv">0</span>:<span class="dv">10</span> ) %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dist &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">NumCaught =</span> <span class="dv">0</span><span class="op">:</span><span class="dv">10</span> ) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>( <span class="dt">probability =</span> <span class="kw">dpois</span>( NumCaught, <span class="dt">lambda=</span><span class="fl">2.3</span> ) )
-<span class="kw">ggplot</span>(dist, <span class="kw">aes</span>(<span class="dt">x=</span>NumCaught)) +
-<span class="st">  </span><span class="kw">geom_point</span>( <span class="kw">aes</span>(<span class="dt">y=</span>probability) ) +
-<span class="st">  </span><span class="kw">geom_linerange</span>(<span class="kw">aes</span>( <span class="dt">ymax=</span>probability, <span class="dt">ymin=</span><span class="dv">0</span>)) +
-<span class="st">  </span><span class="kw">ggtitle</span>(<span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&#39;Poisson Distribution with  &#39;</span>, lambda ==<span class="st"> </span><span class="fl">2.3</span>))) +
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&#39;Number Caught&#39;</span>) +
+<span class="kw">ggplot</span>(dist, <span class="kw">aes</span>(<span class="dt">x=</span>NumCaught)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>( <span class="kw">aes</span>(<span class="dt">y=</span>probability) ) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_linerange</span>(<span class="kw">aes</span>( <span class="dt">ymax=</span>probability, <span class="dt">ymin=</span><span class="dv">0</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&#39;Poisson Distribution with  &#39;</span>, lambda <span class="op">==</span><span class="st"> </span><span class="fl">2.3</span>))) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&#39;Number Caught&#39;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_bw</span>()            </code></pre></div>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># P( Y = 4)</span>
@@ -867,7 +867,7 @@ sum</code></pre></div>
 <span class="kw">ppois</span>(<span class="dv">4</span>, <span class="dt">lambda=</span><span class="fl">2.3</span>)</code></pre></div>
 <pre><code>## [1] 0.9162493</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 1-P(Y &lt;= 4)  ==  P( Y &gt; 4)  ==  P( Y &gt;= 5)</span>
-<span class="dv">1</span>-<span class="kw">ppois</span>(<span class="dv">4</span>, <span class="fl">2.3</span>)</code></pre></div>
+<span class="dv">1</span><span class="op">-</span><span class="kw">ppois</span>(<span class="dv">4</span>, <span class="fl">2.3</span>)</code></pre></div>
 <pre><code>## [1] 0.08375072</code></pre>
 </div>
 </div>
@@ -894,17 +894,17 @@ sum</code></pre></div>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
 <p><strong>Example 10</strong>. Suppose the time between insect captures <span class="math inline">\(X\)</span> during a summer evening for a species of bat follows a exponential distribution with capture rate of <span class="math inline">\(\lambda=2\)</span> insects per minute and therefore the expected waiting time between captures is <span class="math inline">\(1/\lambda=1/2\)</span> minute. Suppose that we are interested in the probability that it takes a bat more than 1 minute to capture its next insect.</p>
 <p><span class="math display">\[P(X&gt;1)=\]</span></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x=</span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">5</span>,<span class="dt">length=</span><span class="dv">1000</span>), <span class="dt">lambda =</span> <span class="dv">2</span>) %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x=</span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">5</span>,<span class="dt">length=</span><span class="dv">1000</span>), <span class="dt">lambda =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">y=</span><span class="kw">dexp</span>(x, <span class="dt">rate =</span> lambda),
-         <span class="dt">grp =</span> <span class="kw">ifelse</span>( x &gt;<span class="st"> </span><span class="dv">1</span>, <span class="st">&#39;&gt; 1&#39;</span>, <span class="st">&#39;&lt;= 1&#39;</span>))
-<span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>y, <span class="dt">fill=</span>grp)) +
-<span class="st">  </span><span class="kw">geom_area</span>() +
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">y=</span><span class="st">&#39;density&#39;</span>) +
+         <span class="dt">grp =</span> <span class="kw">ifelse</span>( x <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>, <span class="st">&#39;&gt; 1&#39;</span>, <span class="st">&#39;&lt;= 1&#39;</span>))
+<span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>y, <span class="dt">fill=</span>grp)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_area</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">y=</span><span class="st">&#39;density&#39;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
 <p>We now must resort to calculus to find this area. Or use tables of pre-calculated values. Or use R, remembering that p-functions give the area under the curve to the left of the given value.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># P(X &gt; 1)  == 1 - P(X &lt;= 1)</span>
-<span class="dv">1</span> -<span class="st"> </span><span class="kw">pexp</span>(<span class="dv">1</span>, <span class="dt">rate=</span><span class="dv">2</span>)</code></pre></div>
+<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pexp</span>(<span class="dv">1</span>, <span class="dt">rate=</span><span class="dv">2</span>)</code></pre></div>
 <pre><code>## [1] 0.1353353</code></pre>
 </div>
 <div id="normal-distribution" class="section level3">
@@ -914,12 +914,12 @@ sum</code></pre></div>
 <p>and see this distribution is defined by its expectation <span class="math inline">\(E[X]=\mu\)</span> and its variance <span class="math inline">\(Var[X]=\sigma^{2}\)</span>. Notice I could define it using the standard deviation <span class="math inline">\(\sigma\)</span>, and different software packages will expect it to be defined by one or the other. R defines the normal distribution using the standard deviation.</p>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
 <p><strong>Example 11</strong>. It is known that the heights of adult males in the US is approximately normal with a mean of 5 feet 10 inches (<span class="math inline">\(\mu=70\)</span> inches) and a standard deviation of <span class="math inline">\(\sigma=3\)</span> inches. Your instructor is a mere 5 feet 4 inches (64 inches). What proportion of the population is shorter than your professor?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">distr &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x=</span><span class="kw">seq</span>(<span class="dv">57</span>, <span class="dv">82</span>, <span class="dt">length=</span><span class="dv">1000</span>)) %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">distr &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x=</span><span class="kw">seq</span>(<span class="dv">57</span>, <span class="dv">82</span>, <span class="dt">length=</span><span class="dv">1000</span>)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>( <span class="dt">density =</span> <span class="kw">dnorm</span>(x, <span class="dt">mean=</span><span class="dv">70</span>, <span class="dt">sd=</span><span class="dv">3</span>),
-          <span class="dt">group =</span> <span class="kw">ifelse</span>(x&lt;=<span class="dv">64</span>, <span class="st">&#39;Shorter&#39;</span>,<span class="st">&#39;Taller&#39;</span>) )
-<span class="kw">ggplot</span>(distr, <span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>density, <span class="dt">fill=</span>group)) +
-<span class="st">  </span><span class="kw">geom_line</span>() +
-<span class="st">  </span><span class="kw">geom_area</span>() +
+          <span class="dt">group =</span> <span class="kw">ifelse</span>(x<span class="op">&lt;=</span><span class="dv">64</span>, <span class="st">&#39;Shorter&#39;</span>,<span class="st">&#39;Taller&#39;</span>) )
+<span class="kw">ggplot</span>(distr, <span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>density, <span class="dt">fill=</span>group)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_area</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
 <p>Using R you can easily find this</p>

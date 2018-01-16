@@ -333,9 +333,9 @@ and can be found using the `coef()` and `confint()` functions.
 model.2 <- lm(LAI ~ Species - 1, data=data)
 coef(model.2)
 
-# alternatively we could use the lsmeans package
+# alternatively we could use the emmeans package
 # using either model representation 
-lsmeans::lsmeans(model, ~Species)
+emmeans::emmeans(model, ~Species)
 ```
 
 Are the all the species different from each other? In practice I will want to examine each group and compare it to all others and figure out if they are different. How can we efficiently do all possible t-tests and keep the correct $\alpha$ level correct? 
@@ -350,8 +350,8 @@ k <- 5 ; n <- 10
 mydata <- data.frame(mu=rep(0,k*n), Grp=factor(rep(1:k, each=n))) %>%
   mutate( Y=mu+rnorm(k*n), Group=Grp) 
 letterdata <- lm( Y~Grp, data=mydata ) %>%
-  lsmeans::lsmeans( pairwise~Grp) %>%
-  lsmeans::cld( Letters=letters, adjust='none' ) %>%  # Force no p-value adjustment
+  emmeans::emmeans( ~ Grp) %>%
+  emmeans::cld( Letters=letters, adjust='none' ) %>%  # Force no p-value adjustment
   dplyr::select(Grp, .group) %>%
   dplyr::mutate( Y = 3 )
 ```
@@ -371,18 +371,19 @@ I want to be able to control the family-wise error rate so that the probability 
 
 John Tukey's test of “Honestly Significant Differences” is commonly used to address the multiple comparisons issue when examining all possible pairwise contrasts. This method is available in R by the function in several different methods. This test is near optimal when each group has the same number of samples (which is often termed “a balanced design”), but becomes more conservative (fails to detect differences) as the design becomes more unbalanced. In extremely unbalanced cases, it is preferable to use a Bonferroni adjustment.
 
-Using function `lsmeans::lsmeans()` function, which by default does Tukey's adjustment, the adjusted p-value for the difference between groups 1 and 4 is no longer significant. 
+Using function `emmeans::emmeans()` function, which by default does Tukey's adjustment, the adjusted p-value for the difference between groups 1 and 4 is no longer significant. 
 
 ```{r}
 model <- lm(Y ~ Grp, mydata)
-t1 <- lsmeans::lsmeans(model, pairwise ~ Grp)
+t1 <- emmeans::emmeans(model, pairwise ~ Grp)
 t1
 ```
 
 It is also straightforward to generate the letter display using the function `cld()` which stands for _compact letter display_.
 
 ```{r}
-lsmeans::cld( t1, Letters=letters )
+emmeans::emmeans(model, ~ Grp) %>%    # don't have the pairwise here or else
+  emmeans::cld( Letters=letters )     # the cld() function gets confused...
 ```
 
 
@@ -445,7 +446,7 @@ Because the p-value in the ANOVA table is smaller than $\alpha=0.05$, we can rej
 To find out which means are different we look at the group means and confidence intervals as well as all the pairwise contrasts between the groups. We will control for the multiple comparisons issue by using Tukey's method.
 
 ```{r}
-lsmeans::lsmeans(model, pairwise~Method)
+emmeans::emmeans(model, pairwise~Method)
 ```
 
 If we feel uncomfortable with the equal variance assumption, we can do each pairwise t-test using non-pooled variance and then correct for the multiple comparisons using Bonferroni's p-value correction. If we have $k=3$ groups, the we have $k(k-1)/2=3$ different comparisons, so I will calculate each p-value and multiply by $3$.
@@ -510,7 +511,7 @@ $$Y_{ij}=\mu+\tau_{i}+\epsilon_{ij}$$ where $\mu$ is the mean of group 1 and $\t
 
 Notice that this representation of the complex model has 4 parameters (aside from $\sigma$), but it has an additional constraint so we still only have 3 parameters that can vary (just as the cell means model has 3 means).
 
-The cell means model and the offset model really are the same model, just looked at slightly differently. They have the same number of parameters, and produce the same predicted values for $\hat{y}_{ij}$ and therefore have the same sum of squares, etc. The only difference is that one is might be more convenient depending on the question the investigator is asking. Actually in all the previous work in this chapter, we've been using the offset representation but `lsmeans::lsmeans()` is smart enough to recognize when we want the cell means model.
+The cell means model and the offset model really are the same model, just looked at slightly differently. They have the same number of parameters, and produce the same predicted values for $\hat{y}_{ij}$ and therefore have the same sum of squares, etc. The only difference is that one is might be more convenient depending on the question the investigator is asking. Actually in all the previous work in this chapter, we've been using the offset representation but `emmeans::emmeans()` is smart enough to recognize when we want the cell means model.
 
 Another way to write the cell means model is as $Y_{ij}=\mu+\tau_{i}+\epsilon_{ij}$ but with the constraint that $\mu=0$. It doesn't matter which constraint you use so long as you know which is being used because the interpretation of the values changes (group mean versus an offset from the reference group).
 
@@ -679,7 +680,7 @@ simple <- lm(HLT ~ 1, data=Hostility)
 anova(simple, cell.representation)
 ```
 
-My recommendation is to always fit the offset model and if you are interested in all of the mean values, just access those using the `lsmeans::lsmeans()` function. If you are interested in the offsets, then you access them through the base functions `coef()` and `conf()`.
+My recommendation is to always fit the offset model and, if you are interested in all of the mean values, just access the group means and difference between groups using the `emmeans::emmeans()` function. If you are interested in the just the offsets, then you can access them through the base functions `coef()` and `conf()` or pick them out of your `emmeans` output.
 
 ## Exercises
 

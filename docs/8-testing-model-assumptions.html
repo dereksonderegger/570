@@ -25,7 +25,7 @@
 <meta name="author" content="Derek L. Sonderegger">
 
 
-<meta name="date" content="2018-01-16">
+<meta name="date" content="2018-01-17">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -346,7 +346,7 @@ H_{a} &amp;:\,  \textrm{data are not normally distributed}
 <h2><span class="header-section-number">8.2</span> Testing Equal Variance</h2>
 <div id="visual-inspection" class="section level3">
 <h3><span class="header-section-number">8.2.1</span> Visual Inspection</h3>
-<p>Often a test procedure assumes equal variances amongst groups or constant variance along a prediction gradient. The most effect way of checking to see if that assumption is met is to visually inspect the data. For the case of t-tests, boxplots are an excellent visual check. If the lengths of the boxes are not substantially different, then the equal variance assumption is acceptable.</p>
+<p>Often a test procedure assumes equal variances among groups or constant variance along a prediction gradient. The most effect way of checking to see if that assumption is met is to visually inspect the data. For the case of t-tests, boxplots are an excellent visual check. If the lengths of the boxes are not substantially different, then the equal variance assumption is acceptable.</p>
 <p>Consider an experiment where we measure the speed of reaction to a stimulus. The subjects are told to press a button as soon as they hear a noise. Between 2 and 30 seconds later an extremely loud noise is made. Of primary interest is how inebriation affects the reaction speed. Since we can’t surprise subjects twice, only one measurement per subject is possible and a paired test is not possible. Subjects were randomly assigned to a control or alcohol group</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Alcohol &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
   <span class="dt">time=</span><span class="kw">c</span>( <span class="fl">0.90</span>, <span class="fl">0.37</span>, <span class="fl">1.63</span>, <span class="fl">0.83</span>, <span class="fl">0.95</span>, <span class="fl">0.78</span>, <span class="fl">0.86</span>, <span class="fl">0.61</span>, <span class="fl">0.38</span>, <span class="fl">1.97</span>,

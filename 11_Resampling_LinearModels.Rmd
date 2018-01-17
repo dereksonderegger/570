@@ -198,7 +198,7 @@ Because our approximate population is just an infinite number of copies of our s
 
 ### Observational Studies vs Designed Experiments
 
-The process of collecting data is a time consuming and laborious process but is critical to our understanding of the world. The fundamental goal is to collect a sample of dat that is representative of the population of interest and can provide insight into the scientific question at hand. There are two primary classes about how this data could be gathered, observational studies and designed experiments. 
+The process of collecting data is a time consuming and laborious process but is critical to our understanding of the world. The fundamental goal is to collect a sample of data that is representative of the population of interest and can provide insight into the scientific question at hand. There are two primary classes about how this data could be gathered, observational studies and designed experiments. 
 
 In an observational study, a population is identified and a random sample of individuals are selected to be in the sample. Then each subject in the sample has explanatory and response variables measured (fish are weighed and length recorded, people asked their age, gender, occupation etc). The critical part of this data collection method is that the random selection from the population is done in a fashion so that each individual in the population could potentially be in the sample and there is no systematic exclusion of certain parts of the population. 
 
@@ -216,7 +216,7 @@ Why was there a disconnect between the original observational studies and the ex
 
 Because the method of randomization is so different between observational studies and designed experiments, we should make certain that our method of creating bootstrap data sets respects that difference in randomization. So if there was some constraint on the data when it was originally taken, we want the bootstrap datasets to obey that same constraint. If our study protocol was to collect a sample of $n_{1}=10$ men and $n_{2}=10$ women, then we want our bootstrap samples to have $10$ men and $10$ women. If we designed an experiment with $25$ subjects to test the efficacy of a drug and chose to administer doses of $5, 10, 20, 40,$ and $80$ mg with each five subjects for each dose level, then we want those same dose levels to show up in the bootstrap datasets. 
 
-There are two common approaches, _case resampling_ and _residual resampling_. In case resampling, we consider the data $\left(x_{i,}y_{i}\right)$ pairs as one unit and when creating a bootstrap sample, we resample those pairs, but if the $i$th data point is included in the bootstrap sample, then it is included as the $\left(x_{i,}y_{i}\right)$ pair. In contrast, residual resampling is done by first fitting a model to the data, finding the residual values, resampling those residuals and then adding those bootstrap residuals to the predicted values $\hat{y}_{i}$.
+There are two common approaches, _case resampling_ and _residual resampling_. In case re-sampling, we consider the data $\left(x_{i,}y_{i}\right)$ pairs as one unit and when creating a bootstrap sample, we re-sample those pairs, but if the $i$th data point is included in the bootstrap sample, then it is included as the $\left(x_{i,}y_{i}\right)$ pair. In contrast, residual re-sampling is done by first fitting a model to the data, finding the residual values, re-sampling those residuals and then adding those bootstrap residuals to the predicted values $\hat{y}_{i}$.
 
 
 ```{r, echo=FALSE}
@@ -236,7 +236,7 @@ Boot.Data
 
 Notice that we've sampled $\left\{ x=5,y=7\right\}$  twice and did not get the $\left\{ 7,7\right\}$  data point. 
 
-Residual sampling is done by resampling the residuals and calling them $\hat{\epsilon}^{*}$ and then the new y-values will be $y_{i}^{*}=\hat{y}_{i}+\hat{\epsilon}_{i}^{*}$
+Residual sampling is done by re-sampling the residuals and calling them $\hat{\epsilon}^{*}$ and then the new y-values will be $y_{i}^{*}=\hat{y}_{i}+\hat{\epsilon}_{i}^{*}$
 
 ```{r}
 # Residual resampling
@@ -250,9 +250,9 @@ Boot.Data
 ```
 
 
-Notice that the residuals resampling results in a data set where each of the x-values is retained, but a new y-value (possibly not seen in the original data) is created from the predicted value $\hat{y}$ and a randomly selected residual.
+Notice that the residuals re-sampling results in a data set where each of the x-values is retained, but a new y-value (possibly not seen in the original data) is created from the predicted value $\hat{y}$ and a randomly selected residual.
 
-In general when we design an experiment, we choose which x-values we want to look at and so the bootstrap data should have those same x-values we chose. So for a designed experiment, we typically will create bootstrap data sets via residual resampling. For observational studies, we'll create the bootstrap data sets via case resampling. In both cases if there is a blocking or strata variable to consider, we will want to do the resampling within the block/strata.
+In general when we design an experiment, we choose which x-values we want to look at and so the bootstrap data should have those same x-values we chose. So for a designed experiment, we typically will create bootstrap data sets via residual re-sampling. For observational studies, we'll create the bootstrap data sets via case re-sampling. In both cases if there is a blocking or strata variable to consider, we will want to do the re-sampling within the block/strata.
 
 ## Confidence Interval Types 
 
@@ -349,7 +349,7 @@ Different schemes for creating confidence intervals can get quite complicated. T
 
 ### Using `car::Boot()` function
 
-For every model we've examined we can create simulated data sets using either case or residual resampling and produce confidence intervals for any of the parameters of interest. We won't bother to do this by hand, but rather let R do the work for us. The package that contains most of the primary programs for bootstrapping is the package `boot`. The functions within this package are quite flexible but they are a little complex. While we will use this package directly later, for now we will use the package `car` which has a very convenient function `car::Boot()`. 
+For every model we've examined we can create simulated data sets using either case or residual re-sampling and produce confidence intervals for any of the parameters of interest. We won't bother to do this by hand, but rather let R do the work for us. The package that contains most of the primary programs for bootstrapping is the package `boot`. The functions within this package are quite flexible but they are a little complex. While we will use this package directly later, for now we will use the package `car` which has a very convenient function `car::Boot()`. 
 
 We return to our ANOVA example of hostility scores after three different treatment methods. 
 The first thing we will do (as we should do in all data analyses) is to graph our data. 
@@ -381,14 +381,14 @@ $$\epsilon_{ij}\stackrel{iid}{\sim}N\left(0,\sigma\right)$$ assumption are given
 confint(model)
 ```
 
-To utilize the bootstrap confidence intervals, we will use the function `car::Boot` from the package `car`. It defaults to using case resampling, but `method='residual'` will cause it to use residual resampling. We can control the number of bootstrap replicates it using with the R parameter.
+To utilize the bootstrap confidence intervals, we will use the function `car::Boot` from the package `car`. It defaults to using case re-sampling, but `method='residual'` will cause it to use residual re-sampling. We can control the number of bootstrap replicates it using with the R parameter.
 
 ```{r, cache=TRUE}
 boot.model <- Boot(model, method='case',     R=999) # default case resampling 
 boot.model <- Boot(model, method='residual', R=999) # residual resampling 
 ```
 
-The `car::Boot()` function has done all work of doing the resampling and storing values of $\hat{\mu}_{1},\hat{\mu}_{2}$, and $\hat{\mu}_{3}$ for each bootstrap replicate data set created using case resampling. To look at the bootstrap estimate of the sampling distribution of these statistics, we use the `hist()` function. The `hist()` function is actually overloaded and will act differently depending on the type of object. We will send it an object of class boot and the `hist()` function looks for a function name `hist.boot()` and when it finds it, just calls it with the function arguments we passed.
+The `car::Boot()` function has done all work of doing the re-sampling and storing values of $\hat{\mu}_{1},\hat{\mu}_{2}$, and $\hat{\mu}_{3}$ for each bootstrap replicate data set created using case re-sampling. To look at the bootstrap estimate of the sampling distribution of these statistics, we use the `hist()` function. The `hist()` function is actually overloaded and will act differently depending on the type of object. We will send it an object of class boot and the `hist()` function looks for a function name `hist.boot()` and when it finds it, just calls it with the function arguments we passed.
 
 
 ```{r}
@@ -453,7 +453,7 @@ The `car::Boot()` function is very handy, but it lacks flexibility; it assumes t
 
 #### Case resampling 
 
-Suppose that we have n observations in our sample data. Given some vector of numbers resampled from `1:n`, we need to either resample those cases or those residuals and then using the new dataset calculate some statistic. The function `boot()` will require the user to write a function that does this.
+Suppose that we have n observations in our sample data. Given some vector of numbers re-sampled from `1:n`, we need to either re-sample those cases or those residuals and then using the new dataset calculate some statistic. The function `boot()` will require the user to write a function that does this.
 
 ```{r}
 model <- lm( y ~ x, data=my.data )
@@ -490,7 +490,7 @@ confint(boot.model)
 
 #### Residual Resampling
 
-We will now consider the ANOVA problem and in this case we will resample the residuals.
+We will now consider the ANOVA problem and in this case we will re-sample the residuals.
 
 ```{r, cache=TRUE}
 # Fit the ANOVA model to the Hostility Data
@@ -553,7 +553,7 @@ confint(boot.model)
 
 When we introduced the ANOVA model we assumed that the groups had equal variance but we don't have to. If we consider the model with unequal variances among groups
 $$Y_{ij}=\mu_{i}+\epsilon_{ij}\;\;\;\;\textrm{where}\;\;\;E\left(\epsilon_{ij}\right)=0\;\;Var\left(\epsilon_{ij}\right)=\sigma_{i}^{2}$$
-then our usual analysis is inappropriate but we could easily bootstrap our confidence intervals for $\mu_{i}$. If we do case resampling, this isn't an issue because each included observation is an $\left(group,\ response\right)$ pair and our groups will have large or small variances similar to the observed data. However if we do residual resampling, then we must continue to have this. We do this by only resampling residuals within the same group. One way to think of this is if your model has a subscript on the variance term, then your bootstrap samples must respect that.
+then our usual analysis is inappropriate but we could easily bootstrap our confidence intervals for $\mu_{i}$. If we do case re-sampling, this isn't an issue because each included observation is an $\left(group,\ response\right)$ pair and our groups will have large or small variances similar to the observed data. However if we do residual re-sampling, then we must continue to have this. We do this by only re-sampling residuals within the same group. One way to think of this is if your model has a subscript on the variance term, then your bootstrap samples must respect that.
 
 If you want to perform the bootstrap by hand using dplyr commands, it can be done by using the `group_by()` with whatever the blocking/Stratifying variable is prior to the `mosaic::resample()` command. You could also use the optional group argument to the `mosaic::resample()` command. 
 
@@ -611,7 +611,7 @@ confint(boot.model)
 
 ## Exercises
 
-1. We will perform a regression analysis on the following data and use different bootstrap resampling methods to create a confidence interval for the slope parameter. In this case the residuals are symmetric, though perhaps we don't want to assume normality. 
+1. We will perform a regression analysis on the following data and use different bootstrap re-sampling methods to create a confidence interval for the slope parameter. In this case the residuals are symmetric, though perhaps we don't want to assume normality. 
     
     |                       |     |     |      |      |      |      |
     |:---------------------:|:---:|:---:|:----:|:----:|:----:|:----:|

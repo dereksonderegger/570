@@ -109,7 +109,7 @@ What is the difference between these two?
 Notation: 
 
 1. $n=n_{1}+n_{2}+\dots+n_{k}$ as the total number of observations 
-2. $\bar{y}_{i\cdot}=\frac{1}{n_{i}}\sum_{j=1}^{n_{i}}y_{ij}$ as the sample mean from the ith group 
+2. $\bar{y}_{i\cdot}=\frac{1}{n_{i}}\sum_{j=1}^{n_{i}}y_{ij}$ as the sample mean from the $i$th group 
 3. $\bar{y}_{\cdot\cdot}$ be the mean of all the observations.
 
 Regardless of if the null hypothesis is true, the following is an estimate of $\sigma^{2}$. We could use a pooled variance estimate similar to the estimator in the pooled two-sample t-test. We will denote this first estimator as the within-group estimate because the sums in the numerator are all measuring the variability within a group.
@@ -395,7 +395,7 @@ car::leveneTest(Y~Group, mydata)
 ```
 
 
-**Example 2**. (Example 8.2 from the Ott and Longnecker) A clinical psychologist wished to compare three methods for reducing hostility levels in university students, and used a certain test (HLT) to measure the degree of hostility. A high score on the test indicated great hostility. The psychologist used $24$ students who obtained high and nearly equal scores in the experiment. Eight subjects were selected at random from among the $24$ problem cases and were treated with method 1, seven of the remaining $16$ students were selected at random and treated with method 2 while the remaining nine students were treated with method 3. All treatments were continued for a one-semester period. Each student was given the HLT test at the end of the semester, with the results show in the following table. Use these dat to perform an analysis of variance to determine whether there are differences among the mean scores for the three methods using a significance level of $\alpha=0.05$.
+**Example 2**. (Example 8.2 from the Ott and Longnecker) A clinical psychologist wished to compare three methods for reducing hostility levels in university students, and used a certain test (HLT) to measure the degree of hostility. A high score on the test indicated great hostility. The psychologist used $24$ students who obtained high and nearly equal scores in the experiment. Eight subjects were selected at random from among the $24$ problem cases and were treated with method 1, seven of the remaining $16$ students were selected at random and treated with method 2 while the remaining nine students were treated with method 3. All treatments were continued for a one-semester period. Each student was given the HLT test at the end of the semester, with the results show in the following table. Use these data to perform an analysis of variance to determine whether there are differences among the mean scores for the three methods using a significance level of $\alpha=0.05$.
 
 ```{r}
 # define the data
@@ -541,7 +541,7 @@ c.model.1 <- lm(y ~ -1 + grp, data=fake.data)
 coef(c.model.1)
 ```
 
-Returning the hostility example, recall we used the cell means model and we can extract parameter coefficient estimates using the coef function and ask for the appropriate confidence intervals using `confint()`.
+Returning the hostility example, recall we used the cell means model and we can extract parameter coefficient estimates using the `coef` function and ask for the appropriate confidence intervals using `confint()`.
 
 ```{r}
 model <- lm(HLT ~ -1 + Method, data=Hostility)
@@ -793,7 +793,7 @@ If I wanted to control my overall type I error rate at an $\alpha=0.05$ and used
     H_{0} &:\,		\mu_{setosa}=\mu_{virginica}=\mu_{versicolor} \\
     H_{a} &:\,		\textrm{at least on mean is different} 
     \end{aligned}$$
-    e) Now that we know there is a statistically significant difference amongst the means (and with setosa having a mean Sepal.Width about 30% larger than the other two, I think aesthetically that is a big difference), we can go searching for it. Use Tukey's “Honestly Significant Differences” method to test all the pairwise comparisons between means. In particular, what is the p-value for testing
+    e) Now that we know there is a statistically significant difference among the means (and with setosa having a mean Sepal.Width about 30% larger than the other two, I think aesthetically that is a big difference), we can go searching for it. Use Tukey's “Honestly Significant Differences” method to test all the pairwise comparisons between means. In particular, what is the p-value for testing
     $$\begin{aligned}
     H_{0} &:\,		\mu_{setosa}=\mu_{virginica} \\
     H_{a} &:\:		\mu_{setosa}\ne\mu_{virginica}

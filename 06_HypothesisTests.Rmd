@@ -88,7 +88,7 @@ Science is done by examining competing ideas for how the world works and throwin
 2. At one point it was believed that plants “ate” the soil and turned it into plant mass. A experiment to test this hypothesis was performed by Johannes Baptista van Helmont in 1648 in which he put exactly 200 pounds of soil in a pot and then grew a willow tree out of it for five years. At the end of the experiment, the pot contained 199.875 pounds of soil and 168 pounds of willow tree. He correctly concluded that the plant matter was not substantially taken from the soil but incorrectly jumped to the conclusion that the mass must of have come from the water that was used to irrigate the willow. 
 
 It is helpful to our understanding to label the different hypothesis, both the ones being tested and the different alternatives. We'll label the hypothesis being tested as $H_{0}$ which we often refer to as the “null hypothesis.” The alternative hypothesis, which we'll denote $H_{a}$, should be the opposite of the null hypothesis. Had Eratosthenes known about modern scientific methods, he would have correctly considered 
-$H_{0}$: the world is flat verses $H_{a}$: the world is not flat and not incorrectly concluded that the world is a sphere. Amusingly Eratosthenes' data wasn't inconsistent with the hypothesis that the world was shaped like a donut, but he thought the sphere to be more likely. Likewise Helmont should have considered the hypotheses $H_{0}$: plants only consume soil versus the alternative $H_{a}$: plants consume something besides soil.
+$H_{0}$: the world is flat verses $H_{a}$: the world is not flat and not incorrectly concluded that the world is a sphere. Amusingly Eratosthenes' data wasn't inconsistent with the hypothesis that the world was shaped like a doughnut, but he thought the sphere to be more likely. Likewise Helmont should have considered the hypotheses $H_{0}$: plants only consume soil versus the alternative $H_{a}$: plants consume something besides soil.
 
 In both of cases, the observed data was compared to what would have been expected if the null hypothesis was true. If the null was true Eratosthenes would have seen the same length shadow in both cities and Helmont would have seen 168 pounds of willow tree and $200-168=32$ pounds of soil remaining.
 
@@ -150,7 +150,7 @@ $H_{0}$ is often a statement of no effect, or no difference between the claimed 
 $$H_{0}:\;\mu	=	1000$$
 $$H_{a}:\;\mu	<	1000$$
  
-Suppose we perform an experiment with $n=20$ lightbulbs and observe $\bar{x}=980$ and $s=64$ hours and therefore our test statistic is
+Suppose we perform an experiment with $n=20$ light bulbs and observe $\bar{x}=980$ and $s=64$ hours and therefore our test statistic is
 $$ t_{19}	=	\frac{\bar{x}-\mu}{s/\sqrt{n}} =	\frac{980-1000}{64/\sqrt{20}} =	-1.40$$
 Then the p-value would be
 
@@ -276,7 +276,7 @@ In general, I prefer to calculate and report p-values because they already accou
 
 While it is possible to do t-tests by hand, most people will use a software package to perform these calculations. Here we will use the R function `t.test()`. This function expects a vector of data (so that it can calculate $\bar{x}$ and $s$) and a hypothesized value of $\mu$. 
 
-*Example*. Suppose we have data regarding fuel economy of $5$ vehicles of the same make and model and we wish to test if the observed fuel economy is consistent with the advertised $31$ mpg at highway speeds. Assuming the fuel economy varies normally amongst cars of the same make and model, we test 
+*Example*. Suppose we have data regarding fuel economy of $5$ vehicles of the same make and model and we wish to test if the observed fuel economy is consistent with the advertised $31$ mpg at highway speeds. Assuming the fuel economy varies normally among cars of the same make and model, we test 
 $$\begin{aligned} H_{0}:\,\mu	 &=	31 \\
                   H_{a}:\,\mu	 &\ne	31 \end{aligned}$$
 and calculate
@@ -361,7 +361,7 @@ t_{crit}\left(\frac{s}{\sqrt{n}}\right)+\mu_{0}	&=	\bar{x}_{crit} \\
 4963	&=	\bar{x}_{crit}
 \end{aligned}$$
  
-There is a trade off between the Type I and Type II errors. By making a Type I error, I will reject the null hypothesis when the null hypothesis is true. Here I would stop manufacturing for the day while recalibrating the machine. Clearly a Type I error is not good. The probability of making a Type I error is denoted $\alpha$.
+There is a trade off between the Type I and Type II errors. By making a Type I error, I will reject the null hypothesis when the null hypothesis is true. Here I would stop manufacturing for the day while re-calibrating the machine. Clearly a Type I error is not good. The probability of making a Type I error is denoted $\alpha$.
 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}

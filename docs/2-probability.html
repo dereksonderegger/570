@@ -25,7 +25,7 @@
 <meta name="author" content="Derek L. Sonderegger">
 
 
-<meta name="date" content="2018-01-16">
+<meta name="date" content="2018-01-17">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -300,7 +300,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
 <p>For example, suppose that my random experiment is rolling a fair 6-sided die once. The possible outcomes are <span class="math inline">\(S=\{1,2,3,4,5,6\}\)</span>. Suppose I then define events <span class="math inline">\(A=\)</span> roll is odd and <span class="math inline">\(B=\)</span> roll is 5 or greater. In this case our picture is:</p>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
-<p>All of our possible events are present, and distributed amongst our possible events.</p>
+<p>All of our possible events are present, and distributed among our possible events.</p>
 <div id="composition-of-events" class="section level3">
 <h3><span class="header-section-number">2.1.1</span> Composition of events</h3>
 <p>I am often interested in discussing the composition of two events and we give the common set operations below.</p>
@@ -435,8 +435,8 @@ P\left(\,Auto\;|\;NotFraud\,\right) &amp;= \frac{P\left(\,Auto\;\cap\;NotFraud\r
 <thead>
 <tr class="header">
 <th align="right"><span class="math inline">\(\,\)</span></th>
-<th align="center">Convertable</th>
-<th align="center">Not Convertable</th>
+<th align="center">Convertible</th>
+<th align="center">Not Convertible</th>
 <th align="center"><span class="math inline">\(\,\)</span></th>
 </tr>
 </thead>
@@ -566,7 +566,7 @@ P(A)P(B)\;\; &amp; \textrm{ if A,B are independent}
     &amp;=  0\left(0.3\right)+1\left(0.35\right)+2\left(0.20\right)+3\left(0.10\right)+4\left(0.05\right) \\
     &amp;=  1.25 \end{aligned}\]</span></p>
 <p>Notice that this number is not an integer and therefore is not a value that <span class="math inline">\(Y\)</span> could actually take on. You might be tempted to therefore round it to the nearest integer. That would be wrong. The rational is that if I wanted to estimate the number of clients she has per month (and thus her income), we would have a worse estimate if we used the rounded number.</p>
-<p>There are many cases were the expected value is not a value that could occur, but rounding it to the nearst value that could occur would be inappropriate. A Roulette wheel has 18 red and 18 black slots along with 2 green. If you bet $$$1 on red, you could either win a dollar or lose a dollar. Because the probabilities are</p>
+<p>There are many cases were the expected value is not a value that could occur, but rounding it to the nearest value that could occur would be inappropriate. A Roulette wheel has 18 red and 18 black slots along with 2 green. If you bet $$$1 on red, you could either win a dollar or lose a dollar. Because the probabilities are</p>
 <table>
 <thead>
 <tr class="header">
@@ -850,7 +850,7 @@ sum</code></pre></div>
     &amp;=  0.1003+0.2306+0.2652+0.2033+0.1169 \\
     &amp;=  0.9163 \end{aligned}\]</span></p>
 <p>What about the probability of finding 5 or more? <span class="math display">\[P(Y\ge5)  =   1-P(Y\le4) =    1-0.9163 =  0.0837\]</span></p>
-<p>These calculations can be done using the distribution function (d-function) for the poisson and the cumulative distribution function (p-function).</p>
+<p>These calculations can be done using the distribution function (d-function) for the Poisson and the cumulative distribution function (p-function).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dist &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">NumCaught =</span> <span class="dv">0</span><span class="op">:</span><span class="dv">10</span> ) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>( <span class="dt">probability =</span> <span class="kw">dpois</span>( NumCaught, <span class="dt">lambda=</span><span class="fl">2.3</span> ) )
 <span class="kw">ggplot</span>(dist, <span class="kw">aes</span>(<span class="dt">x=</span>NumCaught)) <span class="op">+</span>
@@ -909,7 +909,7 @@ sum</code></pre></div>
 </div>
 <div id="normal-distribution" class="section level3">
 <h3><span class="header-section-number">2.5.3</span> Normal Distribution</h3>
-<p>Undoubtably the most important distribution in statistics is the normal distribution. If my RV <span class="math inline">\(X\)</span> is normally distributed with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>, its probability density function is given by <span class="math display">\[f(x)=\frac{1}{\sqrt{2\pi}\sigma}\exp\left[\frac{-(x-\mu)^{2}}{2\sigma^{2}}\right]\]</span> where <span class="math inline">\(\exp[y]\)</span> is the exponential function <span class="math inline">\(e^{y}\)</span>. We could slightly rearrange the function to</p>
+<p>Undoubtedly the most important distribution in statistics is the normal distribution. If my RV <span class="math inline">\(X\)</span> is normally distributed with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>, its probability density function is given by <span class="math display">\[f(x)=\frac{1}{\sqrt{2\pi}\sigma}\exp\left[\frac{-(x-\mu)^{2}}{2\sigma^{2}}\right]\]</span> where <span class="math inline">\(\exp[y]\)</span> is the exponential function <span class="math inline">\(e^{y}\)</span>. We could slightly rearrange the function to</p>
 <p><span class="math display">\[f(x)=\frac{1}{\sqrt{2\pi}\sigma}\exp\left[-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^{2}\right]\]</span></p>
 <p>and see this distribution is defined by its expectation <span class="math inline">\(E[X]=\mu\)</span> and its variance <span class="math inline">\(Var[X]=\sigma^{2}\)</span>. Notice I could define it using the standard deviation <span class="math inline">\(\sigma\)</span>, and different software packages will expect it to be defined by one or the other. R defines the normal distribution using the standard deviation.</p>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
@@ -928,7 +928,7 @@ sum</code></pre></div>
 </div>
 <div id="standardizing" class="section level3">
 <h3><span class="header-section-number">2.5.4</span> Standardizing</h3>
-<p>Before we had computers that could calculate these probabilities for any normal distribution, it was important to know how to convert a probability statement from an arbitrary <span class="math inline">\(N\left(\mu,\sigma^{2}\right)\)</span> distribution to a question about a Stanard Normal distribution, which is a normal distribution with mean <span class="math inline">\(\mu=0\)</span> and standard deviation <span class="math inline">\(\sigma=1\)</span>. If we have <span class="math display">\[X\sim N\left(\mu,\sigma^{2}\right)\]</span> then <span class="math display">\[Z=\frac{X-\mu}{\sigma}\sim N\left(0,1\right)\]</span></p>
+<p>Before we had computers that could calculate these probabilities for any normal distribution, it was important to know how to convert a probability statement from an arbitrary <span class="math inline">\(N\left(\mu,\sigma^{2}\right)\)</span> distribution to a question about a Standard Normal distribution, which is a normal distribution with mean <span class="math inline">\(\mu=0\)</span> and standard deviation <span class="math inline">\(\sigma=1\)</span>. If we have <span class="math display">\[X\sim N\left(\mu,\sigma^{2}\right)\]</span> then <span class="math display">\[Z=\frac{X-\mu}{\sigma}\sim N\left(0,1\right)\]</span></p>
 <p>You might remember doing something similar in an undergraduate statistics course in order to use a table to look up some probability. From the height example, we calculate <span class="math display">\[\begin{aligned}z  
   &amp;=    \frac{64-70}{3} \\
     &amp;=  \frac{-6}{3} \\

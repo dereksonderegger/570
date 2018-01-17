@@ -57,7 +57,7 @@ If we have univariate data about a number of groups, often the best way to displ
 ggplot(TenMileRace, aes(x=sex)) + geom_bar()
 ```
 
-One thing that can be misleading is if the zero on the y-axis is removed. In the following graph it looks like there are twice as many female runners as male until you examin the y-axis closely.  In general, the following is a very misleading graph.
+One thing that can be misleading is if the zero on the y-axis is removed. In the following graph it looks like there are twice as many female runners as male until you examine the y-axis closely.  In general, the following is a very misleading graph.
 
 ```{r}
 ggplot(TenMileRace, aes(x=sex)) + 
@@ -73,7 +73,7 @@ A histogram looks very similar to a bar plot, but is used to represent continuou
 ggplot(TenMileRace, aes(x=net)) + geom_histogram()
 ```
 
-Often when a histogram is presented, the y-axis is labeled as “frequency” or “count” which is the number of observations that fall within a particular bin. However, it is often desirable to scale the y-axis so that if we were to sum up the area $(height * width)$ then the total area would sum to 1. The rescaling that accomplishes this is $$density=\frac{\#\;observations\;in\;bin}{total\;number\;observations}\cdot\frac{1}{bin\;width}$$
+Often when a histogram is presented, the y-axis is labeled as “frequency” or “count” which is the number of observations that fall within a particular bin. However, it is often desirable to scale the y-axis so that if we were to sum up the area $(height * width)$ then the total area would sum to 1. The re-scaling that accomplishes this is $$density=\frac{\#\;observations\;in\;bin}{total\;number\;observations}\cdot\frac{1}{bin\;width}$$
  
 
 ### Bivariate - Categorical vs Continuous

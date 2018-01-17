@@ -25,7 +25,7 @@
 <meta name="author" content="Derek L. Sonderegger">
 
 
-<meta name="date" content="2018-01-16">
+<meta name="date" content="2018-01-17">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -359,7 +359,7 @@ BootDist &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span cla
 </div>
 <div id="quantile-based-confidence-intervals" class="section level2">
 <h2><span class="header-section-number">3.2</span> Quantile-based Confidence Intervals</h2>
-<p>In many cases we have seen, the sampling distribution of a statistic is centered on the parameter we are interested in estimating and is symmetric about that parameterThere are actually several ways to create a confidence interval from the estimated sampling distribution. The method presented here is called the “percentile” method and works when the sampling distribution is symmetric and the estimator we are using is unbiased. For example, we expect that the sample mean <span class="math inline">\(\bar{x}\)</span> should be a good estimate of the population mean <span class="math inline">\(\mu\)</span> and the sampling distribution of <span class="math inline">\(\bar{x}\)</span> should look something like the following.</p>
+<p>In many cases we have seen, the sampling distribution of a statistic is centered on the parameter we are interested in estimating and is symmetric about that parameter. There are actually several ways to create a confidence interval from the estimated sampling distribution. The method presented here is called the “percentile” method and works when the sampling distribution is symmetric and the estimator we are using is unbiased. For example, we expect that the sample mean <span class="math inline">\(\bar{x}\)</span> should be a good estimate of the population mean <span class="math inline">\(\mu\)</span> and the sampling distribution of <span class="math inline">\(\bar{x}\)</span> should look something like the following.</p>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-65-1.png" width="672" /></p>
 <p>There are two points, (call them <span class="math inline">\(L\)</span> and <span class="math inline">\(U\)</span>) where for our given sample size and population we are sampling from, where we expect that <span class="math inline">\(95\%\)</span> of the sample means to fall within. That is to say, <span class="math inline">\(L\)</span> and <span class="math inline">\(U\)</span> capture the middle <span class="math inline">\(95\%\)</span> of the sampling distribution of <span class="math inline">\(\bar{x}\)</span>.</p>
 <p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
@@ -385,7 +385,7 @@ BootDist &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span cla
 ## 0.4803066 0.6067217</code></pre>
 <p>There are several ways to interpret this interval.</p>
 <ol style="list-style-type: decimal">
-<li><p>The process used to calculate this interval (take a random sample, calculate a statistic, repeatedly resample, and take the middle <span class="math inline">\(95\%\)</span>) is a process that results in an interval that contains the parameter of interest on <span class="math inline">\(95\%\)</span> of the samples we could have collected, however we don’t know if the particular sample we collected and its resulting interval of <span class="math inline">\(\left(0.44,\,0.62\right)\)</span> is one of the intervals containing <span class="math inline">\(\mu\)</span>.</p></li>
+<li><p>The process used to calculate this interval (take a random sample, calculate a statistic, repeatedly re-sample, and take the middle <span class="math inline">\(95\%\)</span>) is a process that results in an interval that contains the parameter of interest on <span class="math inline">\(95\%\)</span> of the samples we could have collected, however we don’t know if the particular sample we collected and its resulting interval of <span class="math inline">\(\left(0.44,\,0.62\right)\)</span> is one of the intervals containing <span class="math inline">\(\mu\)</span>.</p></li>
 <li><p>We are <span class="math inline">\(95\%\)</span> confident that <span class="math inline">\(\mu\)</span> is in the interval <span class="math inline">\(\left(0.44,\,0.62\right)\)</span>. This is delightfully vague and should be interpreted as a shorter version of the previous interpretation.</p></li>
 <li><p>The interval <span class="math inline">\(\left(0.44,\,0.62\right)\)</span> is the set of values of <span class="math inline">\(\mu\)</span> that are consistent with the observed data at the <span class="math inline">\(0.05\)</span> threshold of statistical significance for a two-sided hypothesis test</p></li>
 </ol>
@@ -395,7 +395,7 @@ BootDist &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span cla
 CarMPG <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>( <span class="dt">xbar=</span><span class="kw">mean</span>(mpg) )</code></pre></div>
 <pre><code>##    xbar
 ## 1 31.72</code></pre>
-<p>We will use the sample mean to assess if the sample fuel efficiency is consistent with the advertised number. Because these cars could be considered a random sample of all new cars of this make, we will create the estimated sampling distribution using the bootstrap resampling of the data.</p>
+<p>We will use the sample mean to assess if the sample fuel efficiency is consistent with the advertised number. Because these cars could be considered a random sample of all new cars of this make, we will create the estimated sampling distribution using the bootstrap re-sampling of the data.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">BootDist &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">10000</span>) <span class="op">*</span><span class="st"> </span>
 <span class="st">  </span>mosaic<span class="op">::</span><span class="kw">resample</span>(CarMPG) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">xbar=</span><span class="kw">mean</span>(mpg))

@@ -27,7 +27,7 @@ library(dplyr)
 ```
 
 
-In the previous chapter, we using bootstrapping to estimate the sampling distribution of $\bar{X}$. We then used this bootstrap distribution to calculate a confidence interval for the population mean. We noticed that the sampling distribution of $\bar{X}$ almost always looked like a normal distribution. Prior to the advent of modern computing, statisticians used a theoretical approximation known as the Central Limit Theorem (CLT). Even today, statistical procedures based on the CLT are widely used and often perform as the corresponding resampling technique. In this chapter we'll lay the theoretical foundations for the CLT as well as introduce computation
+In the previous chapter, we using bootstrapping to estimate the sampling distribution of $\bar{X}$. We then used this bootstrap distribution to calculate a confidence interval for the population mean. We noticed that the sampling distribution of $\bar{X}$ almost always looked like a normal distribution. Prior to the advent of modern computing, statisticians used a theoretical approximation known as the Central Limit Theorem (CLT). Even today, statistical procedures based on the CLT are widely used and often perform as the corresponding re-sampling technique. In this chapter we'll lay the theoretical foundations for the CLT as well as introduce computation
 
 ## Enlightening Example
 
@@ -189,7 +189,7 @@ In practice this means that if $n$ is large (usually $n>30$ is sufficient), then
 
 So what does this mean?
 
-1. Variables that are the sum or average of a bunch of other random variables will be close to normal. Example: human height is determined by genetics, pre-natal nutrition, food abundance during adolescence, etc. Similar reasoning explains why the normal distribution shows up surprisingly often in natural science.
+1. Variables that are the sum or average of a bunch of other random variables will be close to normal. Example: human height is determined by genetics, prenatal nutrition, food abundance during adolescence, etc. Similar reasoning explains why the normal distribution shows up surprisingly often in natural science.
 
 2. With sufficient data, the sample mean will have a known distribution and we can proceed as if the sample mean came from a normal distribution.
 
@@ -242,7 +242,7 @@ $$\bar{Y}	\stackrel{\cdot}{\sim}	N\left(\mu_{\bar{Y}}=\mu,\;\;\sigma_{\bar{Y}}^{
 
 2. Suppose that the number of minutes that I spend waiting for my order at Big Foot BBQ can be well approximated by a Normal distribution with mean $\mu=10$ minutes and standard deviation $\sigma=1.5$ minutes.
     a) Tonight I am planning on going to Big Foot BBQ. What is the probability I have to wait less than 9 minutes?
-    b) Over the next month, I'll visit Big Foot BBQ 5 times. What is the probability that the mean waiting time of those 5 visits is less than 9 minutes? (This assumes independence of visits but because I don't hit the same restaurant the same night each week, this assumption is probably ok.)
+    b) Over the next month, I'll visit Big Foot BBQ 5 times. What is the probability that the mean waiting time of those 5 visits is less than 9 minutes? (This assumes independence of visits but because I don't hit the same restaurant the same night each week, this assumption is probably OK.)
 
 3. A bottling company uses a machine to fill bottles with a tasty beverage. The bottles are advertised to contain 300 milliliters (ml), but in reality the amount varies according to a normal distribution with mean $\mu=298$ ml and standard deviation $\sigma=3$ ml. (For this problem, we'll assume $\sigma$ is known and carry out the calculations accordingly).
     a) What is the probability that a randomly chosen bottle contains less than 296 ml?

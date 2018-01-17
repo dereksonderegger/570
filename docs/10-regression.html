@@ -25,7 +25,7 @@
 <meta name="author" content="Derek L. Sonderegger">
 
 
-<meta name="date" content="2018-01-16">
+<meta name="date" content="2018-01-17">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -630,7 +630,7 @@ small &lt;-<span class="st"> </span><span class="kw">cbind</span>(small, <span c
 </div>
 <div id="checking-model-assumptions" class="section level2">
 <h2><span class="header-section-number">10.4</span> Checking Model Assumptions</h2>
-<p>As in the anova analysis, we want to be able to check the model assumptions. To do this, we will examine the residuals <span class="math inline">\(e_{i}=y_{i}-\hat{y}_{i}\)</span> for normality using a QQ-plot as we did in ANOVA. To address the constant variance and linearity assumptions we will look at scatterplots of the residuals vs the fitted values <span class="math inline">\(\hat{y}_{i}\)</span>. For the regression to be valid, we want the scatterplot to show no discernible trend. There are two patterns that commonly show up that indicate a violation of the regression assumptions.</p>
+<p>As in the ANOVA analysis, we want to be able to check the model assumptions. To do this, we will examine the residuals <span class="math inline">\(e_{i}=y_{i}-\hat{y}_{i}\)</span> for normality using a QQ-plot as we did in ANOVA. To address the constant variance and linearity assumptions we will look at scatterplots of the residuals vs the fitted values <span class="math inline">\(\hat{y}_{i}\)</span>. For the regression to be valid, we want the scatterplot to show no discernible trend. There are two patterns that commonly show up that indicate a violation of the regression assumptions.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">2233</span>);
 <span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>));
 n &lt;-<span class="st"> </span><span class="dv">20</span>;

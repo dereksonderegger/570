@@ -175,7 +175,7 @@ ggplot(BootDist, aes(x=xbar)) +
 
 ## Quantile-based Confidence Intervals
 
-In many cases we have seen, the sampling distribution of a statistic is centered on the parameter we are interested in estimating and is symmetric about that parameterThere are actually several ways to create a confidence interval from the estimated sampling distribution. The method presented here is called the “percentile” method and works when the sampling distribution is symmetric and the estimator we are using is unbiased. For example, we expect that the sample mean $\bar{x}$ should be a good estimate of the population mean $\mu$ and the sampling distribution of $\bar{x}$ should look something like the following.
+In many cases we have seen, the sampling distribution of a statistic is centered on the parameter we are interested in estimating and is symmetric about that parameter. There are actually several ways to create a confidence interval from the estimated sampling distribution. The method presented here is called the “percentile” method and works when the sampling distribution is symmetric and the estimator we are using is unbiased. For example, we expect that the sample mean $\bar{x}$ should be a good estimate of the population mean $\mu$ and the sampling distribution of $\bar{x}$ should look something like the following.
 
 ```{r, echo=FALSE}
 x <- seq(-3, 3, length=1000) 
@@ -290,7 +290,7 @@ quantile( BootDist$xbar, probs=c(.025, .975) )
 
 There are several ways to interpret this interval. 
 
-1. The process used to calculate this interval (take a random sample, calculate a statistic, repeatedly resample, and take the middle $95\%$) is a process that results in an interval that contains the parameter of interest on $95\%$ of the samples we could have collected, however we don't know if the particular sample we collected and its resulting interval of $\left(0.44,\,0.62\right)$ is one of the intervals containing $\mu$.
+1. The process used to calculate this interval (take a random sample, calculate a statistic, repeatedly re-sample, and take the middle $95\%$) is a process that results in an interval that contains the parameter of interest on $95\%$ of the samples we could have collected, however we don't know if the particular sample we collected and its resulting interval of $\left(0.44,\,0.62\right)$ is one of the intervals containing $\mu$.
 
 2. We are $95\%$ confident that $\mu$ is in the interval $\left(0.44,\,0.62\right)$. This is delightfully vague and should be interpreted as a shorter version of the previous interpretation.
 
@@ -305,7 +305,7 @@ CarMPG <- data.frame( ID=1:5, mpg = c(31.8, 32.1, 32.5, 30.9, 31.3) )
 CarMPG %>% summarise( xbar=mean(mpg) )
 ```
 
-We will use the sample mean to assess if the sample fuel efficiency is consistent with the advertised number. Because these cars could be considered a random sample of all new cars of this make, we will create the estimated sampling distribution using the bootstrap resampling of the data.
+We will use the sample mean to assess if the sample fuel efficiency is consistent with the advertised number. Because these cars could be considered a random sample of all new cars of this make, we will create the estimated sampling distribution using the bootstrap re-sampling of the data.
 
 ```{r, cache=TRUE}
 BootDist <- mosaic::do(10000) * 

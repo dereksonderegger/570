@@ -90,7 +90,7 @@ ggplot(df, aes(x=x, y=y)) +
 ```
 
 
-All of our possible events are present, and distributed amongst our possible events.
+All of our possible events are present, and distributed among our possible events.
 
 ### Composition of events
 
@@ -457,7 +457,7 @@ Suppose that convertibles make up just 10% of the domestic automobile market. Th
 
 Given the above information, we can create the following table:
 
-|   $\,$       |    Convertable      |  Not Convertable   |  $\,$      |
+|   $\,$       |    Convertible      |  Not Convertible   |  $\,$      |
 |-------------:|:-------------------:|:------------------:|:----------:|   
 | **Red**      |                     |                    |            |
 | **Not Red**  |                     |                    |            |
@@ -587,7 +587,7 @@ $$\begin{aligned} E\left(Y\right)
  
 Notice that this number is not an integer and therefore is not a value that $Y$ could actually take on.  You might be tempted to therefore round it to the nearest integer.  That would be wrong. The rational is that if I wanted to estimate the number of clients she has per month (and thus her income), we would have a worse estimate if we used the rounded number.
 
-There are many cases were the expected value is not a value that could occur, but rounding it to the nearst value that could occur would be inappropriate. A Roulette wheel has 18 red and 18 black slots along with 2 green. If you bet $\$$1 on red, you could either win a dollar or lose a dollar. Because the probabilities are
+There are many cases were the expected value is not a value that could occur, but rounding it to the nearest value that could occur would be inappropriate. A Roulette wheel has 18 red and 18 black slots along with 2 green. If you bet $\$$1 on red, you could either win a dollar or lose a dollar. Because the probabilities are
 
 |                   |    Win ( + $1 )        |  Lose (- $1)      |
 |------------------:|:----------------------:|:-----------------:|
@@ -791,7 +791,7 @@ $$P(Y=4)	=	\frac{2.3^{4}\,e^{-2.3}}{4!} =	0.1169$$
 What about the probability of finding 5 or more?
 $$P(Y\ge5)	=	1-P(Y\le4) =	1-0.9163 =	0.0837$$
 
-These calculations can be done using the distribution function (d-function) for the poisson and the cumulative distribution function (p-function).
+These calculations can be done using the distribution function (d-function) for the Poisson and the cumulative distribution function (p-function).
 
 ```{r}
 dist <- data.frame( NumCaught = 0:10 ) %>%
@@ -897,7 +897,7 @@ We now must resort to calculus to find this area. Or use tables of pre-calculate
 
 ### Normal Distribution
 
-Undoubtably the most important distribution in statistics is the normal distribution. If my RV $X$ is normally distributed with mean $\mu$ and standard deviation $\sigma$, its probability density function is given by
+Undoubtedly the most important distribution in statistics is the normal distribution. If my RV $X$ is normally distributed with mean $\mu$ and standard deviation $\sigma$, its probability density function is given by
 $$f(x)=\frac{1}{\sqrt{2\pi}\sigma}\exp\left[\frac{-(x-\mu)^{2}}{2\sigma^{2}}\right]$$
  where $\exp[y]$ is the exponential function $e^{y}$. We could slightly rearrange the function to
 
@@ -944,7 +944,7 @@ pnorm(64, mean=70, sd=3)
 
 ### Standardizing
 
-Before we had computers that could calculate these probabilities for any normal distribution, it was important to know how to convert a probability statement from an arbitrary $N\left(\mu,\sigma^{2}\right)$ distribution to a question about a Stanard Normal distribution, which is a normal distribution with mean $\mu=0$ and standard deviation $\sigma=1$. If we have 
+Before we had computers that could calculate these probabilities for any normal distribution, it was important to know how to convert a probability statement from an arbitrary $N\left(\mu,\sigma^{2}\right)$ distribution to a question about a Standard Normal distribution, which is a normal distribution with mean $\mu=0$ and standard deviation $\sigma=1$. If we have 
 $$X\sim N\left(\mu,\sigma^{2}\right)$$
 then
 $$Z=\frac{X-\mu}{\sigma}\sim N\left(0,1\right)$$

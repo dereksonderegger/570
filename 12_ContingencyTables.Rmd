@@ -25,7 +25,7 @@ We are often interested in experiments and studies where the response variable i
 
 * Treat plots with either Type A or Type B  insecticides and after 2 weeks observe if the plots are infested or not infested with some insect.  
 
-* Using survey data, we would like to investigate if there is a relationship between Gender and Political Party affiliation. (Are women more likely to be Democrates?)
+* Using survey data, we would like to investigate if there is a relationship between Gender and Political Party affiliation. (Are women more likely to be Democrats?)
 
 * Are children that are born second or third (or more!) more likely to be gay than the firstborn child?
 
@@ -40,7 +40,7 @@ We will have two questions:
 
 ## Expected Counts
 
-We will develope our ideas using a subsample of data from surveys of undergraduate students in an Introductory statistics course.  We will utilize $40$ males and $40$ females and consider the historical assumption that women should perform better on the verbal part of the SAT rather than the MATH part compared to their male counterparts.  
+We will develop our ideas using a sub-sample of data from surveys of undergraduate students in an Introductory statistics course.  We will utilize $40$ males and $40$ females and consider the historical assumption that women should perform better on the verbal part of the SAT rather than the MATH part compared to their male counterparts.  
 
 ```{r}
 data(StudentSurvey, package='Lock5Data')
@@ -61,7 +61,7 @@ descr::CrossTable( tab, expected = TRUE,
                    prop.r = FALSE, prop.c=FALSE, prop.t=FALSE, prop.chisq = FALSE )
 ```
 
-Notice that the excected cell counts can be written as
+Notice that the expected cell counts can be written as
 $$E_{ij} = \frac{ n_{i,\cdot}}{n} * n_{\cdot, j} = \frac{n_{i,\cdot} n_{\cdot,j}}{n}$$ 
 where $n_{i,\cdot}$ is row total for the $i$th row, $n_{\cdot,j}$ is the column total for the $j$th row, and $n$ is the total number of observations in the table.
 
@@ -98,7 +98,7 @@ tab
 From this table we can see that $28$ out of the $47$ plants wilted, so the proportion that wilted was $\frac{28}{47}=0.596$. Therefore under the null hypothesis we would expect that $59.6\%$ of the $26$ mite treated plants would have wilted, or 
 $$\left( \frac{28}{47} \right) 26 = 15.49$$
 
-Similar calculations revel the rest of the expected cell counts.
+Similar calculations reveal the rest of the expected cell counts.
 
 ```{r}
 descr::CrossTable( tab, expected = TRUE,
@@ -176,7 +176,7 @@ chisq.test( table(Mites), simulate.p.value=TRUE, B=10000 )
 
 Before we had our excellent computers, we would have to compare the observed $X^{2}$ test statistic to some distribution to determine if it is large enough to be evidence against the null. It can be shown that if the null hypothesis is correct then $X^{2}\stackrel{\cdot}{\sim}\chi_{1}^{2}$ where this is the Chi-squared distribution with 1 degree of freedom. This is the distribution that the `chisq.test()` compares against if we don't tell it to do a permutation based test. Furthermore, even if the null hypothesis is true the test statistic is only approximately normal but that approximation gets better and better as the total sample size increases. 
 
-The reason that we compare against a Chi-squared distribution with 1 degree of freedom is because when we shuffle the group labels, we still have the same number of wilted/non-wilted plants as well as the same number of mite/no-mite treated plants.  So the row and column totals are identical in all the permuted tables.  So once the number of observations in the $(1,1)$ cell is decided, the other three cells are also indirectely determined as well due to the row/column totals being constant regardless of permutation.  In the general case with $R$ rows and $C$ columns, the number of cells that are not set due to the row/column totals, is $(R-1)(C-1)$.
+The reason that we compare against a Chi-squared distribution with 1 degree of freedom is because when we shuffle the group labels, we still have the same number of wilted/non-wilted plants as well as the same number of mite/no-mite treated plants.  So the row and column totals are identical in all the permuted tables.  So once the number of observations in the $(1,1)$ cell is decided, the other three cells are also indirectly determined as well due to the row/column totals being constant regardless of permutation.  In the general case with $R$ rows and $C$ columns, the number of cells that are not set due to the row/column totals, is $(R-1)(C-1)$.
 
 The asymptotic approximation is usually acceptable if the observed count in each cell is greater than 5. Even then, a slightly better approximation can be obtained by using the Yates' continuity correction. Typically I will perform the analysis both ways and confirm we get the same inference. If the two methods disagree, I'd trust the permutation method.
 
@@ -204,9 +204,9 @@ chisq.test( table(Conceived), simulate.p.value=TRUE, B=10000 )
 
 
 ## RxC tables
-We next expand this same analysis to consider cases where we have explantory variable with $C$ levels and the response variable has $R$ levels, and so the table of observations has $R$ rows and $C$ columns.
+We next expand this same analysis to consider cases where we have explanatory variable with $C$ levels and the response variable has $R$ levels, and so the table of observations has $R$ rows and $C$ columns.
 
-There was nothing special about the analysis that required only 2x2 tables.  Exanding this the expected value for the $i,j$ cell in the table is still 
+There was nothing special about the analysis that required only 2x2 tables.  Expanding this the expected value for the $i,j$ cell in the table is still 
 $$E_{ij} = \frac{n_{i\cdot} n_{\cdot j}}{n}$$
 
 As before we define the test statistic as
@@ -217,7 +217,7 @@ $$\begin{aligned}X^{2}
 If we have sufficient samples sizes in each cell (general rule-of-thumb is greater than 5 per cell), then we could compare this test statistic to a Chi-Squared distribution with $(R-1)(C-1)$ degrees of freedom.
 $$p.value = Pr( \chi_{(r-1)(c-1)} > X^2 )$$
 
-We consider some data from the American Community Survey, which is a survey administered by the US Census Bureau and given to approximately 3% of all US households.  The package `Lock5Data` has a dataset, `ACS`, which is a subsample of $n=1000$ respondents of that 2010 survey. In particular, we want to examine the relationship between race and marriage status.  In particular if white respondents are more likely to be married than asian or black (or other) races.
+We consider some data from the American Community Survey, which is a survey administered by the US Census Bureau and given to approximately 3% of all US households.  The package `Lock5Data` has a dataset, `ACS`, which is a sub-sample of $n=1000$ respondents of that 2010 survey. In particular, we want to examine the relationship between race and marriage status.  In particular if white respondents are more likely to be married than Asian or black (or other) races.
 
 ```{r}
 data(ACS, package='Lock5Data')
@@ -266,9 +266,9 @@ If we are worried about the sample size begin large enough, we could perform a p
 chisq.test( tab, simulate.p.value=TRUE, B=100000 )
 ```
 
-With such a small p-value, we know that we are unlikey to have observed such a large difference in marriage rates among our different races. It appears that white respondents are much more likely to be married than the other races listed, but is there a difference in rates between blacks and asians? What about asian and other?  
+With such a small p-value, we know that we are unlikely to have observed such a large difference in marriage rates among our different races. It appears that white respondents are much more likely to be married than the other races listed, but is there a difference in rates between blacks and Asians? What about Asian and other?  
 
-Just as we wanted to perform an analysis on all pairwise comparisons amongst levels in an ANOVA analysis and control the overall Type I error rate, we will do the same thing but now using the Chi-squared test.
+Just as we wanted to perform an analysis on all pairwise comparisons among levels in an ANOVA analysis and control the overall Type I error rate, we will do the same thing but now using the Chi-squared test.
 
 Conceptually we will just perform all possible pairwise tests and then adjust the resulting p-values to control for the number of comparisons. 
 
@@ -337,7 +337,7 @@ There are a number of other questions that I might consider, such as confidence 
     d) Double check your hand-calculations using the `chisq.test()` function in R.
 
 
-2.  We consider some data from the American Community Survey, which is a survey administered by the US Census Bureau and given to approximately 3% of all US households.  The package `Lock5Data` has a dataset, `ACS`, which is a subsample of $n=1000$ respondents of that 2010 survey. In particular, we want to examine the relationship between race and having health insurance.
+2.  We consider some data from the American Community Survey, which is a survey administered by the US Census Bureau and given to approximately 3% of all US households.  The package `Lock5Data` has a dataset, `ACS`, which is a sub-sample of $n=1000$ respondents of that 2010 survey. In particular, we want to examine the relationship between race and having health insurance.
     ```{r}
     data(ACS, package='Lock5Data')
     temp <- ACS %>% 

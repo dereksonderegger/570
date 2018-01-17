@@ -25,7 +25,7 @@
 <meta name="author" content="Derek L. Sonderegger">
 
 
-<meta name="date" content="2018-01-16">
+<meta name="date" content="2018-01-17">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -325,7 +325,7 @@ H_{a} &amp;:        \textrm{at least on mean is different than the others}
 <p>Notation:</p>
 <ol style="list-style-type: decimal">
 <li><span class="math inline">\(n=n_{1}+n_{2}+\dots+n_{k}\)</span> as the total number of observations</li>
-<li><span class="math inline">\(\bar{y}_{i\cdot}=\frac{1}{n_{i}}\sum_{j=1}^{n_{i}}y_{ij}\)</span> as the sample mean from the ith group</li>
+<li><span class="math inline">\(\bar{y}_{i\cdot}=\frac{1}{n_{i}}\sum_{j=1}^{n_{i}}y_{ij}\)</span> as the sample mean from the <span class="math inline">\(i\)</span>th group</li>
 <li><span class="math inline">\(\bar{y}_{\cdot\cdot}\)</span> be the mean of all the observations.</li>
 </ol>
 <p>Regardless of if the null hypothesis is true, the following is an estimate of <span class="math inline">\(\sigma^{2}\)</span>. We could use a pooled variance estimate similar to the estimator in the pooled two-sample t-test. We will denote this first estimator as the within-group estimate because the sums in the numerator are all measuring the variability within a group. <span class="math display">\[\begin{aligned} s_{W}^{2} 
@@ -587,7 +587,7 @@ car<span class="op">::</span><span class="kw">leveneTest</span>(Y<span class="op
 ##       Df F value Pr(&gt;F)
 ## group  4  0.6173 0.6524
 ##       45</code></pre>
-<p><strong>Example 2</strong>. (Example 8.2 from the Ott and Longnecker) A clinical psychologist wished to compare three methods for reducing hostility levels in university students, and used a certain test (HLT) to measure the degree of hostility. A high score on the test indicated great hostility. The psychologist used <span class="math inline">\(24\)</span> students who obtained high and nearly equal scores in the experiment. Eight subjects were selected at random from among the <span class="math inline">\(24\)</span> problem cases and were treated with method 1, seven of the remaining <span class="math inline">\(16\)</span> students were selected at random and treated with method 2 while the remaining nine students were treated with method 3. All treatments were continued for a one-semester period. Each student was given the HLT test at the end of the semester, with the results show in the following table. Use these dat to perform an analysis of variance to determine whether there are differences among the mean scores for the three methods using a significance level of <span class="math inline">\(\alpha=0.05\)</span>.</p>
+<p><strong>Example 2</strong>. (Example 8.2 from the Ott and Longnecker) A clinical psychologist wished to compare three methods for reducing hostility levels in university students, and used a certain test (HLT) to measure the degree of hostility. A high score on the test indicated great hostility. The psychologist used <span class="math inline">\(24\)</span> students who obtained high and nearly equal scores in the experiment. Eight subjects were selected at random from among the <span class="math inline">\(24\)</span> problem cases and were treated with method 1, seven of the remaining <span class="math inline">\(16\)</span> students were selected at random and treated with method 2 while the remaining nine students were treated with method 3. All treatments were continued for a one-semester period. Each student was given the HLT test at the end of the semester, with the results show in the following table. Use these data to perform an analysis of variance to determine whether there are differences among the mean scores for the three methods using a significance level of <span class="math inline">\(\alpha=0.05\)</span>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># define the data</span>
 Hostility &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
   <span class="dt">HLT =</span> <span class="kw">c</span>(<span class="dv">96</span>,<span class="dv">79</span>,<span class="dv">91</span>,<span class="dv">85</span>,<span class="dv">83</span>,<span class="dv">91</span>,<span class="dv">82</span>,<span class="dv">87</span>,
@@ -707,7 +707,7 @@ c.model.<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw"
 <span class="kw">coef</span>(c.model.<span class="dv">1</span>)</code></pre></div>
 <pre><code>## grp1 grp2 grp3 
 ##    4    9   14</code></pre>
-<p>Returning the hostility example, recall we used the cell means model and we can extract parameter coefficient estimates using the coef function and ask for the appropriate confidence intervals using <code>confint()</code>.</p>
+<p>Returning the hostility example, recall we used the cell means model and we can extract parameter coefficient estimates using the <code>coef</code> function and ask for the appropriate confidence intervals using <code>confint()</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span><span class="kw">lm</span>(HLT <span class="op">~</span><span class="st"> </span><span class="op">-</span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>Method, <span class="dt">data=</span>Hostility)
 <span class="kw">coef</span>(model)</code></pre></div>
 <pre><code>## MethodM1 MethodM2 MethodM3 
@@ -961,7 +961,7 @@ For this data, the following group means can be calculated as <span class="math 
 H_{0} &amp;:\,      \mu_{setosa}=\mu_{virginica}=\mu_{versicolor} \\
 H_{a} &amp;:\,      \textrm{at least on mean is different} 
 \end{aligned}\]</span></li>
-<li>Now that we know there is a statistically significant difference amongst the means (and with setosa having a mean Sepal.Width about 30% larger than the other two, I think aesthetically that is a big difference), we can go searching for it. Use Tukey’s “Honestly Significant Differences” method to test all the pairwise comparisons between means. In particular, what is the p-value for testing <span class="math display">\[\begin{aligned}
+<li>Now that we know there is a statistically significant difference among the means (and with setosa having a mean Sepal.Width about 30% larger than the other two, I think aesthetically that is a big difference), we can go searching for it. Use Tukey’s “Honestly Significant Differences” method to test all the pairwise comparisons between means. In particular, what is the p-value for testing <span class="math display">\[\begin{aligned}
 H_{0} &amp;:\,      \mu_{setosa}=\mu_{virginica} \\
 H_{a} &amp;:\:      \mu_{setosa}\ne\mu_{virginica}
 \end{aligned}\]</span></li>

@@ -25,7 +25,7 @@
 <meta name="author" content="Derek L. Sonderegger">
 
 
-<meta name="date" content="2018-01-16">
+<meta name="date" content="2018-01-17">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -292,7 +292,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="co"># other packages I&#39;ll only use occasionally so instead of loading the</span>
 <span class="co"># whole package, I&#39;ll just do packageName::functionName() when I use</span>
 <span class="co"># the function.</span></code></pre></div>
-<p>In the previous chapter, we using bootstrapping to estimate the sampling distribution of <span class="math inline">\(\bar{X}\)</span>. We then used this bootstrap distribution to calculate a confidence interval for the population mean. We noticed that the sampling distribution of <span class="math inline">\(\bar{X}\)</span> almost always looked like a normal distribution. Prior to the advent of modern computing, statisticians used a theoretical approximation known as the Central Limit Theorem (CLT). Even today, statistical procedures based on the CLT are widely used and often perform as the corresponding resampling technique. In this chapter we’ll lay the theoretical foundations for the CLT as well as introduce computation</p>
+<p>In the previous chapter, we using bootstrapping to estimate the sampling distribution of <span class="math inline">\(\bar{X}\)</span>. We then used this bootstrap distribution to calculate a confidence interval for the population mean. We noticed that the sampling distribution of <span class="math inline">\(\bar{X}\)</span> almost always looked like a normal distribution. Prior to the advent of modern computing, statisticians used a theoretical approximation known as the Central Limit Theorem (CLT). Even today, statistical procedures based on the CLT are widely used and often perform as the corresponding re-sampling technique. In this chapter we’ll lay the theoretical foundations for the CLT as well as introduce computation</p>
 <div id="enlightening-example" class="section level2">
 <h2><span class="header-section-number">4.1</span> Enlightening Example</h2>
 <p>Suppose we are sampling from a population that has a mean of <span class="math inline">\(\mu=5\)</span> and is skewed. For this example, I’ll use a Chi-squared distribution with parameter <span class="math inline">\(\nu=5\)</span>.</p>
@@ -405,7 +405,7 @@ SampDist &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span cla
 <p>In practice this means that if <span class="math inline">\(n\)</span> is large (usually <span class="math inline">\(n&gt;30\)</span> is sufficient), then <span class="math display">\[\bar{X}\stackrel{\cdot}{\sim}N\left(\mu_{\bar{X}}=\mu,\,\,\,\sigma_{\bar{X}}^{2}=\frac{\sigma^{2}}{n}\right)\]</span></p>
 <p>So what does this mean?</p>
 <ol style="list-style-type: decimal">
-<li><p>Variables that are the sum or average of a bunch of other random variables will be close to normal. Example: human height is determined by genetics, pre-natal nutrition, food abundance during adolescence, etc. Similar reasoning explains why the normal distribution shows up surprisingly often in natural science.</p></li>
+<li><p>Variables that are the sum or average of a bunch of other random variables will be close to normal. Example: human height is determined by genetics, prenatal nutrition, food abundance during adolescence, etc. Similar reasoning explains why the normal distribution shows up surprisingly often in natural science.</p></li>
 <li><p>With sufficient data, the sample mean will have a known distribution and we can proceed as if the sample mean came from a normal distribution.</p></li>
 </ol>
 <p>Example: Suppose the waiting time from order to delivery at a fast-food restaurant is a exponential random variable with rate <span class="math inline">\(\lambda=1/2\)</span> minutes and so the expected wait time is <span class="math inline">\(2\)</span> minutes and the variance is <span class="math inline">\(4\)</span> minutes. What is the approximate probability that we observe a sample of size <span class="math inline">\(n=40\)</span> with a mean time greater than <span class="math inline">\(2.5\)</span> minutes?</p>
@@ -445,7 +445,7 @@ SampDist <span class="op">%&gt;%</span><span class="st">                        
 <li>Suppose that the number of minutes that I spend waiting for my order at Big Foot BBQ can be well approximated by a Normal distribution with mean <span class="math inline">\(\mu=10\)</span> minutes and standard deviation <span class="math inline">\(\sigma=1.5\)</span> minutes.
 <ol style="list-style-type: lower-alpha">
 <li>Tonight I am planning on going to Big Foot BBQ. What is the probability I have to wait less than 9 minutes?</li>
-<li>Over the next month, I’ll visit Big Foot BBQ 5 times. What is the probability that the mean waiting time of those 5 visits is less than 9 minutes? (This assumes independence of visits but because I don’t hit the same restaurant the same night each week, this assumption is probably ok.)</li>
+<li>Over the next month, I’ll visit Big Foot BBQ 5 times. What is the probability that the mean waiting time of those 5 visits is less than 9 minutes? (This assumes independence of visits but because I don’t hit the same restaurant the same night each week, this assumption is probably OK.)</li>
 </ol></li>
 <li>A bottling company uses a machine to fill bottles with a tasty beverage. The bottles are advertised to contain 300 milliliters (ml), but in reality the amount varies according to a normal distribution with mean <span class="math inline">\(\mu=298\)</span> ml and standard deviation <span class="math inline">\(\sigma=3\)</span> ml. (For this problem, we’ll assume <span class="math inline">\(\sigma\)</span> is known and carry out the calculations accordingly).
 <ol style="list-style-type: lower-alpha">

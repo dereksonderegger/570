@@ -26,7 +26,7 @@ There are two broad classifications of types of research, observational studies 
 
 Example: For many years hormone (Estrogen and Progestin) replacement therapy's primary use for post-menopausal woman was to reduce the uncomfortable side-effects of menopause but it was thought to also reduced the rate of breast cancer in post-menopausal women. This belief was the result of many observational studies where women who chose to take hormone replacement therapy also had reduced rates of breast cancer. The lurking variable that the observational studies missed was that hormone therapy is relatively expensive and was taken by predominately women of a high socio- economic status. Those women tended to be more health conscious, lived in areas with less pollution, and were generally at a lower risk for developing breast cancer. Even when researchers realized that socio-economic status was confounded with the therapy, they couldn't be sure which was the cause of the reduced breast cancer rates. Two variables are said to be confounded if the design of a given experiment or study cannot distinguish the effect of one variable from the other. To correctly test this, nearly 17,000 women underwent an experiment in which each women was randomly assigned to take either the treatment (E+P) or a placebo. The Women’s Health Initiative (WHI) Estrogen plus Progestin Study (E+P) was stopped on July 7, 2002 (after an average 5.6 years of follow-up) because of increased risks of cardiovascular disease and breast cancer in women taking active study pills, compared with those on placebo (inactive pills). The study showed that the overall risks exceeded the benefits, with women taking E+P at higher risk for heart disease, blood clots, stroke, and breast cancer, but at lower risk for fracture and colon cancer. Lurking variables such as income levels and education are correlated to overall health behaviors and with an increased use of hormone replacement therapy. By randomly assigning each woman to a treatment, the unidentified lurking variables were evenly spread across treatments and the dangers of hormone replacement therapy were revealed.
 
-In the previous paragraph, we introduced the idea of a lurking variable where a lurking variable is a variable the researcher hasn't considered but affects the response variable. In observational studies a researcher will try to measure all the variables that might affect the response but will undoubtable miss something.
+In the previous paragraph, we introduced the idea of a lurking variable where a lurking variable is a variable the researcher hasn't considered but affects the response variable. In observational studies a researcher will try to measure all the variables that might affect the response but will undoubtedly miss something.
 
 
 There is a fundamental difference between imposing treatments onto subjects versus taking a random sample from a population and observing relationships between variables. In general, designed experiments allow us to determine cause-and-effect relationships while observational studies can only determine if variables are correlated. This difference in how the data is generated will result in different methods for generating a sampling distribution for a statistic of interest. In this chapter we will focus on experimental designs, though the same analyses are appropriate for observational studies.
@@ -202,7 +202,7 @@ CI <- quantile( BootDist$d.star, probs=c(0.025, 0.975) )
 CI
 ```
 
-Notice that the null hypothesis value, $\delta=0$, is not a value supported by the data because 0 is not in the 95% confidence interval. A subtle point in the above bootstrap code is that I resampled each group separately. Because the experimental protocol was to have 10 in each group, then we want our simulated data sets should obey the same rule. Had I resampled first and then did the grouping, we might end up with 12 caffeinated and 8 un-caffeinated subjects, which is data that our experimental design couldn't have generated.
+Notice that the null hypothesis value, $\delta=0$, is not a value supported by the data because 0 is not in the 95% confidence interval. A subtle point in the above bootstrap code is that I re-sampled each group separately. Because the experimental protocol was to have 10 in each group, then we want our simulated data sets should obey the same rule. Had I re-sampled first and then did the grouping, we might end up with 12 caffeinated and 8 decaffeinated subjects, which is data that our experimental design couldn't have generated.
 
 ### Inference via asymptotic results (unequal variance assumption)
 
@@ -276,7 +276,7 @@ mosaic::t.test(Taps ~ Group, data=CaffeineTaps)
 
 ### Inference via asymptotic results (equal variance assumption)
 
-In the CaffeineTaps example, the standard deviations of each group are quite similar. Instead of thinking of the data as 
+In the `CaffeineTaps` example, the standard deviations of each group are quite similar. Instead of thinking of the data as 
 $$\bar{X}_{1}\stackrel{\cdot}{\sim}N\left(\mu_{1},\,\frac{\sigma_{1}^{2}}{n_1}\right)\;\;\;\textrm{and}\;\;\;\bar{X}_{2}\stackrel{\cdot}{\sim}N\left(\mu_{2},\;\frac{\sigma_{2}^{2}}{n_2}\right)$$
 we could consider the model where we assume that the variance term is the same for each sample.
 $$\bar{X}_{1}\stackrel{\cdot}{\sim}N\left(\mu_{1},\,\frac{\sigma^{2}}{n_1}\right)\;\;\;\textrm{and}\;\;\;\bar{X}_{2}\stackrel{\cdot}{\sim}N\left(\mu_{2},\; \frac{\sigma^{2}}{n_2}\right)$$
@@ -307,7 +307,7 @@ $$\begin{aligned} t_{df=n_{1}+n_{2}-2}
   \end{aligned}$$
   
 where we have 
-$$StdErr\left(\bar{X}_{1}-\bar{X}_{2}\right)=s_{pooled}\sqrt{\left(1/n_{1}\right)+\left(1/n_{2}\right)}$$ For the CaffeineTaps data, this results in the following analysis for
+$$StdErr\left(\bar{X}_{1}-\bar{X}_{2}\right)=s_{pooled}\sqrt{\left(1/n_{1}\right)+\left(1/n_{2}\right)}$$ For the `CaffeineTaps` data, this results in the following analysis for
 $$\begin{aligned}
 H_{0}:	&\mu_{nc}-\mu_{c}  =  0	  \\
 H_{a}:	&\mu_{nc}-\mu_{c} \ne 0 
@@ -366,7 +366,7 @@ mosaic::t.test( Taps ~ Group, data=CaffeineTaps, var.equal=TRUE, conf.level=.99 
 ```
 
 
-**Example** - Does drinking beer increase your attractiveness to mosquitos?
+**Example** - Does drinking beer increase your attractiveness to mosquitoes?
 
 In places in the country substantial mosquito populations, the question of whether drinking beer causes the drinker to be more attractive to the mosquitoes than drinking something else has plagued campers. To answer such a question, researchers conducted a study to determine if drinking beer attracts more mosquitoes than drinking water. Of $n=43$ subjects, $n_{b}=25$ drank a liter beer and $n_{w}=18$ drank a liter of water and mosquitoes were caught in traps as they approached the different subjects. The critical part of this study is that the treatment (beer or water) was randomly assigned to each subject.
 
@@ -405,7 +405,7 @@ $$\begin{aligned} d
 	&=	19.22-23.6              \\
 	&=	-4.37\bar{7}
 	\end{aligned}$$
-The hypothesis test and confidence interval to see if this is statistically significant evidence to conclude that beer increases attractiveness to mosquitos is as follows. First we perform the hypothesis test by creating the sampling distribution of $d^*$ assuming $H_0$ is true by repeatedly shuffling the group labels and calculating differences.
+The hypothesis test and confidence interval to see if this is statistically significant evidence to conclude that beer increases attractiveness to mosquitoes is as follows. First we perform the hypothesis test by creating the sampling distribution of $d^*$ assuming $H_0$ is true by repeatedly shuffling the group labels and calculating differences.
 
 ```{r}
 PermutationDist <- mosaic::do(10000) *{
@@ -467,7 +467,7 @@ For example, in the package Lock5Data there is a dataset that examines the age i
 data(MarriageAges, package='Lock5Data')
 head(MarriageAges)
 ```
-Unfortunately the format of this dataset is not particularly convenient for making graphs. Instead I want to turn this data into a "long" dataset where I have one row per person, not one row per marraige.
+Unfortunately the format of this dataset is not particularly convenient for making graphs. Instead I want to turn this data into a "long" dataset where I have one row per person, not one row per marriage.
 ```{r}
 # Make a dataset that is more convenient for graphing.
 MarriageAges.Long <- MarriageAges %>%
@@ -515,7 +515,7 @@ t.test( MarriageAges$d )
 
 The result is highly statistically significant, and we see the mean difference in ages for the husband to be 2.8 years older. 
 
-To perform the same analysis using resampling methods, we need to be careful to do the resampling correctly. To perform the hypothesis test, we want to create data where the null hypothesis is true. To do this, we'll shuffle the ages within the marriage so that the husband and the wife have equal probability of being the older spouse. For the bootstrap CI, we need to be certain that we are resampling marriages, not people.
+To perform the same analysis using re-sampling methods, we need to be careful to do the re-sampling correctly. To perform the hypothesis test, we want to create data where the null hypothesis is true. To do this, we'll shuffle the ages within the marriage so that the husband and the wife have equal probability of being the older spouse. For the bootstrap CI, we need to be certain that we are re-sampling marriages, not people.
 
 ```{r, cache=TRUE}
 # Permutation t-test of delta == 0
@@ -634,7 +634,7 @@ The confidence interval suggests that these data support that the mean differenc
     a) Graph the leniency score for the smiling and non-smiling groups. Comment on if you can visually detect any difference in leniency score.
     b) Calculate the mean and standard deviation of the leniencies for each group. Does it seem reasonable that the standard deviation of each group is the same?
     c) Do a two-sided two-sample t-test using pooled variance using the asymptotic method. Report the test statistic, p-value, and a $95\%$ CI.
-    d) Do a two-side two-sample t-test using resampling methods. Report the p-value and a $95\%$ CI.
+    d) Do a two-side two-sample t-test using re-sampling methods. Report the p-value and a $95\%$ CI.
     e) What do you conclude at an $\alpha=0.05$ level? Do you feel we should have used a more stringent $\alpha$ level?
 
 4. In the Lock5Data package, the dataset `StorySpoilers` is data from an experiment where the researchers are testing if a “spoiler” at the beginning of a short story negatively affects the enjoyment of the story. A set of $n=12$ stories were selected and a spoiler introduction was created. Each version of each story was read by at least $30$ people and rated. Reported are the average ratings for the spoiler and non-spoiler versions of each story. The following code creates the “long” version of the data.

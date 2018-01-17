@@ -471,7 +471,7 @@ predict(model, newdata=data.frame(year=c(3112)), interval="prediction")
 
 ## Checking Model Assumptions
 
-As in the anova analysis, we want to be able to check the model assumptions. To do this, we will examine the residuals $e_{i}=y_{i}-\hat{y}_{i}$ for normality using a QQ-plot as we did in ANOVA. To address the constant variance and linearity assumptions we will look at scatterplots of the residuals vs the fitted values $\hat{y}_{i}$. For the regression to be valid, we want the scatterplot to show no discernible trend. There are two patterns that commonly show up that indicate a violation of the regression assumptions.
+As in the ANOVA analysis, we want to be able to check the model assumptions. To do this, we will examine the residuals $e_{i}=y_{i}-\hat{y}_{i}$ for normality using a QQ-plot as we did in ANOVA. To address the constant variance and linearity assumptions we will look at scatterplots of the residuals vs the fitted values $\hat{y}_{i}$. For the regression to be valid, we want the scatterplot to show no discernible trend. There are two patterns that commonly show up that indicate a violation of the regression assumptions.
 
 ```{r}
 set.seed(2233);

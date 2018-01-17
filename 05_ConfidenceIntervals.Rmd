@@ -141,7 +141,7 @@ Grabbing the appropriate quantiles from the bootstrap estimate of the sampling d
 quantile( SampDist$xbar, probs=c(0.025, 0.975) )
 ```
 
-Example: Assume that the percent of alcohol in casks of whisky is normally distributed. From the last batch of casks produced, the brewer samples $n=5$ casks and wants to calculate a $90\%$ confidence interval for the mean percent alcohol in the latest batch produced. The sample mean was $\bar{x}=55$ percent and the sample standard deviation was $s=4$ percent. 
+Example: Assume that the percent of alcohol in casks of whiskey is normally distributed. From the last batch of casks produced, the brewer samples $n=5$ casks and wants to calculate a $90\%$ confidence interval for the mean percent alcohol in the latest batch produced. The sample mean was $\bar{x}=55$ percent and the sample standard deviation was $s=4$ percent. 
 
 $$\bar{x}	\pm	t_{n-1}^{1-\alpha/2}\left(\frac{s}{\sqrt{n}}\right)$$
 		
@@ -189,7 +189,7 @@ We could be a bit more precise and use the $t$-quantile, but because the degrees
 
 3. A biologist wishes to estimate the effect of an antibiotic on the growth of a particular bacterium by examining the number of colony forming units (CFUs) per plate of culture when a fixed amount of antibiotic is applied. Previous experimentation with the antibiotic on this type of bacteria indicates that the standard deviation of CFUs is approximately $4$. Using this information, determine the number of observations (i.e. cultures developed) necessary to calculate a $99\%$ confidence interval with a half-width of $1$.
 
-4. In the R package `Lock5Data`, the dataset `FloridaLakes` contains information about the mercury content of fish in 53 Florida lakes. For this question, we'll be concerned with the average ppm of mercury in fish from those lakes which is encoded in the column AvgMercury.
+4. In the R package `Lock5Data`, the dataset `FloridaLakes` contains information about the mercury content of fish in 53 Florida lakes. For this question, we'll be concerned with the average ppm of mercury in fish from those lakes which is encoded in the column `AvgMercury`.
     a) Using the bootstrapping method, calculate a 95% confidence interval for $\mu$, the average ppm of mercury in fish in all Florida lakes.
     b) Using the asymptotic approximations discussed in this chapter, calculate a 95% confidence interval for $\mu$, the average ppm of mercury in fish in all Florida lakes.
     c) Comment on the similarity of these two intervals.

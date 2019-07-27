@@ -214,7 +214,7 @@ $$s^{2}=\frac{1}{n-1}\sum_{i=1}^{n}\left(x_{i}-\bar{x}\right)^{2}$$
 2.  The reason is because we are using the same set of data to estimate $\sigma^{2}$ as we did to estimate the population mean ($\mu$). If I could use   
     $$\frac{1}{n}\sum_{i=1}^{n}\left(x_{i}-\mu\right)^{2}$$
     as my estimator, we would be fine. But because I have to replace $\mu$ with $\bar{x}$ we have to pay a price.
-3. Because the estimation of $\sigma^{2}$ requires the estimation of one other quantity, and using using that quantity, you only need $n-1$ data points and can then figure out the last one, we have used one degree of freedom on estimating the mean and we need to adjust the formula accordingly.
+3. Because the estimation of $\sigma^{2}$ requires the estimation of one other quantity, and using that quantity, you only need $n-1$ data points and can then figure out the last one, we have used one degree of freedom on estimating the mean and we need to adjust the formula accordingly.
 
 In later chapters we'll give this quantity a different name, so we'll introduce the necessary vocabulary here. Let $e_{i}=x_{i}-\bar{x}$ be the error left after fitting the sample mean. This is the deviation from the observed value to the “expected value” $\bar{x}$. We can then define the Sum of Squared Error as $$SSE=\sum_{i=1}^{n}e_{i}^{2}$$
  

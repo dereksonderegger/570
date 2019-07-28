@@ -23,7 +23,7 @@ knitr::opts_chunk$set( fig.height=3, cache=TRUE )
 ```{r, message=FALSE, warning=FALSE}
 # Every chapter, we will load all the librarys we will use at the beginning
 # of the chapter.
-# library(mosaic)     # for the resample, shuffle, and do functions
+# library(mosaic)     # for the resample and do functions
 library(ggplot2)    # graphing functions
 library(dplyr)      # data summary tools
 ```
@@ -389,7 +389,7 @@ For several of these exercises, we will use data sets from the R package `Lock5D
     a) Create a histogram of the observed hours worked. Comment on the graph and aspects of the graph that might be of scientific interest.
     b) Calculate the sample mean $\bar{x}$ and sample standard deviation $s$ of the worked hours per week.
     c) Create a dataset of 10000 bootstrap replicates of $\bar{x}^{*}$.
-    d) Create a histogram of the bootstrap replicates. Calculate the mean and standard deviation of this distribution. Notice that the standard deviation of the distribution is often called the Standard Error of $\bar{x}$ and we'll denote it as $\sigma_{\bar{x}}$.
+    d) Create a histogram of the bootstrap replicates. Calculate the mean and standard deviation of this distribution. Notice that the standard deviation of the distribution is often called the Standard Error of $\bar{x}$ and we'll denote it as $\hat{\sigma}_{\bar{x}}$.
     e) Using the bootstrap replicates, create a 95% confidence interval for $\mu$, the average worked hours per week.
     f) Calculate the interval 
         $$\left(\bar{x}-2\cdot\hat{\sigma}_{\bar{x}}\,,\,\;\;\bar{x}+2\cdot\hat{\sigma}_{\bar{x}}\right)$$

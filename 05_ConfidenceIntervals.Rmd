@@ -112,7 +112,7 @@ ggplot() +
                  binwidth=30, alpha=.6)  
 ```
 
-The observed sample mean is $\bar{x}=345.6$  pounds and a sample standard deviation $s=108.8527$  pounds. Because we want a $95\%$ $confidence interval $\alpha=0.05$. Using t-tables or the following R code
+The observed sample mean is $\bar{x}=345.6$  pounds and a sample standard deviation $s=108.8527$  pounds. Because we want a $95\%$ confidence interval $\alpha=0.05$. Using t-tables or the following R code
 
 ```{r}
 qt(.975, df=39)
@@ -135,7 +135,7 @@ ggplot(SampDist, aes(x=xbar, y=..density..)) +
   geom_histogram()
 ```
 
-Grabbing the appropriate quantiles from the bootstrap estimate of the sampling distribution, we see that the bootstrap $95\%$ confidence interval matches up will with the confidence interval we obtained from asymptotic theory. 
+Grabbing the appropriate quantiles from the bootstrap estimate of the sampling distribution, we see that the bootstrap $95\%$ confidence interval matches up well with the confidence interval we obtained from asymptotic theory. 
 
 ```{r}
 quantile( SampDist$xbar, probs=c(0.025, 0.975) )
@@ -177,7 +177,7 @@ $$\begin{aligned}
 	  &=	97.41  \end{aligned}$$
  
 
-Notice that I don't bother using the $t$-distribution in this calculations because because I am assuming that $\sigma$ is known. While this is a horrible assumption, the difference between using a $t$ quantile instead of $z$ quantile is small and what really matters is how good the estimate of $\sigma$ is. As with many things, the quality of the input values is reflected in the quality of the output. Typically this sort of calculation is done with only a rough estimate of $\sigma$ and therefore I would subsequently regard the resulting sample size $n$ as an equally rough estimate. 
+Notice that I don't bother using the $t$-distribution in this calculations because I am assuming that $\sigma$ is known. While this is a horrible assumption, the difference between using a $t$ quantile instead of $z$ quantile is small and what really matters is how good the estimate of $\sigma$ is. As with many things, the quality of the input values is reflected in the quality of the output. Typically this sort of calculation is done with only a rough estimate of $\sigma$ and therefore I would subsequently regard the resulting sample size $n$ as an equally rough estimate. 
 
 We could be a bit more precise and use the $t$-quantile, but because the degrees of freedom depend on $n$ as well, then we would have $n$ on both sides of the equation and there is no convenient algebraic solution to solving for $n$. Later on we'll use an R function that accounts for this, but for now we will use the rough approximation.
 

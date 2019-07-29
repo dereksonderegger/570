@@ -17,7 +17,7 @@ knitr::opts_chunk$set( fig.height=3, cache=TRUE )
 ```
 
 ```{r, message=FALSE, warning=FALSE}
-# Every chapter, we will load all the librarys we will use at the beginning
+# Every chapter, we will load all the libraries we will use at the beginning
 # of the chapter. 
 library(ggplot2)    # graphing functions
 library(dplyr)      # data summary tools
@@ -587,7 +587,7 @@ $$\begin{aligned} E\left(Y\right)
  
 Notice that this number is not an integer and therefore is not a value that $Y$ could actually take on.  You might be tempted to therefore round it to the nearest integer.  That would be wrong. The rational is that if I wanted to estimate the number of clients she has per month (and thus her income), we would have a worse estimate if we used the rounded number.
 
-There are many cases were the expected value is not a value that could occur, but rounding it to the nearest value that could occur would be inappropriate. A Roulette wheel has 18 red and 18 black slots along with 2 green. If you bet $\$$1 on red, you could either win a dollar or lose a dollar. Because the probabilities are
+There are many cases where the expected value is not a value that could occur, but rounding it to the nearest value that could occur would be inappropriate. A Roulette wheel has 18 red and 18 black slots along with 2 green. If you bet $\$$1 on red, you could either win a dollar or lose a dollar. Because the probabilities are
 
 |                   |    Win ( + $1 )        |  Lose (- $1)      |
 |------------------:|:----------------------:|:-----------------:|

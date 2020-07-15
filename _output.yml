@@ -5,14 +5,8 @@ bookdown::gitbook:
     toc:
       collapse: section
       scroll_highlight: true
-      before: |
-        <li><a href="https://dereksonderegger.github.io/570/Statistical_Methods_I.pdf" target="blank">PDF version</a></li>
-      after: |
     edit:
       link: https://github.com/dereksonderegger/570/raw/master/%s
-    download:
-      - ["Statistical_Methods_I.pdf",  "PDF"]
-      - ["Statistical_Methods_I.epub", "EPUB"]
     search: yes
     fontsettings:
       theme: white
@@ -27,10 +21,3 @@ bookdown::gitbook:
       vk: no
       all: ['facebook', 'google', 'twitter', 'weibo', 'instapaper']      
 
-bookdown::pdf_book:
-  includes:
-    in_header: preamble.tex
-  latex_engine: xelatex
-  citation_package: natbib
-
-bookdown::epub_book: default

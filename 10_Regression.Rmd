@@ -89,6 +89,7 @@ ggplot(data, aes(x=x, y=y)) +
 
 
 The following are true about Pearson's correlation coefficient:
+
 1. $r$ is unit-less because we have standardized the $x$ and $y$ values.
 2. $-1\le r\le1$ because of the scaling by $n-1$
 3. A negative $r$ denotes a negative relationship between $x$ and $y$, while a positive value of $r$ represents a positive relationship.
@@ -140,7 +141,7 @@ The assumptions of this model are:
 3. _The variance of the errors is the same for every value of x (homoscedasticity)._
 4. _The error terms are independent._
 
-Under this model, the expected value of an observation with covariate $X=x$ is $E\left(Y\,|\,X=x\right)=\beta_{0}+\beta_{1}$ and a new observation has a standard deviation of $\sigma$ about the line.
+Under this model, the expected value of an observation with covariate $X=x$ is $E\left(Y\,|\,X=x\right)=\beta_{0}+\beta_{1}x$ and a new observation has a standard deviation of $\sigma$ about the line.
 
 ```{r, echo=FALSE}
 plot(c(0,1), c(0,1.25), type='n', xlab='x', ylab='y', axes=FALSE);

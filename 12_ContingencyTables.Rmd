@@ -155,6 +155,7 @@ SamplingDist <- mosaic::do(10000)*{
   chisq.test( table(Mites.star), correct=FALSE )$statistic 
 }
 ```
+
 ```{r, waring=FALSE, message=FALSE}
 ggplot( SamplingDist, aes(x=X.squared)) + geom_histogram()
 ```
@@ -271,45 +272,6 @@ With such a small p-value, we know that we are unlikely to have observed such a 
 Just as we wanted to perform an analysis on all pairwise comparisons among levels in an ANOVA analysis and control the overall Type I error rate, we will do the same thing but now using the Chi-squared test.
 
 Conceptually we will just perform all possible pairwise tests and then adjust the resulting p-values to control for the number of comparisons. 
-
-```{r}
-# We will use a function from the package fifer
-# chisq.post.hoc  wants the table arranged with the 
-# factor you want to pairwise contasts as the rows
-t( tab )   # transpose the rows and columns
-result <- fifer::chisq.post.hoc( t(tab),
-    test=chisq.test, simulate.p.value=TRUE, B=10000 ) 
-result
-```
-
-```{r}
-# We really want to get the compact letter display for 
-# graphing purposes, but there is some annoying details
-# that we really ought not have to think about.  So lets
-# make a little function to handle this stuff.
-library(dplyr)
-library(stringr)
-library(multcompView)
-cld.chisq.post.hoc <- function( obj, name ){
-  p.values <- obj$adj.p                # just the p-values
-  contrasts <- obj$comparison %>%
-    as.character( ) %>%
-    str_replace( pattern=fixed(' vs. '), replacement = fixed('-'))
-  names(p.values) <- contrasts
-
-  # finally we can pass p.values into a letters function
-  my.letters <- multcompView::multcompLetters(p.values)
-  letter.df <- data.frame( TEMP=names(my.letters$Letters), 
-                           .group = my.letters$Letters ) 
-  colnames(letter.df)[1] <- name
-  rownames(letter.df) <- NULL
-  return(letter.df)
-}  
-```
-
-```{r}
-cld.chisq.post.hoc(result, 'Race')
-```
 
 There are a number of other questions that I might consider, such as confidence intervals for the proportions married in each race. However, those questions require a few more assumptions about the structure of the data and will be addressed when we study logistic regression.
 

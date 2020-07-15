@@ -19,8 +19,10 @@ knitr::opts_chunk$set( fig.height=3, cache=TRUE )
 ```{r, message=FALSE, warning=FALSE}
 library(ggplot2)
 library(dplyr)
-```
 
+# Set default behavior of ggplot2 graphs to be black/white theme
+theme_set(theme_bw())
+```
 
 Performing a t-test requires that the data was drawn from a normal distribution or that the sample size is large enough that the Central Limit Theorem will guarantee that the sample means are approximately normally distributed. However, how do you decide if the data were drawn from a normal distribution, say if your sample size is between 10 and 20? If we are using a model that assumes equal variance between groups, how should we test if that assumption is true?
 

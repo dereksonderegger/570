@@ -1,45 +1,46 @@
 <!DOCTYPE html>
-<html >
-
+<html lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Introduction to Statistical Methodology</title>
-  <meta name="description" content="Introduction to Statistical Methodology">
-  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Introduction to Statistical Methodology, Second Edition</title>
+  <meta name="description" content="Introduction to Statistical Methodology, Second Edition" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Introduction to Statistical Methodology" />
+  <meta property="og:title" content="Introduction to Statistical Methodology, Second Edition" />
   <meta property="og:type" content="book" />
   
   
   
-  <meta name="github-repo" content="dereksonderegger/STA_570_Book" />
+  <meta name="github-repo" content="dereksonderegger/570" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Introduction to Statistical Methodology" />
+  <meta name="twitter:title" content="Introduction to Statistical Methodology, Second Edition" />
   
   
   
 
-<meta name="author" content="Derek L. Sonderegger">
+<meta name="author" content="Derek L. Sonderegger &amp; Robert Buscaglia" />
 
 
-<meta name="date" content="2018-01-17">
+<meta name="date" content="2020-07-14" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
 
-<link rel="next" href="1-summary-statistics-and-graphing.html">
+<link rel="next" href="1-summary-statistics-and-graphing.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
 
 
 
@@ -47,44 +48,74 @@
 
 
 
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -100,34 +131,43 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="https://dereksonderegger.github.io/570/Statistical_Methods_I.pdf" target="blank">PDF version</a></li>
-
-<li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html"><i class="fa fa-check"></i><b>1</b> Summary Statistics and Graphing</a><ul>
-<li class="chapter" data-level="1.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#graphical-summaries-of-data"><i class="fa fa-check"></i><b>1.1</b> Graphical summaries of data</a><ul>
-<li class="chapter" data-level="1.1.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#univariate---categorical"><i class="fa fa-check"></i><b>1.1.1</b> Univariate - Categorical</a></li>
-<li class="chapter" data-level="1.1.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#univariate---continuous"><i class="fa fa-check"></i><b>1.1.2</b> Univariate - Continuous</a></li>
-<li class="chapter" data-level="1.1.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#bivariate---categorical-vs-continuous"><i class="fa fa-check"></i><b>1.1.3</b> Bivariate - Categorical vs Continuous</a></li>
-<li class="chapter" data-level="1.1.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#bivariate---continuous-vs-continuous"><i class="fa fa-check"></i><b>1.1.4</b> Bivariate - Continuous vs Continuous</a></li>
+<li class="chapter" data-level="1.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#variable-types"><i class="fa fa-check"></i><b>1.1</b> Variable Types</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#categorical"><i class="fa fa-check"></i><b>1.1.1</b> Categorical</a></li>
+<li class="chapter" data-level="1.1.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#numerical"><i class="fa fa-check"></i><b>1.1.2</b> Numerical</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#measures-of-centrality"><i class="fa fa-check"></i><b>1.2</b> Measures of Centrality</a><ul>
-<li class="chapter" data-level="1.2.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#mean"><i class="fa fa-check"></i><b>1.2.1</b> Mean</a></li>
-<li class="chapter" data-level="1.2.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#median"><i class="fa fa-check"></i><b>1.2.2</b> Median</a></li>
-<li class="chapter" data-level="1.2.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#mode"><i class="fa fa-check"></i><b>1.2.3</b> Mode</a></li>
-<li class="chapter" data-level="1.2.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#examples"><i class="fa fa-check"></i><b>1.2.4</b> Examples</a></li>
+<li class="chapter" data-level="1.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#randomization-and-sampling"><i class="fa fa-check"></i><b>1.2</b> Randomization and Sampling</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#sampling-techniques"><i class="fa fa-check"></i><b>1.2.1</b> Sampling Techniques</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#measures-of-variation"><i class="fa fa-check"></i><b>1.3</b> Measures of Variation</a><ul>
-<li class="chapter" data-level="1.3.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#range"><i class="fa fa-check"></i><b>1.3.1</b> Range</a></li>
-<li class="chapter" data-level="1.3.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#inter-quartile-range"><i class="fa fa-check"></i><b>1.3.2</b> Inter-Quartile Range</a></li>
-<li class="chapter" data-level="1.3.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#variance"><i class="fa fa-check"></i><b>1.3.3</b> Variance</a></li>
-<li class="chapter" data-level="1.3.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#standard-deviation"><i class="fa fa-check"></i><b>1.3.4</b> Standard Deviation</a></li>
-<li class="chapter" data-level="1.3.5" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#coefficient-of-variation"><i class="fa fa-check"></i><b>1.3.5</b> Coefficient of Variation</a></li>
-<li class="chapter" data-level="1.3.6" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#empirical-rule-of-thumb"><i class="fa fa-check"></i><b>1.3.6</b> Empirical Rule of Thumb</a></li>
+<li class="chapter" data-level="1.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#graphical-summaries"><i class="fa fa-check"></i><b>1.3</b> Graphical Summaries</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#barchartsbarplots-univariate---categorical"><i class="fa fa-check"></i><b>1.3.1</b> Barcharts/Barplots (Univariate - Categorical)</a></li>
+<li class="chapter" data-level="1.3.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#histogram-univariate---numerical"><i class="fa fa-check"></i><b>1.3.2</b> Histogram (Univariate - Numerical)</a></li>
+<li class="chapter" data-level="1.3.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#boxplot-bivariate---categorical-vs-numerical"><i class="fa fa-check"></i><b>1.3.3</b> Boxplot (Bivariate - Categorical vs Numerical)</a></li>
+<li class="chapter" data-level="1.3.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#scatterplot-bivariate---numerical-vs-numerical"><i class="fa fa-check"></i><b>1.3.4</b> Scatterplot (Bivariate - Numerical vs Numerical)</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>1.4</b> Exercises</a></li>
+<li class="chapter" data-level="1.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#measures-of-centrality"><i class="fa fa-check"></i><b>1.4</b> Measures of Centrality</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#mean"><i class="fa fa-check"></i><b>1.4.1</b> Mean</a></li>
+<li class="chapter" data-level="1.4.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#median"><i class="fa fa-check"></i><b>1.4.2</b> Median</a></li>
+<li class="chapter" data-level="1.4.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#mode"><i class="fa fa-check"></i><b>1.4.3</b> Mode</a></li>
+<li class="chapter" data-level="1.4.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#examples"><i class="fa fa-check"></i><b>1.4.4</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#measures-of-spread"><i class="fa fa-check"></i><b>1.5</b> Measures of Spread</a><ul>
+<li class="chapter" data-level="1.5.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#range"><i class="fa fa-check"></i><b>1.5.1</b> Range</a></li>
+<li class="chapter" data-level="1.5.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#inter-quartile-range-iqr"><i class="fa fa-check"></i><b>1.5.2</b> Inter-Quartile Range (IQR)</a></li>
+<li class="chapter" data-level="1.5.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#variance"><i class="fa fa-check"></i><b>1.5.3</b> Variance</a></li>
+<li class="chapter" data-level="1.5.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#standard-deviation"><i class="fa fa-check"></i><b>1.5.4</b> Standard Deviation</a></li>
+<li class="chapter" data-level="1.5.5" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#coefficient-of-variation"><i class="fa fa-check"></i><b>1.5.5</b> Coefficient of Variation</a></li>
+<li class="chapter" data-level="1.5.6" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#empirical-rules"><i class="fa fa-check"></i><b>1.5.6</b> Empirical Rules</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#shape"><i class="fa fa-check"></i><b>1.6</b> Shape</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#symmetry"><i class="fa fa-check"></i><b>1.6.1</b> Symmetry</a></li>
+<li class="chapter" data-level="1.6.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#unimodal-or-multi-modal"><i class="fa fa-check"></i><b>1.6.2</b> Unimodal or Multi-modal</a></li>
+<li class="chapter" data-level="1.6.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#skew"><i class="fa fa-check"></i><b>1.6.3</b> Skew</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>1.7</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="2-probability.html"><a href="2-probability.html"><i class="fa fa-check"></i><b>2</b> Probability</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-probability.html"><a href="2-probability.html#introduction-to-set-theory"><i class="fa fa-check"></i><b>2.1</b> Introduction to Set Theory</a><ul>
@@ -151,12 +191,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.5.3" data-path="2-probability.html"><a href="2-probability.html#normal-distribution"><i class="fa fa-check"></i><b>2.5.3</b> Normal Distribution</a></li>
 <li class="chapter" data-level="2.5.4" data-path="2-probability.html"><a href="2-probability.html#standardizing"><i class="fa fa-check"></i><b>2.5.4</b> Standardizing</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="2-probability.html"><a href="2-probability.html#exercises-1"><i class="fa fa-check"></i><b>2.6</b> Exercises</a></li>
+<li class="chapter" data-level="2.6" data-path="2-probability.html"><a href="2-probability.html#r-quick-reference"><i class="fa fa-check"></i><b>2.6</b> R Quick Reference</a></li>
+<li class="chapter" data-level="2.7" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>2.7</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html"><i class="fa fa-check"></i><b>3</b> Confidence Intervals via Bootstrapping</a><ul>
 <li class="chapter" data-level="3.1" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#theory-of-bootstrapping"><i class="fa fa-check"></i><b>3.1</b> Theory of Bootstrapping</a></li>
-<li class="chapter" data-level="3.2" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#quantile-based-confidence-intervals"><i class="fa fa-check"></i><b>3.2</b> Quantile-based Confidence Intervals</a></li>
-<li class="chapter" data-level="3.3" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#exercises-2"><i class="fa fa-check"></i><b>3.3</b> Exercises</a></li>
+<li class="chapter" data-level="3.2" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#conducting-a-bootstrap"><i class="fa fa-check"></i><b>3.2</b> Conducting a Bootstrap</a></li>
+<li class="chapter" data-level="3.3" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#quantile-based-confidence-intervals"><i class="fa fa-check"></i><b>3.3</b> Quantile-based Confidence Intervals</a></li>
+<li class="chapter" data-level="3.4" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#additional-examples"><i class="fa fa-check"></i><b>3.4</b> Additional Examples</a></li>
+<li class="chapter" data-level="3.5" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>3.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html"><i class="fa fa-check"></i><b>4</b> Sampling Distribution of <span class="math inline">\(\bar{X}\)</span></a><ul>
 <li class="chapter" data-level="4.1" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#enlightening-example"><i class="fa fa-check"></i><b>4.1</b> Enlightening Example</a></li>
@@ -166,36 +209,42 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#distribution-of-barx"><i class="fa fa-check"></i><b>4.3</b> Distribution of <span class="math inline">\(\bar{X}\)</span></a></li>
 <li class="chapter" data-level="4.4" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#central-limit-theorem"><i class="fa fa-check"></i><b>4.4</b> Central Limit Theorem</a></li>
-<li class="chapter" data-level="4.5" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#exercises-3"><i class="fa fa-check"></i><b>4.5</b> Exercises</a></li>
+<li class="chapter" data-level="4.5" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>4.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html"><i class="fa fa-check"></i><b>5</b> Confidence Intervals for <span class="math inline">\(\mu\)</span></a><ul>
 <li class="chapter" data-level="5.1" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#asymptotic-result-sigma-known"><i class="fa fa-check"></i><b>5.1</b> Asymptotic result (<span class="math inline">\(\sigma\)</span> known)</a></li>
 <li class="chapter" data-level="5.2" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#asymptotoic-result-sigma-unknown"><i class="fa fa-check"></i><b>5.2</b> Asymptotoic result (<span class="math inline">\(\sigma\)</span> unknown)</a></li>
 <li class="chapter" data-level="5.3" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#sample-size-selection"><i class="fa fa-check"></i><b>5.3</b> Sample Size Selection</a></li>
-<li class="chapter" data-level="5.4" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#exercises-4"><i class="fa fa-check"></i><b>5.4</b> Exercises</a></li>
+<li class="chapter" data-level="5.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>5.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html"><i class="fa fa-check"></i><b>6</b> Hypothesis Tests for the mean of a population</a><ul>
 <li class="chapter" data-level="6.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#writing-hypotheses"><i class="fa fa-check"></i><b>6.1</b> Writing Hypotheses</a><ul>
 <li class="chapter" data-level="6.1.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#null-and-alternative-hypotheses"><i class="fa fa-check"></i><b>6.1.1</b> Null and alternative hypotheses</a></li>
 <li class="chapter" data-level="6.1.2" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#error"><i class="fa fa-check"></i><b>6.1.2</b> Error</a></li>
-<li class="chapter" data-level="6.1.3" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#why-should-hypotheses-use-mu-and-not-barx"><i class="fa fa-check"></i><b>6.1.3</b> Why should hypotheses use <span class="math inline">\(\mu\)</span> and not <span class="math inline">\(\bar{x}\)</span>?</a></li>
-<li class="chapter" data-level="6.1.4" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#calculating-p-values"><i class="fa fa-check"></i><b>6.1.4</b> Calculating p-values</a></li>
-<li class="chapter" data-level="6.1.5" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#calculating-p-values-vs-cutoff-values"><i class="fa fa-check"></i><b>6.1.5</b> Calculating p-values vs cutoff values</a></li>
-<li class="chapter" data-level="6.1.6" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#t-tests-in-r"><i class="fa fa-check"></i><b>6.1.6</b> t-tests in R</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i><b>6.2</b> Type I and Type II Errors</a><ul>
-<li class="chapter" data-level="6.2.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#power-and-sample-size-selection"><i class="fa fa-check"></i><b>6.2.1</b> Power and Sample Size Selection</a></li>
+<li class="chapter" data-level="6.2" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#conducting-a-hypothesis-test-for-mu"><i class="fa fa-check"></i><b>6.2</b> Conducting a Hypothesis Test for <span class="math inline">\(\mu\)</span></a><ul>
+<li class="chapter" data-level="6.2.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#why-should-hypotheses-use-mu-and-not-barx"><i class="fa fa-check"></i><b>6.2.1</b> Why should hypotheses use <span class="math inline">\(\mu\)</span> and not <span class="math inline">\(\bar{x}\)</span>?</a></li>
+<li class="chapter" data-level="6.2.2" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#a-note-on-calculating-p-values"><i class="fa fa-check"></i><b>6.2.2</b> A note on calculating p-values</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#exercises-5"><i class="fa fa-check"></i><b>6.3</b> Exercises</a></li>
+<li class="chapter" data-level="6.3" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#additional-examples"><i class="fa fa-check"></i><b>6.3</b> Additional Examples</a></li>
+<li class="chapter" data-level="6.4" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#p-values-vs-cutoff-values"><i class="fa fa-check"></i><b>6.4</b> P-values vs cutoff values</a></li>
+<li class="chapter" data-level="6.5" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#running-a-t-test-in-r"><i class="fa fa-check"></i><b>6.5</b> Running a t-test in R</a></li>
+<li class="chapter" data-level="6.6" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i><b>6.6</b> Type I and Type II Errors</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#power-and-sample-size-selection"><i class="fa fa-check"></i><b>6.6.1</b> Power and Sample Size Selection</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>6.7</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><i class="fa fa-check"></i><b>7</b> Two-Sample Hypothesis Tests and Confidence Intervals</a><ul>
 <li class="chapter" data-level="7.1" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#difference-in-means-between-two-groups"><i class="fa fa-check"></i><b>7.1</b> Difference in means between two groups</a><ul>
 <li class="chapter" data-level="7.1.1" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#inference-via-resampling"><i class="fa fa-check"></i><b>7.1.1</b> Inference via resampling</a></li>
 <li class="chapter" data-level="7.1.2" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#inference-via-asymptotic-results-unequal-variance-assumption"><i class="fa fa-check"></i><b>7.1.2</b> Inference via asymptotic results (unequal variance assumption)</a></li>
 <li class="chapter" data-level="7.1.3" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#inference-via-asymptotic-results-equal-variance-assumption"><i class="fa fa-check"></i><b>7.1.3</b> Inference via asymptotic results (equal variance assumption)</a></li>
+<li class="chapter" data-level="7.1.4" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#additional-example"><i class="fa fa-check"></i><b>7.1.4</b> Additional Example</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#difference-in-means-between-two-groups-paired-data"><i class="fa fa-check"></i><b>7.2</b> Difference in means between two groups: Paired Data</a></li>
-<li class="chapter" data-level="7.3" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#exercises-6"><i class="fa fa-check"></i><b>7.3</b> Exercises</a></li>
+<li class="chapter" data-level="7.2" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#difference-in-means-between-two-groups-paired-data"><i class="fa fa-check"></i><b>7.2</b> Difference in means between two groups: Paired Data</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#additional-example-1"><i class="fa fa-check"></i><b>7.2.1</b> Additional Example</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>7.3</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html"><i class="fa fa-check"></i><b>8</b> Testing Model Assumptions</a><ul>
 <li class="chapter" data-level="8.1" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#testing-normality"><i class="fa fa-check"></i><b>8.1</b> Testing Normality</a><ul>
@@ -209,7 +258,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="8.3" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#power-of-the-f-test"><i class="fa fa-check"></i><b>8.3</b> Power of the F-test</a></li>
 <li class="chapter" data-level="8.4" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#theoretical-distribution-vs-bootstrap"><i class="fa fa-check"></i><b>8.4</b> Theoretical distribution vs bootstrap</a></li>
-<li class="chapter" data-level="8.5" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#exercises-7"><i class="fa fa-check"></i><b>8.5</b> Exercises</a></li>
+<li class="chapter" data-level="8.5" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>8.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html"><i class="fa fa-check"></i><b>9</b> Analysis of Variance (ANOVA)</a><ul>
 <li class="chapter" data-level="9.1" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#model"><i class="fa fa-check"></i><b>9.1</b> Model</a></li>
@@ -225,7 +274,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="9.5.2" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#model-representations-in-r"><i class="fa fa-check"></i><b>9.5.2</b> Model Representations in R</a></li>
 <li class="chapter" data-level="9.5.3" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#implications-on-the-anova-table"><i class="fa fa-check"></i><b>9.5.3</b> Implications on the ANOVA table</a></li>
 </ul></li>
-<li class="chapter" data-level="9.6" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#exercises-8"><i class="fa fa-check"></i><b>9.6</b> Exercises</a></li>
+<li class="chapter" data-level="9.6" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>9.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="10-regression.html"><a href="10-regression.html"><i class="fa fa-check"></i><b>10</b> Regression</a><ul>
 <li class="chapter" data-level="10.1" data-path="10-regression.html"><a href="10-regression.html#pearsons-correlation-coefficient"><i class="fa fa-check"></i><b>10.1</b> Pearson’s Correlation Coefficient</a></li>
@@ -239,33 +288,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="10.5.1" data-path="10-regression.html"><a href="10-regression.html#influential-points"><i class="fa fa-check"></i><b>10.5.1</b> Influential Points</a></li>
 <li class="chapter" data-level="10.5.2" data-path="10-regression.html"><a href="10-regression.html#transformations"><i class="fa fa-check"></i><b>10.5.2</b> Transformations</a></li>
 </ul></li>
-<li class="chapter" data-level="10.6" data-path="10-regression.html"><a href="10-regression.html#exercises-9"><i class="fa fa-check"></i><b>10.6</b> Exercises</a></li>
+<li class="chapter" data-level="10.6" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>10.6</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html"><i class="fa fa-check"></i><b>11</b> Resampling Linear Models</a><ul>
-<li class="chapter" data-level="11.1" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#using-lm-for-many-analyses"><i class="fa fa-check"></i><b>11.1</b> Using <code>lm()</code> for many analyses</a><ul>
-<li class="chapter" data-level="11.1.1" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#one-sample-t-tests"><i class="fa fa-check"></i><b>11.1.1</b> One-sample t-tests</a></li>
-<li class="chapter" data-level="11.1.2" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#two-sample-t-tests"><i class="fa fa-check"></i><b>11.1.2</b> Two-sample t-tests</a></li>
-</ul></li>
-<li class="chapter" data-level="11.2" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#creating-simulated-data"><i class="fa fa-check"></i><b>11.2</b> Creating Simulated Data</a><ul>
-<li class="chapter" data-level="11.2.1" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#observational-studies-vs-designed-experiments"><i class="fa fa-check"></i><b>11.2.1</b> Observational Studies vs Designed Experiments</a></li>
-</ul></li>
-<li class="chapter" data-level="11.3" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#confidence-interval-types"><i class="fa fa-check"></i><b>11.3</b> Confidence Interval Types</a><ul>
-<li class="chapter" data-level="11.3.1" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#normal-intervals"><i class="fa fa-check"></i><b>11.3.1</b> Normal intervals</a></li>
-<li class="chapter" data-level="11.3.2" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#percentile-intervals"><i class="fa fa-check"></i><b>11.3.2</b> Percentile intervals</a></li>
-<li class="chapter" data-level="11.3.3" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#basic-intervals"><i class="fa fa-check"></i><b>11.3.3</b> Basic intervals</a></li>
-<li class="chapter" data-level="11.3.4" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#towards-bias-corrected-and-accelerated-intervals-bca"><i class="fa fa-check"></i><b>11.3.4</b> Towards bias-corrected and accelerated intervals (BCa)</a></li>
-</ul></li>
-<li class="chapter" data-level="11.4" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#bootstrap-confidence-intervals-in-r"><i class="fa fa-check"></i><b>11.4</b> Bootstrap Confidence Intervals in R</a><ul>
-<li class="chapter" data-level="11.4.1" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#using-carboot-function"><i class="fa fa-check"></i><b>11.4.1</b> Using <code>car::Boot()</code> function</a></li>
-<li class="chapter" data-level="11.4.2" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#using-the-boot-package"><i class="fa fa-check"></i><b>11.4.2</b> Using the <code>boot</code> package</a></li>
-</ul></li>
-<li class="chapter" data-level="11.5" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#exercises-10"><i class="fa fa-check"></i><b>11.5</b> Exercises</a></li>
-</ul></li>
+<li class="chapter" data-level="11" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html"><i class="fa fa-check"></i><b>11</b> Resampling Linear Models</a></li>
 <li class="chapter" data-level="12" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html"><i class="fa fa-check"></i><b>12</b> Contingency Tables</a><ul>
 <li class="chapter" data-level="12.1" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html#expected-counts"><i class="fa fa-check"></i><b>12.1</b> Expected Counts</a></li>
 <li class="chapter" data-level="12.2" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html#hypothesis-testing"><i class="fa fa-check"></i><b>12.2</b> Hypothesis Testing</a></li>
 <li class="chapter" data-level="12.3" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html#rxc-tables"><i class="fa fa-check"></i><b>12.3</b> RxC tables</a></li>
-<li class="chapter" data-level="12.4" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html#exercises-11"><i class="fa fa-check"></i><b>12.4</b> Exercises</a></li>
+<li class="chapter" data-level="12.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>12.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendix-a-alternative-bootstrap-code.html"><a href="appendix-a-alternative-bootstrap-code.html"><i class="fa fa-check"></i>Appendix A : Alternative Bootstrap Code</a><ul>
+<li class="chapter" data-level="" data-path="appendix-a-alternative-bootstrap-code.html"><a href="appendix-a-alternative-bootstrap-code.html#mosaic-package"><i class="fa fa-check"></i>Mosaic Package</a></li>
+<li class="chapter" data-level="" data-path="appendix-a-alternative-bootstrap-code.html"><a href="appendix-a-alternative-bootstrap-code.html#base-r-code"><i class="fa fa-check"></i>Base R Code</a></li>
 </ul></li>
 </ul>
 
@@ -276,7 +310,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Statistical Methodology</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Statistical Methodology, Second Edition</a>
           </h1>
         </div>
 
@@ -285,22 +319,23 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="header">
-<h1 class="title">Introduction to Statistical Methodology</h1>
-<h4 class="author"><em>Derek L. Sonderegger</em></h4>
-<h4 class="date"><em>2018-01-17</em></h4>
+<h1 class="title">Introduction to Statistical Methodology, Second Edition</h1>
+<p class="author"><em>Derek L. Sonderegger &amp; Robert Buscaglia</em></p>
+<p class="date"><em>July 14, 2020</em></p>
 </div>
 <div id="preface" class="section level1 unnumbered">
 <h1>Preface</h1>
-<p>These notes were originally written for an introductory statistics course for grad students in biological sciences.</p>
-<p>The problem with most introductory statistics courses is that they don’t prepare the student for the use of advanced statistics. Rote hand calculation is easy to test, easy to grade, and easy for students to learn to do, but is useless for actually understanding how to apply statistics. Since students pursuing a Ph.D. will likely be using statistics for the rest of their professional careers, I feel that this sort of course should attempt to steer away from a “cookbook” undergraduate pedagogy, and give the student enough theoretical background to continue their statistical studies at a high level while staying away from the painful mathematical details that statisticians must work through.</p>
-<p>Statistical software has progressed by leaps and bounds over the last decades. Scientists need access to reliable software that is flexible enough to handle new problems, with minimal headaches. R has become a widely used, and extremely robust Open Source platform for statistical computing and most new methodologies will appear in R before being incorporated into commercial software. Second, data exploration is the first step of any analysis and a user friendly yet powerful mechanism for graphing is a critical component in a researchers toolbox. R succeeds in this area as R has the most flexible graphing library of any statistical software I know of and the basic plots can created quickly and easily. The only downside is that there is a substantial learning curve to learning a scripting language, particularly for students without any programming background. I attempt to introduce the software with as little pain as possible, but some frustration is inevitable.</p>
-<p>Because the mathematical and statistical background of typical students varies widely, the course seems to have a split-personality disorder. We wish to talk about using calculus to maximize the likelihood function and define the expectation of a continuous random variable, but also must spend time defining how to calculate the a mean. I attempt to address both audiences, but recognize that it is not ideal.</p>
-<p>I hope you’ll find these notes useful.</p>
+<p>The problem with most introductory statistics courses is that they don’t prepare the student for the use of advanced statistics. Rote hand calculation is easy to test, easy to grade, and easy for students to learn to do, but is useless for actually understanding how to apply statistics. Since students pursuing a Ph.D. will likely be using statistics for the rest of their professional careers, we feel that this sort of course should attempt to steer away from a “cookbook” undergraduate pedagogy, and give the student enough theoretical background to continue their statistical studies at a high level while staying away from the painful mathematical details that statisticians must work through.</p>
+<p>Statistical software has progressed by leaps and bounds over the last decades. Scientists need access to reliable software that is flexible enough to handle new problems, with minimal headaches. R has become a widely used, and extremely robust Open Source platform for statistical computing and most new methodologies will appear in R before being incorporated into commercial software. Second, data exploration is the first step of any analysis and a user friendly yet powerful mechanism for graphing is a critical component in a researchers toolbox. R succeeds in this area with the most flexible graphing library of any statistical software and and basic plotting that can be executed quickly and easily. The only downside is that there is a substantial learning curve to scripting, particularly for students without any programming background. The use of R software is introduced with as little pain as possible, but some frustration is inevitable.</p>
+<p>Because the mathematical and statistical background of physical science students varies widely, the course seems to have a split-personality disorder. We wish to talk about using calculus to maximize the likelihood function and define the expectation of a continuous random variable, but also must spend time defining how to calculate a mean. We attempt to address both audiences, but recognize that it is not ideal.</p>
+<p>These notes were originally written for an introductory statistics course for grad students in the physical sciences. Furthermore, the initial author of the notes primarily works in biological and ecological fields. As a result, many of the examples are biological situations. However there isn’t any biological knowledge necessary.</p>
+<p>We hope you’ll find these notes useful.</p>
 <div id="acknowledgements" class="section level2 unnumbered">
 <h2>Acknowledgements</h2>
-<p>I have had the pleasure of interacting with a great number of talented mathematicians and statisticians in my schooling. In particular I am deeply indebted to Dr Robert Boik and Dr Warren Esty as well as my Ph.D. adviser Dr Jan Hannig.</p>
-<p>As a professor at Northern Arizona University, I am grateful for the feedback and comradery of my fellow statisticans, particularly Dr St. Laurent.</p>
+<p><em>Derek Sonderegger</em>: I have had the pleasure of interacting with a great number of talented mathematicians and statisticians in my schooling. In particular I am deeply indebted to Dr Robert Boik and Dr Warren Esty as well as my Ph.D. adviser Dr Jan Hannig.</p>
+<p>As a professor at Northern Arizona University, I am grateful for the feedback and comradery of my fellow statisticians, particularly Dr St. Laurent and Dr. Buscaglia.</p>
 <p>Finally, I am deeply appreciative of the support given to me by my wife, Aubrey.</p>
+<p><em>Robert Buscaglia</em>: I am thankful for Dr. Sonderegger allowing me to be a part of this online textbook. I would like to thank my graduate advisers, Dr. Jonathan B. Chaires and Dr. Yiannis Kamarianakis, who helped me achieve my goal of becoming a professor at Northern Arizona University. I would also be lost without the patience and kindness I receive from my family, especially my caring wife, Kelly.</p>
 
 </div>
 </div>
@@ -315,11 +350,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -327,11 +364,13 @@ gitbook.start({
 "github": false,
 "facebook": false,
 "twitter": false,
-"google": false,
+"linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"],
+"google": false,
+"instapper": false
 },
 "fontsettings": {
 "theme": "white",
@@ -342,7 +381,15 @@ gitbook.start({
 "link": "https://github.com/dereksonderegger/570/raw/master/index.Rmd",
 "text": "Edit"
 },
-"download": [["Statistical_Methods_I.pdf", "PDF"], ["Statistical_Methods_I.epub", "EPUB"]],
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
 "toc": {
 "collapse": "section",
 "scroll_highlight": true
@@ -357,9 +404,12 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(script.src))
-      script.src  = script.src.replace(/^https?:/, '');
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

@@ -1,0 +1,73 @@
+---
+output: html_document
+---
+
+# Appendix A : Alternative Bootstrap Code {-}
+
+```{r, echo=FALSE}
+# Unattach any packages that happen to already be loaded. In general this is unecessary
+# but is important for the creation of the book to not have package namespaces
+# fighting unexpectedly.
+pkgs = names(sessionInfo()$otherPkgs)
+if( length(pkgs > 0)){
+  pkgs = paste('package:', pkgs, sep = "")
+  for( i in 1:length(pkgs)){
+    detach(pkgs[i], character.only = TRUE, force=TRUE)
+  }
+}
+# Set my default chunk options 
+knitr::opts_chunk$set( fig.height=3, cache=TRUE )
+```
+
+## Mosaic Package {-}
+
+```{r, message=FALSE, warning=FALSE}
+library(ggplot2)    # graphing functions
+library(dplyr)      # data summary tools
+library(mosaic)     # using Mosaic for iterations
+
+# Set default behavior of ggplot2 graphs to be black/white theme
+theme_set(theme_bw())
+```
+
+This method uses the `mosaic` package and can work very well when everything is in data frames.
+
+```{r, cache=TRUE, warning=FALSE, message=FALSE}
+# read the Lakes data set
+Lakes <- read.csv('http://www.lock5stat.com/datasets/FloridaLakes.csv')
+
+# create the Estimated Sampling Distribution of xbar
+BootDist <- mosaic::do(10000) * 
+  mosaic::resample(Lakes) %>% 
+  summarise(xbar = mean(AvgMercury))
+
+# what columns does the data frame "BootDist" have?
+head(BootDist)
+
+# show a histogram of the estimated sampling distribution of xbar
+ggplot(BootDist, aes(x=xbar)) +
+  geom_histogram() + 
+  ggtitle('Estimated Sampling distribution of xbar' )
+
+# calculate a quantile-based confidence interval
+quantile(BootDist$xbar, c(0.025, 0.975))
+```
+
+## Base R Code {-}
+
+Here, no packages are used and the steps of the bootstrap are more explicit.
+
+```{r, echo=TRUE}
+AvgMerc <- Lakes$AvgMercury
+Boot.Its<-10000  ### Numer of iterations, like `R` in `boot`
+Sample.Size<-length(AvgMerc)
+BS.means<-numeric() ### where each estimate is saved
+for(j in 1:Boot.Its) BS.means[j]<-mean(sample(AvgMerc, Sample.Size, replace=T))
+hist(BS.means)
+```
+
+Then the 95% confidence interval can be found in a similar manner to above.
+
+```{r, echo=TRUE}
+quantile(BS.means, c(0.025, 0.975))
+```

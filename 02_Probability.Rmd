@@ -17,10 +17,13 @@ knitr::opts_chunk$set( fig.height=3, cache=TRUE )
 ```
 
 ```{r, message=FALSE, warning=FALSE}
-# Every chapter, we will load all the libraries we will use at the beginning
+# Every chapter, we will load all the librarys we will use at the beginning
 # of the chapter. 
 library(ggplot2)    # graphing functions
 library(dplyr)      # data summary tools
+
+# Set default behavior of ggplot2 graphs to be black/white theme
+theme_set(theme_bw())
 ```
 
 We need to work out the mathematics of what we mean by probability. To begin with we first define an outcome. An outcome is one observation from a random process or event. For example we might be interested in a single roll of a six-side die. Alternatively we might be interested in selecting one NAU student at random from the entire population of NAU students.
@@ -96,7 +99,7 @@ All of our possible events are present, and distributed among our possible event
 
 I am often interested in discussing the composition of two events and we give the common set operations below. 
 
-* Union: Denote the event that either $A$ or $B$ occurs as $A\cup B$.
+* **Union:** Denote the event that either $A$ or $B$ occurs as $A\cup B$.
 
 ```{r, echo=FALSE}
 df.A <- data.frame(theta=seq(0,2*pi, length=1000)) %>%
@@ -125,7 +128,7 @@ ggplot(df, aes(x=x, y=y)) +
   theme_minimal() 
 ```
 
-* Denote the event that **both** $A$ and $B$ occur as $A\cap B$
+* **Intersection:** Denote the event that **both** $A$ and $B$ occur as $A\cap B$
 
 ```{r, echo=FALSE}
 df.A <- data.frame(theta=seq(0,2*pi, length=1000)) %>%
@@ -164,7 +167,7 @@ ggplot(df, aes(x=x, y=y)) +
 ```
 
 
-* Denote the event that $A$ does not occur as $\bar{A}$ or $A^{C}$ (different people use different notations)
+* **Complement:** Denote the event that $A$ does not occur as $\bar{A}$ or $A^{C}$ (different people use different notations)
 
 ```{r, echo=FALSE}
 df.A <- data.frame(theta=seq(0,2*pi, length=1000)) %>%
@@ -204,7 +207,7 @@ ggplot(df, aes(x=x, y=y)) +
   theme_minimal() 
 ```
 
-**Definition 1**. Two events $A$ and $B$ are said to be mutually exclusive (or disjoint) if the occurrence of one event precludes the occurrence of the other. For example, on a single roll of a die, a two and a five cannot both come up. For a second example, define $A$ to be the event that the die is even, and $B$ to be the event that the die comes up as a $5$.
+**Definition:** Two events $A$ and $B$ are said to be **mutually exclusive** (or **disjoint**) if the occurrence of one event precludes the occurrence of the other. For example, on a single roll of a die, a two and a five cannot both come up. For a second example, define $A$ to be the event that the die is even, and $B$ to be the event that the die comes up as a $5$.
 
 ```{r, echo=FALSE}
 df.A <- data.frame(theta=seq(0,2*pi, length=1000)) %>%
@@ -235,84 +238,15 @@ ggplot(df, aes(x=x, y=y)) +
 
 We now take our Venn diagrams and use them to understand the rules of probability. The underlying idea that we will use is the the probability of an event is the area in the Venn diagram.
 
-**Definition 2**. Probability is the proportion of times an event occurs in many repeated trials of a random phenomenon. In other words, probability is the long-term relative frequency.
+**Definition:** The **probability** is the proportion of times an event occurs in many repeated trials of a random phenomenon. In other words, it is the long-term relative frequency.
 
-**Fact**. *For any event $A$ the probability of the event $P(A)$ satisfies $0\le P(A) \le 1$ because proportions always lie in $[0,1]$.*
+**Rule:** *For any event $A$ the probability of the event $P(A)$ satisfies $0\leq P(A) \leq 1$.  That is to say, the probability of any event will always lie in the interval $[0,1]$.*
  
 Because $S$ is the set of all events that might occur, the area of our bounding rectangle will be $1$ and the probability of event $A$ occurring will be represented by the area in the circle $A$.
 
-**Fact**. *If two events are mutually exclusive, then $P(A\cup B)=P(A)+P(B)$*
+**Rule:** *The probability of the set of all events ($S$) is always 1. That is, $P(S) = 1$.*
 
-```{r, echo=FALSE}
-df.A <- data.frame(theta=seq(0,2*pi, length=1000)) %>%
-        mutate(x = cos(theta),
-               y = sin(theta),
-               grp = 'A') %>%
-        select(-theta)
-df.B <- df.A %>% mutate( x = x+2.5, grp='B')
-df.box <- data.frame( x=c(-1.2,  3.8, 3.8, -1.2, -1.2),
-                      y=c(-1.2, -1.2 ,1.2,  1.2, -1.2),
-                      grp='Box' )
-df <- rbind(df.A, df.B, df.box)
-df.label <- NULL %>%
-  rbind( data.frame(x= -.75, y=  .85, label='A'),
-         data.frame(x= 1.75, y= -.85, label='B'),
-         data.frame(x= 3.65, y=  1.1, label='S'))
-ggplot(df, aes(x=x, y=y)) + 
-  geom_polygon(data=df.A, fill='grey', alpha=.7) +
-  geom_polygon(data=df.B, fill='grey', alpha=.7) +
-  geom_path( aes(group=grp)) +
-  scale_x_continuous(breaks=NULL) +
-  scale_y_continuous(breaks=NULL) +
-  geom_text( data=df.label, aes(label=label)) +
-  labs(x='', y='') + 
-  ggtitle(expression( P( A*union(B) ) == P(A) + P(B)  )) +
-  theme_minimal()
-```
- 
-
-
-**Example**. Let $R$ be the sum of two different colored dice. Suppose we are interested in $P(R \le 4)$. Notice that the pair of dice can fall 36 different ways (6 ways for the first die and six for the second results in 6x6 possible outcomes, and each way has equal probability $1/36$. Because the dice cannot simultaneously sum to $2$ and to $3$, we could write 
-$$\begin{aligned} P(R \le 4 )	
-  &=	P(R=2)+P(R=3)+P(R=4) \\
-	&=	P(\left\{ 1,1\right\} )+P(\left\{ 1,2\right\} \mathrm{\textrm{ or }}\left\{ 2,1\right\} )+P(\{1,3\}\textrm{ or }\{2,2\}\textrm{ or }\{3,1\}) \\
-	&=	\frac{1}{36}+\frac{2}{36}+\frac{3}{36} \\
-	&=	\frac{6}{36} \\
-	&=	\frac{1}{6} \end{aligned}$$
- 
-
-**Fact**. $P(A)+P(\bar{A})=1$
-
-```{r, echo=FALSE}
-df.A <- data.frame(theta=seq(0,2*pi, length=1000)) %>%
-        mutate(x = cos(theta),
-               y = sin(theta),
-               grp = 'A') %>%
-        select(-theta)
-df.B <- df.A %>% mutate( x = x+2.5, grp='B')
-df.box <- data.frame( x=c(-1.2,  3.8, 3.8, -1.2, -1.2),
-                      y=c(-1.2, -1.2 ,1.2,  1.2, -1.2),
-                      grp='Box' )
-df <- rbind(df.A, df.box)
-df.label <- NULL %>%
-  rbind( data.frame(x= -.75, y=  .85, label='A'),
-         data.frame(x= 1.75, y=    0, label='A^c'),
-         data.frame(x= 3.65, y=  1.1, label='S'))
-ggplot(df, aes(x=x, y=y)) + 
-  geom_polygon(data=df.box, fill='pink', alpha=.7) + 
-  geom_polygon(data=df.A, fill='grey', alpha=.7) +
-  geom_path( aes(group=grp)) +
-  scale_x_continuous(breaks=NULL) +
-  scale_y_continuous(breaks=NULL) +
-  geom_text( data=df.label, aes(label=label), parse=TRUE) +
-  labs(x='', y='') +
-  ggtitle(expression( P( A ) + P(A^c) == 1  )) +
-  theme_minimal()
-```  
-
-The above statement is true because the probability of whole space $S$ is one (remember $S$ is all possible outcomes), then either we get an outcome in which $A$ occurs or we get an outcome in which $A$ does not occur.
-
-**Fact**. $P(A\cup B)=P(A)+P(B)-P(A\cap B)$
+**General Addition Rule:** $P(A\cup B)=P(A)+P(B)-P(A\cap B)$
 
 The reason behind this fact is that if there is if $A$ and $B$ are not disjoint, then some area is added twice when I calculate $P\left(A\right)+P\left(B\right)$. To account for this, I simply subtract off the area that was double counted.
 
@@ -352,9 +286,76 @@ ggplot(df, aes(x=x, y=y)) +
   theme_minimal() 
 ```
 
+**Rule:** *If two events are mutually exclusive, then $P(A\cup B)=P(A)+P(B)$*
 
+```{r, echo=FALSE}
+df.A <- data.frame(theta=seq(0,2*pi, length=1000)) %>%
+        mutate(x = cos(theta),
+               y = sin(theta),
+               grp = 'A') %>%
+        select(-theta)
+df.B <- df.A %>% mutate( x = x+2.5, grp='B')
+df.box <- data.frame( x=c(-1.2,  3.8, 3.8, -1.2, -1.2),
+                      y=c(-1.2, -1.2 ,1.2,  1.2, -1.2),
+                      grp='Box' )
+df <- rbind(df.A, df.B, df.box)
+df.label <- NULL %>%
+  rbind( data.frame(x= -.75, y=  .85, label='A'),
+         data.frame(x= 1.75, y= -.85, label='B'),
+         data.frame(x= 3.65, y=  1.1, label='S'))
+ggplot(df, aes(x=x, y=y)) + 
+  geom_polygon(data=df.A, fill='grey', alpha=.7) +
+  geom_polygon(data=df.B, fill='grey', alpha=.7) +
+  geom_path( aes(group=grp)) +
+  scale_x_continuous(breaks=NULL) +
+  scale_y_continuous(breaks=NULL) +
+  geom_text( data=df.label, aes(label=label)) +
+  labs(x='', y='') + 
+  ggtitle(expression( P( A*union(B) ) == P(A) + P(B)  )) +
+  theme_minimal()
+```
+ 
+**Example**. Let $R$ be the sum of two different colored dice. Suppose we are interested in $P(R \le 4)$. Notice that the pair of dice can fall 36 different ways (6 ways for the first die and six for the second results in 6x6 possible outcomes, and each way has equal probability $1/36$. Because the dice cannot simultaneously sum to $2$ and to $3$, we could write 
+$$\begin{aligned} P(R \le 4 )	
+  &=	P(R=2)+P(R=3)+P(R=4) \\
+	&=	P(\left\{ 1,1\right\} )+P(\left\{ 1,2\right\} \mathrm{\textrm{ or }}\left\{ 2,1\right\} )+P(\{1,3\}\textrm{ or }\{2,2\}\textrm{ or }\{3,1\}) \\
+	&=	\frac{1}{36}+\frac{2}{36}+\frac{3}{36} \\
+	&=	\frac{6}{36} \\
+	&=	\frac{1}{6} \end{aligned}$$
+ 
 
-**Fact 3**. $P(A)=P(A\cap B)+P(A\cap\bar{B})$
+**Complement Rule:** $P(A)+P(A^c)=1$
+
+This rule follows from the partitioning of the set of all events ($S$) into two disjoint sets, $A$ and $A^c$.  We learned above that $A \cup A^c = S$ and that $P(S) = 1$.  Combining those statements, we obtain the complement rule.
+
+```{r, echo=FALSE}
+df.A <- data.frame(theta=seq(0,2*pi, length=1000)) %>%
+        mutate(x = cos(theta),
+               y = sin(theta),
+               grp = 'A') %>%
+        select(-theta)
+df.B <- df.A %>% mutate( x = x+2.5, grp='B')
+df.box <- data.frame( x=c(-1.2,  3.8, 3.8, -1.2, -1.2),
+                      y=c(-1.2, -1.2 ,1.2,  1.2, -1.2),
+                      grp='Box' )
+df <- rbind(df.A, df.box)
+df.label <- NULL %>%
+  rbind( data.frame(x= -.75, y=  .85, label='A'),
+         data.frame(x= 1.75, y=    0, label='A^c'),
+         data.frame(x= 3.65, y=  1.1, label='S'))
+ggplot(df, aes(x=x, y=y)) + 
+  geom_polygon(data=df.box, fill='pink', alpha=.7) + 
+  geom_polygon(data=df.A, fill='grey', alpha=.7) +
+  geom_path( aes(group=grp)) +
+  scale_x_continuous(breaks=NULL) +
+  scale_y_continuous(breaks=NULL) +
+  geom_text( data=df.label, aes(label=label), parse=TRUE) +
+  labs(x='', y='') +
+  ggtitle(expression( P( A ) + P(A^c) == 1  )) +
+  theme_minimal()
+```  
+
+**Completeness Rule:** $P(A)=P(A\cap B)+P(A\cap B^c)$
 
 ```{r, echo=FALSE}
 df.A <- data.frame(theta=seq(0,2*pi, length=1000)) %>%
@@ -393,8 +394,6 @@ ggplot(df, aes(x=x, y=y)) +
 ```
 
 This identity is just breaking the event $A$ into two disjoint pieces.
-
-
 
 ### Conditional Probability
 
@@ -441,17 +440,17 @@ P\left(\,Auto\;|\;NotFraud\,\right)	&= \frac{P\left(\,Auto\;\cap\;NotFraud\right
 	\end{aligned}$$
  
 
-**Definition 4**. *Two events $A$ and $B$ are said to be independent if $P(A|B)=P(A)\;\;\textrm{and}\;\;P(B|A)=P(B)$.*
+**Definition:** Two events $A$ and $B$ are said to be **independent** if $P(A\cap B)=P(A)P(B)$.
  
-What independence is saying that knowing the outcome of event $A$ doesn't give you any information about the outcome of event $B$. 
+What independence is saying that knowing the outcome of event $A$ doesn't give you any information about the outcome of event $B$.  Thus, we can use conditional statements to also show that two events are independent if $P(A|B) = P(A)$. 
 
-*In simple random sampling, we assume that any two samples are independent.
-* In cluster sampling, we assume that samples within a cluster are not independent, but clusters are independent of each other.
+In simple random sampling, we assume that any two samples are independent. In cluster sampling, we assume that samples within a cluster are not independent, but clusters are independent of each other.
 
-**Fact 5**. *If $A$ and $B$ are independent events, then $P(A\cap B)	=	P(A|B)P(B) =	P(A)P(B)$.*
+**Fact:** *If $A$ and $B$ are independent events, then $P(A|B)	=	P(A)$ and $P(B|A) = P(B)$.*
+
+These statements follow directly from the given definitions.
  
-
-**Example 6**. Suppose that we are interested in the relationship between the color and the type of car. Specifically I will divide the car world into convertibles and non-convertibles and the colors into red and non-red.
+**Example:** Suppose that we are interested in the relationship between the color and the type of car. Specifically I will divide the car world into convertibles and non-convertibles and the colors into red and non-red.
 
 Suppose that convertibles make up just 10% of the domestic automobile market. This is to say $P(\;Convertable\;)=0.10$. Of the non-convertibles, red is not unheard of but it isn't common either. So suppose $P(\;Red\;|\;NonConvertable\;)=0.15$. However red is an extremely popular color for convertibles so let $P(\;Red\;|\;Convertable\;)=0.60$.
 
@@ -485,9 +484,11 @@ Notice that because $P\left(Red\right)=0.195\ne0.60=P\left(Red\,|\,Convertable\r
 
 ### Summary of Probability Rules
 
+Here we give a short summary of the most frequently used rules.
+
 $$0 \le P\left(A\right) \le 1$$
 		
-$$P\left(A\right)+P\left(\bar{A}\right)=1$$
+$$P\left(A\right)+P\left(A^c\right)=1$$
 $$P\left(A\cup B\right)	=	P\left(A\right)+P\left(B\right)-P\left(A\cap B\right)$$
 $$P\left(A\cap B\right)	=	\begin{cases}
 P\left(A\,|\,B\right)P\left(B\right)\\
@@ -560,7 +561,7 @@ $$\begin{aligned} \sigma^{2}=V[S]
 	
  We could interpret the expectation as the sample mean of an infinitely large sample, and the variance as the sample variance of the same infinitely large sample. These are two very important numbers that describe the distribution.
 
-**Example 7**. My wife is a massage therapist and over the last year, the number of clients she sees per work day (denoted Y) varied according the following table:
+**Example:** My wife is a massage therapist and over the last year, the number of clients she sees per work day (denoted Y) varied according the following table:
 
 |  Number of Clients         |   0   |   1   |   2   |   3   |   4   |
 |---------------------------:|:-----:|:-----:|:-----:|:-----:|:-----:| 
@@ -576,7 +577,7 @@ ggplot(distr, aes(x=clients)) +                   # graph with clients as the x-
   theme_bw()                                      # set background color...
 ```
 
-Because this is the long term relative frequency of the number of clients (over 200 working days!), it is appropriate to interpret these frequencies as probabilities. This table and graph is often called a probability mass function (pmf) because it lists how the probability is spread across the possible values of the random variable. We might next ask ourselves what is the average number of clients per day? It looks like it ought to be between 1 and 2 clients per day. 
+Because this is the long term relative frequency of the number of clients (over 200 working days!), it is appropriate to interpret these frequencies as probabilities. This table and graph is often called a **probability mass function (pmf)** because it lists how the probability is spread across the possible values of the random variable. We might next ask ourselves what is the average number of clients per day?
 
 $$\begin{aligned} E\left(Y\right)	
   &=	\sum_{\textrm{possible }y}y\,P\left(Y=y\right) \\
@@ -585,15 +586,15 @@ $$\begin{aligned} E\left(Y\right)
 	&=	0\left(0.3\right)+1\left(0.35\right)+2\left(0.20\right)+3\left(0.10\right)+4\left(0.05\right) \\
 	&=	1.25 \end{aligned}$$
  
-Notice that this number is not an integer and therefore is not a value that $Y$ could actually take on.  You might be tempted to therefore round it to the nearest integer.  That would be wrong. The rational is that if I wanted to estimate the number of clients she has per month (and thus her income), we would have a worse estimate if we used the rounded number.
+Notice that this number is not an integer and therefore is not a value that $Y$ could actually take on.  You might be tempted to therefore round it to the nearest integer.  That would be wrong. The rational is that if we wanted to estimate the number of clients she has per month (and thus her income), we would have a worse estimate if we used the rounded number.
 
-There are many cases where the expected value is not a value that could occur, but rounding it to the nearest value that could occur would be inappropriate. A Roulette wheel has 18 red and 18 black slots along with 2 green. If you bet $\$$1 on red, you could either win a dollar or lose a dollar. Because the probabilities are
+Another example of a case where rounding would be inappropriate is in gambling situations where the amount won or lost per hand isn't particularly important but the average amount won or lost over hundreds or thousands of plays is what matters.  A Roulette wheel has 18 red and 18 black slots along with 2 green. If you bet $1 on red, you could either win a dollar or lose a dollar. However, because the probabilities are
 
 |                   |    Win ( + $1 )        |  Lose (- $1)      |
 |------------------:|:----------------------:|:-----------------:|
 | **Probability**   |  $\frac{18}{38}$       |  $\frac{20}{38}$  |
 
-Then the persons expected winnings per play are:
+then the persons expected winnings per play are:
 
 $$ \begin{aligned}E[W] 
   =	\sum_{\textrm{possible }w}w\,P\left(W=w\right) 
@@ -621,7 +622,7 @@ Note on Notation: There is a difference between the upper and lower case letters
 
 ### Binomial Distribution
 
-**Example**: Suppose we are trapping small mammals in the desert and we spread out three traps. Assume that the traps are far enough apart that having one being filled doesn't affect the probability of the others being filled and that all three traps have the same probability of being filled in an evening. Denote the event that a trap is filled with a critter as $C_{i}$ and denote the event that the trap is empty as $E_{i}$. Denote the probability that a trap is filled by $\pi=0.8$. (This sort of random variable is often referred to as a Bernoulli RV.)
+**Example:** Suppose we are trapping small mammals in the desert and we spread out three traps. Assume that the traps are far enough apart that having one being filled doesn't affect the probability of the others being filled and that all three traps have the same probability of being filled in an evening. Denote the event that a trap is filled with a critter as $C_{i}$ and denote the event that the trap is empty as $E_{i}$. Denote the probability that a trap is filled by $\pi=0.8$. (This sort of random variable is often referred to as a Bernoulli RV.)
 
 The possible outcomes are 
   
@@ -725,7 +726,7 @@ $$\begin{aligned} V[X]
 	&=	n\pi(1-\pi) \end{aligned}$$
  
 
-**Example 8**. Suppose a bird survey only captures the presence or absence of a particular bird (say the mountain chickadee). Assuming the true presence proportion at national forest sites around Flagstaff $$\pi=0.1$$, then for $n=20$ randomly chosen sites, the number of sites in which the bird was observed would have the distribution
+**Example:** Suppose a bird survey only captures the presence or absence of a particular bird (say the mountain chickadee). Assuming the true presence proportion at national forest sites around Flagstaff is $\pi=0.1$, then for $n=20$ randomly chosen sites, the number of sites in which the bird was observed would have the following PMF.
 
 ```{r}
 dist <- data.frame( x = 0:20 ) %>% 
@@ -766,7 +767,7 @@ A commonly used distribution for count data is the Poisson.
 3. Number of prairie dog towns per 1000 hectares
 4. Number of alga clumps per cubic meter of lake water
 
-For a RV is a Poisson RV if the following conditions apply:
+A discrete RV is a Poisson RV if the following conditions apply:
 
 1. Two or more events do not occur at precisely the same time or in the same space
 2. The occurrence of an event in a given period of time or region of space is independent of the occurrence of the event in a non overlapping period or region.
@@ -780,7 +781,7 @@ $$E[Y]	=	\lambda$$
 $$Var[Y]	=	\lambda$$
  
 
-**Example 9**. Suppose we are interested in the population size of small mammals in a region. Let $Y$ be the number of small mammals caught in a large trap (multiple traps in the same location?) in a 12 hour period. Finally, suppose that $Y\sim Poi(\lambda=2.3)$. What is the probability of finding exactly 4 critters in our trap?
+**Example:** Suppose we are interested in the population size of small mammals in a region. Let $Y$ be the number of small mammals caught in a large trap over a 12 hour period. Finally, suppose that $Y\sim Poisson(\lambda=2.3)$. What is the probability of finding exactly 4 critters in our trap?
 $$P(Y=4)	=	\frac{2.3^{4}\,e^{-2.3}}{4!} =	0.1169$$
  What about the probability of finding at most 4?
  $$\begin{aligned} P(Y\le4)	
@@ -821,7 +822,7 @@ Suppose you wish to draw a random number number between 0 and 1 and any two inte
 
 Because there are an infinite number of rational numbers between 0 and 1, the probability of any particular number being selected is $1/\infty=0$. But even though each number has 0 probability of being selected, some number must end up being selected. Because of this conundrum, probability theory doesn't look at the probability of a single number, but rather focuses on a region of numbers. 
 
-To make this distinction, we will define the distribution using a probability density function (pdf) instead of the probability mass function. In the discrete case, we had to constrain the probability mass function to sum to 1. In the continuous case, we have to constrain the probability density function to integrate to 1.
+To make this distinction, we will define the distribution using a **probability density function (pdf)** instead of the probability mass function. In the discrete case, we had to constrain the probability mass function to sum to 1. In the continuous case, we have to constrain the probability density function to integrate to 1.
 
 ```{r, echo=FALSE}
 data <- data.frame(x = seq(-.2, 1.2, length=1000)) %>%
@@ -874,7 +875,7 @@ ggplot(data, aes(x=x, y=y)) +
   theme_bw()
 ```
 
-**Example 10**. Suppose the time between insect captures $X$ during a summer evening for a species of bat follows a exponential distribution with capture rate of $\lambda=2$ insects per minute and therefore the expected waiting time between captures is $1/\lambda=1/2$ minute. Suppose that we are interested in the probability that it takes a bat more than 1 minute to capture its next insect.
+**Example:**  Suppose the time between insect captures $X$ during a summer evening for a species of bat follows a exponential distribution with capture rate of $\lambda=2$ insects per minute and therefore the expected waiting time between captures is $1/\lambda=1/2$ minute. Suppose that we are interested in the probability that it takes a bat more than 1 minute to capture its next insect.
 
 $$P(X>1)=$$
  
@@ -891,7 +892,7 @@ ggplot(data, aes(x=x, y=y, fill=grp)) +
 We now must resort to calculus to find this area. Or use tables of pre-calculated values. Or use R, remembering that p-functions give the area under the curve to the left of the given value.
 
 ```{r}
-# P(X > 1)  == 1 - P(X <= 1)
+# P(X > 1)  == 1 - P(X <= 1)  ### Complement Rule
 1 - pexp(1, rate=2)
 ```
 
@@ -924,7 +925,7 @@ ggplot(data, aes(x=x, y=y, color=factor(grp))) +
 ```
 
 
-**Example 11**. It is known that the heights of adult males in the US is approximately normal with a mean of 5 feet 10 inches ($\mu=70$ inches) and a standard deviation of $\sigma=3$ inches. Your instructor is a mere 5 feet 4 inches (64 inches). What proportion of the population is shorter than your professor?
+**Example:**  It is known that the heights of adult males in the US is approximately normal with a mean of 5 feet 10 inches ($\mu=70$ inches) and a standard deviation of $\sigma=3$ inches. Your instructor is a mere 5 feet 4 inches (64 inches). What proportion of the population is shorter than your professor?
 
 ```{r}
 distr <- data.frame(x=seq(57, 82, length=1000)) %>%
@@ -970,7 +971,7 @@ qnorm(.8, mean=0, sd=1)
 ```
 
 
-**Empirical Rule** - It is from the normal distribution that the empirical rule from the previous chapter is derived. If $X\sim N(\mu,\sigma^{2})$ then 
+**Empirical Rules:** It is from the normal distribution that the empirical rules from the previous chapter is derived. If $X\sim N(\mu,\sigma^{2})$ then 
 $$\begin{aligned} P(\mu-\sigma\le X\le\mu+\sigma)	
   &=	P(-1 \le Z \le 1) \\
 	&=	P(Z \le 1) - P(Z \le -1) \\
@@ -997,9 +998,9 @@ ggplot(data, aes(x=x,y=y)) +
   theme_bw()
 ```
 
-1.6 R Comments
+## R Quick Reference
 
-There will be a variety of distributions we'll be interested in and R refers to them using the following abbreviations
+We give a brief summary of the distributions used most in this couse and the abberviations used in R.
 
 +--------------+-------------+---------------+------------------------------------+
 | Distribution |  Stem       | Parameters    | Parameter Interpretation           |
@@ -1037,19 +1038,13 @@ The `mosaic` package has versions of the p and q -functions that also print a ou
 
 1. The population distribution of blood donors in the United States based on race/ethnicity and blood type as reported by the American Red Cross is given here:
 
-    +------------+--------+---------+--------+--------+--------+
     |  $\,$      |   O    |    A    |   B    |   AB   |  Total |
-    +============+========+=========+========+========+========+
+    |:----------:|:-------:|:------:|:------:|:------:|:------:|
     | **White**  |  36%   |  32.2%  |  8.8%  |  3.2%  |  $\,$  |
-    +------------+--------+---------+--------+--------+--------+ 
     | **Black**  |   7%   |   2.9%  |  2.5%  |  0.5%  |  $\,$  |
-    +------------+--------+---------+--------+--------+--------+ 
     | **Asian**  |  1.7%  |   1.2%  |   1%   |  0.3%  |  $\,$  |
-    +------------+--------+---------+--------+--------+--------+ 
     | **Other**  |  1.5%  |  0.8%   |  0.3%  |  0.1%  |  $\,$  |
-    +------------+--------+---------+--------+--------+--------+ 
-    |  $\,$      |  $\,$  |  $\,$   |  $\,$  |  $\,$  |  100%  |
-    +------------+--------+---------+--------+--------+--------+ 
+    | **Total**  |  $\,$  |  $\,$   |  $\,$  |  $\,$  |  100%  |
 
     Notice that the numbers given in the table sum to 100%, so the data presented are the probability of a particular ethnicity and blood type.
     a) Fill in the column and row totals. 
@@ -1059,28 +1054,22 @@ The `mosaic` package has versions of the p and q -functions that also print a ou
     e) What is the probability that a white donor will have Type A blood? That is to say, given a donor is randomly selected from the list of all the white donors, what is the probability that the selected donor has Type A blood? (Notice we already know the donor is white because we restricted ourselves to that subset!)
     f) Is blood type and ethnicity independent? Justify your response mathematically using your responses from the previous answers.
 
-2. For each of the following, mark if it is Continuous or Discrete. 
-    a) $\underline{\hspace{1in}}$ Milliliters of tea drunk per day. 
-    b) $\underline{\hspace{1in}}$ Different brands of soda drunk over the course of a year. 
-    c) $\underline{\hspace{1in}}$ Number of days per week that you are on-campus for any amount of time. 
-    d) $\underline{\hspace{1in}}$ Number of grizzly bears individuals genetically identified from a grid of hair traps in Glacier National Park. 
-
-3. For each scenario, state whether the event should be modeled via a binomial or Poisson distribution.
+2. For each scenario, state whether the event should be modeled via a binomial or Poisson distribution.
     a) $\underline{\hspace{1in}}$ Number of M&Ms I eat per hour while grading homework
     b) $\underline{\hspace{1in}}$ The number of mornings in the coming 7 days that I change my son's first diaper of the day. 
     c) $\underline{\hspace{1in}}$ The number of Manzanita bushes per 100 meters of trail. 
 
-4. During a road bike race, there is always a chance a crash will occur. Suppose the probability that at least one crash will occur in any race I'm in is $\pi=0.2$ and that races are independent.
+3. During a road bike race, there is always a chance a crash will occur. Suppose the probability that at least one crash will occur in any race I'm in is $\pi=0.2$ and that races are independent.
     a) What is the probability that the next two races I'm in will both have crashes?
     b) What is the probability that neither of my next two races will have a crash?
     c) What is the probability that at least one of the next two races have a crash?
 
-5. My cats suffer from gastric distress due to eating house plants and the number of vomits per week that I have to clean up follows a Poisson distribution with rate $\lambda=1.2$ pukes per week. 
+4. My cats suffer from gastric distress due to eating house plants and the number of vomits per week that I have to clean up follows a Poisson distribution with rate $\lambda=1.2$ pukes per week. 
     a) What is the probability that I don't have to clean up any vomits this coming week?
     b) What is the probability that I must clean up 1 or more vomits?
     c) If I wanted to measure this process with a rate per day, what rate should I use?
 
-6. Suppose that the number of runners I see on a morning walk on the trails near my house has the following distribution (Notice I've never seen four or more runners on a morning walk):
+5. Suppose that the number of runners I see on a morning walk on the trails near my house has the following distribution (Notice I've never seen four or more runners on a morning walk):
     
     |       y         |    0    |   1    |    2   |   3   |   4+   |
     |----------------:|:-------:|:------:|:------:|:-----:|:------:|
@@ -1090,16 +1079,22 @@ The `mosaic` package has versions of the p and q -functions that also print a ou
     b) What is the expected number of runners that I will encounter?
     c) What is the variance of the number of runners that I will encounter?
 
-7. If $Z\sim N\left(\mu=0,\sigma^{2}=1\right)$, find the following probabilities: 
+6. If $Z\sim N\left(\mu=0,\sigma^{2}=1\right)$, find the following probabilities: 
     a) $P(Z<1.58)=$
     b) $P(Z=1.58)=$
     c) $P(Z>-.27)=$
     d) $P(-1.97<Z<2.46)=$
   
-8. Using the Standard Normal Table or the table functions in R, find $z$ that makes the following statements true. 
+7. Using the Standard Normal Table or the table functions in R, find $z$ that makes the following statements true. 
     a) $P(Z<z)=.75$
     b) $P(Z>z)=.4$
   
-9. The amount of dry kibble that I feed my cats each morning can be well approximated by a normal distribution with mean $\mu=200$ grams and standard deviation $\sigma=30$ grams.
+8. The amount of dry kibble that I feed my cats each morning can be well approximated by a normal distribution with mean $\mu=200$ grams and standard deviation $\sigma=30$ grams.
     a) What is the probability that I fed my cats more than 250 grams of kibble this morning?
     b) From my cats' perspective, more food is better. How much would I have to feed them for this morning to be among the top $10\%$ of feedings?
+    
+9. Sea lion weight is well approximated by a normal distribution with a mean of 300 kg and standard deviation of 15 kg.  
+    a) Use R to find the probability of randomly sampling a sea lion with a weight greater than 320 kg.  Round your answer to 3 decimals.
+    b) Now suppose we sample 10 sea lions.  We wish to calculate the probability of how many sea lions will have a weight larger than 320 kg. What type of distribution will we have to use and what are the parameters of the distribution?
+    c) Calculate by hand the probability of observing only 1 sea lion with a weight greater than 320 kg.
+    d) Use R to calculate the probability of all possible outcomes.  Graph the PMF of this distribution.

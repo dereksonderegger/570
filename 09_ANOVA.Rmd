@@ -23,7 +23,6 @@ library(ggplot2)
 library(ggfortify)  # for autoplot( lm ) functions
 ```
 
-
 We are now moving into a different realm of statistics. We have covered enough probability and the basic ideas of hypothesis tests and p-values to move onto the type of inference that you took this class to learn. The heart of science is comparing and evaluating which hypothesis is better supported by the data.
 
 To evaluate a hypothesis, scientists will write a grant, hire grad students (or under-grads), collect the data, and then analyze the data using some sort of model that reflects the hypothesis under consideration. It could be as simple as “What is the relationship between iris species and petal width?” or as complex as “What is the temporal variation in growing season length in response to elevated CO$_{2}$ in desert ecosystems?” 
@@ -351,7 +350,7 @@ mydata <- data.frame(mu=rep(0,k*n), Grp=factor(rep(1:k, each=n))) %>%
   mutate( Y=mu+rnorm(k*n), Group=Grp) 
 letterdata <- lm( Y~Grp, data=mydata ) %>%
   emmeans::emmeans( ~ Grp) %>%
-  emmeans::cld( Letters=letters, adjust='none' ) %>%  # Force no p-value adjustment
+  multcomp::cld( Letters=letters, adjust='none' ) %>%  # Force no p-value adjustment
   dplyr::select(Grp, .group) %>%
   dplyr::mutate( Y = 3 )
 ```
@@ -383,7 +382,7 @@ It is also straightforward to generate the letter display using the function `cl
 
 ```{r}
 emmeans::emmeans(model, ~ Grp) %>%    # don't have the pairwise here or else
-  emmeans::cld( Letters=letters )     # the cld() function gets confused...
+  multcomp::cld( Letters=letters )     # the cld() function gets confused...
 ```
 
 

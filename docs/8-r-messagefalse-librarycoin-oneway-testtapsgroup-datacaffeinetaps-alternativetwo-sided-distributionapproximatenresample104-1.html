@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 8 {r, message=FALSE} # library(coin) # oneway_test(Taps~Group, data=CaffeineTaps, alternative="two.sided", # distribution=approximate(nresample=10^4-1)) # # | Introduction to Statistical Methodology, Second Edition</title>
+  <meta name="description" content="Chapter 8 {r, message=FALSE} # library(coin) # oneway_test(Taps~Group, data=CaffeineTaps, alternative="two.sided", # distribution=approximate(nresample=10^4-1)) # # | Introduction to Statistical Methodology, Second Edition" />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 8 {r, message=FALSE} # library(coin) # oneway_test(Taps~Group, data=CaffeineTaps, alternative="two.sided", # distribution=approximate(nresample=10^4-1)) # # | Introduction to Statistical Methodology, Second Edition" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="dereksonderegger/570_II" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 8 {r, message=FALSE} # library(coin) # oneway_test(Taps~Group, data=CaffeineTaps, alternative="two.sided", # distribution=approximate(nresample=10^4-1)) # # | Introduction to Statistical Methodology, Second Edition" />
+  
+  
+  
+
+<meta name="author" content="Derek L. Sonderegger &amp; Robert Buscaglia" />
+
+
+<meta name="date" content="2019-10-16" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="7-two-sample-hypothesis-tests-and-confidence-intervals.html"/>
+<link rel="next" href="appendix-a-alternative-bootstrap-code.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html"><i class="fa fa-check"></i><b>1</b> Summary Statistics and Graphing</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#variable-types"><i class="fa fa-check"></i><b>1.1</b> Variable Types</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#categorical"><i class="fa fa-check"></i><b>1.1.1</b> Categorical</a></li>
+<li class="chapter" data-level="1.1.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#numerical"><i class="fa fa-check"></i><b>1.1.2</b> Numerical</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#randomization-and-sampling"><i class="fa fa-check"></i><b>1.2</b> Randomization and Sampling</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#sampling-techniques"><i class="fa fa-check"></i><b>1.2.1</b> Sampling Techniques</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#graphical-summaries"><i class="fa fa-check"></i><b>1.3</b> Graphical Summaries</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#barchartsbarplots-univariate---categorical"><i class="fa fa-check"></i><b>1.3.1</b> Barcharts/Barplots (Univariate - Categorical)</a></li>
+<li class="chapter" data-level="1.3.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#histogram-univariate---numerical"><i class="fa fa-check"></i><b>1.3.2</b> Histogram (Univariate - Numerical)</a></li>
+<li class="chapter" data-level="1.3.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#boxplot-bivariate---categorical-vs-numerical"><i class="fa fa-check"></i><b>1.3.3</b> Boxplot (Bivariate - Categorical vs Numerical)</a></li>
+<li class="chapter" data-level="1.3.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#scatterplot-bivariate---numerical-vs-numerical"><i class="fa fa-check"></i><b>1.3.4</b> Scatterplot (Bivariate - Numerical vs Numerical)</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#measures-of-centrality"><i class="fa fa-check"></i><b>1.4</b> Measures of Centrality</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#mean"><i class="fa fa-check"></i><b>1.4.1</b> Mean</a></li>
+<li class="chapter" data-level="1.4.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#median"><i class="fa fa-check"></i><b>1.4.2</b> Median</a></li>
+<li class="chapter" data-level="1.4.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#mode"><i class="fa fa-check"></i><b>1.4.3</b> Mode</a></li>
+<li class="chapter" data-level="1.4.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#examples"><i class="fa fa-check"></i><b>1.4.4</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#measures-of-spread"><i class="fa fa-check"></i><b>1.5</b> Measures of Spread</a><ul>
+<li class="chapter" data-level="1.5.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#range"><i class="fa fa-check"></i><b>1.5.1</b> Range</a></li>
+<li class="chapter" data-level="1.5.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#inter-quartile-range-iqr"><i class="fa fa-check"></i><b>1.5.2</b> Inter-Quartile Range (IQR)</a></li>
+<li class="chapter" data-level="1.5.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#variance"><i class="fa fa-check"></i><b>1.5.3</b> Variance</a></li>
+<li class="chapter" data-level="1.5.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#standard-deviation"><i class="fa fa-check"></i><b>1.5.4</b> Standard Deviation</a></li>
+<li class="chapter" data-level="1.5.5" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#coefficient-of-variation"><i class="fa fa-check"></i><b>1.5.5</b> Coefficient of Variation</a></li>
+<li class="chapter" data-level="1.5.6" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#empirical-rules"><i class="fa fa-check"></i><b>1.5.6</b> Empirical Rules</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#shape"><i class="fa fa-check"></i><b>1.6</b> Shape</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#symmetry"><i class="fa fa-check"></i><b>1.6.1</b> Symmetry</a></li>
+<li class="chapter" data-level="1.6.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#unimodal-or-multi-modal"><i class="fa fa-check"></i><b>1.6.2</b> Unimodal or Multi-modal</a></li>
+<li class="chapter" data-level="1.6.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#skew"><i class="fa fa-check"></i><b>1.6.3</b> Skew</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>1.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-probability.html"><a href="2-probability.html"><i class="fa fa-check"></i><b>2</b> Probability</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-probability.html"><a href="2-probability.html#introduction-to-set-theory"><i class="fa fa-check"></i><b>2.1</b> Introduction to Set Theory</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="2-probability.html"><a href="2-probability.html#composition-of-events"><i class="fa fa-check"></i><b>2.1.1</b> Composition of events</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2-probability.html"><a href="2-probability.html#probability-rules"><i class="fa fa-check"></i><b>2.2</b> Probability Rules</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="2-probability.html"><a href="2-probability.html#simple-rules"><i class="fa fa-check"></i><b>2.2.1</b> Simple Rules</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2-probability.html"><a href="2-probability.html#conditional-probability"><i class="fa fa-check"></i><b>2.2.2</b> Conditional Probability</a></li>
+<li class="chapter" data-level="2.2.3" data-path="2-probability.html"><a href="2-probability.html#summary-of-probability-rules"><i class="fa fa-check"></i><b>2.2.3</b> Summary of Probability Rules</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="2-probability.html"><a href="2-probability.html#discrete-random-variables"><i class="fa fa-check"></i><b>2.3</b> Discrete Random Variables</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="2-probability.html"><a href="2-probability.html#introduction-to-discrete-random-variables"><i class="fa fa-check"></i><b>2.3.1</b> Introduction to Discrete Random Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="2-probability.html"><a href="2-probability.html#common-discrete-distributions"><i class="fa fa-check"></i><b>2.4</b> Common Discrete Distributions</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="2-probability.html"><a href="2-probability.html#binomial-distribution"><i class="fa fa-check"></i><b>2.4.1</b> Binomial Distribution</a></li>
+<li class="chapter" data-level="2.4.2" data-path="2-probability.html"><a href="2-probability.html#poisson-distribution"><i class="fa fa-check"></i><b>2.4.2</b> Poisson Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="2-probability.html"><a href="2-probability.html#continuous-random-variables"><i class="fa fa-check"></i><b>2.5</b> Continuous Random Variables</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="2-probability.html"><a href="2-probability.html#uniform01-distribution"><i class="fa fa-check"></i><b>2.5.1</b> Uniform(0,1) Distribution</a></li>
+<li class="chapter" data-level="2.5.2" data-path="2-probability.html"><a href="2-probability.html#exponential-distribution"><i class="fa fa-check"></i><b>2.5.2</b> Exponential Distribution</a></li>
+<li class="chapter" data-level="2.5.3" data-path="2-probability.html"><a href="2-probability.html#normal-distribution"><i class="fa fa-check"></i><b>2.5.3</b> Normal Distribution</a></li>
+<li class="chapter" data-level="2.5.4" data-path="2-probability.html"><a href="2-probability.html#standardizing"><i class="fa fa-check"></i><b>2.5.4</b> Standardizing</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="2-probability.html"><a href="2-probability.html#r-quick-reference"><i class="fa fa-check"></i><b>2.6</b> R Quick Reference</a></li>
+<li class="chapter" data-level="2.7" data-path="2-probability.html"><a href="2-probability.html#exercises-1"><i class="fa fa-check"></i><b>2.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html"><i class="fa fa-check"></i><b>3</b> Confidence Intervals via Bootstrapping</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#theory-of-bootstrapping"><i class="fa fa-check"></i><b>3.1</b> Theory of Bootstrapping</a></li>
+<li class="chapter" data-level="3.2" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#conducting-a-bootstrap"><i class="fa fa-check"></i><b>3.2</b> Conducting a Bootstrap</a></li>
+<li class="chapter" data-level="3.3" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#quantile-based-confidence-intervals"><i class="fa fa-check"></i><b>3.3</b> Quantile-based Confidence Intervals</a></li>
+<li class="chapter" data-level="3.4" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#additional-examples"><i class="fa fa-check"></i><b>3.4</b> Additional Examples</a></li>
+<li class="chapter" data-level="3.5" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#exercises-2"><i class="fa fa-check"></i><b>3.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html"><i class="fa fa-check"></i><b>4</b> Sampling Distribution of <span class="math inline">\(\bar{X}\)</span></a><ul>
+<li class="chapter" data-level="4.1" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#enlightening-example"><i class="fa fa-check"></i><b>4.1</b> Enlightening Example</a></li>
+<li class="chapter" data-level="4.2" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#mathematical-details"><i class="fa fa-check"></i><b>4.2</b> Mathematical details</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#probability-rules-for-expectations-and-variances"><i class="fa fa-check"></i><b>4.2.1</b> Probability Rules for Expectations and Variances</a></li>
+<li class="chapter" data-level="4.2.2" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#mean-and-variance-of-the-sample-mean"><i class="fa fa-check"></i><b>4.2.2</b> Mean and Variance of the Sample Mean</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#distribution-of-barx"><i class="fa fa-check"></i><b>4.3</b> Distribution of <span class="math inline">\(\bar{X}\)</span></a></li>
+<li class="chapter" data-level="4.4" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#central-limit-theorem"><i class="fa fa-check"></i><b>4.4</b> Central Limit Theorem</a></li>
+<li class="chapter" data-level="4.5" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#exercises-3"><i class="fa fa-check"></i><b>4.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html"><i class="fa fa-check"></i><b>5</b> Confidence Intervals for <span class="math inline">\(\mu\)</span></a><ul>
+<li class="chapter" data-level="5.1" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#asymptotic-result-sigma-known"><i class="fa fa-check"></i><b>5.1</b> Asymptotic result (<span class="math inline">\(\sigma\)</span> known)</a></li>
+<li class="chapter" data-level="5.2" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#asymptotoic-result-sigma-unknown"><i class="fa fa-check"></i><b>5.2</b> Asymptotoic result (<span class="math inline">\(\sigma\)</span> unknown)</a></li>
+<li class="chapter" data-level="5.3" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#sample-size-selection"><i class="fa fa-check"></i><b>5.3</b> Sample Size Selection</a></li>
+<li class="chapter" data-level="5.4" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#exercises-4"><i class="fa fa-check"></i><b>5.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html"><i class="fa fa-check"></i><b>6</b> Hypothesis Tests for the mean of a population</a><ul>
+<li class="chapter" data-level="6.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#writing-hypotheses"><i class="fa fa-check"></i><b>6.1</b> Writing Hypotheses</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#null-and-alternative-hypotheses"><i class="fa fa-check"></i><b>6.1.1</b> Null and alternative hypotheses</a></li>
+<li class="chapter" data-level="6.1.2" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#error"><i class="fa fa-check"></i><b>6.1.2</b> Error</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#conducting-a-hypothesis-test-for-mu"><i class="fa fa-check"></i><b>6.2</b> Conducting a Hypothesis Test for <span class="math inline">\(\mu\)</span></a><ul>
+<li class="chapter" data-level="6.2.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#why-should-hypotheses-use-mu-and-not-barx"><i class="fa fa-check"></i><b>6.2.1</b> Why should hypotheses use <span class="math inline">\(\mu\)</span> and not <span class="math inline">\(\bar{x}\)</span>?</a></li>
+<li class="chapter" data-level="6.2.2" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#a-note-on-calculating-p-values"><i class="fa fa-check"></i><b>6.2.2</b> A note on calculating p-values</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#additional-examples-1"><i class="fa fa-check"></i><b>6.3</b> Additional Examples</a></li>
+<li class="chapter" data-level="6.4" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#p-values-vs-cutoff-values"><i class="fa fa-check"></i><b>6.4</b> P-values vs cutoff values</a></li>
+<li class="chapter" data-level="6.5" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#running-a-t-test-in-r"><i class="fa fa-check"></i><b>6.5</b> Running a t-test in R</a></li>
+<li class="chapter" data-level="6.6" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i><b>6.6</b> Type I and Type II Errors</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#power-and-sample-size-selection"><i class="fa fa-check"></i><b>6.6.1</b> Power and Sample Size Selection</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#exercises-5"><i class="fa fa-check"></i><b>6.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><i class="fa fa-check"></i><b>7</b> Two-Sample Hypothesis Tests and Confidence Intervals</a><ul>
+<li class="chapter" data-level="7.1" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#difference-in-means-between-two-groups"><i class="fa fa-check"></i><b>7.1</b> Difference in means between two groups</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#inference-via-resampling"><i class="fa fa-check"></i><b>7.1.1</b> Inference via resampling</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="8-r-messagefalse-librarycoin-oneway-testtapsgroup-datacaffeinetaps-alternativetwo-sided-distributionapproximatenresample104-1.html"><a href="8-r-messagefalse-librarycoin-oneway-testtapsgroup-datacaffeinetaps-alternativetwo-sided-distributionapproximatenresample104-1.html"><i class="fa fa-check"></i><b>8</b> <code>{r, message=FALSE} # library(coin) # oneway_test(Taps~Group, data=CaffeineTaps, alternative="two.sided",  #             distribution=approximate(nresample=10^4-1)) #  #</code></a><ul>
+<li class="chapter" data-level="8.0.1" data-path="8-r-messagefalse-librarycoin-oneway-testtapsgroup-datacaffeinetaps-alternativetwo-sided-distributionapproximatenresample104-1.html"><a href="8-r-messagefalse-librarycoin-oneway-testtapsgroup-datacaffeinetaps-alternativetwo-sided-distributionapproximatenresample104-1.html#inference-via-asymptotic-results-unequal-variance-assumption"><i class="fa fa-check"></i><b>8.0.1</b> Inference via asymptotic results (unequal variance assumption)</a></li>
+<li class="chapter" data-level="8.0.2" data-path="8-r-messagefalse-librarycoin-oneway-testtapsgroup-datacaffeinetaps-alternativetwo-sided-distributionapproximatenresample104-1.html"><a href="8-r-messagefalse-librarycoin-oneway-testtapsgroup-datacaffeinetaps-alternativetwo-sided-distributionapproximatenresample104-1.html#inference-via-asymptotic-results-equal-variance-assumption"><i class="fa fa-check"></i><b>8.0.2</b> Inference via asymptotic results (equal variance assumption)</a></li>
+<li class="chapter" data-level="8.1" data-path="8-r-messagefalse-librarycoin-oneway-testtapsgroup-datacaffeinetaps-alternativetwo-sided-distributionapproximatenresample104-1.html"><a href="8-r-messagefalse-librarycoin-oneway-testtapsgroup-datacaffeinetaps-alternativetwo-sided-distributionapproximatenresample104-1.html#difference-in-means-between-two-groups-paired-data"><i class="fa fa-check"></i><b>8.1</b> Difference in means between two groups: Paired Data</a></li>
+<li class="chapter" data-level="8.2" data-path="8-r-messagefalse-librarycoin-oneway-testtapsgroup-datacaffeinetaps-alternativetwo-sided-distributionapproximatenresample104-1.html"><a href="8-r-messagefalse-librarycoin-oneway-testtapsgroup-datacaffeinetaps-alternativetwo-sided-distributionapproximatenresample104-1.html#exercises-6"><i class="fa fa-check"></i><b>8.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendix-a-alternative-bootstrap-code.html"><a href="appendix-a-alternative-bootstrap-code.html"><i class="fa fa-check"></i>Appendix A : Alternative Bootstrap Code</a><ul>
+<li class="chapter" data-level="" data-path="appendix-a-alternative-bootstrap-code.html"><a href="appendix-a-alternative-bootstrap-code.html#mosaic-package"><i class="fa fa-check"></i>Mosaic Package</a></li>
+<li class="chapter" data-level="" data-path="appendix-a-alternative-bootstrap-code.html"><a href="appendix-a-alternative-bootstrap-code.html#base-r-code"><i class="fa fa-check"></i>Base R Code</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Statistical Methodology, Second Edition</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="r-messagefalse-librarycoin-oneway_testtapsgroup-datacaffeinetaps-alternativetwo.sided-distributionapproximatenresample104-1" class="section level1">
+<h1><span class="header-section-number">Chapter 8</span> <code>{r, message=FALSE} # library(coin) # oneway_test(Taps~Group, data=CaffeineTaps, alternative="two.sided",  #             distribution=approximate(nresample=10^4-1)) #  #</code></h1>
+<p>Everything we know about the biological effects of ingesting caffeine suggests that we should have expected the caffeinated group to tap faster, so we might want to set up our experiment so only faster tapping represents “extreme” data compared to the null hypothesis. In this case we want an alternative of <span class="math inline">\(H_{a}:\,\mu_{nc}-\mu_{c}&lt;0\)</span>? Therefore the null and alternative hypothesis are
+<span class="math display">\[\begin{aligned}
+H_{0}:\,\mu_{nc}-\mu_{c}    &amp;\ge    0 \\
+H_{a}:\,\mu_{nc}-\mu_{c}    &amp;&lt;  0
+\end{aligned}\]</span>
+or using the parameter <span class="math inline">\(\delta=\mu_{nc}-\mu_{c}\)</span> the null and alternative are <span class="math display">\[\begin{aligned} 
+H_{0}:\,\delta  &amp;\ge    0 \\
+H_{a}:\,\delta  &amp;  &lt;    0 
+\end{aligned}\]</span></p>
+<p>The creation of the sampling distribution of the mean difference <span class="math inline">\(d^*\)</span> is identical to our previous technique because if our observed difference d is so negative that it is incompatible with the hypothesis that <span class="math inline">\(\delta=0\)</span> then it must also be incompatible with any positive value of <span class="math inline">\(\delta\)</span>, so we evaluate the consistency of our data with the value of <span class="math inline">\(\delta\)</span> that is closest to the observed d while still being true to the null hypothesis. Thus for either the the one-sided (i.e. <span class="math inline">\(\delta&lt;0\)</span>) or the two-sided case (i.e. <span class="math inline">\(\delta \ne 0\)</span>), we generate the sampling distribution of <span class="math inline">\(d^*\)</span> in the same way. The only difference in the analysis is at the end when we calculate the p-value and don’t consider the positive tail. That is, the p-value is the percent of simulations where <span class="math inline">\(d^*&lt;d\)</span>.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1">PermutationDist <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb20-2" title="2"><span class="st">  </span><span class="kw">summarize</span>( <span class="dt">p.value =</span> <span class="kw">mean</span>( d.star <span class="op">&lt;=</span><span class="st"> </span><span class="fl">-3.5</span> ))</a></code></pre></div>
+<pre><code>## Registered S3 method overwritten by &#39;mosaic&#39;:
+##   method                           from   
+##   fortify.SpatialPolygonsDataFrame ggplot2</code></pre>
+<pre><code>##   p.value
+## 1  0.0028</code></pre>
+<p>and we see that the p-value is approximately cut in half by ignoring the upper tail, which makes sense considering the observed symmetry in the sampling distribution of <span class="math inline">\(d^*\)</span>.</p>
+<p>In general, we prefer to use a two-sided test because if the two-sided test leads us to reject the null hypothesis then so would the appropriate one-sided hypothesis (except in the case where the alternative was chosen before the data was collected and the observed data was in the other tail). Second, by using a two-sample test, it prevents us from from “tricking” ourselves when we don’t know the which group should have a higher mean going into the experiment, but after seeing the data, thinking we should have known and using the less stringent test. Some statisticians go so far as to say that using a 1-sided test is outright fraudulent. Generally, we’ll concentrate on two-sided tests as they are the most widely acceptable.</p>
+<p>Notice that the corresponding confidence interval gives a similar inference.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">BootDist &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">10000</span>)<span class="op">*</span>{</a>
+<a class="sourceLine" id="cb23-2" title="2">  CaffeineTaps <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb23-3" title="3"><span class="st">    </span><span class="kw">group_by</span>(Group) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb23-4" title="4"><span class="st">    </span>mosaic<span class="op">::</span><span class="kw">resample</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb23-5" title="5"><span class="st">    </span><span class="kw">summarise</span>( <span class="dt">xbar=</span><span class="kw">mean</span>(Taps) ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb23-6" title="6"><span class="st">    </span><span class="kw">summarise</span>( <span class="dt">d.star =</span> <span class="kw">diff</span>(xbar)  ) }</a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="kw">ggplot</span>(BootDist, <span class="kw">aes</span>(<span class="dt">x=</span>d.star)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb24-2" title="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span>.<span class="dv">2</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb24-3" title="3"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&#39;Bootstrap distribution of d*&#39;</span>)</a></code></pre></div>
+<p><img src="07_Two_Samples_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1">CI &lt;-<span class="st"> </span><span class="kw">quantile</span>( BootDist<span class="op">$</span>d.star, <span class="dt">probs=</span><span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>) )</a>
+<a class="sourceLine" id="cb25-2" title="2">CI</a></code></pre></div>
+<pre><code>##      2.5%     97.5% 
+## -5.400000 -1.515152</code></pre>
+<p>Notice that the null hypothesis value, <span class="math inline">\(\delta=0\)</span>, is not a value supported by the data because 0 is not in the 95% confidence interval. A subtle point in the above bootstrap code is that I re-sampled each group separately. Because the experimental protocol was to have 10 in each group, then we want our simulated data sets should obey the same rule. Had I re-sampled first and then did the grouping, we might end up with 12 caffeinated and 8 decaffeinated subjects, which is data that our experimental design couldn’t have generated.</p>
+<div id="inference-via-asymptotic-results-unequal-variance-assumption" class="section level3">
+<h3><span class="header-section-number">8.0.1</span> Inference via asymptotic results (unequal variance assumption)</h3>
+<p>Previously we’ve seen that the Central Limit Theorem gives us a way to estimate the distribution of the sample mean. So it should be reasonable to assume that for our two groups (1=NonCaffeine, 2=Caffeine),
+<span class="math display">\[\bar{X}_{1}\stackrel{\cdot}{\sim}N\left(\mu_{1},\, \frac{\sigma_{1}^{2}}{n_1}\right)\;\;\;\textrm{and}\;\;\;\bar{X}_{2}\stackrel{\cdot}{\sim}N\left(\mu_{2},\; \frac{\sigma_{2}^{2}}{n_2}\right)\]</span></p>
+<p>It turns out that because <span class="math inline">\(\bar{X}_{C}\)</span> and <span class="math inline">\(\bar{X}_{NC}\)</span> both have approximately normal distributions, then the difference between them also does. This shouldn’t be too surprising after looking at the permutation and bootstrap distributions of the <span class="math inline">\(d^*\)</span> values.</p>
+<p>So our hypothesis tests and confidence interval routine will follow a similar pattern as our one-sample tests, but we now need to figure out the correct standardization formula for the difference in means. The only difficulty will be figuring out what the appropriate standard deviation term <span class="math inline">\(\hat{\sigma}_{D}\)</span> should be.</p>
+<p>Recall that if two random variables, A and B, are independent then <span class="math display">\[Var\left(A-B\right)=Var(A)+Var(B)\]</span>
+and therefore
+<span class="math display">\[\begin{aligned} Var\left(D\right) 
+  &amp;=    Var\left(\bar{X}_{1}-\bar{X}_{2}\right) \\
+    &amp;=  Var\left(\bar{X}_{1}\right)+Var\left(\bar{X}_{2}\right) \\
+    &amp;=  \frac{\sigma_{1}^{2}}{n_{1}}+\frac{\sigma_{2}^{2}}{n_{2}}
+    \end{aligned}\]</span>
+and finally we have
+<span class="math display">\[StdErr\left(D\right)=\sqrt{\frac{s_{1}^{2}}{n_{1}}+\frac{s_{2}^{2}}{n_{2}}}\]</span>
+and therefore my standardized value for the difference will be
+<span class="math display">\[\begin{aligned} t_{???}   
+  &amp;=    \frac{\textrm{estimate}\,\,\,-\,\,\,\textrm{hypothesized value}}{StdErr\left(\,\,\textrm{estimate}\,\,\right)} \\
+    &amp;=  \frac{\left(\bar{x}_{1}-\bar{x}_{2}\right)-0}{\sqrt{\frac{s_{1}^{2}}{n_{1}}+\frac{s_{2}^{2}}{n_{2}}}} \\
+    &amp;=  \frac{\left(-3.5\right)-0}{\sqrt{\frac{2.39^{2}}{10}+\frac{2.21^{2}}{10}}} \\
+    &amp;=  -3.39 
+    \end{aligned}\]</span></p>
+<p>This is somewhat painful, but reasonable. The last question is what t-distribution should we compare this to? Previously we’ve used <span class="math inline">\(df=n-1\)</span> but now we have two samples. So our degrees of freedom ought to be somewhere between <span class="math inline">\(\min\left(n_{1},n_{2}\right)-2=8\)</span> and <span class="math inline">\(\left(n_{1}+n_{2}\right)-1=19\)</span>.</p>
+<p>There is no correct answer, but the best approximation to what it should be is called Satterthwaite’s Approximation.
+<span class="math display">\[df=\frac{\left(V_{1}+V_{2}\right)^{2}}{\frac{V_{1}^{2}}{n_{1}-1}+\frac{V_{2}^{2}}{n_{2}-1}}\]</span>
+where
+<span class="math display">\[V_{1}=\frac{s_{1}^{2}}{n_{1}}\;\;\textrm{and }\;\;V_{2}=\frac{s_{2}^{2}}{n_{2}}\]</span></p>
+<p>So for our example we have</p>
+<p><span class="math display">\[V_{1}=\frac{2.39^{2}}{10}=0.5712\;\;\;\textrm{and}\;\;\;V_{2}=\frac{2.21^{2}}{10}=0.4884\]</span>
+and
+<span class="math display">\[df=\frac{\left(0.5712+0.4884\right)^{2}}{\frac{\left(0.5712\right)^{2}}{9}+\frac{\left(0.4884\right)^{2}}{9}}=17.89\]</span></p>
+<p>So now we can compute our p-value as</p>
+<p><span class="math display">\[\textrm{p.value}=P\left(T_{17.89}&lt;-3.39\right)\]</span></p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">mosaic<span class="op">::</span><span class="kw">xpt</span>(<span class="op">-</span><span class="fl">3.39</span>, <span class="dt">df=</span><span class="fl">17.89</span>, <span class="dt">ncp=</span><span class="dv">0</span>)</a></code></pre></div>
+<p><img src="07_Two_Samples_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<pre><code>## [1] 0.00164277</code></pre>
+<p>In a similar fashion, we can calculate the confidence interval in our usual fashion</p>
+<p><span class="math display">\[\begin{aligned}
+\textrm{Est}\;\; &amp;\pm\; t_{???}^{1-\alpha/2}\;\textrm{StdErr}\left(\;\textrm{Est}\;\right)  \\  
+\left(\bar{x}_{1}-\bar{x}_{2}\right)  &amp;\pm  t_{17.89}^{1-\alpha/2}\sqrt{\frac{s_{1}^{2}}{n_{1}}+\frac{s_{2}^{2}}{n_{2}}} \\
+-3.5  &amp;\pm  2.10\sqrt{\frac{2.39^{2}}{10}+\frac{2.21^{2}}{10}} \\
+-3.5  &amp;\pm  2.16 
+\end{aligned}\]</span></p>
+<p><span class="math display">\[\left(-5.66,\;-1.34\right)\]</span></p>
+<p>It is probably fair to say that this is an ugly calculation to do by hand. Fortunately it isn’t too hard to make R do these calculations for you. The function <code>t.test()</code> will accept two arguments, a vector of values from the first group and a vector from the second group.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="co">##### Using the base function t.test</span></a>
+<a class="sourceLine" id="cb29-2" title="2"><span class="co"># Caffeine    &lt;- CaffeineTaps$Taps[ 1:10]  # first 10 are Caffeine</span></a>
+<a class="sourceLine" id="cb29-3" title="3"><span class="co"># NonCaffeine &lt;- CaffeineTaps$Taps[11:20]  # last 10 are non-Caffeine</span></a>
+<a class="sourceLine" id="cb29-4" title="4"><span class="co"># t.test( NonCaffeine, Caffeine )</span></a>
+<a class="sourceLine" id="cb29-5" title="5"></a>
+<a class="sourceLine" id="cb29-6" title="6"><span class="co"># Using the mosaic version that allows me to give it a formula</span></a>
+<a class="sourceLine" id="cb29-7" title="7">mosaic<span class="op">::</span><span class="kw">t.test</span>(Taps <span class="op">~</span><span class="st"> </span>Group, <span class="dt">data=</span>CaffeineTaps)</a></code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  Taps by Group
+## t = 3.3942, df = 17.89, p-value = 0.003255
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  1.332616 5.667384
+## sample estimates:
+##   mean in group Caffeine mean in group NoCaffeine 
+##                    248.3                    244.8</code></pre>
+</div>
+<div id="inference-via-asymptotic-results-equal-variance-assumption" class="section level3">
+<h3><span class="header-section-number">8.0.2</span> Inference via asymptotic results (equal variance assumption)</h3>
+<p>In the <code>CaffeineTaps</code> example, the standard deviations of each group are quite similar. Instead of thinking of the data as
+<span class="math display">\[\bar{X}_{1}\stackrel{\cdot}{\sim}N\left(\mu_{1},\,\frac{\sigma_{1}^{2}}{n_1}\right)\;\;\;\textrm{and}\;\;\;\bar{X}_{2}\stackrel{\cdot}{\sim}N\left(\mu_{2},\;\frac{\sigma_{2}^{2}}{n_2}\right)\]</span>
+we could consider the model where we assume that the variance term is the same for each sample.
+<span class="math display">\[\bar{X}_{1}\stackrel{\cdot}{\sim}N\left(\mu_{1},\,\frac{\sigma^{2}}{n_1}\right)\;\;\;\textrm{and}\;\;\;\bar{X}_{2}\stackrel{\cdot}{\sim}N\left(\mu_{2},\; \frac{\sigma^{2}}{n_2}\right)\]</span></p>
+<p>First, we can estimate <span class="math inline">\(\mu_{1}\)</span> and <span class="math inline">\(\mu_{2}\)</span> with the appropriate sample means <span class="math inline">\(\bar{x}_{1}\)</span> and <span class="math inline">\(\bar{x}_{2}\)</span>. Next we need to calculate an estimate of <span class="math inline">\(\sigma\)</span> using all of the data. First recall the formula for the sample variance for one group was
+<span class="math display">\[s^{2}=\frac{1}{n-1}\left[\sum_{j=1}^{n}\left(x_{j}-\bar{x}\right)^{2}\right]\]</span></p>
+<p>In the case with two samples, we want a similar formula but it should take into account data from both sample groups. Define the notation <span class="math inline">\(x_{1j}\)</span> to be the <span class="math inline">\(j\)</span>th observation of group 1, and <span class="math inline">\(x_{2j}\)</span> to be the <span class="math inline">\(j\)</span>th observation of group 2 and in general <span class="math inline">\(x_{ij}\)</span> as the <span class="math inline">\(j\)</span>th observation from group <span class="math inline">\(i\)</span>. We want to subtract each observation from the its appropriate sample mean and then, because we had to estimate two means, we need to subtract two degrees of freedom from the denominator.
+<span class="math display">\[\begin{aligned} s_{pooled}^{2}    
+  &amp;=    \frac{1}{n_{1}+n_{2}-2}\left[\sum_{j=1}^{n_{1}}\left(x_{1j}-\bar{x}_{1}\right)^{2}+\sum_{j=1}^{n_{2}}\left(x_{2j}-\bar{x}_{2}\right)^{2}\right] \\
+    &amp;=  \frac{1}{n_{1}+n_{2}-2}\left[\sum_{j=1}^{n_{1}}e_{1j}^{2}+\sum_{j=1}^{n_{2}}e_{2j}^{2}\right]\\
+    &amp;=  \frac{1}{n_{1}+n_{2}-2}\left[\sum_{i=1}^{2}\sum_{j=1}^{n_{i}}e_{ij}^{2}\right]
+    \end{aligned}\]</span></p>
+<p>where <span class="math inline">\(\bar{x}_{1}\)</span> and <span class="math inline">\(\bar{x}_{2}\)</span> are the sample means and <span class="math inline">\(e_{ij}=x_{ij}-\bar{x}_{i}\)</span> is the residual error of the <span class="math inline">\(i,j\)</span> observation. A computationally convenient formula for this same quantity is
+<span class="math display">\[s_{pooled}^{2}=\frac{1}{n_{1}+n_{2}-2}\left[\left(n_{1}-1\right)s_{1}^{2}+\left(n_{2}-1\right)s_{2}^{2}\right]\]</span></p>
+<p>Finally we notice that this pooled estimate of the variance term <span class="math inline">\(\sigma^{2}\)</span> has <span class="math inline">\(n_{1}+n_{2}-2\)</span> degrees of freedom. One benefit of the pooled procedure is that we don’t have to mess with the Satterthwaite’s approximate degrees of freedom.</p>
+<p>Recall our test statistic in the unequal variance case was
+<span class="math display">\[t_{???} 
+  =\frac{\left(\bar{x}_{1}-\bar{x}_{2}\right)-0}{\sqrt{\frac{s_{1}^{2}}{n_{1}}+\frac{s_{2}^{2}}{n_{2}}}}\]</span>
+but in the equal variance case, we will use the pooled estimate of the variance term <span class="math inline">\(s_{pooled}^{2}\)</span> instead of <span class="math inline">\(s_{1}^{2}\)</span> and <span class="math inline">\(s_{2}^{2}\)</span>. So our test statistic becomes</p>
+<p><span class="math display">\[\begin{aligned} t_{df=n_{1}+n_{2}-2}  
+  &amp;=    \frac{\left(\bar{x}_{1}-\bar{x}_{2}\right)-0}{\sqrt{\frac{s_{pool}^{2}}{n_{1}}+\frac{s_{pool}^{2}}{n_{2}}}} \\
+    &amp;=  \frac{\left(\bar{x}_{1}-\bar{x}_{2}\right)-0}{s_{pool}\sqrt{\frac{1}{n_{1}}+\frac{1}{n_{2}}}}
+  \end{aligned}\]</span></p>
+<p>where we have
+<span class="math display">\[StdErr\left(\bar{X}_{1}-\bar{X}_{2}\right)=s_{pooled}\sqrt{\left(1/n_{1}\right)+\left(1/n_{2}\right)}\]</span> For the <code>CaffeineTaps</code> data, this results in the following analysis for
+<span class="math display">\[\begin{aligned}
+H_{0}:  &amp;\mu_{nc}-\mu_{c}  =  0   \\
+H_{a}:  &amp;\mu_{nc}-\mu_{c} \ne 0 
+\end{aligned}\]</span></p>
+<p>First we have to calculate the summary statistics (along with the pooled <span class="math inline">\(\sigma_{pooled}\)</span>).</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1">CaffeineTaps <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb31-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(Group) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb31-3" title="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">xbar.i =</span> <span class="kw">mean</span>(Taps),   <span class="co"># sample mean for each group</span></a>
+<a class="sourceLine" id="cb31-4" title="4">            <span class="dt">s2.i   =</span> <span class="kw">var</span>(Taps),    <span class="co"># sample variances for each group</span></a>
+<a class="sourceLine" id="cb31-5" title="5">            <span class="dt">s.i    =</span> <span class="kw">sd</span>(Taps),     <span class="co"># sample standard deviations for each group</span></a>
+<a class="sourceLine" id="cb31-6" title="6">            <span class="dt">n.i    =</span> <span class="kw">n</span>()      )    <span class="co"># sample sizes for each group</span></a></code></pre></div>
+<pre><code>## # A tibble: 2 x 5
+##   Group      xbar.i  s2.i   s.i   n.i
+##   &lt;fct&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
+## 1 Caffeine     248.  4.90  2.21    10
+## 2 NoCaffeine   245.  5.73  2.39    10</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1">CaffeineTaps <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb33-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(Group) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb33-3" title="3"><span class="st">  </span><span class="kw">summarize</span>(  <span class="dt">n.i =</span> <span class="kw">n</span>(),             </a>
+<a class="sourceLine" id="cb33-4" title="4">             <span class="dt">s2.i =</span> <span class="kw">var</span>(Taps) ) <span class="op">%&gt;%</span><span class="st">     </span></a>
+<a class="sourceLine" id="cb33-5" title="5"><span class="st">  </span><span class="kw">summarize</span>( <span class="dt">s2.p =</span> <span class="kw">sum</span>( (n.i<span class="dv">-1</span>)<span class="op">*</span>s2.i ) <span class="op">/</span><span class="st"> </span>( <span class="kw">sum</span>(n.i)<span class="op">-</span><span class="dv">2</span> ),</a>
+<a class="sourceLine" id="cb33-6" title="6">             <span class="dt">s.p  =</span> <span class="kw">sqrt</span>(s2.p) ) </a></code></pre></div>
+<pre><code>## # A tibble: 1 x 2
+##    s2.p   s.p
+##   &lt;dbl&gt; &lt;dbl&gt;
+## 1  5.32  2.31</code></pre>
+<p>Next we can calculate
+<span class="math display">\[t_{18}=\frac{\left(244.8-248.3\right)-0}{2.31\sqrt{\frac{1}{10}+\frac{1}{10}}}=-3.39\]</span></p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1">p.value &lt;-<span class="st"> </span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="kw">pt</span>(<span class="op">-</span><span class="fl">3.39</span>, <span class="dt">df=</span><span class="dv">18</span>)   <span class="co"># 2-sided test, so multiply by 2</span></a>
+<a class="sourceLine" id="cb35-2" title="2">p.value</a></code></pre></div>
+<pre><code>## [1] 0.003262969</code></pre>
+<p>The associated <span class="math inline">\(95\%\)</span> confidence interval is
+<span class="math display">\[\left(\bar{x}_{1}-\bar{x}_{2}\right)\pm t_{n_{1}+n_{2}-2}^{1-\alpha/2}\;\left(s_{pool}\sqrt{\frac{1}{n_{1}}+\frac{1}{n_{2}}}\right)\]</span></p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1"><span class="kw">qt</span>( <span class="fl">.975</span>, <span class="dt">df=</span><span class="dv">18</span> ) </a></code></pre></div>
+<pre><code>## [1] 2.100922</code></pre>
+<p><span class="math display">\[\begin{aligned}
+-3.5 &amp;\pm 2.10\left(\,2.31\sqrt{\frac{1}{10}+\frac{1}{10}}\right) \\
+-3.5 &amp;\pm 2.17 
+\end{aligned}\]</span>
+<span class="math display">\[\left(-5.67,\;-1.33\right)\]</span></p>
+<p>This p-value and <span class="math inline">\(95\%\)</span> confidence interval are quite similar to the values we got in the case where we assumed unequal variances.</p>
+<p>As usual, these calculations are pretty annoying to do by hand and we wish to instead do them using R. Again the function <code>t.test()</code> will do the annoying calculations for us.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1"><span class="co"># Do the t-test</span></a>
+<a class="sourceLine" id="cb39-2" title="2">mosaic<span class="op">::</span><span class="kw">t.test</span>( Taps <span class="op">~</span><span class="st"> </span>Group, <span class="dt">data=</span>CaffeineTaps, <span class="dt">var.equal=</span><span class="ot">TRUE</span> ) </a></code></pre></div>
+<pre><code>## 
+##  Two Sample t-test
+## 
+## data:  Taps by Group
+## t = 3.3942, df = 18, p-value = 0.003233
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  1.33357 5.66643
+## sample estimates:
+##   mean in group Caffeine mean in group NoCaffeine 
+##                    248.3                    244.8</code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1"><span class="co"># Do the t-test</span></a>
+<a class="sourceLine" id="cb41-2" title="2">mosaic<span class="op">::</span><span class="kw">t.test</span>( Taps <span class="op">~</span><span class="st"> </span>Group, <span class="dt">data=</span>CaffeineTaps, <span class="dt">var.equal=</span><span class="ot">TRUE</span>, <span class="dt">conf.level=</span>.<span class="dv">99</span> ) </a></code></pre></div>
+<pre><code>## 
+##  Two Sample t-test
+## 
+## data:  Taps by Group
+## t = 3.3942, df = 18, p-value = 0.003233
+## alternative hypothesis: true difference in means is not equal to 0
+## 99 percent confidence interval:
+##  0.5318082 6.4681918
+## sample estimates:
+##   mean in group Caffeine mean in group NoCaffeine 
+##                    248.3                    244.8</code></pre>
+<p><strong>Example</strong> - Does drinking beer increase your attractiveness to mosquitoes?</p>
+<p>In places in the country substantial mosquito populations, the question of whether drinking beer causes the drinker to be more attractive to the mosquitoes than drinking something else has plagued campers. To answer such a question, researchers conducted a study to determine if drinking beer attracts more mosquitoes than drinking water. Of <span class="math inline">\(n=43\)</span> subjects, <span class="math inline">\(n_{b}=25\)</span> drank a liter beer and <span class="math inline">\(n_{w}=18\)</span> drank a liter of water and mosquitoes were caught in traps as they approached the different subjects. The critical part of this study is that the treatment (beer or water) was randomly assigned to each subject.</p>
+<p>For this study, we want to test
+<span class="math display">\[H_{0}:\:\delta=0\;\;\;\;\;\;\textrm{vs}\;\;\;\;\;\;H_{a}:\,\delta&lt;0\]</span>
+where we define <span class="math inline">\(\delta=\mu_{w}-\mu_{b}\)</span> and <span class="math inline">\(\mu_{b}\)</span> is the mean number of mosquitoes attracted to a beer drinker and <span class="math inline">\(\mu_{w}\)</span> is the mean number attracted to a water drinker. As usual we begin our analysis by plotting the data.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1"><span class="co"># I can&#39;t find this dataset on-line so I&#39;ll just type it in.</span></a>
+<a class="sourceLine" id="cb43-2" title="2">Mosquitoes &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb43-3" title="3">  <span class="dt">Number =</span> <span class="kw">c</span>(<span class="dv">27</span>,<span class="dv">19</span>,<span class="dv">20</span>,<span class="dv">20</span>,<span class="dv">23</span>,<span class="dv">17</span>,<span class="dv">21</span>,<span class="dv">24</span>,<span class="dv">31</span>,<span class="dv">26</span>,<span class="dv">28</span>,<span class="dv">20</span>,<span class="dv">27</span>,</a>
+<a class="sourceLine" id="cb43-4" title="4">             <span class="dv">19</span>,<span class="dv">25</span>,<span class="dv">31</span>,<span class="dv">24</span>,<span class="dv">28</span>,<span class="dv">24</span>,<span class="dv">29</span>,<span class="dv">21</span>,<span class="dv">21</span>,<span class="dv">18</span>,<span class="dv">27</span>,<span class="dv">20</span>,</a>
+<a class="sourceLine" id="cb43-5" title="5">             <span class="dv">21</span>,<span class="dv">19</span>,<span class="dv">13</span>,<span class="dv">22</span>,<span class="dv">15</span>,<span class="dv">22</span>,<span class="dv">15</span>,<span class="dv">22</span>,<span class="dv">20</span>,</a>
+<a class="sourceLine" id="cb43-6" title="6">             <span class="dv">12</span>,<span class="dv">24</span>,<span class="dv">24</span>,<span class="dv">21</span>,<span class="dv">19</span>,<span class="dv">18</span>,<span class="dv">16</span>,<span class="dv">23</span>,<span class="dv">20</span>),</a>
+<a class="sourceLine" id="cb43-7" title="7">  <span class="dt">Treat =</span> <span class="kw">c</span>( <span class="kw">rep</span>(<span class="st">&#39;Beer&#39;</span>, <span class="dv">25</span>), <span class="kw">rep</span>(<span class="st">&#39;Water&#39;</span>,<span class="dv">18</span>) ) )</a>
+<a class="sourceLine" id="cb43-8" title="8"></a>
+<a class="sourceLine" id="cb43-9" title="9"><span class="co"># Plot the data</span></a>
+<a class="sourceLine" id="cb43-10" title="10"><span class="kw">ggplot</span>(Mosquitoes, <span class="kw">aes</span>(<span class="dt">x=</span>Number)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb43-11" title="11"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">1</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb43-12" title="12"><span class="st">  </span><span class="kw">facet_grid</span>( Treat <span class="op">~</span><span class="st"> </span>. )</a></code></pre></div>
+<p><img src="07_Two_Samples_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p>For this experiment and the summary statistic that captures the difference we are trying to understand is <span class="math inline">\(d=\bar{x}_{w}-\bar{x}_{b}\)</span> where <span class="math inline">\(\bar{x}_{w}\)</span> is the sample mean number of mosquitoes attracted by the water group and <span class="math inline">\(\bar{x}_{b}\)</span> is the sample mean number of mosquitoes attracted by the beer group. Because of the order we chose for the subtraction, a negative value for d is supportive of the alternative hypothesis that mosquitoes are more attracted to beer drinkers.</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" title="1">Mosquitoes <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Treat) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb44-2" title="2"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">xbar.i =</span> <span class="kw">mean</span>(Number),</a>
+<a class="sourceLine" id="cb44-3" title="3">            <span class="dt">s2.i   =</span> <span class="kw">var</span>(Number),</a>
+<a class="sourceLine" id="cb44-4" title="4">            <span class="dt">s.i    =</span> <span class="kw">sd</span>(Number),</a>
+<a class="sourceLine" id="cb44-5" title="5">            <span class="dt">n.i    =</span> <span class="kw">n</span>())</a></code></pre></div>
+<pre><code>## # A tibble: 2 x 5
+##   Treat xbar.i  s2.i   s.i   n.i
+##   &lt;fct&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
+## 1 Beer    23.6  17.1  4.13    25
+## 2 Water   19.2  13.5  3.67    18</code></pre>
+<p>Here we see that our statistic of interest is
+<span class="math display">\[\begin{aligned} d 
+  &amp;=    \bar{x}_{w}-\bar{x}_{b} \\
+    &amp;=  19.22-23.6              \\
+    &amp;=  -4.37\bar{7}
+    \end{aligned}\]</span>
+The hypothesis test and confidence interval to see if this is statistically significant evidence to conclude that beer increases attractiveness to mosquitoes is as follows. First we perform the hypothesis test by creating the sampling distribution of <span class="math inline">\(d^*\)</span> assuming <span class="math inline">\(H_0\)</span> is true by repeatedly shuffling the group labels and calculating differences.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1">PermutationDist &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">10000</span>) <span class="op">*</span>{</a>
+<a class="sourceLine" id="cb46-2" title="2">  Mosquitoes <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb46-3" title="3"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">ShuffledTreat =</span> mosaic<span class="op">::</span><span class="kw">shuffle</span>(Treat)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb46-4" title="4"><span class="st">    </span><span class="kw">group_by</span>( ShuffledTreat )              <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb46-5" title="5"><span class="st">    </span><span class="kw">summarise</span>( <span class="dt">xbar.i =</span> <span class="kw">mean</span>(Number) )     <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb46-6" title="6"><span class="st">    </span><span class="kw">summarise</span>( <span class="dt">d.star =</span> <span class="kw">diff</span>(xbar.i) )</a>
+<a class="sourceLine" id="cb46-7" title="7">}</a></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" title="1"><span class="kw">ggplot</span>(PermutationDist, <span class="kw">aes</span>(<span class="dt">x=</span>d.star)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb47-2" title="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span>.<span class="dv">5</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb47-3" title="3"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&#39;Sampling Dist. of d* assuming H0 is true&#39;</span>)</a></code></pre></div>
+<p><img src="07_Two_Samples_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1">p.value &lt;-<span class="st"> </span>PermutationDist <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb48-2" title="2"><span class="st">  </span><span class="kw">summarise</span>( <span class="kw">mean</span>( d.star <span class="op">&lt;=</span><span class="st"> </span><span class="fl">-4.377</span> ))</a>
+<a class="sourceLine" id="cb48-3" title="3">p.value</a></code></pre></div>
+<pre><code>##   mean(d.star &lt;= -4.377)
+## 1                  2e-04</code></pre>
+<p>The associated confidence interval (lets do a <span class="math inline">\(90\%\)</span> confidence level), is created via bootstrapping.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1">BootDist &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">10000</span>)<span class="op">*</span>{</a>
+<a class="sourceLine" id="cb50-2" title="2">  Mosquitoes <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb50-3" title="3"><span class="st">    </span><span class="kw">group_by</span>(Treat)                     <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb50-4" title="4"><span class="st">    </span>mosaic<span class="op">::</span><span class="kw">resample</span>()                  <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb50-5" title="5"><span class="st">    </span><span class="kw">summarise</span>( <span class="dt">xbar.i =</span> <span class="kw">mean</span>(Number) )  <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb50-6" title="6"><span class="st">    </span><span class="kw">summarise</span>( <span class="dt">d.star =</span> <span class="kw">diff</span>(xbar.i) )    </a>
+<a class="sourceLine" id="cb50-7" title="7">}</a></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" title="1"><span class="kw">ggplot</span>(BootDist, <span class="kw">aes</span>(<span class="dt">x=</span>d.star)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb51-2" title="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span>.<span class="dv">5</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb51-3" title="3"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&#39;Bootstrap dist. of d*&#39;</span>)</a></code></pre></div>
+<p><img src="07_Two_Samples_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" title="1"><span class="kw">quantile</span>( BootDist<span class="op">$</span>d.star, <span class="dt">probs=</span><span class="kw">c</span>(.<span class="dv">05</span>, <span class="fl">.95</span>))</a></code></pre></div>
+<pre><code>##        5%       95% 
+## -6.336262 -2.449065</code></pre>
+<p>The calculated p-value is extremely small and the associated two-sided 90% confidence interval does not contain 0, so we can conclude that the choice of drink does cause a change in attractiveness to mosquitoes.</p>
+<p>If we wanted to perform the same analysis using asymptotic methods we could do the calculations by hand, or just use R.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" title="1">mosaic<span class="op">::</span><span class="kw">t.test</span>( Number <span class="op">~</span><span class="st"> </span>Treat, <span class="dt">data=</span>Mosquitoes, </a>
+<a class="sourceLine" id="cb54-2" title="2">        <span class="dt">var.equal=</span><span class="ot">TRUE</span>, <span class="dt">conf.level=</span><span class="fl">0.90</span>)</a></code></pre></div>
+<pre><code>## 
+##  Two Sample t-test
+## 
+## data:  Number by Treat
+## t = 3.587, df = 41, p-value = 0.0008831
+## alternative hypothesis: true difference in means is not equal to 0
+## 90 percent confidence interval:
+##  2.323889 6.431666
+## sample estimates:
+##  mean in group Beer mean in group Water 
+##            23.60000            19.22222</code></pre>
+<p>Notice that we didn’t specify the order for the subtraction and the <code>mosaic:t.test()</code> function did the subtraction in the opposite order than we did. The p-value is slightly different but doesn’t change the resulting inference.</p>
+</div>
+<div id="difference-in-means-between-two-groups-paired-data" class="section level2">
+<h2><span class="header-section-number">8.1</span> Difference in means between two groups: Paired Data</h2>
+<p>If the context of study is such that we can logically pair an observation from the first population to a particular observation in the second, then we can perform what is called a Paired Test. In a paired test, we will take each set of paired observations, calculate the difference, and then perform a 1-sample regular hypothesis test on the differences.</p>
+<p>For example, in the package Lock5Data there is a dataset that examines the age in which men and women get married. The data was obtained by taking a random sample from publicly available marriage licenses in St. Lawrence County, NY.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" title="1"><span class="kw">data</span>(MarriageAges, <span class="dt">package=</span><span class="st">&#39;Lock5Data&#39;</span>)</a>
+<a class="sourceLine" id="cb56-2" title="2"><span class="kw">head</span>(MarriageAges)</a></code></pre></div>
+<pre><code>##   Husband Wife
+## 1      53   50
+## 2      38   34
+## 3      46   44
+## 4      30   36
+## 5      31   23
+## 6      26   31</code></pre>
+<p>Unfortunately the format of this dataset is not particularly convenient for making graphs. Instead I want to turn this data into a “long” dataset where I have one row per person, not one row per marriage.</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" title="1"><span class="co"># Make a dataset that is more convenient for graphing.</span></a>
+<a class="sourceLine" id="cb58-2" title="2">MarriageAges.Long &lt;-<span class="st"> </span>MarriageAges <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb58-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Marriage =</span> <span class="kw">factor</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">n</span>())) <span class="op">%&gt;%</span><span class="st">        </span><span class="co"># Give each row a unique ID </span></a>
+<a class="sourceLine" id="cb58-4" title="4"><span class="st">  </span><span class="kw">gather</span>(<span class="st">&#39;Spouse&#39;</span>, <span class="st">&#39;Age&#39;</span>, Husband, Wife) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># pivot from Husband/Wife to Spouse/Age</span></a>
+<a class="sourceLine" id="cb58-5" title="5"><span class="st">  </span><span class="kw">arrange</span>(Marriage, <span class="kw">desc</span>(Spouse))             <span class="co"># Sort by Marriage, then (Wife,Husband)</span></a></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" title="1"><span class="co"># Make a graph of ages, by Spouse Type</span></a>
+<a class="sourceLine" id="cb59-2" title="2"><span class="kw">ggplot</span>(MarriageAges.Long, <span class="kw">aes</span>(<span class="dt">x=</span>Age)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb59-3" title="3"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">5</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb59-4" title="4"><span class="st">  </span><span class="kw">facet_grid</span>(Spouse <span class="op">~</span><span class="st"> </span>.) </a></code></pre></div>
+<p><img src="07_Two_Samples_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+<p>Looking at this view of the data, it doesn’t appear that the husbands tend to be older than the wives. A t-test to see if the average age of husbands is greater than the average age of wives gives an insignificant difference.</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" title="1">mosaic<span class="op">::</span><span class="kw">t.test</span>( Age <span class="op">~</span><span class="st"> </span>Spouse, <span class="dt">data=</span>MarriageAges.Long )</a></code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  Age by Spouse
+## t = 1.8055, df = 203.12, p-value = 0.07248
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -0.2603887  5.9175316
+## sample estimates:
+## mean in group Husband    mean in group Wife 
+##              34.66667              31.83810</code></pre>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" title="1"><span class="co"># t.test( MarriageAges$Husband, MarriageAges$Wife )  # Another way to run the t.test</span></a></code></pre></div>
+<p>But critically, we are ignoring that while the average ages might not be different, for a given marriage, the husband tends to be older than the wife. Instead of looking at the difference in the means (i.e <span class="math inline">\(d=\bar{h}-\bar{w}\)</span>) we should actually be looking at the mean of the differences <span class="math inline">\(\bar{d}=\frac{1}{n}\sum d_{i}\)</span> where <span class="math inline">\(d_{i}=h_{i}-w_{i}\)</span>.</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" title="1">MarriageAges &lt;-<span class="st"> </span>MarriageAges  <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb63-2" title="2"><span class="st">  </span><span class="kw">mutate</span>( <span class="dt">d =</span> Husband <span class="op">-</span><span class="st"> </span>Wife )   </a>
+<a class="sourceLine" id="cb63-3" title="3"></a>
+<a class="sourceLine" id="cb63-4" title="4"><span class="kw">ggplot</span>(MarriageAges, <span class="kw">aes</span>(<span class="dt">x =</span> d)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb63-5" title="5"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">2</span>)</a></code></pre></div>
+<p><img src="07_Two_Samples_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
+<p>Given this set of differences, we’d like to know if this data is compatible with the null hypothesis that husbands and wives tend to be the same age versus the alternative that husbands tend to be older. (We could chose the two-sided test as well).
+<span class="math display">\[\begin{aligned}
+H_{0}:\;\delta  &amp;=  0  \\
+H_{A}:\;\delta  &amp;&gt;  0
+\end{aligned}\]</span></p>
+<p>Because we have reduced our problem to a 1-sample test, we can perform the asymptotic t-test easily enough in R.</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" title="1"><span class="kw">t.test</span>( MarriageAges<span class="op">$</span>d )</a></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  MarriageAges$d
+## t = 5.8025, df = 104, p-value = 7.121e-08
+## alternative hypothesis: true mean is not equal to 0
+## 95 percent confidence interval:
+##  1.861895 3.795248
+## sample estimates:
+## mean of x 
+##  2.828571</code></pre>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" title="1"><span class="co">#t.test( MarriageAges$Husband, MarriageAges$Wife, paired=TRUE )  # Another way to run the t.test</span></a></code></pre></div>
+<p>The result is highly statistically significant, and we see the mean difference in ages for the husband to be 2.8 years older.</p>
+<p>To perform the same analysis using re-sampling methods, we need to be careful to do the re-sampling correctly. To perform the hypothesis test, we want to create data where the null hypothesis is true. To do this, we’ll shuffle the ages within the marriage so that the husband and the wife have equal probability of being the older spouse. For the bootstrap CI, we need to be certain that we are re-sampling marriages, not people.</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" title="1"><span class="co"># Permutation t-test of delta == 0</span></a>
+<a class="sourceLine" id="cb67-2" title="2">PermDist &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">10000</span>)<span class="op">*</span>{ </a>
+<a class="sourceLine" id="cb67-3" title="3">  MarriageAges.Long            <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb67-4" title="4"><span class="st">    </span><span class="kw">group_by</span>(Marriage)         <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb67-5" title="5"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">Age =</span> mosaic<span class="op">::</span><span class="kw">shuffle</span>(Age)) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># shuffle the ages within each marriage</span></a>
+<a class="sourceLine" id="cb67-6" title="6"><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">d.i =</span> <span class="kw">diff</span>(Age))         <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># Calc Husband - Wife age difference</span></a>
+<a class="sourceLine" id="cb67-7" title="7"><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">d.bar =</span> <span class="kw">mean</span>(d.i))            <span class="co"># calc the mean difference</span></a>
+<a class="sourceLine" id="cb67-8" title="8">}</a>
+<a class="sourceLine" id="cb67-9" title="9"><span class="kw">ggplot</span>(PermDist, <span class="kw">aes</span>(<span class="dt">x=</span>d.bar)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb67-10" title="10"><span class="st">  </span><span class="kw">geom_histogram</span>()</a></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="07_Two_Samples_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" title="1">PermDist <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb69-2" title="2"><span class="st">  </span><span class="kw">summarize</span>( <span class="dt">p.value =</span> <span class="kw">mean</span>(d.bar <span class="op">&gt;=</span><span class="st"> </span><span class="fl">2.83</span>) )</a></code></pre></div>
+<pre><code>##   p.value
+## 1       0</code></pre>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" title="1"><span class="co"># Bootstrap CI for delta</span></a>
+<a class="sourceLine" id="cb71-2" title="2">BootDist &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">10000</span>)<span class="op">*</span>{ </a>
+<a class="sourceLine" id="cb71-3" title="3">  MarriageAges.Long            <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb71-4" title="4"><span class="st">    </span><span class="kw">group_by</span>(Marriage)         <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb71-5" title="5"><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">d.i =</span> <span class="kw">diff</span>(Age)) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># Calc observed Husband - Wife age differences</span></a>
+<a class="sourceLine" id="cb71-6" title="6"><span class="st">      </span>mosaic<span class="op">::</span><span class="kw">resample</span>()         <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># resample from the observed differences</span></a>
+<a class="sourceLine" id="cb71-7" title="7"><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">d.bar =</span> <span class="kw">mean</span>(d.i))    <span class="co"># calc the mean difference</span></a>
+<a class="sourceLine" id="cb71-8" title="8">}</a>
+<a class="sourceLine" id="cb71-9" title="9"><span class="kw">quantile</span>( BootDist<span class="op">$</span>d.bar, <span class="dt">probs=</span><span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>) )</a></code></pre></div>
+<pre><code>##     2.5%    97.5% 
+## 1.895238 3.809524</code></pre>
+<p>We observe a similar p-value and confidence interval as we did using the asymptotic test as expected. The code for calculating the bootstrap CI is a bit inefficient because I keep recalculating the observed differences with each bootstrap. However, it is nice to have the code “recipe” for the hypothesis test and the associated CI to be fairly similar.</p>
+<p><strong>Example</strong> - Traffic Flow</p>
+<p>Engineers in Dresden, Germany were looking at ways to improve traffic flow by enabling traffic lights to communicate information about traffic flow with nearby traffic lights and modify their timing sequence appropriately. The engineers wished to compare new flexible timing system with the standard fixed timing sequence by evaluating the delay at a randomly selected <span class="math inline">\(n=24\)</span> intersections in Dresden. The data show results of one experiment where they simulated buses moving along a street and recorded the delay time for both systems. Because each simulation is extremely intensive, they only simulated <span class="math inline">\(n=24\)</span> intersections instead of simulating the whole city.</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" title="1"><span class="kw">data</span>(TrafficFlow, <span class="dt">package=</span><span class="st">&#39;Lock5Data&#39;</span>)  </a>
+<a class="sourceLine" id="cb73-2" title="2"><span class="kw">head</span>(TrafficFlow)</a></code></pre></div>
+<pre><code>##   Timed Flexible Difference
+## 1    88       45         43
+## 2    90       46         44
+## 3    91       45         46
+## 4    99       51         48
+## 5   101       48         53
+## 6   101       48         53</code></pre>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" title="1"><span class="co"># A data set more convenient for Graphing and Permutation Tests.</span></a>
+<a class="sourceLine" id="cb75-2" title="2">TrafficFlow.Long &lt;-<span class="st"> </span>TrafficFlow           <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb75-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Light =</span> <span class="kw">factor</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">n</span>()))           <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Give each row a unique ID </span></a>
+<a class="sourceLine" id="cb75-4" title="4"><span class="st">  </span><span class="kw">gather</span>(<span class="st">&#39;Seq&#39;</span>, <span class="st">&#39;Delay&#39;</span>, Flexible, Timed) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># pivot to SequenceType and Delay amount</span></a>
+<a class="sourceLine" id="cb75-5" title="5"><span class="st">  </span><span class="kw">arrange</span>(Light, Seq)                         <span class="co"># Sort by Light, then by SequenceType</span></a>
+<a class="sourceLine" id="cb75-6" title="6"><span class="kw">head</span>(TrafficFlow.Long)</a></code></pre></div>
+<pre><code>##   Difference Light      Seq Delay
+## 1         43     1 Flexible    45
+## 2         43     1    Timed    88
+## 3         44     2 Flexible    46
+## 4         44     2    Timed    90
+## 5         46     3 Flexible    45
+## 6         46     3    Timed    91</code></pre>
+<p>As usual, we’ll first examine the data with a graph.</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" title="1"><span class="kw">ggplot</span>(TrafficFlow.Long, <span class="kw">aes</span>(<span class="dt">x=</span>Delay)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb77-2" title="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">2</span>) <span class="op">+</span><span class="st">              </span><span class="co"># histograms of Delay time</span></a>
+<a class="sourceLine" id="cb77-3" title="3"><span class="st">  </span><span class="kw">facet_grid</span>(Seq <span class="op">~</span><span class="st"> </span>.)                       <span class="co"># two plots, stacked by SequenceType</span></a></code></pre></div>
+<p><img src="07_Two_Samples_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" title="1"><span class="kw">ggplot</span>(TrafficFlow, <span class="kw">aes</span>(<span class="dt">x=</span>Difference)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb78-2" title="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">2</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb78-3" title="3"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&#39;Difference (Standard - Flexible)&#39;</span>)</a></code></pre></div>
+<p><img src="07_Two_Samples_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
+<p>All of the differences were positive, so it is almost ridiculous to do a hypothesis test that there is no decrease in delays with the flexible timing system, but we might as well walk through the analysis.</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" title="1"><span class="kw">t.test</span>( TrafficFlow<span class="op">$</span>Difference )</a></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  TrafficFlow$Difference
+## t = 19.675, df = 23, p-value = 6.909e-16
+## alternative hypothesis: true mean is not equal to 0
+## 95 percent confidence interval:
+##  54.58639 67.41361
+## sample estimates:
+## mean of x 
+##        61</code></pre>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" title="1"><span class="co"># Permutation t-test of delta == 0</span></a>
+<a class="sourceLine" id="cb81-2" title="2">PermDist &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">10000</span>)<span class="op">*</span>{ </a>
+<a class="sourceLine" id="cb81-3" title="3">  TrafficFlow.Long                         <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb81-4" title="4"><span class="st">    </span><span class="kw">group_by</span>(Light)                        <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb81-5" title="5"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">Delay =</span> mosaic<span class="op">::</span><span class="kw">shuffle</span>(Delay)) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># shuffle the delays within each intersection</span></a>
+<a class="sourceLine" id="cb81-6" title="6"><span class="st">    </span><span class="kw">arrange</span>(Light, Seq)                    <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># Put into the Flexible, SeqType order</span></a>
+<a class="sourceLine" id="cb81-7" title="7"><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">d.i =</span> <span class="kw">diff</span>(Delay))           <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># Calc Timed - Flexible delay difference</span></a>
+<a class="sourceLine" id="cb81-8" title="8"><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">d.bar =</span> <span class="kw">mean</span>(d.i))                <span class="co"># calc the mean difference</span></a>
+<a class="sourceLine" id="cb81-9" title="9">}</a>
+<a class="sourceLine" id="cb81-10" title="10">PermDist <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb81-11" title="11"><span class="st">  </span><span class="kw">summarize</span>( <span class="dt">p.value =</span> <span class="kw">mean</span>(d.bar <span class="op">&gt;=</span><span class="st"> </span><span class="dv">61</span>) )</a></code></pre></div>
+<pre><code>##   p.value
+## 1       0</code></pre>
+<p>Our p-value is 0, but because we we actually only did 10,000 permutations, the most we can say is that the p-value is less than 1/ 10,000.</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" title="1"><span class="co"># Bootstrap CI for delta</span></a>
+<a class="sourceLine" id="cb83-2" title="2">BootDist &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">10000</span>)<span class="op">*</span>{ </a>
+<a class="sourceLine" id="cb83-3" title="3">  TrafficFlow.Long               <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb83-4" title="4"><span class="st">    </span><span class="kw">group_by</span>(Light)              <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb83-5" title="5"><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">d.i =</span> <span class="kw">diff</span>(Delay)) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># Calc observed Timed-Flexible delay differences</span></a>
+<a class="sourceLine" id="cb83-6" title="6"><span class="st">    </span>mosaic<span class="op">::</span><span class="kw">resample</span>()           <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># resample from the observed differences</span></a>
+<a class="sourceLine" id="cb83-7" title="7"><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">d.bar =</span> <span class="kw">mean</span>(d.i))      <span class="co"># calc the mean difference</span></a>
+<a class="sourceLine" id="cb83-8" title="8">}</a>
+<a class="sourceLine" id="cb83-9" title="9"><span class="kw">quantile</span>( BootDist<span class="op">$</span>d.bar, <span class="dt">probs=</span><span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>) )</a></code></pre></div>
+<pre><code>##     2.5%    97.5% 
+## 55.54167 67.33333</code></pre>
+<p>The confidence interval suggests that these data support that the mean difference between the flexible timing sequence versus the standard fixed timing sequence in Dresden is in the interval <span class="math inline">\(\left(55.5,\,67.3\right)\)</span> seconds.</p>
+</div>
+<div id="exercises-6" class="section level2">
+<h2><span class="header-section-number">8.2</span> Exercises</h2>
+<ol style="list-style-type: decimal">
+<li>In the 2011 article “Methane contamination of drinking water accompanying gas-well drilling and hydraulic fracturing” in the Proceedings of the National Academy of Sciences, <span class="math inline">\(n_{1}=21\)</span> sites in proximity to a fracking well had a mean methane level of <span class="math inline">\(\bar{x}_{1}=19.2\)</span> mg <span class="math inline">\(CH_{4} L^{-1}\)</span> with a sample standard deviation <span class="math inline">\(s_{1}=30.3\)</span>. The <span class="math inline">\(n_{2}=13\)</span> sites in the same region with no fracking wells within 1 kilometer had mean methane levels of <span class="math inline">\(\bar{x}_{2}=1.1\)</span> mg <span class="math inline">\(CH_{4} L^{-1}\)</span> and standard deviation <span class="math inline">\(s_{2}=6.3\)</span>. Perform a one-sided, two-sample t-test with unpooled variance and an <span class="math inline">\(\alpha=0.05\)</span> level to investigate if the presence of fracking wells increases the methane level in drinking-water wells in this region. Notice that because I don’t give you the data, you can only analyze the data using the asymptotic method and plugging in the give quantities into the formulas presented.
+<ol style="list-style-type: lower-alpha">
+<li>State an appropriate null and alternative hypothesis.</li>
+<li>Calculate an appropriate test statistic (making sure to denote the appropriate degrees of freedom, if necessary).</li>
+<li>Calculate an appropriate p-value.</li>
+<li>At an significance level of <span class="math inline">\(\alpha=0.05\)</span>, do you reject or fail to reject the null hypothesis?</li>
+<li>Restate your conclusion in terms of the problem.</li>
+</ol></li>
+<li>All persons running for public office must report the amount of money raised and spent during their campaign. Political scientists contend that it is more difficult for female candidates to raise money. Suppose that we randomly sample <span class="math inline">\(30\)</span> male and <span class="math inline">\(30\)</span> female candidates for state legislature and observe the male candidates raised, on average, <span class="math inline">\(\bar{y}=\$350,000\)</span> with a standard deviation of <span class="math inline">\(s_{y}=\$61,900\)</span> and the females raised on average <span class="math inline">\(\bar{x}=\$245,000\)</span> with a standard deviation of <span class="math inline">\(s_{x}=\$52,100\)</span>. Perform a one-sided, two-sample t-test with pooled variance to test if female candidates generally raise less in their campaigns that male candidates. <em>Notice that because I don’t give you the data, you can only analyze the data using the asymptotic method and plugging in the give quantities into the formulas presented.</em>
+<ol style="list-style-type: lower-alpha">
+<li>State an appropriate null and alternative hypothesis. (Be sure to use correct notation!)</li>
+<li>Calculate an appropriate test statistic (making sure to denote the appropriate degrees of freedom, if necessary).</li>
+<li>Calculate an appropriate p-value.</li>
+<li>At an significance level of <span class="math inline">\(\alpha=0.05\)</span>, do you reject or fail to reject the null hypothesis?</li>
+<li>Restate your conclusion in terms of the problem.</li>
+</ol></li>
+<li>In the Lock5Data package, the dataset <code>Smiles</code> gives data “…from a study examining the effect of a smile on the leniency of disciplinary action for wrongdoers. Participants in the experiment took on the role of members of a college disciplinary panel judging students accused of cheating. For each suspect, along with a description of the offense, a picture was provided with either a smile or neutral facial expression. Note, that for each individual only one picture was submitted. A leniency score was calculated based on the disciplinary decisions made by the participants.”
+<ol style="list-style-type: lower-alpha">
+<li>Graph the leniency score for the smiling and non-smiling groups. Comment on if you can visually detect any difference in leniency score.</li>
+<li>Calculate the mean and standard deviation of the leniencies for each group. Does it seem reasonable that the standard deviation of each group is the same?</li>
+<li>Do a two-sided two-sample t-test using pooled variance using the asymptotic method. Report the test statistic, p-value, and a <span class="math inline">\(95\%\)</span> CI.</li>
+<li>Do a two-side two-sample t-test using re-sampling methods. Report the p-value and a <span class="math inline">\(95\%\)</span> CI.</li>
+<li>What do you conclude at an <span class="math inline">\(\alpha=0.05\)</span> level? Do you feel we should have used a more stringent <span class="math inline">\(\alpha\)</span> level?</li>
+</ol></li>
+<li><p>In the Lock5Data package, the dataset <code>StorySpoilers</code> is data from an experiment where the researchers are testing if a “spoiler” at the beginning of a short story negatively affects the enjoyment of the story. A set of <span class="math inline">\(n=12\)</span> stories were selected and a spoiler introduction was created. Each version of each story was read by at least <span class="math inline">\(30\)</span> people and rated. Reported are the average ratings for the spoiler and non-spoiler versions of each story. The following code creates the “long” version of the data.</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" title="1"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb85-2" title="2"><span class="kw">library</span>(tidyr)</a>
+<a class="sourceLine" id="cb85-3" title="3"><span class="kw">data</span>(StorySpoilers, <span class="dt">package=</span><span class="st">&#39;Lock5Data&#39;</span>)</a>
+<a class="sourceLine" id="cb85-4" title="4">StorySpoilers.Long &lt;-<span class="st"> </span>StorySpoilers <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb85-5" title="5"><span class="st">  </span><span class="kw">gather</span>(<span class="st">&#39;Type&#39;</span>, <span class="st">&#39;Rating&#39;</span>, Spoiler, Original) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb85-6" title="6"><span class="st">  </span><span class="kw">mutate</span>( <span class="dt">Story =</span> <span class="kw">factor</span>(Story),      <span class="co"># make Story and Type into</span></a>
+<a class="sourceLine" id="cb85-7" title="7">          <span class="dt">Type  =</span> <span class="kw">factor</span>(Type) ) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># categorical variables</span></a>
+<a class="sourceLine" id="cb85-8" title="8"><span class="st">  </span><span class="kw">arrange</span>(Story)</a></code></pre></div>
+<ol style="list-style-type: lower-alpha">
+<li>Based on the description, a 1-sided test is appropriate. Explain why.</li>
+<li>Graph the ratings for the original stories and the modified spoiler version. Comment on if you detect any difference in ratings between the two.</li>
+<li>Graph the difference in ratings for each story. Comment on if the distribution of the differences seems to suggest that a spoiler lowers the rating.</li>
+<li>Do a paired one-sided t-test using the asymptotic method. Also calculate a <span class="math inline">\(95\%\)</span> confidence interval.</li>
+<li>Do a paired one-sided t-test using the permutation method. Also calculate a <span class="math inline">\(95\%\)</span> confidence interval using the bootstrap.</li>
+<li>Based on your results in parts (d) and (e), what do you conclude?</li>
+</ol></li>
+<li><p>In the Lock5Data package, the dataset <code>Wetsuits</code> describes an experiment with the goal of quantifying the effect of wearing a wetsuit on the speed of swimming. (It is often debated among triathletes whether or not to wear a wetsuit when it is optional.) A set of <span class="math inline">\(n=12\)</span> swimmers and triathletes did a 1500 m swim in both the wetsuit and again in regular swimwear. The order in which they swam (wetsuit first or non-wetsuit first) was randomized for each participant. Reported is the maximum velocity during each swim.</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" title="1"><span class="co"># Code for creating the &quot;long&quot; version of the data</span></a>
+<a class="sourceLine" id="cb86-2" title="2"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb86-3" title="3"><span class="kw">library</span>(tidyr)</a>
+<a class="sourceLine" id="cb86-4" title="4"><span class="kw">data</span>(<span class="st">&#39;Wetsuits&#39;</span>, <span class="dt">package=</span><span class="st">&#39;Lock5Data&#39;</span>)</a>
+<a class="sourceLine" id="cb86-5" title="5">Wetsuits.Long &lt;-<span class="st"> </span>Wetsuits <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb86-6" title="6"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Participant =</span> <span class="kw">factor</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>) ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb86-7" title="7"><span class="st">  </span><span class="kw">gather</span>(<span class="st">&#39;Suit&#39;</span>, <span class="st">&#39;MaxVelocity&#39;</span>, Wetsuit,NoWetsuit) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb86-8" title="8"><span class="st">  </span><span class="kw">arrange</span>( Participant, Suit) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb86-9" title="9"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Suit =</span> <span class="kw">factor</span>(Suit))</a></code></pre></div>
+<ol style="list-style-type: lower-alpha">
+<li>Why did the researcher randomize which suit was worn first?</li>
+<li>Plot the velocities for the wetsuit and non-wetsuit for each participant. Comment on if you detect any difference in the means of these two distributions.</li>
+<li>Ignore the pairing and do a two-sided two-sample t-test using the asymptotic method. What would you conclude doing the t-test this way?</li>
+<li>Plot the difference in velocity for each swimmer. Comment on if the observed difference in velocity seems to indicate that which should be preferred (wetsuit or non-wetsuit).</li>
+<li>Do a paired two-sided t-test using the asymptotic method. Also calculate the 95% confidence interval. What do you conclude?</li>
+<li>Do a paired two-sided t-test using the permutation method. Also calculate the 95% confidence interval using the bootstrap method. What do you conclude?</li>
+</ol></li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="appendix-a-alternative-bootstrap-code.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"],
+"instapper": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/dereksonderegger/570_II/raw/master/07_Two_Samples.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

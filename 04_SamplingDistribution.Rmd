@@ -1,4 +1,4 @@
-# Sampling Distribution of $\bar{X}$
+# Sampling Distribution of $\bar{X}$ 
 
 ```{r, echo=FALSE}
 # Unattach any packages that happen to already be loaded. In general this is unecessary
@@ -18,16 +18,19 @@ knitr::opts_chunk$set( fig.height=3, cache=TRUE )
  
  
 ```{r, message=FALSE, warning=FALSE}
-# load the ggplot2 and dplyr packages... which I use constantly.
 library(ggplot2)
 library(dplyr)
+
+# Set default behavior of ggplot2 graphs to be black/white theme
+theme_set(theme_bw())
+
 # other packages I'll only use occasionally so instead of loading the
 # whole package, I'll just do packageName::functionName() when I use
 # the function.
 ```
 
 
-In the previous chapter, we used bootstrapping to estimate the sampling distribution of $\bar{X}$. We then used this bootstrap distribution to calculate a confidence interval for the population mean. We noticed that the sampling distribution of $\bar{X}$ almost always looked like a normal distribution. Prior to the advent of modern computing, statisticians used a theoretical approximation known as the Central Limit Theorem (CLT). Even today, statistical procedures based on the CLT are widely used and often perform as well as the corresponding re-sampling technique. In this chapter we'll lay the theoretical foundations for the CLT as well as introduce computation.
+In the previous chapter, we used bootstrapping to estimate the sampling distribution of $\bar{X}$. We then used this bootstrap distribution to calculate a confidence interval for the population mean. We noticed that the sampling distribution of $\bar{X}$ almost always looked like a normal distribution. Prior to the advent of modern computing, statisticians used a theoretical approximation known as the Central Limit Theorem (CLT). Even today, statistical procedures based on the CLT are widely used and often perform as the corresponding re-sampling technique. In this chapter we'll lay the theoretical foundations for the CLT as well as introduce computation
 
 ## Enlightening Example
 
@@ -52,6 +55,8 @@ mosaic::do(3) * {
   Sample.Data %>% summarise( xbar = mean(x) )
 }
 ```
+
+Now produce 10000 estimates from random samples of the population.
 
 ```{r}
 n <- 5
@@ -94,7 +99,7 @@ Proving these results is relatively straight forward and is done in almost all i
 
 ### Mean and Variance of the Sample Mean
 
-We have been talking about random variables drawn from a known distribution and being able to derive their expected values and variances. We now turn to the mean of a collection of random variables. Because sample values are random, any function of them is also random. So even though the act of calculating a mean is not a random process, the numbers that are feed into the algorithm are random. Thus the sample mean will change from sample to sample and we are interested in how it varies.
+We have been talking about random variables drawn from a known distribution and being able to derive their expected values and variances. We now turn to the mean of a collection of random variables. Because sample values are random, any function of them is also random. So even though the act of calculating a mean is not a random process, the numbers that are fed into the algorithm are random. Thus the sample mean will change from sample to sample and we are interested in how it varies.
 
 Using the rules we have just confirmed, it is easy to calculate the expectation and variance of the sample mean. Given a sample $X_{1},X_{2},\dots,X_{n}$ of observations where all the observations are independent of each other and all the observations have expectation $E\left[X_{i}\right]=\mu$ and variance $Var\left[X_{i}\right]=\sigma^{2}$ then 
 $$\begin{aligned}E\left[\bar{X}\right]	
@@ -114,19 +119,17 @@ $$\begin{aligned}E\left[\bar{X}\right]
 	&=	\frac{\sigma^{2}}{n}
 	\end{aligned}$$
 		
- Notice that the sample mean has the same expectation as the original distribution that the samples were pulled from, but it has a smaller variance! So the sample mean is an unbiased estimator of the population mean $\mu$
-  and the average distance of the sample mean to the population mean decreases as the sample size becomes larger. 
+ Notice that the sample mean has the same expectation as the original distribution that the samples were pulled from, but it has a smaller variance! So the sample mean is an unbiased estimator of the population mean $\mu$ and the average distance of the sample mean to the population mean decreases as the sample size becomes larger. 
 
 ## Distribution of $\bar{X}$
-  If the samples were drawn from a normal distribution
 
 If $X_{i}\stackrel{iid}{\sim}N\left(\mu,\sigma^{2}\right)$ then it is well known (and proven in most undergraduate probability classes) that $\bar{X}$ is also normally distributed with a mean and variance that were already established. That is
 $$\bar{X}\sim N\left(\mu_{\bar{X}}=\mu,\;\sigma_{\bar{X}}^{2}=\frac{\sigma^{2}}{n}\right)$$
  
 
-Notation: Because the expectations of $X$ and $\bar{X}$ are the same, I could drop the subscript for the expectation of $\bar{X}$ but it is sometimes helpful to be precise. Because the variances are different we will use $\sigma_{\bar{X}}$ to denote the standard deviation of $\bar{X}$ and $\sigma_{\bar{X}}^{2}$ to denote variance of $\bar{X}$. If there is no subscript, we are referring to the population parameter of the distribution from which we are taking the sample.
+Notation: Because the expectations of $X$ and $\bar{X}$ are the same, I could drop the subscript for the expectation of $\bar{X}$ but it is sometimes helpful to be precise. Because the variances are different we will use $\sigma_{\bar{X}}$ to denote the standard deviation of $\bar{X}$ and $\sigma_{\bar{X}}^{2}$ to denote variance of $\bar{X}$. If there is no subscript, we are referring to the population parameter of the distribution from which we taking the sample from.
 
-Exercise: A researcher measures the wingspan of a captured Mountain Plover three times. Assume that each of these $X_{i}$ measurements comes from a $N\left(\mu=6\textrm{ inches},\,\sigma^{2}=1^{2}\textrm{ inch}\right)$ distribution. 
+**Example:** A researcher measures the wingspan of a captured Mountain Plover three times. Assume that each of these $X_{i}$ measurements comes from a $N\left(\mu=6\textrm{ inches},\,\sigma^{2}=1\textrm{ inches}^2\right)$ distribution. 
 
 1. What is the probability that the first observation is greater than 7?
 $$\begin{aligned}P\left(X\ge7\right)	
@@ -148,7 +151,7 @@ $$\begin{aligned}P\left(\bar{X}\ge7\right)
 	\end{aligned}$$
  
 
-Example: Suppose that the weight of an adult black bear is normally distributed with standard deviation $\sigma=50$ pounds. How large a sample do I need to take to be $95\%$ certain that my sample mean is within $10$  pounds of the true mean $\mu$?
+**Example:** Suppose that the weight of an adult black bear is normally distributed with standard deviation $\sigma=50$ pounds. How large a sample do I need to take to be $95\%$ certain that my sample mean is within $10$  pounds of the true mean $\mu$?
 
 So we want $$\left|\bar{X}-\mu\right| \le 10$$ which we rewrite as $$-10	\le\bar{X}-\mu_{\bar{X}}\le	10$$
 		
@@ -193,9 +196,7 @@ So what does this mean?
 
 2. With sufficient data, the sample mean will have a known distribution and we can proceed as if the sample mean came from a normal distribution.
 
-Example: Suppose the waiting time from order to delivery at a fast-food restaurant is a exponential random variable with rate $\lambda=1/2$
-  minutes and so the expected wait time is $2$ minutes and the variance is $4$ minutes. What is the approximate probability that we observe a sample of size $n=40$
-  with a mean time greater than $2.5$ minutes?
+**Example:** Suppose the waiting time from order to delivery at a fast-food restaurant is an exponential random variable with rate $\lambda=1/2$ minutes and so the expected wait time is $2$ minutes and the variance is $4$ minutes. What is the approximate probability that we observe a sample of size $n=40$ with a mean time greater than $2.5$ minutes?
 
 $$\begin{aligned}P\left(\bar{X}\ge2.5\right)
   &=	P\left(\frac{\bar{X}-\mu_{\bar{X}}}{\sigma_{\bar{X}}}\ge\frac{2.5-\mu_{\bar{X}}}{\sigma_{\bar{X}}}\right) \\
@@ -223,8 +224,7 @@ $E\left(\bar{Y}\right)=\mu$. That states that the distribution of the sample mea
 
 $Var\left(\bar{Y}\right)=\frac{\sigma^{2}}{n}$. This states that as our sample size increases, we trust the sample mean to be close to $\mu$. The larger the sample size, the greater our expectation that the $\bar{Y}$ will be close to $\mu$.
 
-If $Y_{1},Y_{2},\dots,Y_{n}$ were sampled from a $N\left(\mu,\sigma^{2}\right)$ distribution then $\bar{Y}$
-  is normally distributed. 
+If $Y_{1},Y_{2},\dots,Y_{n}$ were sampled from a $N\left(\mu,\sigma^{2}\right)$ distribution then $\bar{Y}$ is normally distributed. 
   $$\bar{Y}	\sim	N\left(\mu_{\bar{Y}}=\mu,\;\;\sigma_{\bar{Y}}^{2}=\frac{\sigma^{2}}{n}\right)$$
  
 If $Y_{1},Y_{2},\dots,Y_{n}$ were sampled from a distribution that is _not_ normal but has mean $\mu$ and variance $\sigma^{2}$, and our sample size is large, then $\bar{Y}$ is _approximately_ normally distributed.

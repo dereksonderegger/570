@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Sampling Distribution of \(\overline{x}\) | Introduction to Statistical Methodology, Second Edition</title>
+  <meta name="description" content="Chapter 4 Sampling Distribution of \(\overline{x}\) | Introduction to Statistical Methodology, Second Edition" />
+  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Sampling Distribution of \(\overline{x}\) | Introduction to Statistical Methodology, Second Edition" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="dereksonderegger/570_II" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Sampling Distribution of \(\overline{x}\) | Introduction to Statistical Methodology, Second Edition" />
+  
+  
+  
+
+<meta name="author" content="Derek L. Sonderegger &amp; Robert Buscalia" />
+
+
+<meta name="date" content="2019-08-20" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="3-confidence-intervals-via-bootstrapping.html">
+<link rel="next" href="5-confidence-intervals-for-mu.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html"><i class="fa fa-check"></i><b>1</b> Summary Statistics and Graphing</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#graphical-summaries-of-data"><i class="fa fa-check"></i><b>1.1</b> Graphical summaries of data</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#univariate---categorical"><i class="fa fa-check"></i><b>1.1.1</b> Univariate - Categorical</a></li>
+<li class="chapter" data-level="1.1.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#univariate---continuous"><i class="fa fa-check"></i><b>1.1.2</b> Univariate - Continuous</a></li>
+<li class="chapter" data-level="1.1.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#bivariate---categorical-vs-continuous"><i class="fa fa-check"></i><b>1.1.3</b> Bivariate - Categorical vs Continuous</a></li>
+<li class="chapter" data-level="1.1.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#bivariate---continuous-vs-continuous"><i class="fa fa-check"></i><b>1.1.4</b> Bivariate - Continuous vs Continuous</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#measures-of-centrality"><i class="fa fa-check"></i><b>1.2</b> Measures of Centrality</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#mean"><i class="fa fa-check"></i><b>1.2.1</b> Mean</a></li>
+<li class="chapter" data-level="1.2.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#median"><i class="fa fa-check"></i><b>1.2.2</b> Median</a></li>
+<li class="chapter" data-level="1.2.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#mode"><i class="fa fa-check"></i><b>1.2.3</b> Mode</a></li>
+<li class="chapter" data-level="1.2.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#examples"><i class="fa fa-check"></i><b>1.2.4</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#measures-of-spread"><i class="fa fa-check"></i><b>1.3</b> Measures of Spread</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#range"><i class="fa fa-check"></i><b>1.3.1</b> Range</a></li>
+<li class="chapter" data-level="1.3.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#inter-quartile-range"><i class="fa fa-check"></i><b>1.3.2</b> Inter-Quartile Range</a></li>
+<li class="chapter" data-level="1.3.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#variance"><i class="fa fa-check"></i><b>1.3.3</b> Variance</a></li>
+<li class="chapter" data-level="1.3.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#standard-deviation"><i class="fa fa-check"></i><b>1.3.4</b> Standard Deviation</a></li>
+<li class="chapter" data-level="1.3.5" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#coefficient-of-variation"><i class="fa fa-check"></i><b>1.3.5</b> Coefficient of Variation</a></li>
+<li class="chapter" data-level="1.3.6" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#empirical-rule-of-thumb"><i class="fa fa-check"></i><b>1.3.6</b> Empirical Rule of Thumb</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#shape"><i class="fa fa-check"></i><b>1.4</b> Shape</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#symmetry"><i class="fa fa-check"></i><b>1.4.1</b> Symmetry</a></li>
+<li class="chapter" data-level="1.4.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#unimodal-or-multi-modal"><i class="fa fa-check"></i><b>1.4.2</b> Unimodal or Multi-modal</a></li>
+<li class="chapter" data-level="1.4.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#skew"><i class="fa fa-check"></i><b>1.4.3</b> Skew</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>1.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-probability.html"><a href="2-probability.html"><i class="fa fa-check"></i><b>2</b> Probability</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-probability.html"><a href="2-probability.html#introduction-to-set-theory"><i class="fa fa-check"></i><b>2.1</b> Introduction to Set Theory</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="2-probability.html"><a href="2-probability.html#composition-of-events"><i class="fa fa-check"></i><b>2.1.1</b> Composition of events</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2-probability.html"><a href="2-probability.html#probability-rules"><i class="fa fa-check"></i><b>2.2</b> Probability Rules</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="2-probability.html"><a href="2-probability.html#simple-rules"><i class="fa fa-check"></i><b>2.2.1</b> Simple Rules</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2-probability.html"><a href="2-probability.html#conditional-probability"><i class="fa fa-check"></i><b>2.2.2</b> Conditional Probability</a></li>
+<li class="chapter" data-level="2.2.3" data-path="2-probability.html"><a href="2-probability.html#summary-of-probability-rules"><i class="fa fa-check"></i><b>2.2.3</b> Summary of Probability Rules</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="2-probability.html"><a href="2-probability.html#discrete-random-variables"><i class="fa fa-check"></i><b>2.3</b> Discrete Random Variables</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="2-probability.html"><a href="2-probability.html#introduction-to-discrete-random-variables"><i class="fa fa-check"></i><b>2.3.1</b> Introduction to Discrete Random Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="2-probability.html"><a href="2-probability.html#common-discrete-distributions"><i class="fa fa-check"></i><b>2.4</b> Common Discrete Distributions</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="2-probability.html"><a href="2-probability.html#binomial-distribution"><i class="fa fa-check"></i><b>2.4.1</b> Binomial Distribution</a></li>
+<li class="chapter" data-level="2.4.2" data-path="2-probability.html"><a href="2-probability.html#poisson-distribution"><i class="fa fa-check"></i><b>2.4.2</b> Poisson Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="2-probability.html"><a href="2-probability.html#continuous-random-variables"><i class="fa fa-check"></i><b>2.5</b> Continuous Random Variables</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="2-probability.html"><a href="2-probability.html#uniform01-distribution"><i class="fa fa-check"></i><b>2.5.1</b> Uniform(0,1) Distribution</a></li>
+<li class="chapter" data-level="2.5.2" data-path="2-probability.html"><a href="2-probability.html#exponential-distribution"><i class="fa fa-check"></i><b>2.5.2</b> Exponential Distribution</a></li>
+<li class="chapter" data-level="2.5.3" data-path="2-probability.html"><a href="2-probability.html#normal-distribution"><i class="fa fa-check"></i><b>2.5.3</b> Normal Distribution</a></li>
+<li class="chapter" data-level="2.5.4" data-path="2-probability.html"><a href="2-probability.html#standardizing"><i class="fa fa-check"></i><b>2.5.4</b> Standardizing</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="2-probability.html"><a href="2-probability.html#exercises-1"><i class="fa fa-check"></i><b>2.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html"><i class="fa fa-check"></i><b>3</b> Confidence Intervals via Bootstrapping</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#theory-of-bootstrapping"><i class="fa fa-check"></i><b>3.1</b> Theory of Bootstrapping</a></li>
+<li class="chapter" data-level="3.2" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#quantile-based-confidence-intervals"><i class="fa fa-check"></i><b>3.2</b> Quantile-based Confidence Intervals</a></li>
+<li class="chapter" data-level="3.3" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#exercises-2"><i class="fa fa-check"></i><b>3.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-sampling-distribution-of-overlinex.html"><a href="4-sampling-distribution-of-overlinex.html"><i class="fa fa-check"></i><b>4</b> Sampling Distribution of <span class="math inline">\(\overline{x}\)</span></a><ul>
+<li class="chapter" data-level="4.1" data-path="4-sampling-distribution-of-overlinex.html"><a href="4-sampling-distribution-of-overlinex.html#enlightening-example"><i class="fa fa-check"></i><b>4.1</b> Enlightening Example</a></li>
+<li class="chapter" data-level="4.2" data-path="4-sampling-distribution-of-overlinex.html"><a href="4-sampling-distribution-of-overlinex.html#mathematical-details"><i class="fa fa-check"></i><b>4.2</b> Mathematical details</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="4-sampling-distribution-of-overlinex.html"><a href="4-sampling-distribution-of-overlinex.html#probability-rules-for-expectations-and-variances"><i class="fa fa-check"></i><b>4.2.1</b> Probability Rules for Expectations and Variances</a></li>
+<li class="chapter" data-level="4.2.2" data-path="4-sampling-distribution-of-overlinex.html"><a href="4-sampling-distribution-of-overlinex.html#mean-and-variance-of-the-sample-mean"><i class="fa fa-check"></i><b>4.2.2</b> Mean and Variance of the Sample Mean</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="4-sampling-distribution-of-overlinex.html"><a href="4-sampling-distribution-of-overlinex.html#distribution-of-barx"><i class="fa fa-check"></i><b>4.3</b> Distribution of <span class="math inline">\(\bar{X}\)</span></a></li>
+<li class="chapter" data-level="4.4" data-path="4-sampling-distribution-of-overlinex.html"><a href="4-sampling-distribution-of-overlinex.html#central-limit-theorem"><i class="fa fa-check"></i><b>4.4</b> Central Limit Theorem</a></li>
+<li class="chapter" data-level="4.5" data-path="4-sampling-distribution-of-overlinex.html"><a href="4-sampling-distribution-of-overlinex.html#exercises-3"><i class="fa fa-check"></i><b>4.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html"><i class="fa fa-check"></i><b>5</b> Confidence Intervals for <span class="math inline">\(\mu\)</span></a><ul>
+<li class="chapter" data-level="5.1" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#asymptotic-result-sigma-known"><i class="fa fa-check"></i><b>5.1</b> Asymptotic result (<span class="math inline">\(\sigma\)</span> known)</a></li>
+<li class="chapter" data-level="5.2" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#asymptotoic-result-sigma-unknown"><i class="fa fa-check"></i><b>5.2</b> Asymptotoic result (<span class="math inline">\(\sigma\)</span> unknown)</a></li>
+<li class="chapter" data-level="5.3" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#sample-size-selection"><i class="fa fa-check"></i><b>5.3</b> Sample Size Selection</a></li>
+<li class="chapter" data-level="5.4" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#exercises-4"><i class="fa fa-check"></i><b>5.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html"><i class="fa fa-check"></i><b>6</b> Hypothesis Tests for the mean of a population</a><ul>
+<li class="chapter" data-level="6.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#writing-hypotheses"><i class="fa fa-check"></i><b>6.1</b> Writing Hypotheses</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#null-and-alternative-hypotheses"><i class="fa fa-check"></i><b>6.1.1</b> Null and alternative hypotheses</a></li>
+<li class="chapter" data-level="6.1.2" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#error"><i class="fa fa-check"></i><b>6.1.2</b> Error</a></li>
+<li class="chapter" data-level="6.1.3" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#why-should-hypotheses-use-mu-and-not-barx"><i class="fa fa-check"></i><b>6.1.3</b> Why should hypotheses use <span class="math inline">\(\mu\)</span> and not <span class="math inline">\(\bar{x}\)</span>?</a></li>
+<li class="chapter" data-level="6.1.4" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#calculating-p-values"><i class="fa fa-check"></i><b>6.1.4</b> Calculating p-values</a></li>
+<li class="chapter" data-level="6.1.5" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#calculating-p-values-vs-cutoff-values"><i class="fa fa-check"></i><b>6.1.5</b> Calculating p-values vs cutoff values</a></li>
+<li class="chapter" data-level="6.1.6" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#t-tests-in-r"><i class="fa fa-check"></i><b>6.1.6</b> t-tests in R</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i><b>6.2</b> Type I and Type II Errors</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#power-and-sample-size-selection"><i class="fa fa-check"></i><b>6.2.1</b> Power and Sample Size Selection</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#exercises-5"><i class="fa fa-check"></i><b>6.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><i class="fa fa-check"></i><b>7</b> Two-Sample Hypothesis Tests and Confidence Intervals</a><ul>
+<li class="chapter" data-level="7.1" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#difference-in-means-between-two-groups"><i class="fa fa-check"></i><b>7.1</b> Difference in means between two groups</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#inference-via-resampling"><i class="fa fa-check"></i><b>7.1.1</b> Inference via resampling</a></li>
+<li class="chapter" data-level="7.1.2" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#inference-via-asymptotic-results-unequal-variance-assumption"><i class="fa fa-check"></i><b>7.1.2</b> Inference via asymptotic results (unequal variance assumption)</a></li>
+<li class="chapter" data-level="7.1.3" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#inference-via-asymptotic-results-equal-variance-assumption"><i class="fa fa-check"></i><b>7.1.3</b> Inference via asymptotic results (equal variance assumption)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#difference-in-means-between-two-groups-paired-data"><i class="fa fa-check"></i><b>7.2</b> Difference in means between two groups: Paired Data</a></li>
+<li class="chapter" data-level="7.3" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#exercises-6"><i class="fa fa-check"></i><b>7.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html"><i class="fa fa-check"></i><b>8</b> Testing Model Assumptions</a><ul>
+<li class="chapter" data-level="8.1" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#testing-normality"><i class="fa fa-check"></i><b>8.1</b> Testing Normality</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#visual-inspection---qqplots"><i class="fa fa-check"></i><b>8.1.1</b> Visual Inspection - QQplots</a></li>
+<li class="chapter" data-level="8.1.2" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#tests-for-normality"><i class="fa fa-check"></i><b>8.1.2</b> Tests for Normality</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#testing-equal-variance"><i class="fa fa-check"></i><b>8.2</b> Testing Equal Variance</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#visual-inspection"><i class="fa fa-check"></i><b>8.2.1</b> Visual Inspection</a></li>
+<li class="chapter" data-level="8.2.2" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#tests-for-equal-variance"><i class="fa fa-check"></i><b>8.2.2</b> Tests for Equal Variance</a></li>
+<li class="chapter" data-level="8.2.3" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#symmetry-of-the-f-distribution"><i class="fa fa-check"></i><b>8.2.3</b> Symmetry of the F-distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#power-of-the-f-test"><i class="fa fa-check"></i><b>8.3</b> Power of the F-test</a></li>
+<li class="chapter" data-level="8.4" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#theoretical-distribution-vs-bootstrap"><i class="fa fa-check"></i><b>8.4</b> Theoretical distribution vs bootstrap</a></li>
+<li class="chapter" data-level="8.5" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#exercises-7"><i class="fa fa-check"></i><b>8.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html"><i class="fa fa-check"></i><b>9</b> Analysis of Variance (ANOVA)</a><ul>
+<li class="chapter" data-level="9.1" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#model"><i class="fa fa-check"></i><b>9.1</b> Model</a></li>
+<li class="chapter" data-level="9.2" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#theory"><i class="fa fa-check"></i><b>9.2</b> Theory</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#anova-table"><i class="fa fa-check"></i><b>9.2.1</b> Anova Table</a></li>
+<li class="chapter" data-level="9.2.2" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#anova-using-simple-vs-complex-models."><i class="fa fa-check"></i><b>9.2.2</b> ANOVA using Simple vs Complex models.</a></li>
+<li class="chapter" data-level="9.2.3" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#parameter-estimates-and-confidence-intervals"><i class="fa fa-check"></i><b>9.2.3</b> Parameter Estimates and Confidence Intervals</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#anova-in-r"><i class="fa fa-check"></i><b>9.3</b> Anova in R</a></li>
+<li class="chapter" data-level="9.4" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#multiple-comparisons"><i class="fa fa-check"></i><b>9.4</b> Multiple comparisons</a></li>
+<li class="chapter" data-level="9.5" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#different-model-representations"><i class="fa fa-check"></i><b>9.5</b> Different Model Representations</a><ul>
+<li class="chapter" data-level="9.5.1" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#theory-1"><i class="fa fa-check"></i><b>9.5.1</b> Theory</a></li>
+<li class="chapter" data-level="9.5.2" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#model-representations-in-r"><i class="fa fa-check"></i><b>9.5.2</b> Model Representations in R</a></li>
+<li class="chapter" data-level="9.5.3" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#implications-on-the-anova-table"><i class="fa fa-check"></i><b>9.5.3</b> Implications on the ANOVA table</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#exercises-8"><i class="fa fa-check"></i><b>9.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="10-regression.html"><a href="10-regression.html"><i class="fa fa-check"></i><b>10</b> Regression</a><ul>
+<li class="chapter" data-level="10.1" data-path="10-regression.html"><a href="10-regression.html#pearsons-correlation-coefficient"><i class="fa fa-check"></i><b>10.1</b> Pearson’s Correlation Coefficient</a></li>
+<li class="chapter" data-level="10.2" data-path="10-regression.html"><a href="10-regression.html#model-theory"><i class="fa fa-check"></i><b>10.2</b> Model Theory</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="10-regression.html"><a href="10-regression.html#anova-interpretation"><i class="fa fa-check"></i><b>10.2.1</b> Anova Interpretation</a></li>
+<li class="chapter" data-level="10.2.2" data-path="10-regression.html"><a href="10-regression.html#confidence-intervals-vs-prediction-intervals"><i class="fa fa-check"></i><b>10.2.2</b> Confidence Intervals vs Prediction Intervals</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="10-regression.html"><a href="10-regression.html#extrapolation"><i class="fa fa-check"></i><b>10.3</b> Extrapolation</a></li>
+<li class="chapter" data-level="10.4" data-path="10-regression.html"><a href="10-regression.html#checking-model-assumptions"><i class="fa fa-check"></i><b>10.4</b> Checking Model Assumptions</a></li>
+<li class="chapter" data-level="10.5" data-path="10-regression.html"><a href="10-regression.html#common-problems"><i class="fa fa-check"></i><b>10.5</b> Common Problems</a><ul>
+<li class="chapter" data-level="10.5.1" data-path="10-regression.html"><a href="10-regression.html#influential-points"><i class="fa fa-check"></i><b>10.5.1</b> Influential Points</a></li>
+<li class="chapter" data-level="10.5.2" data-path="10-regression.html"><a href="10-regression.html#transformations"><i class="fa fa-check"></i><b>10.5.2</b> Transformations</a></li>
+</ul></li>
+<li class="chapter" data-level="10.6" data-path="10-regression.html"><a href="10-regression.html#exercises-9"><i class="fa fa-check"></i><b>10.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html"><i class="fa fa-check"></i><b>11</b> Resampling Linear Models</a><ul>
+<li class="chapter" data-level="11.1" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#using-lm-for-many-analyses"><i class="fa fa-check"></i><b>11.1</b> Using <code>lm()</code> for many analyses</a><ul>
+<li class="chapter" data-level="11.1.1" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#one-sample-t-tests"><i class="fa fa-check"></i><b>11.1.1</b> One-sample t-tests</a></li>
+<li class="chapter" data-level="11.1.2" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#two-sample-t-tests"><i class="fa fa-check"></i><b>11.1.2</b> Two-sample t-tests</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#creating-simulated-data"><i class="fa fa-check"></i><b>11.2</b> Creating Simulated Data</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#observational-studies-vs-designed-experiments"><i class="fa fa-check"></i><b>11.2.1</b> Observational Studies vs Designed Experiments</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#confidence-interval-types"><i class="fa fa-check"></i><b>11.3</b> Confidence Interval Types</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#normal-intervals"><i class="fa fa-check"></i><b>11.3.1</b> Normal intervals</a></li>
+<li class="chapter" data-level="11.3.2" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#percentile-intervals"><i class="fa fa-check"></i><b>11.3.2</b> Percentile intervals</a></li>
+<li class="chapter" data-level="11.3.3" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#basic-intervals"><i class="fa fa-check"></i><b>11.3.3</b> Basic intervals</a></li>
+<li class="chapter" data-level="11.3.4" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#towards-bias-corrected-and-accelerated-intervals-bca"><i class="fa fa-check"></i><b>11.3.4</b> Towards bias-corrected and accelerated intervals (BCa)</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#bootstrap-confidence-intervals-in-r"><i class="fa fa-check"></i><b>11.4</b> Bootstrap Confidence Intervals in R</a><ul>
+<li class="chapter" data-level="11.4.1" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#using-carboot-function"><i class="fa fa-check"></i><b>11.4.1</b> Using <code>car::Boot()</code> function</a></li>
+<li class="chapter" data-level="11.4.2" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#using-the-boot-package"><i class="fa fa-check"></i><b>11.4.2</b> Using the <code>boot</code> package</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#exercises-10"><i class="fa fa-check"></i><b>11.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html"><i class="fa fa-check"></i><b>12</b> Contingency Tables</a><ul>
+<li class="chapter" data-level="12.1" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html#expected-counts"><i class="fa fa-check"></i><b>12.1</b> Expected Counts</a></li>
+<li class="chapter" data-level="12.2" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html#hypothesis-testing"><i class="fa fa-check"></i><b>12.2</b> Hypothesis Testing</a></li>
+<li class="chapter" data-level="12.3" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html#rxc-tables"><i class="fa fa-check"></i><b>12.3</b> RxC tables</a></li>
+<li class="chapter" data-level="12.4" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html#exercises-11"><i class="fa fa-check"></i><b>12.4</b> Exercises</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Statistical Methodology, Second Edition</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="sampling-distribution-of-overlinex" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Sampling Distribution of <span class="math inline">\(\overline{x}\)</span></h1>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># load the ggplot2 and dplyr packages... which I use constantly.</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="co"># Set default behavior of ggplot2 graphs to be black/white theme</span></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="kw">theme_set</span>(<span class="kw">theme_bw</span>())</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="co"># other packages I&#39;ll only use occasionally so instead of loading the</span></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="co"># whole package, I&#39;ll just do packageName::functionName() when I use</span></a>
+<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="co"># the function.</span></a></code></pre></div>
+<p>In the previous chapter, we using bootstrapping to estimate the sampling distribution of <span class="math inline">\(\bar{X}\)</span>. We then used this bootstrap distribution to calculate a confidence interval for the population mean. We noticed that the sampling distribution of <span class="math inline">\(\bar{X}\)</span> almost always looked like a normal distribution. Prior to the advent of modern computing, statisticians used a theoretical approximation known as the Central Limit Theorem (CLT). Even today, statistical procedures based on the CLT are widely used and often perform as the corresponding re-sampling technique. In this chapter we’ll lay the theoretical foundations for the CLT as well as introduce computation</p>
+<div id="enlightening-example" class="section level2">
+<h2><span class="header-section-number">4.1</span> Enlightening Example</h2>
+<p>Suppose we are sampling from a population that has a mean of <span class="math inline">\(\mu=5\)</span> and is skewed. For this example, I’ll use a Chi-squared distribution with parameter <span class="math inline">\(\nu=5\)</span>.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># Population is a Chi-sq distribution with df=5 </span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">PopDist &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">20</span>,<span class="dt">length=</span><span class="dv">10000</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">density=</span><span class="kw">dchisq</span>(x,<span class="dt">df=</span><span class="dv">5</span>))</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="kw">ggplot</span>(PopDist, <span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>density)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="st">  </span><span class="kw">geom_area</span>(<span class="dt">fill=</span><span class="st">&#39;salmon&#39;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&#39;Population Distribution&#39;</span>)</a></code></pre></div>
+<p><img src="04_SamplingDistribution_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>We want to estimate the mean <span class="math inline">\(\mu\)</span> and take a random sample of <span class="math inline">\(n=5\)</span>. Lets do this a few times and notice that the sample mean is never exactly 5, but is a bit off from that.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">n &lt;-<span class="st"> </span><span class="dv">5</span>  <span class="co"># Our Sample Size!</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">3</span>) <span class="op">*</span><span class="st"> </span>{</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">  Sample.Data &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">x =</span> <span class="kw">rchisq</span>(n,<span class="dt">df=</span><span class="dv">5</span>) )</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">  Sample.Data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>( <span class="dt">xbar =</span> <span class="kw">mean</span>(x) )</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">}</a></code></pre></div>
+<pre><code>##       xbar
+## 1 4.327771
+## 2 7.053190
+## 3 4.878844</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">n &lt;-<span class="st"> </span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">SampDist &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">10000</span>) <span class="op">*</span><span class="st"> </span>{</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">  Sample.Data &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">x =</span> <span class="kw">rchisq</span>(n,<span class="dt">df=</span><span class="dv">5</span>) )</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">  Sample.Data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>( <span class="dt">xbar =</span> <span class="kw">mean</span>(x)     ) </a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">}</a></code></pre></div>
+<p>We will compare the population distribution to the sampling distribution graphically.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">ggplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_area</span>(<span class="dt">data=</span>PopDist, <span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>density), <span class="dt">fill=</span><span class="st">&#39;salmon&#39;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">data=</span>SampDist, <span class="kw">aes</span>(<span class="dt">x=</span>xbar, <span class="dt">y=</span>..density..),</a>
+<a class="sourceLine" id="cb6-4" data-line-number="4">                  <span class="dt">binwidth=</span>.<span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb6-5" data-line-number="5">                  <span class="dt">alpha=</span>.<span class="dv">6</span>)     <span class="co"># alpha is the opacity of the layer</span></a></code></pre></div>
+<p><img src="04_SamplingDistribution_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>From the histogram of the sample means, we notice three things:</p>
+<ul>
+<li>The sampling distribution of <span class="math inline">\(\bar{X}\)</span> is centered at the population mean <span class="math inline">\(\mu\)</span>.</li>
+<li>The sampling distribution of <span class="math inline">\(\bar{X}\)</span> has less spread than the population distribution.</li>
+<li>The sampling distribution of <span class="math inline">\(\bar{X}\)</span> is less skewed than the population distribution.</li>
+</ul>
+</div>
+<div id="mathematical-details" class="section level2">
+<h2><span class="header-section-number">4.2</span> Mathematical details</h2>
+<div id="probability-rules-for-expectations-and-variances" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> Probability Rules for Expectations and Variances</h3>
+<p>Claim: For random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> and constant <span class="math inline">\(a\)</span> the following statements hold:
+<span class="math display">\[E\left(aX\right)  =   aE\left(X\right)\]</span>
+<span class="math display">\[Var\left(aX\right)    =   a^{2}Var\left(X\right)\]</span>
+<span class="math display">\[E\left(X+Y\right) =   E\left(X\right)+E\left(Y\right)\]</span>
+<span class="math display">\[E\left(X-Y\right) =   E\left(X\right)-E\left(Y\right)\]</span>
+<span class="math display">\[Var\left(X\pm Y\right)    =   Var\left(X\right)+Var\left(Y\right)\;\textrm{if X,Y are independent}\]</span></p>
+<p>Proving these results is relatively straight forward and is done in almost all introductory probability text books.</p>
+</div>
+<div id="mean-and-variance-of-the-sample-mean" class="section level3">
+<h3><span class="header-section-number">4.2.2</span> Mean and Variance of the Sample Mean</h3>
+<p>We have been talking about random variables drawn from a known distribution and being able to derive their expected values and variances. We now turn to the mean of a collection of random variables. Because sample values are random, any function of them is also random. So even though the act of calculating a mean is not a random process, the numbers that are feed into the algorithm are random. Thus the sample mean will change from sample to sample and we are interested in how it varies.</p>
+<p>Using the rules we have just confirmed, it is easy to calculate the expectation and variance of the sample mean. Given a sample <span class="math inline">\(X_{1},X_{2},\dots,X_{n}\)</span> of observations where all the observations are independent of each other and all the observations have expectation <span class="math inline">\(E\left[X_{i}\right]=\mu\)</span> and variance <span class="math inline">\(Var\left[X_{i}\right]=\sigma^{2}\)</span> then
+<span class="math display">\[\begin{aligned}E\left[\bar{X}\right]  
+  &amp;=    E\left[\frac{1}{n}\sum_{i=1}^{n}X_{i}\right] \\
+    &amp;=  \frac{1}{n}E\left[\sum_{i=1}^{n}X_{i}\right] \\
+    &amp;=  \frac{1}{n}\sum_{i=1}^{n}E\left[X_{i}\right] \\
+    &amp;=  \frac{1}{n}\sum_{i=1}^{n}\mu                 \\
+    &amp;=  \frac{1}{n}\,n\mu                            \\
+    &amp;=  \mu\end{aligned}\]</span>
+and
+<span class="math display">\[\begin{aligned} Var\left[\bar{X}\right]                 
+  &amp;=    Var\left[\frac{1}{n}\sum_{i=1}^{n}X_{i}\right]       \\
+    &amp;=  \frac{1}{n^{2}}Var\left[\sum_{i=1}^{n}X_{i}\right]   \\
+    &amp;=  \frac{1}{n^{2}}\sum_{i=1}^{n}Var\left[X_{i}\right]   \\
+    &amp;=  \frac{1}{n^{2}}\sum_{i=1}^{n}\sigma^{2}              \\
+    &amp;=  \frac{1}{n^{2}}\,n\sigma^{2}                         \\
+    &amp;=  \frac{\sigma^{2}}{n}
+    \end{aligned}\]</span></p>
+<p>Notice that the sample mean has the same expectation as the original distribution that the samples were pulled from, but it has a smaller variance! So the sample mean is an unbiased estimator of the population mean <span class="math inline">\(\mu\)</span>
+and the average distance of the sample mean to the population mean decreases as the sample size becomes larger.</p>
+</div>
+</div>
+<div id="distribution-of-barx" class="section level2">
+<h2><span class="header-section-number">4.3</span> Distribution of <span class="math inline">\(\bar{X}\)</span></h2>
+<p>If the samples were drawn from a normal distribution</p>
+<p>If <span class="math inline">\(X_{i}\stackrel{iid}{\sim}N\left(\mu,\sigma^{2}\right)\)</span> then it is well known (and proven in most undergraduate probability classes) that <span class="math inline">\(\bar{X}\)</span> is also normally distributed with a mean and variance that were already established. That is
+<span class="math display">\[\bar{X}\sim N\left(\mu_{\bar{X}}=\mu,\;\sigma_{\bar{X}}^{2}=\frac{\sigma^{2}}{n}\right)\]</span></p>
+<p>Notation: Because the expectations of <span class="math inline">\(X\)</span> and <span class="math inline">\(\bar{X}\)</span> are the same, I could drop the subscript for the expectation of <span class="math inline">\(\bar{X}\)</span> but it is sometimes helpful to be precise. Because the variances are different we will use <span class="math inline">\(\sigma_{\bar{X}}\)</span> to denote the standard deviation of <span class="math inline">\(\bar{X}\)</span> and <span class="math inline">\(\sigma_{\bar{X}}^{2}\)</span> to denote variance of <span class="math inline">\(\bar{X}\)</span>. If there is no subscript, we are referring to the population parameter of the distribution from which we taking the sample from.</p>
+<p>Exercise: A researcher measures the wingspan of a captured Mountain Plover three times. Assume that each of these <span class="math inline">\(X_{i}\)</span> measurements comes from a <span class="math inline">\(N\left(\mu=6\textrm{ inches},\,\sigma^{2}=1^{2}\textrm{ inch}\right)\)</span> distribution.</p>
+<ol style="list-style-type: decimal">
+<li><p>What is the probability that the first observation is greater than 7?
+<span class="math display">\[\begin{aligned}P\left(X\ge7\right)    
+  &amp;=    P\left(\frac{X-\mu}{\sigma}\ge\frac{7-6}{1}\right)  \\
+ &amp;=  P\left(Z\ge1\right)                                 \\
+ &amp;=  0.1587
+  \end{aligned}\]</span></p></li>
+<li><p>What is the distribution of the sample mean?
+<span class="math display">\[\bar{X}\sim N\left(\mu_{\bar{X}}=6,\,\;\sigma_{\bar{X}}^{2}=\frac{1^{2}}{3}\right)\]</span></p></li>
+<li><p>What is the probability that the sample mean is greater than 7?
+<span class="math display">\[\begin{aligned}P\left(\bar{X}\ge7\right)                                                     
+  &amp;=    P\left(\frac{\bar{X}-\mu_{\bar{X}}}{\sigma_{\bar{X}}}\ge\frac{7-6}{\sqrt{\frac{1}{3}}}\right)  \\
+ &amp;=  P\left(Z\ge\sqrt{3}\right)    \\
+ &amp;=  P\left(Z\ge1.73\right) \\
+ &amp;=  0.0418
+ \end{aligned}\]</span></p></li>
+</ol>
+<p>Example: Suppose that the weight of an adult black bear is normally distributed with standard deviation <span class="math inline">\(\sigma=50\)</span> pounds. How large a sample do I need to take to be <span class="math inline">\(95\%\)</span> certain that my sample mean is within <span class="math inline">\(10\)</span> pounds of the true mean <span class="math inline">\(\mu\)</span>?</p>
+<p>So we want <span class="math display">\[\left|\bar{X}-\mu\right| \le 10\]</span> which we rewrite as <span class="math display">\[-10    \le\bar{X}-\mu_{\bar{X}}\le 10\]</span></p>
+<p><span class="math display">\[\frac{-10}{\left(\frac{50}{\sqrt{n}}\right)}  \le\frac{\bar{X}-\mu_{\bar{X}}}{\sigma_{\bar{X}}}\le    \frac{10}{\left(\frac{50}{\sqrt{n}}\right)}\]</span></p>
+<p><span class="math display">\[\frac{-10}{\left(\frac{50}{\sqrt{n}}\right)}  \le Z\le    \frac{10}{\left(\frac{50}{\sqrt{n}}\right)}\]</span></p>
+<p>Next we look in our standard normal table to find a <span class="math inline">\(z\)</span>-value such that <span class="math inline">\(P\left(-z\le Z\le z\right)=0.95\)</span> and that value is <span class="math inline">\(z=1.96\)</span>.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">data &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">z=</span> <span class="kw">seq</span>(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="dt">length=</span><span class="dv">1000</span>) ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>( <span class="dt">y =</span> <span class="kw">dnorm</span>(z) )</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x=</span>z, <span class="dt">y=</span>y)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_area</span>( <span class="dt">data =</span> data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="kw">abs</span>(z) <span class="op">&lt;=</span><span class="st"> </span><span class="fl">1.96</span>), <span class="dt">fill=</span><span class="st">&#39;grey&#39;</span>, <span class="dt">alpha=</span>.<span class="dv">7</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb7-6" data-line-number="6"><span class="st">  </span><span class="kw">geom_text</span>( <span class="dt">x=</span><span class="dv">0</span>, <span class="dt">y=</span>.<span class="dv">2</span>, <span class="dt">label=</span><span class="st">&#39;95%&#39;</span>)</a></code></pre></div>
+<p><img src="04_SamplingDistribution_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>So all we need to do is solve the following equation for <span class="math inline">\(n\)</span>
+<span class="math display">\[1.96  =   \frac{10}{ \left( \frac{50}{\sqrt{n}} \right) }\]</span>
+<span class="math display">\[\frac{1.96}{10}\left(50\right)    =   \sqrt{n}\]</span>
+<span class="math display">\[96    \approx n\]</span></p>
+</div>
+<div id="central-limit-theorem" class="section level2">
+<h2><span class="header-section-number">4.4</span> Central Limit Theorem</h2>
+<blockquote>
+<p>I know of scarcely anything so apt to impress the imagination as the wonderful form of cosmic order expressed by the “Law of Frequency of Error”. The law would have been personified by the Greeks and deified, if they had known of it. It reigns with serenity and in complete self-effacement, amidst the wildest confusion. The huger the mob, and the greater the apparent anarchy, the more perfect is its sway. It is the supreme law of Unreason. Whenever a large sample of chaotic elements are taken in hand and marshaled in the order of their magnitude, an unsuspected and most beautiful form of regularity proves to have been latent all along. - Sir Francis Galton (1822-1911)</p>
+</blockquote>
+<p>It was not surprising that the average of a number of normal random variables is also a normal random variable. Because the average of a number of binomial random variables cannot be binomial since the average could be something besides a <span class="math inline">\(0\)</span> or <span class="math inline">\(1\)</span> and the average of Poisson random variables does not have to be an integer. The question arises, what can we say the distribution of the sample mean if the data comes from a non-normal distribution? The answer is quite a lot! Provided the distribution sample from has a non-infinite variance and we have a sufficient sample size.</p>
+<p><strong>Central Limit Theorem</strong></p>
+<p>Let <span class="math inline">\(X_{1},\dots X_{n}\)</span> be independent observations collected from a distribution with expectation <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^{2}\)</span>. Then the distribution of <span class="math inline">\(\bar{X}\)</span> converges to a normal distribution with expectation <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^{2}/n\)</span> as <span class="math inline">\(n\rightarrow\infty\)</span>.</p>
+<p>In practice this means that if <span class="math inline">\(n\)</span> is large (usually <span class="math inline">\(n&gt;30\)</span> is sufficient), then <span class="math display">\[\bar{X}\stackrel{\cdot}{\sim}N\left(\mu_{\bar{X}}=\mu,\,\,\,\sigma_{\bar{X}}^{2}=\frac{\sigma^{2}}{n}\right)\]</span></p>
+<p>So what does this mean?</p>
+<ol style="list-style-type: decimal">
+<li><p>Variables that are the sum or average of a bunch of other random variables will be close to normal. Example: human height is determined by genetics, prenatal nutrition, food abundance during adolescence, etc. Similar reasoning explains why the normal distribution shows up surprisingly often in natural science.</p></li>
+<li><p>With sufficient data, the sample mean will have a known distribution and we can proceed as if the sample mean came from a normal distribution.</p></li>
+</ol>
+<p>Example: Suppose the waiting time from order to delivery at a fast-food restaurant is a exponential random variable with rate <span class="math inline">\(\lambda=1/2\)</span>
+minutes and so the expected wait time is <span class="math inline">\(2\)</span> minutes and the variance is <span class="math inline">\(4\)</span> minutes. What is the approximate probability that we observe a sample of size <span class="math inline">\(n=40\)</span>
+with a mean time greater than <span class="math inline">\(2.5\)</span> minutes?</p>
+<p><span class="math display">\[\begin{aligned}P\left(\bar{X}\ge2.5\right)
+  &amp;=    P\left(\frac{\bar{X}-\mu_{\bar{X}}}{\sigma_{\bar{X}}}\ge\frac{2.5-\mu_{\bar{X}}}{\sigma_{\bar{X}}}\right) \\
+    &amp;\approx    P\left(Z\ge\frac{2.5-2}{\frac{2}{\sqrt{40}}}\right) \\
+    &amp;=  P\left(Z\ge1.58\right) \\
+    &amp;=  0.0571 \end{aligned}\]</span></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="co"># Answer obtained via simulation</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">SampDist &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">10000</span>) <span class="op">*</span>{                     <span class="co"># make 10,000</span></a>
+<a class="sourceLine" id="cb8-3" data-line-number="3">  Sample &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">x=</span> <span class="kw">rexp</span>(<span class="dt">n=</span><span class="dv">40</span>, <span class="dt">rate=</span><span class="dv">1</span><span class="op">/</span><span class="dv">2</span> ) )   <span class="co"># simulated xbar </span></a>
+<a class="sourceLine" id="cb8-4" data-line-number="4">  Sample <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>( <span class="dt">xbar =</span> <span class="kw">mean</span>( x )         )   <span class="co"># values</span></a>
+<a class="sourceLine" id="cb8-5" data-line-number="5">}</a>
+<a class="sourceLine" id="cb8-6" data-line-number="6">SampDist <span class="op">%&gt;%</span><span class="st">                                         </span><span class="co"># What proportion of those</span></a>
+<a class="sourceLine" id="cb8-7" data-line-number="7"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Greater =</span> <span class="kw">ifelse</span>(xbar <span class="op">&gt;=</span><span class="st"> </span><span class="fl">2.5</span>, <span class="dv">1</span>, <span class="dv">0</span>)) <span class="op">%&gt;%</span><span class="st">    </span><span class="co"># xbar values are</span></a>
+<a class="sourceLine" id="cb8-8" data-line-number="8"><span class="st">  </span><span class="kw">summarise</span>( <span class="dt">ProportionGreater =</span> <span class="kw">mean</span>(Greater) )     <span class="co"># greater than 2.5?</span></a></code></pre></div>
+<pre><code>##   ProportionGreater
+## 1            0.0621</code></pre>
+<p><strong>Summary</strong></p>
+<p>Often we have sampled <span class="math inline">\(n\)</span> elements from some population <span class="math inline">\(Y_{1},Y_{2},\dots,Y_{n}\)</span> independently and <span class="math inline">\(E\left(Y_{i}\right)=\mu\)</span> and <span class="math inline">\(Var\left(Y_{i}\right)=\sigma^{2}\)</span> and we want to understand the distribution of the sample mean, that is we want to understand how the sample mean varies from sample to sample.</p>
+<p><span class="math inline">\(E\left(\bar{Y}\right)=\mu\)</span>. That states that the distribution of the sample mean will centered at <span class="math inline">\(\mu\)</span>. We expect to sometimes take samples where the sample mean is higher than <span class="math inline">\(\mu\)</span> and sometimes less than <span class="math inline">\(\mu\)</span>, but the average underestimate is the same magnitude as the average overestimate.</p>
+<p><span class="math inline">\(Var\left(\bar{Y}\right)=\frac{\sigma^{2}}{n}\)</span>. This states that as our sample size increases, we trust the sample mean to be close to <span class="math inline">\(\mu\)</span>. The larger the sample size, the greater our expectation that the <span class="math inline">\(\bar{Y}\)</span> will be close to <span class="math inline">\(\mu\)</span>.</p>
+<p>If <span class="math inline">\(Y_{1},Y_{2},\dots,Y_{n}\)</span> were sampled from a <span class="math inline">\(N\left(\mu,\sigma^{2}\right)\)</span> distribution then <span class="math inline">\(\bar{Y}\)</span>
+is normally distributed.
+<span class="math display">\[\bar{Y} \sim    N\left(\mu_{\bar{Y}}=\mu,\;\;\sigma_{\bar{Y}}^{2}=\frac{\sigma^{2}}{n}\right)\]</span></p>
+<p>If <span class="math inline">\(Y_{1},Y_{2},\dots,Y_{n}\)</span> were sampled from a distribution that is <em>not</em> normal but has mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^{2}\)</span>, and our sample size is large, then <span class="math inline">\(\bar{Y}\)</span> is <em>approximately</em> normally distributed.
+<span class="math display">\[\bar{Y}   \stackrel{\cdot}{\sim}  N\left(\mu_{\bar{Y}}=\mu,\;\;\sigma_{\bar{Y}}^{2}=\frac{\sigma^{2}}{n}\right)\]</span></p>
+</div>
+<div id="exercises-3" class="section level2">
+<h2><span class="header-section-number">4.5</span> Exercises</h2>
+<ol style="list-style-type: decimal">
+<li>Suppose that the amount of fluid in a small can of soda can be well approximated by a Normal distribution. Let <span class="math inline">\(X\)</span> be the amount of soda (in milliliters) in a single can and <span class="math inline">\(X\sim N\left(\mu=222,\;\sigma=5\right)\)</span>.
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(P\left(X&gt;230\right)=\)</span></li>
+<li>Suppose we take a random sample of 6 cans such that the six cans are independent. What is the expected value of the mean of those six cans? In other words, what is <span class="math inline">\(E\left(\bar{X}\right)\)</span>?</li>
+<li>What is <span class="math inline">\(Var\left(\bar{X}\right)\)</span>? (Recall we denote this as <span class="math inline">\(\sigma_{\bar{X}}^{2}\)</span>)</li>
+<li>What is the standard deviation of <span class="math inline">\(\bar{X}\)</span>? (Recall we denote this as <span class="math inline">\(\sigma_{\bar{X}}\)</span>)</li>
+<li>What is the probability that the sample mean will be greater than 230 ml? That is, find <span class="math inline">\(P\left(\bar{X}&gt;230\right)\)</span>.</li>
+</ol></li>
+<li>Suppose that the number of minutes that I spend waiting for my order at Big Foot BBQ can be well approximated by a Normal distribution with mean <span class="math inline">\(\mu=10\)</span> minutes and standard deviation <span class="math inline">\(\sigma=1.5\)</span> minutes.
+<ol style="list-style-type: lower-alpha">
+<li>Tonight I am planning on going to Big Foot BBQ. What is the probability I have to wait less than 9 minutes?</li>
+<li>Over the next month, I’ll visit Big Foot BBQ 5 times. What is the probability that the mean waiting time of those 5 visits is less than 9 minutes? (This assumes independence of visits but because I don’t hit the same restaurant the same night each week, this assumption is probably OK.)</li>
+</ol></li>
+<li>Suppose that we have a population with the following distribution that has mean <span class="math inline">\(\mu=5.2\)</span> and standard deviation <span class="math inline">\(\sigma=3.0\)</span>:
+<img src="04_SamplingDistribution_files/figure-html/Ch3_HistogramMatching-1.png" width="672" />
+<ol style="list-style-type: lower-alpha">
+<li>Which of the histograms would most likely represent the distribution of the sample mean <span class="math inline">\(\bar{x}\)</span> of <span class="math inline">\(n=4\)</span> observations?<br />
+</li>
+<li>Which of the histograms would most likely represent the distribution of the sample mean <span class="math inline">\(\bar{x}\)</span> of <span class="math inline">\(n=30\)</span> observations?</li>
+<li>Justify your choices in parts (a) and (b).</li>
+</ol></li>
+<li>A bottling company uses a machine to fill bottles with a tasty beverage. The bottles are advertised to contain 300 milliliters (ml), but in reality the amount varies according to a normal distribution with mean <span class="math inline">\(\mu=298\)</span> ml and standard deviation <span class="math inline">\(\sigma=3\)</span> ml. (For this problem, we’ll assume <span class="math inline">\(\sigma\)</span> is known and carry out the calculations accordingly).
+<ol style="list-style-type: lower-alpha">
+<li>What is the probability that a randomly chosen bottle contains less than 296 ml?</li>
+<li>Given a simple random sample of size <span class="math inline">\(n=6\)</span> bottles, what is the probability that the sample mean is less than <span class="math inline">\(296\)</span> ml?</li>
+<li>What is the probability that a single bottle is filled within <span class="math inline">\(1\)</span> ml of the true mean <span class="math inline">\(\mu=298\)</span> ml? <em>Hint: Draw the distribution and shade in what probability you want… then convert that to a question about standard normals. To find the answer using a table or R, you need to look up two values and perform a subtraction.</em></li>
+<li>What is the probability that the mean of <span class="math inline">\(10\)</span> randomly selected bottles is within <span class="math inline">\(1\)</span> ml of the mean? What about the mean of a sample of <span class="math inline">\(n=100\)</span> bottles?</li>
+<li>If a sample of size <span class="math inline">\(n=50\)</span> has a sample mean of <span class="math inline">\(\bar{x}=298\)</span>, should this be evidence that the filling machine is out of calibration? i.e., assuming the machine has a mean fill amount of <span class="math inline">\(\mu=300\)</span> and <span class="math inline">\(\sigma=3\)</span>, what is <span class="math inline">\(P\left(\bar{X}\le298\right)\)</span>?</li>
+</ol></li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="3-confidence-intervals-via-bootstrapping.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="5-confidence-intervals-for-mu.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"],
+"instapper": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/dereksonderegger/570_II/raw/master/04_SamplingDistribution.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

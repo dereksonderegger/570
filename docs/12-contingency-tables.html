@@ -1,45 +1,46 @@
 <!DOCTYPE html>
-<html >
-
+<html lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Introduction to Statistical Methodology</title>
-  <meta name="description" content="Introduction to Statistical Methodology">
-  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 12 Contingency Tables | Introduction to Statistical Methodology, Second Edition</title>
+  <meta name="description" content="Chapter 12 Contingency Tables | Introduction to Statistical Methodology, Second Edition" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Introduction to Statistical Methodology" />
+  <meta property="og:title" content="Chapter 12 Contingency Tables | Introduction to Statistical Methodology, Second Edition" />
   <meta property="og:type" content="book" />
   
   
   
-  <meta name="github-repo" content="dereksonderegger/STA_570_Book" />
+  <meta name="github-repo" content="dereksonderegger/570" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Introduction to Statistical Methodology" />
+  <meta name="twitter:title" content="Chapter 12 Contingency Tables | Introduction to Statistical Methodology, Second Edition" />
   
   
   
 
-<meta name="author" content="Derek L. Sonderegger">
+<meta name="author" content="Derek L. Sonderegger &amp; Robert Buscaglia" />
 
 
-<meta name="date" content="2018-01-17">
+<meta name="date" content="2020-07-14" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="11-resampling-linear-models.html">
-
+<link rel="prev" href="11-resampling-linear-models.html"/>
+<link rel="next" href="appendix-a-alternative-bootstrap-code.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
 
 
 
@@ -47,44 +48,74 @@
 
 
 
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -100,34 +131,43 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="https://dereksonderegger.github.io/570/Statistical_Methods_I.pdf" target="blank">PDF version</a></li>
-
-<li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html"><i class="fa fa-check"></i><b>1</b> Summary Statistics and Graphing</a><ul>
-<li class="chapter" data-level="1.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#graphical-summaries-of-data"><i class="fa fa-check"></i><b>1.1</b> Graphical summaries of data</a><ul>
-<li class="chapter" data-level="1.1.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#univariate---categorical"><i class="fa fa-check"></i><b>1.1.1</b> Univariate - Categorical</a></li>
-<li class="chapter" data-level="1.1.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#univariate---continuous"><i class="fa fa-check"></i><b>1.1.2</b> Univariate - Continuous</a></li>
-<li class="chapter" data-level="1.1.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#bivariate---categorical-vs-continuous"><i class="fa fa-check"></i><b>1.1.3</b> Bivariate - Categorical vs Continuous</a></li>
-<li class="chapter" data-level="1.1.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#bivariate---continuous-vs-continuous"><i class="fa fa-check"></i><b>1.1.4</b> Bivariate - Continuous vs Continuous</a></li>
+<li class="chapter" data-level="1.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#variable-types"><i class="fa fa-check"></i><b>1.1</b> Variable Types</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#categorical"><i class="fa fa-check"></i><b>1.1.1</b> Categorical</a></li>
+<li class="chapter" data-level="1.1.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#numerical"><i class="fa fa-check"></i><b>1.1.2</b> Numerical</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#measures-of-centrality"><i class="fa fa-check"></i><b>1.2</b> Measures of Centrality</a><ul>
-<li class="chapter" data-level="1.2.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#mean"><i class="fa fa-check"></i><b>1.2.1</b> Mean</a></li>
-<li class="chapter" data-level="1.2.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#median"><i class="fa fa-check"></i><b>1.2.2</b> Median</a></li>
-<li class="chapter" data-level="1.2.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#mode"><i class="fa fa-check"></i><b>1.2.3</b> Mode</a></li>
-<li class="chapter" data-level="1.2.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#examples"><i class="fa fa-check"></i><b>1.2.4</b> Examples</a></li>
+<li class="chapter" data-level="1.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#randomization-and-sampling"><i class="fa fa-check"></i><b>1.2</b> Randomization and Sampling</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#sampling-techniques"><i class="fa fa-check"></i><b>1.2.1</b> Sampling Techniques</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#measures-of-variation"><i class="fa fa-check"></i><b>1.3</b> Measures of Variation</a><ul>
-<li class="chapter" data-level="1.3.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#range"><i class="fa fa-check"></i><b>1.3.1</b> Range</a></li>
-<li class="chapter" data-level="1.3.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#inter-quartile-range"><i class="fa fa-check"></i><b>1.3.2</b> Inter-Quartile Range</a></li>
-<li class="chapter" data-level="1.3.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#variance"><i class="fa fa-check"></i><b>1.3.3</b> Variance</a></li>
-<li class="chapter" data-level="1.3.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#standard-deviation"><i class="fa fa-check"></i><b>1.3.4</b> Standard Deviation</a></li>
-<li class="chapter" data-level="1.3.5" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#coefficient-of-variation"><i class="fa fa-check"></i><b>1.3.5</b> Coefficient of Variation</a></li>
-<li class="chapter" data-level="1.3.6" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#empirical-rule-of-thumb"><i class="fa fa-check"></i><b>1.3.6</b> Empirical Rule of Thumb</a></li>
+<li class="chapter" data-level="1.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#graphical-summaries"><i class="fa fa-check"></i><b>1.3</b> Graphical Summaries</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#barchartsbarplots-univariate---categorical"><i class="fa fa-check"></i><b>1.3.1</b> Barcharts/Barplots (Univariate - Categorical)</a></li>
+<li class="chapter" data-level="1.3.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#histogram-univariate---numerical"><i class="fa fa-check"></i><b>1.3.2</b> Histogram (Univariate - Numerical)</a></li>
+<li class="chapter" data-level="1.3.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#boxplot-bivariate---categorical-vs-numerical"><i class="fa fa-check"></i><b>1.3.3</b> Boxplot (Bivariate - Categorical vs Numerical)</a></li>
+<li class="chapter" data-level="1.3.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#scatterplot-bivariate---numerical-vs-numerical"><i class="fa fa-check"></i><b>1.3.4</b> Scatterplot (Bivariate - Numerical vs Numerical)</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>1.4</b> Exercises</a></li>
+<li class="chapter" data-level="1.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#measures-of-centrality"><i class="fa fa-check"></i><b>1.4</b> Measures of Centrality</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#mean"><i class="fa fa-check"></i><b>1.4.1</b> Mean</a></li>
+<li class="chapter" data-level="1.4.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#median"><i class="fa fa-check"></i><b>1.4.2</b> Median</a></li>
+<li class="chapter" data-level="1.4.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#mode"><i class="fa fa-check"></i><b>1.4.3</b> Mode</a></li>
+<li class="chapter" data-level="1.4.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#examples"><i class="fa fa-check"></i><b>1.4.4</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#measures-of-spread"><i class="fa fa-check"></i><b>1.5</b> Measures of Spread</a><ul>
+<li class="chapter" data-level="1.5.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#range"><i class="fa fa-check"></i><b>1.5.1</b> Range</a></li>
+<li class="chapter" data-level="1.5.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#inter-quartile-range-iqr"><i class="fa fa-check"></i><b>1.5.2</b> Inter-Quartile Range (IQR)</a></li>
+<li class="chapter" data-level="1.5.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#variance"><i class="fa fa-check"></i><b>1.5.3</b> Variance</a></li>
+<li class="chapter" data-level="1.5.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#standard-deviation"><i class="fa fa-check"></i><b>1.5.4</b> Standard Deviation</a></li>
+<li class="chapter" data-level="1.5.5" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#coefficient-of-variation"><i class="fa fa-check"></i><b>1.5.5</b> Coefficient of Variation</a></li>
+<li class="chapter" data-level="1.5.6" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#empirical-rules"><i class="fa fa-check"></i><b>1.5.6</b> Empirical Rules</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#shape"><i class="fa fa-check"></i><b>1.6</b> Shape</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#symmetry"><i class="fa fa-check"></i><b>1.6.1</b> Symmetry</a></li>
+<li class="chapter" data-level="1.6.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#unimodal-or-multi-modal"><i class="fa fa-check"></i><b>1.6.2</b> Unimodal or Multi-modal</a></li>
+<li class="chapter" data-level="1.6.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#skew"><i class="fa fa-check"></i><b>1.6.3</b> Skew</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>1.7</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="2-probability.html"><a href="2-probability.html"><i class="fa fa-check"></i><b>2</b> Probability</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-probability.html"><a href="2-probability.html#introduction-to-set-theory"><i class="fa fa-check"></i><b>2.1</b> Introduction to Set Theory</a><ul>
@@ -151,12 +191,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.5.3" data-path="2-probability.html"><a href="2-probability.html#normal-distribution"><i class="fa fa-check"></i><b>2.5.3</b> Normal Distribution</a></li>
 <li class="chapter" data-level="2.5.4" data-path="2-probability.html"><a href="2-probability.html#standardizing"><i class="fa fa-check"></i><b>2.5.4</b> Standardizing</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="2-probability.html"><a href="2-probability.html#exercises-1"><i class="fa fa-check"></i><b>2.6</b> Exercises</a></li>
+<li class="chapter" data-level="2.6" data-path="2-probability.html"><a href="2-probability.html#r-quick-reference"><i class="fa fa-check"></i><b>2.6</b> R Quick Reference</a></li>
+<li class="chapter" data-level="2.7" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>2.7</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html"><i class="fa fa-check"></i><b>3</b> Confidence Intervals via Bootstrapping</a><ul>
 <li class="chapter" data-level="3.1" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#theory-of-bootstrapping"><i class="fa fa-check"></i><b>3.1</b> Theory of Bootstrapping</a></li>
-<li class="chapter" data-level="3.2" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#quantile-based-confidence-intervals"><i class="fa fa-check"></i><b>3.2</b> Quantile-based Confidence Intervals</a></li>
-<li class="chapter" data-level="3.3" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#exercises-2"><i class="fa fa-check"></i><b>3.3</b> Exercises</a></li>
+<li class="chapter" data-level="3.2" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#conducting-a-bootstrap"><i class="fa fa-check"></i><b>3.2</b> Conducting a Bootstrap</a></li>
+<li class="chapter" data-level="3.3" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#quantile-based-confidence-intervals"><i class="fa fa-check"></i><b>3.3</b> Quantile-based Confidence Intervals</a></li>
+<li class="chapter" data-level="3.4" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#additional-examples"><i class="fa fa-check"></i><b>3.4</b> Additional Examples</a></li>
+<li class="chapter" data-level="3.5" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>3.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html"><i class="fa fa-check"></i><b>4</b> Sampling Distribution of <span class="math inline">\(\bar{X}\)</span></a><ul>
 <li class="chapter" data-level="4.1" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#enlightening-example"><i class="fa fa-check"></i><b>4.1</b> Enlightening Example</a></li>
@@ -166,36 +209,42 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#distribution-of-barx"><i class="fa fa-check"></i><b>4.3</b> Distribution of <span class="math inline">\(\bar{X}\)</span></a></li>
 <li class="chapter" data-level="4.4" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#central-limit-theorem"><i class="fa fa-check"></i><b>4.4</b> Central Limit Theorem</a></li>
-<li class="chapter" data-level="4.5" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#exercises-3"><i class="fa fa-check"></i><b>4.5</b> Exercises</a></li>
+<li class="chapter" data-level="4.5" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>4.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html"><i class="fa fa-check"></i><b>5</b> Confidence Intervals for <span class="math inline">\(\mu\)</span></a><ul>
 <li class="chapter" data-level="5.1" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#asymptotic-result-sigma-known"><i class="fa fa-check"></i><b>5.1</b> Asymptotic result (<span class="math inline">\(\sigma\)</span> known)</a></li>
 <li class="chapter" data-level="5.2" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#asymptotoic-result-sigma-unknown"><i class="fa fa-check"></i><b>5.2</b> Asymptotoic result (<span class="math inline">\(\sigma\)</span> unknown)</a></li>
 <li class="chapter" data-level="5.3" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#sample-size-selection"><i class="fa fa-check"></i><b>5.3</b> Sample Size Selection</a></li>
-<li class="chapter" data-level="5.4" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#exercises-4"><i class="fa fa-check"></i><b>5.4</b> Exercises</a></li>
+<li class="chapter" data-level="5.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>5.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html"><i class="fa fa-check"></i><b>6</b> Hypothesis Tests for the mean of a population</a><ul>
 <li class="chapter" data-level="6.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#writing-hypotheses"><i class="fa fa-check"></i><b>6.1</b> Writing Hypotheses</a><ul>
 <li class="chapter" data-level="6.1.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#null-and-alternative-hypotheses"><i class="fa fa-check"></i><b>6.1.1</b> Null and alternative hypotheses</a></li>
 <li class="chapter" data-level="6.1.2" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#error"><i class="fa fa-check"></i><b>6.1.2</b> Error</a></li>
-<li class="chapter" data-level="6.1.3" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#why-should-hypotheses-use-mu-and-not-barx"><i class="fa fa-check"></i><b>6.1.3</b> Why should hypotheses use <span class="math inline">\(\mu\)</span> and not <span class="math inline">\(\bar{x}\)</span>?</a></li>
-<li class="chapter" data-level="6.1.4" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#calculating-p-values"><i class="fa fa-check"></i><b>6.1.4</b> Calculating p-values</a></li>
-<li class="chapter" data-level="6.1.5" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#calculating-p-values-vs-cutoff-values"><i class="fa fa-check"></i><b>6.1.5</b> Calculating p-values vs cutoff values</a></li>
-<li class="chapter" data-level="6.1.6" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#t-tests-in-r"><i class="fa fa-check"></i><b>6.1.6</b> t-tests in R</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i><b>6.2</b> Type I and Type II Errors</a><ul>
-<li class="chapter" data-level="6.2.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#power-and-sample-size-selection"><i class="fa fa-check"></i><b>6.2.1</b> Power and Sample Size Selection</a></li>
+<li class="chapter" data-level="6.2" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#conducting-a-hypothesis-test-for-mu"><i class="fa fa-check"></i><b>6.2</b> Conducting a Hypothesis Test for <span class="math inline">\(\mu\)</span></a><ul>
+<li class="chapter" data-level="6.2.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#why-should-hypotheses-use-mu-and-not-barx"><i class="fa fa-check"></i><b>6.2.1</b> Why should hypotheses use <span class="math inline">\(\mu\)</span> and not <span class="math inline">\(\bar{x}\)</span>?</a></li>
+<li class="chapter" data-level="6.2.2" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#a-note-on-calculating-p-values"><i class="fa fa-check"></i><b>6.2.2</b> A note on calculating p-values</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#exercises-5"><i class="fa fa-check"></i><b>6.3</b> Exercises</a></li>
+<li class="chapter" data-level="6.3" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#additional-examples"><i class="fa fa-check"></i><b>6.3</b> Additional Examples</a></li>
+<li class="chapter" data-level="6.4" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#p-values-vs-cutoff-values"><i class="fa fa-check"></i><b>6.4</b> P-values vs cutoff values</a></li>
+<li class="chapter" data-level="6.5" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#running-a-t-test-in-r"><i class="fa fa-check"></i><b>6.5</b> Running a t-test in R</a></li>
+<li class="chapter" data-level="6.6" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i><b>6.6</b> Type I and Type II Errors</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#power-and-sample-size-selection"><i class="fa fa-check"></i><b>6.6.1</b> Power and Sample Size Selection</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>6.7</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><i class="fa fa-check"></i><b>7</b> Two-Sample Hypothesis Tests and Confidence Intervals</a><ul>
 <li class="chapter" data-level="7.1" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#difference-in-means-between-two-groups"><i class="fa fa-check"></i><b>7.1</b> Difference in means between two groups</a><ul>
 <li class="chapter" data-level="7.1.1" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#inference-via-resampling"><i class="fa fa-check"></i><b>7.1.1</b> Inference via resampling</a></li>
 <li class="chapter" data-level="7.1.2" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#inference-via-asymptotic-results-unequal-variance-assumption"><i class="fa fa-check"></i><b>7.1.2</b> Inference via asymptotic results (unequal variance assumption)</a></li>
 <li class="chapter" data-level="7.1.3" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#inference-via-asymptotic-results-equal-variance-assumption"><i class="fa fa-check"></i><b>7.1.3</b> Inference via asymptotic results (equal variance assumption)</a></li>
+<li class="chapter" data-level="7.1.4" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#additional-example"><i class="fa fa-check"></i><b>7.1.4</b> Additional Example</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#difference-in-means-between-two-groups-paired-data"><i class="fa fa-check"></i><b>7.2</b> Difference in means between two groups: Paired Data</a></li>
-<li class="chapter" data-level="7.3" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#exercises-6"><i class="fa fa-check"></i><b>7.3</b> Exercises</a></li>
+<li class="chapter" data-level="7.2" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#difference-in-means-between-two-groups-paired-data"><i class="fa fa-check"></i><b>7.2</b> Difference in means between two groups: Paired Data</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#additional-example-1"><i class="fa fa-check"></i><b>7.2.1</b> Additional Example</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>7.3</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html"><i class="fa fa-check"></i><b>8</b> Testing Model Assumptions</a><ul>
 <li class="chapter" data-level="8.1" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#testing-normality"><i class="fa fa-check"></i><b>8.1</b> Testing Normality</a><ul>
@@ -209,7 +258,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="8.3" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#power-of-the-f-test"><i class="fa fa-check"></i><b>8.3</b> Power of the F-test</a></li>
 <li class="chapter" data-level="8.4" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#theoretical-distribution-vs-bootstrap"><i class="fa fa-check"></i><b>8.4</b> Theoretical distribution vs bootstrap</a></li>
-<li class="chapter" data-level="8.5" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#exercises-7"><i class="fa fa-check"></i><b>8.5</b> Exercises</a></li>
+<li class="chapter" data-level="8.5" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>8.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html"><i class="fa fa-check"></i><b>9</b> Analysis of Variance (ANOVA)</a><ul>
 <li class="chapter" data-level="9.1" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#model"><i class="fa fa-check"></i><b>9.1</b> Model</a></li>
@@ -225,7 +274,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="9.5.2" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#model-representations-in-r"><i class="fa fa-check"></i><b>9.5.2</b> Model Representations in R</a></li>
 <li class="chapter" data-level="9.5.3" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#implications-on-the-anova-table"><i class="fa fa-check"></i><b>9.5.3</b> Implications on the ANOVA table</a></li>
 </ul></li>
-<li class="chapter" data-level="9.6" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#exercises-8"><i class="fa fa-check"></i><b>9.6</b> Exercises</a></li>
+<li class="chapter" data-level="9.6" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>9.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="10-regression.html"><a href="10-regression.html"><i class="fa fa-check"></i><b>10</b> Regression</a><ul>
 <li class="chapter" data-level="10.1" data-path="10-regression.html"><a href="10-regression.html#pearsons-correlation-coefficient"><i class="fa fa-check"></i><b>10.1</b> Pearson’s Correlation Coefficient</a></li>
@@ -239,33 +288,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="10.5.1" data-path="10-regression.html"><a href="10-regression.html#influential-points"><i class="fa fa-check"></i><b>10.5.1</b> Influential Points</a></li>
 <li class="chapter" data-level="10.5.2" data-path="10-regression.html"><a href="10-regression.html#transformations"><i class="fa fa-check"></i><b>10.5.2</b> Transformations</a></li>
 </ul></li>
-<li class="chapter" data-level="10.6" data-path="10-regression.html"><a href="10-regression.html#exercises-9"><i class="fa fa-check"></i><b>10.6</b> Exercises</a></li>
+<li class="chapter" data-level="10.6" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>10.6</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html"><i class="fa fa-check"></i><b>11</b> Resampling Linear Models</a><ul>
-<li class="chapter" data-level="11.1" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#using-lm-for-many-analyses"><i class="fa fa-check"></i><b>11.1</b> Using <code>lm()</code> for many analyses</a><ul>
-<li class="chapter" data-level="11.1.1" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#one-sample-t-tests"><i class="fa fa-check"></i><b>11.1.1</b> One-sample t-tests</a></li>
-<li class="chapter" data-level="11.1.2" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#two-sample-t-tests"><i class="fa fa-check"></i><b>11.1.2</b> Two-sample t-tests</a></li>
-</ul></li>
-<li class="chapter" data-level="11.2" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#creating-simulated-data"><i class="fa fa-check"></i><b>11.2</b> Creating Simulated Data</a><ul>
-<li class="chapter" data-level="11.2.1" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#observational-studies-vs-designed-experiments"><i class="fa fa-check"></i><b>11.2.1</b> Observational Studies vs Designed Experiments</a></li>
-</ul></li>
-<li class="chapter" data-level="11.3" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#confidence-interval-types"><i class="fa fa-check"></i><b>11.3</b> Confidence Interval Types</a><ul>
-<li class="chapter" data-level="11.3.1" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#normal-intervals"><i class="fa fa-check"></i><b>11.3.1</b> Normal intervals</a></li>
-<li class="chapter" data-level="11.3.2" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#percentile-intervals"><i class="fa fa-check"></i><b>11.3.2</b> Percentile intervals</a></li>
-<li class="chapter" data-level="11.3.3" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#basic-intervals"><i class="fa fa-check"></i><b>11.3.3</b> Basic intervals</a></li>
-<li class="chapter" data-level="11.3.4" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#towards-bias-corrected-and-accelerated-intervals-bca"><i class="fa fa-check"></i><b>11.3.4</b> Towards bias-corrected and accelerated intervals (BCa)</a></li>
-</ul></li>
-<li class="chapter" data-level="11.4" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#bootstrap-confidence-intervals-in-r"><i class="fa fa-check"></i><b>11.4</b> Bootstrap Confidence Intervals in R</a><ul>
-<li class="chapter" data-level="11.4.1" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#using-carboot-function"><i class="fa fa-check"></i><b>11.4.1</b> Using <code>car::Boot()</code> function</a></li>
-<li class="chapter" data-level="11.4.2" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#using-the-boot-package"><i class="fa fa-check"></i><b>11.4.2</b> Using the <code>boot</code> package</a></li>
-</ul></li>
-<li class="chapter" data-level="11.5" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#exercises-10"><i class="fa fa-check"></i><b>11.5</b> Exercises</a></li>
-</ul></li>
+<li class="chapter" data-level="11" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html"><i class="fa fa-check"></i><b>11</b> Resampling Linear Models</a></li>
 <li class="chapter" data-level="12" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html"><i class="fa fa-check"></i><b>12</b> Contingency Tables</a><ul>
 <li class="chapter" data-level="12.1" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html#expected-counts"><i class="fa fa-check"></i><b>12.1</b> Expected Counts</a></li>
 <li class="chapter" data-level="12.2" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html#hypothesis-testing"><i class="fa fa-check"></i><b>12.2</b> Hypothesis Testing</a></li>
 <li class="chapter" data-level="12.3" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html#rxc-tables"><i class="fa fa-check"></i><b>12.3</b> RxC tables</a></li>
-<li class="chapter" data-level="12.4" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html#exercises-11"><i class="fa fa-check"></i><b>12.4</b> Exercises</a></li>
+<li class="chapter" data-level="12.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>12.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendix-a-alternative-bootstrap-code.html"><a href="appendix-a-alternative-bootstrap-code.html"><i class="fa fa-check"></i>Appendix A : Alternative Bootstrap Code</a><ul>
+<li class="chapter" data-level="" data-path="appendix-a-alternative-bootstrap-code.html"><a href="appendix-a-alternative-bootstrap-code.html#mosaic-package"><i class="fa fa-check"></i>Mosaic Package</a></li>
+<li class="chapter" data-level="" data-path="appendix-a-alternative-bootstrap-code.html"><a href="appendix-a-alternative-bootstrap-code.html#base-r-code"><i class="fa fa-check"></i>Base R Code</a></li>
 </ul></li>
 </ul>
 
@@ -276,7 +310,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Statistical Methodology</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Statistical Methodology, Second Edition</a>
           </h1>
         </div>
 
@@ -286,9 +320,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="contingency-tables" class="section level1">
 <h1><span class="header-section-number">Chapter 12</span> Contingency Tables</h1>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
-<span class="kw">library</span>(dplyr)
-<span class="kw">library</span>(tidyr)</code></pre></div>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="12-contingency-tables.html#cb397-1"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb397-2"><a href="12-contingency-tables.html#cb397-2"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb397-3"><a href="12-contingency-tables.html#cb397-3"></a><span class="kw">library</span>(tidyr)</span></code></pre></div>
 <p>We are often interested in experiments and studies where the response variable is categorical and so is the explanatory.</p>
 <ul>
 <li><p>Treat plots with either Type A or Type B insecticides and after 2 weeks observe if the plots are infested or not infested with some insect.</p></li>
@@ -304,17 +338,21 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="expected-counts" class="section level2">
 <h2><span class="header-section-number">12.1</span> Expected Counts</h2>
 <p>We will develop our ideas using a sub-sample of data from surveys of undergraduate students in an Introductory statistics course. We will utilize <span class="math inline">\(40\)</span> males and <span class="math inline">\(40\)</span> females and consider the historical assumption that women should perform better on the verbal part of the SAT rather than the MATH part compared to their male counterparts.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(StudentSurvey, <span class="dt">package=</span><span class="st">&#39;Lock5Data&#39;</span>)
-StudentSurvey &lt;-<span class="st"> </span>StudentSurvey <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>( HigherSAT <span class="op">!=</span><span class="st"> &#39;&#39;</span>) <span class="op">%&gt;%</span><span class="st">    </span><span class="co"># remove a student that did not report SAT scores</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">HigherSAT =</span> <span class="kw">factor</span>(HigherSAT)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># remove the MISSING level from the above student</span>
-<span class="st">  </span><span class="kw">group_by</span>(Gender) <span class="op">%&gt;%</span><span class="st">          </span><span class="co"># Only consider the first 40 males</span>
-<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">40</span>) <span class="op">%&gt;%</span><span class="st">               </span><span class="co"># and Females... as a first example</span>
-<span class="st">  </span><span class="kw">select</span>(Gender, HigherSAT) </code></pre></div>
-<p>In this example, exactly <span class="math inline">\(60\%\)</span> of the students had a higher score on the math portion of the SAT than on the verbal. If the null hypothesis is true, then <span class="math inline">\(60\%\)</span> of the <span class="math inline">\(40\)</span> males should have a higher Math SAT score than verbal. So under the null, we expect to see <span class="math inline">\(40 * 0.60 = 24\)</span> males and <span class="math inline">\(40*0.60=24\)</span> females to have a higher Math SAT than verbal. Similarly we would expect <span class="math inline">\(40*0.40=16\)</span> males and <span class="math inline">\(16\)</span> females to score higher on the verbal section. Below is a table that summarizes both our observed data and the expected values under the null hypotheses of no association between superior SAT category with gender.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tab &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">tally</span>( HigherSAT <span class="op">~</span><span class="st"> </span>Gender, <span class="dt">data=</span>StudentSurvey, <span class="dt">format=</span><span class="st">&#39;count&#39;</span>)
-descr<span class="op">::</span><span class="kw">CrossTable</span>( tab, <span class="dt">expected =</span> <span class="ot">TRUE</span>,
-                   <span class="dt">prop.r =</span> <span class="ot">FALSE</span>, <span class="dt">prop.c=</span><span class="ot">FALSE</span>, <span class="dt">prop.t=</span><span class="ot">FALSE</span>, <span class="dt">prop.chisq =</span> <span class="ot">FALSE</span> )</code></pre></div>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="12-contingency-tables.html#cb398-1"></a><span class="kw">data</span>(StudentSurvey, <span class="dt">package=</span><span class="st">&#39;Lock5Data&#39;</span>)</span>
+<span id="cb398-2"><a href="12-contingency-tables.html#cb398-2"></a>StudentSurvey &lt;-<span class="st"> </span>StudentSurvey <span class="op">%&gt;%</span></span>
+<span id="cb398-3"><a href="12-contingency-tables.html#cb398-3"></a><span class="st">  </span><span class="kw">filter</span>( HigherSAT <span class="op">!=</span><span class="st"> &#39;&#39;</span>) <span class="op">%&gt;%</span><span class="st">    </span><span class="co"># remove a student that did not report SAT scores</span></span>
+<span id="cb398-4"><a href="12-contingency-tables.html#cb398-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">HigherSAT =</span> <span class="kw">factor</span>(HigherSAT)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># remove the MISSING level from the above student</span></span>
+<span id="cb398-5"><a href="12-contingency-tables.html#cb398-5"></a><span class="st">  </span><span class="kw">group_by</span>(Gender) <span class="op">%&gt;%</span><span class="st">          </span><span class="co"># Only consider the first 40 males</span></span>
+<span id="cb398-6"><a href="12-contingency-tables.html#cb398-6"></a><span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">40</span>) <span class="op">%&gt;%</span><span class="st">               </span><span class="co"># and Females... as a first example</span></span>
+<span id="cb398-7"><a href="12-contingency-tables.html#cb398-7"></a><span class="st">  </span><span class="kw">select</span>(Gender, HigherSAT) </span></code></pre></div>
+<p>In this example, exactly <span class="math inline">\(60\%\)</span> of the students had a higher score on the math portion of the SAT than on the verbal. If
+the null hypothesis is true, then <span class="math inline">\(60\%\)</span> of the <span class="math inline">\(40\)</span> males should have a higher Math SAT score than verbal. So under the null, we expect to see <span class="math inline">\(40 * 0.60 = 24\)</span> males and <span class="math inline">\(40*0.60=24\)</span> females to have a higher Math SAT than verbal. Similarly we would expect <span class="math inline">\(40*0.40=16\)</span> males and <span class="math inline">\(16\)</span> females to score higher on the verbal section. Below is a table that summarizes both our observed data and the expected values under the null hypotheses of no association between superior SAT category with gender.</p>
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="12-contingency-tables.html#cb399-1"></a>tab &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">tally</span>( HigherSAT <span class="op">~</span><span class="st"> </span>Gender, <span class="dt">data=</span>StudentSurvey, <span class="dt">format=</span><span class="st">&#39;count&#39;</span>)</span></code></pre></div>
+<pre><code>## Registered S3 method overwritten by &#39;mosaic&#39;:
+##   method                           from   
+##   fortify.SpatialPolygonsDataFrame ggplot2</code></pre>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="12-contingency-tables.html#cb401-1"></a>descr<span class="op">::</span><span class="kw">CrossTable</span>( tab, <span class="dt">expected =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb401-2"><a href="12-contingency-tables.html#cb401-2"></a>                   <span class="dt">prop.r =</span> <span class="ot">FALSE</span>, <span class="dt">prop.c=</span><span class="ot">FALSE</span>, <span class="dt">prop.t=</span><span class="ot">FALSE</span>, <span class="dt">prop.chisq =</span> <span class="ot">FALSE</span> )</span></code></pre></div>
 <pre><code>##    Cell Contents 
 ## |-------------------------|
 ## |                       N | 
@@ -333,10 +371,13 @@ descr<span class="op">::</span><span class="kw">CrossTable</span>( tab, <span cl
 ## ----------------------------
 ## Total        40   40      80
 ## ============================</code></pre>
-<p>Notice that the expected cell counts can be written as <span class="math display">\[E_{ij} = \frac{ n_{i,\cdot}}{n} * n_{\cdot, j} = \frac{n_{i,\cdot} n_{\cdot,j}}{n}\]</span> where <span class="math inline">\(n_{i,\cdot}\)</span> is row total for the <span class="math inline">\(i\)</span>th row, <span class="math inline">\(n_{\cdot,j}\)</span> is the column total for the <span class="math inline">\(j\)</span>th row, and <span class="math inline">\(n\)</span> is the total number of observations in the table.</p>
+<p>Notice that the expected cell counts can be written as
+<span class="math display">\[E_{ij} = \frac{ n_{i,\cdot}}{n} * n_{\cdot, j} = \frac{n_{i,\cdot} n_{\cdot,j}}{n}\]</span>
+where <span class="math inline">\(n_{i,\cdot}\)</span> is row total for the <span class="math inline">\(i\)</span>th row, <span class="math inline">\(n_{\cdot,j}\)</span> is the column total for the <span class="math inline">\(j\)</span>th row, and <span class="math inline">\(n\)</span> is the total number of observations in the table.</p>
 <p>This is the first case where our test statistic will not be just plugging in the sample statistic into the null hypothesis. Instead we will consider a test statistic that is more flexible and will handle more general cases (say 3 or more response or treatment groups) Our statistic for assessing how far our observed data is from what we expect under the null hypothesis involves the difference between the observed and the expected for each of the cells, but again we don’t want to just sum the differences, instead will make the differences positive by squaring the differences. Second, a difference of 10 between the observed and expected cell count is very different if the number expected is 1000 than if it is 10, so we will scale the observed difference by dividing by the expected cell count.</p>
-<p>We define <span class="math display">\[\begin{aligned}X^{2}  
-  &amp;=    \sum_{\textrm{all ij cells}}\frac{\left(O_{ij}-E_{ij}\right)^{2}}{E_{ij}} \\
+<p>We define
+<span class="math display">\[\begin{aligned}X^{2}	
+  &amp;=	\sum_{\textrm{all ij cells}}\frac{\left(O_{ij}-E_{ij}\right)^{2}}{E_{ij}} \\
   &amp;=  \frac{(23-24)^2}{24} + \frac{(25-24)^2}{24} + \frac{(17-16)^2}{16} + \frac{(15-16)^2}{16} \\
   &amp;=  0.04167 + 0.04167 + 0.0625 + 0.0625 \\
   &amp;= 0.20834
@@ -344,24 +385,25 @@ descr<span class="op">::</span><span class="kw">CrossTable</span>( tab, <span cl
 <p>In the next section we will address if this test statistic is large enough to reject the null hypothesis.</p>
 <p><em>Example</em></p>
 <p>Researchers suspected that attack of a plant by one organism induce resistance to subsequent attack by a different organism. The <span class="math inline">\(47\)</span> individually potted cotton plants were randomly allocated to two groups: infestation by spider mites or no infestation. After two weeks the mites were dutifully removed by a conscientious research assistant, and both groups were inoculated with Verticillium, a fungus that causes Wilt disease.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(Mites, <span class="dt">package=</span><span class="st">&quot;mosaicData&quot;</span>)
-<span class="kw">str</span>(Mites)</code></pre></div>
-<pre><code>## &#39;data.frame&#39;:    47 obs. of  2 variables:
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="12-contingency-tables.html#cb403-1"></a><span class="kw">data</span>(Mites, <span class="dt">package=</span><span class="st">&quot;mosaicData&quot;</span>)</span>
+<span id="cb403-2"><a href="12-contingency-tables.html#cb403-2"></a><span class="kw">str</span>(Mites)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:	47 obs. of  2 variables:
 ##  $ treatment: Factor w/ 2 levels &quot;mites&quot;,&quot;no mites&quot;: 1 1 1 1 1 1 1 1 1 1 ...
 ##  $ outcome  : Factor w/ 2 levels &quot;no wilt&quot;,&quot;wilt&quot;: 2 2 2 2 2 2 2 2 2 2 ...</code></pre>
 <p>We will summarize the data into a contingency table that counts the number of plants in each treatment/wilt category.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Using mosaic&#39;s tally function</span>
-tab &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">tally</span>(outcome <span class="op">~</span><span class="st"> </span>treatment, <span class="dt">data=</span>Mites, <span class="co"># table of outcome by treatment</span>
-              <span class="dt">format=</span><span class="st">&#39;count&#39;</span>)                  <span class="co"># give the raw counts, not percentages</span>
-tab</code></pre></div>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="12-contingency-tables.html#cb405-1"></a><span class="co"># Using mosaic&#39;s tally function</span></span>
+<span id="cb405-2"><a href="12-contingency-tables.html#cb405-2"></a>tab &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">tally</span>(outcome <span class="op">~</span><span class="st"> </span>treatment, <span class="dt">data=</span>Mites, <span class="co"># table of outcome by treatment</span></span>
+<span id="cb405-3"><a href="12-contingency-tables.html#cb405-3"></a>              <span class="dt">format=</span><span class="st">&#39;count&#39;</span>)                  <span class="co"># give the raw counts, not percentages</span></span>
+<span id="cb405-4"><a href="12-contingency-tables.html#cb405-4"></a>tab</span></code></pre></div>
 <pre><code>##          treatment
 ## outcome   mites no mites
 ##   no wilt    15        4
 ##   wilt       11       17</code></pre>
-<p>From this table we can see that <span class="math inline">\(28\)</span> out of the <span class="math inline">\(47\)</span> plants wilted, so the proportion that wilted was <span class="math inline">\(\frac{28}{47}=0.596\)</span>. Therefore under the null hypothesis we would expect that <span class="math inline">\(59.6\%\)</span> of the <span class="math inline">\(26\)</span> mite treated plants would have wilted, or <span class="math display">\[\left( \frac{28}{47} \right) 26 = 15.49\]</span></p>
+<p>From this table we can see that <span class="math inline">\(28\)</span> out of the <span class="math inline">\(47\)</span> plants wilted, so the proportion that wilted was <span class="math inline">\(\frac{28}{47}=0.596\)</span>. Therefore under the null hypothesis we would expect that <span class="math inline">\(59.6\%\)</span> of the <span class="math inline">\(26\)</span> mite treated plants would have wilted, or
+<span class="math display">\[\left( \frac{28}{47} \right) 26 = 15.49\]</span></p>
 <p>Similar calculations reveal the rest of the expected cell counts.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">descr<span class="op">::</span><span class="kw">CrossTable</span>( tab, <span class="dt">expected =</span> <span class="ot">TRUE</span>,
-                   <span class="dt">prop.r =</span> <span class="ot">FALSE</span>, <span class="dt">prop.c=</span><span class="ot">FALSE</span>, <span class="dt">prop.t=</span><span class="ot">FALSE</span>, <span class="dt">prop.chisq =</span> <span class="ot">FALSE</span> )</code></pre></div>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="12-contingency-tables.html#cb407-1"></a>descr<span class="op">::</span><span class="kw">CrossTable</span>( tab, <span class="dt">expected =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb407-2"><a href="12-contingency-tables.html#cb407-2"></a>                   <span class="dt">prop.r =</span> <span class="ot">FALSE</span>, <span class="dt">prop.c=</span><span class="ot">FALSE</span>, <span class="dt">prop.t=</span><span class="ot">FALSE</span>, <span class="dt">prop.chisq =</span> <span class="ot">FALSE</span> )</span></code></pre></div>
 <pre><code>##    Cell Contents 
 ## |-------------------------|
 ## |                       N | 
@@ -380,77 +422,81 @@ tab</code></pre></div>
 ## -----------------------------------
 ## Total         26         21      47
 ## ===================================</code></pre>
-<p>Is this data indicative of mites inferring a disease resistance? More formally we are interested in testing <span class="math display">\[H_{0}:\:  \pi_{w}=\pi_{w|m}\]</span> <span class="math display">\[H_{0}:\:  \pi_{w}\ne\pi_{w|m}\]</span><br />
+<p>Is this data indicative of mites inferring a disease resistance? More formally we are interested in testing
+<span class="math display">\[H_{0}:\:	\pi_{w}=\pi_{w|m}\]</span>
+<span class="math display">\[H_{0}:\:	\pi_{w}\ne\pi_{w|m}\]</span>
 where the relevant parameters are <span class="math inline">\(\pi_{w}\)</span>, the probability that a plant will wilt, and <span class="math inline">\(\pi_{w|m}\)</span>, the probability that a plant will wilt given that it has been treated with mites.</p>
-<p>We calculate our test statistic as <span class="math display">\[\begin{aligned}X^{2}  
-  &amp;=    \sum_{\textrm{all ij cells}}\frac{\left(O_{ij}-E_{ij}\right)^{2}}{E_{ij}} \\
-    &amp;=  \frac{\left(15-10.51\right)^{2}}{10.51}+\frac{\left(4-8.49\right)^{2}}{8.49}+\frac{\left(11-15.49\right)^{2}}{15.49}+\frac{\left(17-12.51\right)^{2}}{12.51}\\
-    &amp;=  1.92+2.37+1.30+1.61 \\
-    &amp;=  7.20
-    \end{aligned}\]</span></p>
+<p>We calculate our test statistic as
+<span class="math display">\[\begin{aligned}X^{2}	
+  &amp;=	\sum_{\textrm{all ij cells}}\frac{\left(O_{ij}-E_{ij}\right)^{2}}{E_{ij}} \\
+	&amp;=	\frac{\left(15-10.51\right)^{2}}{10.51}+\frac{\left(4-8.49\right)^{2}}{8.49}+\frac{\left(11-15.49\right)^{2}}{15.49}+\frac{\left(17-12.51\right)^{2}}{12.51}\\
+	&amp;=	1.92+2.37+1.30+1.61 \\
+	&amp;=	7.20
+	\end{aligned}\]</span></p>
 <p>If the null hypothesis is true, then this statistic should be small, and a large value of the statistic is indicative of the null hypothesis being incorrect. But how large must the statistic be before we reject the null hypothesis?</p>
 </div>
 <div id="hypothesis-testing" class="section level2">
 <h2><span class="header-section-number">12.2</span> Hypothesis Testing</h2>
 <p>Similarly to the two-sample t-test, we randomly shuffle the treatment assignments and recalculate the statistic many times and examine the sampling distribution of our test statistic, <span class="math inline">\(X^{2}\)</span>.</p>
 <p>To do this efficiently, we’ll need a way of easily calculating this test statistic. In a traditional course I would introduce this test by the name of “Pearson’s Chi-squared test” and we can obtain the test statistic using the following code:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># function is chisq.test() and we need to tell it not to do the Yates continuity </span>
-<span class="co"># correction and just calculate the test statistic as we&#39;ve described </span>
-<span class="kw">chisq.test</span>( <span class="kw">table</span>(Mites), <span class="dt">correct=</span><span class="ot">FALSE</span> )   <span class="co"># do a Chi-sq test </span></code></pre></div>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="12-contingency-tables.html#cb409-1"></a><span class="co"># function is chisq.test() and we need to tell it not to do the Yates continuity </span></span>
+<span id="cb409-2"><a href="12-contingency-tables.html#cb409-2"></a><span class="co"># correction and just calculate the test statistic as we&#39;ve described </span></span>
+<span id="cb409-3"><a href="12-contingency-tables.html#cb409-3"></a><span class="kw">chisq.test</span>( <span class="kw">table</span>(Mites), <span class="dt">correct=</span><span class="ot">FALSE</span> )   <span class="co"># do a Chi-sq test </span></span></code></pre></div>
 <pre><code>## 
-##  Pearson&#39;s Chi-squared test
+## 	Pearson&#39;s Chi-squared test
 ## 
 ## data:  table(Mites)
 ## X-squared = 7.2037, df = 1, p-value = 0.007275</code></pre>
-<p>R is performing the traditional Pearson’s Chi-Squared test which assumes our sample sizes are large enough for several approximations to be good. Fortunately, we don’t care about this approximation to the p-value and will use simulation methods which will be more accurate. In order to use the <code>chisq.test()</code> function to do our calculations, we need to extract the test-statistic from the output of the function. &lt;<warning=FALSE>&gt;=</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># extract the X^2 test statistic from the output</span>
-X.sq &lt;-<span class="st"> </span><span class="kw">chisq.test</span>( <span class="kw">table</span>(Mites), <span class="dt">correct=</span><span class="ot">FALSE</span> )<span class="op">$</span>statistic <span class="co"># grab only the test statistic</span>
-X.sq</code></pre></div>
+<p>R is performing the traditional Pearson’s Chi-Squared test which assumes our sample sizes are large enough for several approximations to be good. Fortunately, we don’t care about this approximation to the p-value and will use simulation methods which will be more accurate. In order to use the <code>chisq.test()</code> function to do our calculations, we need to extract the test-statistic from the output of the function.
+&lt;&lt;warning=FALSE&gt;&gt;=</p>
+<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="12-contingency-tables.html#cb411-1"></a><span class="co"># extract the X^2 test statistic from the output</span></span>
+<span id="cb411-2"><a href="12-contingency-tables.html#cb411-2"></a>X.sq &lt;-<span class="st"> </span><span class="kw">chisq.test</span>( <span class="kw">table</span>(Mites), <span class="dt">correct=</span><span class="ot">FALSE</span> )<span class="op">$</span>statistic <span class="co"># grab only the test statistic</span></span>
+<span id="cb411-3"><a href="12-contingency-tables.html#cb411-3"></a>X.sq</span></code></pre></div>
 <pre><code>## X-squared 
 ##  7.203748</code></pre>
 <p>Next we wish to repeat our shuffling trick of the treatment labels to calculate the sampling distribution of <span class="math inline">\(X^{2*}\)</span>, which is the distribution of <span class="math inline">\(X^{2}\)</span> when the null hypothesis of no difference between treatments is true.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Mites.star &lt;-<span class="st"> </span>Mites <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">treatment =</span> mosaic<span class="op">::</span><span class="kw">shuffle</span>(treatment))
-<span class="kw">table</span>(Mites.star)</code></pre></div>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="12-contingency-tables.html#cb413-1"></a>Mites.star &lt;-<span class="st"> </span>Mites <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">treatment =</span> mosaic<span class="op">::</span><span class="kw">shuffle</span>(treatment))</span>
+<span id="cb413-2"><a href="12-contingency-tables.html#cb413-2"></a><span class="kw">table</span>(Mites.star)</span></code></pre></div>
 <pre><code>##           outcome
 ## treatment  no wilt wilt
-##   mites          7   19
-##   no mites      12    9</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">chisq.test</span>( <span class="kw">table</span>(Mites.star), <span class="dt">correct=</span><span class="ot">FALSE</span> )<span class="op">$</span>statistic <span class="co"># grab only the test statistic</span></code></pre></div>
+##   mites         12   14
+##   no mites       7   14</code></pre>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="12-contingency-tables.html#cb415-1"></a><span class="kw">chisq.test</span>( <span class="kw">table</span>(Mites.star), <span class="dt">correct=</span><span class="ot">FALSE</span> )<span class="op">$</span>statistic <span class="co"># grab only the test statistic</span></span></code></pre></div>
 <pre><code>## X-squared 
-##  4.405158</code></pre>
+## 0.7928475</code></pre>
 <p>We see that this code is creating a data frame with a single column called <code>X.squared</code> and next we simulate a large number of times and display the sampling distribution of <span class="math inline">\(X^{2*}\)</span>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">SamplingDist &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">10000</span>)<span class="op">*</span>{
-  Mites.star &lt;-<span class="st"> </span>Mites <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">treatment =</span> mosaic<span class="op">::</span><span class="kw">shuffle</span>(treatment))
-  <span class="kw">chisq.test</span>( <span class="kw">table</span>(Mites.star), <span class="dt">correct=</span><span class="ot">FALSE</span> )<span class="op">$</span>statistic 
-}</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>( SamplingDist, <span class="kw">aes</span>(<span class="dt">x=</span>X.squared)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>()</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-314-1.png" width="672" /></p>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="12-contingency-tables.html#cb417-1"></a>SamplingDist &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">10000</span>)<span class="op">*</span>{</span>
+<span id="cb417-2"><a href="12-contingency-tables.html#cb417-2"></a>  Mites.star &lt;-<span class="st"> </span>Mites <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">treatment =</span> mosaic<span class="op">::</span><span class="kw">shuffle</span>(treatment))</span>
+<span id="cb417-3"><a href="12-contingency-tables.html#cb417-3"></a>  <span class="kw">chisq.test</span>( <span class="kw">table</span>(Mites.star), <span class="dt">correct=</span><span class="ot">FALSE</span> )<span class="op">$</span>statistic </span>
+<span id="cb417-4"><a href="12-contingency-tables.html#cb417-4"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="12-contingency-tables.html#cb418-1"></a><span class="kw">ggplot</span>( SamplingDist, <span class="kw">aes</span>(<span class="dt">x=</span>X.squared)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>()</span></code></pre></div>
+<p><img src="12_ContingencyTables_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <p>At first glance this seems wrong because it is not a nice looking distribution. However there are only a small number of ways to allocate the treatments labels to the two possible outcomes. Second, for the test statistic we have chosen only the right hand side of the distribution (large values of <span class="math inline">\(X^{*}\)</span>) would be evidence against the null hypothesis, so we only look at <span class="math inline">\(X^{2*}&gt;7.20\)</span>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p.value &lt;-<span class="st"> </span>SamplingDist <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarize</span>( <span class="dt">p.value =</span> <span class="kw">mean</span>( X.squared <span class="op">&gt;=</span><span class="st"> </span>X.sq ) )
-p.value</code></pre></div>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="12-contingency-tables.html#cb419-1"></a>p.value &lt;-<span class="st"> </span>SamplingDist <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarize</span>( <span class="dt">p.value =</span> <span class="kw">mean</span>( X.squared <span class="op">&gt;=</span><span class="st"> </span>X.sq ) )</span>
+<span id="cb419-2"><a href="12-contingency-tables.html#cb419-2"></a>p.value</span></code></pre></div>
 <pre><code>##   p.value
-## 1  0.0175</code></pre>
-<p>We see that the p-value is 0.0175 and conclude that there is strong evidence to reject the null hypothesis that the mite treatment does not affect the probability of wilting. That is to say, the probability of observing data as extreme as ours is unlikely to occur by random chance when the null hypothesis is true.</p>
+## 1  0.0147</code></pre>
+<p>We see that the p-value is 0.0147 and conclude that there is strong evidence to reject the null hypothesis that the mite treatment does not affect the probability of wilting. That is to say, the probability of observing data as extreme as ours is unlikely to occur by random chance when the null hypothesis is true.</p>
 <p>As usual, it is pretty annoying to have to program the permutation test ourselves. Fortunately the <code>chisq.test()</code> function allows us to option to tell it to do a permutation based test. There is an option <code>simulate.p.value</code> which reproduces the simulation test we just performed.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">chisq.test</span>( <span class="kw">table</span>(Mites), <span class="dt">simulate.p.value=</span><span class="ot">TRUE</span>, <span class="dt">B=</span><span class="dv">10000</span> )</code></pre></div>
+<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="12-contingency-tables.html#cb421-1"></a><span class="kw">chisq.test</span>( <span class="kw">table</span>(Mites), <span class="dt">simulate.p.value=</span><span class="ot">TRUE</span>, <span class="dt">B=</span><span class="dv">10000</span> )</span></code></pre></div>
 <pre><code>## 
-##  Pearson&#39;s Chi-squared test with simulated p-value (based on 10000
-##  replicates)
+## 	Pearson&#39;s Chi-squared test with simulated p-value (based on 10000
+## 	replicates)
 ## 
 ## data:  table(Mites)
-## X-squared = 7.2037, df = NA, p-value = 0.018</code></pre>
+## X-squared = 7.2037, df = NA, p-value = 0.0155</code></pre>
 <p>Before we had our excellent computers, we would have to compare the observed <span class="math inline">\(X^{2}\)</span> test statistic to some distribution to determine if it is large enough to be evidence against the null. It can be shown that if the null hypothesis is correct then <span class="math inline">\(X^{2}\stackrel{\cdot}{\sim}\chi_{1}^{2}\)</span> where this is the Chi-squared distribution with 1 degree of freedom. This is the distribution that the <code>chisq.test()</code> compares against if we don’t tell it to do a permutation based test. Furthermore, even if the null hypothesis is true the test statistic is only approximately normal but that approximation gets better and better as the total sample size increases.</p>
 <p>The reason that we compare against a Chi-squared distribution with 1 degree of freedom is because when we shuffle the group labels, we still have the same number of wilted/non-wilted plants as well as the same number of mite/no-mite treated plants. So the row and column totals are identical in all the permuted tables. So once the number of observations in the <span class="math inline">\((1,1)\)</span> cell is decided, the other three cells are also indirectly determined as well due to the row/column totals being constant regardless of permutation. In the general case with <span class="math inline">\(R\)</span> rows and <span class="math inline">\(C\)</span> columns, the number of cells that are not set due to the row/column totals, is <span class="math inline">\((R-1)(C-1)\)</span>.</p>
 <p>The asymptotic approximation is usually acceptable if the observed count in each cell is greater than 5. Even then, a slightly better approximation can be obtained by using the Yates’ continuity correction. Typically I will perform the analysis both ways and confirm we get the same inference. If the two methods disagree, I’d trust the permutation method.</p>
 <p><em>Example</em>:</p>
 <p>In a study to investigate possible treatments for human infertility, researchers (Harrison, R. F., Blades, M., De Louvois, J., &amp; Hurley, R. (1975). Doxycycline treatment and human infertility. The Lancet, 305(7907), 605-607.) performed a double-blind study and randomly divided 58 patients into two groups. The treatment group (<span class="math inline">\(n_{t}=30\)</span>) received 100 mg per day of Doxycycline and the placebo group (<span class="math inline">\(n_{p}=28\)</span>) received a placebo but were unaware that it was a placebo. Within 5 months, the treatment group had 5 pregnancies, while the placebo group had 4. Just looking at the observed vs expected there doesn’t seem to be much difference between the treatments. In fact, due to the discrete nature of the data (i.e. integer values) we can’t imagine data that any closer to the expected value that what we observed. The p-value here ought to be 1! To confirm this we do a similar test as before.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Conceived &lt;-<span class="st">  </span><span class="kw">data.frame</span>(
-  <span class="dt">Treatment=</span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&#39;Doxycyline&#39;</span>,<span class="dv">30</span>), <span class="kw">rep</span>(<span class="st">&#39;Placebo&#39;</span>,<span class="dv">28</span>)),
-  <span class="dt">Outcome=</span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&#39;Conceived&#39;</span>,<span class="dv">5</span>), <span class="kw">rep</span>(<span class="st">&#39;Not Conceived&#39;</span>,<span class="dv">25</span>),
-            <span class="kw">rep</span>(<span class="st">&#39;Conceived&#39;</span>,<span class="dv">4</span>), <span class="kw">rep</span>(<span class="st">&#39;Not Conceived&#39;</span>,<span class="dv">24</span>)))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Use the CrossTable function to generate the Expected Cell values</span>
-descr<span class="op">::</span><span class="kw">CrossTable</span>(<span class="kw">table</span>(Conceived), <span class="dt">expected=</span><span class="ot">TRUE</span>, 
-                  <span class="dt">prop.r=</span><span class="ot">FALSE</span>, <span class="dt">prop.c=</span><span class="ot">FALSE</span>, <span class="dt">prop.t=</span><span class="ot">FALSE</span>, <span class="dt">prop.chisq=</span><span class="ot">FALSE</span>)</code></pre></div>
+<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="12-contingency-tables.html#cb423-1"></a>Conceived &lt;-<span class="st">  </span><span class="kw">data.frame</span>(</span>
+<span id="cb423-2"><a href="12-contingency-tables.html#cb423-2"></a>  <span class="dt">Treatment=</span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&#39;Doxycyline&#39;</span>,<span class="dv">30</span>), <span class="kw">rep</span>(<span class="st">&#39;Placebo&#39;</span>,<span class="dv">28</span>)),</span>
+<span id="cb423-3"><a href="12-contingency-tables.html#cb423-3"></a>  <span class="dt">Outcome=</span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&#39;Conceived&#39;</span>,<span class="dv">5</span>), <span class="kw">rep</span>(<span class="st">&#39;Not Conceived&#39;</span>,<span class="dv">25</span>),</span>
+<span id="cb423-4"><a href="12-contingency-tables.html#cb423-4"></a>            <span class="kw">rep</span>(<span class="st">&#39;Conceived&#39;</span>,<span class="dv">4</span>), <span class="kw">rep</span>(<span class="st">&#39;Not Conceived&#39;</span>,<span class="dv">24</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="12-contingency-tables.html#cb424-1"></a><span class="co"># Use the CrossTable function to generate the Expected Cell values</span></span>
+<span id="cb424-2"><a href="12-contingency-tables.html#cb424-2"></a>descr<span class="op">::</span><span class="kw">CrossTable</span>(<span class="kw">table</span>(Conceived), <span class="dt">expected=</span><span class="ot">TRUE</span>, </span>
+<span id="cb424-3"><a href="12-contingency-tables.html#cb424-3"></a>                  <span class="dt">prop.r=</span><span class="ot">FALSE</span>, <span class="dt">prop.c=</span><span class="ot">FALSE</span>, <span class="dt">prop.t=</span><span class="ot">FALSE</span>, <span class="dt">prop.chisq=</span><span class="ot">FALSE</span>)</span></code></pre></div>
 <pre><code>##    Cell Contents 
 ## |-------------------------|
 ## |                       N | 
@@ -469,10 +515,10 @@ descr<span class="op">::</span><span class="kw">CrossTable</span>(<span class="k
 ## -----------------------------------------------
 ## Total                 9              49      58
 ## ===============================================</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">chisq.test</span>( <span class="kw">table</span>(Conceived), <span class="dt">simulate.p.value=</span><span class="ot">TRUE</span>, <span class="dt">B=</span><span class="dv">10000</span> )</code></pre></div>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="12-contingency-tables.html#cb426-1"></a><span class="kw">chisq.test</span>( <span class="kw">table</span>(Conceived), <span class="dt">simulate.p.value=</span><span class="ot">TRUE</span>, <span class="dt">B=</span><span class="dv">10000</span> )</span></code></pre></div>
 <pre><code>## 
-##  Pearson&#39;s Chi-squared test with simulated p-value (based on 10000
-##  replicates)
+## 	Pearson&#39;s Chi-squared test with simulated p-value (based on 10000
+## 	replicates)
 ## 
 ## data:  table(Conceived)
 ## X-squared = 0.062628, df = NA, p-value = 1</code></pre>
@@ -480,33 +526,36 @@ descr<span class="op">::</span><span class="kw">CrossTable</span>(<span class="k
 <div id="rxc-tables" class="section level2">
 <h2><span class="header-section-number">12.3</span> RxC tables</h2>
 <p>We next expand this same analysis to consider cases where we have explanatory variable with <span class="math inline">\(C\)</span> levels and the response variable has <span class="math inline">\(R\)</span> levels, and so the table of observations has <span class="math inline">\(R\)</span> rows and <span class="math inline">\(C\)</span> columns.</p>
-<p>There was nothing special about the analysis that required only 2x2 tables. Expanding this the expected value for the <span class="math inline">\(i,j\)</span> cell in the table is still <span class="math display">\[E_{ij} = \frac{n_{i\cdot} n_{\cdot j}}{n}\]</span></p>
-<p>As before we define the test statistic as <span class="math display">\[\begin{aligned}X^{2}  
-  &amp;=    \sum_{\textrm{all ij cells}}\frac{\left(O_{ij}-E_{ij}\right)^{2}}{E_{ij}}
+<p>There was nothing special about the analysis that required only 2x2 tables. Expanding this the expected value for the <span class="math inline">\(i,j\)</span> cell in the table is still
+<span class="math display">\[E_{ij} = \frac{n_{i\cdot} n_{\cdot j}}{n}\]</span></p>
+<p>As before we define the test statistic as
+<span class="math display">\[\begin{aligned}X^{2}	
+  &amp;=	\sum_{\textrm{all ij cells}}\frac{\left(O_{ij}-E_{ij}\right)^{2}}{E_{ij}}
   \end{aligned}\]</span></p>
-<p>If we have sufficient samples sizes in each cell (general rule-of-thumb is greater than 5 per cell), then we could compare this test statistic to a Chi-Squared distribution with <span class="math inline">\((R-1)(C-1)\)</span> degrees of freedom. <span class="math display">\[p.value = Pr( \chi_{(r-1)(c-1)} &gt; X^2 )\]</span></p>
+<p>If we have sufficient samples sizes in each cell (general rule-of-thumb is greater than 5 per cell), then we could compare this test statistic to a Chi-Squared distribution with <span class="math inline">\((R-1)(C-1)\)</span> degrees of freedom.
+<span class="math display">\[p.value = Pr( \chi_{(r-1)(c-1)} &gt; X^2 )\]</span></p>
 <p>We consider some data from the American Community Survey, which is a survey administered by the US Census Bureau and given to approximately 3% of all US households. The package <code>Lock5Data</code> has a dataset, <code>ACS</code>, which is a sub-sample of <span class="math inline">\(n=1000\)</span> respondents of that 2010 survey. In particular, we want to examine the relationship between race and marriage status. In particular if white respondents are more likely to be married than Asian or black (or other) races.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(ACS, <span class="dt">package=</span><span class="st">&#39;Lock5Data&#39;</span>)
-ACS &lt;-<span class="st"> </span>ACS <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Married =</span> <span class="kw">ifelse</span>(Married<span class="op">==</span><span class="dv">1</span>, <span class="st">&#39;Married&#39;</span>,<span class="st">&#39;Single&#39;</span>))
-tab &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">tally</span>(Married <span class="op">~</span><span class="st"> </span>Race, <span class="dt">data=</span>ACS)
-tab</code></pre></div>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="12-contingency-tables.html#cb428-1"></a><span class="kw">data</span>(ACS, <span class="dt">package=</span><span class="st">&#39;Lock5Data&#39;</span>)</span>
+<span id="cb428-2"><a href="12-contingency-tables.html#cb428-2"></a>ACS &lt;-<span class="st"> </span>ACS <span class="op">%&gt;%</span></span>
+<span id="cb428-3"><a href="12-contingency-tables.html#cb428-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Married =</span> <span class="kw">ifelse</span>(Married<span class="op">==</span><span class="dv">1</span>, <span class="st">&#39;Married&#39;</span>,<span class="st">&#39;Single&#39;</span>))</span>
+<span id="cb428-4"><a href="12-contingency-tables.html#cb428-4"></a>tab &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">tally</span>(Married <span class="op">~</span><span class="st"> </span>Race, <span class="dt">data=</span>ACS)</span>
+<span id="cb428-5"><a href="12-contingency-tables.html#cb428-5"></a>tab</span></code></pre></div>
 <pre><code>##          Race
 ## Married   asian black other white
 ##   Married    37    25    20   355
 ##   Single     33    81    43   406</code></pre>
 <p>Often I find it is difficult to really understand a table and find a good graph more insightful.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">temp &lt;-<span class="st"> </span>ACS <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">group_by</span>(Race, Married) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">count</span>() <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(Race) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">proportion =</span> n<span class="op">/</span><span class="kw">sum</span>(n))
-<span class="kw">ggplot</span>(temp, <span class="kw">aes</span>(<span class="dt">x=</span>Race, <span class="dt">y=</span>proportion, <span class="dt">fill=</span>Married)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&#39;identity&#39;</span>)</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-319-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Use the CrossTable function to generate the Expected Cell values</span>
-descr<span class="op">::</span><span class="kw">CrossTable</span>(tab, <span class="dt">expected=</span><span class="ot">TRUE</span>, 
-                  <span class="dt">prop.r=</span><span class="ot">FALSE</span>, <span class="dt">prop.c=</span><span class="ot">FALSE</span>, <span class="dt">prop.t=</span><span class="ot">FALSE</span>, <span class="dt">prop.chisq=</span><span class="ot">FALSE</span>)</code></pre></div>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="12-contingency-tables.html#cb430-1"></a>temp &lt;-<span class="st"> </span>ACS <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb430-2"><a href="12-contingency-tables.html#cb430-2"></a><span class="st">  </span><span class="kw">group_by</span>(Race, Married) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb430-3"><a href="12-contingency-tables.html#cb430-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">count</span>() <span class="op">%&gt;%</span></span>
+<span id="cb430-4"><a href="12-contingency-tables.html#cb430-4"></a><span class="st">  </span><span class="kw">group_by</span>(Race) <span class="op">%&gt;%</span></span>
+<span id="cb430-5"><a href="12-contingency-tables.html#cb430-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">proportion =</span> n<span class="op">/</span><span class="kw">sum</span>(n))</span>
+<span id="cb430-6"><a href="12-contingency-tables.html#cb430-6"></a><span class="kw">ggplot</span>(temp, <span class="kw">aes</span>(<span class="dt">x=</span>Race, <span class="dt">y=</span>proportion, <span class="dt">fill=</span>Married)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb430-7"><a href="12-contingency-tables.html#cb430-7"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&#39;identity&#39;</span>)</span></code></pre></div>
+<p><img src="12_ContingencyTables_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="12-contingency-tables.html#cb431-1"></a><span class="co"># Use the CrossTable function to generate the Expected Cell values</span></span>
+<span id="cb431-2"><a href="12-contingency-tables.html#cb431-2"></a>descr<span class="op">::</span><span class="kw">CrossTable</span>(tab, <span class="dt">expected=</span><span class="ot">TRUE</span>, </span>
+<span id="cb431-3"><a href="12-contingency-tables.html#cb431-3"></a>                  <span class="dt">prop.r=</span><span class="ot">FALSE</span>, <span class="dt">prop.c=</span><span class="ot">FALSE</span>, <span class="dt">prop.t=</span><span class="ot">FALSE</span>, <span class="dt">prop.chisq=</span><span class="ot">FALSE</span>)</span></code></pre></div>
 <pre><code>##    Cell Contents 
 ## |-------------------------|
 ## |                       N | 
@@ -526,89 +575,41 @@ descr<span class="op">::</span><span class="kw">CrossTable</span>(tab, <span cla
 ## Total         70     106      63     761    1000
 ## ================================================</code></pre>
 <p>Because the cell counts are quite large, the asymptotic approximations should be fine. We will compare the test statistic against a Chi-squared distribution with <span class="math inline">\((2-1)(4-1)=1*3=3\)</span> degrees of freedom.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pchisq</span>(<span class="fl">26.168</span>, <span class="dt">df=</span><span class="dv">3</span>)</code></pre></div>
+<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="12-contingency-tables.html#cb433-1"></a><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pchisq</span>(<span class="fl">26.168</span>, <span class="dt">df=</span><span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] 8.795319e-06</code></pre>
-<p>therefore <span class="math display">\[p.value = Pr( \chi^2_3 &gt; 26.168 ) = 8.795\textrm{e-}06\]</span></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">chisq.test</span>( tab )</code></pre></div>
+<p>therefore
+<span class="math display">\[p.value = Pr( \chi^2_3 &gt; 26.168 ) = 8.795\textrm{e-}06\]</span></p>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="12-contingency-tables.html#cb435-1"></a><span class="kw">chisq.test</span>( tab )</span></code></pre></div>
 <pre><code>## 
-##  Pearson&#39;s Chi-squared test
+## 	Pearson&#39;s Chi-squared test
 ## 
 ## data:  tab
 ## X-squared = 26.168, df = 3, p-value = 8.797e-06</code></pre>
 <p>If we are worried about the sample size begin large enough, we could perform a permutation based test by repeatedly shuffling the <code>Race</code> labels calculating the test statistic and then comparing the observed test statistic <span class="math inline">\(X^2=26.168\)</span> to the permutation</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">chisq.test</span>( tab, <span class="dt">simulate.p.value=</span><span class="ot">TRUE</span>, <span class="dt">B=</span><span class="dv">100000</span> )</code></pre></div>
+<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="12-contingency-tables.html#cb437-1"></a><span class="kw">chisq.test</span>( tab, <span class="dt">simulate.p.value=</span><span class="ot">TRUE</span>, <span class="dt">B=</span><span class="dv">100000</span> )</span></code></pre></div>
 <pre><code>## 
-##  Pearson&#39;s Chi-squared test with simulated p-value (based on 1e+05
-##  replicates)
+## 	Pearson&#39;s Chi-squared test with simulated p-value (based on 1e+05
+## 	replicates)
 ## 
 ## data:  tab
-## X-squared = 26.168, df = NA, p-value = 1e-05</code></pre>
+## X-squared = 26.168, df = NA, p-value = 2e-05</code></pre>
 <p>With such a small p-value, we know that we are unlikely to have observed such a large difference in marriage rates among our different races. It appears that white respondents are much more likely to be married than the other races listed, but is there a difference in rates between blacks and Asians? What about Asian and other?</p>
 <p>Just as we wanted to perform an analysis on all pairwise comparisons among levels in an ANOVA analysis and control the overall Type I error rate, we will do the same thing but now using the Chi-squared test.</p>
 <p>Conceptually we will just perform all possible pairwise tests and then adjust the resulting p-values to control for the number of comparisons.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># We will use a function from the package fifer</span>
-<span class="co"># chisq.post.hoc  wants the table arranged with the </span>
-<span class="co"># factor you want to pairwise contasts as the rows</span>
-<span class="kw">t</span>( tab )   <span class="co"># transpose the rows and columns</span></code></pre></div>
-<pre><code>##        Married
-## Race    Married Single
-##   asian      37     33
-##   black      25     81
-##   other      20     43
-##   white     355    406</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">result &lt;-<span class="st"> </span>fifer<span class="op">::</span><span class="kw">chisq.post.hoc</span>( <span class="kw">t</span>(tab),
-    <span class="dt">test=</span>chisq.test, <span class="dt">simulate.p.value=</span><span class="ot">TRUE</span>, <span class="dt">B=</span><span class="dv">10000</span> ) </code></pre></div>
-<pre><code>## Adjusted p-values used the fdr method.</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">result</code></pre></div>
-<pre><code>##        comparison  raw.p  adj.p
-## 1 asian vs. black 0.0006 0.0018
-## 2 asian vs. other 0.0205 0.0410
-## 3 asian vs. white 0.3839 0.3839
-## 4 black vs. other 0.2771 0.3325
-## 5 black vs. white 0.0001 0.0006
-## 6 other vs. white 0.0276 0.0414</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># We really want to get the compact letter display for </span>
-<span class="co"># graphing purposes, but there is some annoying details</span>
-<span class="co"># that we really ought not have to think about.  So lets</span>
-<span class="co"># make a little function to handle this stuff.</span>
-<span class="kw">library</span>(dplyr)
-<span class="kw">library</span>(stringr)
-<span class="kw">library</span>(multcompView)
-cld.chisq.post.hoc &lt;-<span class="st"> </span><span class="cf">function</span>( obj, name ){
-  p.values &lt;-<span class="st"> </span>obj<span class="op">$</span>adj.p                <span class="co"># just the p-values</span>
-  contrasts &lt;-<span class="st"> </span>obj<span class="op">$</span>comparison <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">as.character</span>( ) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">str_replace</span>( <span class="dt">pattern=</span><span class="kw">fixed</span>(<span class="st">&#39; vs. &#39;</span>), <span class="dt">replacement =</span> <span class="kw">fixed</span>(<span class="st">&#39;-&#39;</span>))
-  <span class="kw">names</span>(p.values) &lt;-<span class="st"> </span>contrasts
-
-  <span class="co"># finally we can pass p.values into a letters function</span>
-  my.letters &lt;-<span class="st"> </span>multcompView<span class="op">::</span><span class="kw">multcompLetters</span>(p.values)
-  letter.df &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">TEMP=</span><span class="kw">names</span>(my.letters<span class="op">$</span>Letters), 
-                           <span class="dt">.group =</span> my.letters<span class="op">$</span>Letters ) 
-  <span class="kw">colnames</span>(letter.df)[<span class="dv">1</span>] &lt;-<span class="st"> </span>name
-  <span class="kw">rownames</span>(letter.df) &lt;-<span class="st"> </span><span class="ot">NULL</span>
-  <span class="kw">return</span>(letter.df)
-}  </code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cld.chisq.post.hoc</span>(result, <span class="st">&#39;Race&#39;</span>)</code></pre></div>
-<pre><code>##    Race .group
-## 1 asian      a
-## 2 black      b
-## 3 other      b
-## 4 white      a</code></pre>
 <p>There are a number of other questions that I might consider, such as confidence intervals for the proportions married in each race. However, those questions require a few more assumptions about the structure of the data and will be addressed when we study logistic regression.</p>
 </div>
-<div id="exercises-11" class="section level2">
+<div id="exercises" class="section level2">
 <h2><span class="header-section-number">12.4</span> Exercises</h2>
 <ol style="list-style-type: decimal">
 <li><p>Is gender independent of education level? A random sample of <span class="math inline">\(n=501\)</span> people were surveyed and each person was asked to report the highest education level they obtained. The data that resulted from the survey is summarized in the following table:</p>
-<table>
+<table style="width:99%;">
 <colgroup>
 <col width="16%" />
 <col width="21%" />
-<col width="19%" />
+<col width="18%" />
 <col width="15%" />
 <col width="17%" />
-<col width="8%" />
+<col width="10%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -654,17 +655,17 @@ cld.chisq.post.hoc &lt;-<span class="st"> </span><span class="cf">function</span
 <li>Double check your hand-calculations using the <code>chisq.test()</code> function in R.</li>
 </ol></li>
 <li><p>We consider some data from the American Community Survey, which is a survey administered by the US Census Bureau and given to approximately 3% of all US households. The package <code>Lock5Data</code> has a dataset, <code>ACS</code>, which is a sub-sample of <span class="math inline">\(n=1000\)</span> respondents of that 2010 survey. In particular, we want to examine the relationship between race and having health insurance.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(ACS, <span class="dt">package=</span><span class="st">&#39;Lock5Data&#39;</span>)
-temp &lt;-<span class="st"> </span>ACS <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">HealthInsurance =</span> <span class="kw">factor</span>(<span class="kw">ifelse</span>(HealthInsurance <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, <span class="st">&quot;Have&quot;</span>,<span class="st">&quot;None&quot;</span>)),
-         <span class="dt">Race =</span> <span class="kw">factor</span>(Race, <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&#39;white&#39;</span>,<span class="st">&#39;asian&#39;</span>,<span class="st">&#39;black&#39;</span>,<span class="st">&#39;other&#39;</span>) ) ) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(Race, HealthInsurance) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">count</span>() <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(Race) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">proportion =</span> n<span class="op">/</span><span class="kw">sum</span>(n))
-<span class="kw">ggplot</span>(temp, <span class="kw">aes</span>(<span class="dt">x=</span>Race, <span class="dt">y=</span>proportion, <span class="dt">fill=</span>HealthInsurance)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&#39;identity&#39;</span>)</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-327-1.png" width="672" /></p>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="12-contingency-tables.html#cb439-1"></a><span class="kw">data</span>(ACS, <span class="dt">package=</span><span class="st">&#39;Lock5Data&#39;</span>)</span>
+<span id="cb439-2"><a href="12-contingency-tables.html#cb439-2"></a>temp &lt;-<span class="st"> </span>ACS <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb439-3"><a href="12-contingency-tables.html#cb439-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">HealthInsurance =</span> <span class="kw">factor</span>(<span class="kw">ifelse</span>(HealthInsurance <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, <span class="st">&quot;Have&quot;</span>,<span class="st">&quot;None&quot;</span>)),</span>
+<span id="cb439-4"><a href="12-contingency-tables.html#cb439-4"></a>         <span class="dt">Race =</span> <span class="kw">factor</span>(Race, <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&#39;white&#39;</span>,<span class="st">&#39;asian&#39;</span>,<span class="st">&#39;black&#39;</span>,<span class="st">&#39;other&#39;</span>) ) ) <span class="op">%&gt;%</span></span>
+<span id="cb439-5"><a href="12-contingency-tables.html#cb439-5"></a><span class="st">  </span><span class="kw">group_by</span>(Race, HealthInsurance) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb439-6"><a href="12-contingency-tables.html#cb439-6"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">count</span>() <span class="op">%&gt;%</span></span>
+<span id="cb439-7"><a href="12-contingency-tables.html#cb439-7"></a><span class="st">  </span><span class="kw">group_by</span>(Race) <span class="op">%&gt;%</span></span>
+<span id="cb439-8"><a href="12-contingency-tables.html#cb439-8"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">proportion =</span> n<span class="op">/</span><span class="kw">sum</span>(n))</span>
+<span id="cb439-9"><a href="12-contingency-tables.html#cb439-9"></a><span class="kw">ggplot</span>(temp, <span class="kw">aes</span>(<span class="dt">x=</span>Race, <span class="dt">y=</span>proportion, <span class="dt">fill=</span>HealthInsurance)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb439-10"><a href="12-contingency-tables.html#cb439-10"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&#39;identity&#39;</span>)</span></code></pre></div>
+<p><img src="12_ContingencyTables_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 <ol style="list-style-type: lower-alpha">
 <li>Generate a table summarizing how many respondents of each race has health insurance.</li>
 <li>Test the hypothesis that there is no association between race and having health insurance using both the asymptotic method and the permutation method. Is your inference the same in both cases?</li>
@@ -679,17 +680,19 @@ temp &lt;-<span class="st"> </span>ACS <span class="op">%&gt;%</span><span class
           </div>
         </div>
       </div>
-<a href="11-resampling-linear-models.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="11-resampling-linear-models.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="appendix-a-alternative-bootstrap-code.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -697,11 +700,13 @@ gitbook.start({
 "github": false,
 "facebook": false,
 "twitter": false,
-"google": false,
+"linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"],
+"google": false,
+"instapper": false
 },
 "fontsettings": {
 "theme": "white",
@@ -712,7 +717,15 @@ gitbook.start({
 "link": "https://github.com/dereksonderegger/570/raw/master/12_ContingencyTables.Rmd",
 "text": "Edit"
 },
-"download": [["Statistical_Methods_I.pdf", "PDF"], ["Statistical_Methods_I.epub", "EPUB"]],
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
 "toc": {
 "collapse": "section",
 "scroll_highlight": true
@@ -727,9 +740,12 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(script.src))
-      script.src  = script.src.replace(/^https?:/, '');
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

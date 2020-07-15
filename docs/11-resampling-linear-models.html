@@ -1,45 +1,46 @@
 <!DOCTYPE html>
-<html >
-
+<html lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Introduction to Statistical Methodology</title>
-  <meta name="description" content="Introduction to Statistical Methodology">
-  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 11 Resampling Linear Models | Introduction to Statistical Methodology, Second Edition</title>
+  <meta name="description" content="Chapter 11 Resampling Linear Models | Introduction to Statistical Methodology, Second Edition" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Introduction to Statistical Methodology" />
+  <meta property="og:title" content="Chapter 11 Resampling Linear Models | Introduction to Statistical Methodology, Second Edition" />
   <meta property="og:type" content="book" />
   
   
   
-  <meta name="github-repo" content="dereksonderegger/STA_570_Book" />
+  <meta name="github-repo" content="dereksonderegger/570" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Introduction to Statistical Methodology" />
+  <meta name="twitter:title" content="Chapter 11 Resampling Linear Models | Introduction to Statistical Methodology, Second Edition" />
   
   
   
 
-<meta name="author" content="Derek L. Sonderegger">
+<meta name="author" content="Derek L. Sonderegger &amp; Robert Buscaglia" />
 
 
-<meta name="date" content="2018-01-17">
+<meta name="date" content="2020-07-14" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="10-regression.html">
-<link rel="next" href="12-contingency-tables.html">
+<link rel="prev" href="10-regression.html"/>
+<link rel="next" href="12-contingency-tables.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
 
 
 
@@ -47,44 +48,74 @@
 
 
 
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -100,34 +131,43 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="https://dereksonderegger.github.io/570/Statistical_Methods_I.pdf" target="blank">PDF version</a></li>
-
-<li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html"><i class="fa fa-check"></i><b>1</b> Summary Statistics and Graphing</a><ul>
-<li class="chapter" data-level="1.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#graphical-summaries-of-data"><i class="fa fa-check"></i><b>1.1</b> Graphical summaries of data</a><ul>
-<li class="chapter" data-level="1.1.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#univariate---categorical"><i class="fa fa-check"></i><b>1.1.1</b> Univariate - Categorical</a></li>
-<li class="chapter" data-level="1.1.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#univariate---continuous"><i class="fa fa-check"></i><b>1.1.2</b> Univariate - Continuous</a></li>
-<li class="chapter" data-level="1.1.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#bivariate---categorical-vs-continuous"><i class="fa fa-check"></i><b>1.1.3</b> Bivariate - Categorical vs Continuous</a></li>
-<li class="chapter" data-level="1.1.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#bivariate---continuous-vs-continuous"><i class="fa fa-check"></i><b>1.1.4</b> Bivariate - Continuous vs Continuous</a></li>
+<li class="chapter" data-level="1.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#variable-types"><i class="fa fa-check"></i><b>1.1</b> Variable Types</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#categorical"><i class="fa fa-check"></i><b>1.1.1</b> Categorical</a></li>
+<li class="chapter" data-level="1.1.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#numerical"><i class="fa fa-check"></i><b>1.1.2</b> Numerical</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#measures-of-centrality"><i class="fa fa-check"></i><b>1.2</b> Measures of Centrality</a><ul>
-<li class="chapter" data-level="1.2.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#mean"><i class="fa fa-check"></i><b>1.2.1</b> Mean</a></li>
-<li class="chapter" data-level="1.2.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#median"><i class="fa fa-check"></i><b>1.2.2</b> Median</a></li>
-<li class="chapter" data-level="1.2.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#mode"><i class="fa fa-check"></i><b>1.2.3</b> Mode</a></li>
-<li class="chapter" data-level="1.2.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#examples"><i class="fa fa-check"></i><b>1.2.4</b> Examples</a></li>
+<li class="chapter" data-level="1.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#randomization-and-sampling"><i class="fa fa-check"></i><b>1.2</b> Randomization and Sampling</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#sampling-techniques"><i class="fa fa-check"></i><b>1.2.1</b> Sampling Techniques</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#measures-of-variation"><i class="fa fa-check"></i><b>1.3</b> Measures of Variation</a><ul>
-<li class="chapter" data-level="1.3.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#range"><i class="fa fa-check"></i><b>1.3.1</b> Range</a></li>
-<li class="chapter" data-level="1.3.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#inter-quartile-range"><i class="fa fa-check"></i><b>1.3.2</b> Inter-Quartile Range</a></li>
-<li class="chapter" data-level="1.3.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#variance"><i class="fa fa-check"></i><b>1.3.3</b> Variance</a></li>
-<li class="chapter" data-level="1.3.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#standard-deviation"><i class="fa fa-check"></i><b>1.3.4</b> Standard Deviation</a></li>
-<li class="chapter" data-level="1.3.5" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#coefficient-of-variation"><i class="fa fa-check"></i><b>1.3.5</b> Coefficient of Variation</a></li>
-<li class="chapter" data-level="1.3.6" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#empirical-rule-of-thumb"><i class="fa fa-check"></i><b>1.3.6</b> Empirical Rule of Thumb</a></li>
+<li class="chapter" data-level="1.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#graphical-summaries"><i class="fa fa-check"></i><b>1.3</b> Graphical Summaries</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#barchartsbarplots-univariate---categorical"><i class="fa fa-check"></i><b>1.3.1</b> Barcharts/Barplots (Univariate - Categorical)</a></li>
+<li class="chapter" data-level="1.3.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#histogram-univariate---numerical"><i class="fa fa-check"></i><b>1.3.2</b> Histogram (Univariate - Numerical)</a></li>
+<li class="chapter" data-level="1.3.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#boxplot-bivariate---categorical-vs-numerical"><i class="fa fa-check"></i><b>1.3.3</b> Boxplot (Bivariate - Categorical vs Numerical)</a></li>
+<li class="chapter" data-level="1.3.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#scatterplot-bivariate---numerical-vs-numerical"><i class="fa fa-check"></i><b>1.3.4</b> Scatterplot (Bivariate - Numerical vs Numerical)</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>1.4</b> Exercises</a></li>
+<li class="chapter" data-level="1.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#measures-of-centrality"><i class="fa fa-check"></i><b>1.4</b> Measures of Centrality</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#mean"><i class="fa fa-check"></i><b>1.4.1</b> Mean</a></li>
+<li class="chapter" data-level="1.4.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#median"><i class="fa fa-check"></i><b>1.4.2</b> Median</a></li>
+<li class="chapter" data-level="1.4.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#mode"><i class="fa fa-check"></i><b>1.4.3</b> Mode</a></li>
+<li class="chapter" data-level="1.4.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#examples"><i class="fa fa-check"></i><b>1.4.4</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#measures-of-spread"><i class="fa fa-check"></i><b>1.5</b> Measures of Spread</a><ul>
+<li class="chapter" data-level="1.5.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#range"><i class="fa fa-check"></i><b>1.5.1</b> Range</a></li>
+<li class="chapter" data-level="1.5.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#inter-quartile-range-iqr"><i class="fa fa-check"></i><b>1.5.2</b> Inter-Quartile Range (IQR)</a></li>
+<li class="chapter" data-level="1.5.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#variance"><i class="fa fa-check"></i><b>1.5.3</b> Variance</a></li>
+<li class="chapter" data-level="1.5.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#standard-deviation"><i class="fa fa-check"></i><b>1.5.4</b> Standard Deviation</a></li>
+<li class="chapter" data-level="1.5.5" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#coefficient-of-variation"><i class="fa fa-check"></i><b>1.5.5</b> Coefficient of Variation</a></li>
+<li class="chapter" data-level="1.5.6" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#empirical-rules"><i class="fa fa-check"></i><b>1.5.6</b> Empirical Rules</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#shape"><i class="fa fa-check"></i><b>1.6</b> Shape</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#symmetry"><i class="fa fa-check"></i><b>1.6.1</b> Symmetry</a></li>
+<li class="chapter" data-level="1.6.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#unimodal-or-multi-modal"><i class="fa fa-check"></i><b>1.6.2</b> Unimodal or Multi-modal</a></li>
+<li class="chapter" data-level="1.6.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#skew"><i class="fa fa-check"></i><b>1.6.3</b> Skew</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>1.7</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="2-probability.html"><a href="2-probability.html"><i class="fa fa-check"></i><b>2</b> Probability</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-probability.html"><a href="2-probability.html#introduction-to-set-theory"><i class="fa fa-check"></i><b>2.1</b> Introduction to Set Theory</a><ul>
@@ -151,12 +191,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.5.3" data-path="2-probability.html"><a href="2-probability.html#normal-distribution"><i class="fa fa-check"></i><b>2.5.3</b> Normal Distribution</a></li>
 <li class="chapter" data-level="2.5.4" data-path="2-probability.html"><a href="2-probability.html#standardizing"><i class="fa fa-check"></i><b>2.5.4</b> Standardizing</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="2-probability.html"><a href="2-probability.html#exercises-1"><i class="fa fa-check"></i><b>2.6</b> Exercises</a></li>
+<li class="chapter" data-level="2.6" data-path="2-probability.html"><a href="2-probability.html#r-quick-reference"><i class="fa fa-check"></i><b>2.6</b> R Quick Reference</a></li>
+<li class="chapter" data-level="2.7" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>2.7</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html"><i class="fa fa-check"></i><b>3</b> Confidence Intervals via Bootstrapping</a><ul>
 <li class="chapter" data-level="3.1" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#theory-of-bootstrapping"><i class="fa fa-check"></i><b>3.1</b> Theory of Bootstrapping</a></li>
-<li class="chapter" data-level="3.2" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#quantile-based-confidence-intervals"><i class="fa fa-check"></i><b>3.2</b> Quantile-based Confidence Intervals</a></li>
-<li class="chapter" data-level="3.3" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#exercises-2"><i class="fa fa-check"></i><b>3.3</b> Exercises</a></li>
+<li class="chapter" data-level="3.2" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#conducting-a-bootstrap"><i class="fa fa-check"></i><b>3.2</b> Conducting a Bootstrap</a></li>
+<li class="chapter" data-level="3.3" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#quantile-based-confidence-intervals"><i class="fa fa-check"></i><b>3.3</b> Quantile-based Confidence Intervals</a></li>
+<li class="chapter" data-level="3.4" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#additional-examples"><i class="fa fa-check"></i><b>3.4</b> Additional Examples</a></li>
+<li class="chapter" data-level="3.5" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>3.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html"><i class="fa fa-check"></i><b>4</b> Sampling Distribution of <span class="math inline">\(\bar{X}\)</span></a><ul>
 <li class="chapter" data-level="4.1" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#enlightening-example"><i class="fa fa-check"></i><b>4.1</b> Enlightening Example</a></li>
@@ -166,36 +209,42 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#distribution-of-barx"><i class="fa fa-check"></i><b>4.3</b> Distribution of <span class="math inline">\(\bar{X}\)</span></a></li>
 <li class="chapter" data-level="4.4" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#central-limit-theorem"><i class="fa fa-check"></i><b>4.4</b> Central Limit Theorem</a></li>
-<li class="chapter" data-level="4.5" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#exercises-3"><i class="fa fa-check"></i><b>4.5</b> Exercises</a></li>
+<li class="chapter" data-level="4.5" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>4.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html"><i class="fa fa-check"></i><b>5</b> Confidence Intervals for <span class="math inline">\(\mu\)</span></a><ul>
 <li class="chapter" data-level="5.1" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#asymptotic-result-sigma-known"><i class="fa fa-check"></i><b>5.1</b> Asymptotic result (<span class="math inline">\(\sigma\)</span> known)</a></li>
 <li class="chapter" data-level="5.2" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#asymptotoic-result-sigma-unknown"><i class="fa fa-check"></i><b>5.2</b> Asymptotoic result (<span class="math inline">\(\sigma\)</span> unknown)</a></li>
 <li class="chapter" data-level="5.3" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#sample-size-selection"><i class="fa fa-check"></i><b>5.3</b> Sample Size Selection</a></li>
-<li class="chapter" data-level="5.4" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#exercises-4"><i class="fa fa-check"></i><b>5.4</b> Exercises</a></li>
+<li class="chapter" data-level="5.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>5.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html"><i class="fa fa-check"></i><b>6</b> Hypothesis Tests for the mean of a population</a><ul>
 <li class="chapter" data-level="6.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#writing-hypotheses"><i class="fa fa-check"></i><b>6.1</b> Writing Hypotheses</a><ul>
 <li class="chapter" data-level="6.1.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#null-and-alternative-hypotheses"><i class="fa fa-check"></i><b>6.1.1</b> Null and alternative hypotheses</a></li>
 <li class="chapter" data-level="6.1.2" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#error"><i class="fa fa-check"></i><b>6.1.2</b> Error</a></li>
-<li class="chapter" data-level="6.1.3" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#why-should-hypotheses-use-mu-and-not-barx"><i class="fa fa-check"></i><b>6.1.3</b> Why should hypotheses use <span class="math inline">\(\mu\)</span> and not <span class="math inline">\(\bar{x}\)</span>?</a></li>
-<li class="chapter" data-level="6.1.4" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#calculating-p-values"><i class="fa fa-check"></i><b>6.1.4</b> Calculating p-values</a></li>
-<li class="chapter" data-level="6.1.5" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#calculating-p-values-vs-cutoff-values"><i class="fa fa-check"></i><b>6.1.5</b> Calculating p-values vs cutoff values</a></li>
-<li class="chapter" data-level="6.1.6" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#t-tests-in-r"><i class="fa fa-check"></i><b>6.1.6</b> t-tests in R</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i><b>6.2</b> Type I and Type II Errors</a><ul>
-<li class="chapter" data-level="6.2.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#power-and-sample-size-selection"><i class="fa fa-check"></i><b>6.2.1</b> Power and Sample Size Selection</a></li>
+<li class="chapter" data-level="6.2" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#conducting-a-hypothesis-test-for-mu"><i class="fa fa-check"></i><b>6.2</b> Conducting a Hypothesis Test for <span class="math inline">\(\mu\)</span></a><ul>
+<li class="chapter" data-level="6.2.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#why-should-hypotheses-use-mu-and-not-barx"><i class="fa fa-check"></i><b>6.2.1</b> Why should hypotheses use <span class="math inline">\(\mu\)</span> and not <span class="math inline">\(\bar{x}\)</span>?</a></li>
+<li class="chapter" data-level="6.2.2" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#a-note-on-calculating-p-values"><i class="fa fa-check"></i><b>6.2.2</b> A note on calculating p-values</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#exercises-5"><i class="fa fa-check"></i><b>6.3</b> Exercises</a></li>
+<li class="chapter" data-level="6.3" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#additional-examples"><i class="fa fa-check"></i><b>6.3</b> Additional Examples</a></li>
+<li class="chapter" data-level="6.4" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#p-values-vs-cutoff-values"><i class="fa fa-check"></i><b>6.4</b> P-values vs cutoff values</a></li>
+<li class="chapter" data-level="6.5" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#running-a-t-test-in-r"><i class="fa fa-check"></i><b>6.5</b> Running a t-test in R</a></li>
+<li class="chapter" data-level="6.6" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i><b>6.6</b> Type I and Type II Errors</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#power-and-sample-size-selection"><i class="fa fa-check"></i><b>6.6.1</b> Power and Sample Size Selection</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>6.7</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><i class="fa fa-check"></i><b>7</b> Two-Sample Hypothesis Tests and Confidence Intervals</a><ul>
 <li class="chapter" data-level="7.1" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#difference-in-means-between-two-groups"><i class="fa fa-check"></i><b>7.1</b> Difference in means between two groups</a><ul>
 <li class="chapter" data-level="7.1.1" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#inference-via-resampling"><i class="fa fa-check"></i><b>7.1.1</b> Inference via resampling</a></li>
 <li class="chapter" data-level="7.1.2" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#inference-via-asymptotic-results-unequal-variance-assumption"><i class="fa fa-check"></i><b>7.1.2</b> Inference via asymptotic results (unequal variance assumption)</a></li>
 <li class="chapter" data-level="7.1.3" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#inference-via-asymptotic-results-equal-variance-assumption"><i class="fa fa-check"></i><b>7.1.3</b> Inference via asymptotic results (equal variance assumption)</a></li>
+<li class="chapter" data-level="7.1.4" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#additional-example"><i class="fa fa-check"></i><b>7.1.4</b> Additional Example</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#difference-in-means-between-two-groups-paired-data"><i class="fa fa-check"></i><b>7.2</b> Difference in means between two groups: Paired Data</a></li>
-<li class="chapter" data-level="7.3" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#exercises-6"><i class="fa fa-check"></i><b>7.3</b> Exercises</a></li>
+<li class="chapter" data-level="7.2" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#difference-in-means-between-two-groups-paired-data"><i class="fa fa-check"></i><b>7.2</b> Difference in means between two groups: Paired Data</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#additional-example-1"><i class="fa fa-check"></i><b>7.2.1</b> Additional Example</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>7.3</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html"><i class="fa fa-check"></i><b>8</b> Testing Model Assumptions</a><ul>
 <li class="chapter" data-level="8.1" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#testing-normality"><i class="fa fa-check"></i><b>8.1</b> Testing Normality</a><ul>
@@ -209,7 +258,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="8.3" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#power-of-the-f-test"><i class="fa fa-check"></i><b>8.3</b> Power of the F-test</a></li>
 <li class="chapter" data-level="8.4" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#theoretical-distribution-vs-bootstrap"><i class="fa fa-check"></i><b>8.4</b> Theoretical distribution vs bootstrap</a></li>
-<li class="chapter" data-level="8.5" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#exercises-7"><i class="fa fa-check"></i><b>8.5</b> Exercises</a></li>
+<li class="chapter" data-level="8.5" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>8.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html"><i class="fa fa-check"></i><b>9</b> Analysis of Variance (ANOVA)</a><ul>
 <li class="chapter" data-level="9.1" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#model"><i class="fa fa-check"></i><b>9.1</b> Model</a></li>
@@ -225,7 +274,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="9.5.2" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#model-representations-in-r"><i class="fa fa-check"></i><b>9.5.2</b> Model Representations in R</a></li>
 <li class="chapter" data-level="9.5.3" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#implications-on-the-anova-table"><i class="fa fa-check"></i><b>9.5.3</b> Implications on the ANOVA table</a></li>
 </ul></li>
-<li class="chapter" data-level="9.6" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#exercises-8"><i class="fa fa-check"></i><b>9.6</b> Exercises</a></li>
+<li class="chapter" data-level="9.6" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>9.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="10-regression.html"><a href="10-regression.html"><i class="fa fa-check"></i><b>10</b> Regression</a><ul>
 <li class="chapter" data-level="10.1" data-path="10-regression.html"><a href="10-regression.html#pearsons-correlation-coefficient"><i class="fa fa-check"></i><b>10.1</b> Pearson’s Correlation Coefficient</a></li>
@@ -239,33 +288,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="10.5.1" data-path="10-regression.html"><a href="10-regression.html#influential-points"><i class="fa fa-check"></i><b>10.5.1</b> Influential Points</a></li>
 <li class="chapter" data-level="10.5.2" data-path="10-regression.html"><a href="10-regression.html#transformations"><i class="fa fa-check"></i><b>10.5.2</b> Transformations</a></li>
 </ul></li>
-<li class="chapter" data-level="10.6" data-path="10-regression.html"><a href="10-regression.html#exercises-9"><i class="fa fa-check"></i><b>10.6</b> Exercises</a></li>
+<li class="chapter" data-level="10.6" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>10.6</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html"><i class="fa fa-check"></i><b>11</b> Resampling Linear Models</a><ul>
-<li class="chapter" data-level="11.1" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#using-lm-for-many-analyses"><i class="fa fa-check"></i><b>11.1</b> Using <code>lm()</code> for many analyses</a><ul>
-<li class="chapter" data-level="11.1.1" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#one-sample-t-tests"><i class="fa fa-check"></i><b>11.1.1</b> One-sample t-tests</a></li>
-<li class="chapter" data-level="11.1.2" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#two-sample-t-tests"><i class="fa fa-check"></i><b>11.1.2</b> Two-sample t-tests</a></li>
-</ul></li>
-<li class="chapter" data-level="11.2" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#creating-simulated-data"><i class="fa fa-check"></i><b>11.2</b> Creating Simulated Data</a><ul>
-<li class="chapter" data-level="11.2.1" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#observational-studies-vs-designed-experiments"><i class="fa fa-check"></i><b>11.2.1</b> Observational Studies vs Designed Experiments</a></li>
-</ul></li>
-<li class="chapter" data-level="11.3" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#confidence-interval-types"><i class="fa fa-check"></i><b>11.3</b> Confidence Interval Types</a><ul>
-<li class="chapter" data-level="11.3.1" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#normal-intervals"><i class="fa fa-check"></i><b>11.3.1</b> Normal intervals</a></li>
-<li class="chapter" data-level="11.3.2" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#percentile-intervals"><i class="fa fa-check"></i><b>11.3.2</b> Percentile intervals</a></li>
-<li class="chapter" data-level="11.3.3" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#basic-intervals"><i class="fa fa-check"></i><b>11.3.3</b> Basic intervals</a></li>
-<li class="chapter" data-level="11.3.4" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#towards-bias-corrected-and-accelerated-intervals-bca"><i class="fa fa-check"></i><b>11.3.4</b> Towards bias-corrected and accelerated intervals (BCa)</a></li>
-</ul></li>
-<li class="chapter" data-level="11.4" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#bootstrap-confidence-intervals-in-r"><i class="fa fa-check"></i><b>11.4</b> Bootstrap Confidence Intervals in R</a><ul>
-<li class="chapter" data-level="11.4.1" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#using-carboot-function"><i class="fa fa-check"></i><b>11.4.1</b> Using <code>car::Boot()</code> function</a></li>
-<li class="chapter" data-level="11.4.2" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#using-the-boot-package"><i class="fa fa-check"></i><b>11.4.2</b> Using the <code>boot</code> package</a></li>
-</ul></li>
-<li class="chapter" data-level="11.5" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html#exercises-10"><i class="fa fa-check"></i><b>11.5</b> Exercises</a></li>
-</ul></li>
+<li class="chapter" data-level="11" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html"><i class="fa fa-check"></i><b>11</b> Resampling Linear Models</a></li>
 <li class="chapter" data-level="12" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html"><i class="fa fa-check"></i><b>12</b> Contingency Tables</a><ul>
 <li class="chapter" data-level="12.1" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html#expected-counts"><i class="fa fa-check"></i><b>12.1</b> Expected Counts</a></li>
 <li class="chapter" data-level="12.2" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html#hypothesis-testing"><i class="fa fa-check"></i><b>12.2</b> Hypothesis Testing</a></li>
 <li class="chapter" data-level="12.3" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html#rxc-tables"><i class="fa fa-check"></i><b>12.3</b> RxC tables</a></li>
-<li class="chapter" data-level="12.4" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html#exercises-11"><i class="fa fa-check"></i><b>12.4</b> Exercises</a></li>
+<li class="chapter" data-level="12.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>12.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendix-a-alternative-bootstrap-code.html"><a href="appendix-a-alternative-bootstrap-code.html"><i class="fa fa-check"></i>Appendix A : Alternative Bootstrap Code</a><ul>
+<li class="chapter" data-level="" data-path="appendix-a-alternative-bootstrap-code.html"><a href="appendix-a-alternative-bootstrap-code.html#mosaic-package"><i class="fa fa-check"></i>Mosaic Package</a></li>
+<li class="chapter" data-level="" data-path="appendix-a-alternative-bootstrap-code.html"><a href="appendix-a-alternative-bootstrap-code.html#base-r-code"><i class="fa fa-check"></i>Base R Code</a></li>
 </ul></li>
 </ul>
 
@@ -276,7 +310,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Statistical Methodology</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Statistical Methodology, Second Edition</a>
           </h1>
         </div>
 
@@ -286,576 +320,24 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="resampling-linear-models" class="section level1">
 <h1><span class="header-section-number">Chapter 11</span> Resampling Linear Models</h1>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
-<span class="kw">library</span>(ggplot2)
-<span class="kw">library</span>(ggfortify)
-<span class="kw">library</span>(car)       <span class="co"># for the Boot function</span>
-<span class="kw">library</span>(boot)      <span class="co"># for the boot function</span></code></pre></div>
-<p>The last several chapters have introduced a number of parametric models where we assume that the error terms are normally distributed. <span class="math display">\[\begin{aligned}
-  \textrm{One-sample t-test:}   &amp; \;\;\; Y_{i}=\mu+\epsilon_{i}                      &amp; \textrm{where} &amp; \;\;\;\epsilon_{i}\stackrel{iid}{\sim}N\left(0,\sigma\right) \\
-  \textrm{Two-sample t-test:}   &amp;   \;\;\;Y_{ij}=\mu_{i}+\epsilon_{ij}                &amp; \textrm{where} &amp; \;\;\;\epsilon_{ij}\stackrel{iid}{\sim}N\left(0,\sigma\right)\;\;\;i\in\left\{ 1,2\right\} \\
-  \textrm{ANOVA:}                 &amp; \;\;\;Y_{ij}=\mu_{i}+\epsilon_{ij}                &amp; \textrm{where} &amp; \;\;\;\epsilon_{ij}\stackrel{iid}{\sim}N\left(0,\sigma\right)\;\;\;i\in\left\{ 1,2,\dots,k\right\} \\
-  \textrm{Regression:}          &amp; \;\;\;Y_{i}=\beta_{0}+\beta_{1}x_{i}+\epsilon_{i} &amp; \textrm{where} &amp; \;\;\;\epsilon_{i}\stackrel{iid}{\sim}N\left(0,\sigma\right)
+<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="11-resampling-linear-models.html#cb396-1"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb396-2"><a href="11-resampling-linear-models.html#cb396-2"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb396-3"><a href="11-resampling-linear-models.html#cb396-3"></a><span class="kw">library</span>(ggfortify)</span>
+<span id="cb396-4"><a href="11-resampling-linear-models.html#cb396-4"></a><span class="kw">library</span>(car)       <span class="co"># for the Boot function</span></span>
+<span id="cb396-5"><a href="11-resampling-linear-models.html#cb396-5"></a><span class="kw">library</span>(boot)      <span class="co"># for the boot function</span></span></code></pre></div>
+<p>The last several chapters have introduced a number of parametric models where we assume that the error terms are normally distributed.
+<span class="math display">\[\begin{aligned}
+  \textrm{One-sample t-test:}	&amp; \;\;\; Y_{i}=\mu+\epsilon_{i}                      &amp; \textrm{where} &amp; \;\;\;\epsilon_{i}\stackrel{iid}{\sim}N\left(0,\sigma\right) \\
+  \textrm{Two-sample t-test:}	&amp;	\;\;\;Y_{ij}=\mu_{i}+\epsilon_{ij}                &amp; \textrm{where} &amp; \;\;\;\epsilon_{ij}\stackrel{iid}{\sim}N\left(0,\sigma\right)\;\;\;i\in\left\{ 1,2\right\} \\
+  \textrm{ANOVA:}		          &amp; \;\;\;Y_{ij}=\mu_{i}+\epsilon_{ij}                &amp; \textrm{where} &amp; \;\;\;\epsilon_{ij}\stackrel{iid}{\sim}N\left(0,\sigma\right)\;\;\;i\in\left\{ 1,2,\dots,k\right\} \\
+  \textrm{Regression:}		    &amp; \;\;\;Y_{i}=\beta_{0}+\beta_{1}x_{i}+\epsilon_{i} &amp; \textrm{where} &amp; \;\;\;\epsilon_{i}\stackrel{iid}{\sim}N\left(0,\sigma\right)
   \end{aligned}\]</span></p>
 <p>We developed hypothesis tests and confidence intervals for the model parameters assuming that the error terms were normally distributed and, in the event that they are normally distributed, those tests and confidence intervals are the best we can do. However, if the errors are not normally distributed, what should we do?</p>
-<p>Previously we used bootstrapping to estimate the sampling distribution of the sampling statistic when we didn’t know the distribution. We will use the same bootstrapping method, but we’ll simplify all of the above cases to the the same simple linear model <span class="math display">\[Y_{i}=E\left(Y_{i}\right)+\epsilon_{i}\;\;\;\textrm{where}\;\;\epsilon_{i}\stackrel{iid}{\sim}N\left(0,\sigma\right)\]</span> and <span class="math inline">\(E\left(Y_{i}\right)\)</span> takes on some form of the parameters depending on the model specified. It turns out that R can do all of these analyses using the same <code>lm()</code> function we used in for regression.</p>
-<div id="using-lm-for-many-analyses" class="section level2">
-<h2><span class="header-section-number">11.1</span> Using <code>lm()</code> for many analyses</h2>
-<div id="one-sample-t-tests" class="section level3">
-<h3><span class="header-section-number">11.1.1</span> One-sample t-tests</h3>
-<p>In this model we are concerned with testing <span class="math display">\[\begin{aligned} 
-  H_{0}: &amp;  \;\;    \mu=\mu_{0}\\
-  H_{a}: &amp;  \;\;    \mu\ne\mu_{0}
-  \end{aligned}\]</span> for some <span class="math inline">\(\mu_{0}\)</span>. For example, suppose we have the following data and we want to test <span class="math inline">\(H_{0}:\mu=5 vs H_{a}:\mu\ne5\)</span>. The R code we used previously was</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># How we previously did a t.test</span>
-test.data &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">y=</span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">13</span>) )
-<span class="kw">t.test</span>( test.data<span class="op">$</span>y, <span class="dt">mu=</span><span class="dv">5</span> )</code></pre></div>
-<pre><code>## 
-##  One Sample t-test
-## 
-## data:  test.data$y
-## t = 0.79361, df = 5, p-value = 0.4634
-## alternative hypothesis: true mean is not equal to 5
-## 95 percent confidence interval:
-##  2.387727 9.945607
-## sample estimates:
-## mean of x 
-##  6.166667</code></pre>
-<p>but we can just as easily consider this a linear model with only an intercept term.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m1 &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data=</span>test.data)
-<span class="kw">summary</span>(m1)</code></pre></div>
-<pre><code>## 
-## Call:
-## lm(formula = y ~ 1, data = test.data)
-## 
-## Residuals:
-##       1       2       3       4       5       6 
-## -3.1667 -1.1667 -2.1667 -1.1667  0.8333  6.8333 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)   
-## (Intercept)    6.167      1.470   4.195  0.00853 **
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 3.601 on 5 degrees of freedom</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">confint</span>(m1)</code></pre></div>
-<pre><code>##                2.5 %   97.5 %
-## (Intercept) 2.387727 9.945607</code></pre>
-<p>Notice that we get the same point estimate and confidence interval for <span class="math inline">\(\mu\)</span>, but the p-value is different because the <code>t.test()</code> p-value is testing <span class="math inline">\(H_{0}:\;\mu=5\)</span> vs <span class="math inline">\(H_{a}:\;\mu\ne5\)</span> while the <code>lm()</code> function is testing <span class="math inline">\(H_{0}:\;\mu=0\)</span> vs <span class="math inline">\(H_{a}:\;\mu\ne0\)</span>.</p>
-<p>If we really want the correct p-value, we should test if the difference between the <span class="math inline">\(y\)</span> variable and 5 is zero.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m1 &lt;-<span class="st"> </span><span class="kw">lm</span>(y<span class="op">-</span><span class="dv">5</span> <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data=</span>test.data)
-<span class="kw">summary</span>(m1)</code></pre></div>
-<pre><code>## 
-## Call:
-## lm(formula = y - 5 ~ 1, data = test.data)
-## 
-## Residuals:
-##       1       2       3       4       5       6 
-## -3.1667 -1.1667 -2.1667 -1.1667  0.8333  6.8333 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)
-## (Intercept)    1.167      1.470   0.794    0.463
-## 
-## Residual standard error: 3.601 on 5 degrees of freedom</code></pre>
-</div>
-<div id="two-sample-t-tests" class="section level3">
-<h3><span class="header-section-number">11.1.2</span> Two-sample t-tests</h3>
-<p>This model is concerned with testing <span class="math display">\[\begin{aligned} 
-H_{0}: &amp;    \;\;    \mu_{1}=\mu_{2} \\
-H_{a}: &amp;    \;\;    \mu_{1}\ne\mu_{2}
-\end{aligned}\]</span></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># How we previously did a t.test</span>
-test.data &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">y=</span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">4</span>,  <span class="dv">5</span>,  <span class="dv">7</span>, <span class="dv">13</span>, 
-                             <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">4</span>, <span class="dv">16</span>, <span class="dv">12</span>, <span class="dv">13</span> ),
-                         <span class="dt">group=</span><span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&#39;A&#39;</span>,<span class="st">&#39;B&#39;</span>), <span class="dt">each=</span><span class="dv">6</span>) )
+<p>Previously we used bootstrapping to estimate the sampling distribution of the sampling statistic when we didn’t know the distribution. We will use the same bootstrapping method, but we’ll simplify all of the above cases to the the same simple linear model
+<span class="math display">\[Y_{i}=E\left(Y_{i}\right)+\epsilon_{i}\;\;\;\textrm{where}\;\;\epsilon_{i}\stackrel{iid}{\sim}N\left(0,\sigma\right)\]</span>
+and <span class="math inline">\(E\left(Y_{i}\right)\)</span> takes on some form of the parameters depending on the model specified. It turns out that R can do all of these analyses using the same <code>lm()</code> function we used in for regression.</p>
+<p><strong>I will not be covering this Chapter. If you would like more information please talk with me. I have omitted the rest of the chapter to help be clear what I feel is important for the final exam.</strong></p>
 
-<span class="kw">t.test</span>( y <span class="op">~</span><span class="st"> </span>group, <span class="dt">data=</span>test.data, <span class="dt">var.equal=</span><span class="ot">TRUE</span> )</code></pre></div>
-<pre><code>## 
-##  Two Sample t-test
-## 
-## data:  y by group
-## t = -1.838, df = 10, p-value = 0.09591
-## alternative hypothesis: true difference in means is not equal to 0
-## 95 percent confidence interval:
-##  -9.2176608  0.8843275
-## sample estimates:
-## mean in group A mean in group B 
-##        6.166667       10.333333</code></pre>
-<p>This analysis gave use the mean of each group and the confidence interval for the difference <span class="math inline">\(\mu_{2}-\mu_{1}\)</span>. We could get the same analysis an ANOVA with <span class="math inline">\(k=2\)</span> groups.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m2 &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>group, <span class="dt">data=</span>test.data)
-<span class="kw">summary</span>(m2)</code></pre></div>
-<pre><code>## 
-## Call:
-## lm(formula = y ~ group, data = test.data)
-## 
-## Residuals:
-##    Min     1Q Median     3Q    Max 
-## -6.333 -2.208 -1.167  1.917  6.833 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)   
-## (Intercept)    6.167      1.603   3.847  0.00323 **
-## groupB         4.167      2.267   1.838  0.09591 . 
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 3.926 on 10 degrees of freedom
-## Multiple R-squared:  0.2525, Adjusted R-squared:  0.1778 
-## F-statistic: 3.378 on 1 and 10 DF,  p-value: 0.09591</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(m2)</code></pre></div>
-<pre><code>## (Intercept)      groupB 
-##    6.166667    4.166667</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">confint</span>(m2)</code></pre></div>
-<pre><code>##                  2.5 %   97.5 %
-## (Intercept)  2.5950745 9.738259
-## groupB      -0.8843275 9.217661</code></pre>
-<p>Aside from <code>t.test()</code> reporting <span class="math inline">\(\mu_{2}-\mu_{1}\)</span> while the <code>lm()</code> function calculates <span class="math inline">\(\mu_{1}-\mu_{2}\)</span>, the estimates are identical.</p>
-</div>
-</div>
-<div id="creating-simulated-data" class="section level2">
-<h2><span class="header-section-number">11.2</span> Creating Simulated Data</h2>
-<p>The basic goal of statistics is that we are interested in some population (which is described by some parameter <span class="math inline">\(\mu,\delta,\tau,\beta\)</span>, or generally, <span class="math inline">\(\theta\)</span>) and we take a random sample of size <span class="math inline">\(n\)</span> from the population of interest and we truly believe that the sample is representative of the population of interest. Then we use some statistic of the data <span class="math inline">\(\hat{\theta}\)</span> as an estimate <span class="math inline">\(\theta\)</span>. However we know that this estimates, <span class="math inline">\(\hat{\theta}\)</span>, vary from sample to sample. Previously we’ve used that the Central Limit Theorem gives <span class="math display">\[\hat{\theta}\stackrel{\cdot}{\sim}N\left(\theta,\,\sigma_{\hat{\theta}}\right)\]</span> to construct confidence intervals and perform hypothesis tests, but we don’t necessarily like this approximation. If we could somehow take repeated samples (call these repeated samples <span class="math inline">\(\mathbb{Y}_{j}\)</span> for <span class="math inline">\(j\in1,2,\dots,M\)</span>) from the population we would understand the distribution of <span class="math inline">\(\hat{\theta}\)</span> by just examining the distribution of many observed values of <span class="math inline">\(\hat{\theta}_{j}\)</span> where <span class="math inline">\(\hat{\theta}_{j}\)</span> is the statistic calculated from the ith sample data <span class="math inline">\(\mathbb{Y}_{j}\)</span>.</p>
-<p>However, for practical reasons, we can’t just take 1000s of samples of size n from the population. However, because we truly believe that <span class="math inline">\(\mathbb{Y}\)</span> is representative of the entire population, then our best guess of what the population is just many repeated copies of our data.</p>
-<p>Suppose we were to sample from a population of shapes, and we observed 4/9 of the sample were squares, 3/9 were circles, and a triangle and a diamond. Then our best guess of what the population that we sampled from was a population with 4/9 squares, 3/9 circles, and 1/9 of triangles and diamonds.</p>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-272-1.png" width="672" /></p>
-<p>Using this approximated population (which is just many many copies of our sample data), we can take many samples of size <span class="math inline">\(n\)</span>. We denote these bootstrap samples as <span class="math inline">\(\mathbb{Y}_{j}^{*}\)</span>, where the star denotes that the sample was taken from the approximate population, not the actual population. From each bootstrap sample <span class="math inline">\(\mathbb{Y}_{j}^{*}\)</span> a statistic of interest can be taken <span class="math inline">\(\hat{\theta}_{j}^{*}\)</span>.</p>
-<p>Because our approximate population is just an infinite number of copies of our sample data, then sampling from the approximate population is equivalent to sampling with replacement from our sample data. If I take <span class="math inline">\(n\)</span> samples from <span class="math inline">\(n\)</span> distinct objects with replacement, then the process can be thought of as mixing the <span class="math inline">\(n\)</span> objects in a bowl and taking an object at random, noting which it is, replace it into the bowl, and then draw the next sample. Practically, this means some objects will be selected more than once and some will not be chosen at all. To sample our observed data with replacement, we’ll use the <code>resample()</code> function in the <code>mosaic</code> package. We see that some rows will be selected multiple times, and some will not be selected at all.</p>
-<div id="observational-studies-vs-designed-experiments" class="section level3">
-<h3><span class="header-section-number">11.2.1</span> Observational Studies vs Designed Experiments</h3>
-<p>The process of collecting data is a time consuming and laborious process but is critical to our understanding of the world. The fundamental goal is to collect a sample of data that is representative of the population of interest and can provide insight into the scientific question at hand. There are two primary classes about how this data could be gathered, observational studies and designed experiments.</p>
-<p>In an observational study, a population is identified and a random sample of individuals are selected to be in the sample. Then each subject in the sample has explanatory and response variables measured (fish are weighed and length recorded, people asked their age, gender, occupation etc). The critical part of this data collection method is that the random selection from the population is done in a fashion so that each individual in the population could potentially be in the sample and there is no systematic exclusion of certain parts of the population.</p>
-<p><em>Simple Random Samples</em> - Suppose that we could generate a list of every individual in the population and then we were to randomly select n of those to be our sample. Then each individual would have an equal chance to be in the sample and this selection scheme should result in sample data that is representative of the population of interest. Often though, it is difficult to generate a list of every individual, but other proxies might work. For example if we wanted to understand cougar behavior in the Grand Canyon, we might divide the park up into 100 regions and then random select 20 of those regions to sample and observe whatever cougar(s) are in that region.</p>
-<p><em>Stratified Random Samples</em> - In a stratified random sample, the population can be broken up into different strata and we perform a simple random sample within each strata. For example when sampling lake fish, we might think about the lake having deep and shallow/shore water strata and perhaps our sampling technique is different for those two strata (electro-fishing on shore and trawling in the deep sections). For human populations, we might stratify on age and geographic location (older retired people will answer the phone more readily than younger people). For each of the strata, we often have population level information about the different strata (proportion of the lake that is deep water versus shallow, or proportion of the population 20-29, 30-39, etc. and sample each strata accordingly (e.g. if shallow water is 40% of the fish habitat, then 40% of our sampling effort is spent in the shallows).</p>
-<p>Regardless of sample type, the key idea behind an observational study is that we don’t apply a treatment to the subject and then observe a response. While we might annoy animal or person, we don’t do any long-term manipulations. Instead the individuals are randomly selected and then observed, and it is the random selection from the population that results in a sample that is representative of the population.</p>
-<p><em>Designed Experiments</em> - In an experimental setting, the subjects are taken from the population (usually not at random but rather by convenience) and then subjected to some treatments and we observe the individuals response to the treatment. There will usually be several levels of the treatment and there often is a control level. For example, we might want to understand how to maximize the growth of a type of fungus for a pharmaceutical application and we consider applying different nutrients to the substrate (nothing, +phosphorus, +nitrogen, +both). Another example is researchers looking at the efficacy of smoking cessation methods and taking a set of willing subjects and having them try different methods (no help, nicotine patches, nicotine patches and a support group). There might be other covariates that we expect might affect the success rate (individuals age, length of time smoking, gender) and we might make sure that our study include people in each of these groups (we call these blocks in the experimental design terminology, but they are equivalent to the strata in the observational study terminology). Because even within blocks, we expect variability in the success rates due to natural variation, we randomize the treatment assignment to the individual and it is this randomization that addresses any unrecognized lurking variables that also affect the response.</p>
-<p>A designed experiment is vastly superior to an observational experiment because the randomization of the treatment accounts for variables that the researcher might not even suspect to be important. A nice example of the difference between observational studies and experiments is a set of studies done relating breast cancer and hormone replacement therapy (HRT) drugs used by post-menopausal women. Initial observational studies that looked at the rates of breast cancer showed that women taking HRT had lower rates of breast cancer. When these results were first published, physicians happily recommended HRT to manage menopause symptoms and to decrease risk of breast cancer. Unfortunately subsequent observational studies showed a weaker effect and among some populations there was an increase in breast cancer. To answer the question clearly, a massive designed experiment was undertaken where women would be randomly assigned either a placebo or the actual HRT drugs. This study conclusively showed that HRT drugs increased the risk of breast cancer.</p>
-<p>Why was there a disconnect between the original observational studies and the experiment? The explanation given is that there was a lurking variable that the observational studies did not control for… socio-economic class. There are many drivers of breast cancer and some of them are strongly correlated with socio-economic class such as where you live (in a polluted area or not). Furthermore because HRT was initially only to relieve symptoms of menopause, it wasn’t “medically necessary” and insurance didn’t cover it and so mainly wealthy women (with already lower risk for breast cancer) took the HRT drugs and the simple association between lower breast cancer risk and HRT was actually the effect of socio-economic status. By randomly assigning women to the placebo and HRT groups, high socio-economic women ended up in both groups. So even if there was some other lurking variable that the researchers didn’t consider, the randomization would cause the unknown variable to be evenly distributed in the placebo and HRT groups.</p>
-<p>Because the method of randomization is so different between observational studies and designed experiments, we should make certain that our method of creating bootstrap data sets respects that difference in randomization. So if there was some constraint on the data when it was originally taken, we want the bootstrap datasets to obey that same constraint. If our study protocol was to collect a sample of <span class="math inline">\(n_{1}=10\)</span> men and <span class="math inline">\(n_{2}=10\)</span> women, then we want our bootstrap samples to have <span class="math inline">\(10\)</span> men and <span class="math inline">\(10\)</span> women. If we designed an experiment with <span class="math inline">\(25\)</span> subjects to test the efficacy of a drug and chose to administer doses of <span class="math inline">\(5, 10, 20, 40,\)</span> and <span class="math inline">\(80\)</span> mg with each five subjects for each dose level, then we want those same dose levels to show up in the bootstrap datasets.</p>
-<p>There are two common approaches, <em>case resampling</em> and <em>residual resampling</em>. In case re-sampling, we consider the data <span class="math inline">\(\left(x_{i,}y_{i}\right)\)</span> pairs as one unit and when creating a bootstrap sample, we re-sample those pairs, but if the <span class="math inline">\(i\)</span>th data point is included in the bootstrap sample, then it is included as the <span class="math inline">\(\left(x_{i,}y_{i}\right)\)</span> pair. In contrast, residual re-sampling is done by first fitting a model to the data, finding the residual values, re-sampling those residuals and then adding those bootstrap residuals to the predicted values <span class="math inline">\(\hat{y}_{i}\)</span>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Testing.Data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
-  <span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">9</span>),
-  <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">7</span>,<span class="dv">7</span>,<span class="dv">11</span>))
-Testing.Data</code></pre></div>
-<pre><code>##   x  y
-## 1 3  3
-## 2 5  7
-## 3 7  7
-## 4 9 11</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Case resampling </span>
-Boot.Data &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">resample</span>(Testing.Data)
-Boot.Data</code></pre></div>
-<pre><code>##     x  y orig.id
-## 1   3  3       1
-## 4   9 11       4
-## 2   5  7       2
-## 2.1 5  7       2</code></pre>
-<p>Notice that we’ve sampled <span class="math inline">\(\left\{ x=5,y=7\right\}\)</span> twice and did not get the <span class="math inline">\(\left\{ 7,7\right\}\)</span> data point.</p>
-<p>Residual sampling is done by re-sampling the residuals and calling them <span class="math inline">\(\hat{\epsilon}^{*}\)</span> and then the new y-values will be <span class="math inline">\(y_{i}^{*}=\hat{y}_{i}+\hat{\epsilon}_{i}^{*}\)</span></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Residual resampling</span>
-model &lt;-<span class="st"> </span><span class="kw">lm</span>( y <span class="op">~</span><span class="st"> </span>x, <span class="dt">data=</span>Testing.Data)
-Boot.Data &lt;-<span class="st"> </span>Testing.Data <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>( <span class="dt">fit =</span> <span class="kw">fitted</span>(model),
-          <span class="dt">resid =</span> <span class="kw">resid</span>(model),
-          <span class="dt">resid.star =</span> mosaic<span class="op">::</span><span class="kw">resample</span>(resid),
-          <span class="dt">y.star =</span> fit <span class="op">+</span><span class="st"> </span>resid.star )
-Boot.Data</code></pre></div>
-<pre><code>##   x  y  fit resid resid.star y.star
-## 1 3  3  3.4  -0.4       -1.2    2.2
-## 2 5  7  5.8   1.2       -1.2    4.6
-## 3 7  7  8.2  -1.2       -0.4    7.8
-## 4 9 11 10.6   0.4        1.2   11.8</code></pre>
-<p>Notice that the residuals re-sampling results in a data set where each of the x-values is retained, but a new y-value (possibly not seen in the original data) is created from the predicted value <span class="math inline">\(\hat{y}\)</span> and a randomly selected residual.</p>
-<p>In general when we design an experiment, we choose which x-values we want to look at and so the bootstrap data should have those same x-values we chose. So for a designed experiment, we typically will create bootstrap data sets via residual re-sampling. For observational studies, we’ll create the bootstrap data sets via case re-sampling. In both cases if there is a blocking or strata variable to consider, we will want to do the re-sampling within the block/strata.</p>
-</div>
-</div>
-<div id="confidence-interval-types" class="section level2">
-<h2><span class="header-section-number">11.3</span> Confidence Interval Types</h2>
-<p>We want to understand the relationship between the sample statistic <span class="math inline">\(\hat{\theta}\)</span> to the population parameter <span class="math inline">\(\theta\)</span>. We create an estimated population using many repeated copies of our data. By examining how the simulated <span class="math inline">\(\hat{\theta}^{*}\)</span> vary relative to <span class="math inline">\(\hat{\theta}\)</span>, we will understand how possible <span class="math inline">\(\hat{\theta}\)</span> values vary relative to <span class="math inline">\(\theta\)</span>.</p>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-278-1.png" width="672" /></p>
-<p>We will outline several methods for producing confidence intervals (in the order of most assumptions to fewest).</p>
-<div id="normal-intervals" class="section level3">
-<h3><span class="header-section-number">11.3.1</span> Normal intervals</h3>
-<p>This confidence interval assumes the sampling distribution of <span class="math inline">\(\hat{\theta}\)</span> is approximately normal (which is often true due to the central limit theorem). We can use the bootstrap replicate samples to get an estimate of the standard error of the statistic of interest by just calculating the sample standard deviation of the replicated statistics.</p>
-<p>Let <span class="math inline">\(\theta\)</span> be the statistic of interest and <span class="math inline">\(\hat{\theta}\)</span> be the value of that statistic calculated from the observed data. Define <span class="math inline">\(\hat{SE}^{*}\)</span> as the sample standard deviation of the <span class="math inline">\(\hat{\theta}^{*}\)</span> values.</p>
-<p>Our first guess as to a confidence interval is <span class="math display">\[\hat{\theta}\pm z_{1-\alpha/2}\hat{SE}^{*}\]</span> which we could write as <span class="math display">\[\left[\hat{\theta}-z_{1-\alpha/2}\hat{SE}^{*},\;\;\;\hat{\theta}+z_{1-\alpha/2}\hat{SE}^{*}\right]\]</span></p>
-</div>
-<div id="percentile-intervals" class="section level3">
-<h3><span class="header-section-number">11.3.2</span> Percentile intervals</h3>
-<p>The percentile interval doesn’t assume normality but it does assume that the bootstrap distribution is symmetric and unbiased for the population value. This is the method we used to calculate confidences intervals in the first several chapters. It is perhaps the easiest to calculate and understand. This method only uses <span class="math inline">\(\hat{\theta}^{*}\)</span>, and is <span class="math display">\[\left[\hat{\theta}_{\alpha/2}^{*}\;,\;\;\hat{\theta}_{1-\alpha/2}^{*}\right]\]</span></p>
-</div>
-<div id="basic-intervals" class="section level3">
-<h3><span class="header-section-number">11.3.3</span> Basic intervals</h3>
-<p>Unlike the percentile bootstrap interval, the basic interval does not assume the bootstrap distribution is symmetric but does assume that <span class="math inline">\(\hat{\theta}\)</span> is an unbiased estimate for <span class="math inline">\(\theta\)</span>.</p>
-<p>To address this, we will using the observed distribution of our replicates <span class="math inline">\(\hat{\theta}^{*}\)</span>. Let <span class="math inline">\(\hat{\theta}_{\alpha/2}^{*}\)</span> and <span class="math inline">\(\hat{\theta}_{1-\alpha/2}^{*}\)</span> be the <span class="math inline">\(\alpha/2\)</span> and <span class="math inline">\(1-\alpha/2\)</span> quantiles of the replicates <span class="math inline">\(\hat{\theta}^{*}\)</span>. Then another way to form a confidence interval would be <span class="math display">\[\left[\hat{\theta}-\left(\hat{\theta}_{1-\alpha/2}^{*}-\hat{\theta}\right),\;\;\;\;\hat{\theta}-\left(\hat{\theta}_{\alpha/2}^{*}-\hat{\theta}\right)\right]\]</span> where the minus sign on the upper limit is because <span class="math inline">\(\left(\hat{\theta}_{\alpha/2}^{*}-\hat{\theta}\right)\)</span> is already negative. The idea behind this interval is that the sampling variability of <span class="math inline">\(\hat{\theta}\)</span> from <span class="math inline">\(\theta\)</span> is the same as the sampling variability of the replicates <span class="math inline">\(\hat{\theta}^{*}\)</span> from <span class="math inline">\(\hat{\theta}\)</span>, and that the distribution of <span class="math inline">\(\hat{\theta}\)</span> is possibly skewed, so we can’t add/subtract the same amounts. Suppose we observe the distribution of <span class="math inline">\(\hat{\theta}^{*}\)</span> as</p>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-279-1.png" width="672" /></p>
-<p>Then any particular value of <span class="math inline">\(\hat{\theta}^{*}\)</span> could be much larger than <span class="math inline">\(\hat{\theta}\)</span>. Therefore <span class="math inline">\(\hat{\theta}\)</span> could be much larger than <span class="math inline">\(\theta\)</span>. Therefore our confidence interval should be <span class="math inline">\(\left[\hat{\theta}-\textrm{big},\;\hat{\theta}+\textrm{small}\right]\)</span>.</p>
-<p>This formula can be simplified to<br />
-<span class="math display">\[\left[\hat{\theta}-\left(\hat{\theta}_{1-\alpha/2}^{*}-\hat{\theta}\right)\;,\,\hat{\theta}+\left(\hat{\theta}-\hat{\theta}_{\alpha/2}^{*}\right)\right]  
-    \left[2\hat{\theta}-\hat{\theta}_{1-\alpha/2}^{*}\;,\;\;2\hat{\theta}-\hat{\theta}_{\alpha/2}^{*}\right]\]</span></p>
-</div>
-<div id="towards-bias-corrected-and-accelerated-intervals-bca" class="section level3">
-<h3><span class="header-section-number">11.3.4</span> Towards bias-corrected and accelerated intervals (BCa)</h3>
-<p>Different schemes for creating confidence intervals can get quite complicated. There is a thriving research community investigating different ways of creating intervals and which are better in what instances. The BCa interval is the most general of the bootstrap intervals and makes the fewest assumptions. Unfortunately is can sometimes fail to converge. The details of this method are too complicated to be presented here but can be found in texts such as chapter 12 in Efron and Tibshirani’s book An Introduction to the Bootstrap (1998).</p>
-</div>
-</div>
-<div id="bootstrap-confidence-intervals-in-r" class="section level2">
-<h2><span class="header-section-number">11.4</span> Bootstrap Confidence Intervals in R</h2>
-<div id="using-carboot-function" class="section level3">
-<h3><span class="header-section-number">11.4.1</span> Using <code>car::Boot()</code> function</h3>
-<p>For every model we’ve examined we can create simulated data sets using either case or residual re-sampling and produce confidence intervals for any of the parameters of interest. We won’t bother to do this by hand, but rather let R do the work for us. The package that contains most of the primary programs for bootstrapping is the package <code>boot</code>. The functions within this package are quite flexible but they are a little complex. While we will use this package directly later, for now we will use the package <code>car</code> which has a very convenient function <code>car::Boot()</code>.</p>
-<p>We return to our ANOVA example of hostility scores after three different treatment methods. The first thing we will do (as we should do in all data analyses) is to graph our data.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># define the data</span>
-Hostility &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
-  <span class="dt">HLT =</span> <span class="kw">c</span>(<span class="dv">96</span>,<span class="dv">79</span>,<span class="dv">91</span>,<span class="dv">85</span>,<span class="dv">83</span>,<span class="dv">91</span>,<span class="dv">82</span>,<span class="dv">87</span>,
-          <span class="dv">77</span>,<span class="dv">76</span>,<span class="dv">74</span>,<span class="dv">73</span>,<span class="dv">78</span>,<span class="dv">71</span>,<span class="dv">80</span>,
-          <span class="dv">66</span>,<span class="dv">73</span>,<span class="dv">69</span>,<span class="dv">66</span>,<span class="dv">77</span>,<span class="dv">73</span>,<span class="dv">71</span>,<span class="dv">70</span>,<span class="dv">74</span>),
-  <span class="dt">Method =</span> <span class="kw">c</span>( <span class="kw">rep</span>(<span class="st">&#39;M1&#39;</span>,<span class="dv">8</span>), <span class="kw">rep</span>(<span class="st">&#39;M2&#39;</span>,<span class="dv">7</span>), <span class="kw">rep</span>(<span class="st">&#39;M3&#39;</span>,<span class="dv">9</span>) ) )</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(Hostility, <span class="kw">aes</span>(<span class="dt">x=</span>Method, <span class="dt">y=</span>HLT)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-281-1.png" width="672" /></p>
-<p>We can fit the cell-means model and examine the summary statistics using the following code.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span><span class="kw">lm</span>( HLT <span class="op">~</span><span class="st"> </span><span class="op">-</span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>Method, <span class="dt">data=</span>Hostility )
-<span class="kw">summary</span>(model)</code></pre></div>
-<pre><code>## 
-## Call:
-## lm(formula = HLT ~ -1 + Method, data = Hostility)
-## 
-## Residuals:
-##    Min     1Q Median     3Q    Max 
-## -7.750 -2.866  0.125  2.571  9.250 
-## 
-## Coefficients:
-##          Estimate Std. Error t value Pr(&gt;|t|)    
-## MethodM1   86.750      1.518   57.14   &lt;2e-16 ***
-## MethodM2   75.571      1.623   46.56   &lt;2e-16 ***
-## MethodM3   71.000      1.431   49.60   &lt;2e-16 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 4.294 on 21 degrees of freedom
-## Multiple R-squared:  0.9973, Adjusted R-squared:  0.997 
-## F-statistic:  2631 on 3 and 21 DF,  p-value: &lt; 2.2e-16</code></pre>
-<p>Confidence intervals using the <span class="math display">\[\epsilon_{ij}\stackrel{iid}{\sim}N\left(0,\sigma\right)\]</span> assumption are given by</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">confint</span>(model)</code></pre></div>
-<pre><code>##             2.5 %   97.5 %
-## MethodM1 83.59279 89.90721
-## MethodM2 72.19623 78.94663
-## MethodM3 68.02335 73.97665</code></pre>
-<p>To utilize the bootstrap confidence intervals, we will use the function <code>car::Boot</code> from the package <code>car</code>. It defaults to using case re-sampling, but <code>method='residual'</code> will cause it to use residual re-sampling. We can control the number of bootstrap replicates it using with the R parameter.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">boot.model &lt;-<span class="st"> </span><span class="kw">Boot</span>(model, <span class="dt">method=</span><span class="st">&#39;case&#39;</span>,     <span class="dt">R=</span><span class="dv">999</span>) <span class="co"># default case resampling </span>
-boot.model &lt;-<span class="st"> </span><span class="kw">Boot</span>(model, <span class="dt">method=</span><span class="st">&#39;residual&#39;</span>, <span class="dt">R=</span><span class="dv">999</span>) <span class="co"># residual resampling </span></code></pre></div>
-<p>The <code>car::Boot()</code> function has done all work of doing the re-sampling and storing values of <span class="math inline">\(\hat{\mu}_{1},\hat{\mu}_{2}\)</span>, and <span class="math inline">\(\hat{\mu}_{3}\)</span> for each bootstrap replicate data set created using case re-sampling. To look at the bootstrap estimate of the sampling distribution of these statistics, we use the <code>hist()</code> function. The <code>hist()</code> function is actually overloaded and will act differently depending on the type of object. We will send it an object of class boot and the <code>hist()</code> function looks for a function name <code>hist.boot()</code> and when it finds it, just calls it with the function arguments we passed.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(boot.model, <span class="dt">layout=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)) <span class="co"># 1 row, 3 columns of plots</span></code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-285-1.png" width="672" /></p>
-<p>While this plot is aesthetically displeasing (we could do so much better using ggplot2!) this shows the observed bootstrap histogram of <span class="math inline">\(\hat{\mu}_{i}^{*}\)</span>, along with the normal distribution centered at <span class="math inline">\(\hat{\mu}_{i}\)</span> with spread equal to the <span class="math inline">\(StdDev\left(\hat{\mu}_{i}^{*}\right)\)</span>. In this case, the sampling distribution looks very normal and the bootstrap confidence intervals should line up well with the asymptotic intervals. The function <code>confint()</code> will report the BCa intervals by default, but you can ask for “bca”, “norm”, “basic”, “perc”.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">confint</span>(boot.model)</code></pre></div>
-<pre><code>## Bootstrap quantiles, type =  bca 
-## 
-##             2.5 %   97.5 %
-## MethodM1 83.67302 89.81350
-## MethodM2 72.48592 78.97034
-## MethodM3 68.37861 74.14954</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">confint</span>(boot.model, <span class="dt">type=</span><span class="st">&#39;perc&#39;</span>)</code></pre></div>
-<pre><code>## Bootstrap quantiles, type =  percent 
-## 
-##             2.5 %   97.5 %
-## MethodM1 83.66222 89.80938
-## MethodM2 72.43179 78.82929
-## MethodM3 68.04848 73.89276</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">confint</span>(model)</code></pre></div>
-<pre><code>##             2.5 %   97.5 %
-## MethodM1 83.59279 89.90721
-## MethodM2 72.19623 78.94663
-## MethodM3 68.02335 73.97665</code></pre>
-<p>In this case we see that the confidence intervals match up very well with asymptotic intervals.</p>
-<p>The <code>car::Boot()</code> function will work for a regression model as well. In the following example, the data was generated from <span class="math display">\[y_{i}=\beta_{0}+\beta_{1}x_{i}+\epsilon_{i}\]</span> but the <span class="math inline">\(\epsilon_{i}\)</span> terms have a strong positive skew and are not normally distributed.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my.data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
-  <span class="dt">x =</span> <span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">10</span>, <span class="dt">length=</span><span class="dv">20</span>),
-  <span class="dt">y =</span> <span class="kw">c</span>( <span class="fl">15.49</span>, <span class="fl">17.42</span>, <span class="fl">15.17</span>, <span class="fl">14.99</span>, <span class="fl">13.96</span>, 
-         <span class="fl">14.46</span>, <span class="fl">13.69</span>, <span class="fl">14.30</span>, <span class="fl">13.61</span>, <span class="fl">15.35</span>, 
-         <span class="fl">12.94</span>, <span class="fl">13.26</span>, <span class="fl">12.65</span>, <span class="fl">12.33</span>, <span class="fl">12.04</span>, 
-         <span class="fl">11.19</span>, <span class="fl">13.76</span>, <span class="fl">10.95</span>, <span class="fl">10.36</span>, <span class="fl">10.63</span>))
-<span class="kw">ggplot</span>(my.data, <span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>y)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-287-1.png" width="672" /></p>
-<p>Fitting a linear model, we see a problem that the residuals don’t appear to be balanced. The large residuals are all positive. The Shapiro-Wilks test firmly rejects normality of the residuals.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span><span class="kw">lm</span>( y <span class="op">~</span><span class="st"> </span>x, <span class="dt">data=</span>my.data)
-<span class="kw">plot</span>(model, <span class="dt">which=</span><span class="dv">1</span>)</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-288-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">shapiro.test</span>( <span class="kw">resid</span>(model) )</code></pre></div>
-<pre><code>## 
-##  Shapiro-Wilk normality test
-## 
-## data:  resid(model)
-## W = 0.77319, p-value = 0.0003534</code></pre>
-<p>As a result, we don’t might not feel comfortable using the asymptotic distribution of <span class="math inline">\(\hat{\beta}_{0}\)</span> and <span class="math inline">\(\hat{\beta}_{1}\)</span> for the creation of our confidence intervals. The bootstrap procedure can give reasonable good intervals, however.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">boot.model &lt;-<span class="st"> </span><span class="kw">Boot</span>( model )  <span class="co"># by default method=&#39;case&#39;</span>
-<span class="kw">hist</span>( boot.model )</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-290-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">confint</span>( boot.model )</code></pre></div>
-<pre><code>## Bootstrap quantiles, type =  bca 
-## 
-##                  2.5 %     97.5 %
-## (Intercept) 15.4729799 16.9857123
-## x           -0.6498092 -0.3817759</code></pre>
-<p>Notice that both of the bootstrap distribution for both <span class="math inline">\(\hat{\beta}_{0}^{*}\)</span> and <span class="math inline">\(\hat{\beta}_{1}^{*}\)</span> are skewed, and the BCa intervals are likely to be the most appropriate intervals to use.</p>
-</div>
-<div id="using-the-boot-package" class="section level3">
-<h3><span class="header-section-number">11.4.2</span> Using the <code>boot</code> package</h3>
-<p>The <code>car::Boot()</code> function is very handy, but it lacks flexibility; it assumes that you just want to create bootstrap confidence intervals for the model coefficients. The <code>car::Boot()</code> function is actually a nice simple user interface to the boot package which is more flexible, but requires the user to be more precise about what statistic should be stored and how the bootstrap samples should be created. We will next examine how to use this package.</p>
-<div id="case-resampling" class="section level4">
-<h4><span class="header-section-number">11.4.2.1</span> Case resampling</h4>
-<p>Suppose that we have n observations in our sample data. Given some vector of numbers re-sampled from <code>1:n</code>, we need to either re-sample those cases or those residuals and then using the new dataset calculate some statistic. The function <code>boot()</code> will require the user to write a function that does this.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span><span class="kw">lm</span>( y <span class="op">~</span><span class="st"> </span>x, <span class="dt">data=</span>my.data )
-<span class="kw">coef</span>(model)</code></pre></div>
-<pre><code>## (Intercept)           x 
-##  16.0355714  -0.5216143</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Do case resampling with the regression example</span>
-<span class="co"># sample.data is the original data frame </span>
-<span class="co"># indices - This is a vector of numbers from 1:n which tells</span>
-<span class="co">#           us which cases to use.  It might be 1,3,3,6,7,7,...</span>
-my.stat &lt;-<span class="st"> </span><span class="cf">function</span>(sample.data, indices){
-  data.star &lt;-<span class="st"> </span>sample.data[indices, ]      
-  model.star &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="dt">data=</span>data.star)
-  output &lt;-<span class="st"> </span><span class="kw">coef</span>(model.star)
-  <span class="kw">return</span>(output)
-}
-
-<span class="co"># original model coefficients</span>
-<span class="kw">my.stat</span>(my.data, <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>)</code></pre></div>
-<pre><code>## (Intercept)           x 
-##  16.0355714  -0.5216143</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># one bootstrap replicate </span>
-<span class="kw">my.stat</span>(my.data, mosaic<span class="op">::</span><span class="kw">resample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>))</code></pre></div>
-<pre><code>## (Intercept)           x 
-##  16.3069314  -0.5786995</code></pre>
-<p>Notice that the function we write doesn’t need to determine the random sample of the indices to use. Our function will be told what indices to use (possibly to calculate the statistic of interest <span class="math inline">\(\hat{\theta}\)</span>, or perhaps a bootstrap replicate <span class="math inline">\(\hat{\theta}^{*}\)</span>. For example, the BCa method needs to know the original sample estimates <span class="math inline">\(\hat{\theta}\)</span> to calculate how far the mean of the <span class="math inline">\(\hat{\theta}^{*}\)</span> values is from <span class="math inline">\(\hat{\theta}\)</span>. To avoid the user having to see all of that, we just need to take the set of indices given and calculate the statistic of interest.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">boot.model &lt;-<span class="st"> </span><span class="kw">boot</span>(my.data, my.stat, <span class="dt">R=</span><span class="dv">10000</span>)
-<span class="co">#boot.ci(boot.model, type=&#39;bca&#39;, index=1) # CI for Intercept</span>
-<span class="co">#boot.ci(boot.model, type=&#39;bca&#39;, index=2) # CI for the Slope</span>
-<span class="kw">confint</span>(boot.model)</code></pre></div>
-<pre><code>## Bootstrap quantiles, type =  bca 
-## 
-##        2.5 %    97.5 %
-## 1 15.4340761 17.013663
-## 2 -0.6507547 -0.374097</code></pre>
-</div>
-<div id="residual-resampling" class="section level4">
-<h4><span class="header-section-number">11.4.2.2</span> Residual Resampling</h4>
-<p>We will now consider the ANOVA problem and in this case we will re-sample the residuals.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Fit the ANOVA model to the Hostility Data</span>
-model &lt;-<span class="st"> </span><span class="kw">lm</span>( HLT <span class="op">~</span><span class="st"> </span>Method, <span class="dt">data=</span>Hostility )
-
-<span class="co"># now include the predicted values and residuals to the data frame</span>
-Hostility &lt;-<span class="st"> </span>Hostility <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(
-  <span class="dt">fit    =</span> <span class="kw">fitted</span>(model),
-  <span class="dt">resid  =</span> <span class="kw">resid</span>(model))
-
-<span class="co"># Do residual resampling with the regression example</span>
-my.stat &lt;-<span class="st"> </span><span class="cf">function</span>(sample.data, indices){
-  data.star  &lt;-<span class="st"> </span>sample.data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">HLT =</span> fit <span class="op">+</span><span class="st"> </span>resid[indices])
-  model.star &lt;-<span class="st"> </span><span class="kw">lm</span>(HLT <span class="op">~</span><span class="st"> </span>Method, <span class="dt">data=</span>data.star)
-  output     &lt;-<span class="st"> </span><span class="kw">coef</span>(model.star)
-  <span class="kw">return</span>(output)
-}
-
-boot.model &lt;-<span class="st"> </span><span class="kw">boot</span>(Hostility, my.stat, <span class="dt">R=</span><span class="dv">10000</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">confint</span>(boot.model)</code></pre></div>
-<pre><code>## Bootstrap quantiles, type =  bca 
-## 
-##       2.5 %     97.5 %
-## 1  84.10714  89.575893
-## 2 -15.42106  -7.241673
-## 3 -19.55282 -12.069872</code></pre>
-<p>Fortunately the <code>hist()</code> command can print the nice histogram from the output of the <code>boot()</code> command.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>( boot.model, <span class="dt">layout=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)) <span class="co"># 1 row, 3 columns)</span></code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-295-1.png" width="672" /></p>
-<p>Notice that we don’t need to have the model coefficients <span class="math inline">\(\hat{\mu}_{i}\)</span> be our statistic of interest, we could just as easily produce a confidence interval for the residual standard error <span class="math inline">\(\hat{\sigma}\)</span>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Do residual resampling with the regression example</span>
-model &lt;-<span class="st"> </span><span class="kw">lm</span>( y <span class="op">~</span><span class="st"> </span>x, <span class="dt">data=</span>my.data )
-my.data &lt;-<span class="st"> </span>my.data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(
-  <span class="dt">fitted =</span> <span class="kw">fitted</span>(model),
-  <span class="dt">resid  =</span> <span class="kw">resid</span>(model))
-
-<span class="co"># Define the statisitc I care about</span>
-my.stat &lt;-<span class="st"> </span><span class="cf">function</span>(sample.data, indices){
-  data.star &lt;-<span class="st"> </span>sample.data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">y =</span> fitted <span class="op">+</span><span class="st"> </span>resid[indices])
-  model.star &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="dt">data=</span>data.star)
-  output &lt;-<span class="st"> </span><span class="kw">summary</span>(model.star)<span class="op">$</span>sigma
-  <span class="kw">return</span>(output)
-}
-
-boot.model &lt;-<span class="st"> </span><span class="kw">boot</span>(my.data, my.stat, <span class="dt">R=</span><span class="dv">10000</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(boot.model, <span class="dt">layout=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-297-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">confint</span>(boot.model)</code></pre></div>
-<pre><code>## Bootstrap quantiles, type =  bca 
-## 
-##      2.5 %   97.5 %
-## 1 0.566195 1.220835</code></pre>
-</div>
-<div id="including-blockingstratifying-variables" class="section level4">
-<h4><span class="header-section-number">11.4.2.3</span> Including Blocking/Stratifying Variables</h4>
-<p>When we introduced the ANOVA model we assumed that the groups had equal variance but we don’t have to. If we consider the model with unequal variances among groups <span class="math display">\[Y_{ij}=\mu_{i}+\epsilon_{ij}\;\;\;\;\textrm{where}\;\;\;E\left(\epsilon_{ij}\right)=0\;\;Var\left(\epsilon_{ij}\right)=\sigma_{i}^{2}\]</span> then our usual analysis is inappropriate but we could easily bootstrap our confidence intervals for <span class="math inline">\(\mu_{i}\)</span>. If we do case re-sampling, this isn’t an issue because each included observation is an <span class="math inline">\(\left(group,\ response\right)\)</span> pair and our groups will have large or small variances similar to the observed data. However if we do residual re-sampling, then we must continue to have this. We do this by only re-sampling residuals within the same group. One way to think of this is if your model has a subscript on the variance term, then your bootstrap samples must respect that.</p>
-<p>If you want to perform the bootstrap by hand using dplyr commands, it can be done by using the <code>group_by()</code> with whatever the blocking/Stratifying variable is prior to the <code>mosaic::resample()</code> command. You could also use the optional group argument to the <code>mosaic::resample()</code> command.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">y  =</span><span class="kw">c</span>(<span class="fl">9.8</span>,<span class="fl">9.9</span>,<span class="fl">10.1</span>,<span class="fl">10.2</span>,   <span class="dv">18</span>,<span class="dv">19</span>,<span class="dv">21</span>,<span class="dv">22</span>),
-                   <span class="dt">grp=</span><span class="kw">c</span>(<span class="st">&#39;A&#39;</span>,<span class="st">&#39;A&#39;</span>,<span class="st">&#39;A&#39;</span>,<span class="st">&#39;A&#39;</span>,    <span class="st">&#39;B&#39;</span>,<span class="st">&#39;B&#39;</span>,<span class="st">&#39;B&#39;</span>,<span class="st">&#39;B&#39;</span>),
-                   <span class="dt">fit=</span><span class="kw">c</span>( <span class="dv">10</span>,<span class="dv">10</span>,<span class="dv">10</span>,<span class="dv">10</span>,        <span class="dv">20</span>,<span class="dv">20</span>,<span class="dv">20</span>,<span class="dv">20</span>   ),
-                   <span class="dt">resid=</span><span class="kw">c</span>(<span class="op">-</span>.<span class="dv">2</span>,<span class="op">-</span>.<span class="dv">1</span>,.<span class="dv">1</span>,.<span class="dv">2</span>,     <span class="op">-</span><span class="dv">2</span>,<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>   )) 
-data.star &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">group_by</span>(grp) <span class="op">%&gt;%</span><span class="st">    </span><span class="co"># do the grouping using dplyr</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">resid.star =</span> mosaic<span class="op">::</span><span class="kw">resample</span>(resid),
-         <span class="dt">y.star     =</span> fit <span class="op">+</span><span class="st"> </span>resid.star)
-data.star</code></pre></div>
-<pre><code>## Source: local data frame [8 x 6]
-## Groups: grp [2]
-## 
-## # A tibble: 8 x 6
-##       y    grp   fit resid resid.star y.star
-##   &lt;dbl&gt; &lt;fctr&gt; &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt;
-## 1   9.8      A    10  -0.2        0.2   10.2
-## 2   9.9      A    10  -0.1       -0.1    9.9
-## 3  10.1      A    10   0.1       -0.2    9.8
-## 4  10.2      A    10   0.2        0.2   10.2
-## 5  18.0      B    20  -2.0       -2.0   18.0
-## 6  19.0      B    20  -1.0        1.0   21.0
-## 7  21.0      B    20   1.0       -1.0   19.0
-## 8  22.0      B    20   2.0        1.0   21.0</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data.star &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">resid.star =</span> mosaic<span class="op">::</span><span class="kw">resample</span>(resid, <span class="dt">group=</span>grp), <span class="co"># do the grouping within resample </span>
-         <span class="dt">y.star     =</span> fit <span class="op">+</span><span class="st"> </span>resid.star)
-data.star</code></pre></div>
-<pre><code>##      y grp fit resid resid.star y.star
-## 1  9.8   A  10  -0.2        0.2   10.2
-## 2  9.9   A  10  -0.1        0.1   10.1
-## 3 10.1   A  10   0.1       -0.2    9.8
-## 4 10.2   A  10   0.2       -0.2    9.8
-## 5 18.0   B  20  -2.0       -1.0   19.0
-## 6 19.0   B  20  -1.0       -2.0   18.0
-## 7 21.0   B  20   1.0       -2.0   18.0
-## 8 22.0   B  20   2.0        2.0   22.0</code></pre>
-<p>Unfortunately the <code>car::Boot()</code> command doesn’t take a strata option, but the the <code>boot::boot()</code> command.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Fit the ANOVA model to the Hostility Data</span>
-model &lt;-<span class="st"> </span><span class="kw">lm</span>( HLT <span class="op">~</span><span class="st"> </span>Method, <span class="dt">data=</span>Hostility )
-
-<span class="co"># now include the predicted values and residuals to the data frame</span>
-Hostility &lt;-<span class="st"> </span>Hostility <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(
-  <span class="dt">fitted =</span> <span class="kw">fitted</span>(model),
-  <span class="dt">resid  =</span> <span class="kw">resid</span>(model))
-
-<span class="co"># Do residual resampling </span>
-my.stat &lt;-<span class="st"> </span><span class="cf">function</span>(sample.data, indices){
-  data.star &lt;-<span class="st"> </span>sample.data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">HLT =</span> fitted <span class="op">+</span><span class="st"> </span>resid[indices])
-  model.star &lt;-<span class="st"> </span><span class="kw">lm</span>(HLT <span class="op">~</span><span class="st"> </span>Method, <span class="dt">data=</span>data.star)
-  output &lt;-<span class="st"> </span><span class="kw">coef</span>(model.star)
-  <span class="kw">return</span>(output)
-}
-
-<span class="co"># strata is a vector of the categorical variable we block/stratify on</span>
-boot.model &lt;-<span class="st"> </span><span class="kw">boot</span>( Hostility, my.stat, <span class="dt">R=</span><span class="dv">1000</span>, <span class="dt">strata=</span>Hostility<span class="op">$</span>Method )</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(boot.model, <span class="dt">layout=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))</code></pre></div>
-<p><img src="Statistical_Methods_I_files/figure-html/unnamed-chunk-301-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">confint</span>(boot.model)</code></pre></div>
-<pre><code>## Bootstrap quantiles, type =  bca 
-## 
-##       2.5 %     97.5 %
-## 1  83.50000  91.000000
-## 2 -15.59956  -7.152499
-## 3 -20.29828 -11.599394</code></pre>
-</div>
-</div>
-</div>
-<div id="exercises-10" class="section level2">
-<h2><span class="header-section-number">11.5</span> Exercises</h2>
-<ol style="list-style-type: decimal">
-<li><p>We will perform a regression analysis on the following data and use different bootstrap re-sampling methods to create a confidence interval for the slope parameter. In this case the residuals are symmetric, though perhaps we don’t want to assume normality.</p>
-<table>
-<tbody>
-<tr class="odd">
-<td align="center"><span class="math inline">\(x_{i}\)</span></td>
-<td align="center">3</td>
-<td align="center">4</td>
-<td align="center">5</td>
-<td align="center">6</td>
-<td align="center">7</td>
-<td align="center">8</td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(y_{i}\)</span></td>
-<td align="center">5</td>
-<td align="center">9</td>
-<td align="center">10</td>
-<td align="center">12</td>
-<td align="center">15</td>
-<td align="center">15</td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(\hat{y}_{i}\)</span></td>
-<td align="center">6</td>
-<td align="center">8</td>
-<td align="center">10</td>
-<td align="center">12</td>
-<td align="center">14</td>
-<td align="center">16</td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(\hat{\epsilon}_{i}\)</span></td>
-<td align="center">-1</td>
-<td align="center">1</td>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">1</td>
-<td align="center">-1</td>
-</tr>
-</tbody>
-</table>
-<ol style="list-style-type: lower-alpha">
-<li>We will first use case resampling.
-<ol style="list-style-type: lower-roman">
-<li>Suppose that the bootstrap indices are selected to be cases 1,3,3,4,6,6. Create a new dataset with those cases and calculate the regression coefficients <span class="math inline">\(\hat{\beta}_{0}^{*}\)</span> and <span class="math inline">\(\hat{\beta}_{1}^{*}\)</span> using R’s <code>lm()</code> function. Notice that the residual <span class="math inline">\(\hat{\epsilon}_{i}\)</span> is always paired with its value of <span class="math inline">\(x_{i}\)</span> and that in case resampling we don’t get the same x-values as our data.</li>
-<li>Using the <code>mosaic::resample()</code> command, calculate several values of <span class="math inline">\(\hat{\beta}_{1}^{*}\)</span> using case resampling.</li>
-<li>Use the <code>car::Boot()</code> function to calculate the BCa confidence interval for <span class="math inline">\(\hat{\beta}_{1}\)</span> with case resampling</li>
-</ol></li>
-<li>Next we will use Residual Resampling
-<ol style="list-style-type: lower-roman">
-<li>Suppose that the bootstrap indices are selected to be cases 1,3,3,4,6,6. Create a new dataset with those cases and calculate the regression coefficients <span class="math inline">\(\hat{\beta}_{0}^{*}\)</span> and <span class="math inline">\(\hat{\beta}_{1}^{*}\)</span> using R’s <code>lm()</code> function. Notice that the residual <span class="math inline">\(\hat{\epsilon}_{i}\)</span> is not necessarily paired with its value of <span class="math inline">\(x_{i}\)</span> and that the new data set has the same x-values as the original sampled data.</li>
-<li>Using the <code>mosaic::resample</code> command, calculate several values of <span class="math inline">\(\hat{\beta}_{i}^{*}\)</span>. Hint: We can’t do this in one simple command, instead we have to make the new dataset and then fit the regression.</li>
-<li>Use the <code>car::Boot()</code> function to calculate the BCa confidence interval for <span class="math inline">\(\hat{\beta}_{1}\)</span> using residual resampling.</li>
-</ol></li>
-</ol></li>
-<li><p>The ratio of DDE (related to DDT) to PCB concentrations in bird eggs has been shown to have had a number of biological implications. The ratio is used as an indication of the movement of contamination through the food chain. The paper “The ratio of DDE to PCB concentrations in Great Lakes herring gull eggs and its us in interpreting contaminants data” reports the following ratios for eggs collected at sites from the five Great Lakes. The eggs were collected from both terrestrial and aquatic feeding birds. Suppose that we are interested in estimating <span class="math inline">\(\rho=\frac{\mu_{terrestial}}{\mu_{aquatic}}\)</span></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Pollution &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
-  <span class="dt">value =</span> <span class="kw">c</span>(<span class="fl">76.50</span>, <span class="fl">6.03</span>, <span class="fl">3.51</span>, <span class="fl">9.96</span>, <span class="fl">4.24</span>, <span class="fl">7.74</span>, <span class="fl">9.54</span>, <span class="fl">41.70</span>, <span class="fl">1.84</span>, <span class="fl">2.50</span>, <span class="fl">1.54</span>,
-             <span class="fl">0.27</span>, <span class="fl">0.61</span>, <span class="fl">0.54</span>, <span class="fl">0.14</span>, <span class="fl">0.63</span>, <span class="fl">0.23</span>, <span class="fl">0.56</span>,  <span class="fl">0.48</span>, <span class="fl">0.16</span>, <span class="fl">0.18</span>       ),
-  <span class="dt">type  =</span> <span class="kw">c</span>( <span class="kw">rep</span>(<span class="st">&#39;Terrestrial&#39;</span>,<span class="dv">11</span>), <span class="kw">rep</span>(<span class="st">&#39;Aquatic&#39;</span>,<span class="dv">10</span>) ) )
-model &lt;-<span class="st"> </span><span class="kw">lm</span>( value <span class="op">~</span><span class="st"> </span><span class="op">-</span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>type, <span class="dt">data=</span>Pollution)
-<span class="kw">coef</span>(model)</code></pre></div>
-<pre><code>##     typeAquatic typeTerrestrial 
-##         0.38000        15.00909</code></pre>
-<ol style="list-style-type: lower-alpha">
-<li>Recall that the ANOVA with the cell mean representation will calculate the group means. Use the lm() function to calculate the means of the two groups. Notice that the p-values and any confidence intervals from this model are useless because we are egregiously violating the equal variance and normality assumptions on the residuals.</li>
-<li>Using R, calculate the ratio <span class="math inline">\(\hat{\rho}=\bar{y}_{T}/\bar{y}_{A}\)</span>. <em>Hint: what is returned by <code>coef(model)[1]</code></em>?</li>
-<li>Use the <code>mosaic::resample()</code> function to generate several bootstrap datasets using case resampling. Do you get 11 Terrestrial observations in each dataset? Do this ten or twenty times (don’t show these computations) and note the most unbalanced data set.</li>
-<li>Use the <code>mosaic::resample()</code> function to generate several bootstrap datasets using residual resampling? Do you get data sets where a simulated aquatic observation has been paired with a huge residual term from the terrestrial. Does this seem appropriate?</li>
-<li>The <code>mosaic::resample()</code> function includes an optional <code>groups=</code> argument that does the resampling within a specified group (thus we will always get 11 Terrestrial observations and 10 Aquatic). Use this to generate several bootstrap datasets.</li>
-<li>The <code>car::Boot()</code> function cannot handle the grouping, but <code>boot::boot()</code> can.
-<ol style="list-style-type: lower-roman">
-<li><p>The following function will calculate <span class="math inline">\(\hat{\rho}\)</span>, the statistic of interest, given the original data and a set of indices to use. Notice that we’ve chosen to do case resampling here.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">calc_rhohat &lt;-<span class="st"> </span><span class="cf">function</span>(data, indices){
-  data.star &lt;-<span class="st"> </span>data[indices, ]
-  model.star &lt;-<span class="st"> </span><span class="kw">lm</span>( value <span class="op">~</span><span class="st"> </span><span class="op">-</span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>type, <span class="dt">data=</span>data.star )
-  <span class="kw">return</span>( <span class="kw">coef</span>(model.star)[<span class="dv">2</span>] <span class="op">/</span><span class="st"> </span><span class="kw">coef</span>(model.star)[<span class="dv">1</span>] )
-}</code></pre></div></li>
-<li>Call this function using the Pollution data set and indices 1:21. Notice that this calculates the sample statistic <span class="math inline">\(\hat{\rho}\)</span> that we calculated previously.</li>
-<li>Call this function using <code>indices = resample(1:21, groups=Pollution$type)</code>. Notice that this calculates the sample statistic <span class="math inline">\(\hat{\rho}^{*}\)</span> where we are doing case resampling within each group.</li>
-<li>Use the <code>boot::boot()</code> to perform the full bootstrap analysis. Use the option <code>strata=Pollution$type</code> option, which is causes R to do the resampling within each group.</li>
-<li><p>What is the 95% BCa CI for <span class="math inline">\(\rho\)</span>? Show the histogram of the bootstrap estimate of the distribution of <span class="math inline">\(\hat{\rho}\)</span>.</p></li>
-</ol></li>
-</ol></li>
-</ol>
-
-</div>
 </div>
             </section>
 
@@ -868,11 +350,13 @@ model &lt;-<span class="st"> </span><span class="kw">lm</span>( value <span clas
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -880,11 +364,13 @@ gitbook.start({
 "github": false,
 "facebook": false,
 "twitter": false,
-"google": false,
+"linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"],
+"google": false,
+"instapper": false
 },
 "fontsettings": {
 "theme": "white",
@@ -895,7 +381,15 @@ gitbook.start({
 "link": "https://github.com/dereksonderegger/570/raw/master/11_Resampling_LinearModels.Rmd",
 "text": "Edit"
 },
-"download": [["Statistical_Methods_I.pdf", "PDF"], ["Statistical_Methods_I.epub", "EPUB"]],
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
 "toc": {
 "collapse": "section",
 "scroll_highlight": true
@@ -910,9 +404,12 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(script.src))
-      script.src  = script.src.replace(/^https?:/, '');
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

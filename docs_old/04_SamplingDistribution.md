@@ -55,9 +55,9 @@ mosaic::do(3) * {
 
 ```
 ##       xbar
-## 1 5.363340
-## 2 6.374092
-## 3 4.590824
+## 1 6.523289
+## 2 4.860706
+## 3 3.870707
 ```
 
 Now produce 10000 estimates from random samples of the population.
@@ -230,7 +230,7 @@ SampDist %>%                                         # What proportion of those
 
 ```
 ##   ProportionGreater
-## 1            0.0668
+## 1            0.0685
 ```
 
 **Summary**

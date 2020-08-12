@@ -131,26 +131,26 @@ CaffeineTaps %>% mutate(ShuffledGroup = mosaic::shuffle(Group))
 
 ```
 ##    Taps      Group ShuffledGroup
-## 1   246   Caffeine    NoCaffeine
-## 2   248   Caffeine      Caffeine
-## 3   250   Caffeine      Caffeine
-## 4   252   Caffeine    NoCaffeine
-## 5   248   Caffeine    NoCaffeine
+## 1   246   Caffeine      Caffeine
+## 2   248   Caffeine    NoCaffeine
+## 3   250   Caffeine    NoCaffeine
+## 4   252   Caffeine      Caffeine
+## 5   248   Caffeine      Caffeine
 ## 6   250   Caffeine      Caffeine
 ## 7   246   Caffeine      Caffeine
-## 8   248   Caffeine    NoCaffeine
-## 9   245   Caffeine      Caffeine
-## 10  250   Caffeine      Caffeine
+## 8   248   Caffeine      Caffeine
+## 9   245   Caffeine    NoCaffeine
+## 10  250   Caffeine    NoCaffeine
 ## 11  242 NoCaffeine    NoCaffeine
-## 12  245 NoCaffeine    NoCaffeine
+## 12  245 NoCaffeine      Caffeine
 ## 13  244 NoCaffeine      Caffeine
-## 14  248 NoCaffeine    NoCaffeine
+## 14  248 NoCaffeine      Caffeine
 ## 15  247 NoCaffeine    NoCaffeine
-## 16  248 NoCaffeine    NoCaffeine
-## 17  242 NoCaffeine      Caffeine
+## 16  248 NoCaffeine      Caffeine
+## 17  242 NoCaffeine    NoCaffeine
 ## 18  244 NoCaffeine    NoCaffeine
-## 19  246 NoCaffeine      Caffeine
-## 20  242 NoCaffeine      Caffeine
+## 19  246 NoCaffeine    NoCaffeine
+## 20  242 NoCaffeine    NoCaffeine
 ```
 
 We can then calculate the mean difference but this time using the randomly generated groups, and now the non-caffeinated group just happens to have a slightly higher mean tap rate just by the random sorting into two groups.
@@ -168,7 +168,7 @@ CaffeineTaps %>%
 ## # A tibble: 1 x 1
 ##   d.star
 ##    <dbl>
-## 1   1.30
+## 1    0.7
 ```
 
 We could repeat this shuffling several times and see the possible values we might have seen if the null hypothesis is correct and the treatment group doesn't matter at all.
@@ -186,11 +186,11 @@ mosaic::do(5) * {
 
 ```
 ##   d.star
-## 1   -0.9
-## 2   -0.1
-## 3    0.3
+## 1   -2.1
+## 2   -1.7
+## 3   -1.9
 ## 4    1.5
-## 5    1.3
+## 5    2.1
 ```
 
 Of course, five times isn't sufficient to understand the sampling distribution of the mean difference under the null hypothesis, we should do more.

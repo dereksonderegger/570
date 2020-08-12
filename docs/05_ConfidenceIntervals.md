@@ -48,7 +48,7 @@ Our previous results about confidence intervals assumed that $\bar{X}\sim N\left
  I want to just replace $\sigma^{2}$ with $S^{2}$ but the sample variance $S^{2}$ is also a random variable and incorporating it into the standardization function might affect the distribution. $$\frac{\bar{X}-\mu}{\sqrt{\frac{S^{2}}{n}}}\sim\;???$$
  Unfortunately this substitution of $S^{2}$ for $\sigma^{2}$ comes with a cost and this quantity is not normally distributed. Instead it has a $t$-distribution with $n-1$ degrees of freedom. However as the sample size increases and $S^{2}$ becomes a more reliable estimator of $\sigma^{2}$, this penalty should become smaller.
 
-<img src="05_ConfidenceIntervals_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+![](05_ConfidenceIntervals_files/figure-latex/unnamed-chunk-3-1.pdf)<!-- --> 
 
 The $t$-distribution is often call "Student's t-distribution" is named after [William Gosset](http://en.wikipedia.org/wiki/William_Sealy_Gosset) who worked at Guinness Brewing and did work with small sample sizes in both the brewery and at the farms that supplied the barley. Because Guinness prevented its employees from publishing any of their work, he published under the pseudonym "Student".
 
@@ -96,7 +96,7 @@ ggplot() +
                  binwidth=30, alpha=.6)  
 ```
 
-<img src="05_ConfidenceIntervals_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+![](05_ConfidenceIntervals_files/figure-latex/unnamed-chunk-5-1.pdf)<!-- --> 
 
 The observed sample mean is $\bar{x}=345.6$  pounds and a sample standard deviation $s=108.8527$  pounds. Because we want a $95\%$ confidence interval $\alpha=0.05$. Using t-tables or the following R code
 
@@ -127,7 +127,7 @@ ggplot(SampDist, aes(x=xbar, y=..density..)) +
   geom_histogram()
 ```
 
-<img src="05_ConfidenceIntervals_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+![](05_ConfidenceIntervals_files/figure-latex/unnamed-chunk-7-1.pdf)<!-- --> 
 
 Grabbing the appropriate quantiles from the bootstrap estimate of the sampling distribution, we see that the bootstrap $95\%$ confidence interval matches up will with the confidence interval we obtained from asymptotic theory. 
 
@@ -138,7 +138,7 @@ quantile( SampDist$xbar, probs=c(0.025, 0.975) )
 
 ```
 ##     2.5%    97.5% 
-## 313.6244 380.0512
+## 313.4987 379.2012
 ```
 
 Example: Assume that the percent of alcohol in casks of whiskey is normally distributed. From the last batch of casks produced, the brewer samples $n=5$ casks and wants to calculate a $90\%$ confidence interval for the mean percent alcohol in the latest batch produced. The sample mean was $\bar{x}=55$ percent and the sample standard deviation was $s=4$ percent. 

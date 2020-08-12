@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 ```{r, echo=FALSE}
 # Unattach any packages that happen to already be loaded. In general this is unecessary
 # but is important for the creation of the book to not have package namespaces
@@ -425,7 +430,7 @@ ggplot( Area.Data, aes(x=x)) +
 Vocabulary for discussing the shape of a distribution is discussed.  These descriptors can be very useful for understanding the distribution, and as understanding develops, also tell us about relationships between the mean and median, or other informative quantities.
 
 ### Symmetry
-A distribution is said to be **symmetric** if there is a point along the x-axis (which we'll call $\mu$) which acts as a mirror.  Mathematically, a distribution is symmetric around $\m$ if and only if $f( -|x-\mu| ) = f( |x-\mu| )$.  The following graphs give the point of symmetry marked with a red line.
+A distribution is said to be **symmetric** if there is a point along the x-axis (which we'll call $\mu$) which acts as a mirror.  Mathematically, a distribution is symmetric around $m$ if and only if $f( -\lvert x-\mu \rvert ) = f( \lvert x-\mu \rvert )$.  The following graphs give the point of symmetry marked with a red line.
 
 ```{r, echo=FALSE}
 data <- data.frame(x=seq(-3,3, length=1000)) %>% mutate( y = dnorm(x, mean=0, sd=1))

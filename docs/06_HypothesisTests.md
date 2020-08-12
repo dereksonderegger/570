@@ -61,7 +61,7 @@ The above value is the actual value calculated using R
 mosaic::xpt(-1.58, df=9, ncp=0)    # With a graph; Non-Centrality Parameter = 0
 ```
 
-<img src="06_HypothesisTests_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+![](06_HypothesisTests_files/figure-latex/unnamed-chunk-4-1.pdf)<!-- --> 
 
 ```
 ## [1] 0.07428219
@@ -103,7 +103,7 @@ Suppose we consider the population of all US men aged 40-60 with high blood pres
 
 Instead of testing the entire population we'll take a sample of $n$ men from the population and treat half of them with exercise alone and half of them with exercise and ACE inhibitors. What might our data look like if there is a difference between the two treatments at different samples sizes compared to if there is no difference? At small sample sizes it is difficult to distinguish the effect of the treatment when it is masked by individual variation. At high sample sizes, the individual variation is smoothed out and the difference between the treatments can be readily seen.
 
-<img src="06_HypothesisTests_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+![](06_HypothesisTests_files/figure-latex/unnamed-chunk-5-1.pdf)<!-- --> 
 
 Comparing possible data assuming there is a difference between treatments versus no difference. In the top row of graphs, there is a difference between the Exercise and the Exercise + Inhibitor treatments. However, at small sample sizes, we can't tell if the observed difference is due to the difference in treatment or just random variation in the data. In the second row, there is no difference between the treatments.
 
@@ -137,7 +137,7 @@ Then the p-value would be
 mosaic::xpt(-1.4, df=19, ncp=0 )   # With a Graph
 ```
 
-<img src="06_HypothesisTests_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+![](06_HypothesisTests_files/figure-latex/unnamed-chunk-6-1.pdf)<!-- --> 
 
 ```
 ## [1] 0.08881538
@@ -159,7 +159,7 @@ Suppose we perform a test of a random sample of resistors and obtain a test stat
 mosaic::xpt( c(-1.8, 1.8), df=9, ncp=0)
 ```
 
-<img src="06_HypothesisTests_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+![](06_HypothesisTests_files/figure-latex/unnamed-chunk-7-1.pdf)<!-- --> 
 
 ```
 ## [1] 0.05269534 0.94730466
@@ -394,13 +394,13 @@ t_{crit}\left(\frac{s}{\sqrt{n}}\right)+\mu_{0}	&=	\bar{x}_{crit} \\
 There is a trade off between the Type I and Type II errors. By making a Type I error, I will reject the null hypothesis when the null hypothesis is true. Here I would stop manufacturing for the day while re-calibrating the machine. Clearly a Type I error is not good. The probability of making a Type I error is denoted $\alpha$.
 
 
-<img src="06_HypothesisTests_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+![](06_HypothesisTests_files/figure-latex/unnamed-chunk-12-1.pdf)<!-- --> 
 
 A type II error occurs when I fail to reject the null hypothesis when the alternative is true. This would mean that we would be selling ropes that have a breaking point less than the advertised amount. This opens the company up to a lawsuit. We denote the probability of making a Type II error is denoted as $\beta$ and define Power $=1-\beta$. But consider that I don't want to be shutting down the plant when the breaking point is just a few pounds from the true mean. The head of engineering tells me that if the average breaking point is more than $50$ pounds less than $5000$, we have a problem, but less than $50$ pounds is acceptable. 
 
 So I want to be able to detect if the true mean is less than $4950$ pounds. Consider the following where we assume $\mu=4950$. 
 
-<img src="06_HypothesisTests_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+![](06_HypothesisTests_files/figure-latex/unnamed-chunk-13-1.pdf)<!-- --> 
 
 The the probability of a type II error is 
 $$\begin{aligned}
@@ -411,7 +411,7 @@ $$\begin{aligned}
  
 and therefore my power for detecting a mean breaking strength less than or equal to 4950 is $1-\beta=0.7457$  which is very close to what any statistical package will calculate for us.The power calculation should done using a t-distribution with non-centrality parameter instead of just shifting the distribution. The difference is slight, but is enough to cause our calculation to be slightly off.  This power is rather low and I would prefer to have the power be near $0.95$. We can improve our power by using a larger sample size. We'll repeat these calculations using $n=15$.
 
-<img src="06_HypothesisTests_files/figure-html/unnamed-chunk-14-1.png" width="672" />
+![](06_HypothesisTests_files/figure-latex/unnamed-chunk-14-1.pdf)<!-- --> 
 
 Power calculations are relatively tedious to do by hand, but fortunately there are several very good resources for exploring how power and sample size interact. We can do these calculations in R using the function `power.t.test()`.
 
@@ -503,7 +503,7 @@ The general process for selecting a sample size is to
   
     a) Add the plot of the distribution of the sample mean if $\mu=11$ and denote which areas represent $\alpha$, $\beta$, and the power in the figure below. _I expect most people will print out the graph and shade/label everything by hand._
       
-    <img src="06_HypothesisTests_files/figure-html/unnamed-chunk-19-1.png" width="672" />
+    ![](06_HypothesisTests_files/figure-latex/unnamed-chunk-19-1.pdf)<!-- --> 
     
     b) Under the same alternative value of $\mu=11$, find the probability of a Type II error. That is, calculate the value of $\beta=P\left(\bar{X}<8.35\,|\,\mu=11\right)$.
 

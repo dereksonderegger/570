@@ -10,7 +10,7 @@ library(ggfortify)  # for diagnostic plots in ggplot2 via autoplot()
 
 We continue to want to examine the relationship between a predictor variable and a response but now we consider the case that the predictor is continuous and the response is also continuous. In general we are going to be interested in finding the line that best fits the observed data and determining if we should include the predictor variable in the model.
 
-<img src="10_Regression_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+![](10_Regression_files/figure-latex/unnamed-chunk-4-1.pdf)<!-- --> 
 
 
 ## Pearson's Correlation Coefficient
@@ -19,7 +19,7 @@ We first consider Pearson's correlation coefficient, which is a statistics that 
 $$r=\frac{\sum_{i=1}^{n}\left(\frac{x_{i}-\bar{x}}{s_{x}}\right)\left(\frac{y_{i}-\bar{y}}{s_{y}}\right)}{n-1}$$
 where $x_{i}$ and $y_{i}$ are the x and y coordinate of the $i$th observation. Notice that each parenthesis value is the standardized value of each observation. If the x-value is big (greater than $\bar{x}$) and the y-value is large (greater than $\bar{y}$), then after multiplication, the result is positive. Likewise if the x-value is small and the y-value is small, both standardized values are negative and therefore after multiplication the result is positive. If a large x-value is paired with a small y-value, then the first value is positive, but the second is negative and so the multiplication result is negative.
 
-<img src="10_Regression_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+![](10_Regression_files/figure-latex/unnamed-chunk-5-1.pdf)<!-- --> 
 
 
 The following are true about Pearson's correlation coefficient:
@@ -34,7 +34,7 @@ The following are true about Pearson's correlation coefficient:
 ## `summarise()` ungrouping output (override with `.groups` argument)
 ```
 
-<img src="10_Regression_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+![](10_Regression_files/figure-latex/unnamed-chunk-6-1.pdf)<!-- --> 
 
 
 ## Model Theory
@@ -59,7 +59,7 @@ The assumptions of this model are:
 
 Under this model, the expected value of an observation with covariate $X=x$ is $E\left(Y\,|\,X=x\right)=\beta_{0}+\beta_{1}x$ and a new observation has a standard deviation of $\sigma$ about the line.
 
-<img src="10_Regression_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+![](10_Regression_files/figure-latex/unnamed-chunk-7-1.pdf)<!-- --> 
 
 
 Given this model, how do we find estimates of $\beta_{0}$ and $\beta_{1}$? In the past we have always relied on using some sort of sample mean, but it is not obvious what we can use here. Instead of a mean, we will use the values of $\hat{\beta}_{0}$ and $\hat{\beta}_{1}$ that minimize the sum of squared error (SSE) where 
@@ -69,7 +69,7 @@ e_{i}	      &=	y_{i}-\hat{y}_{i} \\
 SSE	        &=	\sum_{i=1}^{n}e_{i}^{2}
 \end{aligned}$$
 
-<img src="10_Regression_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+![](10_Regression_files/figure-latex/unnamed-chunk-8-1.pdf)<!-- --> 
 
 
 Fortunately there are simple closed form solutions for $\hat{\beta}_{0}$ and $\hat{\beta}_{1}$
@@ -112,7 +112,7 @@ ggplot(setosa, aes(x=Sepal.Length, y=Sepal.Width)) +
   labs(x="Sepal Length", y="Sepal Width", title='Setosa Irises') 
 ```
 
-<img src="10_Regression_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+![](10_Regression_files/figure-latex/unnamed-chunk-9-1.pdf)<!-- --> 
 
 
 ```r
@@ -337,7 +337,7 @@ $$\left(\hat{\beta}_{0}+\hat{\beta}_{1}x_{new}\right)\pm t_{n-2}^{1-\alpha/2}\;\
 
 To emphasize the difference between confidence regions (capturing where we believe the regression line to lay) versus prediction regions (where new data observations will lay) we note that as the sample size increases, the uncertainty as to where the regression line lays decreases, but the prediction intervals will always contain a minimum width due to the error associated with an individual observation. Below are confidence (red) and prediction (blue) regions for two different sample sizes.
 
-<img src="10_Regression_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+![](10_Regression_files/figure-latex/unnamed-chunk-16-1.pdf)<!-- --> 
 
 
 In general, you will not want to calculate the confidence intervals and prediction intervals by hand. Fortunately R makes it easy to calculate the intervals. The function `predict()` will calculate the point estimates along with confidence and prediction intervals. The function requires the `lm()` output along with an optional data frame (if you want to predict values not in the original data).
@@ -349,7 +349,7 @@ ggplot(setosa, aes(x=Sepal.Length, y=Sepal.Width)) +
   ggtitle('Sepal Length vs Sepal Width')
 ```
 
-<img src="10_Regression_files/figure-html/unnamed-chunk-17-1.png" width="672" />
+![](10_Regression_files/figure-latex/unnamed-chunk-17-1.pdf)<!-- --> 
 
 ```r
 #fit the regression
@@ -407,7 +407,7 @@ ggplot(setosa) +
   geom_ribbon( aes(x=Sepal.Length, ymin=pred.lwr, ymax=pred.upr), fill='blue', alpha=.4)
 ```
 
-<img src="10_Regression_files/figure-html/unnamed-chunk-20-1.png" width="672" />
+![](10_Regression_files/figure-latex/unnamed-chunk-20-1.pdf)<!-- --> 
 
 
 
@@ -434,7 +434,7 @@ ggplot(small, aes(x=year, y=time, ymin=lwr, ymax=upr)) +
   theme_bw()
 ```
 
-<img src="10_Regression_files/figure-html/unnamed-chunk-21-1.png" width="672" />
+![](10_Regression_files/figure-latex/unnamed-chunk-21-1.pdf)<!-- --> 
 
 
 If we are interested in predicting the results of the 2008 and 2012 Olympic race, what would we predict?
@@ -488,7 +488,7 @@ for(i in 1:3){
 }
 ```
 
-<img src="10_Regression_files/figure-html/unnamed-chunk-24-1.png" width="672" />
+![](10_Regression_files/figure-latex/unnamed-chunk-24-1.pdf)<!-- --> 
 
 
 To illustrate this, we'll consider the cherry tree dataset that comes with R. The goal will be predicting the volume of lumber produced by a cherry tree of a given diameter. The data are given in a dataset pre-loaded in R called `trees`.
@@ -516,7 +516,7 @@ ggplot(trees, aes(x=Girth, y=Volume)) +
   ggtitle('Volume vs Girth')
 ```
 
-<img src="10_Regression_files/figure-html/unnamed-chunk-25-1.png" width="672" />
+![](10_Regression_files/figure-latex/unnamed-chunk-25-1.pdf)<!-- --> 
 
 
 Initially, it looks like a line is a pretty good description of this relationship. 
@@ -537,7 +537,7 @@ autoplot(model, which=c(1,2))
 ## Call `lifecycle::last_warnings()` to see where this warning was generated.
 ```
 
-<img src="10_Regression_files/figure-html/unnamed-chunk-26-1.png" width="672" />
+![](10_Regression_files/figure-latex/unnamed-chunk-26-1.pdf)<!-- --> 
 
 
 The normality assumption isn't too bad, but there is a strong trend in the residual plot. The curvature we see in the residual group is present in the original scatterplot, but it is more obvious. At this point I would think about a slightly more complicated model, e.g. should we include height in the model or perhaps `Girth^2`? The implications of both of these possibilities will be explored in STA 571 but for now we'll just continue using the model we have.
@@ -567,7 +567,7 @@ ggplot(trees, aes(x=Girth)) +
   geom_point(aes(y=Volume)) 
 ```
 
-<img src="10_Regression_files/figure-html/unnamed-chunk-27-1.png" width="672" />
+![](10_Regression_files/figure-latex/unnamed-chunk-27-1.pdf)<!-- --> 
 
 
 In this graph we see that we underestimate the volume for small girths, overestimate for medium values, and underestimate for large girths. So we see the same pattern of the residuals in this graph as we saw in the residual graph. While the model we've selected isn't as good as it could be, this isn't horribly bad and might suffice for a first pass
@@ -631,7 +631,7 @@ From the summary output, we can see several things:
 
 Sometimes a dataset will contain one observation that has a large effect on the outcome of the model. Consider the following datasets where the red denotes a highly influential point and the red line is the regression line including the point. 
 
-<img src="10_Regression_files/figure-html/unnamed-chunk-29-1.png" width="672" />
+![](10_Regression_files/figure-latex/unnamed-chunk-29-1.pdf)<!-- --> 
 
 
 The question of what to do with influential points is not easy to answer. Sometimes these are data points that are a result of lab technician error and should be removed. Sometimes they are the result of an important process that is not well understood by the researcher. It is up to the scientist to figure out which is the case and take appropriate action. 
@@ -642,7 +642,7 @@ One solution is to run the analysis both with and without the influential point 
 
 When the normality or constant variance assumption is violated, sometimes it is possible to transform the data to make it satisfy the assumption. Often times count data is analyzed as log(count) and weights are analyzed after taking a square root or cube root transform. 
 
-<img src="10_Regression_files/figure-html/unnamed-chunk-30-1.png" width="672" />
+![](10_Regression_files/figure-latex/unnamed-chunk-30-1.pdf)<!-- --> 
 
 
 We have the option of either transforming the x-variable or transforming the y-variable or possibly both. One thing to keep in mind, however, is that transforming the x-variable only effects the linearity of the relationship. Transforming the y-variable effects both the linearity and the variance. 
@@ -660,7 +660,7 @@ plot(x, log(y)); abline(coef(lm(I(log(y))~x)));
 plot(x^(1/3), y); abline(coef(lm(y~I(x^(1/3)))));
 ```
 
-<img src="10_Regression_files/figure-html/unnamed-chunk-31-1.png" width="672" />
+![](10_Regression_files/figure-latex/unnamed-chunk-31-1.pdf)<!-- --> 
 
 ```r
 mydata <- data.frame(x=x, y=y)
@@ -675,7 +675,7 @@ which includes squaring ($\lambda=2$), square root ($\lambda=1/2$) and as $\lamb
 
 Of course, we also want to use a transformation that isn't completely obscure and is commonly used in the scientific field, so square roots, reciprocals, and logs are preferred.
 
-<img src="10_Regression_files/figure-html/unnamed-chunk-32-1.png" width="672" />
+![](10_Regression_files/figure-latex/unnamed-chunk-32-1.pdf)<!-- --> 
 
 
 ```r
@@ -692,7 +692,7 @@ str(mydata)
 MASS::boxcox(y~x, data=mydata, plotit=TRUE)
 ```
 
-<img src="10_Regression_files/figure-html/unnamed-chunk-33-1.png" width="672" />
+![](10_Regression_files/figure-latex/unnamed-chunk-33-1.pdf)<!-- --> 
 
 
 Here we see the resulting confidence interval for $\lambda$ contains 0, so a $\log$ transformation would be most appropriate.

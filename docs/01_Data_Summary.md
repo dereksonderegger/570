@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 
 
 # Summary Statistics and Graphing
@@ -90,10 +95,15 @@ In cluster sampling, the biggest idea is that we will draw entire clusters.  Usi
 It is often easy to confuse Clustering and Stratified sampling, but the major difference here is that we will draw random samples from within the strata, unlike clustering where we take all individuals from the chosen clusters.  Let us consider for exampling producing a random stratified sample using *sex* as our strata.  Here, our homogeneous grouping is simply *sex*.  Other examples might include stratifying animals by breed, stratifying the atmosphere by height above ground, or stratifying soil by depth.  The main idea behind a strata is every member should be homogenized: in our example, we homogenized by 'Male' and 'Female'.
 
 
-sex    Frequency   Proportion
-----  ----------  -----------
-F           4325        0.501
-M           4311        0.499
+\begin{tabular}{l|r|r}
+\hline
+sex & Frequency & Proportion\\
+\hline
+F & 4325 & 0.501\\
+\hline
+M & 4311 & 0.499\\
+\hline
+\end{tabular}
 
 Above shows a table for the number of 'Male' and 'Female' participants.  We see that these two strata are nearly equivalent, but we want to ensure we draw the samples based on proportionality.  In total, we have 8636 participants.  Let us say we want to draw $800$ of these participants, but through stratification using *sex*.  We must then ensure that when we draw a random sample, we obtain a sub-sample that has nearly equivalent proportions to that observed in the population.  We must therefore draw $800*0.501 = 401$ Males from the $4311$ available and $800*0.499 = 399$ Females from the $4325$, where rounding was used.  Notice this gives me $401 + 399 = 800$ samples, and that I have $401/800 = 0.501$ of the the sub-sample is Male and $399/800 =  0.499$ is female.  Thus, stratified sampling retains the proportions of the populations and allows me to sample from all strata.  This can have desirable consequences, mainly that stratifying ensures samples are taken from all potential sources, here the sources are the different categories within our *sex* variable.  Although unlikely, if I did draw samples using only SRS with no stratifying, I might get proportions of 'Male' and 'Female' that are close to that of the original sample.  Stratifying guarantees we reproduce the proportions, while sampling from all homogeneous groupings.
 
@@ -108,7 +118,7 @@ If we have univariate data about a number of groups, often the best way to displ
 ggplot(TenMileRace, aes(x=sex)) + geom_bar()
 ```
 
-<img src="01_Data_Summary_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+![](01_Data_Summary_files/figure-latex/unnamed-chunk-6-1.pdf)<!-- --> 
 
 One thing that can be misleading is if the zero on the y-axis is removed. In the following graph it looks like there are twice as many female runners as male until you examine the y-axis closely.  In general, the following is a very misleading graph.
 
@@ -119,7 +129,7 @@ ggplot(TenMileRace, aes(x=sex)) +
   coord_cartesian(ylim = c(4300, 4330))
 ```
 
-<img src="01_Data_Summary_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+![](01_Data_Summary_files/figure-latex/unnamed-chunk-7-1.pdf)<!-- --> 
 
 ### Histogram (Univariate - Numerical)
 
@@ -130,7 +140,7 @@ A histogram looks very similar to a bar plot, but is used to represent numerical
 ggplot(TenMileRace, aes(x=net)) + geom_histogram()
 ```
 
-<img src="01_Data_Summary_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+![](01_Data_Summary_files/figure-latex/unnamed-chunk-8-1.pdf)<!-- --> 
 
 Often when a histogram is presented, the y-axis is labeled as “frequency” or “count” which is the number of observations that fall within a particular bin. However, it is often desirable to scale the y-axis so that if we were to sum up the area $(height * width)$ then the total area would sum to 1. The re-scaling that accomplishes this is
 
@@ -143,7 +153,7 @@ We can force the histogram created within `ggplot` to be display density by usin
 ggplot(TenMileRace, aes(x=net)) + geom_histogram(aes(y=..density..))
 ```
 
-<img src="01_Data_Summary_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+![](01_Data_Summary_files/figure-latex/unnamed-chunk-9-1.pdf)<!-- --> 
  
 
 ### Boxplot (Bivariate - Categorical vs Numerical)
@@ -158,7 +168,7 @@ We often wish to compare response levels from two or more groups of interest. To
 ggplot(TenMileRace, aes(x=sex, y=net)) + geom_boxplot()
 ```
 
-<img src="01_Data_Summary_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+![](01_Data_Summary_files/figure-latex/unnamed-chunk-11-1.pdf)<!-- --> 
 
 In this graph, the edges of the box are defined by the 25% and 75% percentiles. That is to say, 25% of the data is to the below of the box, 50% of the data is in the box, and the final 25% of the data is to the above of the box. The line in the center of the box represents the 50% percentile, more commonly called the median. The dots are data points that are traditionally considered outliers. We will define the Inter-Quartile Range (IQR) as the length of the box. It is conventional to define any observation more than 1.5*IQR from the box as an outlier.  In the above graph it is easy to see that the median time for the males is lower than for females, but the box width (one measure of the spread of the data) is approximately the same.
 
@@ -170,7 +180,7 @@ ggplot(TenMileRace, aes(x=net)) + geom_histogram() +
   facet_grid( . ~ sex )  # side-by-side plots based on sex
 ```
 
-<img src="01_Data_Summary_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+![](01_Data_Summary_files/figure-latex/unnamed-chunk-12-1.pdf)<!-- --> 
 
 Orientation of graphs can certainly matter. In this case, it makes sense to stack the two graphs to facilitate comparisons in where the centers are and it is more obvious that the center of the female distribution is about 500 to 600 seconds higher than then center of the male distribution. 
 
@@ -180,7 +190,7 @@ ggplot(TenMileRace, aes(x=net)) + geom_histogram() +
   facet_grid( sex ~ . )  # side-by-side plots based on sex
 ```
 
-<img src="01_Data_Summary_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+![](01_Data_Summary_files/figure-latex/unnamed-chunk-13-1.pdf)<!-- --> 
 
 
 ### Scatterplot (Bivariate - Numerical vs Numerical)
@@ -192,7 +202,7 @@ Finally we might want to examine the relationship between two numerical random v
 ggplot(TenMileRace, aes(x=age, y=net, color=sex)) + geom_point()
 ```
 
-<img src="01_Data_Summary_files/figure-html/unnamed-chunk-14-1.png" width="672" />
+![](01_Data_Summary_files/figure-latex/unnamed-chunk-14-1.pdf)<!-- --> 
 
 
 ## Measures of Centrality
@@ -260,7 +270,7 @@ This is peak in the distribution. A distribution might have a single peak or mul
 
 When creating a histogram from a set of data, often the choice of binwidth will affect the modes of the graph.  Consider the following graphs of $n=200$ data points, where we have slightly different binwidths. 
 
-<img src="01_Data_Summary_files/figure-html/unnamed-chunk-17-1.png" width="672" />
+![](01_Data_Summary_files/figure-latex/unnamed-chunk-17-1.pdf)<!-- --> 
 
 With the two smaller binwidths, sample randomness between adjacent bins obscures the overall shape and we have many different modes. However the *larger* binwidth results in a histogram that more effectively communicates the shape of the distribution and has just a single mode at around 6000 seconds. When making histograms, the choice of binwidth (or equivalently, the number of bins) should not be ignored and a balance should be struck between simplifying the data too much vs seeing too much of the noise resulting from the sample randomness.
 
@@ -466,15 +476,15 @@ For any data that are normally distributed (or approximately normal), the follow
 | $\bar{x}\pm 2s$  |               95%                         |
 | $\bar{x}\pm 3s$  |               99.7%                       |
 
-<img src="01_Data_Summary_files/figure-html/unnamed-chunk-26-1.png" width="672" />
+![](01_Data_Summary_files/figure-latex/unnamed-chunk-26-1.pdf)<!-- --> 
 
 ## Shape
 Vocabulary for discussing the shape of a distribution is discussed.  These descriptors can be very useful for understanding the distribution, and as understanding develops, also tell us about relationships between the mean and median, or other informative quantities.
 
 ### Symmetry
-A distribution is said to be **symmetric** if there is a point along the x-axis (which we'll call $\mu$) which acts as a mirror.  Mathematically, a distribution is symmetric around $\m$ if and only if $f( -|x-\mu| ) = f( |x-\mu| )$.  The following graphs give the point of symmetry marked with a red line.
+A distribution is said to be **symmetric** if there is a point along the x-axis (which we'll call $\mu$) which acts as a mirror.  Mathematically, a distribution is symmetric around $m$ if and only if $f( -\lvert x-\mu \rvert ) = f( \lvert x-\mu \rvert )$.  The following graphs give the point of symmetry marked with a red line.
 
-<img src="01_Data_Summary_files/figure-html/unnamed-chunk-27-1.png" width="672" />
+![](01_Data_Summary_files/figure-latex/unnamed-chunk-27-1.pdf)<!-- --> 
 
 A distribution that is not symmetric is said to be asymmetric.
 
@@ -484,7 +494,7 @@ Recall one measure of centrality was mode.  If there is just a single mode, then
 ### Skew
 If a distribution has a heavier tail on one side or the other, we refer to it as a *skewed* distribution and the direction of the skew is towards the heavier tail.  Usually (but not always), an asymmetric distribution is skewed. 
 
-<img src="01_Data_Summary_files/figure-html/unnamed-chunk-28-1.png" width="672" />
+![](01_Data_Summary_files/figure-latex/unnamed-chunk-28-1.pdf)<!-- --> 
 
 
 ## Exercises
@@ -567,9 +577,9 @@ head( Hotels )  # Print out some data to confirm the column names.
 
 7. Match the following histograms to the appropriate boxplot.
     
-    <img src="01_Data_Summary_files/figure-html/unnamed-chunk-31-1.png" width="672" />
+    ![](01_Data_Summary_files/figure-latex/unnamed-chunk-31-1.pdf)<!-- --> 
     
-    <img src="01_Data_Summary_files/figure-html/unnamed-chunk-32-1.png" width="672" />
+    ![](01_Data_Summary_files/figure-latex/unnamed-chunk-32-1.pdf)<!-- --> 
     
     a) Histogram A goes with boxplot __________
     b) Histogram B goes with boxplot __________
@@ -581,7 +591,7 @@ head( Hotels )  # Print out some data to confirm the column names.
 
 9. The chemicals in clay used to make pottery can differ depending on the geographical region where the clay originated. Sometimes, archaeologists use a chemical analysis of clay to help identify where a piece of pottery originated. Such an analysis measures the amount of a chemical in the clay as a percent of the total weight of the piece of pottery. The boxplots below summarize analyses done for three chemicals—X, Y, and Z—on pieces of pottery that originated at one of three sites: I, II, or III.
     
-    <img src="01_Data_Summary_files/figure-html/unnamed-chunk-33-1.png" width="672" />
+    ![](01_Data_Summary_files/figure-latex/unnamed-chunk-33-1.pdf)<!-- --> 
     a) For chemical Z, describe how the percents found in the pieces of pottery are similar and how they differ among the three sites.
     b) Consider a piece of pottery known to have originated at one of the three sites, but the actual site is not known.
         i) Suppose an analysis of the clay reveals that the sum of the percents of the three chemicals X, Y, and Z is $20.5\%$. Based on the boxplots, which site—I, II, or III—is the most likely site where the piece of pottery originated? Justify your choice.

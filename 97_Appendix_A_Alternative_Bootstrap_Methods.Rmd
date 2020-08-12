@@ -1,7 +1,3 @@
----
-output: html_document
----
-
 # Appendix A : Alternative Bootstrap Code {-}
 
 ```{r, echo=FALSE}

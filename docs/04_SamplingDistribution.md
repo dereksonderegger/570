@@ -34,7 +34,7 @@ ggplot(PopDist, aes(x=x, y=density)) +
   ggtitle('Population Distribution')
 ```
 
-<img src="04_SamplingDistribution_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+![](04_SamplingDistribution_files/figure-latex/unnamed-chunk-3-1.pdf)<!-- --> 
 
 We want to estimate the mean $\mu$ and take a random sample of $n=5$. Lets do this a few times and notice that the sample mean is never exactly 5, but is a bit off from that.
 
@@ -55,9 +55,9 @@ mosaic::do(3) * {
 
 ```
 ##       xbar
-## 1 3.733551
-## 2 4.724425
-## 3 4.668489
+## 1 6.523289
+## 2 4.860706
+## 3 3.870707
 ```
 
 Now produce 10000 estimates from random samples of the population.
@@ -82,7 +82,7 @@ ggplot() +
                   alpha=.6)     # alpha is the opacity of the layer
 ```
 
-<img src="04_SamplingDistribution_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+![](04_SamplingDistribution_files/figure-latex/unnamed-chunk-6-1.pdf)<!-- --> 
 
 
 From the histogram of the sample means, we notice three things:
@@ -180,7 +180,7 @@ ggplot(data, aes(x=z, y=y)) +
   geom_text( x=0, y=.2, label='95%')
 ```
 
-<img src="04_SamplingDistribution_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+![](04_SamplingDistribution_files/figure-latex/unnamed-chunk-7-1.pdf)<!-- --> 
 
 So all we need to do is solve the following equation for $n$ 
 $$1.96	=	\frac{10}{ \left( \frac{50}{\sqrt{n}} \right) }$$
@@ -230,7 +230,7 @@ SampDist %>%                                         # What proportion of those
 
 ```
 ##   ProportionGreater
-## 1            0.0677
+## 1            0.0685
 ```
 
 **Summary**

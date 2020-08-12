@@ -7,6 +7,8 @@ bookdown::gitbook:
       scroll_highlight: true
     edit:
       link: https://github.com/dereksonderegger/570/raw/master/%s
+    download:
+      - ["Statistical-Methods-I.pdf",  "PDF"]
     search: yes
     fontsettings:
       theme: white
@@ -20,4 +22,10 @@ bookdown::gitbook:
       instapper: no
       vk: no
       all: ['facebook', 'google', 'twitter', 'weibo', 'instapaper']      
+
+bookdown::pdf_book:
+  includes:
+    in_header: preamble.tex
+  latex_engine: xelatex
+  citation_package: natbib
 

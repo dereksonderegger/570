@@ -1,0 +1,2047 @@
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.3.18)  12 AUG 2020 16:20
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**Statistical-Methods-I.tex
+(./Statistical-Methods-I.tex
+LaTeX2e <2020-02-02> patch level 5
+L3 programming layer <2020-02-25> (/Users/dls354/Library/TinyTeX/texmf-dist/tex
+/latex/base/book.cls
+Document Class: book 2019/12/20 v1.4l Standard LaTeX document class
+(/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/base/bk10.clo
+File: bk10.clo 2019/12/20 v1.4l Standard LaTeX file (size option)
+)
+\c@part=\count163
+\c@chapter=\count164
+\c@section=\count165
+\c@subsection=\count166
+\c@subsubsection=\count167
+\c@paragraph=\count168
+\c@subparagraph=\count169
+\c@figure=\count170
+\c@table=\count171
+\abovecaptionskip=\skip47
+\belowcaptionskip=\skip48
+\bibindent=\dimen134
+) (/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/lm/lmodern.sty
+Package: lmodern 2009/10/30 v1.6 Latin Modern Fonts
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/lmr/m/n on input line 22.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/cmm/m/it --> OML/lmm/m/it on input line 23.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> OMS/lmsy/m/n on input line 24.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> OMX/lmex/m/n on input line 25.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 26.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/cmm/b/it --> OML/lmm/b/it on input line 27.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/cmsy/b/n --> OMS/lmsy/b/n on input line 28.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/cmex/m/n --> OMX/lmex/m/n on input line 29.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 31.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> OT1/lmss/m/n on input line 32.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> OT1/lmr/m/it on input line 33.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 34.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 35.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> OT1/lmss/bx/n on input line 36.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> OT1/lmr/bx/it on input line 37.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
+) (/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+(/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\@emptytoks=\toks15
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)) (/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2020/01/20 v2.17e AMS math features
+\@mathmargin=\skip49
+For additional information on amsmath, use the `?' option.
+(/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01 AMS text
+(/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks16
+\ex@=\dimen135
+)) (/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen136
+) (/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count172
+LaTeX Info: Redefining \frac on input line 227.
+\uproot@=\count173
+\leftroot@=\count174
+LaTeX Info: Redefining \overline on input line 389.
+\classnum@=\count175
+\DOTSCASE@=\count176
+LaTeX Info: Redefining \ldots on input line 486.
+LaTeX Info: Redefining \dots on input line 489.
+LaTeX Info: Redefining \cdots on input line 610.
+\Mathstrutbox@=\box45
+\strutbox@=\box46
+\big@size=\dimen137
+LaTeX Font Info:    Redeclaring font encoding OML on input line 733.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 734.
+\macc@depth=\count177
+\c@MaxMatrixCols=\count178
+\dotsspace@=\muskip16
+\c@parentequation=\count179
+\dspbrk@lvl=\count180
+\tag@help=\toks17
+\row@=\count181
+\column@=\count182
+\maxfields@=\count183
+\andhelp@=\toks18
+\eqnshift@=\dimen138
+\alignsep@=\dimen139
+\tagshift@=\dimen140
+\tagwidth@=\dimen141
+\totwidth@=\dimen142
+\lineht@=\dimen143
+\@envbody=\toks19
+\multlinegap=\skip50
+\multlinetaggap=\skip51
+\mathdisplay@stack=\toks20
+LaTeX Info: Redefining \[ on input line 2859.
+LaTeX Info: Redefining \] on input line 2860.
+) (/Users/dls354/Library/TinyTeX/texmf-dist/tex/generic/iftex/ifxetex.sty
+Package: ifxetex 2019/10/25 v0.7 ifxetex legacy package. Use iftex instead.
+(/Users/dls354/Library/TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2019/11/07 v1.0c TeX engine tests
+)) (/Users/dls354/Library/TinyTeX/texmf-dist/tex/generic/iftex/ifluatex.sty
+Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
+) (/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/base/fixltx2e.sty
+Package: fixltx2e 2016/12/29 v2.1a fixes to LaTeX (obsolete)
+Applying: [2015/01/01] Old fixltx2e package on input line 46.
+
+Package fixltx2e Warning: fixltx2e is not required with releases after 2015
+(fixltx2e)                All fixes are now in the LaTeX kernel.
+(fixltx2e)                See the latexrelease package for details.
+
+Already applied: [0000/00/00] Old fixltx2e package on input line 53.
+)
+(/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/unicode-math/unicode-math.s
+ty (/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2020-02-25 L3 programming layer (loader) 
+
+(/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-xdvipdf
+mx.def
+File: l3backend-xdvipdfmx.def 2020-02-23 L3 backend support: xdvipdfmx
+\g__graphics_track_int=\count184
+\l__pdf_internal_box=\box47
+\g__pdf_backend_object_int=\count185
+\g__pdf_backend_annotation_int=\count186
+))
+Package: unicode-math 2020/01/31 v0.8q Unicode maths in XeLaTeX and LuaLaTeX
+
+(/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/unicode-math/unicode-math-x
+etex.sty
+Package: unicode-math-xetex 2020/01/31 v0.8q Unicode maths in XeLaTeX and LuaLa
+TeX
+
+(/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/l3packages/xparse/xparse.st
+y
+Package: xparse 2020-02-25 L3 Experimental document command parser
+\l__xparse_current_arg_int=\count187
+\g__xparse_grabber_int=\count188
+\l__xparse_m_args_int=\count189
+\l__xparse_v_nesting_int=\count190
+)
+(/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2
+e.sty
+Package: l3keys2e 2020-02-25 LaTeX2e option processing using LaTeX3 keys
+) (/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/fontspec/fontspec.sty
+Package: fontspec 2020/02/21 v2.7i Font selection for XeLaTeX and LuaLaTeX
+
+(/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/fontspec/fontspec-xetex.sty
+Package: fontspec-xetex 2020/02/21 v2.7i Font selection for XeLaTeX and LuaLaTe
+X
+\l__fontspec_script_int=\count191
+\l__fontspec_language_int=\count192
+\l__fontspec_strnum_int=\count193
+\l__fontspec_tmp_int=\count194
+\l__fontspec_tmpa_int=\count195
+\l__fontspec_tmpb_int=\count196
+\l__fontspec_tmpc_int=\count197
+\l__fontspec_em_int=\count198
+\l__fontspec_emdef_int=\count199
+\l__fontspec_strong_int=\count266
+\l__fontspec_strongdef_int=\count267
+\l__fontspec_tmpa_dim=\dimen144
+\l__fontspec_tmpb_dim=\dimen145
+\l__fontspec_tmpc_dim=\dimen146
+(/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2020/02/11 v2.0o Standard LaTeX package
+) (/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/fontspec/fontspec.cfg))) 
+(/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/base/fix-cm.sty
+Package: fix-cm 2015/01/14 v1.1t fixes to LaTeX
+(/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/base/ts1enc.def
+File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding TS1 on input line 47.
+))
+\g__um_fam_int=\count268
+\g__um_fonts_used_int=\count269
+\l__um_primecount_int=\count270
+\g__um_primekern_muskip=\muskip17
+
+(/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/unicode-math/unicode-math-t
+able.tex))) (/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/upquote/upquote
+.sty
+Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
+tim
+(/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/base/textcomp.sty
+Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
+)) (/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2020/01/14 v7.00d Hypertext links for LaTeX
+(/Users/dls354/Library/TinyTeX/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2019/12/15 v1.24 LaTeX kernel commands for general use (HO)
+) (/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2019/11/24 v0.31 Utility functions of pdfTeX for LuaTeX (HO
+)
+(/Users/dls354/Library/TinyTeX/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode not found.
+) (/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks21
+) (/Users/dls354/Library/TinyTeX/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
+)
+(/Users/dls354/Library/TinyTeX/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys
+.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+) (/Users/dls354/Library/TinyTeX/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+) (/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/hycolor/hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+)
+(/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty
+Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
+) (/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/auxhook/auxhook.sty
+Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
+) (/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2019/11/29 v3.13 Key value format for package options (HO)
+)
+\@linkdim=\dimen147
+\Hy@linkcounter=\count271
+\Hy@pagecounter=\count272
+(/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2020/01/14 v7.00d Hyperref: PDFDocEncoding definition (HO)
+) (/Users/dls354/Library/TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+) (/Users/dls354/Library/TinyTeX/texmf-dist/tex/generic/etexcmds/etexcmds.sty
+Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
+)
+\Hy@SavedSpaceFactor=\count273
+Package hyperref Info: Option `unicode' set `true' on input line 4421.
+(/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
+File: puenc.def 2020/01/14 v7.00d Hyperref: PDF Unicode definition (HO)
+)
+Package hyperref Info: Hyper figures OFF on input line 4547.
+Package hyperref Info: Link nesting OFF on input line 4552.
+Package hyperref Info: Hyper index ON on input line 4555.
+Package hyperref Info: Plain pages OFF on input line 4562.
+Package hyperref Info: Backreferencing OFF on input line 4567.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4800.
+\c@Hy@tempcnt=\count274
+(/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip18
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 5159.
+\XeTeXLinkMargin=\dimen148
+(/Users/dls354/Library/TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+
+(/Users/dls354/Library/TinyTeX/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
+)
+))
+\Fld@menulength=\count275
+\Field@Width=\dimen149
+\Fld@charsize=\dimen150
+Package hyperref Info: Hyper figures OFF on input line 6430.
+Package hyperref Info: Link nesting OFF on input line 6435.
+Package hyperref Info: Hyper index ON on input line 6438.
+Package hyperref Info: backreferencing OFF on input line 6445.
+Package hyperref Info: Link coloring OFF on input line 6450.
+Package hyperref Info: Link coloring with OCG OFF on input line 6455.
+Package hyperref Info: PDF/A mode OFF on input line 6460.
+LaTeX Info: Redefining \ref on input line 6500.
+LaTeX Info: Redefining \pageref on input line 6504.
+(/Users/dls354/Library/TinyTeX/texmf-dist/tex/generic/atbegshi/atbegshi.sty
+Package: atbegshi 2019/12/05 v1.19 At begin shipout hook (HO)
+)
+\Hy@abspage=\count276
+\c@Item=\count277
+\c@Hfootnote=\count278
+)
+Package hyperref Info: Driver (autodetected): hxetex.
+(/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hxetex.def
+File: hxetex.def 2020/01/14 v7.00d Hyperref driver for XeTeX
+(/Users/dls354/Library/TinyTeX/texmf-dist/tex/generic/stringenc/stringenc.sty
+Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
+)
+)
+\pdfm@box=\box48
+\c@Hy@AnnotLevel=\count279
+\HyField@AnnotCount=\count280
+\Fld@listcount=\count281
+\c@bookmark@seq@number=\count282
+
+(/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rerunfileche
+ck.sty
+Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
+(/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/atveryend/atveryend.sty
+Package: atveryend 2019-12-11 v1.11 Hooks at the very end of document (HO)
+Package atveryend Info: \enddocument detected (standard20110627).
+)
+(/Users/dls354/Library/TinyTeX/texmf-dist/tex/generic/uniquecounter/uniquecount
+er.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+86.
+)
+\Hy@SectionHShift=\skip52
+)
+Package hyperref Info: Option `breaklinks' set `true' on input line 35.
+(/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2019/11/23 v1.2a Standard LaTeX Color (DPC)
+(/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package color Info: Driver file: xetex.def on input line 147.
+(/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/graphics-def/xetex.def
+File: xetex.def 2017/06/24 v5.0h Graphics/color driver for xetex
+)) (/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Package: fancyvrb 2020/01/13 v3.5 verbatim text (tvz,hv)
+\FV@CodeLineNo=\count283
+\FV@InFile=\read2
+\FV@TabBox=\box49
+\c@FancyVerbLine=\count284
+\FV@StepNumber=\count285
+\FV@OutFile=\write3
+) (/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/framed/framed.sty
+Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
+\OuterFrameSep=\skip53
+\fb@frw=\dimen151
+\fb@frh=\dimen152
+\FrameRule=\dimen153
+\FrameSep=\dimen154
+) (/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/tools/longtable.sty
+Package: longtable 2020/01/07 v4.13 Multi-page Table package (DPC)
+\LTleft=\skip54
+\LTright=\skip55
+\LTpre=\skip56
+\LTpost=\skip57
+\LTchunksize=\count286
+\LTcapwidth=\dimen155
+\LT@head=\box50
+\LT@firsthead=\box51
+\LT@foot=\box52
+\LT@lastfoot=\box53
+\LT@cols=\count287
+\LT@rows=\count288
+\c@LT@tables=\count289
+\c@LT@chunks=\count290
+\LT@p@ftn=\toks22
+) (/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen156
+\lightrulewidth=\dimen157
+\cmidrulewidth=\dimen158
+\belowrulesep=\dimen159
+\belowbottomsep=\dimen160
+\aboverulesep=\dimen161
+\abovetopsep=\dimen162
+\cmidrulesep=\dimen163
+\cmidrulekern=\dimen164
+\defaultaddspace=\dimen165
+\@cmidla=\count291
+\@cmidlb=\count292
+\@aboverulesep=\dimen166
+\@belowrulesep=\dimen167
+\@thisruleclass=\count293
+\@lastruleclass=\count294
+\@thisrulewidth=\dimen168
+) (/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2019/11/30 v1.2a Enhanced LaTeX Graphics (DPC,SPQR)
+(/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2019/11/30 v1.4a Standard LaTeX Graphics (DPC,SPQR)
+(/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+) (/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: xetex.def on input line 105.
+)
+\Gin@req@height=\dimen169
+\Gin@req@width=\dimen170
+) (/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/grffile/grffile.sty
+Package: grffile 2019/11/11 v2.1 Extended file name support for graphics (legac
+y)
+Package grffile Info: This package is an empty stub for compatibility on input 
+line 40.
+) (/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/natbib/natbib.sty
+Package: natbib 2010/09/13 8.31b (PWD, AO)
+\bibhang=\skip58
+\bibsep=\skip59
+LaTeX Info: Redefining \cite on input line 694.
+\c@NAT@ctr=\count295
+) (./Statistical-Methods-I.aux
+
+LaTeX Warning: Label `variance' multiply defined.
+
+
+LaTeX Warning: Label `exercises' multiply defined.
+
+
+LaTeX Warning: Label `exercises' multiply defined.
+
+
+LaTeX Warning: Label `exercises' multiply defined.
+
+
+LaTeX Warning: Label `exercises' multiply defined.
+
+
+LaTeX Warning: Label `additional-examples' multiply defined.
+
+
+LaTeX Warning: Label `exercises' multiply defined.
+
+
+LaTeX Warning: Label `exercises' multiply defined.
+
+
+LaTeX Warning: Label `exercises' multiply defined.
+
+
+LaTeX Warning: Label `exercises' multiply defined.
+
+
+LaTeX Warning: Label `exercises' multiply defined.
+
+
+LaTeX Warning: Label `exercises' multiply defined.
+
+)
+\openout1 = `Statistical-Methods-I.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 116.
+LaTeX Font Info:    ... okay on input line 116.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 116.
+LaTeX Font Info:    ... okay on input line 116.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 116.
+LaTeX Font Info:    ... okay on input line 116.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 116.
+LaTeX Font Info:    ... okay on input line 116.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 116.
+LaTeX Font Info:    ... okay on input line 116.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 116.
+LaTeX Font Info:    ... okay on input line 116.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 116.
+LaTeX Font Info:    ... okay on input line 116.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 116.
+LaTeX Font Info:    ... okay on input line 116.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 116.
+LaTeX Font Info:    ... okay on input line 116.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 116.
+LaTeX Font Info:    ... okay on input line 116.
+LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
+(Font)                  OT1/lmr/m/n --> TU/lmr/m/n on input line 116.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/lmr/m/it --> TU/lmr/m/it on input line 116.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/lmr/bx/n --> TU/lmr/bx/n on input line 116.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/lmss/m/n --> TU/lmss/m/n on input line 116.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/lmss/bx/n --> TU/lmss/bx/n on input line 116.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/lmtt/m/n --> TU/lmtt/m/n on input line 116.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/lmtt/m/n --> TU/lmtt/bx/n on input line 116.
+
+Package fontspec Info: latinmodern-math scale = 0.9999964596882403.
+
+
+Package fontspec Info: latinmodern-math scale = 0.9999964596882403.
+
+
+Package fontspec Info: latinmodern-math scale = 0.9999964596882403.
+
+
+Package fontspec Info: Font family 'latinmodern-math.otf(0)' created for font
+(fontspec)             'latinmodern-math.otf' with options
+(fontspec)             [Ligatures=TeX,Scale=MatchLowercase,BoldItalicFont={},It
+alicFont={},SmallCapsFont={},Script=Math,BoldFont={latinmodern-math.otf}].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <->s*[0.9999964596882403]"[latinmodern-math.otf]/OT:scri
+pt=math;language=dflt;mapping=tex-text;"
+(fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
+(fontspec)             - 'bold' (b/n) with NFSS spec.:
+(fontspec)             <->s*[0.9999964596882403]"[latinmodern-math.otf]/OT:scri
+pt=math;language=dflt;mapping=tex-text;"
+(fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
+
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(0)/m/n' will be
+(Font)              scaled to size 10.0pt on input line 116.
+
+Package fontspec Info: latinmodern-math scale = 0.9999964596882403.
+
+
+Package fontspec Info: latinmodern-math scale = 0.9999964596882403.
+
+
+Package fontspec Info: latinmodern-math scale = 0.9999964596882403.
+
+
+Package fontspec Info: latinmodern-math scale = 0.9999964596882403.
+
+
+Package fontspec Info: latinmodern-math scale = 0.9999964596882403.
+
+
+Package fontspec Info: Font family 'latinmodern-math.otf(1)' created for font
+(fontspec)             'latinmodern-math.otf' with options
+(fontspec)             [Ligatures=TeX,Scale=MatchLowercase,BoldItalicFont={},It
+alicFont={},SmallCapsFont={},Script=Math,SizeFeatures={{Size=8.5-},{Size=6-8.5,
+Font=latinmodern-math.otf,Style=MathScript},{Size=-6,Font=latinmodern-math.otf,
+Style=MathScriptScript}},BoldFont={latinmodern-math.otf}].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <8.5->s*[0.9999964596882403]"[latinmodern-math.otf]/OT:s
+cript=math;language=dflt;mapping=tex-text;"<6-8.5>s*[0.9999964596882403]"[latin
+modern-math.otf]/OT:script=math;language=dflt;+ssty=0;mapping=tex-text;"<-6>s*[
+0.9999964596882403]"[latinmodern-math.otf]/OT:script=math;language=dflt;+ssty=1
+;mapping=tex-text;"
+(fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
+(fontspec)             - 'bold' (b/n) with NFSS spec.:
+(fontspec)             <->s*[0.9999964596882403]"[latinmodern-math.otf]/OT:scri
+pt=math;language=dflt;mapping=tex-text;"
+(fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
+
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 10.0pt on input line 116.
+LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
+(Font)              `operators' in the math version `normal' on input line 116.
+
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/lmr/m/n --> TU/latinmodern-math.otf(1)/m/n on input
+ line 116.
+LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
+(Font)              `operators' in the math version `bold' on input line 116.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/lmr/bx/n --> TU/latinmodern-math.otf(1)/b/n on inpu
+t line 116.
+
+Package fontspec Info: latinmodern-math scale = 0.9999964596882403.
+
+
+Package fontspec Info: latinmodern-math scale = 1.000096459334209.
+
+
+Package fontspec Info: latinmodern-math scale = 0.9999964596882403.
+
+
+Package fontspec Info: latinmodern-math scale = 1.000096459334209.
+
+
+Package fontspec Info: latinmodern-math scale = 0.9999964596882403.
+
+
+Package fontspec Info: latinmodern-math scale = 1.000096459334209.
+
+
+Package fontspec Info: latinmodern-math scale = 0.9999964596882403.
+
+
+Package fontspec Info: latinmodern-math scale = 1.000096459334209.
+
+
+Package fontspec Info: latinmodern-math scale = 0.9999964596882403.
+
+
+Package fontspec Info: latinmodern-math scale = 1.000096459334209.
+
+
+Package fontspec Info: Font family 'latinmodern-math.otf(2)' created for font
+(fontspec)             'latinmodern-math.otf' with options
+(fontspec)             [Ligatures=TeX,Scale=MatchLowercase,BoldItalicFont={},It
+alicFont={},SmallCapsFont={},Script=Math,SizeFeatures={{Size=8.5-},{Size=6-8.5,
+Font=latinmodern-math.otf,Style=MathScript},{Size=-6,Font=latinmodern-math.otf,
+Style=MathScriptScript}},BoldFont={latinmodern-math.otf},ScaleAgain=1.0001,Font
+Adjustment={\fontdimen
+(fontspec)             8\font =6.77pt\relax \fontdimen 9\font =3.94pt\relax
+(fontspec)             \fontdimen 10\font =4.44pt\relax \fontdimen 11\font
+(fontspec)             =6.86pt\relax \fontdimen 12\font =3.45pt\relax
+(fontspec)             \fontdimen 13\font =3.63pt\relax \fontdimen 14\font
+(fontspec)             =3.63pt\relax \fontdimen 15\font =2.89pt\relax
+(fontspec)             \fontdimen 16\font =2.47pt\relax \fontdimen 17\font
+(fontspec)             =2.47pt\relax \fontdimen 18\font =2.5pt\relax
+(fontspec)             \fontdimen 19\font =2.0pt\relax \fontdimen 22\font
+(fontspec)             =2.5pt\relax \fontdimen 20\font =0pt\relax \fontdimen
+(fontspec)             21\font =0pt\relax }].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <8.5->s*[1.000096459334209]"[latinmodern-math.otf]/OT:sc
+ript=math;language=dflt;mapping=tex-text;"<6-8.5>s*[1.000096459334209]"[latinmo
+dern-math.otf]/OT:script=math;language=dflt;+ssty=0;mapping=tex-text;"<-6>s*[1.
+000096459334209]"[latinmodern-math.otf]/OT:script=math;language=dflt;+ssty=1;ma
+pping=tex-text;"
+(fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
+(fontspec)             and font adjustment code:
+(fontspec)             \fontdimen 8\font =6.77pt\relax \fontdimen 9\font
+(fontspec)             =3.94pt\relax \fontdimen 10\font =4.44pt\relax
+(fontspec)             \fontdimen 11\font =6.86pt\relax \fontdimen 12\font
+(fontspec)             =3.45pt\relax \fontdimen 13\font =3.63pt\relax
+(fontspec)             \fontdimen 14\font =3.63pt\relax \fontdimen 15\font
+(fontspec)             =2.89pt\relax \fontdimen 16\font =2.47pt\relax
+(fontspec)             \fontdimen 17\font =2.47pt\relax \fontdimen 18\font
+(fontspec)             =2.5pt\relax \fontdimen 19\font =2.0pt\relax \fontdimen
+(fontspec)             22\font =2.5pt\relax \fontdimen 20\font =0pt\relax
+(fontspec)             \fontdimen 21\font =0pt\relax 
+(fontspec)             - 'bold' (b/n) with NFSS spec.:
+(fontspec)             <->s*[1.000096459334209]"[latinmodern-math.otf]/OT:scrip
+t=math;language=dflt;mapping=tex-text;"
+(fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
+(fontspec)             and font adjustment code:
+(fontspec)             \fontdimen 8\font =6.77pt\relax \fontdimen 9\font
+(fontspec)             =3.94pt\relax \fontdimen 10\font =4.44pt\relax
+(fontspec)             \fontdimen 11\font =6.86pt\relax \fontdimen 12\font
+(fontspec)             =3.45pt\relax \fontdimen 13\font =3.63pt\relax
+(fontspec)             \fontdimen 14\font =3.63pt\relax \fontdimen 15\font
+(fontspec)             =2.89pt\relax \fontdimen 16\font =2.47pt\relax
+(fontspec)             \fontdimen 17\font =2.47pt\relax \fontdimen 18\font
+(fontspec)             =2.5pt\relax \fontdimen 19\font =2.0pt\relax \fontdimen
+(fontspec)             22\font =2.5pt\relax \fontdimen 20\font =0pt\relax
+(fontspec)             \fontdimen 21\font =0pt\relax 
+
+LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
+(Font)              `symbols' in the math version `normal' on input line 116.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/lmsy/m/n --> TU/latinmodern-math.otf(2)/m/n on inpu
+t line 116.
+LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
+(Font)              `symbols' in the math version `bold' on input line 116.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/lmsy/b/n --> TU/latinmodern-math.otf(2)/b/n on inpu
+t line 116.
+
+Package fontspec Info: latinmodern-math scale = 0.9999964596882403.
+
+
+Package fontspec Info: latinmodern-math scale = 0.9998964600422715.
+
+
+Package fontspec Info: latinmodern-math scale = 0.9999964596882403.
+
+
+Package fontspec Info: latinmodern-math scale = 0.9998964600422715.
+
+
+Package fontspec Info: latinmodern-math scale = 0.9999964596882403.
+
+
+Package fontspec Info: latinmodern-math scale = 0.9998964600422715.
+
+
+Package fontspec Info: latinmodern-math scale = 0.9999964596882403.
+
+
+Package fontspec Info: latinmodern-math scale = 0.9998964600422715.
+
+
+Package fontspec Info: latinmodern-math scale = 0.9999964596882403.
+
+
+Package fontspec Info: latinmodern-math scale = 0.9998964600422715.
+
+
+Package fontspec Info: Font family 'latinmodern-math.otf(3)' created for font
+(fontspec)             'latinmodern-math.otf' with options
+(fontspec)             [Ligatures=TeX,Scale=MatchLowercase,BoldItalicFont={},It
+alicFont={},SmallCapsFont={},Script=Math,SizeFeatures={{Size=8.5-},{Size=6-8.5,
+Font=latinmodern-math.otf,Style=MathScript},{Size=-6,Font=latinmodern-math.otf,
+Style=MathScriptScript}},BoldFont={latinmodern-math.otf},ScaleAgain=0.9999,Font
+Adjustment={\fontdimen
+(fontspec)             8\font =0.4pt\relax \fontdimen 9\font =2.0pt\relax
+(fontspec)             \fontdimen 10\font =1.67pt\relax \fontdimen 11\font
+(fontspec)             =1.11pt\relax \fontdimen 12\font =6.0pt\relax
+(fontspec)             \fontdimen 13\font =0pt\relax }].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <8.5->s*[0.9998964600422715]"[latinmodern-math.otf]/OT:s
+cript=math;language=dflt;mapping=tex-text;"<6-8.5>s*[0.9998964600422715]"[latin
+modern-math.otf]/OT:script=math;language=dflt;+ssty=0;mapping=tex-text;"<-6>s*[
+0.9998964600422715]"[latinmodern-math.otf]/OT:script=math;language=dflt;+ssty=1
+;mapping=tex-text;"
+(fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
+(fontspec)             and font adjustment code:
+(fontspec)             \fontdimen 8\font =0.4pt\relax \fontdimen 9\font
+(fontspec)             =2.0pt\relax \fontdimen 10\font =1.67pt\relax
+(fontspec)             \fontdimen 11\font =1.11pt\relax \fontdimen 12\font
+(fontspec)             =6.0pt\relax \fontdimen 13\font =0pt\relax 
+(fontspec)             - 'bold' (b/n) with NFSS spec.:
+(fontspec)             <->s*[0.9998964600422715]"[latinmodern-math.otf]/OT:scri
+pt=math;language=dflt;mapping=tex-text;"
+(fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
+(fontspec)             and font adjustment code:
+(fontspec)             \fontdimen 8\font =0.4pt\relax \fontdimen 9\font
+(fontspec)             =2.0pt\relax \fontdimen 10\font =1.67pt\relax
+(fontspec)             \fontdimen 11\font =1.11pt\relax \fontdimen 12\font
+(fontspec)             =6.0pt\relax \fontdimen 13\font =0pt\relax 
+
+LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
+(Font)              `largesymbols' in the math version `normal' on input line 1
+16.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/m/n on inpu
+t line 116.
+LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
+(Font)              `largesymbols' in the math version `bold' on input line 116
+.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/b/n on inpu
+t line 116.
+\AtBeginShipoutBox=\box54
+Package hyperref Info: Link coloring OFF on input line 116.
+(/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
+(/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/refcount/refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+)
+(/Users/dls354/Library/TinyTeX/texmf-dist/tex/generic/gettitlestring/gettitlest
+ring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+)
+\c@section@level=\count296
+)
+LaTeX Info: Redefining \ref on input line 116.
+LaTeX Info: Redefining \pageref on input line 116.
+LaTeX Info: Redefining \nameref on input line 116.
+(./Statistical-Methods-I.out) (./Statistical-Methods-I.out)
+\@outlinefile=\write4
+\openout4 = `Statistical-Methods-I.out'.
+
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 12.0pt on input line 118.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 8.0pt on input line 118.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 6.0pt on input line 118.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 1
+18.
+(/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
+File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 12.0011pt on input line 118.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 8.00073pt on input line 118.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 6.00055pt on input line 118.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 11.99872pt on input line 118.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 7.99915pt on input line 118.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 5.99936pt on input line 118.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 118
+.
+(/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 118
+.
+(/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) [1
+
+
+] [2
+
+] (./Statistical-Methods-I.toc
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 7.0pt on input line 2.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 5.0pt on input line 2.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 10.00092pt on input line 2.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 7.00064pt on input line 2.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 5.00046pt on input line 2.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 9.99893pt on input line 2.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 6.99925pt on input line 2.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 4.99947pt on input line 2.
+[3] [4])
+\tf@toc=\write5
+\openout5 = `Statistical-Methods-I.toc'.
+
+[5] [6
+
+] [7] [8]
+Chapter 1.
+LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 159.
+[9
+
+] [10] [11] [12] [13]
+File: 01_Data_Summary_files/figure-latex/unnamed-chunk-6-1.pdf Graphic file (ty
+pe pdf)
+<use 01_Data_Summary_files/figure-latex/unnamed-chunk-6-1.pdf>
+File: 01_Data_Summary_files/figure-latex/unnamed-chunk-7-1.pdf Graphic file (ty
+pe pdf)
+<use 01_Data_Summary_files/figure-latex/unnamed-chunk-7-1.pdf>
+
+Underfull \vbox (badness 1005) has occurred while \output is active []
+
+[14]
+File: 01_Data_Summary_files/figure-latex/unnamed-chunk-8-1.pdf Graphic file (ty
+pe pdf)
+<use 01_Data_Summary_files/figure-latex/unnamed-chunk-8-1.pdf>
+File: 01_Data_Summary_files/figure-latex/unnamed-chunk-9-1.pdf Graphic file (ty
+pe pdf)
+<use 01_Data_Summary_files/figure-latex/unnamed-chunk-9-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[15]
+File: 01_Data_Summary_files/figure-latex/unnamed-chunk-11-1.pdf Graphic file (t
+ype pdf)
+<use 01_Data_Summary_files/figure-latex/unnamed-chunk-11-1.pdf>
+[16]
+File: 01_Data_Summary_files/figure-latex/unnamed-chunk-12-1.pdf Graphic file (t
+ype pdf)
+<use 01_Data_Summary_files/figure-latex/unnamed-chunk-12-1.pdf>
+File: 01_Data_Summary_files/figure-latex/unnamed-chunk-13-1.pdf Graphic file (t
+ype pdf)
+<use 01_Data_Summary_files/figure-latex/unnamed-chunk-13-1.pdf>
+[17]
+File: 01_Data_Summary_files/figure-latex/unnamed-chunk-14-1.pdf Graphic file (t
+ype pdf)
+<use 01_Data_Summary_files/figure-latex/unnamed-chunk-14-1.pdf>
+[18]
+File: 01_Data_Summary_files/figure-latex/unnamed-chunk-17-1.pdf Graphic file (t
+ype pdf)
+<use 01_Data_Summary_files/figure-latex/unnamed-chunk-17-1.pdf>
+[19] [20] [21]
+Underfull \hbox (badness 10000) in paragraph at lines 560--561
+
+ []
+
+[22] [23] [24]
+Overfull \hbox (17.25pt too wide) in paragraph at lines 734--734
+[]\TU/lmtt/m/n/10 ## []summarise()[] ungrouping output (override with [].groups
+[] argument)[] 
+ []
+
+[25]
+File: 01_Data_Summary_files/figure-latex/unnamed-chunk-26-1.pdf Graphic file (t
+ype pdf)
+<use 01_Data_Summary_files/figure-latex/unnamed-chunk-26-1.pdf>
+File: 01_Data_Summary_files/figure-latex/unnamed-chunk-27-1.pdf Graphic file (t
+ype pdf)
+<use 01_Data_Summary_files/figure-latex/unnamed-chunk-27-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[26]
+File: 01_Data_Summary_files/figure-latex/unnamed-chunk-28-1.pdf Graphic file (t
+ype pdf)
+<use 01_Data_Summary_files/figure-latex/unnamed-chunk-28-1.pdf>
+[27] [28] [29]
+File: 01_Data_Summary_files/figure-latex/unnamed-chunk-31-1.pdf Graphic file (t
+ype pdf)
+<use 01_Data_Summary_files/figure-latex/unnamed-chunk-31-1.pdf>
+File: 01_Data_Summary_files/figure-latex/unnamed-chunk-32-1.pdf Graphic file (t
+ype pdf)
+<use 01_Data_Summary_files/figure-latex/unnamed-chunk-32-1.pdf>
+[30]
+File: 01_Data_Summary_files/figure-latex/unnamed-chunk-33-1.pdf Graphic file (t
+ype pdf)
+<use 01_Data_Summary_files/figure-latex/unnamed-chunk-33-1.pdf>
+[31]
+Underfull \hbox (badness 1112) in paragraph at lines 984--986
+\TU/lmr/m/it/10 rand.sample\TU/lmr/m/n/10 . Assign each value to variables with
+ the names
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 984--986
+
+ []
+
+
+Underfull \hbox (badness 1762) in paragraph at lines 996--998
+\TU/lmr/m/it/10 rand.sample.2 \TU/lmr/m/n/10 and save them as variables named \
+TU/lmr/m/it/10 step2.mean\TU/lmr/m/n/10 ,
+ []
+
+[32]
+Chapter 2.
+File: 02_Probability_files/figure-latex/unnamed-chunk-3-1.pdf Graphic file (typ
+e pdf)
+<use 02_Probability_files/figure-latex/unnamed-chunk-3-1.pdf>
+[33
+
+]
+File: 02_Probability_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file (typ
+e pdf)
+<use 02_Probability_files/figure-latex/unnamed-chunk-4-1.pdf>
+File: 02_Probability_files/figure-latex/unnamed-chunk-5-1.pdf Graphic file (typ
+e pdf)
+<use 02_Probability_files/figure-latex/unnamed-chunk-5-1.pdf>
+
+Underfull \vbox (badness 6445) has occurred while \output is active []
+
+[34]
+File: 02_Probability_files/figure-latex/unnamed-chunk-6-1.pdf Graphic file (typ
+e pdf)
+<use 02_Probability_files/figure-latex/unnamed-chunk-6-1.pdf>
+File: 02_Probability_files/figure-latex/unnamed-chunk-7-1.pdf Graphic file (typ
+e pdf)
+<use 02_Probability_files/figure-latex/unnamed-chunk-7-1.pdf>
+[35]
+File: 02_Probability_files/figure-latex/unnamed-chunk-8-1.pdf Graphic file (typ
+e pdf)
+<use 02_Probability_files/figure-latex/unnamed-chunk-8-1.pdf>
+File: 02_Probability_files/figure-latex/unnamed-chunk-9-1.pdf Graphic file (typ
+e pdf)
+<use 02_Probability_files/figure-latex/unnamed-chunk-9-1.pdf>
+[36]
+File: 02_Probability_files/figure-latex/unnamed-chunk-10-1.pdf Graphic file (ty
+pe pdf)
+<use 02_Probability_files/figure-latex/unnamed-chunk-10-1.pdf>
+[37]
+File: 02_Probability_files/figure-latex/unnamed-chunk-11-1.pdf Graphic file (ty
+pe pdf)
+<use 02_Probability_files/figure-latex/unnamed-chunk-11-1.pdf>
+File: 02_Probability_files/figure-latex/unnamed-chunk-12-1.pdf Graphic file (ty
+pe pdf)
+<use 02_Probability_files/figure-latex/unnamed-chunk-12-1.pdf>
+[38]
+Overfull \hbox (36.57603pt too wide) detected at line 1151
+[][]
+ []
+
+[39]
+Underfull \hbox (badness 1478) in paragraph at lines 1182--1183
+[]\TU/lmr/m/n/10 Suppose that convertibles make up just 10% of the domestic aut
+omo-
+ []
+
+
+Overfull \hbox (103.83377pt too wide) detected at line 1211
+[][]
+ []
+
+[40] [41]
+File: 02_Probability_files/figure-latex/unnamed-chunk-13-1.pdf Graphic file (ty
+pe pdf)
+<use 02_Probability_files/figure-latex/unnamed-chunk-13-1.pdf>
+
+Overfull \hbox (2.862pt too wide) detected at line 1292
+[][]
+ []
+
+[42]
+File: 02_Probability_files/figure-latex/unnamed-chunk-14-1.pdf Graphic file (ty
+pe pdf)
+<use 02_Probability_files/figure-latex/unnamed-chunk-14-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[43] [44]
+Overfull \hbox (110.02527pt too wide) detected at line 1375
+[][]
+ []
+
+[45] [46]
+
+Package amsmath Warning: Foreign command \atopwithdelims;
+(amsmath)                \frac or \genfrac should be used instead
+(amsmath)                 on input line 1465.
+
+File: 02_Probability_files/figure-latex/unnamed-chunk-15-1.pdf Graphic file (ty
+pe pdf)
+<use 02_Probability_files/figure-latex/unnamed-chunk-15-1.pdf>
+[47] [48]
+File: 02_Probability_files/figure-latex/unnamed-chunk-17-1.pdf Graphic file (ty
+pe pdf)
+<use 02_Probability_files/figure-latex/unnamed-chunk-17-1.pdf>
+[49] [50]
+File: 02_Probability_files/figure-latex/unnamed-chunk-19-1.pdf Graphic file (ty
+pe pdf)
+<use 02_Probability_files/figure-latex/unnamed-chunk-19-1.pdf>
+[51] [52]
+File: 02_Probability_files/figure-latex/unnamed-chunk-20-1.pdf Graphic file (ty
+pe pdf)
+<use 02_Probability_files/figure-latex/unnamed-chunk-20-1.pdf>
+File: 02_Probability_files/figure-latex/unnamed-chunk-21-1.pdf Graphic file (ty
+pe pdf)
+<use 02_Probability_files/figure-latex/unnamed-chunk-21-1.pdf>
+[53]
+File: 02_Probability_files/figure-latex/unnamed-chunk-22-1.pdf Graphic file (ty
+pe pdf)
+<use 02_Probability_files/figure-latex/unnamed-chunk-22-1.pdf>
+[54]
+File: 02_Probability_files/figure-latex/unnamed-chunk-23-1.pdf Graphic file (ty
+pe pdf)
+<use 02_Probability_files/figure-latex/unnamed-chunk-23-1.pdf>
+[55]
+File: 02_Probability_files/figure-latex/unnamed-chunk-25-1.pdf Graphic file (ty
+pe pdf)
+<use 02_Probability_files/figure-latex/unnamed-chunk-25-1.pdf>
+File: 02_Probability_files/figure-latex/unnamed-chunk-26-1.pdf Graphic file (ty
+pe pdf)
+<use 02_Probability_files/figure-latex/unnamed-chunk-26-1.pdf>
+[56] [57]
+File: 02_Probability_files/figure-latex/unnamed-chunk-29-1.pdf Graphic file (ty
+pe pdf)
+<use 02_Probability_files/figure-latex/unnamed-chunk-29-1.pdf>
+[58] [59]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[60] [61] [62
+
+]
+Chapter 3.
+[63]
+File: 03_Bootstrapping_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file (t
+ype pdf)
+<use 03_Bootstrapping_files/figure-latex/unnamed-chunk-4-1.pdf>
+[64]
+File: 03_Bootstrapping_files/figure-latex/unnamed-chunk-8-1.pdf Graphic file (t
+ype pdf)
+<use 03_Bootstrapping_files/figure-latex/unnamed-chunk-8-1.pdf>
+[65] [66]
+File: 03_Bootstrapping_files/figure-latex/unnamed-chunk-13-1.pdf Graphic file (
+type pdf)
+<use 03_Bootstrapping_files/figure-latex/unnamed-chunk-13-1.pdf>
+File: 03_Bootstrapping_files/figure-latex/unnamed-chunk-14-1.pdf Graphic file (
+type pdf)
+<use 03_Bootstrapping_files/figure-latex/unnamed-chunk-14-1.pdf>
+[67]
+File: 03_Bootstrapping_files/figure-latex/unnamed-chunk-15-1.pdf Graphic file (
+type pdf)
+<use 03_Bootstrapping_files/figure-latex/unnamed-chunk-15-1.pdf>
+File: 03_Bootstrapping_files/figure-latex/unnamed-chunk-16-1.pdf Graphic file (
+type pdf)
+<use 03_Bootstrapping_files/figure-latex/unnamed-chunk-16-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[68]
+File: 03_Bootstrapping_files/figure-latex/unnamed-chunk-17-1.pdf Graphic file (
+type pdf)
+<use 03_Bootstrapping_files/figure-latex/unnamed-chunk-17-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[69] [70]
+File: 03_Bootstrapping_files/figure-latex/unnamed-chunk-20-1.pdf Graphic file (
+type pdf)
+<use 03_Bootstrapping_files/figure-latex/unnamed-chunk-20-1.pdf>
+[71]
+File: 03_Bootstrapping_files/figure-latex/unnamed-chunk-21-1.pdf Graphic file (
+type pdf)
+<use 03_Bootstrapping_files/figure-latex/unnamed-chunk-21-1.pdf>
+
+Underfull \vbox (badness 4660) has occurred while \output is active []
+
+[72]
+File: 03_Bootstrapping_files/figure-latex/unnamed-chunk-23-1.pdf Graphic file (
+type pdf)
+<use 03_Bootstrapping_files/figure-latex/unnamed-chunk-23-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[73] [74] [75] [76]
+Chapter 4.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 24.88pt on input line 2469.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 20.74pt on input line 2469.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 17.28pt on input line 2469.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 24.88228pt on input line 2469.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 20.7419pt on input line 2469.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 17.28157pt on input line 2469.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 24.87733pt on input line 2469.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 20.73778pt on input line 2469.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 17.27815pt on input line 2469.
+[77
+
+]
+File: 04_SamplingDistribution_files/figure-latex/unnamed-chunk-3-1.pdf Graphic 
+file (type pdf)
+<use 04_SamplingDistribution_files/figure-latex/unnamed-chunk-3-1.pdf>
+[78]
+File: 04_SamplingDistribution_files/figure-latex/unnamed-chunk-6-1.pdf Graphic 
+file (type pdf)
+<use 04_SamplingDistribution_files/figure-latex/unnamed-chunk-6-1.pdf>
+[79]
+Underfull \vbox (badness 1472) has occurred while \output is active []
+
+[80]
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 14.4pt on input line 2610.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 14.4013pt on input line 2610.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 14.39845pt on input line 2610.
+[81] [82]
+File: 04_SamplingDistribution_files/figure-latex/unnamed-chunk-7-1.pdf Graphic 
+file (type pdf)
+<use 04_SamplingDistribution_files/figure-latex/unnamed-chunk-7-1.pdf>
+[83] [84] [85] [86]
+Chapter 5.
+[87
+
+] [88]
+File: 05_ConfidenceIntervals_files/figure-latex/unnamed-chunk-3-1.pdf Graphic f
+ile (type pdf)
+<use 05_ConfidenceIntervals_files/figure-latex/unnamed-chunk-3-1.pdf>
+[89]
+File: 05_ConfidenceIntervals_files/figure-latex/unnamed-chunk-5-1.pdf Graphic f
+ile (type pdf)
+<use 05_ConfidenceIntervals_files/figure-latex/unnamed-chunk-5-1.pdf>
+[90] [91]
+File: 05_ConfidenceIntervals_files/figure-latex/unnamed-chunk-7-1.pdf Graphic f
+ile (type pdf)
+<use 05_ConfidenceIntervals_files/figure-latex/unnamed-chunk-7-1.pdf>
+[92] [93] [94] [95] [96
+
+]
+Chapter 6.
+[97]
+File: 06_HypothesisTests_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file 
+(type pdf)
+<use 06_HypothesisTests_files/figure-latex/unnamed-chunk-4-1.pdf>
+
+Overfull \hbox (9.10233pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 98 \TU/lmr/m/sl/10 CHAPTER 6.  HYPOTHESIS TESTS FOR THE MEAN OF 
+A POPULATION
+ []
+
+[98] [99]
+Underfull \vbox (badness 1460) has occurred while \output is active []
+
+
+Overfull \hbox (14.10233pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 100 \TU/lmr/m/sl/10 CHAPTER 6.  HYPOTHESIS TESTS FOR THE MEAN OF
+ A POPULATION
+ []
+
+[100]
+File: 06_HypothesisTests_files/figure-latex/unnamed-chunk-5-1.pdf Graphic file 
+(type pdf)
+<use 06_HypothesisTests_files/figure-latex/unnamed-chunk-5-1.pdf>
+[101]
+Overfull \hbox (14.10233pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 102 \TU/lmr/m/sl/10 CHAPTER 6.  HYPOTHESIS TESTS FOR THE MEAN OF
+ A POPULATION
+ []
+
+[102]
+File: 06_HypothesisTests_files/figure-latex/unnamed-chunk-6-1.pdf Graphic file 
+(type pdf)
+<use 06_HypothesisTests_files/figure-latex/unnamed-chunk-6-1.pdf>
+File: 06_HypothesisTests_files/figure-latex/unnamed-chunk-7-1.pdf Graphic file 
+(type pdf)
+<use 06_HypothesisTests_files/figure-latex/unnamed-chunk-7-1.pdf>
+
+Underfull \vbox (badness 2376) has occurred while \output is active []
+
+[103]
+Overfull \hbox (14.10233pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 104 \TU/lmr/m/sl/10 CHAPTER 6.  HYPOTHESIS TESTS FOR THE MEAN OF
+ A POPULATION
+ []
+
+[104] [105]
+Overfull \hbox (14.10233pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 106 \TU/lmr/m/sl/10 CHAPTER 6.  HYPOTHESIS TESTS FOR THE MEAN OF
+ A POPULATION
+ []
+
+[106] [107]
+Overfull \hbox (14.10233pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 108 \TU/lmr/m/sl/10 CHAPTER 6.  HYPOTHESIS TESTS FOR THE MEAN OF
+ A POPULATION
+ []
+
+[108] [109]
+Overfull \hbox (22.40002pt too wide) in paragraph at lines 3435--3436
+[]\TU/lmr/m/n/10 The \TU/lmtt/m/n/10 t.test() \TU/lmr/m/n/10 function supports 
+testing one-sided alternatives (\TU/lmtt/m/n/10 alternative=[]less[]
+ []
+
+
+Overfull \vbox (13.18344pt too high) has occurred while \output is active []
+
+
+Overfull \hbox (14.10233pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 110 \TU/lmr/m/sl/10 CHAPTER 6.  HYPOTHESIS TESTS FOR THE MEAN OF
+ A POPULATION
+ []
+
+[110] [111]
+File: 06_HypothesisTests_files/figure-latex/unnamed-chunk-12-1.pdf Graphic file
+ (type pdf)
+<use 06_HypothesisTests_files/figure-latex/unnamed-chunk-12-1.pdf>
+
+Overfull \hbox (14.10233pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 112 \TU/lmr/m/sl/10 CHAPTER 6.  HYPOTHESIS TESTS FOR THE MEAN OF
+ A POPULATION
+ []
+
+[112]
+File: 06_HypothesisTests_files/figure-latex/unnamed-chunk-13-1.pdf Graphic file
+ (type pdf)
+<use 06_HypothesisTests_files/figure-latex/unnamed-chunk-13-1.pdf>
+[113]
+File: 06_HypothesisTests_files/figure-latex/unnamed-chunk-14-1.pdf Graphic file
+ (type pdf)
+<use 06_HypothesisTests_files/figure-latex/unnamed-chunk-14-1.pdf>
+
+Overfull \hbox (14.10233pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 114 \TU/lmr/m/sl/10 CHAPTER 6.  HYPOTHESIS TESTS FOR THE MEAN OF
+ A POPULATION
+ []
+
+[114] [115]
+Overfull \hbox (14.10233pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 116 \TU/lmr/m/sl/10 CHAPTER 6.  HYPOTHESIS TESTS FOR THE MEAN OF
+ A POPULATION
+ []
+
+[116]
+File: 06_HypothesisTests_files/figure-latex/unnamed-chunk-19-1.pdf Graphic file
+ (type pdf)
+<use 06_HypothesisTests_files/figure-latex/unnamed-chunk-19-1.pdf>
+
+Underfull \hbox (badness 1270) in paragraph at lines 3685--3686
+\TU/lmr/m/n/10 ability of a Type II error. That is, calculate the value of
+ []
+
+[117]
+Overfull \hbox (14.10233pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 118 \TU/lmr/m/sl/10 CHAPTER 6.  HYPOTHESIS TESTS FOR THE MEAN OF
+ A POPULATION
+ []
+
+[118]
+Chapter 7.
+[119
+
+]
+Overfull \hbox (64.80453pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 120 \TU/lmr/m/sl/10 CHAPTER 7.  TWO-SAMPLE HYPOTHESIS TESTS AND 
+CONFIDENCE INTERVALS
+ []
+
+[120]
+Overfull \hbox (75.0pt too wide) in paragraph at lines 3765--3765
+[]\TU/lmtt/m/n/10 ##  $ Group: Factor w/ 2 levels "Caffeine","NoCaffeine": 1 1 
+1 1 1 1 1 1 1 1 ...[] 
+ []
+
+[121]
+File: 07_Two_Samples_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file (typ
+e pdf)
+<use 07_Two_Samples_files/figure-latex/unnamed-chunk-4-1.pdf>
+
+Overfull \hbox (64.80453pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 122 \TU/lmr/m/sl/10 CHAPTER 7.  TWO-SAMPLE HYPOTHESIS TESTS AND 
+CONFIDENCE INTERVALS
+ []
+
+[122] [123]
+Overfull \hbox (64.80453pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 124 \TU/lmr/m/sl/10 CHAPTER 7.  TWO-SAMPLE HYPOTHESIS TESTS AND 
+CONFIDENCE INTERVALS
+ []
+
+[124]
+File: 07_Two_Samples_files/figure-latex/unnamed-chunk-12-1.pdf Graphic file (ty
+pe pdf)
+<use 07_Two_Samples_files/figure-latex/unnamed-chunk-12-1.pdf>
+[125]
+Overfull \hbox (64.80453pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 126 \TU/lmr/m/sl/10 CHAPTER 7.  TWO-SAMPLE HYPOTHESIS TESTS AND 
+CONFIDENCE INTERVALS
+ []
+
+[126] [127]
+File: 07_Two_Samples_files/figure-latex/unnamed-chunk-19-1.pdf Graphic file (ty
+pe pdf)
+<use 07_Two_Samples_files/figure-latex/unnamed-chunk-19-1.pdf>
+
+Overfull \hbox (64.80453pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 128 \TU/lmr/m/sl/10 CHAPTER 7.  TWO-SAMPLE HYPOTHESIS TESTS AND 
+CONFIDENCE INTERVALS
+ []
+
+[128] [129]
+Overfull \hbox (64.80453pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 130 \TU/lmr/m/sl/10 CHAPTER 7.  TWO-SAMPLE HYPOTHESIS TESTS AND 
+CONFIDENCE INTERVALS
+ []
+
+[130] [131]
+Overfull \hbox (17.25pt too wide) in paragraph at lines 4195--4195
+[]\TU/lmtt/m/n/10 ## alternative hypothesis: true difference in means is not eq
+ual to 0[] 
+ []
+
+
+Overfull \hbox (64.80453pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 132 \TU/lmr/m/sl/10 CHAPTER 7.  TWO-SAMPLE HYPOTHESIS TESTS AND 
+CONFIDENCE INTERVALS
+ []
+
+[132] [133]
+Overfull \hbox (17.25pt too wide) in paragraph at lines 4259--4259
+[]\TU/lmtt/m/n/10 ## []summarise()[] ungrouping output (override with [].groups
+[] argument)[] 
+ []
+
+
+Overfull \hbox (64.80453pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 134 \TU/lmr/m/sl/10 CHAPTER 7.  TWO-SAMPLE HYPOTHESIS TESTS AND 
+CONFIDENCE INTERVALS
+ []
+
+[134]
+Overfull \hbox (17.25pt too wide) in paragraph at lines 4284--4284
+[]\TU/lmtt/m/n/10 ## []summarise()[] ungrouping output (override with [].groups
+[] argument)[] 
+ []
+
+[135]
+Overfull \hbox (17.25pt too wide) in paragraph at lines 4360--4360
+[]\TU/lmtt/m/n/10 ## alternative hypothesis: true difference in means is not eq
+ual to 0[] 
+ []
+
+
+Overfull \hbox (17.25pt too wide) in paragraph at lines 4383--4383
+[]\TU/lmtt/m/n/10 ## alternative hypothesis: true difference in means is not eq
+ual to 0[] 
+ []
+
+
+Overfull \hbox (64.80453pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 136 \TU/lmr/m/sl/10 CHAPTER 7.  TWO-SAMPLE HYPOTHESIS TESTS AND 
+CONFIDENCE INTERVALS
+ []
+
+[136]
+File: 07_Two_Samples_files/figure-latex/unnamed-chunk-30-1.pdf Graphic file (ty
+pe pdf)
+<use 07_Two_Samples_files/figure-latex/unnamed-chunk-30-1.pdf>
+[137]
+Overfull \hbox (64.80453pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 138 \TU/lmr/m/sl/10 CHAPTER 7.  TWO-SAMPLE HYPOTHESIS TESTS AND 
+CONFIDENCE INTERVALS
+ []
+
+[138]
+File: 07_Two_Samples_files/figure-latex/unnamed-chunk-34-1.pdf Graphic file (ty
+pe pdf)
+<use 07_Two_Samples_files/figure-latex/unnamed-chunk-34-1.pdf>
+[139]
+Overfull \hbox (17.25pt too wide) in paragraph at lines 4525--4525
+[]\TU/lmtt/m/n/10 ## alternative hypothesis: true difference in means is not eq
+ual to 0[] 
+ []
+
+
+Overfull \hbox (64.80453pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 140 \TU/lmr/m/sl/10 CHAPTER 7.  TWO-SAMPLE HYPOTHESIS TESTS AND 
+CONFIDENCE INTERVALS
+ []
+
+[140]
+File: 07_Two_Samples_files/figure-latex/unnamed-chunk-39-1.pdf Graphic file (ty
+pe pdf)
+<use 07_Two_Samples_files/figure-latex/unnamed-chunk-39-1.pdf>
+
+Underfull \vbox (badness 2913) has occurred while \output is active []
+
+
+Overfull \hbox (11.54344pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10 7.2.  DIFFERENCE IN MEANS BETWEEN TWO GROUPS: PAIRED DATA \TU/l
+mr/m/n/10 141
+ []
+
+[141]
+Overfull \hbox (17.25pt too wide) in paragraph at lines 4614--4614
+[]\TU/lmtt/m/n/10 ## alternative hypothesis: true difference in means is greate
+r than 0[] 
+ []
+
+
+Overfull \hbox (64.80453pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 142 \TU/lmr/m/sl/10 CHAPTER 7.  TWO-SAMPLE HYPOTHESIS TESTS AND 
+CONFIDENCE INTERVALS
+ []
+
+[142]
+File: 07_Two_Samples_files/figure-latex/unnamed-chunk-41-1.pdf Graphic file (ty
+pe pdf)
+<use 07_Two_Samples_files/figure-latex/unnamed-chunk-41-1.pdf>
+
+Overfull \hbox (11.54344pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10 7.2.  DIFFERENCE IN MEANS BETWEEN TWO GROUPS: PAIRED DATA \TU/l
+mr/m/n/10 143
+ []
+
+[143]
+Overfull \hbox (64.80453pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 144 \TU/lmr/m/sl/10 CHAPTER 7.  TWO-SAMPLE HYPOTHESIS TESTS AND 
+CONFIDENCE INTERVALS
+ []
+
+[144]
+Overfull \hbox (11.54344pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10 7.2.  DIFFERENCE IN MEANS BETWEEN TWO GROUPS: PAIRED DATA \TU/l
+mr/m/n/10 145
+ []
+
+[145]
+File: 07_Two_Samples_files/figure-latex/unnamed-chunk-49-1.pdf Graphic file (ty
+pe pdf)
+<use 07_Two_Samples_files/figure-latex/unnamed-chunk-49-1.pdf>
+File: 07_Two_Samples_files/figure-latex/unnamed-chunk-50-1.pdf Graphic file (ty
+pe pdf)
+<use 07_Two_Samples_files/figure-latex/unnamed-chunk-50-1.pdf>
+
+Underfull \vbox (badness 5119) has occurred while \output is active []
+
+
+Overfull \hbox (64.80453pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 146 \TU/lmr/m/sl/10 CHAPTER 7.  TWO-SAMPLE HYPOTHESIS TESTS AND 
+CONFIDENCE INTERVALS
+ []
+
+[146]
+Overfull \hbox (11.54344pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10 7.2.  DIFFERENCE IN MEANS BETWEEN TWO GROUPS: PAIRED DATA \TU/l
+mr/m/n/10 147
+ []
+
+[147]
+Overfull \hbox (64.80453pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 148 \TU/lmr/m/sl/10 CHAPTER 7.  TWO-SAMPLE HYPOTHESIS TESTS AND 
+CONFIDENCE INTERVALS
+ []
+
+[148] [149]
+Overfull \hbox (64.80453pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 150 \TU/lmr/m/sl/10 CHAPTER 7.  TWO-SAMPLE HYPOTHESIS TESTS AND 
+CONFIDENCE INTERVALS
+ []
+
+[150] [151]
+Overfull \hbox (64.80453pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 152 \TU/lmr/m/sl/10 CHAPTER 7.  TWO-SAMPLE HYPOTHESIS TESTS AND 
+CONFIDENCE INTERVALS
+ []
+
+[152
+
+]
+Chapter 8.
+[153]
+File: 08_TestingAssumptions_files/figure-latex/unnamed-chunk-3-1.pdf Graphic fi
+le (type pdf)
+<use 08_TestingAssumptions_files/figure-latex/unnamed-chunk-3-1.pdf>
+File: 08_TestingAssumptions_files/figure-latex/unnamed-chunk-4-1.pdf Graphic fi
+le (type pdf)
+<use 08_TestingAssumptions_files/figure-latex/unnamed-chunk-4-1.pdf>
+File: 08_TestingAssumptions_files/figure-latex/unnamed-chunk-5-1.pdf Graphic fi
+le (type pdf)
+<use 08_TestingAssumptions_files/figure-latex/unnamed-chunk-5-1.pdf>
+
+Underfull \vbox (badness 6396) has occurred while \output is active []
+
+[154]
+File: 08_TestingAssumptions_files/figure-latex/unnamed-chunk-6-1.pdf Graphic fi
+le (type pdf)
+<use 08_TestingAssumptions_files/figure-latex/unnamed-chunk-6-1.pdf>
+File: 08_TestingAssumptions_files/figure-latex/unnamed-chunk-7-1.pdf Graphic fi
+le (type pdf)
+<use 08_TestingAssumptions_files/figure-latex/unnamed-chunk-7-1.pdf>
+[155] [156] [157]
+File: 08_TestingAssumptions_files/figure-latex/unnamed-chunk-10-1.pdf Graphic f
+ile (type pdf)
+<use 08_TestingAssumptions_files/figure-latex/unnamed-chunk-10-1.pdf>
+[158]
+File: 08_TestingAssumptions_files/figure-latex/unnamed-chunk-11-1.pdf Graphic f
+ile (type pdf)
+<use 08_TestingAssumptions_files/figure-latex/unnamed-chunk-11-1.pdf>
+[159] [160]
+File: 08_TestingAssumptions_files/figure-latex/unnamed-chunk-15-1.pdf Graphic f
+ile (type pdf)
+<use 08_TestingAssumptions_files/figure-latex/unnamed-chunk-15-1.pdf>
+[161]
+Overfull \hbox (17.25pt too wide) in paragraph at lines 5283--5283
+[]\TU/lmtt/m/n/10 ## []summarise()[] ungrouping output (override with [].groups
+[] argument)[] 
+ []
+
+[162]
+Overfull \hbox (12.0pt too wide) in paragraph at lines 5329--5329
+[]\TU/lmtt/m/n/10 ## alternative hypothesis: true ratio of variances is not equ
+al to 1[] 
+ []
+
+[163]
+File: 08_TestingAssumptions_files/figure-latex/unnamed-chunk-23-1.pdf Graphic f
+ile (type pdf)
+<use 08_TestingAssumptions_files/figure-latex/unnamed-chunk-23-1.pdf>
+[164]
+File: 08_TestingAssumptions_files/figure-latex/unnamed-chunk-25-1.pdf Graphic f
+ile (type pdf)
+<use 08_TestingAssumptions_files/figure-latex/unnamed-chunk-25-1.pdf>
+
+Overfull \hbox (12.0pt too wide) in paragraph at lines 5423--5423
+[]\TU/lmtt/m/n/10 ## alternative hypothesis: true ratio of variances is not equ
+al to 1[] 
+ []
+
+[165]
+File: 08_TestingAssumptions_files/figure-latex/unnamed-chunk-28-1.pdf Graphic f
+ile (type pdf)
+<use 08_TestingAssumptions_files/figure-latex/unnamed-chunk-28-1.pdf>
+[166] [167] [168]
+Overfull \hbox (71.49016pt too wide) in alignment at lines 5573--5575
+ [] [] [] [] [] [] [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (71.49016pt too wide) in alignment at lines 5575--5581
+ [] [] [] [] [] [] [] [] [] [] [] [] 
+ []
+
+[169] [170
+
+]
+Chapter 9.
+[171]
+File: 09_ANOVA_files/figure-latex/unnamed-chunk-3-1.pdf Graphic file (type pdf)
+
+<use 09_ANOVA_files/figure-latex/unnamed-chunk-3-1.pdf>
+[172]
+File: 09_ANOVA_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file (type pdf)
+
+<use 09_ANOVA_files/figure-latex/unnamed-chunk-4-1.pdf>
+
+Underfull \vbox (badness 1527) has occurred while \output is active []
+
+[173] [174]
+Overfull \hbox (17.25pt too wide) in paragraph at lines 5733--5733
+[]\TU/lmtt/m/n/10 ## []summarise()[] ungrouping output (override with [].groups
+[] argument)[] 
+ []
+
+File: 09_ANOVA_files/figure-latex/unnamed-chunk-5-1.pdf Graphic file (type pdf)
+
+<use 09_ANOVA_files/figure-latex/unnamed-chunk-5-1.pdf>
+[175]
+Overfull \hbox (19.56099pt too wide) in alignment at lines 5739--5743
+ [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (19.56099pt too wide) in alignment at lines 5743--5748
+ [] [] [] [] [] [] 
+ []
+
+[176]
+Overfull \hbox (4.76747pt too wide) in paragraph at lines 5801--5802
+ []\TU/lmr/m/n/10 Source| 
+ []
+
+
+Overfull \hbox (4.79883pt too wide) in alignment at lines 5798--5814
+ [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (19.33748pt too wide) in paragraph at lines 5816--5817
+ []\TU/lmr/m/n/10 Difference| 
+ []
+
+
+Overfull \hbox (2.73491pt too wide) in paragraph at lines 5820--5821
+ []$[][][][]$| 
+ []
+
+
+Overfull \hbox (11.5862pt too wide) in paragraph at lines 5826--5827
+[]$[][][][] [] 
+ []
+
+
+Overfull \hbox (14.45747pt too wide) in paragraph at lines 5829--5830
+ []\TU/lmr/m/n/10 Complex| 
+ []
+
+
+Overfull \hbox (16.52492pt too wide) in paragraph at lines 5833--5834
+ []$[][][][]$| 
+ []
+
+
+Overfull \hbox (5.29747pt too wide) in paragraph at lines 5842--5843
+ []\TU/lmr/m/n/10 Simple| 
+ []
+
+
+Overfull \hbox (10.98093pt too wide) in paragraph at lines 5846--5847
+ []$[][][][]$| 
+ []
+
+
+Overfull \hbox (4.79883pt too wide) in alignment at lines 5814--5855
+ [] [] [] [] [] [] 
+ []
+
+[177] [178]
+Overfull \hbox (38.25pt too wide) in paragraph at lines 5888--5888
+[]\TU/lmtt/m/n/10 ##  $ LAI    : num  2.88 2.87 3.23 3.24 3.33 3.83 3.86 4.03 3
+.87 4.16 ...[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 5888--5888
+[]\TU/lmtt/m/n/10 ##  $ Species: Factor w/ 3 levels "1","2","3": 1 1 1 1 1 2 2 
+2 2 2 ...[] 
+ []
+
+File: 09_ANOVA_files/figure-latex/unnamed-chunk-7-1.pdf Graphic file (type pdf)
+
+<use 09_ANOVA_files/figure-latex/unnamed-chunk-7-1.pdf>
+[179]
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5926--5926
+[]\TU/lmtt/m/n/10 ## Call []lifecycle::last_warnings()[] to see where this warn
+ing was generated.[] 
+ []
+
+File: 09_ANOVA_files/figure-latex/unnamed-chunk-8-1.pdf Graphic file (type pdf)
+
+<use 09_ANOVA_files/figure-latex/unnamed-chunk-8-1.pdf>
+[180] [181]
+File: 09_ANOVA_files/figure-latex/unnamed-chunk-12-1.pdf Graphic file (type pdf
+)
+<use 09_ANOVA_files/figure-latex/unnamed-chunk-12-1.pdf>
+[182] [183]
+Overfull \hbox (38.25pt too wide) in paragraph at lines 6066--6066
+[]\TU/lmtt/m/n/10 ## P value adjustment: tukey method for comparing a family of
+ 5 estimates[] 
+ []
+
+
+Overfull \hbox (38.25pt too wide) in paragraph at lines 6088--6088
+[]\TU/lmtt/m/n/10 ## P value adjustment: tukey method for comparing a family of
+ 5 estimates[] 
+ []
+
+[184]
+File: 09_ANOVA_files/figure-latex/unnamed-chunk-17-1.pdf Graphic file (type pdf
+)
+<use 09_ANOVA_files/figure-latex/unnamed-chunk-17-1.pdf>
+File: 09_ANOVA_files/figure-latex/unnamed-chunk-18-1.pdf Graphic file (type pdf
+)
+<use 09_ANOVA_files/figure-latex/unnamed-chunk-18-1.pdf>
+
+Underfull \vbox (badness 1281) has occurred while \output is active []
+
+[185]
+Overfull \hbox (59.25pt too wide) in paragraph at lines 6155--6155
+[]\TU/lmtt/m/n/10 ## Warning in leveneTest.default(y = y, group = group, ...): 
+group coerced to[] 
+ []
+
+[186]
+Overfull \hbox (38.25pt too wide) in paragraph at lines 6225--6225
+[]\TU/lmtt/m/n/10 ## P value adjustment: tukey method for comparing a family of
+ 3 estimates[] 
+ []
+
+[187]
+File: 09_ANOVA_files/figure-latex/unnamed-chunk-23-1.pdf Graphic file (type pdf
+)
+<use 09_ANOVA_files/figure-latex/unnamed-chunk-23-1.pdf>
+[188]
+File: 09_ANOVA_files/figure-latex/unnamed-chunk-24-1.pdf Graphic file (type pdf
+)
+<use 09_ANOVA_files/figure-latex/unnamed-chunk-24-1.pdf>
+[189] [190] [191]
+Overfull \hbox (17.25pt too wide) in paragraph at lines 6406--6406
+[]\TU/lmtt/m/n/10 ## []summarise()[] ungrouping output (override with [].groups
+[] argument)[] 
+ []
+
+File: 09_ANOVA_files/figure-latex/unnamed-chunk-29-1.pdf Graphic file (type pdf
+)
+<use 09_ANOVA_files/figure-latex/unnamed-chunk-29-1.pdf>
+[192] [193]
+Underfull \hbox (badness 10000) in paragraph at lines 6514--6515
+
+ []
+
+[194]
+File: 09_ANOVA_files/figure-latex/unnamed-chunk-32-1.pdf Graphic file (type pdf
+)
+<use 09_ANOVA_files/figure-latex/unnamed-chunk-32-1.pdf>
+File: 09_ANOVA_files/figure-latex/unnamed-chunk-33-1.pdf Graphic file (type pdf
+)
+<use 09_ANOVA_files/figure-latex/unnamed-chunk-33-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[195] [196]
+Overfull \hbox (16.20157pt too wide) detected at line 6590
+[][][][] [] [] [] [][] [] [] [] [][] [] [] [] [][]
+ []
+
+
+Overfull \hbox (9.77557pt too wide) detected at line 6601
+[][][][] [] [] [] [][] [] [] [] [][] [] [] [] [][]
+ []
+
+[197] [198]
+Chapter 10.
+File: 10_Regression_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file (type
+ pdf)
+<use 10_Regression_files/figure-latex/unnamed-chunk-4-1.pdf>
+[199
+
+]
+File: 10_Regression_files/figure-latex/unnamed-chunk-5-1.pdf Graphic file (type
+ pdf)
+<use 10_Regression_files/figure-latex/unnamed-chunk-5-1.pdf>
+
+Overfull \hbox (17.25pt too wide) in paragraph at lines 6730--6730
+[]\TU/lmtt/m/n/10 ## []summarise()[] ungrouping output (override with [].groups
+[] argument)[] 
+ []
+
+File: 10_Regression_files/figure-latex/unnamed-chunk-6-1.pdf Graphic file (type
+ pdf)
+<use 10_Regression_files/figure-latex/unnamed-chunk-6-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[200]
+File: 10_Regression_files/figure-latex/unnamed-chunk-7-1.pdf Graphic file (type
+ pdf)
+<use 10_Regression_files/figure-latex/unnamed-chunk-7-1.pdf>
+[201]
+File: 10_Regression_files/figure-latex/unnamed-chunk-8-1.pdf Graphic file (type
+ pdf)
+<use 10_Regression_files/figure-latex/unnamed-chunk-8-1.pdf>
+[202]
+File: 10_Regression_files/figure-latex/unnamed-chunk-9-1.pdf Graphic file (type
+ pdf)
+<use 10_Regression_files/figure-latex/unnamed-chunk-9-1.pdf>
+
+Underfull \vbox (badness 4913) has occurred while \output is active []
+
+[203] [204]
+Overfull \hbox (11.5979pt too wide) in paragraph at lines 6963--6964
+ []\TU/lmr/m/n/10 Coefficient| 
+ []
+
+
+Overfull \hbox (1.12979pt too wide) in paragraph at lines 6965--6966
+ []\TU/lmr/m/n/10 Estimate| 
+ []
+
+
+Overfull \hbox (4.9679pt too wide) in paragraph at lines 6976--6977
+ []\TU/lmr/m/n/10 Intercept 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[205] [206]
+Overfull \hbox (4.76747pt too wide) in paragraph at lines 7066--7067
+ []\TU/lmr/m/n/10 Source| 
+ []
+
+
+Overfull \hbox (19.33748pt too wide) in paragraph at lines 7081--7082
+ []\TU/lmr/m/n/10 Difference| 
+ []
+
+
+Overfull \hbox (2.73491pt too wide) in paragraph at lines 7085--7086
+ []$[][][][]$| 
+ []
+
+
+Overfull \hbox (8.52669pt too wide) in paragraph at lines 7091--7092
+ []$[][][][] [] 
+ []
+
+
+Overfull \hbox (14.45747pt too wide) in paragraph at lines 7094--7095
+ []\TU/lmr/m/n/10 Complex| 
+ []
+
+
+Overfull \hbox (16.52492pt too wide) in paragraph at lines 7098--7099
+ []$[][][][]$| 
+ []
+
+
+Overfull \hbox (5.29747pt too wide) in paragraph at lines 7107--7108
+ []\TU/lmr/m/n/10 Simple| 
+ []
+
+
+Overfull \hbox (10.98093pt too wide) in paragraph at lines 7111--7112
+ []$[][][][]$| 
+ []
+
+[207] [208] [209]
+File: 10_Regression_files/figure-latex/unnamed-chunk-16-1.pdf Graphic file (typ
+e pdf)
+<use 10_Regression_files/figure-latex/unnamed-chunk-16-1.pdf>
+[210]
+File: 10_Regression_files/figure-latex/unnamed-chunk-17-1.pdf Graphic file (typ
+e pdf)
+<use 10_Regression_files/figure-latex/unnamed-chunk-17-1.pdf>
+[211]
+File: 10_Regression_files/figure-latex/unnamed-chunk-20-1.pdf Graphic file (typ
+e pdf)
+<use 10_Regression_files/figure-latex/unnamed-chunk-20-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[212]
+File: 10_Regression_files/figure-latex/unnamed-chunk-21-1.pdf Graphic file (typ
+e pdf)
+<use 10_Regression_files/figure-latex/unnamed-chunk-21-1.pdf>
+[213]
+File: 10_Regression_files/figure-latex/unnamed-chunk-24-1.pdf Graphic file (typ
+e pdf)
+<use 10_Regression_files/figure-latex/unnamed-chunk-24-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[214]
+File: 10_Regression_files/figure-latex/unnamed-chunk-25-1.pdf Graphic file (typ
+e pdf)
+<use 10_Regression_files/figure-latex/unnamed-chunk-25-1.pdf>
+[215]
+Overfull \hbox (59.25pt too wide) in paragraph at lines 7388--7388
+[]\TU/lmtt/m/n/10 ## Call []lifecycle::last_warnings()[] to see where this warn
+ing was generated.[] 
+ []
+
+File: 10_Regression_files/figure-latex/unnamed-chunk-26-1.pdf Graphic file (typ
+e pdf)
+<use 10_Regression_files/figure-latex/unnamed-chunk-26-1.pdf>
+[216]
+File: 10_Regression_files/figure-latex/unnamed-chunk-27-1.pdf Graphic file (typ
+e pdf)
+<use 10_Regression_files/figure-latex/unnamed-chunk-27-1.pdf>
+[217] [218]
+File: 10_Regression_files/figure-latex/unnamed-chunk-29-1.pdf Graphic file (typ
+e pdf)
+<use 10_Regression_files/figure-latex/unnamed-chunk-29-1.pdf>
+File: 10_Regression_files/figure-latex/unnamed-chunk-30-1.pdf Graphic file (typ
+e pdf)
+<use 10_Regression_files/figure-latex/unnamed-chunk-30-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[219]
+File: 10_Regression_files/figure-latex/unnamed-chunk-31-1.pdf Graphic file (typ
+e pdf)
+<use 10_Regression_files/figure-latex/unnamed-chunk-31-1.pdf>
+[220]
+File: 10_Regression_files/figure-latex/unnamed-chunk-32-1.pdf Graphic file (typ
+e pdf)
+<use 10_Regression_files/figure-latex/unnamed-chunk-32-1.pdf>
+File: 10_Regression_files/figure-latex/unnamed-chunk-33-1.pdf Graphic file (typ
+e pdf)
+<use 10_Regression_files/figure-latex/unnamed-chunk-33-1.pdf>
+
+Underfull \vbox (badness 7151) has occurred while \output is active []
+
+[221] [222] [223] [224]
+Overfull \hbox (73.01424pt too wide) in alignment at lines 7733--7735
+ [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (9.47127pt too wide) in paragraph at lines 7770--7771
+ []\TU/lmr/m/n/10 Response| 
+ []
+
+
+Overfull \hbox (73.01424pt too wide) in alignment at lines 7735--7803
+ [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] 
+ []
+
+[225] [226
+
+]
+Chapter 11.
+
+Overfull \hbox (6.57356pt too wide) detected at line 7862
+[][]
+ []
+
+[227] [228]
+Chapter 12.
+[229
+
+] [230] [231]
+Overfull \hbox (69.75pt too wide) in paragraph at lines 7997--7997
+[]\TU/lmtt/m/n/10 ##  $ treatment: Factor w/ 2 levels "mites","no mites": 1 1 1
+ 1 1 1 1 1 1 1 ...[] 
+ []
+
+
+Overfull \hbox (59.25pt too wide) in paragraph at lines 7997--7997
+[]\TU/lmtt/m/n/10 ##  $ outcome  : Factor w/ 2 levels "no wilt","wilt": 2 2 2 2
+ 2 2 2 2 2 2 ...[] 
+ []
+
+[232] [233] [234]
+File: 12_ContingencyTables_files/figure-latex/unnamed-chunk-11-1.pdf Graphic fi
+le (type pdf)
+<use 12_ContingencyTables_files/figure-latex/unnamed-chunk-11-1.pdf>
+[235]
+Overfull \hbox (17.25pt too wide) in paragraph at lines 8181--8181
+[]\TU/lmtt/m/n/10 ##  Pearson[]s Chi-squared test with simulated p-value (based
+ on 10000[] 
+ []
+
+[236]
+Overfull \hbox (17.25pt too wide) in paragraph at lines 8244--8244
+[]\TU/lmtt/m/n/10 ##  Pearson[]s Chi-squared test with simulated p-value (based
+ on 10000[] 
+ []
+
+[237]
+File: 12_ContingencyTables_files/figure-latex/unnamed-chunk-16-1.pdf Graphic fi
+le (type pdf)
+<use 12_ContingencyTables_files/figure-latex/unnamed-chunk-16-1.pdf>
+[238] [239]
+Overfull \hbox (17.25pt too wide) in paragraph at lines 8370--8370
+[]\TU/lmtt/m/n/10 ##  Pearson[]s Chi-squared test with simulated p-value (based
+ on 1e+05[] 
+ []
+
+[240]
+Overfull \hbox (1.34546pt too wide) in alignment at lines 8388--8404
+ [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (1.34546pt too wide) in alignment at lines 8404--8445
+ [] [] [] [] [] [] 
+ []
+
+File: 12_ContingencyTables_files/figure-latex/unnamed-chunk-21-1.pdf Graphic fi
+le (type pdf)
+<use 12_ContingencyTables_files/figure-latex/unnamed-chunk-21-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[241] [242] [243
+
+]
+File: 97_Appendix_A_Alternative_Bootstrap_Methods_files/figure-latex/unnamed-ch
+unk-3-1.pdf Graphic file (type pdf)
+<use 97_Appendix_A_Alternative_Bootstrap_Methods_files/figure-latex/unnamed-chu
+nk-3-1.pdf>
+File: 97_Appendix_A_Alternative_Bootstrap_Methods_files/figure-latex/unnamed-ch
+unk-4-1.pdf Graphic file (type pdf)
+<use 97_Appendix_A_Alternative_Bootstrap_Methods_files/figure-latex/unnamed-chu
+nk-4-1.pdf>
+
+Underfull \vbox (badness 2126) has occurred while \output is active []
+
+[244]
+No file Statistical-Methods-I.bbl.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 8594.
+[245]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 8594.
+(./Statistical-Methods-I.aux)
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 8594.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 8594.
+
+Package rerunfilecheck Info: File `Statistical-Methods-I.out' has not changed.
+(rerunfilecheck)             Checksum: 14CAFE104163B0E297783B15151D477C;12425.
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 8594.
+ ) 
+Here is how much of TeX's memory you used:
+ 17521 strings out of 481790
+ 342289 string characters out of 5936466
+ 739602 words of memory out of 5000000
+ 34222 multiletter control sequences out of 15000+600000
+ 542697 words of font info for 109 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 52i,11n,115p,2116b,561s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+Output written on Statistical-Methods-I.pdf (245 pages).

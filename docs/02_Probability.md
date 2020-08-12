@@ -25,11 +25,11 @@ Events are properties of a particular outcome. For a coin flip, the event “Hea
 
 Let $S$ be the set of all outcomes of my random trial. Suppose I am interested in two events $A$ and $B$. The traditional way of representing these events is using a Venn diagram.
 
-<img src="02_Probability_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+![](02_Probability_files/figure-latex/unnamed-chunk-3-1.pdf)<!-- --> 
 
 For example, suppose that my random experiment is rolling a fair 6-sided die once. The possible outcomes are $S=\{1,2,3,4,5,6\}$. Suppose I then define events $A=$ roll is odd and $B=$ roll is 5 or greater. In this case our picture is:
 
-<img src="02_Probability_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+![](02_Probability_files/figure-latex/unnamed-chunk-4-1.pdf)<!-- --> 
 
 
 All of our possible events are present, and distributed among our possible events.
@@ -40,20 +40,20 @@ I am often interested in discussing the composition of two events and we give th
 
 * **Union:** Denote the event that either $A$ or $B$ occurs as $A\cup B$.
 
-<img src="02_Probability_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+![](02_Probability_files/figure-latex/unnamed-chunk-5-1.pdf)<!-- --> 
 
 * **Intersection:** Denote the event that **both** $A$ and $B$ occur as $A\cap B$
 
-<img src="02_Probability_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+![](02_Probability_files/figure-latex/unnamed-chunk-6-1.pdf)<!-- --> 
 
 
 * **Complement:** Denote the event that $A$ does not occur as $\bar{A}$ or $A^{C}$ (different people use different notations)
 
-<img src="02_Probability_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+![](02_Probability_files/figure-latex/unnamed-chunk-7-1.pdf)<!-- --> 
 
 **Definition:** Two events $A$ and $B$ are said to be **mutually exclusive** (or **disjoint**) if the occurrence of one event precludes the occurrence of the other. For example, on a single roll of a die, a two and a five cannot both come up. For a second example, define $A$ to be the event that the die is even, and $B$ to be the event that the die comes up as a $5$.
 
-<img src="02_Probability_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+![](02_Probability_files/figure-latex/unnamed-chunk-8-1.pdf)<!-- --> 
 
 ## Probability Rules
 
@@ -73,11 +73,11 @@ Because $S$ is the set of all events that might occur, the area of our bounding 
 
 The reason behind this fact is that if there is if $A$ and $B$ are not disjoint, then some area is added twice when I calculate $P\left(A\right)+P\left(B\right)$. To account for this, I simply subtract off the area that was double counted.
 
-<img src="02_Probability_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+![](02_Probability_files/figure-latex/unnamed-chunk-9-1.pdf)<!-- --> 
 
 **Rule:** *If two events are mutually exclusive, then $P(A\cup B)=P(A)+P(B)$*
 
-<img src="02_Probability_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+![](02_Probability_files/figure-latex/unnamed-chunk-10-1.pdf)<!-- --> 
  
 **Example**. Let $R$ be the sum of two different colored dice. Suppose we are interested in $P(R \le 4)$. Notice that the pair of dice can fall 36 different ways (6 ways for the first die and six for the second results in 6x6 possible outcomes, and each way has equal probability $1/36$. Because the dice cannot simultaneously sum to $2$ and to $3$, we could write 
 $$\begin{aligned} P(R \le 4 )	
@@ -92,11 +92,11 @@ $$\begin{aligned} P(R \le 4 )
 
 This rule follows from the partitioning of the set of all events ($S$) into two disjoint sets, $A$ and $A^c$.  We learned above that $A \cup A^c = S$ and that $P(S) = 1$.  Combining those statements, we obtain the complement rule.
 
-<img src="02_Probability_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+![](02_Probability_files/figure-latex/unnamed-chunk-11-1.pdf)<!-- --> 
 
 **Completeness Rule:** $P(A)=P(A\cap B)+P(A\cap B^c)$
 
-<img src="02_Probability_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+![](02_Probability_files/figure-latex/unnamed-chunk-12-1.pdf)<!-- --> 
 
 This identity is just breaking the event $A$ into two disjoint pieces.
 
@@ -232,7 +232,7 @@ The following facts hold for discrete random variables:
 
 Example: Consider the discrete random variable $S$, the sum of two fair dice.
 
-<img src="02_Probability_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+![](02_Probability_files/figure-latex/unnamed-chunk-13-1.pdf)<!-- --> 
 
 We often want to ask 'What is expected value of this distribution?' You might think about taking a really, really large number of samples from this distribution and then taking the mean of that really really big sample. We define the expected value (often denoted by $\mu$) as a weighted average of the possible values and the weights are the proportions with which those values occur. 
 $$\mu=E[S]	=	\sum_{\textrm{possible }s}\;s\cdot P\left(S=s\right)$$
@@ -274,7 +274,7 @@ ggplot(distr, aes(x=clients)) +                   # graph with clients as the x-
   theme_bw()                                      # set background color...
 ```
 
-<img src="02_Probability_files/figure-html/unnamed-chunk-14-1.png" width="672" />
+![](02_Probability_files/figure-latex/unnamed-chunk-14-1.pdf)<!-- --> 
 
 Because this is the long term relative frequency of the number of clients (over 200 working days!), it is appropriate to interpret these frequencies as probabilities. This table and graph is often called a **probability mass function (pmf)** because it lists how the probability is spread across the possible values of the random variable. We might next ask ourselves what is the average number of clients per day?
 
@@ -394,7 +394,7 @@ ggplot(dist, aes(x=x)) +
   theme_bw()
 ```
 
-<img src="02_Probability_files/figure-html/unnamed-chunk-15-1.png" width="672" />
+![](02_Probability_files/figure-latex/unnamed-chunk-15-1.pdf)<!-- --> 
 
 To calculate the height of any of these bars, we can evaluate the pmf at the desired point. For example, to calculate the probability the number of full traps is 2, we calculate the following
 
@@ -447,7 +447,7 @@ ggplot(dist, aes(x=x)) +
   theme_bw()
 ```
 
-<img src="02_Probability_files/figure-html/unnamed-chunk-17-1.png" width="672" />
+![](02_Probability_files/figure-latex/unnamed-chunk-17-1.pdf)<!-- --> 
 
 Often we are interested in questions such as $P(X\le2)$ which is the probability that we see 2 or fewer of the sites being occupied by mountain chickadee. These calculations can be tedious to calculate by hand but R will calculate these cumulative distribution function values for you using the “p-function”. This cumulative distribution function gives the sum of all values up to and including the number given.
 
@@ -528,7 +528,7 @@ ggplot(dist, aes(x=NumCaught)) +
   theme_bw()            
 ```
 
-<img src="02_Probability_files/figure-html/unnamed-chunk-19-1.png" width="672" />
+![](02_Probability_files/figure-latex/unnamed-chunk-19-1.pdf)<!-- --> 
 
 ```r
 # P( Y = 4)
@@ -569,9 +569,9 @@ Because there are an infinite number of rational numbers between 0 and 1, the pr
 
 To make this distinction, we will define the distribution using a **probability density function (pdf)** instead of the probability mass function. In the discrete case, we had to constrain the probability mass function to sum to 1. In the continuous case, we have to constrain the probability density function to integrate to 1.
 
-<img src="02_Probability_files/figure-html/unnamed-chunk-20-1.png" width="672" />
+![](02_Probability_files/figure-latex/unnamed-chunk-20-1.pdf)<!-- --> 
 
-<img src="02_Probability_files/figure-html/unnamed-chunk-21-1.png" width="672" />
+![](02_Probability_files/figure-latex/unnamed-chunk-21-1.pdf)<!-- --> 
 
 Finding the area under the curve of a particular density function $f(x)$ usually requires the use of calculus, but since this isn't a calculus course, we will resort to using R or tables of calculated values.
 
@@ -592,7 +592,7 @@ $$\sigma^2 = Var[X]	=	\int_{0}^{\infty}\left(x-\mu\right)^{2}\,f\left(x\right)\,
  
 Because the exponential distribution is defined by the rate of occurrence of an event, increasing that rate decreases the time between events. Furthermore because the rate of occurrence cannot be negative, we restrict $\lambda>0$.
 
-<img src="02_Probability_files/figure-html/unnamed-chunk-22-1.png" width="672" />
+![](02_Probability_files/figure-latex/unnamed-chunk-22-1.pdf)<!-- --> 
 
 **Example:**  Suppose the time between insect captures $X$ during a summer evening for a species of bat follows a exponential distribution with capture rate of $\lambda=2$ insects per minute and therefore the expected waiting time between captures is $1/\lambda=1/2$ minute. Suppose that we are interested in the probability that it takes a bat more than 1 minute to capture its next insect.
 
@@ -609,7 +609,7 @@ ggplot(data, aes(x=x, y=y, fill=grp)) +
   theme_bw()
 ```
 
-<img src="02_Probability_files/figure-html/unnamed-chunk-23-1.png" width="672" />
+![](02_Probability_files/figure-latex/unnamed-chunk-23-1.pdf)<!-- --> 
 
 We now must resort to calculus to find this area. Or use tables of pre-calculated values. Or use R, remembering that p-functions give the area under the curve to the left of the given value.
 
@@ -634,7 +634,7 @@ $$f(x)=\frac{1}{\sqrt{2\pi}\sigma}\exp\left[-\frac{1}{2}\left(\frac{x-\mu}{\sigm
 
 and see this distribution is defined by its expectation $E[X]=\mu$ and its variance $Var[X]=\sigma^{2}$. Notice I could define it using the standard deviation $\sigma$, and different software packages will expect it to be defined by one or the other. R defines the normal distribution using the standard deviation. 
 
-<img src="02_Probability_files/figure-html/unnamed-chunk-25-1.png" width="672" />
+![](02_Probability_files/figure-latex/unnamed-chunk-25-1.pdf)<!-- --> 
 
 
 **Example:**  It is known that the heights of adult males in the US is approximately normal with a mean of 5 feet 10 inches ($\mu=70$ inches) and a standard deviation of $\sigma=3$ inches. Your instructor is a mere 5 feet 4 inches (64 inches). What proportion of the population is shorter than your professor?
@@ -650,7 +650,7 @@ ggplot(distr, aes(x=x, y=density, fill=group)) +
   theme_bw()
 ```
 
-<img src="02_Probability_files/figure-html/unnamed-chunk-26-1.png" width="672" />
+![](02_Probability_files/figure-latex/unnamed-chunk-26-1.pdf)<!-- --> 
 
 Using R you can easily find this
 
@@ -704,7 +704,7 @@ $$\begin{aligned} P(\mu-\sigma\le X\le\mu+\sigma)
 	&=	0.6826 \end{aligned}$$
  
 
-<img src="02_Probability_files/figure-html/unnamed-chunk-29-1.png" width="672" />
+![](02_Probability_files/figure-latex/unnamed-chunk-29-1.pdf)<!-- --> 
 
 ## R Quick Reference
 

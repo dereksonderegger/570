@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 9 Analysis of Variance (ANOVA) | Introduction to Statistical Methodology, Second Edition</title>
+  <meta name="description" content="Chapter 9 Analysis of Variance (ANOVA) | Introduction to Statistical Methodology, Second Edition" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 9 Analysis of Variance (ANOVA) | Introduction to Statistical Methodology, Second Edition" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="dereksonderegger/570" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 9 Analysis of Variance (ANOVA) | Introduction to Statistical Methodology, Second Edition" />
+  
+  
+  
+
+<meta name="author" content="Derek L. Sonderegger &amp; Robert Buscaglia" />
+
+
+<meta name="date" content="2020-08-12" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="8-testing-model-assumptions.html"/>
+<link rel="next" href="10-regression.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html"><i class="fa fa-check"></i><b>1</b> Summary Statistics and Graphing</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#variable-types"><i class="fa fa-check"></i><b>1.1</b> Variable Types</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#categorical"><i class="fa fa-check"></i><b>1.1.1</b> Categorical</a></li>
+<li class="chapter" data-level="1.1.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#numerical"><i class="fa fa-check"></i><b>1.1.2</b> Numerical</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#randomization-and-sampling"><i class="fa fa-check"></i><b>1.2</b> Randomization and Sampling</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#sampling-techniques"><i class="fa fa-check"></i><b>1.2.1</b> Sampling Techniques</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#graphical-summaries"><i class="fa fa-check"></i><b>1.3</b> Graphical Summaries</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#barchartsbarplots-univariate---categorical"><i class="fa fa-check"></i><b>1.3.1</b> Barcharts/Barplots (Univariate - Categorical)</a></li>
+<li class="chapter" data-level="1.3.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#histogram-univariate---numerical"><i class="fa fa-check"></i><b>1.3.2</b> Histogram (Univariate - Numerical)</a></li>
+<li class="chapter" data-level="1.3.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#boxplot-bivariate---categorical-vs-numerical"><i class="fa fa-check"></i><b>1.3.3</b> Boxplot (Bivariate - Categorical vs Numerical)</a></li>
+<li class="chapter" data-level="1.3.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#scatterplot-bivariate---numerical-vs-numerical"><i class="fa fa-check"></i><b>1.3.4</b> Scatterplot (Bivariate - Numerical vs Numerical)</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#measures-of-centrality"><i class="fa fa-check"></i><b>1.4</b> Measures of Centrality</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#mean"><i class="fa fa-check"></i><b>1.4.1</b> Mean</a></li>
+<li class="chapter" data-level="1.4.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#median"><i class="fa fa-check"></i><b>1.4.2</b> Median</a></li>
+<li class="chapter" data-level="1.4.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#mode"><i class="fa fa-check"></i><b>1.4.3</b> Mode</a></li>
+<li class="chapter" data-level="1.4.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#examples"><i class="fa fa-check"></i><b>1.4.4</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#measures-of-spread"><i class="fa fa-check"></i><b>1.5</b> Measures of Spread</a><ul>
+<li class="chapter" data-level="1.5.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#range"><i class="fa fa-check"></i><b>1.5.1</b> Range</a></li>
+<li class="chapter" data-level="1.5.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#inter-quartile-range-iqr"><i class="fa fa-check"></i><b>1.5.2</b> Inter-Quartile Range (IQR)</a></li>
+<li class="chapter" data-level="1.5.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#variance"><i class="fa fa-check"></i><b>1.5.3</b> Variance</a></li>
+<li class="chapter" data-level="1.5.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#standard-deviation"><i class="fa fa-check"></i><b>1.5.4</b> Standard Deviation</a></li>
+<li class="chapter" data-level="1.5.5" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#coefficient-of-variation"><i class="fa fa-check"></i><b>1.5.5</b> Coefficient of Variation</a></li>
+<li class="chapter" data-level="1.5.6" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#empirical-rules"><i class="fa fa-check"></i><b>1.5.6</b> Empirical Rules</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#shape"><i class="fa fa-check"></i><b>1.6</b> Shape</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#symmetry"><i class="fa fa-check"></i><b>1.6.1</b> Symmetry</a></li>
+<li class="chapter" data-level="1.6.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#unimodal-or-multi-modal"><i class="fa fa-check"></i><b>1.6.2</b> Unimodal or Multi-modal</a></li>
+<li class="chapter" data-level="1.6.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#skew"><i class="fa fa-check"></i><b>1.6.3</b> Skew</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>1.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-probability.html"><a href="2-probability.html"><i class="fa fa-check"></i><b>2</b> Probability</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-probability.html"><a href="2-probability.html#introduction-to-set-theory"><i class="fa fa-check"></i><b>2.1</b> Introduction to Set Theory</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="2-probability.html"><a href="2-probability.html#composition-of-events"><i class="fa fa-check"></i><b>2.1.1</b> Composition of events</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2-probability.html"><a href="2-probability.html#probability-rules"><i class="fa fa-check"></i><b>2.2</b> Probability Rules</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="2-probability.html"><a href="2-probability.html#simple-rules"><i class="fa fa-check"></i><b>2.2.1</b> Simple Rules</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2-probability.html"><a href="2-probability.html#conditional-probability"><i class="fa fa-check"></i><b>2.2.2</b> Conditional Probability</a></li>
+<li class="chapter" data-level="2.2.3" data-path="2-probability.html"><a href="2-probability.html#summary-of-probability-rules"><i class="fa fa-check"></i><b>2.2.3</b> Summary of Probability Rules</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="2-probability.html"><a href="2-probability.html#discrete-random-variables"><i class="fa fa-check"></i><b>2.3</b> Discrete Random Variables</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="2-probability.html"><a href="2-probability.html#introduction-to-discrete-random-variables"><i class="fa fa-check"></i><b>2.3.1</b> Introduction to Discrete Random Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="2-probability.html"><a href="2-probability.html#common-discrete-distributions"><i class="fa fa-check"></i><b>2.4</b> Common Discrete Distributions</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="2-probability.html"><a href="2-probability.html#binomial-distribution"><i class="fa fa-check"></i><b>2.4.1</b> Binomial Distribution</a></li>
+<li class="chapter" data-level="2.4.2" data-path="2-probability.html"><a href="2-probability.html#poisson-distribution"><i class="fa fa-check"></i><b>2.4.2</b> Poisson Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="2-probability.html"><a href="2-probability.html#continuous-random-variables"><i class="fa fa-check"></i><b>2.5</b> Continuous Random Variables</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="2-probability.html"><a href="2-probability.html#uniform01-distribution"><i class="fa fa-check"></i><b>2.5.1</b> Uniform(0,1) Distribution</a></li>
+<li class="chapter" data-level="2.5.2" data-path="2-probability.html"><a href="2-probability.html#exponential-distribution"><i class="fa fa-check"></i><b>2.5.2</b> Exponential Distribution</a></li>
+<li class="chapter" data-level="2.5.3" data-path="2-probability.html"><a href="2-probability.html#normal-distribution"><i class="fa fa-check"></i><b>2.5.3</b> Normal Distribution</a></li>
+<li class="chapter" data-level="2.5.4" data-path="2-probability.html"><a href="2-probability.html#standardizing"><i class="fa fa-check"></i><b>2.5.4</b> Standardizing</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="2-probability.html"><a href="2-probability.html#r-quick-reference"><i class="fa fa-check"></i><b>2.6</b> R Quick Reference</a></li>
+<li class="chapter" data-level="2.7" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>2.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html"><i class="fa fa-check"></i><b>3</b> Confidence Intervals via Bootstrapping</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#theory-of-bootstrapping"><i class="fa fa-check"></i><b>3.1</b> Theory of Bootstrapping</a></li>
+<li class="chapter" data-level="3.2" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#conducting-a-bootstrap"><i class="fa fa-check"></i><b>3.2</b> Conducting a Bootstrap</a></li>
+<li class="chapter" data-level="3.3" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#quantile-based-confidence-intervals"><i class="fa fa-check"></i><b>3.3</b> Quantile-based Confidence Intervals</a></li>
+<li class="chapter" data-level="3.4" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#additional-examples"><i class="fa fa-check"></i><b>3.4</b> Additional Examples</a></li>
+<li class="chapter" data-level="3.5" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>3.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html"><i class="fa fa-check"></i><b>4</b> Sampling Distribution of <span class="math inline">\(\bar{X}\)</span></a><ul>
+<li class="chapter" data-level="4.1" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#enlightening-example"><i class="fa fa-check"></i><b>4.1</b> Enlightening Example</a></li>
+<li class="chapter" data-level="4.2" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#mathematical-details"><i class="fa fa-check"></i><b>4.2</b> Mathematical details</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#probability-rules-for-expectations-and-variances"><i class="fa fa-check"></i><b>4.2.1</b> Probability Rules for Expectations and Variances</a></li>
+<li class="chapter" data-level="4.2.2" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#mean-and-variance-of-the-sample-mean"><i class="fa fa-check"></i><b>4.2.2</b> Mean and Variance of the Sample Mean</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#distribution-of-barx"><i class="fa fa-check"></i><b>4.3</b> Distribution of <span class="math inline">\(\bar{X}\)</span></a></li>
+<li class="chapter" data-level="4.4" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#central-limit-theorem"><i class="fa fa-check"></i><b>4.4</b> Central Limit Theorem</a></li>
+<li class="chapter" data-level="4.5" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>4.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html"><i class="fa fa-check"></i><b>5</b> Confidence Intervals for <span class="math inline">\(\mu\)</span></a><ul>
+<li class="chapter" data-level="5.1" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#asymptotic-result-sigma-known"><i class="fa fa-check"></i><b>5.1</b> Asymptotic result (<span class="math inline">\(\sigma\)</span> known)</a></li>
+<li class="chapter" data-level="5.2" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#asymptotoic-result-sigma-unknown"><i class="fa fa-check"></i><b>5.2</b> Asymptotoic result (<span class="math inline">\(\sigma\)</span> unknown)</a></li>
+<li class="chapter" data-level="5.3" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#sample-size-selection"><i class="fa fa-check"></i><b>5.3</b> Sample Size Selection</a></li>
+<li class="chapter" data-level="5.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>5.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html"><i class="fa fa-check"></i><b>6</b> Hypothesis Tests for the mean of a population</a><ul>
+<li class="chapter" data-level="6.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#writing-hypotheses"><i class="fa fa-check"></i><b>6.1</b> Writing Hypotheses</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#null-and-alternative-hypotheses"><i class="fa fa-check"></i><b>6.1.1</b> Null and alternative hypotheses</a></li>
+<li class="chapter" data-level="6.1.2" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#error"><i class="fa fa-check"></i><b>6.1.2</b> Error</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#conducting-a-hypothesis-test-for-mu"><i class="fa fa-check"></i><b>6.2</b> Conducting a Hypothesis Test for <span class="math inline">\(\mu\)</span></a><ul>
+<li class="chapter" data-level="6.2.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#why-should-hypotheses-use-mu-and-not-barx"><i class="fa fa-check"></i><b>6.2.1</b> Why should hypotheses use <span class="math inline">\(\mu\)</span> and not <span class="math inline">\(\bar{x}\)</span>?</a></li>
+<li class="chapter" data-level="6.2.2" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#a-note-on-calculating-p-values"><i class="fa fa-check"></i><b>6.2.2</b> A note on calculating p-values</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#additional-examples"><i class="fa fa-check"></i><b>6.3</b> Additional Examples</a></li>
+<li class="chapter" data-level="6.4" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#p-values-vs-cutoff-values"><i class="fa fa-check"></i><b>6.4</b> P-values vs cutoff values</a></li>
+<li class="chapter" data-level="6.5" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#running-a-t-test-in-r"><i class="fa fa-check"></i><b>6.5</b> Running a t-test in R</a></li>
+<li class="chapter" data-level="6.6" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i><b>6.6</b> Type I and Type II Errors</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#power-and-sample-size-selection"><i class="fa fa-check"></i><b>6.6.1</b> Power and Sample Size Selection</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>6.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><i class="fa fa-check"></i><b>7</b> Two-Sample Hypothesis Tests and Confidence Intervals</a><ul>
+<li class="chapter" data-level="7.1" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#difference-in-means-between-two-groups"><i class="fa fa-check"></i><b>7.1</b> Difference in means between two groups</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#inference-via-resampling"><i class="fa fa-check"></i><b>7.1.1</b> Inference via resampling</a></li>
+<li class="chapter" data-level="7.1.2" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#inference-via-asymptotic-results-unequal-variance-assumption"><i class="fa fa-check"></i><b>7.1.2</b> Inference via asymptotic results (unequal variance assumption)</a></li>
+<li class="chapter" data-level="7.1.3" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#inference-via-asymptotic-results-equal-variance-assumption"><i class="fa fa-check"></i><b>7.1.3</b> Inference via asymptotic results (equal variance assumption)</a></li>
+<li class="chapter" data-level="7.1.4" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#additional-example"><i class="fa fa-check"></i><b>7.1.4</b> Additional Example</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#difference-in-means-between-two-groups-paired-data"><i class="fa fa-check"></i><b>7.2</b> Difference in means between two groups: Paired Data</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#additional-example-1"><i class="fa fa-check"></i><b>7.2.1</b> Additional Example</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>7.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html"><i class="fa fa-check"></i><b>8</b> Testing Model Assumptions</a><ul>
+<li class="chapter" data-level="8.1" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#testing-normality"><i class="fa fa-check"></i><b>8.1</b> Testing Normality</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#visual-inspection---qqplots"><i class="fa fa-check"></i><b>8.1.1</b> Visual Inspection - QQplots</a></li>
+<li class="chapter" data-level="8.1.2" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#tests-for-normality"><i class="fa fa-check"></i><b>8.1.2</b> Tests for Normality</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#testing-equal-variance"><i class="fa fa-check"></i><b>8.2</b> Testing Equal Variance</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#visual-inspection"><i class="fa fa-check"></i><b>8.2.1</b> Visual Inspection</a></li>
+<li class="chapter" data-level="8.2.2" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#tests-for-equal-variance"><i class="fa fa-check"></i><b>8.2.2</b> Tests for Equal Variance</a></li>
+<li class="chapter" data-level="8.2.3" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#symmetry-of-the-f-distribution"><i class="fa fa-check"></i><b>8.2.3</b> Symmetry of the F-distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#power-of-the-f-test"><i class="fa fa-check"></i><b>8.3</b> Power of the F-test</a></li>
+<li class="chapter" data-level="8.4" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#theoretical-distribution-vs-bootstrap"><i class="fa fa-check"></i><b>8.4</b> Theoretical distribution vs bootstrap</a></li>
+<li class="chapter" data-level="8.5" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>8.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html"><i class="fa fa-check"></i><b>9</b> Analysis of Variance (ANOVA)</a><ul>
+<li class="chapter" data-level="9.1" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#model"><i class="fa fa-check"></i><b>9.1</b> Model</a></li>
+<li class="chapter" data-level="9.2" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#theory"><i class="fa fa-check"></i><b>9.2</b> Theory</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#anova-table"><i class="fa fa-check"></i><b>9.2.1</b> Anova Table</a></li>
+<li class="chapter" data-level="9.2.2" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#anova-using-simple-vs-complex-models."><i class="fa fa-check"></i><b>9.2.2</b> ANOVA using Simple vs Complex models.</a></li>
+<li class="chapter" data-level="9.2.3" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#parameter-estimates-and-confidence-intervals"><i class="fa fa-check"></i><b>9.2.3</b> Parameter Estimates and Confidence Intervals</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#anova-in-r"><i class="fa fa-check"></i><b>9.3</b> Anova in R</a></li>
+<li class="chapter" data-level="9.4" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#multiple-comparisons"><i class="fa fa-check"></i><b>9.4</b> Multiple comparisons</a></li>
+<li class="chapter" data-level="9.5" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#different-model-representations"><i class="fa fa-check"></i><b>9.5</b> Different Model Representations</a><ul>
+<li class="chapter" data-level="9.5.1" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#theory-1"><i class="fa fa-check"></i><b>9.5.1</b> Theory</a></li>
+<li class="chapter" data-level="9.5.2" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#model-representations-in-r"><i class="fa fa-check"></i><b>9.5.2</b> Model Representations in R</a></li>
+<li class="chapter" data-level="9.5.3" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#implications-on-the-anova-table"><i class="fa fa-check"></i><b>9.5.3</b> Implications on the ANOVA table</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>9.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="10-regression.html"><a href="10-regression.html"><i class="fa fa-check"></i><b>10</b> Regression</a><ul>
+<li class="chapter" data-level="10.1" data-path="10-regression.html"><a href="10-regression.html#pearsons-correlation-coefficient"><i class="fa fa-check"></i><b>10.1</b> Pearson’s Correlation Coefficient</a></li>
+<li class="chapter" data-level="10.2" data-path="10-regression.html"><a href="10-regression.html#model-theory"><i class="fa fa-check"></i><b>10.2</b> Model Theory</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="10-regression.html"><a href="10-regression.html#anova-interpretation"><i class="fa fa-check"></i><b>10.2.1</b> Anova Interpretation</a></li>
+<li class="chapter" data-level="10.2.2" data-path="10-regression.html"><a href="10-regression.html#confidence-intervals-vs-prediction-intervals"><i class="fa fa-check"></i><b>10.2.2</b> Confidence Intervals vs Prediction Intervals</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="10-regression.html"><a href="10-regression.html#extrapolation"><i class="fa fa-check"></i><b>10.3</b> Extrapolation</a></li>
+<li class="chapter" data-level="10.4" data-path="10-regression.html"><a href="10-regression.html#checking-model-assumptions"><i class="fa fa-check"></i><b>10.4</b> Checking Model Assumptions</a></li>
+<li class="chapter" data-level="10.5" data-path="10-regression.html"><a href="10-regression.html#common-problems"><i class="fa fa-check"></i><b>10.5</b> Common Problems</a><ul>
+<li class="chapter" data-level="10.5.1" data-path="10-regression.html"><a href="10-regression.html#influential-points"><i class="fa fa-check"></i><b>10.5.1</b> Influential Points</a></li>
+<li class="chapter" data-level="10.5.2" data-path="10-regression.html"><a href="10-regression.html#transformations"><i class="fa fa-check"></i><b>10.5.2</b> Transformations</a></li>
+</ul></li>
+<li class="chapter" data-level="10.6" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>10.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html"><i class="fa fa-check"></i><b>11</b> Resampling Linear Models</a></li>
+<li class="chapter" data-level="12" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html"><i class="fa fa-check"></i><b>12</b> Contingency Tables</a><ul>
+<li class="chapter" data-level="12.1" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html#expected-counts"><i class="fa fa-check"></i><b>12.1</b> Expected Counts</a></li>
+<li class="chapter" data-level="12.2" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html#hypothesis-testing"><i class="fa fa-check"></i><b>12.2</b> Hypothesis Testing</a></li>
+<li class="chapter" data-level="12.3" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html#rxc-tables"><i class="fa fa-check"></i><b>12.3</b> RxC tables</a></li>
+<li class="chapter" data-level="12.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>12.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendix-a-alternative-bootstrap-code.html"><a href="appendix-a-alternative-bootstrap-code.html"><i class="fa fa-check"></i>Appendix A : Alternative Bootstrap Code</a><ul>
+<li class="chapter" data-level="" data-path="appendix-a-alternative-bootstrap-code.html"><a href="appendix-a-alternative-bootstrap-code.html#mosaic-package"><i class="fa fa-check"></i>Mosaic Package</a></li>
+<li class="chapter" data-level="" data-path="appendix-a-alternative-bootstrap-code.html"><a href="appendix-a-alternative-bootstrap-code.html#base-r-code"><i class="fa fa-check"></i>Base R Code</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Statistical Methodology, Second Edition</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="analysis-of-variance-anova" class="section level1">
+<h1><span class="header-section-number">Chapter 9</span> Analysis of Variance (ANOVA)</h1>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="9-analysis-of-variance-anova.html#cb282-1"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb282-2"><a href="9-analysis-of-variance-anova.html#cb282-2"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb282-3"><a href="9-analysis-of-variance-anova.html#cb282-3"></a><span class="kw">library</span>(ggfortify)  <span class="co"># for autoplot( lm ) functions</span></span></code></pre></div>
+<p>We are now moving into a different realm of statistics. We have covered enough probability and the basic ideas of hypothesis tests and p-values to move onto the type of inference that you took this class to learn. The heart of science is comparing and evaluating which hypothesis is better supported by the data.</p>
+<p>To evaluate a hypothesis, scientists will write a grant, hire grad students (or under-grads), collect the data, and then analyze the data using some sort of model that reflects the hypothesis under consideration. It could be as simple as “What is the relationship between iris species and petal width?” or as complex as “What is the temporal variation in growing season length in response to elevated CO<span class="math inline">\(_{2}\)</span> in desert ecosystems?”</p>
+<p>At the heart of the question is which predictors should be included in my model of the response variable. Given twenty different predictors, I want to pare them down to just the predictors that matter. I want to make my model as simple as possible, but still retain as much explanatory power as I can.</p>
+<p>Our attention now turns to building models of our observed data in a fashion that allows us to ask if a predictor is useful in the model or if we can remove it. Our model building procedure will be consistent:</p>
+<ol style="list-style-type: decimal">
+<li>Write two models, one that is perhaps overly simple and another that is a complication of the simple model.</li>
+<li>Verify that the assumptions that are made in both models are satisfied.</li>
+<li>Evaluate if the complex model explains significantly more of the variability in the data than the simple model.</li>
+</ol>
+<p>Our goal here isn’t to find “the right model” because no model is right. Instead our goal is to find a model that is useful and helps me to understand the science.</p>
+<p>We will start by developing a test that helps me evaluate if a model that has a categorical predictor variable for a continuous response should have a mean value for each group or just one overall mean.</p>
+<div id="model" class="section level2">
+<h2><span class="header-section-number">9.1</span> Model</h2>
+<p>The two-sample t-test provided a convenient way to compare the means from two different populations and test if they were equal. We wish to generalize this test to more than two different populations. Later when we have more tools in our statistical tool box, it is useful to notice that ANOVA uses a categorical variable (which group) to predict a continuous response.</p>
+<p>Suppose that my data can be written as <span class="math display">\[Y_{ij}=\mu_{i}+\epsilon_{ij}\;\;\;\;\;\textrm{where}\;\;\epsilon_{ij}\stackrel{iid}{\sim}N\left(0,\,\sigma\right)\]</span>
+and <span class="math inline">\(\mu_{i}\)</span> is the mean of group <span class="math inline">\(i\)</span> and <span class="math inline">\(\epsilon_{ij}\)</span> are the deviations from the group means. Let the first subscript denote which group the observation is from <span class="math inline">\(i\in\{1,\dots k\}\)</span> and the second subscript is the observation number within that sample. Each group has its own mean <span class="math inline">\(\mu_{i}\)</span> and we might allow the number of observations in each group <span class="math inline">\(n_{i}\)</span> to be of different across the populations.</p>
+<p><em>Assumptions</em>:
+1. The error terms come from a normal distribution
+2. The variance of each group is the same
+3. The observations are independent
+4. The observations are representative of the population of interest</p>
+<p>In general I want to test the hypotheses
+<span class="math display">\[\begin{aligned}
+H_{0} &amp;:		\mu_{1}=\mu_{2}=\dots=\mu_{k} \\
+H_{a} &amp;:		\textrm{at least on mean is different than the others}
+\end{aligned}\]</span></p>
+<p><strong>Example 1</strong>. Suppose that we have three hybrids of a particular plant and we measure the leaf area for each hybrid.</p>
+<p>In the following graph, there does not appear to be a difference between the hybrid means:</p>
+<p><img src="09_ANOVA_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>However, in this case, it looks like there is a difference in the means of each hybrid:</p>
+<p><img src="09_ANOVA_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>What is the difference between these two?</p>
+<ol style="list-style-type: decimal">
+<li><p>If the variance between hybrids is small compared the variance within a hybrid variance is huge compared, then I would fail to reject the null hypothesis of equal means (this would be the first case). In this case, the additional model complexity doesn’t result in more accurate model, so Occam’s Razor would lead us to prefer the simpler model where each group has the same mean.</p></li>
+<li><p>If there is a large variance between hybrids compared to the variance within a hybrid then I’d conclude there is a difference (this would be the second case). In this case, I prefer the more complicated model with each group having separate means.</p></li>
+</ol>
+</div>
+<div id="theory" class="section level2">
+<h2><span class="header-section-number">9.2</span> Theory</h2>
+<p>Notation:</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(n=n_{1}+n_{2}+\dots+n_{k}\)</span> as the total number of observations</li>
+<li><span class="math inline">\(\bar{y}_{i\cdot}=\frac{1}{n_{i}}\sum_{j=1}^{n_{i}}y_{ij}\)</span> as the sample mean from the <span class="math inline">\(i\)</span>th group</li>
+<li><span class="math inline">\(\bar{y}_{\cdot\cdot}\)</span> be the mean of all the observations.</li>
+</ol>
+<p>Regardless of if the null hypothesis is true, the following is an estimate of <span class="math inline">\(\sigma^{2}\)</span>. We could use a pooled variance estimate similar to the estimator in the pooled two-sample t-test. We will denote this first estimator as the within-group estimate because the sums in the numerator are all measuring the variability within a group.
+<span class="math display">\[\begin{aligned} s_{W}^{2}	
+  &amp;=	\frac{\sum_{i=1}^{k}\sum_{j=1}^{n_{k}}\left(y_{ij}-\bar{y}_{i\cdot}\right)^{2}}{n-k} \\
+	&amp;=	\frac{\sum_{j=1}^{n_{1}}\left(y_{1j}-\bar{y}_{1\cdot}\right)^{2}+\sum_{j=1}^{n_{2}}\left(y_{2j}-\bar{y}_{2\cdot}\right)^{2}+\dots+\sum_{j=1}^{n_{k}}\left(y_{kj}-\bar{y}_{k\cdot}\right)^{2}}{\left(n_{1}-1\right)+\left(n_{2}-1\right)+\dots+\left(n_{k}-1\right)} \\
+	&amp;=	\frac{\left(n_{1}-1\right)s_{1}^{2}+\left(n_{2}-1\right)s_{2}^{2}+\dots+\left(n_{k}-1\right)s_{k}^{2}}{n-k}
+	\end{aligned}\]</span></p>
+<p>If the null hypothesis is true and <span class="math inline">\(\mu_{1}=\dots=\mu_{k}\)</span>, then a second way that I could estimate the <span class="math inline">\(\sigma^{2}\)</span> term is using the sample means. If <span class="math inline">\(H_{0}\)</span> is true then each sample mean has sampling distribution <span class="math inline">\(\bar{Y}_{i\cdot}\sim N\left(\mu,\frac{\sigma^{2}}{n_{i}}\right)\)</span>. In the simple case where <span class="math inline">\(n_{1}=n_{2}=\dots=n_{k}\)</span> then the sample variance of the <span class="math inline">\(k\)</span> sample means <span class="math inline">\(\bar{y}_{1},\bar{y}_{2},\dots,\bar{y}_{k}\)</span> has expectation <span class="math inline">\(\sigma^{2}/n_{i}\)</span> and could be used to estimate <span class="math inline">\(\sigma^{2}\)</span>. In the case of unequal sample sizes, the formula will be slightly different.</p>
+<p><span class="math display">\[s_{B}^{2}=\frac{1}{k-1}\sum_{i=1}^{k}n_{i}\left(\bar{y}_{i\cdot}-\bar{y}_{\cdot\cdot}\right)^{2}\]</span></p>
+<p>Under the null hypothesis, these two estimates are both estimating <span class="math inline">\(\sigma^{2}\)</span> and should be similar and the ratio <span class="math inline">\(s_{B}^{2}/s_{W}^{2}\)</span> follows an F-distribution with numerator degrees of freedom <span class="math inline">\(k-1\)</span> and denominator degrees of freedom <span class="math inline">\(n-k\)</span> degrees of freedom. We define our test statistic as <span class="math display">\[f=\frac{s_{B}^{2}}{s_{W}^{2}}\]</span></p>
+<p>In the case that the null hypothesis is false (non-equal means <span class="math inline">\(\mu_{1},\mu_{2},\dots,\mu_{k}\)</span>), <span class="math inline">\(s_{B}^{2}\)</span> should be much larger than <span class="math inline">\(s_{W}^{2}\)</span> and our test statistic <span class="math inline">\(f\)</span> will be very large and so we will reject the null hypothesis if <span class="math inline">\(f\)</span> is greater than the <span class="math inline">\(1-\alpha\)</span> quantile from the F-distribution with <span class="math inline">\(k-1\)</span> and <span class="math inline">\(n-k\)</span> degrees of freedom. If <span class="math inline">\(s_{B}^{2}\)</span> is small, then the difference between the group means and the overall means is small and we shouldn’t reject the null hypothesis. So this F-test will always be a one sided test, rejecting only if f is large.
+<span class="math display">\[\textrm{p-value}=P\left(F_{k-1,\,n_{t}-k}&gt;f\right)\]</span></p>
+<div id="anova-table" class="section level3">
+<h3><span class="header-section-number">9.2.1</span> Anova Table</h3>
+<p>There are several sources of variability that we are dealing with.</p>
+<p><strong>SSW</strong>: Sum of Squares Within - This is the variability within sample groups. <span class="math display">\[SSW=\sum_{i=1}^{k}\sum_{j=1}^{n_{i}}\left(y_{ij}-\bar{y}_{i\cdot}\right)^{2}\;\;\;\;\;\;\;\;df_{W}=n-k\]</span></p>
+<p><strong>SSB</strong>: Sum of Squares Between - This is the variability between sample groups. <span class="math display">\[SSB=\sum_{i=1}^{k}n_{i}\left(\bar{y}_{i\cdot}-\bar{y}_{\cdot\cdot}\right)^{2} \;\;\;\;\;\;\;\;\;df_{B}=k-1\]</span></p>
+<p>SST: Sum of Squares Total - This is the total variability in the data set. It has an associated df=n-1 because under the null hypothesis there is only one mean <span class="math inline">\(\mu\)</span>.
+<span class="math display">\[SST=\sum_{i=1}^{k}\sum_{j=1}^{n_{j}}\left(y_{ij}-\bar{y}_{\cdot\cdot}\right)^{2} \;\;\;\;\;\;\;\;\;df_{T}=n-1\]</span></p>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<p><img src="09_ANOVA_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>An anova table is usually set up the in the following way (although the total row is sometimes removed):</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Source</th>
+<th align="center">df</th>
+<th align="center">Sum of Sq.</th>
+<th align="center">Mean Sq.</th>
+<th align="center">F-Stat</th>
+<th align="left">p-value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Between</td>
+<td align="center"><span class="math inline">\(k-1\)</span></td>
+<td align="center"><span class="math inline">\(SSB\)</span></td>
+<td align="center"><span class="math inline">\(s^2_B=SSB/df_B\)</span></td>
+<td align="center"><span class="math inline">\(f=s^2_B/s^2_W\)</span></td>
+<td align="left"><span class="math inline">\(P(F_{k-1,n-k}\ge f)\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">Within</td>
+<td align="center"><span class="math inline">\(n-k\)</span></td>
+<td align="center"><span class="math inline">\(SSW\)</span></td>
+<td align="center"><span class="math inline">\(s^2_W=SSW/df_W\)</span></td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="center">Total</td>
+<td align="center"><span class="math inline">\(n-1\)</span></td>
+<td align="center"><span class="math inline">\(SST\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>It can be shown that <span class="math inline">\(SST=SSB+SSW\)</span> and we can think about what these sums actually mean by returning to our idea about simple vs complex models.</p>
+</div>
+<div id="anova-using-simple-vs-complex-models." class="section level3">
+<h3><span class="header-section-number">9.2.2</span> ANOVA using Simple vs Complex models.</h3>
+<p>The problem under consideration can also be considered as a question about how complicated of a model should we fit to the observed data. If a more complicated model doesn’t “fit” the data better, then I am better of keeping a simple model and view of the process at hand.</p>
+<p>Upon the second reading of these notes, the student is likely asking why we even bothered introducing the ANOVA table using SST, SSW, SSB. The answer is that these notations are common in the ANOVA literature and that we can’t justify using an F-test without variance estimates. Both interpretations are valid, but the Simple/Complex models are a better paradigm as we move forward.</p>
+<p><strong>Simple Model</strong></p>
+<p>The simple model is
+<span class="math display">\[Y_{ij}=\mu+\epsilon_{ij}\;\;\;\textrm{where}\;\epsilon_{ij}\stackrel{iid}{\sim}N\left(0,\sigma^{2}\right)\]</span>
+and has each observation having the same expectation <span class="math inline">\(\mu\)</span>. Thus we use the overall mean of the data <span class="math inline">\(\bar{y}_{\cdot\cdot}\)</span> as the estimate of <span class="math inline">\(\mu\)</span> and therefore our error terms are
+<span class="math display">\[e_{ij}=y_{ij}-\bar{y}_{\cdot\cdot}\]</span>
+The sum of squared error associated with the simple model is thus
+<span class="math display">\[\begin{aligned} SSE_{simple}		
+  &amp;= \sum_{i=1}^{k}\sum_{j=1}^{n_{i}}e_{ij}^{2} \\
+	&amp;=	\sum_{i=1}^{k}\sum_{j=1}^{n_{i}}\left(y_{ij}-\bar{y}_{\cdot\cdot}\right)^{2} \\
+	&amp;=	SST 
+	\end{aligned}\]</span></p>
+<p><strong>Complex Model</strong></p>
+<p>The more complicated model
+<span class="math display">\[Y_{ij}=\mu_{i}+\epsilon_{ij}\;\;\;\textrm{where}\;\epsilon_{ij}\stackrel{iid}{\sim}N\left(0,\sigma^{2}\right)\]</span>
+has each observation having the expectation of its group mean <span class="math inline">\(\mu_{i}\)</span>. We’ll use the group means <span class="math inline">\(\bar{y}_{i\cdot}\)</span> as estimates for <span class="math inline">\(\mu_{i}\)</span> and thus the error terms are <span class="math display">\[e_{ij}=y_{ij}-\bar{y}_{i\cdot}\]</span>
+and the sum of squared error associated with the complex model is thus
+<span class="math display">\[\begin{aligned} SSE_{complex}	
+  &amp;=	\sum_{i=1}^{k}\sum_{j=1}^{n_{i}}e_{ij}^{2} \\
+	&amp;=	\sum_{i=1}^{k}\sum_{j=1}^{n_{i}}\left(y_{ij}-\bar{y}_{i\cdot}\right)^{2} \\
+	&amp;=	SSW 
+	\end{aligned}\]</span></p>
+<p><strong>Difference</strong></p>
+<p>The difference between the simple and complex sums of squared error is denoted <span class="math inline">\(SSE_{diff}\)</span> and we see
+<span class="math display">\[\begin{aligned} SSE_{diff}	
+  &amp;=	SSE_{simple}-SSE_{complex} \\
+	&amp;=	SST-SSW \\
+	&amp;=	SSB
+	\end{aligned}\]</span>
+Note that <span class="math inline">\(SSE_{diff}\)</span> can be interpreted as the amount of variability that is explained by the more complicated model vs the simple. If this <span class="math inline">\(SSE_{diff}\)</span> is large, then we should use the complex model. Our only question becomes “How large is large?”</p>
+<p>First we must account for the number of additional parameters we have added. If we added five parameters, I should expect to account for more variability that if I added one parameter, so first we will divide <span class="math inline">\(SSE_{diff}\)</span> by the number of added parameters to get <span class="math inline">\(MSE_{diff}\)</span> which is the amount of variability explained by each additional parameter. If that amount is large compared to the leftover from the complex model, then we should use the complex model.</p>
+<p>These calculations are preformed in the ANOVA table, and the following table is identical to the previous ANOVA table, and we have only changed the names given to the various quantities.</p>
+<table style="width:100%;">
+<colgroup>
+<col width="8%" />
+<col width="5%" />
+<col width="12%" />
+<col width="30%" />
+<col width="27%" />
+<col width="16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Source</th>
+<th align="center">df</th>
+<th align="center">Sum of Sq.</th>
+<th align="center">Mean Sq.</th>
+<th align="center">F-Stat</th>
+<th align="left">p-value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Difference</td>
+<td align="center"><span class="math inline">\(k-1\)</span></td>
+<td align="center"><span class="math inline">\(SSE_{diff}\)</span></td>
+<td align="center"><span class="math inline">\(MSE_{diff}=\frac{SSE_{diff}}{k-1}\)</span></td>
+<td align="center"><span class="math inline">\(f=\frac{MSE_{diff}}{MSE_{complex}}\)</span></td>
+<td align="left"><span class="math inline">\(P(F_{k-1,n-k}\ge f)\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">Complex</td>
+<td align="center"><span class="math inline">\(n-k\)</span></td>
+<td align="center"><span class="math inline">\(SSE_{complex}\)</span></td>
+<td align="center"><span class="math inline">\(MSE_{complex}=\frac{SSE_{complex}}{n-k}\)</span></td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="center">Simple</td>
+<td align="center"><span class="math inline">\(n-1\)</span></td>
+<td align="center"><span class="math inline">\(SSE_{simple}\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="parameter-estimates-and-confidence-intervals" class="section level3">
+<h3><span class="header-section-number">9.2.3</span> Parameter Estimates and Confidence Intervals</h3>
+<p>As usual, the group sample means <span class="math inline">\(\bar{y}_{i\cdot}\)</span> is a good estimator for the mean of group <span class="math inline">\(\mu_{i}\)</span>.</p>
+<p>But what about <span class="math inline">\(\sigma^{2}\)</span>? If we conclude that we should use the complex model, and because one of our assumptions is that each group has equal variance, then I should use all of the residual terms <span class="math inline">\(e_{ij}=y_{ij}-\bar{y}_{i\cdot}\)</span> in my estimation of <span class="math inline">\(\sigma\)</span>. In this case we will use <span class="math display">\[\hat{\sigma}^{2}=s_{W}^{2}=MSE_{complex}=\frac{1}{n-k}\sum_{i=1}^{k}\sum_{j=1}^{n_{i}}\left(y_{ij}-\bar{y}_{i\cdot}\right)^{2}\]</span>
+as the estimate of <span class="math inline">\(\sigma^{2}\)</span>. Notice that this is analogous to the pooled estimate of the variance in a two-sample t-test with the assumption of equal variance.</p>
+<p>Therefore an appropriate confidence interval for <span class="math inline">\(\mu_{i}\)</span> is <span class="math display">\[\bar{y}_{i\cdot}\pm t_{\,n-k}^{1-\alpha/2}\left(\frac{\hat{\sigma}}{\sqrt{n_{i}}}\right)\]</span></p>
+</div>
+</div>
+<div id="anova-in-r" class="section level2">
+<h2><span class="header-section-number">9.3</span> Anova in R</h2>
+<p>First we must define a data frame with the appropriate columns. We start with two vectors, one of which has the leaf area data and the other vector denotes the species. Our response variable must be a continuous random variable and the explanatory is a discrete variable. In R discrete variables are called <code>factors</code> and can you can change a numerical variable to be a <code>factor</code> using the function <code>factor()</code>.</p>
+<p>The analysis of variance method is an example of a linear model which can be fit in a variety of ways. We can use either <code>lm()</code> or <code>aov()</code> to fit this model, and in these notes we concentrate on using <code>lm()</code>. The first argument to this function is a formula that describes the relationship between the explanatory variables and the response variable. In this case it is extremely simple, that LAI is a function of the categorical variable Species.</p>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="9-analysis-of-variance-anova.html#cb284-1"></a>data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">LAI =</span> <span class="kw">c</span>(<span class="fl">2.88</span>, <span class="fl">2.87</span>, <span class="fl">3.23</span>, <span class="fl">3.24</span>, <span class="fl">3.33</span>, </span>
+<span id="cb284-2"><a href="9-analysis-of-variance-anova.html#cb284-2"></a>                           <span class="fl">3.83</span>, <span class="fl">3.86</span>, <span class="fl">4.03</span>, <span class="fl">3.87</span>, <span class="fl">4.16</span>,</span>
+<span id="cb284-3"><a href="9-analysis-of-variance-anova.html#cb284-3"></a>                           <span class="fl">4.79</span>, <span class="fl">5.03</span>, <span class="fl">4.99</span>, <span class="fl">4.79</span>, <span class="fl">5.05</span>),</span>
+<span id="cb284-4"><a href="9-analysis-of-variance-anova.html#cb284-4"></a>                   <span class="dt">Species =</span> <span class="kw">factor</span>( <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">each=</span><span class="dv">5</span>) ) )</span>
+<span id="cb284-5"><a href="9-analysis-of-variance-anova.html#cb284-5"></a><span class="kw">str</span>(data)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:	15 obs. of  2 variables:
+##  $ LAI    : num  2.88 2.87 3.23 3.24 3.33 3.83 3.86 4.03 3.87 4.16 ...
+##  $ Species: Factor w/ 3 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;: 1 1 1 1 1 2 2 2 2 2 ...</code></pre>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="9-analysis-of-variance-anova.html#cb286-1"></a>model &lt;-<span class="st"> </span><span class="kw">lm</span>(LAI <span class="op">~</span><span class="st"> </span>Species, <span class="dt">data=</span>data)</span></code></pre></div>
+<p>As is always good practice, the first thing we should do is graph our data.</p>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="9-analysis-of-variance-anova.html#cb287-1"></a><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x=</span>Species, <span class="dt">y=</span>LAI)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>()</span></code></pre></div>
+<p><img src="09_ANOVA_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>It looks like the equal variance question isn’t a worry and it certainly appears that the mean value for each species is not the same. I expect that we will certainly prefer the complex model in this case.</p>
+<p>The <code>lm()</code> command is the command that does all the calculations necessary to fit an ANOVA model. This command returns a list object that is useful for subsequent analysis and it is up to the use to know what subsequent functions to call that answer questions of interest.</p>
+<p>In the call to <code>lm()</code> we created a formula. Formulas in R always are of the form <code>Y ~ X</code> where <code>Y</code> is the dependent variable and the <code>X</code> variables are the independent variables.</p>
+<p>Before we examine the anova table and make any conclusion, we should double check that the anova assumptions have been satisfied. To check the normality assumption, we will look at the qqplot of the residuals <span class="math inline">\(e_{ij}=y_{ij}-\bar{y}_{i\cdot}\)</span>. These residuals are easily accessed in R using the <code>resid</code> function on the model object. To check the variance assumption, we will examine the boxplot of the data</p>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="9-analysis-of-variance-anova.html#cb288-1"></a><span class="kw">autoplot</span>( model, <span class="dt">which=</span><span class="dv">2</span>)  <span class="co"># The which argument specifies which plot to make</span></span></code></pre></div>
+<pre><code>## Warning: `arrange_()` is deprecated as of dplyr 0.7.0.
+## Please use `arrange()` instead.
+## See vignette(&#39;programming&#39;) for more help
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_warnings()` to see where this warning was generated.</code></pre>
+<p><img src="09_ANOVA_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>The qqplot doesn’t look too bad, with only two observations far from the normality line. To get the Analysis of Variance table, we’ll extract it from the model object using the function <code>anova()</code>.</p>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="9-analysis-of-variance-anova.html#cb290-1"></a><span class="kw">anova</span>(model)</span></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: LAI
+##           Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+## Species    2 8.2973  4.1487  147.81 3.523e-09 ***
+## Residuals 12 0.3368  0.0281                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Notice that R does not give you the third line in the ANOVA table. This was a deliberate choice by the Core Development Team of R, but one that is somewhat annoying. Because the third line is just the total of the first two, it isn’t hard to calculate, if necessary.</p>
+<p>The row labeled Species corresponds to the difference between the simple and complex models, while the Residuals row corresponds to the complex model. Notice that <span class="math inline">\(SSE_{diff}\)</span> is quite large, but to decide if it is large enough to justify the use of the complex model, we must go through the calculations to get the p-value, which is quite small. Because the p-value is smaller than any reasonable <span class="math inline">\(\alpha\)</span>-level, we can reject the null hypothesis and conclude that at least one of the means is different than the others.</p>
+<p>But which mean is different? The first thing to do is to look at the point estimates and confidence intervals for <span class="math inline">\(\mu_{i}\)</span>. These are
+<span class="math display">\[\hat{\mu}_{i}	=	\bar{y}_{i\cdot}\]</span>
+<span class="math display">\[\hat{y}_{i\cdot}\pm t_{n-k}^{1-\alpha/2}\left(\frac{\hat{\sigma}}{\sqrt{n_{i}}}\right)\]</span>
+and can be found using the <code>coef()</code> and <code>confint()</code> functions.</p>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="9-analysis-of-variance-anova.html#cb292-1"></a><span class="co"># To get coefficients in the way we have represented the </span></span>
+<span id="cb292-2"><a href="9-analysis-of-variance-anova.html#cb292-2"></a><span class="co"># complex model (which we will call the cell means model), we </span></span>
+<span id="cb292-3"><a href="9-analysis-of-variance-anova.html#cb292-3"></a><span class="co"># must add a -1 to the formula passed to lm()</span></span>
+<span id="cb292-4"><a href="9-analysis-of-variance-anova.html#cb292-4"></a><span class="co"># We&#39;ll explore this later in this chapter.</span></span>
+<span id="cb292-5"><a href="9-analysis-of-variance-anova.html#cb292-5"></a>model<span class="fl">.2</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(LAI <span class="op">~</span><span class="st"> </span>Species <span class="op">-</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data=</span>data)</span>
+<span id="cb292-6"><a href="9-analysis-of-variance-anova.html#cb292-6"></a><span class="kw">coef</span>(model<span class="fl">.2</span>)</span></code></pre></div>
+<pre><code>## Species1 Species2 Species3 
+##     3.11     3.95     4.93</code></pre>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="9-analysis-of-variance-anova.html#cb294-1"></a><span class="co"># alternatively we could use the emmeans package</span></span>
+<span id="cb294-2"><a href="9-analysis-of-variance-anova.html#cb294-2"></a><span class="co"># using either model representation </span></span>
+<span id="cb294-3"><a href="9-analysis-of-variance-anova.html#cb294-3"></a>emmeans<span class="op">::</span><span class="kw">emmeans</span>(model, <span class="op">~</span>Species)</span></code></pre></div>
+<pre><code>##  Species emmean     SE df lower.CL upper.CL
+##  1         3.11 0.0749 12     2.95     3.27
+##  2         3.95 0.0749 12     3.79     4.11
+##  3         4.93 0.0749 12     4.77     5.09
+## 
+## Confidence level used: 0.95</code></pre>
+<p>Are the all the species different from each other? In practice I will want to examine each group and compare it to all others and figure out if they are different. How can we efficiently do all possible t-tests and keep the correct <span class="math inline">\(\alpha\)</span> level correct?</p>
+</div>
+<div id="multiple-comparisons" class="section level2">
+<h2><span class="header-section-number">9.4</span> Multiple comparisons</h2>
+<p>Recall that for every statistical test there is some probability of making a type I error and we controlled that probability by setting a desired <span class="math inline">\(\alpha\)</span>-level. If I were to do 20 t-tests of samples with identical means, I would expect, on average, that one of them would turn up to be significantly different just by chance. If I am making a large number of tests, each with a type I error rate of <span class="math inline">\(\alpha\)</span>, I am practically guaranteed to make at least one type I error.</p>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="9-analysis-of-variance-anova.html#cb296-1"></a><span class="kw">set.seed</span>(<span class="op">-</span><span class="dv">1035</span>) <span class="co"># So that I get the same dataset each time I build the book.</span></span>
+<span id="cb296-2"><a href="9-analysis-of-variance-anova.html#cb296-2"></a>k &lt;-<span class="st"> </span><span class="dv">5</span> ; n &lt;-<span class="st"> </span><span class="dv">10</span> </span>
+<span id="cb296-3"><a href="9-analysis-of-variance-anova.html#cb296-3"></a>mydata &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">mu=</span><span class="kw">rep</span>(<span class="dv">0</span>,k<span class="op">*</span>n), <span class="dt">Grp=</span><span class="kw">factor</span>(<span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span>k, <span class="dt">each=</span>n))) <span class="op">%&gt;%</span></span>
+<span id="cb296-4"><a href="9-analysis-of-variance-anova.html#cb296-4"></a><span class="st">  </span><span class="kw">mutate</span>( <span class="dt">Y=</span>mu<span class="op">+</span><span class="kw">rnorm</span>(k<span class="op">*</span>n), <span class="dt">Group=</span>Grp) </span>
+<span id="cb296-5"><a href="9-analysis-of-variance-anova.html#cb296-5"></a>letterdata &lt;-<span class="st"> </span><span class="kw">lm</span>( Y<span class="op">~</span>Grp, <span class="dt">data=</span>mydata ) <span class="op">%&gt;%</span></span>
+<span id="cb296-6"><a href="9-analysis-of-variance-anova.html#cb296-6"></a><span class="st">  </span>emmeans<span class="op">::</span><span class="kw">emmeans</span>( <span class="op">~</span><span class="st"> </span>Grp) <span class="op">%&gt;%</span></span>
+<span id="cb296-7"><a href="9-analysis-of-variance-anova.html#cb296-7"></a><span class="st">  </span>multcomp<span class="op">::</span><span class="kw">cld</span>( <span class="dt">Letters=</span>letters, <span class="dt">adjust=</span><span class="st">&#39;none&#39;</span> ) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># Force no p-value adjustment</span></span>
+<span id="cb296-8"><a href="9-analysis-of-variance-anova.html#cb296-8"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(Grp, .group) <span class="op">%&gt;%</span></span>
+<span id="cb296-9"><a href="9-analysis-of-variance-anova.html#cb296-9"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>( <span class="dt">Y =</span> <span class="dv">3</span> )</span></code></pre></div>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="9-analysis-of-variance-anova.html#cb297-1"></a><span class="co"># Visualize a made up data set: mydata</span></span>
+<span id="cb297-2"><a href="9-analysis-of-variance-anova.html#cb297-2"></a><span class="kw">ggplot</span>(mydata, <span class="kw">aes</span>(<span class="dt">x=</span>Grp, <span class="dt">y=</span>Y)) <span class="op">+</span></span>
+<span id="cb297-3"><a href="9-analysis-of-variance-anova.html#cb297-3"></a><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></span>
+<span id="cb297-4"><a href="9-analysis-of-variance-anova.html#cb297-4"></a><span class="st">  </span><span class="kw">geom_text</span>(<span class="dt">data=</span>letterdata, <span class="kw">aes</span>(<span class="dt">label=</span>.group)) <span class="op">+</span></span>
+<span id="cb297-5"><a href="9-analysis-of-variance-anova.html#cb297-5"></a><span class="st">  </span><span class="kw">ggtitle</span>( <span class="kw">expression</span>(<span class="kw">paste</span>(X[ij],<span class="st">&#39; ~ N(0,1)   where &#39;</span>, n[i], <span class="st">&#39; = 10&#39;</span>)) ) <span class="op">+</span></span>
+<span id="cb297-6"><a href="9-analysis-of-variance-anova.html#cb297-6"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&#39;Group&#39;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&#39;Response&#39;</span>)</span></code></pre></div>
+<p><img src="09_ANOVA_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>With 5 groups, there are 10 different comparisons to be made, and just by random chance, one of those comparisons might come up significant. In this sampled data, performing 10 different two sample t-tests without making any adjustments to our <span class="math inline">\(\alpha\)</span>-level, we find one statistically significant difference even though all of the data came from a standard normal distribution.</p>
+<p>I want to be able to control the family-wise error rate so that the probability that I make one or more type I errors in the set of m of tests I’m considering is <span class="math inline">\(\alpha\)</span>. One general way to do this is called the Bonferroni method. In this method each test is performed using a significance level of <span class="math inline">\(\alpha/m\)</span>. (In practice I will multiple each p-value by m and compare each p-value to my desired family-wise <span class="math inline">\(\alpha\)</span>-level). Unfortunately for large <span class="math inline">\(m\)</span>, this results in unacceptably high levels of type II errors. Fortunately there are other methods for addressing the multiple comparisons issue and they are built into R.</p>
+<p>John Tukey’s test of “Honestly Significant Differences” is commonly used to address the multiple comparisons issue when examining all possible pairwise contrasts. This method is available in R by the function in several different methods. This test is near optimal when each group has the same number of samples (which is often termed “a balanced design”), but becomes more conservative (fails to detect differences) as the design becomes more unbalanced. In extremely unbalanced cases, it is preferable to use a Bonferroni adjustment.</p>
+<p>Using function <code>emmeans::emmeans()</code> function, which by default does Tukey’s adjustment, the adjusted p-value for the difference between groups 1 and 4 is no longer significant.</p>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="9-analysis-of-variance-anova.html#cb298-1"></a>model &lt;-<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>Grp, mydata)</span>
+<span id="cb298-2"><a href="9-analysis-of-variance-anova.html#cb298-2"></a>t1 &lt;-<span class="st"> </span>emmeans<span class="op">::</span><span class="kw">emmeans</span>(model, pairwise <span class="op">~</span><span class="st"> </span>Grp)</span>
+<span id="cb298-3"><a href="9-analysis-of-variance-anova.html#cb298-3"></a>t1</span></code></pre></div>
+<pre><code>## $emmeans
+##  Grp emmean    SE df lower.CL upper.CL
+##  1    0.441 0.316 45   -0.196   1.0776
+##  2   -0.116 0.316 45   -0.753   0.5203
+##  3    0.201 0.316 45   -0.436   0.8377
+##  4   -0.548 0.316 45   -1.184   0.0891
+##  5   -0.184 0.316 45   -0.820   0.4532
+## 
+## Confidence level used: 0.95 
+## 
+## $contrasts
+##  contrast estimate    SE df t.ratio p.value
+##  1 - 2       0.557 0.447 45  1.247  0.7244 
+##  1 - 3       0.240 0.447 45  0.537  0.9830 
+##  1 - 4       0.989 0.447 45  2.211  0.1943 
+##  1 - 5       0.624 0.447 45  1.397  0.6330 
+##  2 - 3      -0.317 0.447 45 -0.710  0.9532 
+##  2 - 4       0.431 0.447 45  0.964  0.8695 
+##  2 - 5       0.067 0.447 45  0.150  0.9999 
+##  3 - 4       0.749 0.447 45  1.674  0.4597 
+##  3 - 5       0.384 0.447 45  0.860  0.9099 
+##  4 - 5      -0.364 0.447 45 -0.814  0.9248 
+## 
+## P value adjustment: tukey method for comparing a family of 5 estimates</code></pre>
+<p>It is also straightforward to generate the letter display using the function <code>cld()</code> which stands for <em>compact letter display</em>.</p>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="9-analysis-of-variance-anova.html#cb300-1"></a>emmeans<span class="op">::</span><span class="kw">emmeans</span>(model, <span class="op">~</span><span class="st"> </span>Grp) <span class="op">%&gt;%</span><span class="st">    </span><span class="co"># don&#39;t have the pairwise here or else</span></span>
+<span id="cb300-2"><a href="9-analysis-of-variance-anova.html#cb300-2"></a><span class="st">  </span>multcomp<span class="op">::</span><span class="kw">cld</span>( <span class="dt">Letters=</span>letters )     <span class="co"># the cld() function gets confused...</span></span></code></pre></div>
+<pre><code>##  Grp emmean    SE df lower.CL upper.CL .group
+##  4   -0.548 0.316 45   -1.184   0.0891  a    
+##  5   -0.184 0.316 45   -0.820   0.4532  a    
+##  2   -0.116 0.316 45   -0.753   0.5203  a    
+##  3    0.201 0.316 45   -0.436   0.8377  a    
+##  1    0.441 0.316 45   -0.196   1.0776  a    
+## 
+## Confidence level used: 0.95 
+## P value adjustment: tukey method for comparing a family of 5 estimates 
+## significance level used: alpha = 0.05</code></pre>
+<p>Likewise if we are testing the ANOVA assumption of equal variance, we cannot rely on doing all pairwise F-tests and we must use a method that controls the overall error rate. The multiple comparisons version of <code>var.test()</code> is Levene’s test which is called similarly to <code>lm()</code>.</p>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="9-analysis-of-variance-anova.html#cb302-1"></a><span class="co"># leveneTest() is a function that is defined in the &quot;car&quot; package.</span></span>
+<span id="cb302-2"><a href="9-analysis-of-variance-anova.html#cb302-2"></a>car<span class="op">::</span><span class="kw">leveneTest</span>(Y<span class="op">~</span>Group, mydata)</span></code></pre></div>
+<pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
+##       Df F value Pr(&gt;F)
+## group  4  0.6173 0.6524
+##       45</code></pre>
+<p><strong>Example 2</strong>. (Example 8.2 from the Ott and Longnecker) A clinical psychologist wished to compare three methods for reducing hostility levels in university students, and used a certain test (HLT) to measure the degree of hostility. A high score on the test indicated great hostility. The psychologist used <span class="math inline">\(24\)</span> students who obtained high and nearly equal scores in the experiment. Eight subjects were selected at random from among the <span class="math inline">\(24\)</span> problem cases and were treated with method 1, seven of the remaining <span class="math inline">\(16\)</span> students were selected at random and treated with method 2 while the remaining nine students were treated with method 3. All treatments were continued for a one-semester period. Each student was given the HLT test at the end of the semester, with the results show in the following table. Use these data to perform an analysis of variance to determine whether there are differences among the mean scores for the three methods using a significance level of <span class="math inline">\(\alpha=0.05\)</span>.</p>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="9-analysis-of-variance-anova.html#cb304-1"></a><span class="co"># define the data</span></span>
+<span id="cb304-2"><a href="9-analysis-of-variance-anova.html#cb304-2"></a>Hostility &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb304-3"><a href="9-analysis-of-variance-anova.html#cb304-3"></a>  <span class="dt">HLT =</span> <span class="kw">c</span>(<span class="dv">96</span>,<span class="dv">79</span>,<span class="dv">91</span>,<span class="dv">85</span>,<span class="dv">83</span>,<span class="dv">91</span>,<span class="dv">82</span>,<span class="dv">87</span>,</span>
+<span id="cb304-4"><a href="9-analysis-of-variance-anova.html#cb304-4"></a>          <span class="dv">77</span>,<span class="dv">76</span>,<span class="dv">74</span>,<span class="dv">73</span>,<span class="dv">78</span>,<span class="dv">71</span>,<span class="dv">80</span>,</span>
+<span id="cb304-5"><a href="9-analysis-of-variance-anova.html#cb304-5"></a>          <span class="dv">66</span>,<span class="dv">73</span>,<span class="dv">69</span>,<span class="dv">66</span>,<span class="dv">77</span>,<span class="dv">73</span>,<span class="dv">71</span>,<span class="dv">70</span>,<span class="dv">74</span>),</span>
+<span id="cb304-6"><a href="9-analysis-of-variance-anova.html#cb304-6"></a>  <span class="dt">Method =</span> <span class="kw">c</span>( <span class="kw">rep</span>(<span class="st">&#39;M1&#39;</span>,<span class="dv">8</span>), <span class="kw">rep</span>(<span class="st">&#39;M2&#39;</span>,<span class="dv">7</span>), <span class="kw">rep</span>(<span class="st">&#39;M3&#39;</span>,<span class="dv">9</span>) ) )</span></code></pre></div>
+<p>The first thing we will do (as we should do in all data analyses) is to graph our data.</p>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="9-analysis-of-variance-anova.html#cb305-1"></a><span class="kw">ggplot</span>(Hostility, <span class="kw">aes</span>(<span class="dt">x=</span>Method, <span class="dt">y=</span>HLT)) <span class="op">+</span></span>
+<span id="cb305-2"><a href="9-analysis-of-variance-anova.html#cb305-2"></a><span class="st">  </span><span class="kw">geom_boxplot</span>()</span></code></pre></div>
+<p><img src="09_ANOVA_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p>These box plots make it clear that there is a difference between the three groups (at least group M1 is different from M2 or M3). An ANOVA model assumes equal variance between groups and that the residuals are normally distributed. Based on the box plot, the equal variance assumption might be suspect (although with only <span class="math inline">\(\approx 8\)</span> observations per group, it might not be bad). We’ll examine a QQ-plot of the residuals to consider the normality.</p>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="9-analysis-of-variance-anova.html#cb306-1"></a><span class="co"># Is there equal variance in residuals across groups?</span></span>
+<span id="cb306-2"><a href="9-analysis-of-variance-anova.html#cb306-2"></a><span class="co"># Are the residuals approximately normal?</span></span>
+<span id="cb306-3"><a href="9-analysis-of-variance-anova.html#cb306-3"></a>model &lt;-<span class="st"> </span><span class="kw">lm</span>( HLT <span class="op">~</span><span class="st"> </span>Method, <span class="dt">data=</span>Hostility )</span>
+<span id="cb306-4"><a href="9-analysis-of-variance-anova.html#cb306-4"></a><span class="kw">autoplot</span>(model, <span class="dt">which=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span></code></pre></div>
+<p><img src="09_ANOVA_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p>To examine the Normality of the residuals, we’ll use a Shapiro-Wilk’s test and we’ll also use Levene’s test for homogeneity of variances.</p>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="9-analysis-of-variance-anova.html#cb307-1"></a><span class="co"># Test for equal variances between groups</span></span>
+<span id="cb307-2"><a href="9-analysis-of-variance-anova.html#cb307-2"></a>car<span class="op">::</span><span class="kw">leveneTest</span>(HLT<span class="op">~</span>Method, <span class="dt">data=</span>Hostility)</span></code></pre></div>
+<pre><code>## Warning in leveneTest.default(y = y, group = group, ...): group coerced to
+## factor.</code></pre>
+<pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
+##       Df F value Pr(&gt;F)
+## group  2  1.6817 0.2102
+##       21</code></pre>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="9-analysis-of-variance-anova.html#cb310-1"></a><span class="co"># Test for Normality</span></span>
+<span id="cb310-2"><a href="9-analysis-of-variance-anova.html#cb310-2"></a><span class="kw">shapiro.test</span>(<span class="kw">resid</span>(model))</span></code></pre></div>
+<pre><code>## 
+## 	Shapiro-Wilk normality test
+## 
+## data:  resid(model)
+## W = 0.98358, p-value = 0.9516</code></pre>
+<p>The results of the Shapiro-Wilks test agree with the QQ-plot, and Levene’s test fails to detect differences in the variances between the two groups. This is not to say that there might not be a difference, only that we do not detect one.</p>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="9-analysis-of-variance-anova.html#cb312-1"></a>model &lt;-<span class="st"> </span><span class="kw">lm</span>( HLT <span class="op">~</span><span class="st"> </span>Method, <span class="dt">data=</span>Hostility )</span>
+<span id="cb312-2"><a href="9-analysis-of-variance-anova.html#cb312-2"></a><span class="kw">anova</span>(model)</span></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: HLT
+##           Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
+## Method     2 1090.62  545.31  29.574 7.806e-07 ***
+## Residuals 21  387.21   18.44                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Because the p-value in the ANOVA table is smaller than <span class="math inline">\(\alpha=0.05\)</span>, we can reject the null hypothesis of equal means and conclude that at least one of the means is different from the others. Our estimate of <span class="math inline">\(\sigma^{2}\)</span> is <span class="math inline">\(\hat{\sigma}^2=18.44\)</span> so the estimate of <span class="math inline">\(\sigma\)</span> is <span class="math inline">\(\hat{\sigma}=\sqrt{18.44}=4.294\)</span>.</p>
+<p>To find out which means are different we look at the group means and confidence intervals as well as all the pairwise contrasts between the groups. We will control for the multiple comparisons issue by using Tukey’s method.</p>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="9-analysis-of-variance-anova.html#cb314-1"></a>emmeans<span class="op">::</span><span class="kw">emmeans</span>(model, pairwise<span class="op">~</span>Method)</span></code></pre></div>
+<pre><code>## $emmeans
+##  Method emmean   SE df lower.CL upper.CL
+##  M1       86.8 1.52 21     83.6     89.9
+##  M2       75.6 1.62 21     72.2     78.9
+##  M3       71.0 1.43 21     68.0     74.0
+## 
+## Confidence level used: 0.95 
+## 
+## $contrasts
+##  contrast estimate   SE df t.ratio p.value
+##  M1 - M2     11.18 2.22 21 5.030   0.0002 
+##  M1 - M3     15.75 2.09 21 7.548   &lt;.0001 
+##  M2 - M3      4.57 2.16 21 2.112   0.1114 
+## 
+## P value adjustment: tukey method for comparing a family of 3 estimates</code></pre>
+<p>If we feel uncomfortable with the equal variance assumption, we can do each pairwise t-test using non-pooled variance and then correct for the multiple comparisons using Bonferroni’s p-value correction. If we have <span class="math inline">\(k=3\)</span> groups, the we have <span class="math inline">\(k(k-1)/2=3\)</span> different comparisons, so I will calculate each p-value and multiply by <span class="math inline">\(3\)</span>.</p>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="9-analysis-of-variance-anova.html#cb316-1"></a><span class="kw">pairwise.t.test</span>(Hostility<span class="op">$</span>HLT, Hostility<span class="op">$</span>Method, </span>
+<span id="cb316-2"><a href="9-analysis-of-variance-anova.html#cb316-2"></a>                <span class="dt">pool.sd=</span><span class="ot">FALSE</span>, <span class="dt">p.adjust.method=</span><span class="st">&#39;none&#39;</span>)</span></code></pre></div>
+<pre><code>## 
+## 	Pairwise comparisons using t tests with non-pooled SD 
+## 
+## data:  Hostility$HLT and Hostility$Method 
+## 
+##    M1      M2    
+## M2 0.0005  -     
+## M3 2.2e-05 0.0175
+## 
+## P value adjustment method: none</code></pre>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="9-analysis-of-variance-anova.html#cb318-1"></a><span class="kw">pairwise.t.test</span>(Hostility<span class="op">$</span>HLT, Hostility<span class="op">$</span>Method, </span>
+<span id="cb318-2"><a href="9-analysis-of-variance-anova.html#cb318-2"></a>                <span class="dt">pool.sd=</span><span class="ot">FALSE</span>, <span class="dt">p.adjust.method=</span><span class="st">&#39;bonferroni&#39;</span>)</span></code></pre></div>
+<pre><code>## 
+## 	Pairwise comparisons using t tests with non-pooled SD 
+## 
+## data:  Hostility$HLT and Hostility$Method 
+## 
+##    M1      M2    
+## M2 0.0015  -     
+## M3 6.7e-05 0.0525
+## 
+## P value adjustment method: bonferroni</code></pre>
+<p>Using the Bonferroni adjusted p-values, we continue to detect a statistically significant difference between Method 1 and both Methods 2 &amp; 3, but do not detect a difference between Method 2 and Method 3.</p>
+</div>
+<div id="different-model-representations" class="section level2">
+<h2><span class="header-section-number">9.5</span> Different Model Representations</h2>
+<div id="theory-1" class="section level3">
+<h3><span class="header-section-number">9.5.1</span> Theory</h3>
+<p>We started with what I will call the “cell means model”
+<span class="math display">\[Y_{ij}=\mu_{i}+\epsilon_{ij}\;\;\;\textrm{where}\;\;\epsilon_{ij}\stackrel{iid}{\sim}N\left(0,\sigma^{2}\right)\]</span>
+so that the <span class="math inline">\(E\left(Y_{ij}\right)=\mu_{i}\)</span> where I interpret <span class="math inline">\(\mu_{i}\)</span> as the mean of each population. Given some data, we the following graph where the red lines and numbers denote the observed mean of the data in each group :</p>
+<p><img src="09_ANOVA_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p>But I am often interested in the difference between one group and another. For example, suppose this data comes from an experiment and group 1 is the control group. Then perhaps what I’m really interested is not that group 2 has a mean of 9, but rather that it is 5 units larger than the control. In this case perhaps what we care about is the differences. I could re-write the group means in terms of these differences from group 1. So looking at the model this way, the values that define the group means are the mean of group 1 (here it is 4), and the offsets from group 1 to group 2 (which is 5), and the offset from group 1 to group 3 (which is 10).</p>
+<p><img src="09_ANOVA_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p>I could write this interpretation of the model as the “offset” model which is
+<span class="math display">\[Y_{ij}=\mu+\tau_{i}+\epsilon_{ij}\]</span> where <span class="math inline">\(\mu\)</span> is the mean of group 1 and <span class="math inline">\(\tau_{i}\)</span> is each population’s offset from group 1. Because group 1 can’t be offset from itself, this forces <span class="math inline">\(\tau_{1}=0\)</span>.</p>
+<p>Notice that this representation of the complex model has 4 parameters (aside from <span class="math inline">\(\sigma\)</span>), but it has an additional constraint so we still only have 3 parameters that can vary (just as the cell means model has 3 means).</p>
+<p>The cell means model and the offset model really are the same model, just looked at slightly differently. They have the same number of parameters, and produce the same predicted values for <span class="math inline">\(\hat{y}_{ij}\)</span> and therefore have the same sum of squares, etc. The only difference is that one is might be more convenient depending on the question the investigator is asking. Actually in all the previous work in this chapter, we’ve been using the offset representation but <code>emmeans::emmeans()</code> is smart enough to recognize when we want the cell means model.</p>
+<p>Another way to write the cell means model is as <span class="math inline">\(Y_{ij}=\mu+\tau_{i}+\epsilon_{ij}\)</span> but with the constraint that <span class="math inline">\(\mu=0\)</span>. It doesn’t matter which constraint you use so long as you know which is being used because the interpretation of the values changes (group mean versus an offset from the reference group).</p>
+</div>
+<div id="model-representations-in-r" class="section level3">
+<h3><span class="header-section-number">9.5.2</span> Model Representations in R</h3>
+<p>To obtain the different representations within R, we will vary the formula to include or exclude the intercept term <span class="math inline">\(\mu\)</span>. By default, R assumes you want the intercept term (offset representation) and you must use the -1 term in the formula for the cell means representation.</p>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="9-analysis-of-variance-anova.html#cb320-1"></a>fake.data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(   <span class="dt">y =</span>        <span class="kw">c</span>( <span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,  <span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>, <span class="dv">13</span>,<span class="dv">14</span>,<span class="dv">15</span>),</span>
+<span id="cb320-2"><a href="9-analysis-of-variance-anova.html#cb320-2"></a>                         <span class="dt">grp =</span> <span class="kw">factor</span>(<span class="kw">c</span>( <span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,  <span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,   <span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span> )) )</span>
+<span id="cb320-3"><a href="9-analysis-of-variance-anova.html#cb320-3"></a><span class="co"># Offset representation </span></span>
+<span id="cb320-4"><a href="9-analysis-of-variance-anova.html#cb320-4"></a><span class="co">#   Unless you have a -1, R implicitly  </span></span>
+<span id="cb320-5"><a href="9-analysis-of-variance-anova.html#cb320-5"></a><span class="co">#   adds a &quot;+1&quot; to the formula, so </span></span>
+<span id="cb320-6"><a href="9-analysis-of-variance-anova.html#cb320-6"></a><span class="co">#   so the following statements are equivalent</span></span>
+<span id="cb320-7"><a href="9-analysis-of-variance-anova.html#cb320-7"></a>c.model<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st">     </span>grp, <span class="dt">data=</span>fake.data)</span>
+<span id="cb320-8"><a href="9-analysis-of-variance-anova.html#cb320-8"></a>c.model<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>grp, <span class="dt">data=</span>fake.data)</span>
+<span id="cb320-9"><a href="9-analysis-of-variance-anova.html#cb320-9"></a><span class="kw">coef</span>(c.model<span class="fl">.1</span>)</span></code></pre></div>
+<pre><code>## (Intercept)        grp2        grp3 
+##           4           5          10</code></pre>
+<p>In the above case, we see R is giving the mean of group 1 and then the two offsets.</p>
+<p>To force R to use the cell means model, we force R to use the constraint that <span class="math inline">\(\mu=0\)</span> by including a -1 in the model formula.</p>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="9-analysis-of-variance-anova.html#cb322-1"></a>c.model<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span><span class="dv">-1</span> <span class="op">+</span><span class="st"> </span>grp, <span class="dt">data=</span>fake.data)</span>
+<span id="cb322-2"><a href="9-analysis-of-variance-anova.html#cb322-2"></a><span class="kw">coef</span>(c.model<span class="fl">.1</span>)</span></code></pre></div>
+<pre><code>## grp1 grp2 grp3 
+##    4    9   14</code></pre>
+<p>Returning the hostility example, recall we used the cell means model and we can extract parameter coefficient estimates using the <code>coef</code> function and ask for the appropriate confidence intervals using <code>confint()</code>.</p>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="9-analysis-of-variance-anova.html#cb324-1"></a>model &lt;-<span class="st"> </span><span class="kw">lm</span>(HLT <span class="op">~</span><span class="st"> </span><span class="dv">-1</span> <span class="op">+</span><span class="st"> </span>Method, <span class="dt">data=</span>Hostility)</span>
+<span id="cb324-2"><a href="9-analysis-of-variance-anova.html#cb324-2"></a><span class="kw">coef</span>(model)</span></code></pre></div>
+<pre><code>## MethodM1 MethodM2 MethodM3 
+## 86.75000 75.57143 71.00000</code></pre>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="9-analysis-of-variance-anova.html#cb326-1"></a><span class="kw">confint</span>(model)</span></code></pre></div>
+<pre><code>##             2.5 %   97.5 %
+## MethodM1 83.59279 89.90721
+## MethodM2 72.19623 78.94663
+## MethodM3 68.02335 73.97665</code></pre>
+<p>We can use the offset model by removing -1 term from the formula.</p>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="9-analysis-of-variance-anova.html#cb328-1"></a>model &lt;-<span class="st"> </span><span class="kw">lm</span>(HLT <span class="op">~</span><span class="st"> </span>Method, <span class="dt">data=</span>Hostility)</span>
+<span id="cb328-2"><a href="9-analysis-of-variance-anova.html#cb328-2"></a><span class="kw">coef</span>(model)</span></code></pre></div>
+<pre><code>## (Intercept)    MethodM2    MethodM3 
+##    86.75000   -11.17857   -15.75000</code></pre>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="9-analysis-of-variance-anova.html#cb330-1"></a><span class="kw">confint</span>(model)</span></code></pre></div>
+<pre><code>##                 2.5 %     97.5 %
+## (Intercept)  83.59279  89.907212
+## MethodM2    -15.80026  -6.556886
+## MethodM3    -20.08917 -11.410827</code></pre>
+<p>The intercept term in the offset representation corresponds to Method1 and the coefficients and confidence intervals are the same as in the cell means model. However in the offset model, Method2 is the difference between Method1 and Method2. Notice the coefficient is negative, thus telling us that Method2 has a smaller mean value than the reference group Method1. Likewise Method3 has a negative coefficient indicating that the Method3 group is lower than the reference group.</p>
+<p>Similarly the confidence intervals for Method2 and Method3 are now confidence intervals for the difference between these methods and the reference group Method1.</p>
+<p>Why would we ever want the offset model vs the cell means model? Often we are interested in testing multiple treatments against a control group and we only care about the change from the control. In that case, setting the control group to be the reference makes sense.</p>
+<p>Neither representation is more powerful because on a very deep mathematical level, they are exactly the same model. Superficially though, one representation might be more convenient than the other in a given situation.</p>
+</div>
+<div id="implications-on-the-anova-table" class="section level3">
+<h3><span class="header-section-number">9.5.3</span> Implications on the ANOVA table</h3>
+<p>We have been talking about the complex and simple models for our data but there is one more possible model, albeit not a very good one. I will refer to this as the bad model because it is almost always a poor fitting model.
+<span class="math display">\[Y_{ij}=\epsilon_{ij} \;\;\; \textrm{ where }\;\;\; \epsilon_{ij}\stackrel{iid}{\sim}N\left(0,\sigma^{2}\right).\]</span></p>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<p><img src="09_ANOVA_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<p>Notice that the complex model has three parameters that define “signal” part of the model (i.e. the three group means). The simple has one parameter that defines the “signal” (the overall mean). The bad model has no parameters that define the model (i.e. the red line is always at zero).</p>
+<p>These three models can be denoted in R by:</p>
+<ul>
+<li>Complex:
+– offset representation: <code>Y ~ group</code> which R will recognize as <code>Y ~ group + 1</code>
+– cell means representation: <code>Y ~ group - 1</code></li>
+<li>Simple: <code>Y ~ 1</code></li>
+<li>Bad: <code>Y ~ -1</code></li>
+</ul>
+<p>In the analysis of variance table calculated by <code>anova()</code>, R has to decide which simple model to compare the complex model to. If you used the offset representation, then when group is removed from the model, we are left with the model <code>Y ~ 1</code>, which is the simple model. If we wrote the complex model using the cell means representation, then when group is removed, we are left with the model <code>Y ~ -1</code> which is the bad model.</p>
+<p>When we produce the ANOVA table compare the complex to the bad model, the difference in number of parameters between the models will be 3 (because I have to add three parameters to go from a signal line of 0, to three estimated group means). The ANOVA table comparing simple model to the complex will have a difference in number of parameters of 2 (because the simple mean has 1 estimated value compared to 3 estimated values).</p>
+<p><strong>Example</strong>. Hostility Scores
+We return to the hostility scores example and we will create the two different model representations in R and see how the ANOVA table produced by R differs between the two.</p>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="9-analysis-of-variance-anova.html#cb333-1"></a>offset.representation &lt;-<span class="st"> </span><span class="kw">lm</span>(HLT <span class="op">~</span><span class="st"> </span>Method, <span class="dt">data=</span>Hostility)</span>
+<span id="cb333-2"><a href="9-analysis-of-variance-anova.html#cb333-2"></a>cell.representation   &lt;-<span class="st"> </span><span class="kw">lm</span>(HLT <span class="op">~</span><span class="st"> </span>Method <span class="dv">-1</span>, <span class="dt">data=</span> Hostility)</span>
+<span id="cb333-3"><a href="9-analysis-of-variance-anova.html#cb333-3"></a></span>
+<span id="cb333-4"><a href="9-analysis-of-variance-anova.html#cb333-4"></a><span class="co"># This is the ANOVA table we want, comparing Complex to Simple</span></span>
+<span id="cb333-5"><a href="9-analysis-of-variance-anova.html#cb333-5"></a><span class="co"># Notice the df of the difference between the models is 3-1 = 2</span></span>
+<span id="cb333-6"><a href="9-analysis-of-variance-anova.html#cb333-6"></a><span class="kw">anova</span>(offset.representation)</span></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: HLT
+##           Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
+## Method     2 1090.62  545.31  29.574 7.806e-07 ***
+## Residuals 21  387.21   18.44                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="9-analysis-of-variance-anova.html#cb335-1"></a><span class="co"># This is the ANOVA table comparing the Complex to the BAD model</span></span>
+<span id="cb335-2"><a href="9-analysis-of-variance-anova.html#cb335-2"></a><span class="co"># Noice the df of the difference between the models is 3-0 = 3</span></span>
+<span id="cb335-3"><a href="9-analysis-of-variance-anova.html#cb335-3"></a><span class="kw">anova</span>(cell.representation)</span></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: HLT
+##           Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+## Method     3 145551   48517  2631.2 &lt; 2.2e-16 ***
+## Residuals 21    387      18                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Because the bad model is extremely bad in this case, the F-statistic for comparing the complex to the bad model is extremely large (<span class="math inline">\(F=2631\)</span>). The complex model is also superior to the simple model, but not by as emphatically (<span class="math inline">\(F=29\)</span>).</p>
+<p>One way to be certain which models you are comparing is to explicitly choose the two models.</p>
+<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="9-analysis-of-variance-anova.html#cb337-1"></a>simple &lt;-<span class="st"> </span><span class="kw">lm</span>(HLT <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data=</span>Hostility)</span>
+<span id="cb337-2"><a href="9-analysis-of-variance-anova.html#cb337-2"></a></span>
+<span id="cb337-3"><a href="9-analysis-of-variance-anova.html#cb337-3"></a><span class="co"># create the ANOVA table comparing the complex model (using the </span></span>
+<span id="cb337-4"><a href="9-analysis-of-variance-anova.html#cb337-4"></a><span class="co"># cell means representation) to the simple model. </span></span>
+<span id="cb337-5"><a href="9-analysis-of-variance-anova.html#cb337-5"></a><span class="co"># The output shown in the following contains all the</span></span>
+<span id="cb337-6"><a href="9-analysis-of-variance-anova.html#cb337-6"></a><span class="co"># necessary information, but is arranged slightly differently.</span></span>
+<span id="cb337-7"><a href="9-analysis-of-variance-anova.html#cb337-7"></a><span class="kw">anova</span>(simple, cell.representation)</span></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Model 1: HLT ~ 1
+## Model 2: HLT ~ Method - 1
+##   Res.Df     RSS Df Sum of Sq      F    Pr(&gt;F)    
+## 1     23 1477.83                                  
+## 2     21  387.21  2    1090.6 29.574 7.806e-07 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>My recommendation is to always fit the offset model and, if you are interested in all of the mean values, just access the group means and difference between groups using the <code>emmeans::emmeans()</code> function. If you are interested in the just the offsets, then you can access them through the base functions <code>coef()</code> and <code>conf()</code> or pick them out of your <code>emmeans</code> output.</p>
+</div>
+</div>
+<div id="exercises" class="section level2">
+<h2><span class="header-section-number">9.6</span> Exercises</h2>
+<p><em>In previous chapters, the exercises have been quite blunt about asking you to interpret your results when appropriate. In this chapter (and subsequent chapters) the questions don’t explicitly ask your interpretation, but rather it is implied that and the end of a calculation or whenever you produce a graph or table, there should always be some sort of comment about the result (e.g. this result shows that the residuals are not normally distributed). Your job is to interpret the results, not just produce them.</em></p>
+<p><em>Eventually, your job will be to figure out what analysis to conduct, what assumptions should be checked, and how to interpret all of your results in the context of the problem. But for now, it will be up to you to know when to interpret your results.</em></p>
+<ol style="list-style-type: decimal">
+<li><p>For this exercise, we will compare the Sums of Squared Error for the simple <span class="math inline">\(y_{ij}=\mu+\epsilon_{ij}\)</span> and complex <span class="math inline">\(y_{ij}=\mu_{i}+\epsilon_{ij}\)</span> model and clearly, in the data presented below, the complex model fits the data better. The group means <span class="math inline">\(\bar{y}_{i\cdot}\)</span> are 3, 13, 5, and 9, while the overall mean is <span class="math inline">\(\bar{y}_{\cdot\cdot}=7.5\)</span>.<br />
+</p>
+<p><img src="09_ANOVA_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+<ol style="list-style-type: lower-alpha">
+<li><p>For the simple model graph, draw a horizontal line at the height of the overall mean, representing predicted value of a new observation. Next, draw the the corresponding residuals <span class="math inline">\(y_{ij}-\bar{y}_{\cdot\cdot}\)</span> as vertical lines from the data points to the overall mean. Similarly draw horizontal lines for the group means in the complex model and represent the residuals for the complex model <span class="math inline">\(y_{ij}-\bar{y}_{i\cdot}\)</span> as vertical lines from the data points to the group means. In this case, does it appear that the average residual is significantly larger in the simple model than the complex? <em>Hint: Don’t try to do this in R, but rather do this using a pencil and paper.</em></p></li>
+<li><p>To show that the complex is a significantly better model, fill in the empty boxes in the ANOVA table.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Source</th>
+<th align="center">df</th>
+<th align="center">SS</th>
+<th align="center">MS</th>
+<th align="center">F</th>
+<th align="center">p-value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Difference</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center">Complex</td>
+<td align="center"></td>
+<td align="center">20</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center">Simple</td>
+<td align="center"></td>
+<td align="center">256</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p>Interpret the p-value you have produced.</p></li>
+</ol></li>
+<li><p>We will essentially repeat the previous exercise, except this time, the simple model will be preferred. Again for each group, we have <span class="math inline">\(n_i=3\)</span> observations.</p>
+<p><img src="09_ANOVA_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<p>For this data, the following group means can be calculated as <span class="math inline">\(\bar{y}_{i\cdot} = (4.42, 5.21, 4.58)\)</span> and the overall mean is <span class="math inline">\(\bar{y}_{\cdot \cdot}=4.73\)</span>.</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>For the simple model graph, draw the corresponding residuals <span class="math inline">\(y_{ij}-\bar{y}_{\cdot\cdot}\)</span> as vertical lines from the data point to the overall mean. Similarly draw the residuals for the complex model <span class="math inline">\(y_{ij}-\bar{y}_{i\cdot}\)</span> as vertical lines from the data points to the group means. In this case, does it appear that the average residual is significantly larger in the simple model than the complex? <em>Again, just draw predicted values and residuals by hand.</em></p></li>
+<li><p>To show that the complex not a significantly better model, fill in the empty boxes in the ANOVA table.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Source</th>
+<th align="center">df</th>
+<th align="center">SS</th>
+<th align="center">MS</th>
+<th align="center">F</th>
+<th align="center">p-value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Difference</td>
+<td align="center"></td>
+<td align="center">1.035</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center">Complex</td>
+<td align="center"></td>
+<td align="center">8.7498</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center">Simple</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p>Interpret the p-value you have produced.</p></li>
+</ol></li>
+<li><p>The following data were collected and we wish to perform an analysis of variance to determine if the group means are statistically different.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Group 1</th>
+<th align="center">Group 2</th>
+<th align="center">Group 3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">4,6,6,8</td>
+<td align="center">8,8,6,6</td>
+<td align="center">12,13,15,16</td>
+</tr>
+</tbody>
+</table>
+<ol style="list-style-type: lower-alpha">
+<li>The complex model assumes different means for each group. That is <span class="math inline">\(Y_{ij}=\mu_{i}+\epsilon_{ij}\)</span>. Calculate <span class="math inline">\(SSE_{complex}\)</span> via the following:
+<ol style="list-style-type: lower-roman">
+<li>Find the estimate of <span class="math inline">\(\mu_{i}\)</span>. That is, calculate <span class="math inline">\(\hat{\mu}_{i}=\bar{y}_{i\cdot}\)</span> which is the mean of each group. Therefore the predicted value for a new observation in group <span class="math inline">\(i\)</span> would be <span class="math inline">\(\hat{y}_{ij}=\hat{\mu}_{i}=\bar{y}_{i\cdot}\)</span> and you can now calculate <span class="math inline">\(SSE_{complex}\)</span>.</li>
+<li>Calculate
+<span class="math display">\[SSE_{complex} = \sum_{i=1}^{3}\sum_{j=1}^{4} e_{ij}^2 =\sum_{i=1}^{3}\sum_{j=1}^{4}\left(y_{ij}-\hat{y}_{ij}\right)^{2}=\sum_{i=1}^{3}\sum_{j=1}^{4}\left(y_{ij}-\bar{y}_{i\cdot}\right)^{2}\]</span></li>
+</ol></li>
+<li>The simple model assumes the same mean for each group. That is <span class="math inline">\(Y_{ij}=\mu+\epsilon_{ij}\)</span> Calculate <span class="math inline">\(SSE_{simple}\)</span> via the following:
+<ol style="list-style-type: lower-roman">
+<li>Find the estimate of <span class="math inline">\(\mu\)</span>. That is, calculate <span class="math inline">\(\hat{\mu}=\bar{y}_{\cdot\cdot}\)</span> which is the overall mean of all the data. Therefore the predicted value for a new observation in any group would be <span class="math inline">\(\hat{y}_{ij}=\hat{\mu}=\bar{y}_{\cdot\cdot}\)</span> and we can calculate <span class="math inline">\(SSE_{simple}\)</span></li>
+<li>Calculate <span class="math display">\[SSE_{simple}=\sum_{i=1}^{3}\sum_{j=1}^{4} e_{ij}^2=\sum_{i=1}^{3}\sum_{j=1}^{4}\left(y_{ij}-\hat{y}_{ij}\right)^{2}=\sum_{i=1}^{3}\sum_{j=1}^{4}\left(y_{ij}-\bar{y}_{\cdot\cdot}\right)^{2}\]</span></li>
+</ol></li>
+<li>Create the ANOVA table using your results in part (b).</li>
+<li>Create the ANOVA table using R by typing in the data set and fitting the appropriate model using the <code>lm()</code> and <code>anova()</code> commands.</li>
+</ol></li>
+<li><p>Suppose that for a project I did four separate t-tests and the resulting p-values were</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(p_1\)</span></th>
+<th align="center"><span class="math inline">\(p_2\)</span></th>
+<th align="center"><span class="math inline">\(p_3\)</span></th>
+<th align="center"><span class="math inline">\(p_4\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">0.03</td>
+<td align="center">0.14</td>
+<td align="center">0.01</td>
+<td align="center">0.001</td>
+</tr>
+</tbody>
+</table></li>
+</ol>
+<p>If I wanted to control my overall type I error rate at an <span class="math inline">\(\alpha=0.05\)</span> and used the Bonferroni multiple comparisons procedure, which tests would be statistically significant? <em>Notice that this problem does not mention any pairwise contrasts as the Bonferroni correction can be done in a variety of situations. So just use the fact that we are making four different tests and we want to control the overall Type I Error rate.</em></p>
+<ol start="5" style="list-style-type: decimal">
+<li>We will examine the amount of waste produced at five different plants that manufacture Levi Jeans. The Waste amount is the amount of cloth wasted in cutting out designs compared to a computer program, so negative values for Waste indicate that the human engineer did a better job planning the cuts than the computer algorithm. There are two columns, <code>Plant</code> and <code>Waste</code>.
+<ol style="list-style-type: lower-alpha">
+<li><p>Read the data into R using the following:</p>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="9-analysis-of-variance-anova.html#cb339-1"></a>Levi &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;https://raw.github.com/dereksonderegger/570/master/data-raw/Levi.csv&#39;</span>)</span></code></pre></div>
+<ol style="list-style-type: lower-roman">
+<li>Examine the data frame using the <code>str(Levi)</code> command. Is the Plant column already a factor, or do you need to convert it to a factor?</li>
+</ol></li>
+<li><p>Make a boxplot of the data. Do any assumptions necessary for ANOVA appear to be violated?</p></li>
+<li><p>Test the equal variance assumption using Levene’s test.</p></li>
+<li><p>Fit an ANOVA model to these data and test if the residuals have a normal distribution using the Shapiro-Wilks test.</p></li>
+</ol></li>
+<li>The dataset <code>iris</code> is available on R and can be loaded by the entering the command <code>data('iris')</code> at your R prompt. This famous data set contains the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for <span class="math inline">\(n_{i}=50\)</span> flowers from each of <span class="math inline">\(3\)</span> species of iris. The species of iris are <em>setosa</em>, <em>versicolor</em>, and <em>virginica</em>. We will be examining the relationship between sepal width and the species of these irises. Denote the mean value of all setosa flowers as <span class="math inline">\(\mu_{setosa}\)</span> and similar notation for the other species.
+<ol style="list-style-type: lower-alpha">
+<li>Make a boxplot of the data. Do any assumptions necessary for ANOVA appear to be violated?</li>
+<li>Test the equal variance assumption of ANOVA using Levene’s test.</li>
+<li>Do the ANOVA test and test the normality of the residual terms by making a QQplot and doing the Shapiro-Wilk’s test.</li>
+<li>Examine the ANOVA table. What is the p-value for testing the hypotheses
+<span class="math display">\[\begin{aligned}
+ H_{0} &amp;:\,		\mu_{setosa}=\mu_{virginica}=\mu_{versicolor} \\
+ H_{a} &amp;:\,		\textrm{at least on mean is different} 
+ \end{aligned}\]</span></li>
+<li>Now that we know there is a statistically significant difference among the means (and with setosa having a mean Sepal.Width about 30% larger than the other two, I think aesthetically that is a big difference), we can go searching for it. Use Tukey’s “Honestly Significant Differences” method to test all the pairwise comparisons between means. In particular, what is the p-value for testing
+<span class="math display">\[\begin{aligned}
+ H_{0} &amp;:\,		\mu_{setosa}=\mu_{virginica} \\
+ H_{a} &amp;:\:		\mu_{setosa}\ne\mu_{virginica}
+ \end{aligned}\]</span></li>
+<li>What is the estimated value of <span class="math inline">\(\mu_{setosa}\)</span>? What is the estimated value of <span class="math inline">\(\mu_{virginica}\)</span>?</li>
+<li>What is the estimated value of <span class="math inline">\(\sigma^{2}\)</span>?</li>
+<li>By hand, calculate the appropriate 95% confidence interval for <span class="math inline">\(\mu_{setosa}\)</span>.</li>
+<li>Using R, confirm your calculation in part (h).</li>
+</ol></li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="8-testing-model-assumptions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="10-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"],
+"google": false,
+"instapper": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/dereksonderegger/570/raw/master/09_ANOVA.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": [["Statistical-Methods-I.pdf", "PDF"]],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

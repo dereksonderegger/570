@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 1 Summary Statistics and Graphing | Introduction to Statistical Methodology, Second Edition</title>
+  <meta name="description" content="Chapter 1 Summary Statistics and Graphing | Introduction to Statistical Methodology, Second Edition" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 1 Summary Statistics and Graphing | Introduction to Statistical Methodology, Second Edition" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="dereksonderegger/570" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 1 Summary Statistics and Graphing | Introduction to Statistical Methodology, Second Edition" />
+  
+  
+  
+
+<meta name="author" content="Derek L. Sonderegger &amp; Robert Buscaglia" />
+
+
+<meta name="date" content="2020-08-12" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="2-probability.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html"><i class="fa fa-check"></i><b>1</b> Summary Statistics and Graphing</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#variable-types"><i class="fa fa-check"></i><b>1.1</b> Variable Types</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#categorical"><i class="fa fa-check"></i><b>1.1.1</b> Categorical</a></li>
+<li class="chapter" data-level="1.1.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#numerical"><i class="fa fa-check"></i><b>1.1.2</b> Numerical</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#randomization-and-sampling"><i class="fa fa-check"></i><b>1.2</b> Randomization and Sampling</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#sampling-techniques"><i class="fa fa-check"></i><b>1.2.1</b> Sampling Techniques</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#graphical-summaries"><i class="fa fa-check"></i><b>1.3</b> Graphical Summaries</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#barchartsbarplots-univariate---categorical"><i class="fa fa-check"></i><b>1.3.1</b> Barcharts/Barplots (Univariate - Categorical)</a></li>
+<li class="chapter" data-level="1.3.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#histogram-univariate---numerical"><i class="fa fa-check"></i><b>1.3.2</b> Histogram (Univariate - Numerical)</a></li>
+<li class="chapter" data-level="1.3.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#boxplot-bivariate---categorical-vs-numerical"><i class="fa fa-check"></i><b>1.3.3</b> Boxplot (Bivariate - Categorical vs Numerical)</a></li>
+<li class="chapter" data-level="1.3.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#scatterplot-bivariate---numerical-vs-numerical"><i class="fa fa-check"></i><b>1.3.4</b> Scatterplot (Bivariate - Numerical vs Numerical)</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#measures-of-centrality"><i class="fa fa-check"></i><b>1.4</b> Measures of Centrality</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#mean"><i class="fa fa-check"></i><b>1.4.1</b> Mean</a></li>
+<li class="chapter" data-level="1.4.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#median"><i class="fa fa-check"></i><b>1.4.2</b> Median</a></li>
+<li class="chapter" data-level="1.4.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#mode"><i class="fa fa-check"></i><b>1.4.3</b> Mode</a></li>
+<li class="chapter" data-level="1.4.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#examples"><i class="fa fa-check"></i><b>1.4.4</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#measures-of-spread"><i class="fa fa-check"></i><b>1.5</b> Measures of Spread</a><ul>
+<li class="chapter" data-level="1.5.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#range"><i class="fa fa-check"></i><b>1.5.1</b> Range</a></li>
+<li class="chapter" data-level="1.5.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#inter-quartile-range-iqr"><i class="fa fa-check"></i><b>1.5.2</b> Inter-Quartile Range (IQR)</a></li>
+<li class="chapter" data-level="1.5.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#variance"><i class="fa fa-check"></i><b>1.5.3</b> Variance</a></li>
+<li class="chapter" data-level="1.5.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#standard-deviation"><i class="fa fa-check"></i><b>1.5.4</b> Standard Deviation</a></li>
+<li class="chapter" data-level="1.5.5" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#coefficient-of-variation"><i class="fa fa-check"></i><b>1.5.5</b> Coefficient of Variation</a></li>
+<li class="chapter" data-level="1.5.6" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#empirical-rules"><i class="fa fa-check"></i><b>1.5.6</b> Empirical Rules</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#shape"><i class="fa fa-check"></i><b>1.6</b> Shape</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#symmetry"><i class="fa fa-check"></i><b>1.6.1</b> Symmetry</a></li>
+<li class="chapter" data-level="1.6.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#unimodal-or-multi-modal"><i class="fa fa-check"></i><b>1.6.2</b> Unimodal or Multi-modal</a></li>
+<li class="chapter" data-level="1.6.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#skew"><i class="fa fa-check"></i><b>1.6.3</b> Skew</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>1.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-probability.html"><a href="2-probability.html"><i class="fa fa-check"></i><b>2</b> Probability</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-probability.html"><a href="2-probability.html#introduction-to-set-theory"><i class="fa fa-check"></i><b>2.1</b> Introduction to Set Theory</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="2-probability.html"><a href="2-probability.html#composition-of-events"><i class="fa fa-check"></i><b>2.1.1</b> Composition of events</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2-probability.html"><a href="2-probability.html#probability-rules"><i class="fa fa-check"></i><b>2.2</b> Probability Rules</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="2-probability.html"><a href="2-probability.html#simple-rules"><i class="fa fa-check"></i><b>2.2.1</b> Simple Rules</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2-probability.html"><a href="2-probability.html#conditional-probability"><i class="fa fa-check"></i><b>2.2.2</b> Conditional Probability</a></li>
+<li class="chapter" data-level="2.2.3" data-path="2-probability.html"><a href="2-probability.html#summary-of-probability-rules"><i class="fa fa-check"></i><b>2.2.3</b> Summary of Probability Rules</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="2-probability.html"><a href="2-probability.html#discrete-random-variables"><i class="fa fa-check"></i><b>2.3</b> Discrete Random Variables</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="2-probability.html"><a href="2-probability.html#introduction-to-discrete-random-variables"><i class="fa fa-check"></i><b>2.3.1</b> Introduction to Discrete Random Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="2-probability.html"><a href="2-probability.html#common-discrete-distributions"><i class="fa fa-check"></i><b>2.4</b> Common Discrete Distributions</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="2-probability.html"><a href="2-probability.html#binomial-distribution"><i class="fa fa-check"></i><b>2.4.1</b> Binomial Distribution</a></li>
+<li class="chapter" data-level="2.4.2" data-path="2-probability.html"><a href="2-probability.html#poisson-distribution"><i class="fa fa-check"></i><b>2.4.2</b> Poisson Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="2-probability.html"><a href="2-probability.html#continuous-random-variables"><i class="fa fa-check"></i><b>2.5</b> Continuous Random Variables</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="2-probability.html"><a href="2-probability.html#uniform01-distribution"><i class="fa fa-check"></i><b>2.5.1</b> Uniform(0,1) Distribution</a></li>
+<li class="chapter" data-level="2.5.2" data-path="2-probability.html"><a href="2-probability.html#exponential-distribution"><i class="fa fa-check"></i><b>2.5.2</b> Exponential Distribution</a></li>
+<li class="chapter" data-level="2.5.3" data-path="2-probability.html"><a href="2-probability.html#normal-distribution"><i class="fa fa-check"></i><b>2.5.3</b> Normal Distribution</a></li>
+<li class="chapter" data-level="2.5.4" data-path="2-probability.html"><a href="2-probability.html#standardizing"><i class="fa fa-check"></i><b>2.5.4</b> Standardizing</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="2-probability.html"><a href="2-probability.html#r-quick-reference"><i class="fa fa-check"></i><b>2.6</b> R Quick Reference</a></li>
+<li class="chapter" data-level="2.7" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>2.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html"><i class="fa fa-check"></i><b>3</b> Confidence Intervals via Bootstrapping</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#theory-of-bootstrapping"><i class="fa fa-check"></i><b>3.1</b> Theory of Bootstrapping</a></li>
+<li class="chapter" data-level="3.2" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#conducting-a-bootstrap"><i class="fa fa-check"></i><b>3.2</b> Conducting a Bootstrap</a></li>
+<li class="chapter" data-level="3.3" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#quantile-based-confidence-intervals"><i class="fa fa-check"></i><b>3.3</b> Quantile-based Confidence Intervals</a></li>
+<li class="chapter" data-level="3.4" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#additional-examples"><i class="fa fa-check"></i><b>3.4</b> Additional Examples</a></li>
+<li class="chapter" data-level="3.5" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>3.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html"><i class="fa fa-check"></i><b>4</b> Sampling Distribution of <span class="math inline">\(\bar{X}\)</span></a><ul>
+<li class="chapter" data-level="4.1" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#enlightening-example"><i class="fa fa-check"></i><b>4.1</b> Enlightening Example</a></li>
+<li class="chapter" data-level="4.2" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#mathematical-details"><i class="fa fa-check"></i><b>4.2</b> Mathematical details</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#probability-rules-for-expectations-and-variances"><i class="fa fa-check"></i><b>4.2.1</b> Probability Rules for Expectations and Variances</a></li>
+<li class="chapter" data-level="4.2.2" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#mean-and-variance-of-the-sample-mean"><i class="fa fa-check"></i><b>4.2.2</b> Mean and Variance of the Sample Mean</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#distribution-of-barx"><i class="fa fa-check"></i><b>4.3</b> Distribution of <span class="math inline">\(\bar{X}\)</span></a></li>
+<li class="chapter" data-level="4.4" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#central-limit-theorem"><i class="fa fa-check"></i><b>4.4</b> Central Limit Theorem</a></li>
+<li class="chapter" data-level="4.5" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>4.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html"><i class="fa fa-check"></i><b>5</b> Confidence Intervals for <span class="math inline">\(\mu\)</span></a><ul>
+<li class="chapter" data-level="5.1" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#asymptotic-result-sigma-known"><i class="fa fa-check"></i><b>5.1</b> Asymptotic result (<span class="math inline">\(\sigma\)</span> known)</a></li>
+<li class="chapter" data-level="5.2" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#asymptotoic-result-sigma-unknown"><i class="fa fa-check"></i><b>5.2</b> Asymptotoic result (<span class="math inline">\(\sigma\)</span> unknown)</a></li>
+<li class="chapter" data-level="5.3" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#sample-size-selection"><i class="fa fa-check"></i><b>5.3</b> Sample Size Selection</a></li>
+<li class="chapter" data-level="5.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>5.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html"><i class="fa fa-check"></i><b>6</b> Hypothesis Tests for the mean of a population</a><ul>
+<li class="chapter" data-level="6.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#writing-hypotheses"><i class="fa fa-check"></i><b>6.1</b> Writing Hypotheses</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#null-and-alternative-hypotheses"><i class="fa fa-check"></i><b>6.1.1</b> Null and alternative hypotheses</a></li>
+<li class="chapter" data-level="6.1.2" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#error"><i class="fa fa-check"></i><b>6.1.2</b> Error</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#conducting-a-hypothesis-test-for-mu"><i class="fa fa-check"></i><b>6.2</b> Conducting a Hypothesis Test for <span class="math inline">\(\mu\)</span></a><ul>
+<li class="chapter" data-level="6.2.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#why-should-hypotheses-use-mu-and-not-barx"><i class="fa fa-check"></i><b>6.2.1</b> Why should hypotheses use <span class="math inline">\(\mu\)</span> and not <span class="math inline">\(\bar{x}\)</span>?</a></li>
+<li class="chapter" data-level="6.2.2" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#a-note-on-calculating-p-values"><i class="fa fa-check"></i><b>6.2.2</b> A note on calculating p-values</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#additional-examples"><i class="fa fa-check"></i><b>6.3</b> Additional Examples</a></li>
+<li class="chapter" data-level="6.4" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#p-values-vs-cutoff-values"><i class="fa fa-check"></i><b>6.4</b> P-values vs cutoff values</a></li>
+<li class="chapter" data-level="6.5" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#running-a-t-test-in-r"><i class="fa fa-check"></i><b>6.5</b> Running a t-test in R</a></li>
+<li class="chapter" data-level="6.6" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i><b>6.6</b> Type I and Type II Errors</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#power-and-sample-size-selection"><i class="fa fa-check"></i><b>6.6.1</b> Power and Sample Size Selection</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>6.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><i class="fa fa-check"></i><b>7</b> Two-Sample Hypothesis Tests and Confidence Intervals</a><ul>
+<li class="chapter" data-level="7.1" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#difference-in-means-between-two-groups"><i class="fa fa-check"></i><b>7.1</b> Difference in means between two groups</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#inference-via-resampling"><i class="fa fa-check"></i><b>7.1.1</b> Inference via resampling</a></li>
+<li class="chapter" data-level="7.1.2" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#inference-via-asymptotic-results-unequal-variance-assumption"><i class="fa fa-check"></i><b>7.1.2</b> Inference via asymptotic results (unequal variance assumption)</a></li>
+<li class="chapter" data-level="7.1.3" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#inference-via-asymptotic-results-equal-variance-assumption"><i class="fa fa-check"></i><b>7.1.3</b> Inference via asymptotic results (equal variance assumption)</a></li>
+<li class="chapter" data-level="7.1.4" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#additional-example"><i class="fa fa-check"></i><b>7.1.4</b> Additional Example</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#difference-in-means-between-two-groups-paired-data"><i class="fa fa-check"></i><b>7.2</b> Difference in means between two groups: Paired Data</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#additional-example-1"><i class="fa fa-check"></i><b>7.2.1</b> Additional Example</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>7.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html"><i class="fa fa-check"></i><b>8</b> Testing Model Assumptions</a><ul>
+<li class="chapter" data-level="8.1" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#testing-normality"><i class="fa fa-check"></i><b>8.1</b> Testing Normality</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#visual-inspection---qqplots"><i class="fa fa-check"></i><b>8.1.1</b> Visual Inspection - QQplots</a></li>
+<li class="chapter" data-level="8.1.2" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#tests-for-normality"><i class="fa fa-check"></i><b>8.1.2</b> Tests for Normality</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#testing-equal-variance"><i class="fa fa-check"></i><b>8.2</b> Testing Equal Variance</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#visual-inspection"><i class="fa fa-check"></i><b>8.2.1</b> Visual Inspection</a></li>
+<li class="chapter" data-level="8.2.2" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#tests-for-equal-variance"><i class="fa fa-check"></i><b>8.2.2</b> Tests for Equal Variance</a></li>
+<li class="chapter" data-level="8.2.3" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#symmetry-of-the-f-distribution"><i class="fa fa-check"></i><b>8.2.3</b> Symmetry of the F-distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#power-of-the-f-test"><i class="fa fa-check"></i><b>8.3</b> Power of the F-test</a></li>
+<li class="chapter" data-level="8.4" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#theoretical-distribution-vs-bootstrap"><i class="fa fa-check"></i><b>8.4</b> Theoretical distribution vs bootstrap</a></li>
+<li class="chapter" data-level="8.5" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>8.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html"><i class="fa fa-check"></i><b>9</b> Analysis of Variance (ANOVA)</a><ul>
+<li class="chapter" data-level="9.1" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#model"><i class="fa fa-check"></i><b>9.1</b> Model</a></li>
+<li class="chapter" data-level="9.2" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#theory"><i class="fa fa-check"></i><b>9.2</b> Theory</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#anova-table"><i class="fa fa-check"></i><b>9.2.1</b> Anova Table</a></li>
+<li class="chapter" data-level="9.2.2" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#anova-using-simple-vs-complex-models."><i class="fa fa-check"></i><b>9.2.2</b> ANOVA using Simple vs Complex models.</a></li>
+<li class="chapter" data-level="9.2.3" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#parameter-estimates-and-confidence-intervals"><i class="fa fa-check"></i><b>9.2.3</b> Parameter Estimates and Confidence Intervals</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#anova-in-r"><i class="fa fa-check"></i><b>9.3</b> Anova in R</a></li>
+<li class="chapter" data-level="9.4" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#multiple-comparisons"><i class="fa fa-check"></i><b>9.4</b> Multiple comparisons</a></li>
+<li class="chapter" data-level="9.5" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#different-model-representations"><i class="fa fa-check"></i><b>9.5</b> Different Model Representations</a><ul>
+<li class="chapter" data-level="9.5.1" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#theory-1"><i class="fa fa-check"></i><b>9.5.1</b> Theory</a></li>
+<li class="chapter" data-level="9.5.2" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#model-representations-in-r"><i class="fa fa-check"></i><b>9.5.2</b> Model Representations in R</a></li>
+<li class="chapter" data-level="9.5.3" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#implications-on-the-anova-table"><i class="fa fa-check"></i><b>9.5.3</b> Implications on the ANOVA table</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>9.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="10-regression.html"><a href="10-regression.html"><i class="fa fa-check"></i><b>10</b> Regression</a><ul>
+<li class="chapter" data-level="10.1" data-path="10-regression.html"><a href="10-regression.html#pearsons-correlation-coefficient"><i class="fa fa-check"></i><b>10.1</b> Pearson’s Correlation Coefficient</a></li>
+<li class="chapter" data-level="10.2" data-path="10-regression.html"><a href="10-regression.html#model-theory"><i class="fa fa-check"></i><b>10.2</b> Model Theory</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="10-regression.html"><a href="10-regression.html#anova-interpretation"><i class="fa fa-check"></i><b>10.2.1</b> Anova Interpretation</a></li>
+<li class="chapter" data-level="10.2.2" data-path="10-regression.html"><a href="10-regression.html#confidence-intervals-vs-prediction-intervals"><i class="fa fa-check"></i><b>10.2.2</b> Confidence Intervals vs Prediction Intervals</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="10-regression.html"><a href="10-regression.html#extrapolation"><i class="fa fa-check"></i><b>10.3</b> Extrapolation</a></li>
+<li class="chapter" data-level="10.4" data-path="10-regression.html"><a href="10-regression.html#checking-model-assumptions"><i class="fa fa-check"></i><b>10.4</b> Checking Model Assumptions</a></li>
+<li class="chapter" data-level="10.5" data-path="10-regression.html"><a href="10-regression.html#common-problems"><i class="fa fa-check"></i><b>10.5</b> Common Problems</a><ul>
+<li class="chapter" data-level="10.5.1" data-path="10-regression.html"><a href="10-regression.html#influential-points"><i class="fa fa-check"></i><b>10.5.1</b> Influential Points</a></li>
+<li class="chapter" data-level="10.5.2" data-path="10-regression.html"><a href="10-regression.html#transformations"><i class="fa fa-check"></i><b>10.5.2</b> Transformations</a></li>
+</ul></li>
+<li class="chapter" data-level="10.6" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>10.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="11-resampling-linear-models.html"><a href="11-resampling-linear-models.html"><i class="fa fa-check"></i><b>11</b> Resampling Linear Models</a></li>
+<li class="chapter" data-level="12" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html"><i class="fa fa-check"></i><b>12</b> Contingency Tables</a><ul>
+<li class="chapter" data-level="12.1" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html#expected-counts"><i class="fa fa-check"></i><b>12.1</b> Expected Counts</a></li>
+<li class="chapter" data-level="12.2" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html#hypothesis-testing"><i class="fa fa-check"></i><b>12.2</b> Hypothesis Testing</a></li>
+<li class="chapter" data-level="12.3" data-path="12-contingency-tables.html"><a href="12-contingency-tables.html#rxc-tables"><i class="fa fa-check"></i><b>12.3</b> RxC tables</a></li>
+<li class="chapter" data-level="12.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#exercises"><i class="fa fa-check"></i><b>12.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendix-a-alternative-bootstrap-code.html"><a href="appendix-a-alternative-bootstrap-code.html"><i class="fa fa-check"></i>Appendix A : Alternative Bootstrap Code</a><ul>
+<li class="chapter" data-level="" data-path="appendix-a-alternative-bootstrap-code.html"><a href="appendix-a-alternative-bootstrap-code.html#mosaic-package"><i class="fa fa-check"></i>Mosaic Package</a></li>
+<li class="chapter" data-level="" data-path="appendix-a-alternative-bootstrap-code.html"><a href="appendix-a-alternative-bootstrap-code.html#base-r-code"><i class="fa fa-check"></i>Base R Code</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Statistical Methodology, Second Edition</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="summary-statistics-and-graphing" class="section level1">
+<h1><span class="header-section-number">Chapter 1</span> Summary Statistics and Graphing</h1>
+<p>When confronted with a large amount of data, we seek to summarize the data into statistics that capture the essence of the data with as few numbers as possible. Graphing the data has a similar goal: to reduce the data to an image that represents all the key aspects of the raw data. In short, we seek to simplify the data in order to understand the trends while not obscuring important structure.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="1-summary-statistics-and-graphing.html#cb1-1"></a><span class="co"># Every chapter, we will load all the librarys we will use at the beginning</span></span>
+<span id="cb1-2"><a href="1-summary-statistics-and-graphing.html#cb1-2"></a><span class="co"># of the chapter. These commands will start most every homework assignment</span></span>
+<span id="cb1-3"><a href="1-summary-statistics-and-graphing.html#cb1-3"></a><span class="co"># for this class, and likely, every R script you write.</span></span>
+<span id="cb1-4"><a href="1-summary-statistics-and-graphing.html#cb1-4"></a><span class="kw">library</span>(ggplot2)    <span class="co"># graphing functions</span></span>
+<span id="cb1-5"><a href="1-summary-statistics-and-graphing.html#cb1-5"></a><span class="kw">library</span>(dplyr)      <span class="co"># data summary tools</span></span>
+<span id="cb1-6"><a href="1-summary-statistics-and-graphing.html#cb1-6"></a><span class="kw">library</span>(knitr)</span>
+<span id="cb1-7"><a href="1-summary-statistics-and-graphing.html#cb1-7"></a><span class="kw">library</span>(tidyr)</span>
+<span id="cb1-8"><a href="1-summary-statistics-and-graphing.html#cb1-8"></a></span>
+<span id="cb1-9"><a href="1-summary-statistics-and-graphing.html#cb1-9"></a><span class="co"># Set default behavior of ggplot2 graphs to be black/white theme</span></span>
+<span id="cb1-10"><a href="1-summary-statistics-and-graphing.html#cb1-10"></a><span class="kw">theme_set</span>(<span class="kw">theme_bw</span>())</span></code></pre></div>
+<p>For this chapter, we will consider data from a the 2005 Cherry Blossom 10 mile run that occurs in Washington DC. This data set has 8636 observations that includes the runners state of residence, official time (gun to finish, in seconds), net time (start line to finish, in seconds), age, and gender of the runners.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="1-summary-statistics-and-graphing.html#cb2-1"></a><span class="kw">data</span>(TenMileRace, <span class="dt">package=</span><span class="st">&#39;mosaicData&#39;</span>)</span>
+<span id="cb2-2"><a href="1-summary-statistics-and-graphing.html#cb2-2"></a><span class="kw">head</span>(TenMileRace)   <span class="co"># examine the first few rows of the data</span></span></code></pre></div>
+<pre><code>##   state time  net age sex
+## 1    VA 6060 5978  12   M
+## 2    MD 4515 4457  13   M
+## 3    VA 5026 4928  13   M
+## 4    MD 4229 4229  14   M
+## 5    MD 5293 5076  14   M
+## 6    VA 6234 5968  14   M</code></pre>
+<div id="variable-types" class="section level2">
+<h2><span class="header-section-number">1.1</span> Variable Types</h2>
+<p>We will always want to be aware of the variable types in which we are working. We will distinguish variables into two principal categories: numerical and categorical.</p>
+<div id="categorical" class="section level3">
+<h3><span class="header-section-number">1.1.1</span> Categorical</h3>
+<ul>
+<li><strong>Categorical variables</strong> are variables whose elements take on non-numerical entries.</li>
+</ul>
+<p>Examples within the <code>TenMileRace</code> set include the <em>state</em> and <em>sex</em> variables. Categorical variables are typically unordered, such that if we chose to order ‘NM’ before ‘AZ’ in an evaluation of the <em>state</em> variable, there would be no impact on our analysis. Categorical variables that have an implied order are termed <strong>ordinal</strong> variables. Examples include the common A, B, C, D, F grade-scale system. The variable entries are non-numerical, but there is an implied order that A &gt; B &gt; C &gt; D &gt; F. Such an ordering could influence the way the data is evaluated.</p>
+</div>
+<div id="numerical" class="section level3">
+<h3><span class="header-section-number">1.1.2</span> Numerical</h3>
+<p><strong>Numerical variables</strong> are broadly classified as variables with numerical elements. Numerical variables within the <code>TenMileRace</code> set include the <em>time</em>, <em>net</em>, and <em>age</em> variables. Numerical variables are sub-classified as either discrete or continuous.</p>
+<ul>
+<li><strong>Discrete variables</strong> have entries that can be written as a list.</li>
+</ul>
+<p>Data that is discrete can take on a countable number of entries, such the variable <em>age</em> in years. We could write a list of numbers, <code>{0, 1, 2, ..., 122}</code><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, of which all values within the <em>age</em> variable could be drawn. Discrete variables are potentially finite, such as in the previous list for possible values of <em>age</em>. Additional examples include the number of students in a classroom or the number of offspring for a rabbit. Finite variables have important distributions such as the Binomial distribution. Discrete variables can also take on a potentially infinite number of possible values, but the values can still be listed, <code>{0, 1, 2, ...}</code>. Although there is no largest value within the list, the number of potential entries is still countable. Infinite valued discrete variables will also serve the basis for important distributions, such as the Poisson distribution.</p>
+<ul>
+<li><strong>Continuous variables</strong> have entries that take on numerical values that lie on an interval.</li>
+</ul>
+<p>To decided if a data attribute is discrete or continuous, I often as “Does a fraction of a value make sense?” If so, then the data is continuous. The variables <em>time</em> and <em>net</em> are both recorded in seconds, and in this case seem to conform to discrete. However, if we had instead recorded the minutes with fractions of a minute present, such as 75.25 minutes instead of 4515 seconds, we might realize these variables are more likely to be considered continuous. Continuous variables constitute a large set of distributions that will be studied, the most commonly known being the Normal distribution. For the Normal distribution, it is possible to see values ranging from <span class="math inline">\((-\infty, \infty)\)</span>. This constitutes an interval, albeit a very large interval. Thus, elements of the variables lie on an interval, and it is not possible to list out all possible entries. Another simple example will be the Uniform distribution, whose entries lie on the interval <code>(a,b)</code>, where <code>a</code> and <code>b</code> are any real valued number. Again, all potential observation of the variable can be found in the interval, but it is not possible to list out all possible outcomes.</p>
+</div>
+</div>
+<div id="randomization-and-sampling" class="section level2">
+<h2><span class="header-section-number">1.2</span> Randomization and Sampling</h2>
+<p>An important aspect of working within statistics is the concept that the data we are working with has been collected randomly. We think of having a <strong>population</strong>, the collection of all possible observations under consideration. The population will be dependent on the problem at hand. In the case of performing a study at a university, it may be that the entire university is the population. However, you may be working with only a specific subject, in which case the population may be only Mathematics majors. A <strong>sample</strong> is a subset of the population for which information is gathered. From the university example, we may choose to collect information from 1,000 students (our sample) which is drawn from the entire university population of 30,000 students (our population).</p>
+<p>The way we select our samples is done to ensure that we have randomly collected the data, such that there is no influence of correlation between samples interfering with our analysis. We will cover three broad sampling techniques that help ensure randomization of the samples collected.</p>
+<div id="sampling-techniques" class="section level3">
+<h3><span class="header-section-number">1.2.1</span> Sampling Techniques</h3>
+<ul>
+<li><strong>Simple Random Sampling (SRS)</strong> is when every member of the population is equally-likely to be chosen.</li>
+</ul>
+<p>For SRS to be used, we also ensure that every member of the population is selected independently. Let us take the a university of having 30,000 students enrolled to be our population of which we would like to selected 1,000 as a sample. To use SRS, we would assign every member of the population a value <code>{1, 2, ..., 30,000}</code> and then draw numbers, without replacement, from our list of values. Such random numbers can be drawn using a random number generator, or traditionally through the use of a random number table. Below we show a simple method in R to draw 1,000 from 30,000 without replacement.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="1-summary-statistics-and-graphing.html#cb4-1"></a><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">30000</span>, <span class="dv">1000</span>, <span class="dt">replace=</span><span class="ot">FALSE</span>)</span></code></pre></div>
+<p>Using this method would ensure that we obtain a random sampling drawn from the entire University. What we cannot do is draw a student, then also draw all of their siblings. If we were to use such a method, we would be introducing correlation within our samples. We must ensure that the students are all drawn randomly and that the selection is done independently.</p>
+<ul>
+<li><strong>Random Cluster Sampling</strong> draws entire clusters based on a division of the population.</li>
+</ul>
+<p>In cluster sampling, the biggest idea is that we will draw entire clusters. Using the <code>TenMileRace</code> data, we could choose to create clusters from any of the variables. We could for example, cluster all participates based on <em>state</em> or create two clusters using <em>sex</em>, although two clusters may too limiting. We could also create ranges of values for the <em>time</em>, <em>net</em>, or <em>age</em> variables, and cluster the groups based on numerical ranges. Any of these methods would work for creating clusters. Let us consider clustering based on <em>state</em>. If one was to view this variable, they would find there are 62 unique <em>state</em> identifiers. This is due to there being several countries listed in this variable, as well as the inclusion of Washington, DC as its own state, and because it is real data, there is also one blank. The main concept though if we chose to cluster by <em>state</em>, we would produce 62 clusters, all of which are imbalanced in size. To complete cluster random sampling, we then use SRS to draw X states from the 62 clusters produced, such as say 10 from 62. This is done synonymously to the above method, but now from the 10 clusters chosen, we would sample ALL participants from within those clusters. Thus, if I were to draw the AZ cluster, I would sample all 3 participants. If I drew the VA cluster, we would sample all 3689 participants. Although this type of sampling is easier to produce larger samples with less randomization, we can see that clusters can be highly imbalanced, and it is unlikely that clustering will allow me to sub-sample from the entire population. Just in our example, I would not gather information from 52 of the 62 states, if I only was to draw 10 clusters.</p>
+<ul>
+<li><strong>Stratified Sampling</strong> draws samples using proportionality based on homogeneous groupings known as strata.</li>
+</ul>
+<p>It is often easy to confuse Clustering and Stratified sampling, but the major difference here is that we will draw random samples from within the strata, unlike clustering where we take all individuals from the chosen clusters. Let us consider for exampling producing a random stratified sample using <em>sex</em> as our strata. Here, our homogeneous grouping is simply <em>sex</em>. Other examples might include stratifying animals by breed, stratifying the atmosphere by height above ground, or stratifying soil by depth. The main idea behind a strata is every member should be homogenized: in our example, we homogenized by ‘Male’ and ‘Female’.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">sex</th>
+<th align="right">Frequency</th>
+<th align="right">Proportion</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">F</td>
+<td align="right">4325</td>
+<td align="right">0.501</td>
+</tr>
+<tr class="even">
+<td align="left">M</td>
+<td align="right">4311</td>
+<td align="right">0.499</td>
+</tr>
+</tbody>
+</table>
+<p>Above shows a table for the number of ‘Male’ and ‘Female’ participants. We see that these two strata are nearly equivalent, but we want to ensure we draw the samples based on proportionality. In total, we have 8636 participants. Let us say we want to draw <span class="math inline">\(800\)</span> of these participants, but through stratification using <em>sex</em>. We must then ensure that when we draw a random sample, we obtain a sub-sample that has nearly equivalent proportions to that observed in the population. We must therefore draw <span class="math inline">\(800*0.501 = 401\)</span> Males from the <span class="math inline">\(4311\)</span> available and <span class="math inline">\(800*0.499 = 399\)</span> Females from the <span class="math inline">\(4325\)</span>, where rounding was used. Notice this gives me <span class="math inline">\(401 + 399 = 800\)</span> samples, and that I have <span class="math inline">\(401/800 = 0.501\)</span> of the the sub-sample is Male and <span class="math inline">\(399/800 = 0.499\)</span> is female. Thus, stratified sampling retains the proportions of the populations and allows me to sample from all strata. This can have desirable consequences, mainly that stratifying ensures samples are taken from all potential sources, here the sources are the different categories within our <em>sex</em> variable. Although unlikely, if I did draw samples using only SRS with no stratifying, I might get proportions of ‘Male’ and ‘Female’ that are close to that of the original sample. Stratifying guarantees we reproduce the proportions, while sampling from all homogeneous groupings.</p>
+</div>
+</div>
+<div id="graphical-summaries" class="section level2">
+<h2><span class="header-section-number">1.3</span> Graphical Summaries</h2>
+<div id="barchartsbarplots-univariate---categorical" class="section level3">
+<h3><span class="header-section-number">1.3.1</span> Barcharts/Barplots (Univariate - Categorical)</h3>
+<p>If we have univariate data about a number of groups, often the best way to display it is using barplots. They have the advantage over pie-charts that groups are easily compared. The bars do NOT touch indicating that the order is not required, and the same information could be gained if we plotted them in a slightly different order. Below we compare the counts of ‘Male’ and ‘Female’ participants.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="1-summary-statistics-and-graphing.html#cb5-1"></a><span class="kw">ggplot</span>(TenMileRace, <span class="kw">aes</span>(<span class="dt">x=</span>sex)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>()</span></code></pre></div>
+<p><img src="01_Data_Summary_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>One thing that can be misleading is if the zero on the y-axis is removed. In the following graph it looks like there are twice as many female runners as male until you examine the y-axis closely. In general, the following is a very misleading graph.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="1-summary-statistics-and-graphing.html#cb6-1"></a><span class="kw">ggplot</span>(TenMileRace, <span class="kw">aes</span>(<span class="dt">x=</span>sex)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb6-2"><a href="1-summary-statistics-and-graphing.html#cb6-2"></a><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span></span>
+<span id="cb6-3"><a href="1-summary-statistics-and-graphing.html#cb6-3"></a><span class="st">  </span><span class="kw">coord_cartesian</span>(<span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">4300</span>, <span class="dv">4330</span>))</span></code></pre></div>
+<p><img src="01_Data_Summary_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+</div>
+<div id="histogram-univariate---numerical" class="section level3">
+<h3><span class="header-section-number">1.3.2</span> Histogram (Univariate - Numerical)</h3>
+<p>A histogram looks very similar to a bar plot, but is used to represent numerical data instead of categorical and therefore the bars will actually be touching.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="1-summary-statistics-and-graphing.html#cb7-1"></a><span class="kw">ggplot</span>(TenMileRace, <span class="kw">aes</span>(<span class="dt">x=</span>net)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>()</span></code></pre></div>
+<p><img src="01_Data_Summary_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>Often when a histogram is presented, the y-axis is labeled as “frequency” or “count” which is the number of observations that fall within a particular bin. However, it is often desirable to scale the y-axis so that if we were to sum up the area <span class="math inline">\((height * width)\)</span> then the total area would sum to 1. The re-scaling that accomplishes this is</p>
+<p><span class="math display">\[density=\frac{\#\;observations\;in\;bin}{total\;number\;observations}\cdot\frac{1}{bin\;width}\]</span></p>
+<p>We can force the histogram created within <code>ggplot</code> to be display density by using the <code>y=..density..</code> command.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="1-summary-statistics-and-graphing.html#cb8-1"></a><span class="kw">ggplot</span>(TenMileRace, <span class="kw">aes</span>(<span class="dt">x=</span>net)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y=</span>..density..))</span></code></pre></div>
+<p><img src="01_Data_Summary_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+</div>
+<div id="boxplot-bivariate---categorical-vs-numerical" class="section level3">
+<h3><span class="header-section-number">1.3.3</span> Boxplot (Bivariate - Categorical vs Numerical)</h3>
+<p>We often wish to compare response levels from two or more groups of interest. To do this, we often use side-by-side boxplots. Notice that each observation is associated with a continuous response value and a categorical value.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="1-summary-statistics-and-graphing.html#cb9-1"></a><span class="kw">ggplot</span>(TenMileRace, <span class="kw">aes</span>(<span class="dt">x=</span>sex, <span class="dt">y=</span>net)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>()</span></code></pre></div>
+<p><img src="01_Data_Summary_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>In this graph, the edges of the box are defined by the 25% and 75% percentiles. That is to say, 25% of the data is to the below of the box, 50% of the data is in the box, and the final 25% of the data is to the above of the box. The line in the center of the box represents the 50% percentile, more commonly called the median. The dots are data points that are traditionally considered outliers. We will define the Inter-Quartile Range (IQR) as the length of the box. It is conventional to define any observation more than 1.5*IQR from the box as an outlier. In the above graph it is easy to see that the median time for the males is lower than for females, but the box width (one measure of the spread of the data) is approximately the same.</p>
+<p>Because boxplots simplify the distribution to just 5 numbers, looking at side-by-side histograms might give similar information.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="1-summary-statistics-and-graphing.html#cb10-1"></a><span class="kw">ggplot</span>(TenMileRace, <span class="kw">aes</span>(<span class="dt">x=</span>net)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>() <span class="op">+</span></span>
+<span id="cb10-2"><a href="1-summary-statistics-and-graphing.html#cb10-2"></a><span class="st">  </span><span class="kw">facet_grid</span>( . <span class="op">~</span><span class="st"> </span>sex )  <span class="co"># side-by-side plots based on sex</span></span></code></pre></div>
+<p><img src="01_Data_Summary_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>Orientation of graphs can certainly matter. In this case, it makes sense to stack the two graphs to facilitate comparisons in where the centers are and it is more obvious that the center of the female distribution is about 500 to 600 seconds higher than then center of the male distribution.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="1-summary-statistics-and-graphing.html#cb11-1"></a><span class="kw">ggplot</span>(TenMileRace, <span class="kw">aes</span>(<span class="dt">x=</span>net)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>() <span class="op">+</span></span>
+<span id="cb11-2"><a href="1-summary-statistics-and-graphing.html#cb11-2"></a><span class="st">  </span><span class="kw">facet_grid</span>( sex <span class="op">~</span><span class="st"> </span>. )  <span class="co"># side-by-side plots based on sex</span></span></code></pre></div>
+<p><img src="01_Data_Summary_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+</div>
+<div id="scatterplot-bivariate---numerical-vs-numerical" class="section level3">
+<h3><span class="header-section-number">1.3.4</span> Scatterplot (Bivariate - Numerical vs Numerical)</h3>
+<p>Finally we might want to examine the relationship between two numerical random variables. For example, we might wish to explore the relationship between a runners age and their net time.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="1-summary-statistics-and-graphing.html#cb12-1"></a><span class="kw">ggplot</span>(TenMileRace, <span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y=</span>net, <span class="dt">color=</span>sex)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<p><img src="01_Data_Summary_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+</div>
+</div>
+<div id="measures-of-centrality" class="section level2">
+<h2><span class="header-section-number">1.4</span> Measures of Centrality</h2>
+<p>The most basic question to ask of any dataset is ‘What is the typical value?’ There are several ways to answer that question and they should be familiar to most students.</p>
+<div id="mean" class="section level3">
+<h3><span class="header-section-number">1.4.1</span> Mean</h3>
+<p>Often called the average, or arithmetic mean, we will denote this special statistic with a bar. We define <span class="math display">\[\bar{x}=\frac{1}{n}\sum_{i=1}^{n}x_{i}=\frac{1}{n}\left(x_{1}+x_{2}+\dots+x_{n}\right)\]</span></p>
+<p>If we want to find the mean of five numbers <span class="math inline">\(\left\{ 3,6,4,8,2\right\}\)</span> the calculation is
+<span class="math display">\[\bar{x}	=	\frac{1}{5}\left(3+6+4+8+2\right)
+	=	\frac{1}{5}\left(23\right)
+	=	23/5
+	=	4.6\]</span></p>
+<p>This can easily be calculated in R by using the function <code>mean()</code>. We first extract the column we are interested in using the notation: <code>DataSet$ColumnName</code> where the $ signifies grabbing the column.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="1-summary-statistics-and-graphing.html#cb13-1"></a><span class="kw">mean</span>( TenMileRace<span class="op">$</span>net ) <span class="co"># Simplest way of doing this calculation</span></span></code></pre></div>
+<pre><code>## [1] 5599.065</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="1-summary-statistics-and-graphing.html#cb15-1"></a><span class="co"># Using the dplyr package we first specify the data set </span></span>
+<span id="cb15-2"><a href="1-summary-statistics-and-graphing.html#cb15-2"></a><span class="co"># Then specify we wish to summarize() the data set</span></span>
+<span id="cb15-3"><a href="1-summary-statistics-and-graphing.html#cb15-3"></a><span class="co"># The summary we want to do is to calculate the mean of the &#39;net&#39; column.</span></span>
+<span id="cb15-4"><a href="1-summary-statistics-and-graphing.html#cb15-4"></a><span class="co"># and we want to name what we are about to create as Calculated.Mean</span></span>
+<span id="cb15-5"><a href="1-summary-statistics-and-graphing.html#cb15-5"></a>TenMileRace <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>( <span class="dt">Calculated.Mean =</span> <span class="kw">mean</span>(net) )  </span></code></pre></div>
+<pre><code>##   Calculated.Mean
+## 1        5599.065</code></pre>
+</div>
+<div id="median" class="section level3">
+<h3><span class="header-section-number">1.4.2</span> Median</h3>
+<p>If the data were to be ordered, the median would be the middle most observation (or, in the case that <span class="math inline">\(n\)</span> is even, the mean of the two middle most values).</p>
+<p>In our simple case of five observations <span class="math inline">\(\left\{ 3,6,4,8,2\right\}\)</span>, we first sort the data into <span class="math inline">\(\left\{ 2,3,4,6,8\right\}\)</span> and then the middle observation is clearly <span class="math inline">\(4\)</span>.</p>
+<p>In R the median is easily calculated by the function <code>median()</code>.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="1-summary-statistics-and-graphing.html#cb17-1"></a><span class="co"># median( TenMileRace$net )</span></span>
+<span id="cb17-2"><a href="1-summary-statistics-and-graphing.html#cb17-2"></a>TenMileRace <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>( <span class="dt">Median =</span> <span class="kw">median</span>(net) ) </span></code></pre></div>
+<pre><code>##   Median
+## 1   5555</code></pre>
+</div>
+<div id="mode" class="section level3">
+<h3><span class="header-section-number">1.4.3</span> Mode</h3>
+<p>This is peak in the distribution. A distribution might have a single peak or multiple peaks.This measure of “center” is not often used in quantitative analyses, but is often helps provide a nice description.</p>
+<p>When creating a histogram from a set of data, often the choice of binwidth will affect the modes of the graph. Consider the following graphs of <span class="math inline">\(n=200\)</span> data points, where we have slightly different binwidths.</p>
+<p><img src="01_Data_Summary_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p>With the two smaller binwidths, sample randomness between adjacent bins obscures the overall shape and we have many different modes. However the <em>larger</em> binwidth results in a histogram that more effectively communicates the shape of the distribution and has just a single mode at around 6000 seconds. When making histograms, the choice of binwidth (or equivalently, the number of bins) should not be ignored and a balance should be struck between simplifying the data too much vs seeing too much of the noise resulting from the sample randomness.</p>
+</div>
+<div id="examples" class="section level3">
+<h3><span class="header-section-number">1.4.4</span> Examples</h3>
+<ul>
+<li>Suppose a retired professor were to become bored and enroll in the author’s STA 570 course, how would that affect the mean and median age of the STA 570 students?
+<ul>
+<li>The mean would move much more than the median. Suppose the class has 5 people right now, ages 21, 22, 23, 23, 24 and therefore the median is 23. When the retired professor joins, the ages will be 21, 22, 23, 23, 24, 72 and the median will remain 23. However, the mean would move because we add in such a large outlier. Whenever we are dealing with skewed data, the mean is pulled toward the outlying observations.</li>
+</ul></li>
+<li>In 2010, the median NFL player salary was $770,000 while the mean salary was $1.9 million. Why the difference?
+<ul>
+<li>Because salary data is skewed by superstar players that make huge salaries (in excess of $20,000,000) while the minimum salary for a rookie is $375,000. Financial data often reflects a highly skewed distribution and the median is often a better measure of centrality in these cases.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="measures-of-spread" class="section level2">
+<h2><span class="header-section-number">1.5</span> Measures of Spread</h2>
+<p>The second question to ask of a dataset is ‘How much spread is in the data?’ The fancier (and eventually more technical) word for spread is ‘variability’. As with centrality, there are several ways to measure this.</p>
+<div id="range" class="section level3">
+<h3><span class="header-section-number">1.5.1</span> Range</h3>
+<p>Range is the distance from the largest to the smallest value in the dataset.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="1-summary-statistics-and-graphing.html#cb19-1"></a>TenMileRace <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>( <span class="dt">Range =</span> <span class="kw">max</span>(net) <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(net) )</span></code></pre></div>
+<pre><code>##   Range
+## 1  7722</code></pre>
+</div>
+<div id="inter-quartile-range-iqr" class="section level3">
+<h3><span class="header-section-number">1.5.2</span> Inter-Quartile Range (IQR)</h3>
+<p>The p-th percentile is the observation (or observations) that has at most <span class="math inline">\(p\)</span> percent of the observations below it and <span class="math inline">\((1-p)\)</span> above it, where <span class="math inline">\(p\)</span> is between 0 and 100. The median is the <span class="math inline">\(50\)</span>th percentile. Often we are interested in splitting the data into four equal sections using the <span class="math inline">\(25\)</span>th, <span class="math inline">\(50\)</span>th, and <span class="math inline">\(75\)</span>th percentiles (which, because it splits the data into four sections, we often call these the <span class="math inline">\(1\)</span>st, <span class="math inline">\(2\)</span>nd, and <span class="math inline">\(3\)</span>rd quartiles).</p>
+<p>In general we could be interested in dividing the data up into an arbitrary number of sections, and refer to those as quantiles of my data.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="1-summary-statistics-and-graphing.html#cb21-1"></a><span class="kw">quantile</span>( TenMileRace<span class="op">$</span>net ) <span class="co"># gives the 5-number summary by default</span></span></code></pre></div>
+<pre><code>##    0%   25%   50%   75%  100% 
+##  2814  4950  5555  6169 10536</code></pre>
+<p>The IQR is defined as the distance between the <span class="math inline">\(3\)</span>rd and <span class="math inline">\(1\)</span>st quantiles.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="1-summary-statistics-and-graphing.html#cb23-1"></a><span class="co"># IQR( TenMileRace$net )</span></span>
+<span id="cb23-2"><a href="1-summary-statistics-and-graphing.html#cb23-2"></a>TenMileRace <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>( <span class="dt">CalcIQR =</span> <span class="kw">IQR</span>(net) ) </span></code></pre></div>
+<pre><code>##   CalcIQR
+## 1    1219</code></pre>
+<p>Notice that we’ve defined IQR before when we looked at boxplots, and that the IQR is exactly the length of the box.</p>
+</div>
+<div id="variance" class="section level3">
+<h3><span class="header-section-number">1.5.3</span> Variance</h3>
+<p>One way to measure the spread of a distribution is to ask “what is the typical distance of an observation to the mean?” We could define the <span class="math inline">\(i\)</span>th deviation as
+<span class="math display">\[e_{i}=x_{i}-\bar{x}\]</span>
+and then ask what is the average deviation? The problem with this approach is that the sum (and thus the average) of all deviations is always 0.
+<span class="math display">\[\sum_{i=1}^{n}(x_{i}-\bar{x})	=	\sum_{i=1}^{n}x_{i}-\sum_{i=1}^{n}\bar{x}
+	=	n\frac{1}{n}\sum_{i=1}^{n}x_{i}-n\bar{x}
+	=	n\bar{x}-n\bar{x}
+	=	0\]</span></p>
+<p>The big problem is that about half the deviates are negative and the others are positive. What we really care is the distance from the mean, not the sign. So we could either take the absolute value, or square it.</p>
+<p>There are some really good theoretical reasons to chose the square option. Squared terms are easier to deal with computationally when compared to absolute values. More importantly, the spread of the normal distribution is parameterized via squared distances from the mean. Because the normal distribution is so important, we’ve chosen to define the sample variance so it matches up with the natural spread parameter of the normal distribution. So we square the deviations and find the average deviation size (approximately) and call that the sample variance.
+<span class="math display">\[s^{2}=\frac{1}{n-1}\sum_{i=1}^{n}\left(x_{i}-\bar{x}\right)^{2}\]</span>
+Why do we divide by <span class="math inline">\(n-1\)</span> instead of <span class="math inline">\(n\)</span>?</p>
+<ol style="list-style-type: decimal">
+<li>If we divide by <span class="math inline">\(n\)</span>, then on average, we would tend to underestimate the population variance <span class="math inline">\(\sigma^{2}\)</span>.</li>
+<li>The reason is because we are using the same set of data to estimate <span class="math inline">\(\sigma^{2}\)</span> as we did to estimate the population mean (<span class="math inline">\(\mu\)</span>). If we could use<br />
+<span class="math display">\[\frac{1}{n}\sum_{i=1}^{n}\left(x_{i}-\mu\right)^{2}\]</span>
+as the estimator, we would be fine. But because we have to replace <span class="math inline">\(\mu\)</span> with <span class="math inline">\(\bar{x}\)</span> we have to pay a price.</li>
+<li>Because the estimation of <span class="math inline">\(\sigma^{2}\)</span> requires the estimation of one other quantity, we have used one degree of freedom on estimating the mean and we need to adjust the formula accordingly.</li>
+</ol>
+<p>In later chapters we’ll give this quantity a different name, so we’ll introduce the necessary vocabulary here. Let <span class="math inline">\(e_{i}=x_{i}-\bar{x}\)</span> be the error left after fitting the sample mean. This is the deviation from the observed value to the “expected value” <span class="math inline">\(\bar{x}\)</span>. We can then define the Sum of Squared Error as
+<span class="math display">\[SSE=\sum_{i=1}^{n}e_{i}^{2}\]</span>
+and the Mean Squared Error as <span class="math display">\[MSE=\frac{SSE}{df}=\frac{SSE}{n-1}=s^{2}\]</span> where <span class="math inline">\(df=n-1\)</span> is the appropriate degrees of freedom.</p>
+<p>Calculating the variance of our small sample of five observations <span class="math inline">\(\left\{ 3,6,4,8,2\right\}\)</span>, recall that the sample mean was <span class="math inline">\(\bar{x}=4.6\)</span></p>
+<table style="width:68%;">
+<colgroup>
+<col width="11%" />
+<col width="27%" />
+<col width="29%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(x_i\)</span></th>
+<th><span class="math inline">\((x_i-\bar{x})\)</span></th>
+<th><span class="math inline">\((x_i-\bar{x})^2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>3</td>
+<td><pre><code>  -1.6</code></pre></td>
+<td>2.56</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td><pre><code>   1.4</code></pre></td>
+<td>1.96</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td><pre><code>  -0.6</code></pre></td>
+<td>0.36</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td><pre><code>   3.4</code></pre></td>
+<td>11.56</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td><pre><code>  -2.6</code></pre></td>
+<td>6.76</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><pre><code> Sum = 0</code></pre></td>
+<td>SSE = 23.2</td>
+</tr>
+</tbody>
+</table>
+<p>and so the sample variance is <span class="math display">\[s^2 = \frac{SSE}{n-1} = \frac{23.2}{(n-1)} = \frac{23.2}{4}=5.8\]</span></p>
+<p>Clearly this calculation would get very tedious to do by hand and computers will be much more accurate in these calculations. In R, the sample variance is easily calculated by the function <code>var()</code>. Given below is an example calculation done using <code>dplyr</code> commands.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="1-summary-statistics-and-graphing.html#cb31-1"></a>ToyData &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">x=</span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">2</span>) )</span>
+<span id="cb31-2"><a href="1-summary-statistics-and-graphing.html#cb31-2"></a><span class="co">#var(ToyData$x)</span></span>
+<span id="cb31-3"><a href="1-summary-statistics-and-graphing.html#cb31-3"></a>ToyData <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>( <span class="dt">s2 =</span> <span class="kw">var</span>(x) )</span></code></pre></div>
+<pre><code>##    s2
+## 1 5.8</code></pre>
+<p>For the larger <code>TenMileRace</code> data set, the variance of the <em>net</em> time to complete the race is calculated just as easily.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="1-summary-statistics-and-graphing.html#cb33-1"></a>TenMileRace <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>( <span class="dt">s2 =</span> <span class="kw">var</span>(net) )</span></code></pre></div>
+<pre><code>##         s2
+## 1 940233.5</code></pre>
+</div>
+<div id="standard-deviation" class="section level3">
+<h3><span class="header-section-number">1.5.4</span> Standard Deviation</h3>
+<p>The biggest problem with the sample variance statistic is that the units are the original units-squared. That means if you are looking at data about car fuel efficiency, then the values would be in mpg<span class="math inline">\(^{2}\)</span> which are units that I can’t really understand. The solution is to take the positive square root, which we will call the sample standard deviation. <span class="math display">\[s=\sqrt{s^{2}}\]</span>
+Why do we take always evaluate variance? Mathematically the variance is more useful and most distributions (such as the normal) are defined by the variance term. Practically, standard deviation is easier to think about and becomes an informative quantity when discussing sample error.</p>
+<p>The sample standard deviation is important enough for R to have a function <code>sd()</code> that will calculate it for you.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="1-summary-statistics-and-graphing.html#cb35-1"></a><span class="co"># sd( TenMileRace$net )</span></span>
+<span id="cb35-2"><a href="1-summary-statistics-and-graphing.html#cb35-2"></a>TenMileRace <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>( <span class="dt">s =</span> <span class="kw">sd</span>(net) )</span></code></pre></div>
+<pre><code>##          s
+## 1 969.6564</code></pre>
+</div>
+<div id="coefficient-of-variation" class="section level3">
+<h3><span class="header-section-number">1.5.5</span> Coefficient of Variation</h3>
+<p>Suppose we had a group of animals and the sample standard deviation of the animals lengths was 15 cm. If the animals were elephants, you would be amazed at their uniformity in size, but if they were insects, you would be astounded at the variability. To account for that, the coefficient of variation takes the sample standard deviation and divides by the absolute value of the sample mean (to keep everything positive)</p>
+<p><span class="math display">\[CV=\frac{s}{\vert\bar{x}\vert}\]</span></p>
+<p>Below is sample code to quickly grab the summary metrics of interest, with a calculation of the CV.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="1-summary-statistics-and-graphing.html#cb37-1"></a>TenMileRace <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>( <span class="dt">s =</span> <span class="kw">sd</span>(net), <span class="dt">xbar =</span> <span class="kw">mean</span>(net), <span class="dt">CV =</span> s <span class="op">/</span><span class="st"> </span><span class="kw">abs</span>(xbar) )</span></code></pre></div>
+<pre><code>##          s     xbar        CV
+## 1 969.6564 5599.065 0.1731818</code></pre>
+<p>One final example showing how we can get information about grouped variables. Here, we would like to to calculate the same summary statistics as above, but would like to know them specificall for each factor with <em>sex</em>; that is, we want to compare ‘Male’ and ‘Female’.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="1-summary-statistics-and-graphing.html#cb39-1"></a><span class="co"># Previously using dplyr notation didn&#39;t help too much, but if we wanted</span></span>
+<span id="cb39-2"><a href="1-summary-statistics-and-graphing.html#cb39-2"></a><span class="co"># to calculate the statistics separately for each sex, the dplyr solution</span></span>
+<span id="cb39-3"><a href="1-summary-statistics-and-graphing.html#cb39-3"></a><span class="co"># is MUCH easier.</span></span>
+<span id="cb39-4"><a href="1-summary-statistics-and-graphing.html#cb39-4"></a>TenMileRace <span class="op">%&gt;%</span><span class="st">                     </span><span class="co"># Summarize the Ten Mile Race Data</span></span>
+<span id="cb39-5"><a href="1-summary-statistics-and-graphing.html#cb39-5"></a><span class="st">  </span><span class="kw">group_by</span>(sex) <span class="op">%&gt;%</span><span class="st">                 </span><span class="co"># Group actions using sex</span></span>
+<span id="cb39-6"><a href="1-summary-statistics-and-graphing.html#cb39-6"></a><span class="st">  </span><span class="kw">summarise</span>( <span class="dt">xbar =</span> <span class="kw">mean</span>(net),      <span class="co">#    </span></span>
+<span id="cb39-7"><a href="1-summary-statistics-and-graphing.html#cb39-7"></a>             <span class="dt">s    =</span> <span class="kw">sd</span>(net),        <span class="co">#</span></span>
+<span id="cb39-8"><a href="1-summary-statistics-and-graphing.html#cb39-8"></a>             <span class="dt">cv   =</span> s <span class="op">/</span><span class="st"> </span><span class="kw">abs</span>(xbar) ) <span class="co"># Calculate three different summary stats</span></span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 2 x 4
+##   sex    xbar     s    cv
+##   &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 F     5916.  902. 0.152
+## 2 M     5281.  930. 0.176</code></pre>
+</div>
+<div id="empirical-rules" class="section level3">
+<h3><span class="header-section-number">1.5.6</span> Empirical Rules</h3>
+<p>For any data that are normally distributed (or approximately normal), the following are resourceful rules of thumb:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Interval</th>
+<th align="center">Approximate percent of Measurements</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\bar{x}\pm s\)</span></td>
+<td align="center">68%</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(\bar{x}\pm 2s\)</span></td>
+<td align="center">95%</td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\bar{x}\pm 3s\)</span></td>
+<td align="center">99.7%</td>
+</tr>
+</tbody>
+</table>
+<p><img src="01_Data_Summary_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+</div>
+</div>
+<div id="shape" class="section level2">
+<h2><span class="header-section-number">1.6</span> Shape</h2>
+<p>Vocabulary for discussing the shape of a distribution is discussed. These descriptors can be very useful for understanding the distribution, and as understanding develops, also tell us about relationships between the mean and median, or other informative quantities.</p>
+<div id="symmetry" class="section level3">
+<h3><span class="header-section-number">1.6.1</span> Symmetry</h3>
+<p>A distribution is said to be <strong>symmetric</strong> if there is a point along the x-axis (which we’ll call <span class="math inline">\(\mu\)</span>) which acts as a mirror. Mathematically, a distribution is symmetric around <span class="math inline">\(m\)</span> if and only if <span class="math inline">\(f( -\lvert x-\mu \rvert ) = f( \lvert x-\mu \rvert )\)</span>. The following graphs give the point of symmetry marked with a red line.</p>
+<p><img src="01_Data_Summary_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<p>A distribution that is not symmetric is said to be asymmetric.</p>
+</div>
+<div id="unimodal-or-multi-modal" class="section level3">
+<h3><span class="header-section-number">1.6.2</span> Unimodal or Multi-modal</h3>
+<p>Recall one measure of centrality was mode. If there is just a single mode, then we refer to the distribution as unimodal. If there is two or more we would refer to it as bimodal or multi-modal.</p>
+</div>
+<div id="skew" class="section level3">
+<h3><span class="header-section-number">1.6.3</span> Skew</h3>
+<p>If a distribution has a heavier tail on one side or the other, we refer to it as a <em>skewed</em> distribution and the direction of the skew is towards the heavier tail. Usually (but not always), an asymmetric distribution is skewed.</p>
+<p><img src="01_Data_Summary_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+</div>
+</div>
+<div id="exercises" class="section level2">
+<h2><span class="header-section-number">1.7</span> Exercises</h2>
+<ol style="list-style-type: decimal">
+<li><p>O&amp;L 3.21. The ratio of DDE (related to DDT) to PCB concentrations in bird eggs has been shown to have had a number of biological implications. The ratio is used as an indication of the movement of contamination through the food chain. The paper “The ratio of DDE to PCB concentrations in Great Lakes herring gull eggs and its us in interpreting contaminants data” reports the following ratios for eggs collected at 13 study sites from the five Great Lakes. The eggs were collected from both terrestrial and aquatic feeding birds.</p>
+<table>
+<colgroup>
+<col width="22%" />
+<col width="77%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Source Type</th>
+<th align="left">DDE to PCB Ratio</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Terrestrial</td>
+<td align="left">76.50, 6.03, 3.51, 9.96, 4.24, 7.74, 9.54, 41.70, 1.84, 2.5, 1.54</td>
+</tr>
+<tr class="even">
+<td align="center">Aquatic</td>
+<td align="left">0.27, 0.61, 0.54, 0.14, 0.63, 0.23, 0.56, 0.48, 0.16, 0.18</td>
+</tr>
+</tbody>
+</table>
+<ol style="list-style-type: lower-alpha">
+<li>By hand, compute the mean and median separately for each type of feeder.</li>
+<li>Using your results from part (a), comment on the relative sensitivity of the mean and median to extreme values in a data set.</li>
+<li>Which measure, mean or median, would you recommend as the most appropriate measure of the DDE to PCB level for both types of feeders? Explain your answer.</li>
+</ol></li>
+<li><p>O&amp;L 3.31. Consumer Reports in its June 1998 issue reports on the typical daily room rate at six luxury and nine budget hotels. The room rates are given in the following table.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Hotel Type</th>
+<th align="left">Nightly Rate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Luxury</td>
+<td align="left">175, 180, 120, 150, 120, 125</td>
+</tr>
+<tr class="even">
+<td align="center">Budget</td>
+<td align="left">50, 50, 49, 45, 36, 45, 50, 50, 40</td>
+</tr>
+</tbody>
+</table>
+<ol style="list-style-type: lower-alpha">
+<li>By hand, compute the means and standard deviations of the room rates for each class of hotel.</li>
+<li>Give a practical reason why luxury hotels might have higher variability than the budget hotels. (Don’t just say the standard deviation is higher because there is more spread in the data, but rather think about the Hotel Industry and why you might see greater price variability for upscale goods compared to budget items.)</li>
+</ol></li>
+<li><p>Use R to confirm your calculations in problem 1 (the pollution data). Show the code you used and the subsequent output. It will often be convenient for me to give you code that generates a data frame instead of uploading an Excel file and having you read it in. The data can be generated using the following commands:</p></li>
+</ol>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="1-summary-statistics-and-graphing.html#cb42-1"></a>PolutionRatios &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb42-2"><a href="1-summary-statistics-and-graphing.html#cb42-2"></a>      <span class="dt">Ratio =</span> <span class="kw">c</span>(<span class="fl">76.50</span>, <span class="fl">6.03</span>, <span class="fl">3.51</span>, <span class="fl">9.96</span>, <span class="fl">4.24</span>, <span class="fl">7.74</span>, <span class="fl">9.54</span>, <span class="fl">41.70</span>, <span class="fl">1.84</span>, <span class="fl">2.5</span>, <span class="fl">1.54</span>,</span>
+<span id="cb42-3"><a href="1-summary-statistics-and-graphing.html#cb42-3"></a>                 <span class="fl">0.27</span>, <span class="fl">0.61</span>, <span class="fl">0.54</span>, <span class="fl">0.14</span>, <span class="fl">0.63</span>, <span class="fl">0.23</span>, <span class="fl">0.56</span>,  <span class="fl">0.48</span>, <span class="fl">0.16</span>, <span class="fl">0.18</span>       ),</span>
+<span id="cb42-4"><a href="1-summary-statistics-and-graphing.html#cb42-4"></a>      <span class="dt">Type  =</span> <span class="kw">c</span>( <span class="kw">rep</span>(<span class="st">&#39;Terrestrial&#39;</span>,<span class="dv">11</span>), <span class="kw">rep</span>(<span class="st">&#39;Aquatic&#39;</span>,<span class="dv">10</span>) ) )</span>
+<span id="cb42-5"><a href="1-summary-statistics-and-graphing.html#cb42-5"></a></span>
+<span id="cb42-6"><a href="1-summary-statistics-and-graphing.html#cb42-6"></a><span class="kw">head</span>( PolutionRatios ) <span class="co"># Print out some data to confirm column names.</span></span></code></pre></div>
+<pre><code>##   Ratio        Type
+## 1 76.50 Terrestrial
+## 2  6.03 Terrestrial
+## 3  3.51 Terrestrial
+## 4  9.96 Terrestrial
+## 5  4.24 Terrestrial
+## 6  7.74 Terrestrial</code></pre>
+<p><em>Hint: for computing the means and medians for each type of feeder separately, the <code>group_by()</code> command we demonstated earlier in the chapter is convenient.</em></p>
+<ol start="4" style="list-style-type: decimal">
+<li>Use R to confirm your calculations in problem 2 (the hotel data). Show the code you used and the subsequent output. The data can be loaded into a data frame using the following commands Show the code you used and the subsequent output:</li>
+</ol>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="1-summary-statistics-and-graphing.html#cb44-1"></a>Hotels &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb44-2"><a href="1-summary-statistics-and-graphing.html#cb44-2"></a>      <span class="dt">Price =</span> <span class="kw">c</span>(<span class="dv">175</span>, <span class="dv">180</span>, <span class="dv">120</span>, <span class="dv">150</span>, <span class="dv">120</span>, <span class="dv">125</span>, <span class="dv">50</span>, <span class="dv">50</span>, <span class="dv">49</span>, <span class="dv">45</span>, <span class="dv">36</span>, <span class="dv">45</span>, <span class="dv">50</span>, <span class="dv">50</span>, <span class="dv">40</span>),</span>
+<span id="cb44-3"><a href="1-summary-statistics-and-graphing.html#cb44-3"></a>      <span class="dt">Type  =</span> <span class="kw">c</span>( <span class="kw">rep</span>(<span class="st">&#39;Luxury&#39;</span>,<span class="dv">6</span>),  <span class="kw">rep</span>(<span class="st">&#39;Budget&#39;</span>, <span class="dv">9</span>) ) )</span>
+<span id="cb44-4"><a href="1-summary-statistics-and-graphing.html#cb44-4"></a>       </span>
+<span id="cb44-5"><a href="1-summary-statistics-and-graphing.html#cb44-5"></a><span class="kw">head</span>( Hotels )  <span class="co"># Print out some data to confirm the column names.</span></span></code></pre></div>
+<pre><code>##   Price   Type
+## 1   175 Luxury
+## 2   180 Luxury
+## 3   120 Luxury
+## 4   150 Luxury
+## 5   120 Luxury
+## 6   125 Luxury</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li><p>For the hotel data (problem 2), create side-by-side box-and-whisker plots to compare the prices.</p></li>
+<li><p>For each of the following, mark if it is Continuous or Discrete.</p>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(\underline{\hspace{1in}}\)</span> Milliliters of tea drunk per day.</li>
+<li><span class="math inline">\(\underline{\hspace{1in}}\)</span> Different brands of soda drunk over the course of a year.</li>
+<li><span class="math inline">\(\underline{\hspace{1in}}\)</span> Number of days per week that you are on-campus for any amount of time.</li>
+<li><span class="math inline">\(\underline{\hspace{1in}}\)</span> Number of grizzly bears individuals genetically identified from a grid of hair traps in Glacier National Park.</li>
+</ol></li>
+<li><p>Match the following histograms to the appropriate boxplot.</p>
+<p><img src="01_Data_Summary_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<p><img src="01_Data_Summary_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+<ol style="list-style-type: lower-alpha">
+<li>Histogram A goes with boxplot __________</li>
+<li>Histogram B goes with boxplot __________</li>
+<li>Histogram C goes with boxplot __________</li>
+<li>Histogram D goes with boxplot __________</li>
+</ol></li>
+<li><p>Twenty-five employees of a corporation have a mean salary of $62,000 and the sample standard deviation of those salaries is $15,000. If each employee receives a bonus of $1,000, does the standard deviation of the salaries change? Explain your reasoning.</p></li>
+<li><p>The chemicals in clay used to make pottery can differ depending on the geographical region where the clay originated. Sometimes, archaeologists use a chemical analysis of clay to help identify where a piece of pottery originated. Such an analysis measures the amount of a chemical in the clay as a percent of the total weight of the piece of pottery. The boxplots below summarize analyses done for three chemicals—X, Y, and Z—on pieces of pottery that originated at one of three sites: I, II, or III.</p>
+<p><img src="01_Data_Summary_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<ol style="list-style-type: lower-alpha">
+<li>For chemical Z, describe how the percents found in the pieces of pottery are similar and how they differ among the three sites.</li>
+<li>Consider a piece of pottery known to have originated at one of the three sites, but the actual site is not known.
+<ol style="list-style-type: lower-roman">
+<li>Suppose an analysis of the clay reveals that the sum of the percents of the three chemicals X, Y, and Z is <span class="math inline">\(20.5\%\)</span>. Based on the boxplots, which site—I, II, or III—is the most likely site where the piece of pottery originated? Justify your choice.</li>
+<li>Suppose only one chemical could be analyzed in the piece of pottery. Which chemical—X, Y, or Z— would be the most useful in identifying the site where the piece of pottery originated? Justify your choice.</li>
+</ol></li>
+</ol></li>
+<li><p>The efficacy of a new heart medication is being tested by evaluating its effect on a wide range of individuals. For each individual in the study the following characteristics are recorded prior to being given the medication: Gender, Ethnicity, Age (years), Height (m), Weight (kg), Blood Pressure (mmHg), Heart Rate (bpm). Determine the type of variable for each characteristic, briefly justify each answer.</p></li>
+<li><p>Grapes from a vineyard with 500 vines in Napa Valley are to be sampled. The investigator chooses to sample one grape from 100 different vines. What type of sampling is being done? Justify your response.</p></li>
+<li><p><strong>R Experiment.</strong> Use the code below to generate 100 samples from a normal distribution. The normal distribution has a mean of 10 and a variance of 2. Be sure to include the <em>set.seed</em> function so all answers are the same.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="1-summary-statistics-and-graphing.html#cb46-1"></a><span class="kw">set.seed</span>(<span class="dv">10</span>)</span>
+<span id="cb46-2"><a href="1-summary-statistics-and-graphing.html#cb46-2"></a>rand.sample&lt;-<span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dv">10</span>, <span class="dv">2</span>)</span></code></pre></div>
+<ol style="list-style-type: lower-alpha">
+<li><p>Use R to calculate the mean, median, variance, and IQR of <em>rand.sample</em>. Assign each value to variables with the names <em>step1.mean</em>, <em>step1.median</em>, <em>step1.var</em>, <em>step1.IQR</em> and have them output to the file.<br />
+</p></li>
+<li><p>Do the mean and median calculated match the expected value of 10? Discuss why there may be discrepancies between the population mean and the sample mean.</p></li>
+<li><p>Next use the following code to augment <em>rand.sample</em>. This effectively adds two outliers to <em>rand.sample</em>.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="1-summary-statistics-and-graphing.html#cb47-1"></a>rand.sample<span class="fl">.2</span>&lt;-<span class="kw">c</span>(rand.sample, <span class="dv">250</span>, <span class="dv">250</span>)</span></code></pre></div></li>
+<li><p>Use R to calculate the mean, median, variance, and IQR of <em>rand.sample.2</em> and save them as variables named <em>step2.mean</em>, <em>step2.median</em>, <em>step2.var</em>, <em>step2.IQR</em>. Be sure to display all resulting summary statistics in the final RMD output.</p></li>
+<li><p>Discuss the differences in the statistics computed for <em>rand.sample</em> and <em>rand.sample.2</em>. Which statistics seem more resilient to the outliers?</p></li>
+</ol></li>
+</ol>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>The oldest recorded age was that of a French women, Jeanne Calment, who lived to be to the age of 122 years.<a href="1-summary-statistics-and-graphing.html#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="2-probability.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"],
+"google": false,
+"instapper": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/dereksonderegger/570/raw/master/01_Data_Summary.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": [["Statistical-Methods-I.pdf", "PDF"]],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -455,10 +455,6 @@ TenMileRace %>%                     # Summarize the Ten Mile Race Data
 ```
 
 ```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
-```
 ## # A tibble: 2 x 4
 ##   sex    xbar     s    cv
 ##   <fct> <dbl> <dbl> <dbl>

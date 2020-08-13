@@ -1,4 +1,4 @@
-# Appendix A : Alternative Bootstrap Code {-}
+# Appendix B : Alternative Bootstrap Code {-}
 
 ```{r, echo=FALSE}
 # Unattach any packages that happen to already be loaded. In general this is unecessary

@@ -21,7 +21,7 @@ If we are taking a sample of size $n=10$ from a standard normal distribution, th
 
 This idea needs a little modification because the largest observation cannot be near the 100th percentile (because that is $\infty$). So we'll adjust the estimates to still be spaced at (1/n) quantile increments, but starting at the 0.5/n quantile instead of the 1/n quantile. So the smallest observation should be near the 0.05 quantile, the second smallest should be near the 0.15 quantile, and the largest observation should be near the 0.95 quantile. I will refer to these as the theoretical quantiles.
 
-<img src="08_TestingAssumptions_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+![](08_TestingAssumptions_files/figure-latex/unnamed-chunk-3-1.pdf)<!-- --> 
 
 I can then graph the theoretical quantiles vs my observed values and if they lie on the 1-to-1 line, then my data comes from a standard normal distribution. 
 
@@ -37,10 +37,10 @@ ggplot(data) +
   labs(x='Theoretical', y='Observed', title='Q-Q Plot: Observed vs Normal Distribution')
 ```
 
-<img src="08_TestingAssumptions_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+![](08_TestingAssumptions_files/figure-latex/unnamed-chunk-4-1.pdf)<!-- --> 
 
 
-<img src="08_TestingAssumptions_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+![](08_TestingAssumptions_files/figure-latex/unnamed-chunk-5-1.pdf)<!-- --> 
 
 
 If I think my data are normal, but with some mean $\mu$ and standard deviation $\sigma$, we still make the same graph, but the 1-to-1 line will be moved to pass through the 1st and 3rd quartiles. Again, the data points should be near the line. This is common enough that R has built in functions to make this graph:
@@ -53,12 +53,12 @@ qqnorm(x)
 qqline(x)
 ```
 
-<img src="08_TestingAssumptions_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+![](08_TestingAssumptions_files/figure-latex/unnamed-chunk-6-1.pdf)<!-- --> 
 
 
 We now will examine a sample of $n=40$ from a bunch of different distributions that are not normal and see what the normal QQ plot looks like. In the following graphs, pay particular attention to the tails. Notice the the t-distribution has significantly heavier tails than the normal distribution and that is reflected in the dots being lower than the line on the left and higher on the right. Likewise the logNormal distribution, which is defined by $\log(X)\sim$ Normal has too light of a tail on the left (because logNormal variables must be greater than 0) and too heavy on the right. The uniform distribution, which is cut off at 0 and 1, has too light of tails in both directions. 
 
-<img src="08_TestingAssumptions_files/figure-html/unnamed-chunk-7-1.png" width="576" />
+![](08_TestingAssumptions_files/figure-latex/unnamed-chunk-7-1.pdf)<!-- --> 
 
 
 ### Tests for Normality
@@ -126,7 +126,7 @@ ggplot(Alcohol, aes(x=trt, y=time)) +
   geom_boxplot()
 ```
 
-<img src="08_TestingAssumptions_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+![](08_TestingAssumptions_files/figure-latex/unnamed-chunk-10-1.pdf)<!-- --> 
 
 
 ### Tests for Equal Variance
@@ -146,7 +146,7 @@ where $df_{1}$ and $df_{2}$ are the associated degrees of freedom for $s_{1}^{2}
 
 Variables that follow a F distribution must be non-negative and two F distributions are shown below. The F distribution is centered at $E\left(F_{df_{1},df_{2}}\right)=\frac{df_{2}}{df_{2}-2}\approx 1$ for large values of $df_{2}$. The variance of this distribution goes to 0 as $df_{1}$ and $df_{2}$ get large. 
 
-<img src="08_TestingAssumptions_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+![](08_TestingAssumptions_files/figure-latex/unnamed-chunk-11-1.pdf)<!-- --> 
 
 
 If the value of my test statistic $f=s_{1}^{2}/s_{2}^{2}$ is too large or too small, then we will reject the null hypothesis. If we preform an F-test with an $\alpha=0.05$ level of significance then we'll reject $H_{0}$ if $f<F_{0.025,n_{1}-1,n_{2}-1}$ or if $f>F_{0.975,n_{1}-1,n_{2}-1}$. 
@@ -213,7 +213,7 @@ pf(3/6, 19, 4)
 ```
 
 
-<img src="08_TestingAssumptions_files/figure-html/unnamed-chunk-15-1.png" width="672" />
+![](08_TestingAssumptions_files/figure-latex/unnamed-chunk-15-1.pdf)<!-- --> 
 
 
 
@@ -362,7 +362,7 @@ ggplot(PermDist, aes(x=F, y=..density..)) +
              aes(x=x, y=y), alpha=.3, fill='red')
 ```
 
-<img src="08_TestingAssumptions_files/figure-html/unnamed-chunk-23-1.png" width="672" />
+![](08_TestingAssumptions_files/figure-latex/unnamed-chunk-23-1.pdf)<!-- --> 
 
 ```r
 # p-value... what percent is more extreme than what I observed?
@@ -394,7 +394,7 @@ ggplot(Commute, aes(x=type, y=time)) +
   theme_bw()
 ```
 
-<img src="08_TestingAssumptions_files/figure-html/unnamed-chunk-25-1.png" width="672" />
+![](08_TestingAssumptions_files/figure-latex/unnamed-chunk-25-1.pdf)<!-- --> 
 
 
 We now test to see if there is a significant difference between the variances of these two groups. If we feel comfortable with assuming that these data come from normal distributions, then the theoretical method is appropriate.
@@ -444,7 +444,7 @@ ggplot(PermDist, aes(x=F, y=..density..)) +
              aes(x=x, y=y), alpha=.3, fill='red')
 ```
 
-<img src="08_TestingAssumptions_files/figure-html/unnamed-chunk-28-1.png" width="672" />
+![](08_TestingAssumptions_files/figure-latex/unnamed-chunk-28-1.pdf)<!-- --> 
 
 ```r
 # p-value... what proportion is more extreme than what I observed?

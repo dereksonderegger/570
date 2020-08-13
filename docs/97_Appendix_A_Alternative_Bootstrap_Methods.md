@@ -32,12 +32,12 @@ head(BootDist)
 
 ```
 ##        xbar
-## 1 0.5166038
-## 2 0.5516981
-## 3 0.5594340
-## 4 0.4775472
-## 5 0.5035849
-## 6 0.4896226
+## 1 0.4883019
+## 2 0.5301887
+## 3 0.6113208
+## 4 0.4886792
+## 5 0.5771698
+## 6 0.5100000
 ```
 
 ```r
@@ -47,7 +47,7 @@ ggplot(BootDist, aes(x=xbar)) +
   ggtitle('Estimated Sampling distribution of xbar' )
 ```
 
-<img src="97_Appendix_A_Alternative_Bootstrap_Methods_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+![](97_Appendix_A_Alternative_Bootstrap_Methods_files/figure-latex/unnamed-chunk-3-1.pdf)<!-- --> 
 
 ```r
 # calculate a quantile-based confidence interval
@@ -56,7 +56,7 @@ quantile(BootDist$xbar, c(0.025, 0.975))
 
 ```
 ##      2.5%     97.5% 
-## 0.4375425 0.6190613
+## 0.4381132 0.6207594
 ```
 
 ## Base R Code {-}
@@ -73,7 +73,7 @@ for(j in 1:Boot.Its) BS.means[j]<-mean(sample(AvgMerc, Sample.Size, replace=T))
 hist(BS.means)
 ```
 
-<img src="97_Appendix_A_Alternative_Bootstrap_Methods_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+![](97_Appendix_A_Alternative_Bootstrap_Methods_files/figure-latex/unnamed-chunk-4-1.pdf)<!-- --> 
 
 Then the 95% confidence interval can be found in a similar manner to above.
 
@@ -84,5 +84,5 @@ quantile(BS.means, c(0.025, 0.975))
 
 ```
 ##      2.5%     97.5% 
-## 0.4362264 0.6205660
+## 0.4394340 0.6186792
 ```

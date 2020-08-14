@@ -1,21 +1,8 @@
-# Resampling Linear Models
-```{r, echo=FALSE}
-# Unattach any packages that happen to already be loaded. In general this is unecessary
-# but is important for the creation of the book to not have package namespaces
-# fighting unexpectedly.
-pkgs = names(sessionInfo()$otherPkgs)
-if( length(pkgs > 0)){
-  pkgs = paste('package:', pkgs, sep = "")
-  for( i in 1:length(pkgs)){
-    detach(pkgs[i], character.only = TRUE, force=TRUE)
-  }
-}
+# Appendix A : Resampling Linear Models {-}
 
-# Set my default chunk options 
-knitr::opts_chunk$set( fig.height=3 )
-```
 
-```{r, warning=FALSE, message=FALSE}
+
+```r
 library(dplyr)
 library(ggplot2)
 library(ggfortify)
@@ -48,18 +35,60 @@ $$\begin{aligned}
   \end{aligned}$$
 for some $\mu_{0}$. For example, suppose we have the following data and we want to test $H_{0}:\mu=5 vs H_{a}:\mu\ne5$. The R code we used previously was
 
-```{r}
+
+```r
 # How we previously did a t.test
 test.data <- data.frame( y=c(3,5,4,5,7,13) )
 t.test( test.data$y, mu=5 )
 ```
 
+```
+## 
+## 	One Sample t-test
+## 
+## data:  test.data$y
+## t = 0.79361, df = 5, p-value = 0.4634
+## alternative hypothesis: true mean is not equal to 5
+## 95 percent confidence interval:
+##  2.387727 9.945607
+## sample estimates:
+## mean of x 
+##  6.166667
+```
+
 but we can just as easily consider this a linear model with only an intercept term.
 
-```{r}
+
+```r
 m1 <- lm(y ~ 1, data=test.data)
 summary(m1)
+```
+
+```
+## 
+## Call:
+## lm(formula = y ~ 1, data = test.data)
+## 
+## Residuals:
+##       1       2       3       4       5       6 
+## -3.1667 -1.1667 -2.1667 -1.1667  0.8333  6.8333 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)   
+## (Intercept)    6.167      1.470   4.195  0.00853 **
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 3.601 on 5 degrees of freedom
+```
+
+```r
 confint(m1)
+```
+
+```
+##                2.5 %   97.5 %
+## (Intercept) 2.387727 9.945607
 ```
 
 
@@ -67,9 +96,26 @@ Notice that we get the same point estimate and confidence interval for $\mu$, bu
 
 If we really want the correct p-value, we should test if the difference between the $y$ variable and 5 is zero.
 
-```{r}
+
+```r
 m1 <- lm(y-5 ~ 1, data=test.data)
 summary(m1)
+```
+
+```
+## 
+## Call:
+## lm(formula = y - 5 ~ 1, data = test.data)
+## 
+## Residuals:
+##       1       2       3       4       5       6 
+## -3.1667 -1.1667 -2.1667 -1.1667  0.8333  6.8333 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)
+## (Intercept)    1.167      1.470   0.794    0.463
+## 
+## Residual standard error: 3.601 on 5 degrees of freedom
 ```
 
 ### Two-sample t-tests
@@ -80,7 +126,8 @@ H_{0}: &	\;\;	\mu_{1}=\mu_{2} \\
 H_{a}: &	\;\;	\mu_{1}\ne\mu_{2}
 \end{aligned}$$
 
-```{r}
+
+```r
 # How we previously did a t.test
 test.data <- data.frame( y=c(3, 5, 4,  5,  7, 13, 
                              8, 9, 4, 16, 12, 13 ),
@@ -89,13 +136,66 @@ test.data <- data.frame( y=c(3, 5, 4,  5,  7, 13,
 t.test( y ~ group, data=test.data, var.equal=TRUE )
 ```
 
+```
+## 
+## 	Two Sample t-test
+## 
+## data:  y by group
+## t = -1.838, df = 10, p-value = 0.09591
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -9.2176608  0.8843275
+## sample estimates:
+## mean in group A mean in group B 
+##        6.166667       10.333333
+```
+
 This analysis gave use the mean of each group and the confidence interval for the difference $\mu_{2}-\mu_{1}$. We could get the same analysis an ANOVA with $k=2$ groups.
 
-```{r}
+
+```r
 m2 <- lm(y ~ group, data=test.data)
 summary(m2)
+```
+
+```
+## 
+## Call:
+## lm(formula = y ~ group, data = test.data)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -6.333 -2.208 -1.167  1.917  6.833 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)   
+## (Intercept)    6.167      1.603   3.847  0.00323 **
+## groupB         4.167      2.267   1.838  0.09591 . 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 3.926 on 10 degrees of freedom
+## Multiple R-squared:  0.2525,	Adjusted R-squared:  0.1778 
+## F-statistic: 3.378 on 1 and 10 DF,  p-value: 0.09591
+```
+
+```r
 coef(m2)
+```
+
+```
+## (Intercept)      groupB 
+##    6.166667    4.166667
+```
+
+```r
 confint(m2)
+```
+
+```
+##                  2.5 %   97.5 %
+## (Intercept)  2.5950745 9.738259
+## groupB      -0.8843275 9.217661
 ```
 
 
@@ -110,45 +210,13 @@ $\mathbb{Y}_{j}$ for $j\in1,2,\dots,M$) from the population we would understand 
 However, for practical reasons, we can't just take 1000s of samples of size n from the population. However, because we truly believe that $\mathbb{Y}$ is representative of the entire population, then our best guess of what the population is just many repeated copies of our data.
 
 
-```{r, echo=FALSE}
 
-# Sample data
-data <- data.frame(
-  x=rep(1:3, times=3), y=rep(1:3, each=3),
-  shape=c('Sq','Sq','Di', 'Cir','Sq','Cir', 'Tri','Cir','Sq') )
-
-data2 <- rbind(
-       mutate(data, x=x+0, y=y+0),
-       mutate(data, x=x+0, y=y+3),
-       mutate(data, x=x+0, y=y+6),
-       mutate(data, x=x+3, y=y+0),
-       mutate(data, x=x+3, y=y+3),
-       mutate(data, x=x+3, y=y+6),
-       mutate(data, x=x+6, y=y+0),
-       mutate(data, x=x+6, y=y+3),
-       mutate(data, x=x+6, y=y+6))
-
-library(ggdendro)
-sample.plot <- ggplot(data=data) +
-  geom_point(aes(x=x, y=y, shape=shape), size=20, fill='dark grey') +
-  scale_shape_manual(values=c(21,23,22,24), guide=FALSE) +
-  coord_cartesian(xlim = c(0.5, 3.5), c(0.5,3.5)) +
-  theme_dendro() + ggtitle('Sample')
-
-population.plot <- ggplot(data=data2) +
-  geom_point(aes(x=x, y=y, shape=shape), size=8, fill='dark grey') +
-  scale_shape_manual(values=c(21,23,22,24), guide=FALSE) +
-  coord_cartesian(xlim = c(0.5, 10), c(0.5,10)) +
-  theme_dendro() + ggtitle('Approximate Population')
-```
 
 
 Suppose we were to sample from a population of shapes, and we observed 4/9 of the sample were squares, 3/9 were circles, and a triangle and a diamond. Then our best guess of what the population that we sampled from was a population with 4/9 squares, 3/9 circles, and 1/9 of triangles and diamonds. 
 
 
-```{r, echo=FALSE}
-Rmisc::multiplot(sample.plot, population.plot, cols=2)
-```
+![](90_Resampling_LinearModels_files/figure-latex/unnamed-chunk-9-1.pdf)<!-- --> 
 
 
 Using this approximated population (which is just many many copies of our sample data), we can take many samples of size $n$. We denote these bootstrap samples as $\mathbb{Y}_{j}^{*}$, where the star denotes that the sample was taken from the approximate population, not the actual population. From each bootstrap sample $\mathbb{Y}_{j}^{*}$ a statistic of interest can be taken $\hat{\theta}_{j}^{*}$.
@@ -178,26 +246,52 @@ Because the method of randomization is so different between observational studie
 There are two common approaches, _case resampling_ and _residual resampling_. In case re-sampling, we consider the data $\left(x_{i,}y_{i}\right)$ pairs as one unit and when creating a bootstrap sample, we re-sample those pairs, but if the $i$th data point is included in the bootstrap sample, then it is included as the $\left(x_{i,}y_{i}\right)$ pair. In contrast, residual re-sampling is done by first fitting a model to the data, finding the residual values, re-sampling those residuals and then adding those bootstrap residuals to the predicted values $\hat{y}_{i}$.
 
 
-```{r, echo=FALSE}
-set.seed(3)
-```
-```{r}
+
+
+```r
 Testing.Data <- data.frame(
   x = c(3,5,7,9),
   y = c(3,7,7,11))
 Testing.Data
 ```
-```{r}
+
+```
+##   x  y
+## 1 3  3
+## 2 5  7
+## 3 7  7
+## 4 9 11
+```
+
+```r
 # Case resampling 
 Boot.Data <- mosaic::resample(Testing.Data)
+```
+
+```
+## Registered S3 method overwritten by 'mosaic':
+##   method                           from   
+##   fortify.SpatialPolygonsDataFrame ggplot2
+```
+
+```r
 Boot.Data
+```
+
+```
+##   x  y orig.id
+## 1 3  3       1
+## 2 5  7       2
+## 4 9 11       4
+## 3 7  7       3
 ```
 
 Notice that we've sampled $\left\{ x=5,y=7\right\}$  twice and did not get the $\left\{ 7,7\right\}$  data point. 
 
 Residual sampling is done by re-sampling the residuals and calling them $\hat{\epsilon}^{*}$ and then the new y-values will be $y_{i}^{*}=\hat{y}_{i}+\hat{\epsilon}_{i}^{*}$
 
-```{r}
+
+```r
 # Residual resampling
 model <- lm( y ~ x, data=Testing.Data)
 Boot.Data <- Testing.Data %>%
@@ -206,6 +300,14 @@ Boot.Data <- Testing.Data %>%
           resid.star = mosaic::resample(resid),
           y.star = fit + resid.star )
 Boot.Data
+```
+
+```
+##   x  y  fit resid resid.star y.star
+## 1 3  3  3.4  -0.4        0.4    3.8
+## 2 5  7  5.8   1.2        1.2    7.0
+## 3 7  7  8.2  -1.2        0.4    8.6
+## 4 9 11 10.6   0.4       -1.2    9.4
 ```
 
 
@@ -218,41 +320,8 @@ In general when we design an experiment, we choose which x-values we want to loo
 We want to understand the relationship between the sample statistic $\hat{\theta}$ to the population parameter $\theta$. We create an estimated population using many repeated copies of our data. By examining how the simulated $\hat{\theta}^{*}$ vary relative to $\hat{\theta}$, we will understand how possible $\hat{\theta}$ values vary relative to $\theta$. 
 
 
-```{r, echo=FALSE, cache=TRUE}
-M <- 1001 
-theta <- seq(-10,60, length=M)
 
-temp <- data.frame(
-  theta = theta,
-  y     = dgamma(theta, 10, 1/2))
-temp <- filter(temp, (theta >= 0)&(theta <= 60))
-p1 <- ggplot(temp, aes(x=theta, y=y)) +
-  geom_line() +
-  geom_vline(xintercept=20, color='red') +
-  geom_text(data=data.frame(x=22, y=.01, label='theta'),
-            aes(x=x, y=y, label=label),
-            parse=TRUE, color='red') +
-  labs(title=expression(paste('Sampling Distribution of ',hat(theta))),
-       x=NULL, y='density') +
-  theme_bw()
-
-temp <- data.frame(
-  theta = theta,
-  y     = dgamma(theta-7, 10, 1/2))
-temp <- filter(temp, (theta >= 0)&(theta <= 60))
-p2 <- ggplot(temp, aes(x=theta, y=y)) +
-  geom_line() +
-  geom_vline(xintercept=26, color='blue') +
-  geom_text(data=data.frame(x=28, y=.01, label='hat(theta)'),
-            aes(x=x, y=y, label=label),
-            parse=TRUE, color='blue') +
-  labs(title=expression(paste('Sampling Distribution of ',hat(theta),'*')),
-       x=NULL, y='density') +
-  theme_bw()
-```
-```{r, echo=FALSE}
-Rmisc::multiplot(p1, p2, cols=1)
-```
+![](90_Resampling_LinearModels_files/figure-latex/unnamed-chunk-15-1.pdf)<!-- --> 
 
 
 We will outline several methods for producing confidence intervals (in the order of most assumptions to fewest).
@@ -281,17 +350,7 @@ Unlike the percentile bootstrap interval, the basic interval does not assume the
 To address this, we will using the observed distribution of our replicates $\hat{\theta}^{*}$. Let $\hat{\theta}_{\alpha/2}^{*}$ and $\hat{\theta}_{1-\alpha/2}^{*}$ be the $\alpha/2$ and $1-\alpha/2$ quantiles of the replicates $\hat{\theta}^{*}$. Then another way to form a confidence interval would be $$\left[\hat{\theta}-\left(\hat{\theta}_{1-\alpha/2}^{*}-\hat{\theta}\right),\;\;\;\;\hat{\theta}-\left(\hat{\theta}_{\alpha/2}^{*}-\hat{\theta}\right)\right]$$
 where the minus sign on the upper limit is because $\left(\hat{\theta}_{\alpha/2}^{*}-\hat{\theta}\right)$ is already negative. The idea behind this interval is that the sampling variability of $\hat{\theta}$ from $\theta$ is the same as the sampling variability of the replicates $\hat{\theta}^{*}$ from $\hat{\theta}$, and that the distribution of $\hat{\theta}$ is possibly skewed, so we can't add/subtract the same amounts. Suppose we observe the distribution of $\hat{\theta}^{*}$ as
 
-```{r, echo=FALSE}
-thetas <- seq(0, 10, length=1000)
-plot(thetas, dchisq(thetas, df=3), type='l',
-  axes=FALSE, xlab='', ylab='',
-  main=expression(paste('Distribution of ', hat(theta),'*')))
-axis(side=1, at=c(.5, 2, 8),
-  label=c(expression(paste(hat(theta)[.025],'*')),
-          expression(hat(theta)),
-          expression(paste(hat(theta)[.975],'*'))))
-box()
-```
+![](90_Resampling_LinearModels_files/figure-latex/unnamed-chunk-16-1.pdf)<!-- --> 
 
 Then any particular value of $\hat{\theta}^{*}$ could be much larger than $\hat{\theta}$. Therefore $\hat{\theta}$ could be much larger than $\theta$. Therefore our confidence interval should be $\left[\hat{\theta}-\textrm{big},\;\hat{\theta}+\textrm{small}\right]$. 
 
@@ -313,7 +372,8 @@ For every model we've examined we can create simulated data sets using either ca
 We return to our ANOVA example of hostility scores after three different treatment methods. 
 The first thing we will do (as we should do in all data analyses) is to graph our data. 
 
-```{r}
+
+```r
 # define the data
 Hostility <- data.frame(
   HLT = c(96,79,91,85,83,91,82,87,
@@ -321,28 +381,63 @@ Hostility <- data.frame(
           66,73,69,66,77,73,71,70,74),
   Method = c( rep('M1',8), rep('M2',7), rep('M3',9) ) )
 ```
-```{r}
+
+```r
 ggplot(Hostility, aes(x=Method, y=HLT)) +
   geom_boxplot()
 ```
 
+![](90_Resampling_LinearModels_files/figure-latex/unnamed-chunk-18-1.pdf)<!-- --> 
+
 We can fit the cell-means model and examine the summary statistics using the following code.
 
-```{r}
+
+```r
 model <- lm( HLT ~ -1 + Method, data=Hostility )
 summary(model)
+```
+
+```
+## 
+## Call:
+## lm(formula = HLT ~ -1 + Method, data = Hostility)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -7.750 -2.866  0.125  2.571  9.250 
+## 
+## Coefficients:
+##          Estimate Std. Error t value Pr(>|t|)    
+## MethodM1   86.750      1.518   57.14   <2e-16 ***
+## MethodM2   75.571      1.623   46.56   <2e-16 ***
+## MethodM3   71.000      1.431   49.60   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 4.294 on 21 degrees of freedom
+## Multiple R-squared:  0.9973,	Adjusted R-squared:  0.997 
+## F-statistic:  2631 on 3 and 21 DF,  p-value: < 2.2e-16
 ```
 
 Confidence intervals using the 
 $$\epsilon_{ij}\stackrel{iid}{\sim}N\left(0,\sigma\right)$$ assumption are given by
 
-```{r}
+
+```r
 confint(model)
+```
+
+```
+##             2.5 %   97.5 %
+## MethodM1 83.59279 89.90721
+## MethodM2 72.19623 78.94663
+## MethodM3 68.02335 73.97665
 ```
 
 To utilize the bootstrap confidence intervals, we will use the function `car::Boot` from the package `car`. It defaults to using case re-sampling, but `method='residual'` will cause it to use residual re-sampling. We can control the number of bootstrap replicates it using with the R parameter.
 
-```{r, cache=TRUE}
+
+```r
 boot.model <- Boot(model, method='case',     R=999) # default case resampling 
 boot.model <- Boot(model, method='residual', R=999) # residual resampling 
 ```
@@ -350,18 +445,53 @@ boot.model <- Boot(model, method='residual', R=999) # residual resampling
 The `car::Boot()` function has done all work of doing the re-sampling and storing values of $\hat{\mu}_{1},\hat{\mu}_{2}$, and $\hat{\mu}_{3}$ for each bootstrap replicate data set created using case re-sampling. To look at the bootstrap estimate of the sampling distribution of these statistics, we use the `hist()` function. The `hist()` function is actually overloaded and will act differently depending on the type of object. We will send it an object of class boot and the `hist()` function looks for a function name `hist.boot()` and when it finds it, just calls it with the function arguments we passed.
 
 
-```{r}
+
+```r
 hist(boot.model, layout=c(1,3)) # 1 row, 3 columns of plots
 ```
+
+![](90_Resampling_LinearModels_files/figure-latex/unnamed-chunk-22-1.pdf)<!-- --> 
 
 
 While this plot is aesthetically displeasing (we could do so much better using ggplot2!) this shows the observed bootstrap histogram of $\hat{\mu}_{i}^{*}$, along with the normal distribution centered at $\hat{\mu}_{i}$ with spread equal to the $StdDev\left(\hat{\mu}_{i}^{*}\right)$. In this case, the sampling distribution looks very normal and the bootstrap confidence intervals should line up well with the asymptotic intervals. The function `confint()` will report the BCa intervals by default, but you can ask for “bca”, “norm”, “basic”, “perc”.
 
 
-```{r}
+
+```r
 confint(boot.model)
+```
+
+```
+## Bootstrap bca confidence intervals
+## 
+##             2.5 %   97.5 %
+## MethodM1 84.00357 89.84693
+## MethodM2 72.58326 78.63819
+## MethodM3 68.40299 73.94005
+```
+
+```r
 confint(boot.model, type='perc')
+```
+
+```
+## Bootstrap percent confidence intervals
+## 
+##             2.5 %   97.5 %
+## MethodM1 84.02335 89.91096
+## MethodM2 72.61986 78.66085
+## MethodM3 68.40702 73.94374
+```
+
+```r
 confint(model)
+```
+
+```
+##             2.5 %   97.5 %
+## MethodM1 83.59279 89.90721
+## MethodM2 72.19623 78.94663
+## MethodM3 68.02335 73.97665
 ```
 
 
@@ -371,7 +501,8 @@ The `car::Boot()` function will work for a regression model as well. In the foll
 $$y_{i}=\beta_{0}+\beta_{1}x_{i}+\epsilon_{i}$$ 
 but the $\epsilon_{i}$ terms have a strong positive skew and are not normally distributed.
 
-```{r}
+
+```r
 my.data <- data.frame(
   x = seq(0,10, length=20),
   y = c( 15.49, 17.42, 15.17, 14.99, 13.96, 
@@ -381,26 +512,54 @@ my.data <- data.frame(
 ggplot(my.data, aes(x=x, y=y)) + geom_point()
 ```
 
+![](90_Resampling_LinearModels_files/figure-latex/unnamed-chunk-24-1.pdf)<!-- --> 
+
 
 Fitting a linear model, we see a problem that the residuals don't appear to be balanced. The large residuals are all positive. The Shapiro-Wilks test firmly rejects normality of the residuals. 
 
 
-```{r}
+
+```r
 model <- lm( y ~ x, data=my.data)
 plot(model, which=1)
 ```
-```{r}
+
+![](90_Resampling_LinearModels_files/figure-latex/unnamed-chunk-25-1.pdf)<!-- --> 
+
+```r
 shapiro.test( resid(model) )
+```
+
+```
+## 
+## 	Shapiro-Wilk normality test
+## 
+## data:  resid(model)
+## W = 0.77319, p-value = 0.0003534
 ```
 
 
 As a result, we don't might not feel comfortable using the asymptotic distribution of $\hat{\beta}_{0}$ and $\hat{\beta}_{1}$ for the creation of our confidence intervals. The bootstrap procedure can give reasonable good intervals, however. 
 
 
-```{r}
+
+```r
 boot.model <- Boot( model )  # by default method='case'
 hist( boot.model )
+```
+
+![](90_Resampling_LinearModels_files/figure-latex/unnamed-chunk-27-1.pdf)<!-- --> 
+
+```r
 confint( boot.model )
+```
+
+```
+## Bootstrap bca confidence intervals
+## 
+##                  2.5 %     97.5 %
+## (Intercept) 15.4833809 17.0328022
+## x           -0.6548257 -0.3752072
 ```
 
 
@@ -414,10 +573,18 @@ The `car::Boot()` function is very handy, but it lacks flexibility; it assumes t
 
 Suppose that we have n observations in our sample data. Given some vector of numbers re-sampled from `1:n`, we need to either re-sample those cases or those residuals and then using the new dataset calculate some statistic. The function `boot()` will require the user to write a function that does this.
 
-```{r}
+
+```r
 model <- lm( y ~ x, data=my.data )
 coef(model)
+```
 
+```
+## (Intercept)           x 
+##  16.0355714  -0.5216143
+```
+
+```r
 # Do case resampling with the regression example
 # sample.data is the original data frame 
 # indices - This is a vector of numbers from 1:n which tells
@@ -431,18 +598,40 @@ my.stat <- function(sample.data, indices){
 
 # original model coefficients
 my.stat(my.data, 1:20)
+```
+
+```
+## (Intercept)           x 
+##  16.0355714  -0.5216143
+```
+
+```r
 # one bootstrap replicate 
 my.stat(my.data, mosaic::resample(1:20))
+```
+
+```
+## (Intercept)           x 
+##  16.0890777  -0.5011942
 ```
 
 Notice that the function we write doesn't need to determine the random sample of the indices to use. Our function will be told what indices to use (possibly to calculate the statistic of interest $\hat{\theta}$, or perhaps a bootstrap replicate $\hat{\theta}^{*}$. For example, the BCa method needs to know the original sample estimates $\hat{\theta}$ to calculate how far the mean of the $\hat{\theta}^{*}$ values is from $\hat{\theta}$. To avoid the user having to see all of that, we just need to take the set of indices given and calculate the statistic of interest. 
 
 
-```{r, cache=TRUE}
+
+```r
 boot.model <- boot(my.data, my.stat, R=10000)
 #boot.ci(boot.model, type='bca', index=1) # CI for Intercept
 #boot.ci(boot.model, type='bca', index=2) # CI for the Slope
 confint(boot.model)
+```
+
+```
+## Bootstrap bca confidence intervals
+## 
+##        2.5 %     97.5 %
+## 1 15.4498026 17.0517343
+## 2 -0.6496641 -0.3774948
 ```
 
 
@@ -451,7 +640,8 @@ confint(boot.model)
 
 We will now consider the ANOVA problem and in this case we will re-sample the residuals.
 
-```{r, cache=TRUE}
+
+```r
 # Fit the ANOVA model to the Hostility Data
 model <- lm( HLT ~ Method, data=Hostility )
 
@@ -471,21 +661,35 @@ my.stat <- function(sample.data, indices){
 boot.model <- boot(Hostility, my.stat, R=10000)
 ```
 
-```{r}
+
+```r
 confint(boot.model)
+```
+
+```
+## Bootstrap bca confidence intervals
+## 
+##       2.5 %     97.5 %
+## 1  84.11607  89.796895
+## 2 -15.37805  -7.164519
+## 3 -19.93233 -12.164187
 ```
 
 Fortunately the `hist()` command can print the nice histogram from the output of the `boot()` command.
 
-```{r}
+
+```r
 hist( boot.model, layout=c(1,3)) # 1 row, 3 columns)
 ```
+
+![](90_Resampling_LinearModels_files/figure-latex/unnamed-chunk-32-1.pdf)<!-- --> 
 
 
 Notice that we don't need to have the model coefficients $\hat{\mu}_{i}$ be our statistic of interest, we could just as easily produce a confidence interval for the residual standard error $\hat{\sigma}$.
 
 
-```{r, cache=TRUE}
+
+```r
 # Do residual resampling with the regression example
 model <- lm( y ~ x, data=my.data )
 my.data <- my.data %>% mutate(
@@ -502,9 +706,22 @@ my.stat <- function(sample.data, indices){
 
 boot.model <- boot(my.data, my.stat, R=10000)
 ```
-```{r}
+
+```r
 hist(boot.model, layout=c(1,3))
+```
+
+![](90_Resampling_LinearModels_files/figure-latex/unnamed-chunk-34-1.pdf)<!-- --> 
+
+```r
 confint(boot.model)
+```
+
+```
+## Bootstrap bca confidence intervals
+## 
+##       2.5 %   97.5 %
+## 1 0.5713527 1.210697
 ```
 
 
@@ -517,7 +734,8 @@ then our usual analysis is inappropriate but we could easily bootstrap our confi
 If you want to perform the bootstrap by hand using dplyr commands, it can be done by using the `group_by()` with whatever the blocking/Stratifying variable is prior to the `mosaic::resample()` command. You could also use the optional group argument to the `mosaic::resample()` command. 
 
 
-```{r}
+
+```r
 data <- data.frame(y  =c(9.8,9.9,10.1,10.2,   18,19,21,22),
                    grp=c('A','A','A','A',    'B','B','B','B'),
                    fit=c( 10,10,10,10,        20,20,20,20   ),
@@ -529,19 +747,48 @@ data.star <- data %>%
 data.star
 ```
 
+```
+## # A tibble: 8 x 6
+## # Groups:   grp [2]
+##       y grp     fit resid resid.star y.star
+##   <dbl> <fct> <dbl> <dbl>      <dbl>  <dbl>
+## 1   9.8 A        10  -0.2        0.2   10.2
+## 2   9.9 A        10  -0.1        0.1   10.1
+## 3  10.1 A        10   0.1        0.1   10.1
+## 4  10.2 A        10   0.2        0.2   10.2
+## 5  18   B        20  -2          1     21  
+## 6  19   B        20  -1         -1     19  
+## 7  21   B        20   1         -2     18  
+## 8  22   B        20   2         -1     19
+```
 
-```{r}
+
+
+```r
 data.star <- data %>% 
   mutate(resid.star = mosaic::resample(resid, group=grp), # do the grouping within resample 
          y.star     = fit + resid.star)
 data.star
 ```
 
+```
+##      y grp fit resid resid.star y.star
+## 1  9.8   A  10  -0.2        0.1   10.1
+## 2  9.9   A  10  -0.1       -0.2    9.8
+## 3 10.1   A  10   0.1       -0.1    9.9
+## 4 10.2   A  10   0.2       -0.2    9.8
+## 5 18.0   B  20  -2.0       -2.0   18.0
+## 6 19.0   B  20  -1.0       -1.0   19.0
+## 7 21.0   B  20   1.0       -1.0   19.0
+## 8 22.0   B  20   2.0        2.0   22.0
+```
+
 
 Unfortunately the `car::Boot()` command doesn't take a strata option, but the the `boot::boot()` command.
 
 
-```{r, cache=TRUE}
+
+```r
 # Fit the ANOVA model to the Hostility Data
 model <- lm( HLT ~ Method, data=Hostility )
 
@@ -552,7 +799,6 @@ Hostility <- Hostility %>% mutate(
 
 # Do residual resampling 
 my.stat <- function(sample.data, indices){
-  browser()
   data.star <- sample.data %>% mutate(HLT = fitted + resid[indices])
   model.star <- lm(HLT ~ Method, data=data.star)
   output <- coef(model.star)
@@ -563,9 +809,24 @@ my.stat <- function(sample.data, indices){
 boot.model <- boot( Hostility, my.stat, R=1000, strata=factor(Hostility$Method) )
 ```
 
-```{r}
+
+```r
 hist(boot.model, layout=c(1,3))
+```
+
+![](90_Resampling_LinearModels_files/figure-latex/unnamed-chunk-38-1.pdf)<!-- --> 
+
+```r
 confint(boot.model)
+```
+
+```
+## Bootstrap bca confidence intervals
+## 
+##       2.5 %     97.5 %
+## 1  83.25000  90.392943
+## 2 -15.49439  -7.263027
+## 3 -20.37642 -11.694444
 ```
 
 
@@ -591,13 +852,19 @@ confint(boot.model)
 
 2. The ratio of DDE (related to DDT) to PCB concentrations in bird eggs has been shown to have had a number of biological implications. The ratio is used as an indication of the movement of contamination through the food chain. The paper “The ratio of DDE to PCB concentrations in Great Lakes herring gull eggs and its us in interpreting contaminants data” reports the following ratios for eggs collected at sites from the five Great Lakes. The eggs were collected from both terrestrial and aquatic feeding birds. Suppose that we are interested in estimating $\rho=\frac{\mu_{terrestial}}{\mu_{aquatic}}$
 
-    ```{r}
+    
+    ```r
     Pollution <- data.frame(
       value = c(76.50, 6.03, 3.51, 9.96, 4.24, 7.74, 9.54, 41.70, 1.84, 2.50, 1.54,
                  0.27, 0.61, 0.54, 0.14, 0.63, 0.23, 0.56,  0.48, 0.16, 0.18       ),
       type  = c( rep('Terrestrial',11), rep('Aquatic',10) ) )
     model <- lm( value ~ -1 + type, data=Pollution)
     coef(model)
+    ```
+    
+    ```
+    ##     typeAquatic typeTerrestrial 
+    ##         0.38000        15.00909
     ```
     
     a) Recall that the ANOVA with the cell mean representation will calculate the group means. Use the lm() function to calculate the means of the two groups. Notice that the p-values and any confidence intervals from this model are useless because we are egregiously violating the equal variance and normality assumptions on the residuals.
@@ -607,7 +874,8 @@ confint(boot.model)
     e) The `mosaic::resample()` function includes an optional `groups=` argument that does the resampling within a specified group (thus we will always get 11 Terrestrial observations and 10 Aquatic). Use this to generate several bootstrap datasets. 
     f) The `car::Boot()` function cannot handle the grouping, but `boot::boot()` can. 
         i. The following function will calculate $\hat{\rho}$, the statistic of interest, given the original data and a set of indices to use. Notice that we've chosen to do case resampling here.
-            ```{r}
+            
+            ```r
             calc_rhohat <- function(data, indices){
               data.star <- data[indices, ]
               model.star <- lm( value ~ -1 + type, data=data.star )

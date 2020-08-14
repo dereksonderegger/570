@@ -424,7 +424,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<p>Above shows a table for the number of ‘Male’ and ‘Female’ participants. We see that these two strata are nearly equivalent, but we want to ensure we draw the samples based on proportionality. In total, we have 8636 participants. Let us say we want to draw <span class="math inline">\(800\)</span> of these participants, but through stratification using <em>sex</em>. We must then ensure that when we draw a random sample, we obtain a sub-sample that has nearly equivalent proportions to that observed in the population. We must therefore draw <span class="math inline">\(800*0.501 = 401\)</span> Females from the <span class="math inline">\(4325\)</span> available and <span class="math inline">\(800*0.499 = 399\)</span> Males from the <span class="math inline">\(4311\)</span>, where rounding was used. Notice this gives me <span class="math inline">\(401 + 399 = 800\)</span> samples, and that I have <span class="math inline">\(401/800 = 0.501\)</span> of the the sub-sample is Female and <span class="math inline">\(399/800 = 0.499\)</span> is Male. Thus, stratified sampling retains the proportions of the populations and allows me to sample from all strata. This can have desirable consequences, mainly that stratifying ensures samples are taken from all potential sources, here the sources are the different categories within our <em>sex</em> variable. Although unlikely, if I did draw samples using only SRS with no stratifying, I might get proportions of ‘Male’ and ‘Female’ that are close to that of the original sample. Stratifying guarantees we reproduce the proportions, while sampling from all homogeneous groupings.</p>
+<p>Above shows a table for the number of ‘Male’ and ‘Female’ participants. We see that these two strata are nearly equivalent, but we suppose we want to ensure we draw the samples based on proportionality. In total, we have 8636 participants. Let us say we want to draw <span class="math inline">\(800\)</span> of these participants, but through stratification using <em>sex</em>. We must then ensure that when we draw a random sample, we obtain a sub-sample that has nearly equivalent proportions to that observed in the population. We must therefore draw</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">sex</th>
+<th align="center">Sample size</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">F</td>
+<td align="center"><span class="math inline">\(800 * 0.501 = 401\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">M</td>
+<td align="center"><span class="math inline">\(800 * 0.499 = 399\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>And if we do this sub-sampling, then our sample proportions will necessarily be the same as our population proportions. This can have desirable consequences, mainly that stratifying ensures samples are taken from all potential sources, here the sources are the different categories within our <em>sex</em> variable. If I did draw samples using only SRS with no stratifying, I might get proportions of ‘Male’ and ‘Female’ that are wildly different than the original sample, and stratification forces us to <strong>not</strong> select those unrepresentative samples. Stratifying guarantees we reproduce the proportions, while sampling from all homogeneous groupings.</p>
 </div>
 </div>
 <div id="graphical-summaries" class="section level2">

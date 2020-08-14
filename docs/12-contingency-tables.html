@@ -24,7 +24,7 @@
 <meta name="author" content="Derek L. Sonderegger &amp; Robert Buscaglia" />
 
 
-<meta name="date" content="2020-08-12" />
+<meta name="date" content="2020-08-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -478,11 +478,11 @@ where the relevant parameters are <span class="math inline">\(\pi_{w}\)</span>, 
 <span id="cb486-2"><a href="12-contingency-tables.html#cb486-2"></a><span class="kw">table</span>(Mites.star)</span></code></pre></div>
 <pre><code>##           outcome
 ## treatment  no wilt wilt
-##   mites         11   15
-##   no mites       8   13</code></pre>
+##   mites         12   14
+##   no mites       7   14</code></pre>
 <div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb488-1"><a href="12-contingency-tables.html#cb488-1"></a><span class="kw">chisq.test</span>( <span class="kw">table</span>(Mites.star), <span class="dt">correct=</span><span class="ot">FALSE</span> )<span class="op">$</span>statistic <span class="co"># grab only the test statistic</span></span></code></pre></div>
-<pre><code>##  X-squared 
-## 0.08559517</code></pre>
+<pre><code>## X-squared 
+## 0.7928475</code></pre>
 <p>We see that this code is creating a data frame with a single column called <code>X.squared</code> and next we simulate a large number of times and display the sampling distribution of <span class="math inline">\(X^{2*}\)</span>.</p>
 <div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb490-1"><a href="12-contingency-tables.html#cb490-1"></a>SamplingDist &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">10000</span>)<span class="op">*</span>{</span>
 <span id="cb490-2"><a href="12-contingency-tables.html#cb490-2"></a>  Mites.star &lt;-<span class="st"> </span>Mites <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">treatment =</span> mosaic<span class="op">::</span><span class="kw">shuffle</span>(treatment))</span>

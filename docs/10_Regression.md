@@ -10,11 +10,6 @@ library(ggfortify)  # for diagnostic plots in ggplot2 via autoplot()
 
 We continue to want to examine the relationship between a predictor variable and a response but now we consider the case that the predictor is continuous and the response is also continuous. In general we are going to be interested in finding the line that best fits the observed data and determining if we should include the predictor variable in the model.
 
-
-```
-## `geom_smooth()` using formula 'y ~ x'
-```
-
 ![](10_Regression_files/figure-latex/unnamed-chunk-4-1.pdf)<!-- --> 
 
 
@@ -33,6 +28,11 @@ The following are true about Pearson's correlation coefficient:
 2. $-1\le r\le1$ because of the scaling by $n-1$
 3. A negative $r$ denotes a negative relationship between $x$ and $y$, while a positive value of $r$ represents a positive relationship.
 4. $r$ measures the strength of the linear relationship between the predictor and response.
+
+
+```
+## `summarise()` ungrouping output (override with `.groups` argument)
+```
 
 ![](10_Regression_files/figure-latex/unnamed-chunk-6-1.pdf)<!-- --> 
 
@@ -527,6 +527,14 @@ Step two: Fit a regression and examine the diagnostic plots.
 ```r
 model <- lm( Volume ~ Girth, data=trees )
 autoplot(model, which=c(1,2))
+```
+
+```
+## Warning: `arrange_()` is deprecated as of dplyr 0.7.0.
+## Please use `arrange()` instead.
+## See vignette('programming') for more help
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_warnings()` to see where this warning was generated.
 ```
 
 ![](10_Regression_files/figure-latex/unnamed-chunk-26-1.pdf)<!-- --> 

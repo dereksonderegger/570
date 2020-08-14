@@ -220,8 +220,8 @@ table(Mites.star)
 ```
 ##           outcome
 ## treatment  no wilt wilt
-##   mites          8   18
-##   no mites      11   10
+##   mites         10   16
+##   no mites       9   12
 ```
 
 ```r
@@ -229,8 +229,8 @@ chisq.test( table(Mites.star), correct=FALSE )$statistic # grab only the test st
 ```
 
 ```
-## X-squared 
-##  2.252981
+##  X-squared 
+## 0.09320003
 ```
 
 We see that this code is creating a data frame with a single column called `X.squared` and next we simulate a large number of times and display the sampling distribution of $X^{2*}$.
@@ -260,10 +260,10 @@ p.value
 
 ```
 ##   p.value
-## 1  0.0159
+## 1  0.0149
 ```
 
-We see that the p-value is 0.0159 and conclude that there is strong evidence to reject the null hypothesis that the mite treatment does not affect the probability of wilting. That is to say, the probability of observing data as extreme as ours is unlikely to occur by random chance when the null hypothesis is true.
+We see that the p-value is 0.0149 and conclude that there is strong evidence to reject the null hypothesis that the mite treatment does not affect the probability of wilting. That is to say, the probability of observing data as extreme as ours is unlikely to occur by random chance when the null hypothesis is true.
 
 As usual, it is pretty annoying to have to program the permutation test ourselves. Fortunately the `chisq.test()` function allows us to option to tell it to do a permutation based test. There is an option `simulate.p.value` which reproduces the simulation test we just performed.
 
@@ -278,7 +278,7 @@ chisq.test( table(Mites), simulate.p.value=TRUE, B=10000 )
 ## 	replicates)
 ## 
 ## data:  table(Mites)
-## X-squared = 7.2037, df = NA, p-value = 0.0142
+## X-squared = 7.2037, df = NA, p-value = 0.0159
 ```
 
 Before we had our excellent computers, we would have to compare the observed $X^{2}$ test statistic to some distribution to determine if it is large enough to be evidence against the null. It can be shown that if the null hypothesis is correct then $X^{2}\stackrel{\cdot}{\sim}\chi_{1}^{2}$ where this is the Chi-squared distribution with 1 degree of freedom. This is the distribution that the `chisq.test()` compares against if we don't tell it to do a permutation based test. Furthermore, even if the null hypothesis is true the test statistic is only approximately normal but that approximation gets better and better as the total sample size increases. 

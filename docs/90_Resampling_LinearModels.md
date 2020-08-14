@@ -751,7 +751,7 @@ data.star
 ## # A tibble: 8 x 6
 ## # Groups:   grp [2]
 ##       y grp     fit resid resid.star y.star
-##   <dbl> <fct> <dbl> <dbl>      <dbl>  <dbl>
+##   <dbl> <chr> <dbl> <dbl>      <dbl>  <dbl>
 ## 1   9.8 A        10  -0.2        0.2   10.2
 ## 2   9.9 A        10  -0.1        0.1   10.1
 ## 3  10.1 A        10   0.1        0.1   10.1

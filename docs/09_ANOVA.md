@@ -98,6 +98,11 @@ There are several sources of variability that we are dealing with.
 SST: Sum of Squares Total - This is the total variability in the data set. It has an associated df=n-1 because under the null hypothesis there is only one mean $\mu$. 
 $$SST=\sum_{i=1}^{k}\sum_{j=1}^{n_{j}}\left(y_{ij}-\bar{y}_{\cdot\cdot}\right)^{2} \;\;\;\;\;\;\;\;\;df_{T}=n-1$$
 
+
+```
+## `summarise()` ungrouping output (override with `.groups` argument)
+```
+
 ![](09_ANOVA_files/figure-latex/unnamed-chunk-5-1.pdf)<!-- --> 
 
 
@@ -218,6 +223,14 @@ Before we examine the anova table and make any conclusion, we should double chec
 
 ```r
 autoplot( model, which=2)  # The which argument specifies which plot to make
+```
+
+```
+## Warning: `arrange_()` is deprecated as of dplyr 0.7.0.
+## Please use `arrange()` instead.
+## See vignette('programming') for more help
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_warnings()` to see where this warning was generated.
 ```
 
 ![](09_ANOVA_files/figure-latex/unnamed-chunk-8-1.pdf)<!-- --> 
@@ -432,6 +445,11 @@ To examine the Normality of the residuals, we'll use a Shapiro-Wilk's test and w
 ```r
 # Test for equal variances between groups
 car::leveneTest(HLT~Method, data=Hostility)
+```
+
+```
+## Warning in leveneTest.default(y = y, group = group, ...): group coerced to
+## factor.
 ```
 
 ```
@@ -665,6 +683,11 @@ Neither representation is more powerful because on a very deep mathematical leve
 
 We have been talking about the complex and simple models for our data but there is one more possible model, albeit not a very good one. I will refer to this as the bad model because it is almost always a poor fitting model.
 $$Y_{ij}=\epsilon_{ij} \;\;\; \textrm{ where }\;\;\; \epsilon_{ij}\stackrel{iid}{\sim}N\left(0,\sigma^{2}\right).$$
+
+
+```
+## `summarise()` ungrouping output (override with `.groups` argument)
+```
 
 ![](09_ANOVA_files/figure-latex/unnamed-chunk-29-1.pdf)<!-- --> 
 

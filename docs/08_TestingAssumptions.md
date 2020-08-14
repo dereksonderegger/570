@@ -285,6 +285,13 @@ F <- Alcohol %>%
   group_by(trt) %>%                # for each trt group,
   summarise( s2 = var(time)) %>%   # calculate variance.
   summarise( F = s2[1] / s2[2] )   # and then take the ratio
+```
+
+```
+## `summarise()` ungrouping output (override with `.groups` argument)
+```
+
+```r
 F
 ```
 

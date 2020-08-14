@@ -134,22 +134,22 @@ CaffeineTaps %>% mutate(ShuffledGroup = mosaic::shuffle(Group))
 ## 1   246   Caffeine    NoCaffeine
 ## 2   248   Caffeine      Caffeine
 ## 3   250   Caffeine      Caffeine
-## 4   252   Caffeine      Caffeine
-## 5   248   Caffeine      Caffeine
+## 4   252   Caffeine    NoCaffeine
+## 5   248   Caffeine    NoCaffeine
 ## 6   250   Caffeine      Caffeine
-## 7   246   Caffeine    NoCaffeine
+## 7   246   Caffeine      Caffeine
 ## 8   248   Caffeine    NoCaffeine
-## 9   245   Caffeine    NoCaffeine
-## 10  250   Caffeine    NoCaffeine
+## 9   245   Caffeine      Caffeine
+## 10  250   Caffeine      Caffeine
 ## 11  242 NoCaffeine    NoCaffeine
 ## 12  245 NoCaffeine    NoCaffeine
 ## 13  244 NoCaffeine      Caffeine
 ## 14  248 NoCaffeine    NoCaffeine
 ## 15  247 NoCaffeine    NoCaffeine
-## 16  248 NoCaffeine      Caffeine
+## 16  248 NoCaffeine    NoCaffeine
 ## 17  242 NoCaffeine      Caffeine
-## 18  244 NoCaffeine      Caffeine
-## 19  246 NoCaffeine    NoCaffeine
+## 18  244 NoCaffeine    NoCaffeine
+## 19  246 NoCaffeine      Caffeine
 ## 20  242 NoCaffeine      Caffeine
 ```
 
@@ -168,7 +168,7 @@ CaffeineTaps %>%
 ## # A tibble: 1 x 1
 ##   d.star
 ##    <dbl>
-## 1   -0.5
+## 1   1.30
 ```
 
 We could repeat this shuffling several times and see the possible values we might have seen if the null hypothesis is correct and the treatment group doesn't matter at all.
@@ -186,11 +186,11 @@ mosaic::do(5) * {
 
 ```
 ##   d.star
-## 1   -1.9
-## 2    1.9
-## 3   -0.7
-## 4   -1.7
-## 5    2.1
+## 1   -0.9
+## 2   -0.1
+## 3    0.3
+## 4    1.5
+## 5    1.3
 ```
 
 Of course, five times isn't sufficient to understand the sampling distribution of the mean difference under the null hypothesis, we should do more.
@@ -529,11 +529,15 @@ CaffeineTaps %>%
 ```
 
 ```
+## `summarise()` ungrouping output (override with `.groups` argument)
+```
+
+```
 ## # A tibble: 2 x 5
 ##   Group      xbar.i  s2.i   s.i   n.i
 ##   <fct>       <dbl> <dbl> <dbl> <int>
 ## 1 NoCaffeine   245.  5.73  2.39    10
-## 2 Caffeine     248.  4.90  2.21    10
+## 2 Caffeine     248.  4.9   2.21    10
 ```
 
 We can then use the descriptive statistics to determine the pooled variance estimate $\sigma_{pooled}$). 
@@ -546,6 +550,10 @@ CaffeineTaps %>%
              s2.i = var(Taps) ) %>%     
   summarize( s2.p = sum( (n.i-1)*s2.i ) / ( sum(n.i)-2 ),
              s.p  = sqrt(s2.p) ) 
+```
+
+```
+## `summarise()` ungrouping output (override with `.groups` argument)
 ```
 
 ```

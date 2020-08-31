@@ -5,8 +5,8 @@ bookdown::gitbook:
     toc:
       collapse: section
       scroll_highlight: true
-    edit:
-      link: https://github.com/dereksonderegger/570/raw/master/%s
+    view: https://github.com/dereksonderegger/570/raw/master/%s
+    edit: https://github.com/dereksonderegger/570/blob/master/%s
     download:
       - ["Statistical-Methods-I.pdf",  "PDF"]
     search: yes

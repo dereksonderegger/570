@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.3.18)  14 AUG 2020 15:11
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.3.18)  31 AUG 2020 16:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -414,40 +414,7 @@ LaTeX Info: Redefining \cite on input line 694.
 LaTeX Warning: Label `variance' multiply defined.
 
 
-LaTeX Warning: Label `exercises' multiply defined.
-
-
-LaTeX Warning: Label `exercises' multiply defined.
-
-
-LaTeX Warning: Label `exercises' multiply defined.
-
-
-LaTeX Warning: Label `exercises' multiply defined.
-
-
 LaTeX Warning: Label `additional-examples' multiply defined.
-
-
-LaTeX Warning: Label `exercises' multiply defined.
-
-
-LaTeX Warning: Label `exercises' multiply defined.
-
-
-LaTeX Warning: Label `exercises' multiply defined.
-
-
-LaTeX Warning: Label `exercises' multiply defined.
-
-
-LaTeX Warning: Label `exercises' multiply defined.
-
-
-LaTeX Warning: Label `exercises' multiply defined.
-
-
-LaTeX Warning: Label `exercises' multiply defined.
 
 )
 \openout1 = `Statistical-Methods-I.aux'.
@@ -2115,10 +2082,10 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 9556.
  ) 
 Here is how much of TeX's memory you used:
- 17606 strings out of 481790
- 347085 string characters out of 5936466
+ 17617 strings out of 481790
+ 347386 string characters out of 5936466
  741602 words of memory out of 5000000
- 34301 multiletter control sequences out of 15000+600000
+ 34312 multiletter control sequences out of 15000+600000
  542721 words of font info for 112 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  52i,11n,115p,2116b,565s stack positions out of 5000i,500n,10000p,200000b,80000s

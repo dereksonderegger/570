@@ -504,7 +504,7 @@ If a distribution has a heavier tail on one side or the other, we refer to it as
 ![](01_Data_Summary_files/figure-latex/unnamed-chunk-28-1.pdf)<!-- --> 
 
 
-## Exercises
+## Exercises {#Exercises_DataSummary}
 
 1. O&L 3.21. The ratio of DDE (related to DDT) to PCB concentrations in bird eggs has been shown to have had a number of biological implications. The ratio is used as an indication of the movement of contamination through the food chain. The paper “The ratio of DDE to PCB concentrations in Great Lakes herring gull eggs and its us in interpreting contaminants data” reports the following ratios for eggs collected at 13 study sites from the five Great Lakes. The eggs were collected from both terrestrial and aquatic feeding birds.
 

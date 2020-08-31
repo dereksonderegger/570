@@ -1096,7 +1096,7 @@ quantile( BootDist$t, probs=c(.025, .975) )
 
 The confidence interval suggests that these data support that the mean difference between the flexible timing sequence versus the standard fixed timing sequence in Dresden is in the interval $\left(55.5,\,67.5\right)$ seconds.
 
-## Exercises
+## Exercises {#Exercises_TwoSamples}
 
 1. In the 2011 article “Methane contamination of drinking water accompanying gas-well drilling and hydraulic fracturing” in the Proceedings of the National Academy of Sciences, $n_{1}=21$ sites in proximity to a fracking well had a mean methane level of $\bar{x}_{1}=19.2$ mg $CH_{4} L^{-1}$ with a sample standard deviation $s_{1}=30.3$. The $n_{2}=13$ sites in the same region with no fracking wells within 1 kilometer had mean methane levels of $\bar{x}_{2}=1.1$ mg $CH_{4} L^{-1}$ and standard deviation $s_{2}=6.3$. Perform a one-sided, two-sample t-test with unpooled variance and an $\alpha=0.05$ level to investigate if the presence of fracking wells increases the methane level in drinking-water wells in this region. Notice that because I don't give you the data, you can only analyze the data using the asymptotic method and plugging in the give quantities into the formulas presented.
     a) State an appropriate null and alternative hypothesis.

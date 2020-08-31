@@ -830,7 +830,7 @@ confint(boot.model)
 ```
 
 
-## Exercises
+## Exercises {#Exercises_ResamplingLinearModels}
 
 1. We will perform a regression analysis on the following data and use different bootstrap re-sampling methods to create a confidence interval for the slope parameter. In this case the residuals are symmetric, though perhaps we don't want to assume normality. 
     

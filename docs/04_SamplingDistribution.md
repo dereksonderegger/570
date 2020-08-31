@@ -248,7 +248,7 @@ If $Y_{1},Y_{2},\dots,Y_{n}$ were sampled from a distribution that is _not_ norm
 $$\bar{Y}	\stackrel{\cdot}{\sim}	N\left(\mu_{\bar{Y}}=\mu,\;\;\sigma_{\bar{Y}}^{2}=\frac{\sigma^{2}}{n}\right)$$
  
 
-## Exercises
+## Exercises {#Exercises_SamplingDistributions}
 
 1. Suppose that the amount of fluid in a small can of soda can be well approximated by a Normal distribution. Let $X$ be the amount of soda (in milliliters) in a single can and $X\sim N\left(\mu=222,\;\sigma=5\right)$.
     a) $P\left(X>230\right)=$

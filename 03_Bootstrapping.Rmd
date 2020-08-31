@@ -383,7 +383,7 @@ quantile( BootDist$t, probs=c(.025, .975) )
 
 Based on the quantile approach, the $95\%$ bootstrap confidence for the mean pulse rate of undergraduates in the introductory statistics course is $68.7$ to $71.2$ beats per minutes.
 
-## Exercises
+## Exercises {#Exercises_Bootstrap}
 
 For several of these exercises, we will use data sets from the R package `Lock5Data`, which greatly contributed to the pedagogical approach of these notes. Install the package from CRAN using the RStudio point-and-click interface `Tools -> Install Packages`....
 

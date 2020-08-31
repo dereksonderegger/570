@@ -466,7 +466,7 @@ The general process for selecting a sample size is to
 3. Decide how large of an effect is scientifically interesting.
 4. Plug the results of steps 1-3 into a power calculator and see how large a study you need to achieve a power of $90\%$ or $95\%$. 
 
-## Exercises
+## Exercises {#Exercises_HypothesisTests}
 
 1. One way the amount of sewage and industrial pollutants dumped into a body of water affects the health of the water is by reducing the amount of dissolved oxygen available for aquatic life. Over a 2-month period, 8 samples were taken from a river at a location 1 mile downstream from a sewage treatment plant. The amount of dissolved oxygen in the samples was determined and is reported in the following table. 
     

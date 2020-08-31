@@ -186,7 +186,7 @@ Notice that I don't bother using the $t$-distribution in this calculations becau
 
 We could be a bit more precise and use the $t$-quantile, but because the degrees of freedom depend on $n$ as well, then we would have $n$ on both sides of the equation and there is no convenient algebraic solution to solving for $n$. Later on we'll use an R function that accounts for this, but for now we will use the rough approximation.
 
-## Exercises
+## Exercises {#Exercises_ConfidenceIntervals}
 
 1. An experiment is conducted to examine the susceptibility of root stocks of a variety of lemon trees to a specific larva. Forty of the plants are subjected to the larvae and examined after a fixed period of time. The response of interest is the logarithm of the number of larvae per gram of of root stock. For these 40 plants, the sample mean is $\bar{x}=11.2$ and the sample standard deviation is $s=1.3$. Use these data to construct a $90\%$ confidence interval for $\mu$, the mean susceptibility of lemon tree root stocks from which the sample was taken. 
 

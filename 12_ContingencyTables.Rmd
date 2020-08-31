@@ -275,7 +275,7 @@ Conceptually we will just perform all possible pairwise tests and then adjust th
 
 There are a number of other questions that I might consider, such as confidence intervals for the proportions married in each race. However, those questions require a few more assumptions about the structure of the data and will be addressed when we study logistic regression.
 
-## Exercises
+## Exercises {#Exercises_ContingencyTables}
 1. Is gender independent of education level? A random sample of $n=501$ people were surveyed and each person was asked to report the highest education level they obtained. The data that resulted from the survey is summarized in the following table:
     ```{r, echo=FALSE}
     calc.totals <- function(tab){

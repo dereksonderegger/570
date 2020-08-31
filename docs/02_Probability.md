@@ -742,7 +742,7 @@ All the probability distributions available in R are accessed in exactly the sam
 
 The `mosaic` package has versions of the p and q -functions that also print a out nice picture of the probabilities that you ask for.  These functions are named by just adding an 'x' at the beginning of the function.  For example `mosaic::xpnorm(-1)`.
 
-## Exercises
+## Exercises {#Exercises_Probability}
 
 1. The population distribution of blood donors in the United States based on race/ethnicity and blood type as reported by the American Red Cross is given here:
 

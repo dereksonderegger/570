@@ -775,7 +775,7 @@ anova(simple, cell.representation)
 
 My recommendation is to always fit the offset model and, if you are interested in all of the mean values, just access the group means and difference between groups using the `emmeans::emmeans()` function. If you are interested in the just the offsets, then you can access them through the base functions `coef()` and `conf()` or pick them out of your `emmeans` output.
 
-## Exercises
+## Exercises {#Exercises_ANOVA}
 
 _In previous chapters, the exercises have been quite blunt about asking you to interpret your results when appropriate. In this chapter (and subsequent chapters) the questions don't explicitly ask your interpretation, but rather it is implied that and the end of a calculation or whenever you produce a graph or table, there should always be some sort of comment about the result (e.g. this result shows that the residuals are not normally distributed). Your job is to interpret the results, not just produce them._ 
 

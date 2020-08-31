@@ -701,7 +701,7 @@ Unfortunately there isn't a matching procedure for deciding how to transform the
 
 In general, deciding on a transformation to use is often a trade-off between statistical pragmatism and interpretability. In cases that a transformation is not possible, or the interpretation is difficult, it is necessary to build more complicated models that are hopefully interpretable. We will explore these issues in great length in STA 571.
 
-## Exercises
+## Exercises {#Exercises_Regression}
 
 1. Use the following data below to answer the questions below
     

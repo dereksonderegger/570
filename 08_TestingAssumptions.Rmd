@@ -421,7 +421,7 @@ PermDist %>% summarise(p.value = mean(extreme))
 
 We again see that with this small of a data set, our simulation based p-value is different from the theoretical based p-value. This is primarily due to the non-normality of our data along with the small sample sizes. In general as our sample sizes increase the simulation based and theoretical based distributions should give similar inference and p-values.
 
-## Exercises
+## Exercises {#Exercises_TestingAssumptions}
 
 1. To find the probabilities for the F-distribution, we will use the function `pf(f, df1, df2)` where the `f` is the value for which we want to find the probability of finding a value less than. That is $$P\left(F_{2,10}<4.2\right)=$$
     ```{r}

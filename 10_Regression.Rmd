@@ -71,7 +71,7 @@ We first consider Pearson's correlation coefficient, which is a statistics that 
 $$r=\frac{\sum_{i=1}^{n}\left(\frac{x_{i}-\bar{x}}{s_{x}}\right)\left(\frac{y_{i}-\bar{y}}{s_{y}}\right)}{n-1}$$
 where $x_{i}$ and $y_{i}$ are the x and y coordinate of the $i$th observation. Notice that each parenthesis value is the standardized value of each observation. If the x-value is big (greater than $\bar{x}$) and the y-value is large (greater than $\bar{y}$), then after multiplication, the result is positive. Likewise if the x-value is small and the y-value is small, both standardized values are negative and therefore after multiplication the result is positive. If a large x-value is paired with a small y-value, then the first value is positive, but the second is negative and so the multiplication result is negative.
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
 xbar <- mean(data$x ) 
 ybar <- mean(data$y )
 tile.data <- data.frame(x=c(xbar-1, xbar-1, xbar+1, xbar+1),
@@ -95,7 +95,7 @@ The following are true about Pearson's correlation coefficient:
 3. A negative $r$ denotes a negative relationship between $x$ and $y$, while a positive value of $r$ represents a positive relationship.
 4. $r$ measures the strength of the linear relationship between the predictor and response.
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
 set.seed(345)
 x <- seq(0,1, length=n) 
 lots.data <- rbind(
@@ -261,8 +261,8 @@ In general, most statistics programs will give a table of output summarizing a r
 
 |  Coefficient    |      Estimate     |       Std. Error        |                       t-stat                          |            p-value              |
 |:---------------:|:-----------------:|:-----------------------:|:-----------------------------------------------------:|:-------------------------------:|
-|    Intercept	  | $\hat{\beta}_{0}$ |	StdErr$(\hat{\beta}_0)$ | 	$t_{0}=\frac{\hat{\beta}_0}{StdErr(\hat{\beta}_0)}$ |	$2*P(T_{n-2}>\vert t_0 \vert )$ |
-|    Slope	      | $\hat{\beta}_{1}$ |	StdErr$(\hat{\beta}_1)$ | 	$t_{1}=\frac{\hat{\beta}_1}{StdErr(\hat{\beta}_1)}$ |	$2*P(T_{n-2}>\vert t_1 \vert )$ |
+|    Intercept    | $\hat{\beta}_{0}$ | StdErr$(\hat{\beta}_0)$ |   $t_{0}=\frac{\hat{\beta}_0}{StdErr(\hat{\beta}_0)}$ | $2*P(T_{n-2}>\vert t_0 \vert )$ |
+|    Slope        | $\hat{\beta}_{1}$ | StdErr$(\hat{\beta}_1)$ |   $t_{1}=\frac{\hat{\beta}_1}{StdErr(\hat{\beta}_1)}$ | $2*P(T_{n-2}>\vert t_1 \vert )$ |
 
 
 This table is printed by R by using the `summary()` function:
@@ -474,7 +474,7 @@ predict(model, newdata=data.frame(year=c(3112)), interval="prediction")
 
 As in the ANOVA analysis, we want to be able to check the model assumptions. To do this, we will examine the residuals $e_{i}=y_{i}-\hat{y}_{i}$ for normality using a QQ-plot as we did in ANOVA. To address the constant variance and linearity assumptions we will look at scatterplots of the residuals vs the fitted values $\hat{y}_{i}$. For the regression to be valid, we want the scatterplot to show no discernible trend. There are two patterns that commonly show up that indicate a violation of the regression assumptions.
 
-```{r}
+```{r, echo=FALSE}
 set.seed(2233);
 par(mfrow=c(1,3));
 n <- 20;
@@ -483,12 +483,11 @@ data <- data.frame(
   Fitted=c(x,x,x),
   Residual=c(rnorm(n,0,.25), rnorm(n,(2*x-1)^2-.375, .2), rnorm(n,0,x*.45)), 
   Type=factor(rep(1:3, each=n), labels=c('No Trend', 'Non-Linear', 'Non-Constant Variance') ));
-for(i in 1:3){
-  index <- 1:n + n*(i-1);
-  plot(data$Fitted[index], data$Residual[index], 
-	   xlab='Fitted', ylab='Residual', main=data$Type[index[1]] );
-  abline(0,0, lty=2);
-}
+
+ggplot(data, aes(x=Fitted, y=Residual)) +
+  geom_point() +
+  facet_wrap(~Type) +
+  geom_hline(yintercept = 0, color='red', linetype='dashed')
 ```
 
 
@@ -559,21 +558,32 @@ From the summary output, we can see several things:
 
 Sometimes a dataset will contain one observation that has a large effect on the outcome of the model. Consider the following datasets where the red denotes a highly influential point and the red line is the regression line including the point. 
 
-```{r, echo=FALSE}
-par(mfrow=c(1,2))
-x <- c( 9, 10, 11, 12)
-y <- c(15, 17, 16, 18)
-model <- lm(y ~ x)
-model.1 <- lm(c(y,28) ~ c(x,2))
-model.2 <- lm(c(y,28) ~ c(x,10.5))
-plot(x,y, xlim=c(0,14), ylim=c(15,30))
-points(2, 28, pch=2, col='red')
-abline(coef(model))
-abline(coef(model.1), col='red', lty=2)
-plot(x,y, xlim=c(8,13), ylim=c(15,30))
-points(10.5, 28, pch=2, col='red')
-abline(coef(model))
-abline(coef(model.2), col='red', lty=2)
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+data <- data.frame(
+  x = c( 9, 10, 11, 12),
+  y = c(15, 17, 16, 18),
+  Type = 'Regular')
+model <- lm(y ~ x, data=data)
+P1 <- 
+  data %>% add_row(x=10.5, y=28, Type='Added') %>%
+  ggplot(aes(x=x, y=y)) +
+  geom_point(aes(shape=Type, color=Type)) +
+  geom_smooth(method='lm', se=FALSE, color='red', linetype='dashed') +
+  scale_color_manual(values=c('red','black')) +
+  scale_shape_manual(values=c('triangle','circle')) +
+  geom_abline(intercept=coef(model)[1], slope=coef(model)[2]) +
+  theme(legend.position = 'none')
+P2 <- 
+  data %>% add_row(x=2, y=28, Type='Added') %>%
+  ggplot(aes(x=x, y=y)) +
+  geom_point(aes(shape=Type, color=Type)) +
+  geom_smooth(method='lm', se=FALSE, color='red', linetype='dashed') +
+  scale_color_manual(values=c('red','black')) +
+  scale_shape_manual(values=c('triangle','circle')) +
+  geom_abline(intercept=coef(model)[1], slope=coef(model)[2]) +
+  theme(legend.position = 'none')
+
+Rmisc::multiplot(P1, P2, cols = 2)
 ```
 
 
@@ -585,15 +595,23 @@ One solution is to run the analysis both with and without the influential point 
 
 When the normality or constant variance assumption is violated, sometimes it is possible to transform the data to make it satisfy the assumption. Often times count data is analyzed as log(count) and weights are analyzed after taking a square root or cube root transform. 
 
-```{r, echo=FALSE, fig.height=5}
-x <- seq(0, 10, length=100)
-plot(c(0,10), c(-2,6), type='n', xlab='x', ylab='y')
-lines(x, log(x), lwd=2, col=1, lty=1)
-lines(x, sqrt(x), lwd=2, col=2, lty=2)
-lines(x, 1/x, lwd=3, col=3, lty=3)
-legend(1,6, legend=c('log(x)', 'sqrt(x)', '1/x'), lty=1:3, col=1:3)
-abline(h=0)
-abline(v=0)
+```{r, echo=FALSE, warning=FALSE, fig.height=5}
+data <- data.frame(x = `^`(seq(0.001,1.26,length=100), 10)) %>%
+  mutate(`log(x)`=log(x),
+         `Sqrt(x)`=sqrt(x),
+         `1/x`= 1/x) %>%
+  tidyr::pivot_longer(`log(x)`:`1/x`, 'Transformation') 
+
+ggplot(data, aes(x=x, y=value, color=Transformation)) +
+  geom_line() +
+  coord_cartesian(xlim=c(0,10), ylim=c(-5,10)) +
+  annotate('text', x=5.5, y=-1, color='red',
+           label=latex2exp::TeX('$\\frac{1}{x}$')) +
+  annotate('text', x=8, y=1.5, color='green',
+           label=latex2exp::TeX('$\\log{(x)}$')) +
+  annotate('text', x=8, y=3.5, color='blue',
+           label=latex2exp::TeX('$\\sqrt{x}$')) +
+  theme(legend.position = 'none')
 ```
 
 
@@ -735,30 +753,31 @@ In general, deciding on a transformation to use is often a trade-off between sta
         
         Summary:
         
-        | Coefficients	| Estimate	| Std Error	| t-value |	$Pr(>|t|)$ |
+        | Coefficients	| Estimate  | Std Error | t-value | $Pr(>|t|)$ |
         |:-------------:|:---------:|:---------:|:-------:|:----------:|
-        |  (Intercept)	|  283.45	  |   4.28	  |         | 	< 2e-16  |
-        |     Year      |  0.613    | 	0.0841  |	 7.289	|  1.27e-06  |
+        |  (Intercept)	|  283.45   |   4.28 |            | < 2e-16  |
+        |     Year      |  0.613    |   0.0841  |  7.289  |  1.27e-06  |
+        |                           |                                  |
         
-        |                                                       |                                   |        
+        |   | |    
         |:-----------------------------------------------------:|:---------------------------------:|
-        | Residual Standard Error =	  $\;\;\;\;\;\;\;\;\;\;$    | 	R-sq =	$\;\;\;\;\;\;\;\;\;\;$  |
+        | Residual Standard Error = $\;\;\;\;\;\;\;\;\;\;$|R-sq = $\;\;\;\;\;\;\;\;\;\;$|
         
                 
         Analysis of Variance:
         
-        | Source    | 	df	 |   Sum Sq  |	Mean Sq	 |  F-value  | 	Pr(>F)  |
+        | Source    | df | Sum Sq | Mean Sq | F-value | Pr(>F) |
         |:---------:|:------:|:---------:|:---------:|:---------:|:--------:|
-        |  Year	    |        |           |           |           |          |
-        | Residuals	|	       |           |   95.19   |           |          |
-        |  Total    | 	18   |	6673.2	 |           |           |          |		
+        |  Year     |        |           |           |           |          |
+        | Residuals |        |           |   95.19   |           |          |
+        |  Total    | 	18   | 6673.2 ||||		
 
 3. Ott & Longnecker 11.45&47 - In the preliminary studies of a new drug, a pharmaceutical firm needs to obtain information on the relationship between the dose level and potency of the drug. In order to obtain this information, a total of 18 test tubes are inoculated with a virus culture and incubated for an appropriate period of time. Three test tubes are randomly assigned to each of 6 different dose levels. The 18 test tubes are then injected with the randomly assigned dose level of the drug. the measured response is the protective strength of the drug against the virus culture. Due to a problem with a few of the test tubes, only 2 responses were obtained for dose levels 4,8, and 16. The data are:
     
     |          |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
     |:--------:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
-    | Dose     | 	2	|  2 |	2	|  4 |  4 |  8 |	8	| 16 | 16	| 16 | 32	| 32 | 64 |	64 | 64 |
-    | Response |	5	|  7 |  3	| 10 | 14	| 15 | 17	| 20 | 21	| 19 | 23	| 29 | 28	| 31 | 30 |
+    | Dose     | 2 | 2 | 2 | 4  |  4 | 8  |  8 | 16 | 16 | 16 | 32 | 32 | 64 | 64 | 64 |
+    | Response | 5 | 7 | 3 | 10 | 14 | 15 | 17 | 20 | 21 | 19 | 23 | 29 | 28 | 31 | 30 |
     
     a) We will first fit a regression model to the raw data.
         i. Plot the data and comment on the relationship between the covariate and response.

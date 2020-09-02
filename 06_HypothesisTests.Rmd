@@ -559,11 +559,11 @@ The general process for selecting a sample size is to
 data <- data.frame(Sample = 1:12, Exposure=c(91.9, 97.8, 111.4, 122.3, 105.4, 95.0, 103.8, 99.6, 96.6, 119.3, 104.8, 101.7 ))
 datawide <- data %>% tidyr::spread(key=Sample, value=Exposure)
 colnames(datawide) <- NULL
-#pander(datawide, style='rmarkdown')
+# pander::pander(datawide, style='rmarkdown', ncol=6   )
 ```
-    
-    | 91.9 | 97.8 | 111.4 | 122.3 | 105.4 |  95.0 |
+    |      |      |       |       |       |       |    
     |:----:|:----:|:-----:|:-----:|:-----:|:-----:|
+    | 91.9 | 97.8 | 111.4 | 122.3 | 105.4 |  95.0 |
     |103.8 | 99.6 | 96.6  | 119.3 | 104.8 | 101.7 |
     
     Do all of the following calculations by hand (except for the calculations of the mean and standard deviation).

@@ -485,9 +485,9 @@ The general process for selecting a sample size is to
 
 2. We are interested in investigating how accurate radon detectors sold to homeowners are. We take a randomly selection of $n=12$ detectors and expose them to $105$ pico-curies per liter (pCi/l) of radon. The following values were given by the radon detectors. 
 
-    
-    | 91.9 | 97.8 | 111.4 | 122.3 | 105.4 |  95.0 |
+    |      |      |       |       |       |       |    
     |:----:|:----:|:-----:|:-----:|:-----:|:-----:|
+    | 91.9 | 97.8 | 111.4 | 122.3 | 105.4 |  95.0 |
     |103.8 | 99.6 | 96.6  | 119.3 | 104.8 | 101.7 |
     
     Do all of the following calculations by hand (except for the calculations of the mean and standard deviation).

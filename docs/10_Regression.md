@@ -29,11 +29,6 @@ The following are true about Pearson's correlation coefficient:
 3. A negative $r$ denotes a negative relationship between $x$ and $y$, while a positive value of $r$ represents a positive relationship.
 4. $r$ measures the strength of the linear relationship between the predictor and response.
 
-
-```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
 ![](10_Regression_files/figure-latex/unnamed-chunk-6-1.pdf)<!-- --> 
 
 
@@ -208,8 +203,8 @@ In general, most statistics programs will give a table of output summarizing a r
 
 |  Coefficient    |      Estimate     |       Std. Error        |                       t-stat                          |            p-value              |
 |:---------------:|:-----------------:|:-----------------------:|:-----------------------------------------------------:|:-------------------------------:|
-|    Intercept	  | $\hat{\beta}_{0}$ |	StdErr$(\hat{\beta}_0)$ | 	$t_{0}=\frac{\hat{\beta}_0}{StdErr(\hat{\beta}_0)}$ |	$2*P(T_{n-2}>\vert t_0 \vert )$ |
-|    Slope	      | $\hat{\beta}_{1}$ |	StdErr$(\hat{\beta}_1)$ | 	$t_{1}=\frac{\hat{\beta}_1}{StdErr(\hat{\beta}_1)}$ |	$2*P(T_{n-2}>\vert t_1 \vert )$ |
+|    Intercept    | $\hat{\beta}_{0}$ | StdErr$(\hat{\beta}_0)$ |   $t_{0}=\frac{\hat{\beta}_0}{StdErr(\hat{\beta}_0)}$ | $2*P(T_{n-2}>\vert t_0 \vert )$ |
+|    Slope        | $\hat{\beta}_{1}$ | StdErr$(\hat{\beta}_1)$ |   $t_{1}=\frac{\hat{\beta}_1}{StdErr(\hat{\beta}_1)}$ | $2*P(T_{n-2}>\vert t_1 \vert )$ |
 
 
 This table is printed by R by using the `summary()` function:
@@ -469,24 +464,6 @@ predict(model, newdata=data.frame(year=c(3112)), interval="prediction")
 ## Checking Model Assumptions
 
 As in the ANOVA analysis, we want to be able to check the model assumptions. To do this, we will examine the residuals $e_{i}=y_{i}-\hat{y}_{i}$ for normality using a QQ-plot as we did in ANOVA. To address the constant variance and linearity assumptions we will look at scatterplots of the residuals vs the fitted values $\hat{y}_{i}$. For the regression to be valid, we want the scatterplot to show no discernible trend. There are two patterns that commonly show up that indicate a violation of the regression assumptions.
-
-
-```r
-set.seed(2233);
-par(mfrow=c(1,3));
-n <- 20;
-x <- seq(0,1,length=n);
-data <- data.frame(
-  Fitted=c(x,x,x),
-  Residual=c(rnorm(n,0,.25), rnorm(n,(2*x-1)^2-.375, .2), rnorm(n,0,x*.45)), 
-  Type=factor(rep(1:3, each=n), labels=c('No Trend', 'Non-Linear', 'Non-Constant Variance') ));
-for(i in 1:3){
-  index <- 1:n + n*(i-1);
-  plot(data$Fitted[index], data$Residual[index], 
-	   xlab='Fitted', ylab='Residual', main=data$Type[index[1]] );
-  abline(0,0, lty=2);
-}
-```
 
 ![](10_Regression_files/figure-latex/unnamed-chunk-24-1.pdf)<!-- --> 
 
@@ -794,30 +771,31 @@ In general, deciding on a transformation to use is often a trade-off between sta
         
         Summary:
         
-        | Coefficients	| Estimate	| Std Error	| t-value |	$Pr(>|t|)$ |
+        | Coefficients	| Estimate  | Std Error | t-value | $Pr(>|t|)$ |
         |:-------------:|:---------:|:---------:|:-------:|:----------:|
-        |  (Intercept)	|  283.45	  |   4.28	  |         | 	< 2e-16  |
-        |     Year      |  0.613    | 	0.0841  |	 7.289	|  1.27e-06  |
+        |  (Intercept)	|  283.45   |   4.28 |            | < 2e-16  |
+        |     Year      |  0.613    |   0.0841  |  7.289  |  1.27e-06  |
+        |                           |                                  |
         
-        |                                                       |                                   |        
+        |   | |    
         |:-----------------------------------------------------:|:---------------------------------:|
-        | Residual Standard Error =	  $\;\;\;\;\;\;\;\;\;\;$    | 	R-sq =	$\;\;\;\;\;\;\;\;\;\;$  |
+        | Residual Standard Error = $\;\;\;\;\;\;\;\;\;\;$|R-sq = $\;\;\;\;\;\;\;\;\;\;$|
         
                 
         Analysis of Variance:
         
-        | Source    | 	df	 |   Sum Sq  |	Mean Sq	 |  F-value  | 	Pr(>F)  |
+        | Source    | df | Sum Sq | Mean Sq | F-value | Pr(>F) |
         |:---------:|:------:|:---------:|:---------:|:---------:|:--------:|
-        |  Year	    |        |           |           |           |          |
-        | Residuals	|	       |           |   95.19   |           |          |
-        |  Total    | 	18   |	6673.2	 |           |           |          |		
+        |  Year     |        |           |           |           |          |
+        | Residuals |        |           |   95.19   |           |          |
+        |  Total    | 	18   | 6673.2 ||||		
 
 3. Ott & Longnecker 11.45&47 - In the preliminary studies of a new drug, a pharmaceutical firm needs to obtain information on the relationship between the dose level and potency of the drug. In order to obtain this information, a total of 18 test tubes are inoculated with a virus culture and incubated for an appropriate period of time. Three test tubes are randomly assigned to each of 6 different dose levels. The 18 test tubes are then injected with the randomly assigned dose level of the drug. the measured response is the protective strength of the drug against the virus culture. Due to a problem with a few of the test tubes, only 2 responses were obtained for dose levels 4,8, and 16. The data are:
     
     |          |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
     |:--------:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
-    | Dose     | 	2	|  2 |	2	|  4 |  4 |  8 |	8	| 16 | 16	| 16 | 32	| 32 | 64 |	64 | 64 |
-    | Response |	5	|  7 |  3	| 10 | 14	| 15 | 17	| 20 | 21	| 19 | 23	| 29 | 28	| 31 | 30 |
+    | Dose     | 2 | 2 | 2 | 4  |  4 | 8  |  8 | 16 | 16 | 16 | 32 | 32 | 64 | 64 | 64 |
+    | Response | 5 | 7 | 3 | 10 | 14 | 15 | 17 | 20 | 21 | 19 | 23 | 29 | 28 | 31 | 30 |
     
     a) We will first fit a regression model to the raw data.
         i. Plot the data and comment on the relationship between the covariate and response.

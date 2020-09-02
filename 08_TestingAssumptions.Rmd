@@ -478,12 +478,13 @@ We again see that with this small of a data set, our simulation based p-value is
 
 5. The life span of an electrical component was studied under two operating voltages (110 and 220). Ten components were randomly assigned to operate at 110 volts and 16 were assigned to 220 volts. The time to failure (in hundreds of hours) for the 26 components were obtained:
     
-    |           |   |         |      |       |      |       |       |       |      |      |      |
-    |:---------:|:-:|:-------:|:----:|:-----:|:----:|:-----:|:-----:|:-----:|:----:|:----:|:----:|
-    |  **110**  |   |  19.25	| 19.7 | 19.75 | 19.9 | 19.95 | 20.05 | 20.13 | 20.2 | 20.4 | 20.6 |
-    |           |   |         |      |       |      |       |       |       |      |      |      |
-    |  **220**  |   | 9.7     | 9.75 |  9.8  | 9.82 | 9.85  | 9.90  | 9.92  | 9.96 |      |      |
-    |           |   | 10.01   | 10.02| 10.10 | 10.11|	10.13 |	10.19 |	10.28 |	10.31|      |      |
+    |           |   |         |      |       |      |       |       |       |      |
+    |:---------:|:-:|:-------:|:----:|:-----:|:----:|:-----:|:-----:|:-----:|:----:|
+    |  **110**  |   | 19.25   | 19.7 | 19.75 | 19.9 | 19.95 | 20.05 | 20.13 | 20.2 |
+    |           |   | 20.4    | 20.6 |       |      |       |       |       |      |
+    |           |   |         |      |       |      |       |       |       |      |
+    |  **220**  |   | 9.7     | 9.75 |  9.8  | 9.82 | 9.85  | 9.90  | 9.92  | 9.96 |
+    |           |   | 10.01   | 10.02| 10.10 | 10.11| 10.13 | 10.19 | 10.28 | 10.31 |
     
     a) Calculate the mean and variance of each sample group
     b) Test the assumption that the data in each group is normally distributed.

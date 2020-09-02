@@ -24,7 +24,7 @@
 <meta name="author" content="Derek L. Sonderegger &amp; Robert Buscaglia" />
 
 
-<meta name="date" content="2020-08-31" />
+<meta name="date" content="2020-09-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="3-confidence-intervals-via-bootstrapping.html"/>
 <link rel="next" href="5-confidence-intervals-for-mu.html"/>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,22 +51,20 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -85,7 +84,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -131,30 +130,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html"><i class="fa fa-check"></i><b>1</b> Summary Statistics and Graphing</a><ul>
-<li class="chapter" data-level="1.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#variable-types"><i class="fa fa-check"></i><b>1.1</b> Variable Types</a><ul>
+<li class="chapter" data-level="1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html"><i class="fa fa-check"></i><b>1</b> Summary Statistics and Graphing</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#variable-types"><i class="fa fa-check"></i><b>1.1</b> Variable Types</a>
+<ul>
 <li class="chapter" data-level="1.1.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#categorical"><i class="fa fa-check"></i><b>1.1.1</b> Categorical</a></li>
 <li class="chapter" data-level="1.1.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#numerical"><i class="fa fa-check"></i><b>1.1.2</b> Numerical</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#randomization-and-sampling"><i class="fa fa-check"></i><b>1.2</b> Randomization and Sampling</a><ul>
+<li class="chapter" data-level="1.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#randomization-and-sampling"><i class="fa fa-check"></i><b>1.2</b> Randomization and Sampling</a>
+<ul>
 <li class="chapter" data-level="1.2.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#sampling-techniques"><i class="fa fa-check"></i><b>1.2.1</b> Sampling Techniques</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#graphical-summaries"><i class="fa fa-check"></i><b>1.3</b> Graphical Summaries</a><ul>
+<li class="chapter" data-level="1.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#graphical-summaries"><i class="fa fa-check"></i><b>1.3</b> Graphical Summaries</a>
+<ul>
 <li class="chapter" data-level="1.3.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#barchartsbarplots-univariate---categorical"><i class="fa fa-check"></i><b>1.3.1</b> Barcharts/Barplots (Univariate - Categorical)</a></li>
 <li class="chapter" data-level="1.3.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#histogram-univariate---numerical"><i class="fa fa-check"></i><b>1.3.2</b> Histogram (Univariate - Numerical)</a></li>
 <li class="chapter" data-level="1.3.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#boxplot-bivariate---categorical-vs-numerical"><i class="fa fa-check"></i><b>1.3.3</b> Boxplot (Bivariate - Categorical vs Numerical)</a></li>
 <li class="chapter" data-level="1.3.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#scatterplot-bivariate---numerical-vs-numerical"><i class="fa fa-check"></i><b>1.3.4</b> Scatterplot (Bivariate - Numerical vs Numerical)</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#measures-of-centrality"><i class="fa fa-check"></i><b>1.4</b> Measures of Centrality</a><ul>
+<li class="chapter" data-level="1.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#measures-of-centrality"><i class="fa fa-check"></i><b>1.4</b> Measures of Centrality</a>
+<ul>
 <li class="chapter" data-level="1.4.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#mean"><i class="fa fa-check"></i><b>1.4.1</b> Mean</a></li>
 <li class="chapter" data-level="1.4.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#median"><i class="fa fa-check"></i><b>1.4.2</b> Median</a></li>
 <li class="chapter" data-level="1.4.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#mode"><i class="fa fa-check"></i><b>1.4.3</b> Mode</a></li>
 <li class="chapter" data-level="1.4.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#examples"><i class="fa fa-check"></i><b>1.4.4</b> Examples</a></li>
 </ul></li>
-<li class="chapter" data-level="1.5" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#measures-of-spread"><i class="fa fa-check"></i><b>1.5</b> Measures of Spread</a><ul>
+<li class="chapter" data-level="1.5" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#measures-of-spread"><i class="fa fa-check"></i><b>1.5</b> Measures of Spread</a>
+<ul>
 <li class="chapter" data-level="1.5.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#range"><i class="fa fa-check"></i><b>1.5.1</b> Range</a></li>
 <li class="chapter" data-level="1.5.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#inter-quartile-range-iqr"><i class="fa fa-check"></i><b>1.5.2</b> Inter-Quartile Range (IQR)</a></li>
 <li class="chapter" data-level="1.5.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#variance"><i class="fa fa-check"></i><b>1.5.3</b> Variance</a></li>
@@ -162,30 +168,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.5.5" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#coefficient-of-variation"><i class="fa fa-check"></i><b>1.5.5</b> Coefficient of Variation</a></li>
 <li class="chapter" data-level="1.5.6" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#empirical-rules"><i class="fa fa-check"></i><b>1.5.6</b> Empirical Rules</a></li>
 </ul></li>
-<li class="chapter" data-level="1.6" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#shape"><i class="fa fa-check"></i><b>1.6</b> Shape</a><ul>
+<li class="chapter" data-level="1.6" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#shape"><i class="fa fa-check"></i><b>1.6</b> Shape</a>
+<ul>
 <li class="chapter" data-level="1.6.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#symmetry"><i class="fa fa-check"></i><b>1.6.1</b> Symmetry</a></li>
 <li class="chapter" data-level="1.6.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#unimodal-or-multi-modal"><i class="fa fa-check"></i><b>1.6.2</b> Unimodal or Multi-modal</a></li>
 <li class="chapter" data-level="1.6.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#skew"><i class="fa fa-check"></i><b>1.6.3</b> Skew</a></li>
 </ul></li>
 <li class="chapter" data-level="1.7" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#Exercises_DataSummary"><i class="fa fa-check"></i><b>1.7</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="2-probability.html"><a href="2-probability.html"><i class="fa fa-check"></i><b>2</b> Probability</a><ul>
-<li class="chapter" data-level="2.1" data-path="2-probability.html"><a href="2-probability.html#introduction-to-set-theory"><i class="fa fa-check"></i><b>2.1</b> Introduction to Set Theory</a><ul>
+<li class="chapter" data-level="2" data-path="2-probability.html"><a href="2-probability.html"><i class="fa fa-check"></i><b>2</b> Probability</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="2-probability.html"><a href="2-probability.html#introduction-to-set-theory"><i class="fa fa-check"></i><b>2.1</b> Introduction to Set Theory</a>
+<ul>
 <li class="chapter" data-level="2.1.1" data-path="2-probability.html"><a href="2-probability.html#composition-of-events"><i class="fa fa-check"></i><b>2.1.1</b> Composition of events</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="2-probability.html"><a href="2-probability.html#probability-rules"><i class="fa fa-check"></i><b>2.2</b> Probability Rules</a><ul>
+<li class="chapter" data-level="2.2" data-path="2-probability.html"><a href="2-probability.html#probability-rules"><i class="fa fa-check"></i><b>2.2</b> Probability Rules</a>
+<ul>
 <li class="chapter" data-level="2.2.1" data-path="2-probability.html"><a href="2-probability.html#simple-rules"><i class="fa fa-check"></i><b>2.2.1</b> Simple Rules</a></li>
 <li class="chapter" data-level="2.2.2" data-path="2-probability.html"><a href="2-probability.html#conditional-probability"><i class="fa fa-check"></i><b>2.2.2</b> Conditional Probability</a></li>
 <li class="chapter" data-level="2.2.3" data-path="2-probability.html"><a href="2-probability.html#summary-of-probability-rules"><i class="fa fa-check"></i><b>2.2.3</b> Summary of Probability Rules</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="2-probability.html"><a href="2-probability.html#discrete-random-variables"><i class="fa fa-check"></i><b>2.3</b> Discrete Random Variables</a><ul>
+<li class="chapter" data-level="2.3" data-path="2-probability.html"><a href="2-probability.html#discrete-random-variables"><i class="fa fa-check"></i><b>2.3</b> Discrete Random Variables</a>
+<ul>
 <li class="chapter" data-level="2.3.1" data-path="2-probability.html"><a href="2-probability.html#introduction-to-discrete-random-variables"><i class="fa fa-check"></i><b>2.3.1</b> Introduction to Discrete Random Variables</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="2-probability.html"><a href="2-probability.html#common-discrete-distributions"><i class="fa fa-check"></i><b>2.4</b> Common Discrete Distributions</a><ul>
+<li class="chapter" data-level="2.4" data-path="2-probability.html"><a href="2-probability.html#common-discrete-distributions"><i class="fa fa-check"></i><b>2.4</b> Common Discrete Distributions</a>
+<ul>
 <li class="chapter" data-level="2.4.1" data-path="2-probability.html"><a href="2-probability.html#binomial-distribution"><i class="fa fa-check"></i><b>2.4.1</b> Binomial Distribution</a></li>
 <li class="chapter" data-level="2.4.2" data-path="2-probability.html"><a href="2-probability.html#poisson-distribution"><i class="fa fa-check"></i><b>2.4.2</b> Poisson Distribution</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="2-probability.html"><a href="2-probability.html#continuous-random-variables"><i class="fa fa-check"></i><b>2.5</b> Continuous Random Variables</a><ul>
+<li class="chapter" data-level="2.5" data-path="2-probability.html"><a href="2-probability.html#continuous-random-variables"><i class="fa fa-check"></i><b>2.5</b> Continuous Random Variables</a>
+<ul>
 <li class="chapter" data-level="2.5.1" data-path="2-probability.html"><a href="2-probability.html#uniform01-distribution"><i class="fa fa-check"></i><b>2.5.1</b> Uniform(0,1) Distribution</a></li>
 <li class="chapter" data-level="2.5.2" data-path="2-probability.html"><a href="2-probability.html#exponential-distribution"><i class="fa fa-check"></i><b>2.5.2</b> Exponential Distribution</a></li>
 <li class="chapter" data-level="2.5.3" data-path="2-probability.html"><a href="2-probability.html#normal-distribution"><i class="fa fa-check"></i><b>2.5.3</b> Normal Distribution</a></li>
@@ -194,16 +207,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.6" data-path="2-probability.html"><a href="2-probability.html#r-quick-reference"><i class="fa fa-check"></i><b>2.6</b> R Quick Reference</a></li>
 <li class="chapter" data-level="2.7" data-path="2-probability.html"><a href="2-probability.html#Exercises_Probability"><i class="fa fa-check"></i><b>2.7</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html"><i class="fa fa-check"></i><b>3</b> Confidence Intervals via Bootstrapping</a><ul>
+<li class="chapter" data-level="3" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html"><i class="fa fa-check"></i><b>3</b> Confidence Intervals via Bootstrapping</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#theory-of-bootstrapping"><i class="fa fa-check"></i><b>3.1</b> Theory of Bootstrapping</a></li>
 <li class="chapter" data-level="3.2" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#conducting-a-bootstrap"><i class="fa fa-check"></i><b>3.2</b> Conducting a Bootstrap</a></li>
 <li class="chapter" data-level="3.3" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#quantile-based-confidence-intervals"><i class="fa fa-check"></i><b>3.3</b> Quantile-based Confidence Intervals</a></li>
 <li class="chapter" data-level="3.4" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#additional-examples"><i class="fa fa-check"></i><b>3.4</b> Additional Examples</a></li>
 <li class="chapter" data-level="3.5" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#Exercises_Bootstrap"><i class="fa fa-check"></i><b>3.5</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html"><i class="fa fa-check"></i><b>4</b> Sampling Distribution of <span class="math inline">\(\bar{X}\)</span></a><ul>
+<li class="chapter" data-level="4" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html"><i class="fa fa-check"></i><b>4</b> Sampling Distribution of <span class="math inline">\(\bar{X}\)</span></a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#enlightening-example"><i class="fa fa-check"></i><b>4.1</b> Enlightening Example</a></li>
-<li class="chapter" data-level="4.2" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#mathematical-details"><i class="fa fa-check"></i><b>4.2</b> Mathematical details</a><ul>
+<li class="chapter" data-level="4.2" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#mathematical-details"><i class="fa fa-check"></i><b>4.2</b> Mathematical details</a>
+<ul>
 <li class="chapter" data-level="4.2.1" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#probability-rules-for-expectations-and-variances"><i class="fa fa-check"></i><b>4.2.1</b> Probability Rules for Expectations and Variances</a></li>
 <li class="chapter" data-level="4.2.2" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#mean-and-variance-of-the-sample-mean"><i class="fa fa-check"></i><b>4.2.2</b> Mean and Variance of the Sample Mean</a></li>
 </ul></li>
@@ -211,47 +227,58 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.4" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#central-limit-theorem"><i class="fa fa-check"></i><b>4.4</b> Central Limit Theorem</a></li>
 <li class="chapter" data-level="4.5" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#Exercises_SamplingDistributions"><i class="fa fa-check"></i><b>4.5</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html"><i class="fa fa-check"></i><b>5</b> Confidence Intervals for <span class="math inline">\(\mu\)</span></a><ul>
+<li class="chapter" data-level="5" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html"><i class="fa fa-check"></i><b>5</b> Confidence Intervals for <span class="math inline">\(\mu\)</span></a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#asymptotic-result-sigma-known"><i class="fa fa-check"></i><b>5.1</b> Asymptotic result (<span class="math inline">\(\sigma\)</span> known)</a></li>
 <li class="chapter" data-level="5.2" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#asymptotoic-result-sigma-unknown"><i class="fa fa-check"></i><b>5.2</b> Asymptotoic result (<span class="math inline">\(\sigma\)</span> unknown)</a></li>
 <li class="chapter" data-level="5.3" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#sample-size-selection"><i class="fa fa-check"></i><b>5.3</b> Sample Size Selection</a></li>
 <li class="chapter" data-level="5.4" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#Exercises_ConfidenceIntervals"><i class="fa fa-check"></i><b>5.4</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html"><i class="fa fa-check"></i><b>6</b> Hypothesis Tests for the mean of a population</a><ul>
-<li class="chapter" data-level="6.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#writing-hypotheses"><i class="fa fa-check"></i><b>6.1</b> Writing Hypotheses</a><ul>
+<li class="chapter" data-level="6" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html"><i class="fa fa-check"></i><b>6</b> Hypothesis Tests for the mean of a population</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#writing-hypotheses"><i class="fa fa-check"></i><b>6.1</b> Writing Hypotheses</a>
+<ul>
 <li class="chapter" data-level="6.1.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#null-and-alternative-hypotheses"><i class="fa fa-check"></i><b>6.1.1</b> Null and alternative hypotheses</a></li>
 <li class="chapter" data-level="6.1.2" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#error"><i class="fa fa-check"></i><b>6.1.2</b> Error</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#conducting-a-hypothesis-test-for-mu"><i class="fa fa-check"></i><b>6.2</b> Conducting a Hypothesis Test for <span class="math inline">\(\mu\)</span></a><ul>
+<li class="chapter" data-level="6.2" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#conducting-a-hypothesis-test-for-mu"><i class="fa fa-check"></i><b>6.2</b> Conducting a Hypothesis Test for <span class="math inline">\(\mu\)</span></a>
+<ul>
 <li class="chapter" data-level="6.2.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#why-should-hypotheses-use-mu-and-not-barx"><i class="fa fa-check"></i><b>6.2.1</b> Why should hypotheses use <span class="math inline">\(\mu\)</span> and not <span class="math inline">\(\bar{x}\)</span>?</a></li>
 <li class="chapter" data-level="6.2.2" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#a-note-on-calculating-p-values"><i class="fa fa-check"></i><b>6.2.2</b> A note on calculating p-values</a></li>
 </ul></li>
 <li class="chapter" data-level="6.3" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#additional-examples"><i class="fa fa-check"></i><b>6.3</b> Additional Examples</a></li>
 <li class="chapter" data-level="6.4" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#p-values-vs-cutoff-values"><i class="fa fa-check"></i><b>6.4</b> P-values vs cutoff values</a></li>
 <li class="chapter" data-level="6.5" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#running-a-t-test-in-r"><i class="fa fa-check"></i><b>6.5</b> Running a t-test in R</a></li>
-<li class="chapter" data-level="6.6" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i><b>6.6</b> Type I and Type II Errors</a><ul>
+<li class="chapter" data-level="6.6" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i><b>6.6</b> Type I and Type II Errors</a>
+<ul>
 <li class="chapter" data-level="6.6.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#power-and-sample-size-selection"><i class="fa fa-check"></i><b>6.6.1</b> Power and Sample Size Selection</a></li>
 </ul></li>
 <li class="chapter" data-level="6.7" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#Exercises_HypothesisTests"><i class="fa fa-check"></i><b>6.7</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><i class="fa fa-check"></i><b>7</b> Two-Sample Hypothesis Tests and Confidence Intervals</a><ul>
-<li class="chapter" data-level="7.1" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#difference-in-means-between-two-groups"><i class="fa fa-check"></i><b>7.1</b> Difference in means between two groups</a><ul>
+<li class="chapter" data-level="7" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><i class="fa fa-check"></i><b>7</b> Two-Sample Hypothesis Tests and Confidence Intervals</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#difference-in-means-between-two-groups"><i class="fa fa-check"></i><b>7.1</b> Difference in means between two groups</a>
+<ul>
 <li class="chapter" data-level="7.1.1" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#inference-via-resampling"><i class="fa fa-check"></i><b>7.1.1</b> Inference via resampling</a></li>
 <li class="chapter" data-level="7.1.2" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#inference-via-asymptotic-results-unequal-variance-assumption"><i class="fa fa-check"></i><b>7.1.2</b> Inference via asymptotic results (unequal variance assumption)</a></li>
 <li class="chapter" data-level="7.1.3" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#inference-via-asymptotic-results-equal-variance-assumption"><i class="fa fa-check"></i><b>7.1.3</b> Inference via asymptotic results (equal variance assumption)</a></li>
 <li class="chapter" data-level="7.1.4" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#additional-example"><i class="fa fa-check"></i><b>7.1.4</b> Additional Example</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#difference-in-means-between-two-groups-paired-data"><i class="fa fa-check"></i><b>7.2</b> Difference in means between two groups: Paired Data</a><ul>
+<li class="chapter" data-level="7.2" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#difference-in-means-between-two-groups-paired-data"><i class="fa fa-check"></i><b>7.2</b> Difference in means between two groups: Paired Data</a>
+<ul>
 <li class="chapter" data-level="7.2.1" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#additional-example-1"><i class="fa fa-check"></i><b>7.2.1</b> Additional Example</a></li>
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#Exercises_TwoSamples"><i class="fa fa-check"></i><b>7.3</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html"><i class="fa fa-check"></i><b>8</b> Testing Model Assumptions</a><ul>
-<li class="chapter" data-level="8.1" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#testing-normality"><i class="fa fa-check"></i><b>8.1</b> Testing Normality</a><ul>
+<li class="chapter" data-level="8" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html"><i class="fa fa-check"></i><b>8</b> Testing Model Assumptions</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#testing-normality"><i class="fa fa-check"></i><b>8.1</b> Testing Normality</a>
+<ul>
 <li class="chapter" data-level="8.1.1" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#visual-inspection---qqplots"><i class="fa fa-check"></i><b>8.1.1</b> Visual Inspection - QQplots</a></li>
 <li class="chapter" data-level="8.1.2" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#tests-for-normality"><i class="fa fa-check"></i><b>8.1.2</b> Tests for Normality</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#testing-equal-variance"><i class="fa fa-check"></i><b>8.2</b> Testing Equal Variance</a><ul>
+<li class="chapter" data-level="8.2" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#testing-equal-variance"><i class="fa fa-check"></i><b>8.2</b> Testing Equal Variance</a>
+<ul>
 <li class="chapter" data-level="8.2.1" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#visual-inspection"><i class="fa fa-check"></i><b>8.2.1</b> Visual Inspection</a></li>
 <li class="chapter" data-level="8.2.2" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#tests-for-equal-variance"><i class="fa fa-check"></i><b>8.2.2</b> Tests for Equal Variance</a></li>
 <li class="chapter" data-level="8.2.3" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#symmetry-of-the-f-distribution"><i class="fa fa-check"></i><b>8.2.3</b> Symmetry of the F-distribution</a></li>
@@ -260,63 +287,76 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.4" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#theoretical-distribution-vs-bootstrap"><i class="fa fa-check"></i><b>8.4</b> Theoretical distribution vs bootstrap</a></li>
 <li class="chapter" data-level="8.5" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#Exercises_TestingAssumptions"><i class="fa fa-check"></i><b>8.5</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html"><i class="fa fa-check"></i><b>9</b> Analysis of Variance (ANOVA)</a><ul>
+<li class="chapter" data-level="9" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html"><i class="fa fa-check"></i><b>9</b> Analysis of Variance (ANOVA)</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#model"><i class="fa fa-check"></i><b>9.1</b> Model</a></li>
-<li class="chapter" data-level="9.2" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#theory"><i class="fa fa-check"></i><b>9.2</b> Theory</a><ul>
+<li class="chapter" data-level="9.2" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#theory"><i class="fa fa-check"></i><b>9.2</b> Theory</a>
+<ul>
 <li class="chapter" data-level="9.2.1" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#anova-table"><i class="fa fa-check"></i><b>9.2.1</b> Anova Table</a></li>
 <li class="chapter" data-level="9.2.2" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#anova-using-simple-vs-complex-models."><i class="fa fa-check"></i><b>9.2.2</b> ANOVA using Simple vs Complex models.</a></li>
 <li class="chapter" data-level="9.2.3" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#parameter-estimates-and-confidence-intervals"><i class="fa fa-check"></i><b>9.2.3</b> Parameter Estimates and Confidence Intervals</a></li>
 </ul></li>
 <li class="chapter" data-level="9.3" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#anova-in-r"><i class="fa fa-check"></i><b>9.3</b> Anova in R</a></li>
 <li class="chapter" data-level="9.4" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#multiple-comparisons"><i class="fa fa-check"></i><b>9.4</b> Multiple comparisons</a></li>
-<li class="chapter" data-level="9.5" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#different-model-representations"><i class="fa fa-check"></i><b>9.5</b> Different Model Representations</a><ul>
+<li class="chapter" data-level="9.5" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#different-model-representations"><i class="fa fa-check"></i><b>9.5</b> Different Model Representations</a>
+<ul>
 <li class="chapter" data-level="9.5.1" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#theory-1"><i class="fa fa-check"></i><b>9.5.1</b> Theory</a></li>
 <li class="chapter" data-level="9.5.2" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#model-representations-in-r"><i class="fa fa-check"></i><b>9.5.2</b> Model Representations in R</a></li>
 <li class="chapter" data-level="9.5.3" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#implications-on-the-anova-table"><i class="fa fa-check"></i><b>9.5.3</b> Implications on the ANOVA table</a></li>
 </ul></li>
 <li class="chapter" data-level="9.6" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#Exercises_ANOVA"><i class="fa fa-check"></i><b>9.6</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="10-regression.html"><a href="10-regression.html"><i class="fa fa-check"></i><b>10</b> Regression</a><ul>
+<li class="chapter" data-level="10" data-path="10-regression.html"><a href="10-regression.html"><i class="fa fa-check"></i><b>10</b> Regression</a>
+<ul>
 <li class="chapter" data-level="10.1" data-path="10-regression.html"><a href="10-regression.html#pearsons-correlation-coefficient"><i class="fa fa-check"></i><b>10.1</b> Pearson’s Correlation Coefficient</a></li>
-<li class="chapter" data-level="10.2" data-path="10-regression.html"><a href="10-regression.html#model-theory"><i class="fa fa-check"></i><b>10.2</b> Model Theory</a><ul>
+<li class="chapter" data-level="10.2" data-path="10-regression.html"><a href="10-regression.html#model-theory"><i class="fa fa-check"></i><b>10.2</b> Model Theory</a>
+<ul>
 <li class="chapter" data-level="10.2.1" data-path="10-regression.html"><a href="10-regression.html#anova-interpretation"><i class="fa fa-check"></i><b>10.2.1</b> Anova Interpretation</a></li>
 <li class="chapter" data-level="10.2.2" data-path="10-regression.html"><a href="10-regression.html#confidence-intervals-vs-prediction-intervals"><i class="fa fa-check"></i><b>10.2.2</b> Confidence Intervals vs Prediction Intervals</a></li>
 </ul></li>
 <li class="chapter" data-level="10.3" data-path="10-regression.html"><a href="10-regression.html#extrapolation"><i class="fa fa-check"></i><b>10.3</b> Extrapolation</a></li>
 <li class="chapter" data-level="10.4" data-path="10-regression.html"><a href="10-regression.html#checking-model-assumptions"><i class="fa fa-check"></i><b>10.4</b> Checking Model Assumptions</a></li>
-<li class="chapter" data-level="10.5" data-path="10-regression.html"><a href="10-regression.html#common-problems"><i class="fa fa-check"></i><b>10.5</b> Common Problems</a><ul>
+<li class="chapter" data-level="10.5" data-path="10-regression.html"><a href="10-regression.html#common-problems"><i class="fa fa-check"></i><b>10.5</b> Common Problems</a>
+<ul>
 <li class="chapter" data-level="10.5.1" data-path="10-regression.html"><a href="10-regression.html#influential-points"><i class="fa fa-check"></i><b>10.5.1</b> Influential Points</a></li>
 <li class="chapter" data-level="10.5.2" data-path="10-regression.html"><a href="10-regression.html#transformations"><i class="fa fa-check"></i><b>10.5.2</b> Transformations</a></li>
 </ul></li>
 <li class="chapter" data-level="10.6" data-path="10-regression.html"><a href="10-regression.html#Exercises_Regression"><i class="fa fa-check"></i><b>10.6</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="11-contingency-tables.html"><a href="11-contingency-tables.html"><i class="fa fa-check"></i><b>11</b> Contingency Tables</a><ul>
+<li class="chapter" data-level="11" data-path="11-contingency-tables.html"><a href="11-contingency-tables.html"><i class="fa fa-check"></i><b>11</b> Contingency Tables</a>
+<ul>
 <li class="chapter" data-level="11.1" data-path="11-contingency-tables.html"><a href="11-contingency-tables.html#expected-counts"><i class="fa fa-check"></i><b>11.1</b> Expected Counts</a></li>
 <li class="chapter" data-level="11.2" data-path="11-contingency-tables.html"><a href="11-contingency-tables.html#hypothesis-testing"><i class="fa fa-check"></i><b>11.2</b> Hypothesis Testing</a></li>
 <li class="chapter" data-level="11.3" data-path="11-contingency-tables.html"><a href="11-contingency-tables.html#rxc-tables"><i class="fa fa-check"></i><b>11.3</b> RxC tables</a></li>
 <li class="chapter" data-level="11.4" data-path="11-contingency-tables.html"><a href="11-contingency-tables.html#Exercises_ContingencyTables"><i class="fa fa-check"></i><b>11.4</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="appendix-a-resampling-linear-models.html"><a href="appendix-a-resampling-linear-models.html"><i class="fa fa-check"></i>Appendix A : Resampling Linear Models</a><ul>
-<li class="chapter" data-level="11.5" data-path="appendix-a-resampling-linear-models.html"><a href="appendix-a-resampling-linear-models.html#using-lm-for-many-analyses"><i class="fa fa-check"></i><b>11.5</b> Using <code>lm()</code> for many analyses</a><ul>
+<li class="chapter" data-level="" data-path="appendix-a-resampling-linear-models.html"><a href="appendix-a-resampling-linear-models.html"><i class="fa fa-check"></i>Appendix A : Resampling Linear Models</a>
+<ul>
+<li class="chapter" data-level="11.5" data-path="appendix-a-resampling-linear-models.html"><a href="appendix-a-resampling-linear-models.html#using-lm-for-many-analyses"><i class="fa fa-check"></i><b>11.5</b> Using <code>lm()</code> for many analyses</a>
+<ul>
 <li class="chapter" data-level="11.5.1" data-path="appendix-a-resampling-linear-models.html"><a href="appendix-a-resampling-linear-models.html#one-sample-t-tests"><i class="fa fa-check"></i><b>11.5.1</b> One-sample t-tests</a></li>
 <li class="chapter" data-level="11.5.2" data-path="appendix-a-resampling-linear-models.html"><a href="appendix-a-resampling-linear-models.html#two-sample-t-tests"><i class="fa fa-check"></i><b>11.5.2</b> Two-sample t-tests</a></li>
 </ul></li>
-<li class="chapter" data-level="11.6" data-path="appendix-a-resampling-linear-models.html"><a href="appendix-a-resampling-linear-models.html#creating-simulated-data"><i class="fa fa-check"></i><b>11.6</b> Creating Simulated Data</a><ul>
+<li class="chapter" data-level="11.6" data-path="appendix-a-resampling-linear-models.html"><a href="appendix-a-resampling-linear-models.html#creating-simulated-data"><i class="fa fa-check"></i><b>11.6</b> Creating Simulated Data</a>
+<ul>
 <li class="chapter" data-level="11.6.1" data-path="appendix-a-resampling-linear-models.html"><a href="appendix-a-resampling-linear-models.html#observational-studies-vs-designed-experiments"><i class="fa fa-check"></i><b>11.6.1</b> Observational Studies vs Designed Experiments</a></li>
 </ul></li>
-<li class="chapter" data-level="11.7" data-path="appendix-a-resampling-linear-models.html"><a href="appendix-a-resampling-linear-models.html#confidence-interval-types"><i class="fa fa-check"></i><b>11.7</b> Confidence Interval Types</a><ul>
+<li class="chapter" data-level="11.7" data-path="appendix-a-resampling-linear-models.html"><a href="appendix-a-resampling-linear-models.html#confidence-interval-types"><i class="fa fa-check"></i><b>11.7</b> Confidence Interval Types</a>
+<ul>
 <li class="chapter" data-level="11.7.1" data-path="appendix-a-resampling-linear-models.html"><a href="appendix-a-resampling-linear-models.html#normal-intervals"><i class="fa fa-check"></i><b>11.7.1</b> Normal intervals</a></li>
 <li class="chapter" data-level="11.7.2" data-path="appendix-a-resampling-linear-models.html"><a href="appendix-a-resampling-linear-models.html#percentile-intervals"><i class="fa fa-check"></i><b>11.7.2</b> Percentile intervals</a></li>
 <li class="chapter" data-level="11.7.3" data-path="appendix-a-resampling-linear-models.html"><a href="appendix-a-resampling-linear-models.html#basic-intervals"><i class="fa fa-check"></i><b>11.7.3</b> Basic intervals</a></li>
 <li class="chapter" data-level="11.7.4" data-path="appendix-a-resampling-linear-models.html"><a href="appendix-a-resampling-linear-models.html#towards-bias-corrected-and-accelerated-intervals-bca"><i class="fa fa-check"></i><b>11.7.4</b> Towards bias-corrected and accelerated intervals (BCa)</a></li>
 </ul></li>
-<li class="chapter" data-level="11.8" data-path="appendix-a-resampling-linear-models.html"><a href="appendix-a-resampling-linear-models.html#bootstrap-confidence-intervals-in-r"><i class="fa fa-check"></i><b>11.8</b> Bootstrap Confidence Intervals in R</a><ul>
+<li class="chapter" data-level="11.8" data-path="appendix-a-resampling-linear-models.html"><a href="appendix-a-resampling-linear-models.html#bootstrap-confidence-intervals-in-r"><i class="fa fa-check"></i><b>11.8</b> Bootstrap Confidence Intervals in R</a>
+<ul>
 <li class="chapter" data-level="11.8.1" data-path="appendix-a-resampling-linear-models.html"><a href="appendix-a-resampling-linear-models.html#using-carboot-function"><i class="fa fa-check"></i><b>11.8.1</b> Using <code>car::Boot()</code> function</a></li>
 <li class="chapter" data-level="11.8.2" data-path="appendix-a-resampling-linear-models.html"><a href="appendix-a-resampling-linear-models.html#using-the-boot-package"><i class="fa fa-check"></i><b>11.8.2</b> Using the <code>boot</code> package</a></li>
 </ul></li>
 <li class="chapter" data-level="11.9" data-path="appendix-a-resampling-linear-models.html"><a href="appendix-a-resampling-linear-models.html#Exercises_ResamplingLinearModels"><i class="fa fa-check"></i><b>11.9</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="appendix-b-alternative-bootstrap-code.html"><a href="appendix-b-alternative-bootstrap-code.html"><i class="fa fa-check"></i>Appendix B : Alternative Bootstrap Code</a><ul>
+<li class="chapter" data-level="" data-path="appendix-b-alternative-bootstrap-code.html"><a href="appendix-b-alternative-bootstrap-code.html"><i class="fa fa-check"></i>Appendix B : Alternative Bootstrap Code</a>
+<ul>
 <li class="chapter" data-level="" data-path="appendix-b-alternative-bootstrap-code.html"><a href="appendix-b-alternative-bootstrap-code.html#mosaic-package"><i class="fa fa-check"></i>Mosaic Package</a></li>
 <li class="chapter" data-level="" data-path="appendix-b-alternative-bootstrap-code.html"><a href="appendix-b-alternative-bootstrap-code.html#base-r-code"><i class="fa fa-check"></i>Base R Code</a></li>
 </ul></li>
@@ -337,35 +377,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="sampling-distribution-of-barx" class="section level1">
+<div id="sampling-distribution-of-barx" class="section level1" number="4">
 <h1><span class="header-section-number">Chapter 4</span> Sampling Distribution of <span class="math inline">\(\bar{X}\)</span></h1>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="4-sampling-distribution-of-barx.html#cb100-1"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb100-2"><a href="4-sampling-distribution-of-barx.html#cb100-2"></a><span class="kw">library</span>(dplyr)</span>
-<span id="cb100-3"><a href="4-sampling-distribution-of-barx.html#cb100-3"></a></span>
-<span id="cb100-4"><a href="4-sampling-distribution-of-barx.html#cb100-4"></a><span class="co"># Set default behavior of ggplot2 graphs to be black/white theme</span></span>
-<span id="cb100-5"><a href="4-sampling-distribution-of-barx.html#cb100-5"></a><span class="kw">theme_set</span>(<span class="kw">theme_bw</span>())</span>
-<span id="cb100-6"><a href="4-sampling-distribution-of-barx.html#cb100-6"></a></span>
-<span id="cb100-7"><a href="4-sampling-distribution-of-barx.html#cb100-7"></a><span class="co"># other packages I&#39;ll only use occasionally so instead of loading the</span></span>
-<span id="cb100-8"><a href="4-sampling-distribution-of-barx.html#cb100-8"></a><span class="co"># whole package, I&#39;ll just do packageName::functionName() when I use</span></span>
-<span id="cb100-9"><a href="4-sampling-distribution-of-barx.html#cb100-9"></a><span class="co"># the function.</span></span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="4-sampling-distribution-of-barx.html#cb100-1" aria-hidden="true"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb100-2"><a href="4-sampling-distribution-of-barx.html#cb100-2" aria-hidden="true"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb100-3"><a href="4-sampling-distribution-of-barx.html#cb100-3" aria-hidden="true"></a></span>
+<span id="cb100-4"><a href="4-sampling-distribution-of-barx.html#cb100-4" aria-hidden="true"></a><span class="co"># Set default behavior of ggplot2 graphs to be black/white theme</span></span>
+<span id="cb100-5"><a href="4-sampling-distribution-of-barx.html#cb100-5" aria-hidden="true"></a><span class="kw">theme_set</span>(<span class="kw">theme_bw</span>())</span>
+<span id="cb100-6"><a href="4-sampling-distribution-of-barx.html#cb100-6" aria-hidden="true"></a></span>
+<span id="cb100-7"><a href="4-sampling-distribution-of-barx.html#cb100-7" aria-hidden="true"></a><span class="co"># other packages I&#39;ll only use occasionally so instead of loading the</span></span>
+<span id="cb100-8"><a href="4-sampling-distribution-of-barx.html#cb100-8" aria-hidden="true"></a><span class="co"># whole package, I&#39;ll just do packageName::functionName() when I use</span></span>
+<span id="cb100-9"><a href="4-sampling-distribution-of-barx.html#cb100-9" aria-hidden="true"></a><span class="co"># the function.</span></span></code></pre></div>
 <p>In the previous chapter, we used bootstrapping to estimate the sampling distribution of <span class="math inline">\(\bar{X}\)</span>. We then used this bootstrap distribution to calculate a confidence interval for the population mean. We noticed that the sampling distribution of <span class="math inline">\(\bar{X}\)</span> almost always looked like a normal distribution. Prior to the advent of modern computing, statisticians used a theoretical approximation known as the Central Limit Theorem (CLT). Even today, statistical procedures based on the CLT are widely used and often perform as the corresponding re-sampling technique. In this chapter we’ll lay the theoretical foundations for the CLT as well as introduce computation</p>
-<div id="enlightening-example" class="section level2">
+<div id="enlightening-example" class="section level2" number="4.1">
 <h2><span class="header-section-number">4.1</span> Enlightening Example</h2>
 <p>Suppose we are sampling from a population that has a mean of <span class="math inline">\(\mu=5\)</span> and is skewed. For this example, I’ll use a Chi-squared distribution with parameter <span class="math inline">\(\nu=5\)</span>.</p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="4-sampling-distribution-of-barx.html#cb101-1"></a><span class="co"># Population is a Chi-sq distribution with df=5 </span></span>
-<span id="cb101-2"><a href="4-sampling-distribution-of-barx.html#cb101-2"></a>PopDist &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">20</span>,<span class="dt">length=</span><span class="dv">10000</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb101-3"><a href="4-sampling-distribution-of-barx.html#cb101-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">density=</span><span class="kw">dchisq</span>(x,<span class="dt">df=</span><span class="dv">5</span>))</span>
-<span id="cb101-4"><a href="4-sampling-distribution-of-barx.html#cb101-4"></a></span>
-<span id="cb101-5"><a href="4-sampling-distribution-of-barx.html#cb101-5"></a><span class="kw">ggplot</span>(PopDist, <span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>density)) <span class="op">+</span></span>
-<span id="cb101-6"><a href="4-sampling-distribution-of-barx.html#cb101-6"></a><span class="st">  </span><span class="kw">geom_area</span>(<span class="dt">fill=</span><span class="st">&#39;salmon&#39;</span>) <span class="op">+</span></span>
-<span id="cb101-7"><a href="4-sampling-distribution-of-barx.html#cb101-7"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&#39;Population Distribution&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="4-sampling-distribution-of-barx.html#cb101-1" aria-hidden="true"></a><span class="co"># Population is a Chi-sq distribution with df=5 </span></span>
+<span id="cb101-2"><a href="4-sampling-distribution-of-barx.html#cb101-2" aria-hidden="true"></a>PopDist &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">20</span>,<span class="dt">length=</span><span class="dv">10000</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb101-3"><a href="4-sampling-distribution-of-barx.html#cb101-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">density=</span><span class="kw">dchisq</span>(x,<span class="dt">df=</span><span class="dv">5</span>))</span>
+<span id="cb101-4"><a href="4-sampling-distribution-of-barx.html#cb101-4" aria-hidden="true"></a></span>
+<span id="cb101-5"><a href="4-sampling-distribution-of-barx.html#cb101-5" aria-hidden="true"></a><span class="kw">ggplot</span>(PopDist, <span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>density)) <span class="op">+</span></span>
+<span id="cb101-6"><a href="4-sampling-distribution-of-barx.html#cb101-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_area</span>(<span class="dt">fill=</span><span class="st">&#39;salmon&#39;</span>) <span class="op">+</span></span>
+<span id="cb101-7"><a href="4-sampling-distribution-of-barx.html#cb101-7" aria-hidden="true"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&#39;Population Distribution&#39;</span>)</span></code></pre></div>
 <p><img src="04_SamplingDistribution_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>We want to estimate the mean <span class="math inline">\(\mu\)</span> and take a random sample of <span class="math inline">\(n=5\)</span>. Lets do this a few times and notice that the sample mean is never exactly 5, but is a bit off from that.</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="4-sampling-distribution-of-barx.html#cb102-1"></a>n &lt;-<span class="st"> </span><span class="dv">5</span>  <span class="co"># Our Sample Size!</span></span>
-<span id="cb102-2"><a href="4-sampling-distribution-of-barx.html#cb102-2"></a>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">3</span>) <span class="op">*</span><span class="st"> </span>{</span>
-<span id="cb102-3"><a href="4-sampling-distribution-of-barx.html#cb102-3"></a>  Sample.Data &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">x =</span> <span class="kw">rchisq</span>(n,<span class="dt">df=</span><span class="dv">5</span>) )</span>
-<span id="cb102-4"><a href="4-sampling-distribution-of-barx.html#cb102-4"></a>  Sample.Data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>( <span class="dt">xbar =</span> <span class="kw">mean</span>(x) )</span>
-<span id="cb102-5"><a href="4-sampling-distribution-of-barx.html#cb102-5"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="4-sampling-distribution-of-barx.html#cb102-1" aria-hidden="true"></a>n &lt;-<span class="st"> </span><span class="dv">5</span>  <span class="co"># Our Sample Size!</span></span>
+<span id="cb102-2"><a href="4-sampling-distribution-of-barx.html#cb102-2" aria-hidden="true"></a>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">3</span>) <span class="op">*</span><span class="st"> </span>{</span>
+<span id="cb102-3"><a href="4-sampling-distribution-of-barx.html#cb102-3" aria-hidden="true"></a>  Sample.Data &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">x =</span> <span class="kw">rchisq</span>(n,<span class="dt">df=</span><span class="dv">5</span>) )</span>
+<span id="cb102-4"><a href="4-sampling-distribution-of-barx.html#cb102-4" aria-hidden="true"></a>  Sample.Data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>( <span class="dt">xbar =</span> <span class="kw">mean</span>(x) )</span>
+<span id="cb102-5"><a href="4-sampling-distribution-of-barx.html#cb102-5" aria-hidden="true"></a>}</span></code></pre></div>
 <pre><code>## Registered S3 method overwritten by &#39;mosaic&#39;:
 ##   method                           from   
 ##   fortify.SpatialPolygonsDataFrame ggplot2</code></pre>
@@ -374,17 +414,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 2 3.976912
 ## 3 5.105458</code></pre>
 <p>Now produce 10000 estimates from random samples of the population.</p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="4-sampling-distribution-of-barx.html#cb105-1"></a>n &lt;-<span class="st"> </span><span class="dv">5</span></span>
-<span id="cb105-2"><a href="4-sampling-distribution-of-barx.html#cb105-2"></a>SampDist &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">10000</span>) <span class="op">*</span><span class="st"> </span>{</span>
-<span id="cb105-3"><a href="4-sampling-distribution-of-barx.html#cb105-3"></a>  Sample.Data &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">x =</span> <span class="kw">rchisq</span>(n,<span class="dt">df=</span><span class="dv">5</span>) )</span>
-<span id="cb105-4"><a href="4-sampling-distribution-of-barx.html#cb105-4"></a>  Sample.Data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>( <span class="dt">xbar =</span> <span class="kw">mean</span>(x)     ) </span>
-<span id="cb105-5"><a href="4-sampling-distribution-of-barx.html#cb105-5"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="4-sampling-distribution-of-barx.html#cb105-1" aria-hidden="true"></a>n &lt;-<span class="st"> </span><span class="dv">5</span></span>
+<span id="cb105-2"><a href="4-sampling-distribution-of-barx.html#cb105-2" aria-hidden="true"></a>SampDist &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">10000</span>) <span class="op">*</span><span class="st"> </span>{</span>
+<span id="cb105-3"><a href="4-sampling-distribution-of-barx.html#cb105-3" aria-hidden="true"></a>  Sample.Data &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">x =</span> <span class="kw">rchisq</span>(n,<span class="dt">df=</span><span class="dv">5</span>) )</span>
+<span id="cb105-4"><a href="4-sampling-distribution-of-barx.html#cb105-4" aria-hidden="true"></a>  Sample.Data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>( <span class="dt">xbar =</span> <span class="kw">mean</span>(x)     ) </span>
+<span id="cb105-5"><a href="4-sampling-distribution-of-barx.html#cb105-5" aria-hidden="true"></a>}</span></code></pre></div>
 <p>We will compare the population distribution to the sampling distribution graphically.</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="4-sampling-distribution-of-barx.html#cb106-1"></a><span class="kw">ggplot</span>() <span class="op">+</span></span>
-<span id="cb106-2"><a href="4-sampling-distribution-of-barx.html#cb106-2"></a><span class="st">  </span><span class="kw">geom_area</span>(<span class="dt">data=</span>PopDist, <span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>density), <span class="dt">fill=</span><span class="st">&#39;salmon&#39;</span>) <span class="op">+</span></span>
-<span id="cb106-3"><a href="4-sampling-distribution-of-barx.html#cb106-3"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">data=</span>SampDist, <span class="kw">aes</span>(<span class="dt">x=</span>xbar, <span class="dt">y=</span>..density..),</span>
-<span id="cb106-4"><a href="4-sampling-distribution-of-barx.html#cb106-4"></a>                  <span class="dt">binwidth=</span>.<span class="dv">1</span>,</span>
-<span id="cb106-5"><a href="4-sampling-distribution-of-barx.html#cb106-5"></a>                  <span class="dt">alpha=</span>.<span class="dv">6</span>)     <span class="co"># alpha is the opacity of the layer</span></span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="4-sampling-distribution-of-barx.html#cb106-1" aria-hidden="true"></a><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb106-2"><a href="4-sampling-distribution-of-barx.html#cb106-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_area</span>(<span class="dt">data=</span>PopDist, <span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>density), <span class="dt">fill=</span><span class="st">&#39;salmon&#39;</span>) <span class="op">+</span></span>
+<span id="cb106-3"><a href="4-sampling-distribution-of-barx.html#cb106-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">data=</span>SampDist, <span class="kw">aes</span>(<span class="dt">x=</span>xbar, <span class="dt">y=</span>..density..),</span>
+<span id="cb106-4"><a href="4-sampling-distribution-of-barx.html#cb106-4" aria-hidden="true"></a>                  <span class="dt">binwidth=</span>.<span class="dv">1</span>,</span>
+<span id="cb106-5"><a href="4-sampling-distribution-of-barx.html#cb106-5" aria-hidden="true"></a>                  <span class="dt">alpha=</span>.<span class="dv">6</span>)     <span class="co"># alpha is the opacity of the layer</span></span></code></pre></div>
 <p><img src="04_SamplingDistribution_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>From the histogram of the sample means, we notice three things:</p>
 <ul>
@@ -393,9 +433,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>The sampling distribution of <span class="math inline">\(\bar{X}\)</span> is less skewed than the population distribution.</li>
 </ul>
 </div>
-<div id="mathematical-details" class="section level2">
+<div id="mathematical-details" class="section level2" number="4.2">
 <h2><span class="header-section-number">4.2</span> Mathematical details</h2>
-<div id="probability-rules-for-expectations-and-variances" class="section level3">
+<div id="probability-rules-for-expectations-and-variances" class="section level3" number="4.2.1">
 <h3><span class="header-section-number">4.2.1</span> Probability Rules for Expectations and Variances</h3>
 <p>Claim: For random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> and constant <span class="math inline">\(a\)</span> the following statements hold:
 <span class="math display">\[E\left(aX\right)	=	aE\left(X\right)\]</span>
@@ -405,7 +445,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="math display">\[Var\left(X\pm Y\right)	=	Var\left(X\right)+Var\left(Y\right)\;\textrm{if X,Y are independent}\]</span></p>
 <p>Proving these results is relatively straight forward and is done in almost all introductory probability text books.</p>
 </div>
-<div id="mean-and-variance-of-the-sample-mean" class="section level3">
+<div id="mean-and-variance-of-the-sample-mean" class="section level3" number="4.2.2">
 <h3><span class="header-section-number">4.2.2</span> Mean and Variance of the Sample Mean</h3>
 <p>We have been talking about random variables drawn from a known distribution and being able to derive their expected values and variances. We now turn to the mean of a collection of random variables. Because sample values are random, any function of them is also random. So even though the act of calculating a mean is not a random process, the numbers that are fed into the algorithm are random. Thus the sample mean will change from sample to sample and we are interested in how it varies.</p>
 <p>Using the rules we have just confirmed, it is easy to calculate the expectation and variance of the sample mean. Given a sample <span class="math inline">\(X_{1},X_{2},\dots,X_{n}\)</span> of observations where all the observations are independent of each other and all the observations have expectation <span class="math inline">\(E\left[X_{i}\right]=\mu\)</span> and variance <span class="math inline">\(Var\left[X_{i}\right]=\sigma^{2}\)</span> then
@@ -428,7 +468,7 @@ and
 <p>Notice that the sample mean has the same expectation as the original distribution that the samples were pulled from, but it has a smaller variance! So the sample mean is an unbiased estimator of the population mean <span class="math inline">\(\mu\)</span> and the average distance of the sample mean to the population mean decreases as the sample size becomes larger.</p>
 </div>
 </div>
-<div id="distribution-of-barx" class="section level2">
+<div id="distribution-of-barx" class="section level2" number="4.3">
 <h2><span class="header-section-number">4.3</span> Distribution of <span class="math inline">\(\bar{X}\)</span></h2>
 <p>If <span class="math inline">\(X_{i}\stackrel{iid}{\sim}N\left(\mu,\sigma^{2}\right)\)</span> then it is well known (and proven in most undergraduate probability classes) that <span class="math inline">\(\bar{X}\)</span> is also normally distributed with a mean and variance that were already established. That is
 <span class="math display">\[\bar{X}\sim N\left(\mu_{\bar{X}}=\mu,\;\sigma_{\bar{X}}^{2}=\frac{\sigma^{2}}{n}\right)\]</span></p>
@@ -456,19 +496,19 @@ and
 <p><span class="math display">\[\frac{-10}{\left(\frac{50}{\sqrt{n}}\right)}	\le\frac{\bar{X}-\mu_{\bar{X}}}{\sigma_{\bar{X}}}\le	\frac{10}{\left(\frac{50}{\sqrt{n}}\right)}\]</span></p>
 <p><span class="math display">\[\frac{-10}{\left(\frac{50}{\sqrt{n}}\right)}	\le Z\le	\frac{10}{\left(\frac{50}{\sqrt{n}}\right)}\]</span></p>
 <p>Next we look in our standard normal table to find a <span class="math inline">\(z\)</span>-value such that <span class="math inline">\(P\left(-z\le Z\le z\right)=0.95\)</span> and that value is <span class="math inline">\(z=1.96\)</span>.</p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="4-sampling-distribution-of-barx.html#cb107-1"></a>data &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">z=</span> <span class="kw">seq</span>(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="dt">length=</span><span class="dv">1000</span>) ) <span class="op">%&gt;%</span></span>
-<span id="cb107-2"><a href="4-sampling-distribution-of-barx.html#cb107-2"></a><span class="st">  </span><span class="kw">mutate</span>( <span class="dt">y =</span> <span class="kw">dnorm</span>(z) )</span>
-<span id="cb107-3"><a href="4-sampling-distribution-of-barx.html#cb107-3"></a><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x=</span>z, <span class="dt">y=</span>y)) <span class="op">+</span></span>
-<span id="cb107-4"><a href="4-sampling-distribution-of-barx.html#cb107-4"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
-<span id="cb107-5"><a href="4-sampling-distribution-of-barx.html#cb107-5"></a><span class="st">  </span><span class="kw">geom_area</span>( <span class="dt">data =</span> data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="kw">abs</span>(z) <span class="op">&lt;=</span><span class="st"> </span><span class="fl">1.96</span>), <span class="dt">fill=</span><span class="st">&#39;grey&#39;</span>, <span class="dt">alpha=</span>.<span class="dv">7</span>) <span class="op">+</span></span>
-<span id="cb107-6"><a href="4-sampling-distribution-of-barx.html#cb107-6"></a><span class="st">  </span><span class="kw">geom_text</span>( <span class="dt">x=</span><span class="dv">0</span>, <span class="dt">y=</span>.<span class="dv">2</span>, <span class="dt">label=</span><span class="st">&#39;95%&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="4-sampling-distribution-of-barx.html#cb107-1" aria-hidden="true"></a>data &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">z=</span> <span class="kw">seq</span>(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="dt">length=</span><span class="dv">1000</span>) ) <span class="op">%&gt;%</span></span>
+<span id="cb107-2"><a href="4-sampling-distribution-of-barx.html#cb107-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>( <span class="dt">y =</span> <span class="kw">dnorm</span>(z) )</span>
+<span id="cb107-3"><a href="4-sampling-distribution-of-barx.html#cb107-3" aria-hidden="true"></a><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x=</span>z, <span class="dt">y=</span>y)) <span class="op">+</span></span>
+<span id="cb107-4"><a href="4-sampling-distribution-of-barx.html#cb107-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb107-5"><a href="4-sampling-distribution-of-barx.html#cb107-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_area</span>( <span class="dt">data =</span> data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="kw">abs</span>(z) <span class="op">&lt;=</span><span class="st"> </span><span class="fl">1.96</span>), <span class="dt">fill=</span><span class="st">&#39;grey&#39;</span>, <span class="dt">alpha=</span>.<span class="dv">7</span>) <span class="op">+</span></span>
+<span id="cb107-6"><a href="4-sampling-distribution-of-barx.html#cb107-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_text</span>( <span class="dt">x=</span><span class="dv">0</span>, <span class="dt">y=</span>.<span class="dv">2</span>, <span class="dt">label=</span><span class="st">&#39;95%&#39;</span>)</span></code></pre></div>
 <p><img src="04_SamplingDistribution_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>So all we need to do is solve the following equation for <span class="math inline">\(n\)</span>
 <span class="math display">\[1.96	=	\frac{10}{ \left( \frac{50}{\sqrt{n}} \right) }\]</span>
 <span class="math display">\[\frac{1.96}{10}\left(50\right)	=	\sqrt{n}\]</span>
 <span class="math display">\[96	\approx	n\]</span></p>
 </div>
-<div id="central-limit-theorem" class="section level2">
+<div id="central-limit-theorem" class="section level2" number="4.4">
 <h2><span class="header-section-number">4.4</span> Central Limit Theorem</h2>
 <blockquote>
 <p>I know of scarcely anything so apt to impress the imagination as the wonderful form of cosmic order expressed by the “Law of Frequency of Error”. The law would have been personified by the Greeks and deified, if they had known of it. It reigns with serenity and in complete self-effacement, amidst the wildest confusion. The huger the mob, and the greater the apparent anarchy, the more perfect is its sway. It is the supreme law of Unreason. Whenever a large sample of chaotic elements are taken in hand and marshaled in the order of their magnitude, an unsuspected and most beautiful form of regularity proves to have been latent all along. - Sir Francis Galton (1822-1911)</p>
@@ -488,14 +528,14 @@ and
 	&amp;\approx	P\left(Z\ge\frac{2.5-2}{\frac{2}{\sqrt{40}}}\right) \\
 	&amp;=	P\left(Z\ge1.58\right) \\
 	&amp;=	0.0571 \end{aligned}\]</span></p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="4-sampling-distribution-of-barx.html#cb108-1"></a><span class="co"># Answer obtained via simulation</span></span>
-<span id="cb108-2"><a href="4-sampling-distribution-of-barx.html#cb108-2"></a>SampDist &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">10000</span>) <span class="op">*</span>{                     <span class="co"># make 10,000</span></span>
-<span id="cb108-3"><a href="4-sampling-distribution-of-barx.html#cb108-3"></a>  Sample &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">x=</span> <span class="kw">rexp</span>(<span class="dt">n=</span><span class="dv">40</span>, <span class="dt">rate=</span><span class="dv">1</span><span class="op">/</span><span class="dv">2</span> ) )   <span class="co"># simulated xbar </span></span>
-<span id="cb108-4"><a href="4-sampling-distribution-of-barx.html#cb108-4"></a>  Sample <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>( <span class="dt">xbar =</span> <span class="kw">mean</span>( x )         )   <span class="co"># values</span></span>
-<span id="cb108-5"><a href="4-sampling-distribution-of-barx.html#cb108-5"></a>}</span>
-<span id="cb108-6"><a href="4-sampling-distribution-of-barx.html#cb108-6"></a>SampDist <span class="op">%&gt;%</span><span class="st">                                         </span><span class="co"># What proportion of those</span></span>
-<span id="cb108-7"><a href="4-sampling-distribution-of-barx.html#cb108-7"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Greater =</span> <span class="kw">ifelse</span>(xbar <span class="op">&gt;=</span><span class="st"> </span><span class="fl">2.5</span>, <span class="dv">1</span>, <span class="dv">0</span>)) <span class="op">%&gt;%</span><span class="st">    </span><span class="co"># xbar values are</span></span>
-<span id="cb108-8"><a href="4-sampling-distribution-of-barx.html#cb108-8"></a><span class="st">  </span><span class="kw">summarise</span>( <span class="dt">ProportionGreater =</span> <span class="kw">mean</span>(Greater) )     <span class="co"># greater than 2.5?</span></span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="4-sampling-distribution-of-barx.html#cb108-1" aria-hidden="true"></a><span class="co"># Answer obtained via simulation</span></span>
+<span id="cb108-2"><a href="4-sampling-distribution-of-barx.html#cb108-2" aria-hidden="true"></a>SampDist &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">10000</span>) <span class="op">*</span>{                     <span class="co"># make 10,000</span></span>
+<span id="cb108-3"><a href="4-sampling-distribution-of-barx.html#cb108-3" aria-hidden="true"></a>  Sample &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">x=</span> <span class="kw">rexp</span>(<span class="dt">n=</span><span class="dv">40</span>, <span class="dt">rate=</span><span class="dv">1</span><span class="op">/</span><span class="dv">2</span> ) )   <span class="co"># simulated xbar </span></span>
+<span id="cb108-4"><a href="4-sampling-distribution-of-barx.html#cb108-4" aria-hidden="true"></a>  Sample <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>( <span class="dt">xbar =</span> <span class="kw">mean</span>( x )         )   <span class="co"># values</span></span>
+<span id="cb108-5"><a href="4-sampling-distribution-of-barx.html#cb108-5" aria-hidden="true"></a>}</span>
+<span id="cb108-6"><a href="4-sampling-distribution-of-barx.html#cb108-6" aria-hidden="true"></a>SampDist <span class="op">%&gt;%</span><span class="st">                                         </span><span class="co"># What proportion of those</span></span>
+<span id="cb108-7"><a href="4-sampling-distribution-of-barx.html#cb108-7" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Greater =</span> <span class="kw">ifelse</span>(xbar <span class="op">&gt;=</span><span class="st"> </span><span class="fl">2.5</span>, <span class="dv">1</span>, <span class="dv">0</span>)) <span class="op">%&gt;%</span><span class="st">    </span><span class="co"># xbar values are</span></span>
+<span id="cb108-8"><a href="4-sampling-distribution-of-barx.html#cb108-8" aria-hidden="true"></a><span class="st">  </span><span class="kw">summarise</span>( <span class="dt">ProportionGreater =</span> <span class="kw">mean</span>(Greater) )     <span class="co"># greater than 2.5?</span></span></code></pre></div>
 <pre><code>##   ProportionGreater
 ## 1            0.0659</code></pre>
 <p><strong>Summary</strong></p>
@@ -507,7 +547,7 @@ and
 <p>If <span class="math inline">\(Y_{1},Y_{2},\dots,Y_{n}\)</span> were sampled from a distribution that is <em>not</em> normal but has mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^{2}\)</span>, and our sample size is large, then <span class="math inline">\(\bar{Y}\)</span> is <em>approximately</em> normally distributed.
 <span class="math display">\[\bar{Y}	\stackrel{\cdot}{\sim}	N\left(\mu_{\bar{Y}}=\mu,\;\;\sigma_{\bar{Y}}^{2}=\frac{\sigma^{2}}{n}\right)\]</span></p>
 </div>
-<div id="Exercises_SamplingDistributions" class="section level2">
+<div id="Exercises_SamplingDistributions" class="section level2" number="4.5">
 <h2><span class="header-section-number">4.5</span> Exercises</h2>
 <ol style="list-style-type: decimal">
 <li>Suppose that the amount of fluid in a small can of soda can be well approximated by a Normal distribution. Let <span class="math inline">\(X\)</span> be the amount of soda (in milliliters) in a single can and <span class="math inline">\(X\sim N\left(\mu=222,\;\sigma=5\right)\)</span>.

@@ -24,7 +24,7 @@
 <meta name="author" content="Derek L. Sonderegger &amp; Robert Buscaglia" />
 
 
-<meta name="date" content="2020-08-31" />
+<meta name="date" content="2020-09-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="5-confidence-intervals-for-mu.html"/>
 <link rel="next" href="7-two-sample-hypothesis-tests-and-confidence-intervals.html"/>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,22 +51,20 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -85,7 +84,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -131,30 +130,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html"><i class="fa fa-check"></i><b>1</b> Summary Statistics and Graphing</a><ul>
-<li class="chapter" data-level="1.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#variable-types"><i class="fa fa-check"></i><b>1.1</b> Variable Types</a><ul>
+<li class="chapter" data-level="1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html"><i class="fa fa-check"></i><b>1</b> Summary Statistics and Graphing</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#variable-types"><i class="fa fa-check"></i><b>1.1</b> Variable Types</a>
+<ul>
 <li class="chapter" data-level="1.1.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#categorical"><i class="fa fa-check"></i><b>1.1.1</b> Categorical</a></li>
 <li class="chapter" data-level="1.1.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#numerical"><i class="fa fa-check"></i><b>1.1.2</b> Numerical</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#randomization-and-sampling"><i class="fa fa-check"></i><b>1.2</b> Randomization and Sampling</a><ul>
+<li class="chapter" data-level="1.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#randomization-and-sampling"><i class="fa fa-check"></i><b>1.2</b> Randomization and Sampling</a>
+<ul>
 <li class="chapter" data-level="1.2.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#sampling-techniques"><i class="fa fa-check"></i><b>1.2.1</b> Sampling Techniques</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#graphical-summaries"><i class="fa fa-check"></i><b>1.3</b> Graphical Summaries</a><ul>
+<li class="chapter" data-level="1.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#graphical-summaries"><i class="fa fa-check"></i><b>1.3</b> Graphical Summaries</a>
+<ul>
 <li class="chapter" data-level="1.3.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#barchartsbarplots-univariate---categorical"><i class="fa fa-check"></i><b>1.3.1</b> Barcharts/Barplots (Univariate - Categorical)</a></li>
 <li class="chapter" data-level="1.3.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#histogram-univariate---numerical"><i class="fa fa-check"></i><b>1.3.2</b> Histogram (Univariate - Numerical)</a></li>
 <li class="chapter" data-level="1.3.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#boxplot-bivariate---categorical-vs-numerical"><i class="fa fa-check"></i><b>1.3.3</b> Boxplot (Bivariate - Categorical vs Numerical)</a></li>
 <li class="chapter" data-level="1.3.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#scatterplot-bivariate---numerical-vs-numerical"><i class="fa fa-check"></i><b>1.3.4</b> Scatterplot (Bivariate - Numerical vs Numerical)</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#measures-of-centrality"><i class="fa fa-check"></i><b>1.4</b> Measures of Centrality</a><ul>
+<li class="chapter" data-level="1.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#measures-of-centrality"><i class="fa fa-check"></i><b>1.4</b> Measures of Centrality</a>
+<ul>
 <li class="chapter" data-level="1.4.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#mean"><i class="fa fa-check"></i><b>1.4.1</b> Mean</a></li>
 <li class="chapter" data-level="1.4.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#median"><i class="fa fa-check"></i><b>1.4.2</b> Median</a></li>
 <li class="chapter" data-level="1.4.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#mode"><i class="fa fa-check"></i><b>1.4.3</b> Mode</a></li>
 <li class="chapter" data-level="1.4.4" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#examples"><i class="fa fa-check"></i><b>1.4.4</b> Examples</a></li>
 </ul></li>
-<li class="chapter" data-level="1.5" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#measures-of-spread"><i class="fa fa-check"></i><b>1.5</b> Measures of Spread</a><ul>
+<li class="chapter" data-level="1.5" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#measures-of-spread"><i class="fa fa-check"></i><b>1.5</b> Measures of Spread</a>
+<ul>
 <li class="chapter" data-level="1.5.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#range"><i class="fa fa-check"></i><b>1.5.1</b> Range</a></li>
 <li class="chapter" data-level="1.5.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#inter-quartile-range-iqr"><i class="fa fa-check"></i><b>1.5.2</b> Inter-Quartile Range (IQR)</a></li>
 <li class="chapter" data-level="1.5.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#variance"><i class="fa fa-check"></i><b>1.5.3</b> Variance</a></li>
@@ -162,30 +168,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.5.5" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#coefficient-of-variation"><i class="fa fa-check"></i><b>1.5.5</b> Coefficient of Variation</a></li>
 <li class="chapter" data-level="1.5.6" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#empirical-rules"><i class="fa fa-check"></i><b>1.5.6</b> Empirical Rules</a></li>
 </ul></li>
-<li class="chapter" data-level="1.6" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#shape"><i class="fa fa-check"></i><b>1.6</b> Shape</a><ul>
+<li class="chapter" data-level="1.6" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#shape"><i class="fa fa-check"></i><b>1.6</b> Shape</a>
+<ul>
 <li class="chapter" data-level="1.6.1" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#symmetry"><i class="fa fa-check"></i><b>1.6.1</b> Symmetry</a></li>
 <li class="chapter" data-level="1.6.2" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#unimodal-or-multi-modal"><i class="fa fa-check"></i><b>1.6.2</b> Unimodal or Multi-modal</a></li>
 <li class="chapter" data-level="1.6.3" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#skew"><i class="fa fa-check"></i><b>1.6.3</b> Skew</a></li>
 </ul></li>
 <li class="chapter" data-level="1.7" data-path="1-summary-statistics-and-graphing.html"><a href="1-summary-statistics-and-graphing.html#Exercises_DataSummary"><i class="fa fa-check"></i><b>1.7</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="2-probability.html"><a href="2-probability.html"><i class="fa fa-check"></i><b>2</b> Probability</a><ul>
-<li class="chapter" data-level="2.1" data-path="2-probability.html"><a href="2-probability.html#introduction-to-set-theory"><i class="fa fa-check"></i><b>2.1</b> Introduction to Set Theory</a><ul>
+<li class="chapter" data-level="2" data-path="2-probability.html"><a href="2-probability.html"><i class="fa fa-check"></i><b>2</b> Probability</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="2-probability.html"><a href="2-probability.html#introduction-to-set-theory"><i class="fa fa-check"></i><b>2.1</b> Introduction to Set Theory</a>
+<ul>
 <li class="chapter" data-level="2.1.1" data-path="2-probability.html"><a href="2-probability.html#composition-of-events"><i class="fa fa-check"></i><b>2.1.1</b> Composition of events</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="2-probability.html"><a href="2-probability.html#probability-rules"><i class="fa fa-check"></i><b>2.2</b> Probability Rules</a><ul>
+<li class="chapter" data-level="2.2" data-path="2-probability.html"><a href="2-probability.html#probability-rules"><i class="fa fa-check"></i><b>2.2</b> Probability Rules</a>
+<ul>
 <li class="chapter" data-level="2.2.1" data-path="2-probability.html"><a href="2-probability.html#simple-rules"><i class="fa fa-check"></i><b>2.2.1</b> Simple Rules</a></li>
 <li class="chapter" data-level="2.2.2" data-path="2-probability.html"><a href="2-probability.html#conditional-probability"><i class="fa fa-check"></i><b>2.2.2</b> Conditional Probability</a></li>
 <li class="chapter" data-level="2.2.3" data-path="2-probability.html"><a href="2-probability.html#summary-of-probability-rules"><i class="fa fa-check"></i><b>2.2.3</b> Summary of Probability Rules</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="2-probability.html"><a href="2-probability.html#discrete-random-variables"><i class="fa fa-check"></i><b>2.3</b> Discrete Random Variables</a><ul>
+<li class="chapter" data-level="2.3" data-path="2-probability.html"><a href="2-probability.html#discrete-random-variables"><i class="fa fa-check"></i><b>2.3</b> Discrete Random Variables</a>
+<ul>
 <li class="chapter" data-level="2.3.1" data-path="2-probability.html"><a href="2-probability.html#introduction-to-discrete-random-variables"><i class="fa fa-check"></i><b>2.3.1</b> Introduction to Discrete Random Variables</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="2-probability.html"><a href="2-probability.html#common-discrete-distributions"><i class="fa fa-check"></i><b>2.4</b> Common Discrete Distributions</a><ul>
+<li class="chapter" data-level="2.4" data-path="2-probability.html"><a href="2-probability.html#common-discrete-distributions"><i class="fa fa-check"></i><b>2.4</b> Common Discrete Distributions</a>
+<ul>
 <li class="chapter" data-level="2.4.1" data-path="2-probability.html"><a href="2-probability.html#binomial-distribution"><i class="fa fa-check"></i><b>2.4.1</b> Binomial Distribution</a></li>
 <li class="chapter" data-level="2.4.2" data-path="2-probability.html"><a href="2-probability.html#poisson-distribution"><i class="fa fa-check"></i><b>2.4.2</b> Poisson Distribution</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="2-probability.html"><a href="2-probability.html#continuous-random-variables"><i class="fa fa-check"></i><b>2.5</b> Continuous Random Variables</a><ul>
+<li class="chapter" data-level="2.5" data-path="2-probability.html"><a href="2-probability.html#continuous-random-variables"><i class="fa fa-check"></i><b>2.5</b> Continuous Random Variables</a>
+<ul>
 <li class="chapter" data-level="2.5.1" data-path="2-probability.html"><a href="2-probability.html#uniform01-distribution"><i class="fa fa-check"></i><b>2.5.1</b> Uniform(0,1) Distribution</a></li>
 <li class="chapter" data-level="2.5.2" data-path="2-probability.html"><a href="2-probability.html#exponential-distribution"><i class="fa fa-check"></i><b>2.5.2</b> Exponential Distribution</a></li>
 <li class="chapter" data-level="2.5.3" data-path="2-probability.html"><a href="2-probability.html#normal-distribution"><i class="fa fa-check"></i><b>2.5.3</b> Normal Distribution</a></li>
@@ -194,16 +207,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.6" data-path="2-probability.html"><a href="2-probability.html#r-quick-reference"><i class="fa fa-check"></i><b>2.6</b> R Quick Reference</a></li>
 <li class="chapter" data-level="2.7" data-path="2-probability.html"><a href="2-probability.html#Exercises_Probability"><i class="fa fa-check"></i><b>2.7</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html"><i class="fa fa-check"></i><b>3</b> Confidence Intervals via Bootstrapping</a><ul>
+<li class="chapter" data-level="3" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html"><i class="fa fa-check"></i><b>3</b> Confidence Intervals via Bootstrapping</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#theory-of-bootstrapping"><i class="fa fa-check"></i><b>3.1</b> Theory of Bootstrapping</a></li>
 <li class="chapter" data-level="3.2" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#conducting-a-bootstrap"><i class="fa fa-check"></i><b>3.2</b> Conducting a Bootstrap</a></li>
 <li class="chapter" data-level="3.3" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#quantile-based-confidence-intervals"><i class="fa fa-check"></i><b>3.3</b> Quantile-based Confidence Intervals</a></li>
 <li class="chapter" data-level="3.4" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#additional-examples"><i class="fa fa-check"></i><b>3.4</b> Additional Examples</a></li>
 <li class="chapter" data-level="3.5" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#Exercises_Bootstrap"><i class="fa fa-check"></i><b>3.5</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html"><i class="fa fa-check"></i><b>4</b> Sampling Distribution of <span class="math inline">\(\bar{X}\)</span></a><ul>
+<li class="chapter" data-level="4" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html"><i class="fa fa-check"></i><b>4</b> Sampling Distribution of <span class="math inline">\(\bar{X}\)</span></a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#enlightening-example"><i class="fa fa-check"></i><b>4.1</b> Enlightening Example</a></li>
-<li class="chapter" data-level="4.2" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#mathematical-details"><i class="fa fa-check"></i><b>4.2</b> Mathematical details</a><ul>
+<li class="chapter" data-level="4.2" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#mathematical-details"><i class="fa fa-check"></i><b>4.2</b> Mathematical details</a>
+<ul>
 <li class="chapter" data-level="4.2.1" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#probability-rules-for-expectations-and-variances"><i class="fa fa-check"></i><b>4.2.1</b> Probability Rules for Expectations and Variances</a></li>
 <li class="chapter" data-level="4.2.2" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#mean-and-variance-of-the-sample-mean"><i class="fa fa-check"></i><b>4.2.2</b> Mean and Variance of the Sample Mean</a></li>
 </ul></li>
@@ -211,47 +227,58 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.4" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#central-limit-theorem"><i class="fa fa-check"></i><b>4.4</b> Central Limit Theorem</a></li>
 <li class="chapter" data-level="4.5" data-path="4-sampling-distribution-of-barx.html"><a href="4-sampling-distribution-of-barx.html#Exercises_SamplingDistributions"><i class="fa fa-check"></i><b>4.5</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html"><i class="fa fa-check"></i><b>5</b> Confidence Intervals for <span class="math inline">\(\mu\)</span></a><ul>
+<li class="chapter" data-level="5" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html"><i class="fa fa-check"></i><b>5</b> Confidence Intervals for <span class="math inline">\(\mu\)</span></a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#asymptotic-result-sigma-known"><i class="fa fa-check"></i><b>5.1</b> Asymptotic result (<span class="math inline">\(\sigma\)</span> known)</a></li>
 <li class="chapter" data-level="5.2" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#asymptotoic-result-sigma-unknown"><i class="fa fa-check"></i><b>5.2</b> Asymptotoic result (<span class="math inline">\(\sigma\)</span> unknown)</a></li>
 <li class="chapter" data-level="5.3" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#sample-size-selection"><i class="fa fa-check"></i><b>5.3</b> Sample Size Selection</a></li>
 <li class="chapter" data-level="5.4" data-path="5-confidence-intervals-for-mu.html"><a href="5-confidence-intervals-for-mu.html#Exercises_ConfidenceIntervals"><i class="fa fa-check"></i><b>5.4</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html"><i class="fa fa-check"></i><b>6</b> Hypothesis Tests for the mean of a population</a><ul>
-<li class="chapter" data-level="6.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#writing-hypotheses"><i class="fa fa-check"></i><b>6.1</b> Writing Hypotheses</a><ul>
+<li class="chapter" data-level="6" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html"><i class="fa fa-check"></i><b>6</b> Hypothesis Tests for the mean of a population</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#writing-hypotheses"><i class="fa fa-check"></i><b>6.1</b> Writing Hypotheses</a>
+<ul>
 <li class="chapter" data-level="6.1.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#null-and-alternative-hypotheses"><i class="fa fa-check"></i><b>6.1.1</b> Null and alternative hypotheses</a></li>
 <li class="chapter" data-level="6.1.2" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#error"><i class="fa fa-check"></i><b>6.1.2</b> Error</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#conducting-a-hypothesis-test-for-mu"><i class="fa fa-check"></i><b>6.2</b> Conducting a Hypothesis Test for <span class="math inline">\(\mu\)</span></a><ul>
+<li class="chapter" data-level="6.2" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#conducting-a-hypothesis-test-for-mu"><i class="fa fa-check"></i><b>6.2</b> Conducting a Hypothesis Test for <span class="math inline">\(\mu\)</span></a>
+<ul>
 <li class="chapter" data-level="6.2.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#why-should-hypotheses-use-mu-and-not-barx"><i class="fa fa-check"></i><b>6.2.1</b> Why should hypotheses use <span class="math inline">\(\mu\)</span> and not <span class="math inline">\(\bar{x}\)</span>?</a></li>
 <li class="chapter" data-level="6.2.2" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#a-note-on-calculating-p-values"><i class="fa fa-check"></i><b>6.2.2</b> A note on calculating p-values</a></li>
 </ul></li>
 <li class="chapter" data-level="6.3" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#additional-examples"><i class="fa fa-check"></i><b>6.3</b> Additional Examples</a></li>
 <li class="chapter" data-level="6.4" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#p-values-vs-cutoff-values"><i class="fa fa-check"></i><b>6.4</b> P-values vs cutoff values</a></li>
 <li class="chapter" data-level="6.5" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#running-a-t-test-in-r"><i class="fa fa-check"></i><b>6.5</b> Running a t-test in R</a></li>
-<li class="chapter" data-level="6.6" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i><b>6.6</b> Type I and Type II Errors</a><ul>
+<li class="chapter" data-level="6.6" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i><b>6.6</b> Type I and Type II Errors</a>
+<ul>
 <li class="chapter" data-level="6.6.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#power-and-sample-size-selection"><i class="fa fa-check"></i><b>6.6.1</b> Power and Sample Size Selection</a></li>
 </ul></li>
 <li class="chapter" data-level="6.7" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#Exercises_HypothesisTests"><i class="fa fa-check"></i><b>6.7</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><i class="fa fa-check"></i><b>7</b> Two-Sample Hypothesis Tests and Confidence Intervals</a><ul>
-<li class="chapter" data-level="7.1" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#difference-in-means-between-two-groups"><i class="fa fa-check"></i><b>7.1</b> Difference in means between two groups</a><ul>
+<li class="chapter" data-level="7" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><i class="fa fa-check"></i><b>7</b> Two-Sample Hypothesis Tests and Confidence Intervals</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#difference-in-means-between-two-groups"><i class="fa fa-check"></i><b>7.1</b> Difference in means between two groups</a>
+<ul>
 <li class="chapter" data-level="7.1.1" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#inference-via-resampling"><i class="fa fa-check"></i><b>7.1.1</b> Inference via resampling</a></li>
 <li class="chapter" data-level="7.1.2" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#inference-via-asymptotic-results-unequal-variance-assumption"><i class="fa fa-check"></i><b>7.1.2</b> Inference via asymptotic results (unequal variance assumption)</a></li>
 <li class="chapter" data-level="7.1.3" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#inference-via-asymptotic-results-equal-variance-assumption"><i class="fa fa-check"></i><b>7.1.3</b> Inference via asymptotic results (equal variance assumption)</a></li>
 <li class="chapter" data-level="7.1.4" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#additional-example"><i class="fa fa-check"></i><b>7.1.4</b> Additional Example</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#difference-in-means-between-two-groups-paired-data"><i class="fa fa-check"></i><b>7.2</b> Difference in means between two groups: Paired Data</a><ul>
+<li class="chapter" data-level="7.2" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#difference-in-means-between-two-groups-paired-data"><i class="fa fa-check"></i><b>7.2</b> Difference in means between two groups: Paired Data</a>
+<ul>
 <li class="chapter" data-level="7.2.1" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#additional-example-1"><i class="fa fa-check"></i><b>7.2.1</b> Additional Example</a></li>
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="7-two-sample-hypothesis-tests-and-confidence-intervals.html"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#Exercises_TwoSamples"><i class="fa fa-check"></i><b>7.3</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html"><i class="fa fa-check"></i><b>8</b> Testing Model Assumptions</a><ul>
-<li class="chapter" data-level="8.1" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#testing-normality"><i class="fa fa-check"></i><b>8.1</b> Testing Normality</a><ul>
+<li class="chapter" data-level="8" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html"><i class="fa fa-check"></i><b>8</b> Testing Model Assumptions</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#testing-normality"><i class="fa fa-check"></i><b>8.1</b> Testing Normality</a>
+<ul>
 <li class="chapter" data-level="8.1.1" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#visual-inspection---qqplots"><i class="fa fa-check"></i><b>8.1.1</b> Visual Inspection - QQplots</a></li>
 <li class="chapter" data-level="8.1.2" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#tests-for-normality"><i class="fa fa-check"></i><b>8.1.2</b> Tests for Normality</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#testing-equal-variance"><i class="fa fa-check"></i><b>8.2</b> Testing Equal Variance</a><ul>
+<li class="chapter" data-level="8.2" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#testing-equal-variance"><i class="fa fa-check"></i><b>8.2</b> Testing Equal Variance</a>
+<ul>
 <li class="chapter" data-level="8.2.1" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#visual-inspection"><i class="fa fa-check"></i><b>8.2.1</b> Visual Inspection</a></li>
 <li class="chapter" data-level="8.2.2" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#tests-for-equal-variance"><i class="fa fa-check"></i><b>8.2.2</b> Tests for Equal Variance</a></li>
 <li class="chapter" data-level="8.2.3" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#symmetry-of-the-f-distribution"><i class="fa fa-check"></i><b>8.2.3</b> Symmetry of the F-distribution</a></li>
@@ -260,63 +287,76 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.4" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#theoretical-distribution-vs-bootstrap"><i class="fa fa-check"></i><b>8.4</b> Theoretical distribution vs bootstrap</a></li>
 <li class="chapter" data-level="8.5" data-path="8-testing-model-assumptions.html"><a href="8-testing-model-assumptions.html#Exercises_TestingAssumptions"><i class="fa fa-check"></i><b>8.5</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html"><i class="fa fa-check"></i><b>9</b> Analysis of Variance (ANOVA)</a><ul>
+<li class="chapter" data-level="9" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html"><i class="fa fa-check"></i><b>9</b> Analysis of Variance (ANOVA)</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#model"><i class="fa fa-check"></i><b>9.1</b> Model</a></li>
-<li class="chapter" data-level="9.2" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#theory"><i class="fa fa-check"></i><b>9.2</b> Theory</a><ul>
+<li class="chapter" data-level="9.2" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#theory"><i class="fa fa-check"></i><b>9.2</b> Theory</a>
+<ul>
 <li class="chapter" data-level="9.2.1" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#anova-table"><i class="fa fa-check"></i><b>9.2.1</b> Anova Table</a></li>
 <li class="chapter" data-level="9.2.2" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#anova-using-simple-vs-complex-models."><i class="fa fa-check"></i><b>9.2.2</b> ANOVA using Simple vs Complex models.</a></li>
 <li class="chapter" data-level="9.2.3" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#parameter-estimates-and-confidence-intervals"><i class="fa fa-check"></i><b>9.2.3</b> Parameter Estimates and Confidence Intervals</a></li>
 </ul></li>
 <li class="chapter" data-level="9.3" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#anova-in-r"><i class="fa fa-check"></i><b>9.3</b> Anova in R</a></li>
 <li class="chapter" data-level="9.4" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#multiple-comparisons"><i class="fa fa-check"></i><b>9.4</b> Multiple comparisons</a></li>
-<li class="chapter" data-level="9.5" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#different-model-representations"><i class="fa fa-check"></i><b>9.5</b> Different Model Representations</a><ul>
+<li class="chapter" data-level="9.5" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#different-model-representations"><i class="fa fa-check"></i><b>9.5</b> Different Model Representations</a>
+<ul>
 <li class="chapter" data-level="9.5.1" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#theory-1"><i class="fa fa-check"></i><b>9.5.1</b> Theory</a></li>
 <li class="chapter" data-level="9.5.2" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#model-representations-in-r"><i class="fa fa-check"></i><b>9.5.2</b> Model Representations in R</a></li>
 <li class="chapter" data-level="9.5.3" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#implications-on-the-anova-table"><i class="fa fa-check"></i><b>9.5.3</b> Implications on the ANOVA table</a></li>
 </ul></li>
 <li class="chapter" data-level="9.6" data-path="9-analysis-of-variance-anova.html"><a href="9-analysis-of-variance-anova.html#Exercises_ANOVA"><i class="fa fa-check"></i><b>9.6</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="10-regression.html"><a href="10-regression.html"><i class="fa fa-check"></i><b>10</b> Regression</a><ul>
+<li class="chapter" data-level="10" data-path="10-regression.html"><a href="10-regression.html"><i class="fa fa-check"></i><b>10</b> Regression</a>
+<ul>
 <li class="chapter" data-level="10.1" data-path="10-regression.html"><a href="10-regression.html#pearsons-correlation-coefficient"><i class="fa fa-check"></i><b>10.1</b> Pearson’s Correlation Coefficient</a></li>
-<li class="chapter" data-level="10.2" data-path="10-regression.html"><a href="10-regression.html#model-theory"><i class="fa fa-check"></i><b>10.2</b> Model Theory</a><ul>
+<li class="chapter" data-level="10.2" data-path="10-regression.html"><a href="10-regression.html#model-theory"><i class="fa fa-check"></i><b>10.2</b> Model Theory</a>
+<ul>
 <li class="chapter" data-level="10.2.1" data-path="10-regression.html"><a href="10-regression.html#anova-interpretation"><i class="fa fa-check"></i><b>10.2.1</b> Anova Interpretation</a></li>
 <li class="chapter" data-level="10.2.2" data-path="10-regression.html"><a href="10-regression.html#confidence-intervals-vs-prediction-intervals"><i class="fa fa-check"></i><b>10.2.2</b> Confidence Intervals vs Prediction Intervals</a></li>
 </ul></li>
 <li class="chapter" data-level="10.3" data-path="10-regression.html"><a href="10-regression.html#extrapolation"><i class="fa fa-check"></i><b>10.3</b> Extrapolation</a></li>
 <li class="chapter" data-level="10.4" data-path="10-regression.html"><a href="10-regression.html#checking-model-assumptions"><i class="fa fa-check"></i><b>10.4</b> Checking Model Assumptions</a></li>
-<li class="chapter" data-level="10.5" data-path="10-regression.html"><a href="10-regression.html#common-problems"><i class="fa fa-check"></i><b>10.5</b> Common Problems</a><ul>
+<li class="chapter" data-level="10.5" data-path="10-regression.html"><a href="10-regression.html#common-problems"><i class="fa fa-check"></i><b>10.5</b> Common Problems</a>
+<ul>
 <li class="chapter" data-level="10.5.1" data-path="10-regression.html"><a href="10-regression.html#influential-points"><i class="fa fa-check"></i><b>10.5.1</b> Influential Points</a></li>
 <li class="chapter" data-level="10.5.2" data-path="10-regression.html"><a href="10-regression.html#transformations"><i class="fa fa-check"></i><b>10.5.2</b> Transformations</a></li>
 </ul></li>
 <li class="chapter" data-level="10.6" data-path="10-regression.html"><a href="10-regression.html#Exercises_Regression"><i class="fa fa-check"></i><b>10.6</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="11-contingency-tables.html"><a href="11-contingency-tables.html"><i class="fa fa-check"></i><b>11</b> Contingency Tables</a><ul>
+<li class="chapter" data-level="11" data-path="11-contingency-tables.html"><a href="11-contingency-tables.html"><i class="fa fa-check"></i><b>11</b> Contingency Tables</a>
+<ul>
 <li class="chapter" data-level="11.1" data-path="11-contingency-tables.html"><a href="11-contingency-tables.html#expected-counts"><i class="fa fa-check"></i><b>11.1</b> Expected Counts</a></li>
 <li class="chapter" data-level="11.2" data-path="11-contingency-tables.html"><a href="11-contingency-tables.html#hypothesis-testing"><i class="fa fa-check"></i><b>11.2</b> Hypothesis Testing</a></li>
 <li class="chapter" data-level="11.3" data-path="11-contingency-tables.html"><a href="11-contingency-tables.html#rxc-tables"><i class="fa fa-check"></i><b>11.3</b> RxC tables</a></li>
 <li class="chapter" data-level="11.4" data-path="11-contingency-tables.html"><a href="11-contingency-tables.html#Exercises_ContingencyTables"><i class="fa fa-check"></i><b>11.4</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="appendix-a-resampling-linear-models.html"><a href="appendix-a-resampling-linear-models.html"><i class="fa fa-check"></i>Appendix A : Resampling Linear Models</a><ul>
-<li class="chapter" data-level="11.5" data-path="appendix-a-resampling-linear-models.html"><a href="appendix-a-resampling-linear-models.html#using-lm-for-many-analyses"><i class="fa fa-check"></i><b>11.5</b> Using <code>lm()</code> for many analyses</a><ul>
+<li class="chapter" data-level="" data-path="appendix-a-resampling-linear-models.html"><a href="appendix-a-resampling-linear-models.html"><i class="fa fa-check"></i>Appendix A : Resampling Linear Models</a>
+<ul>
+<li class="chapter" data-level="11.5" data-path="appendix-a-resampling-linear-models.html"><a href="appendix-a-resampling-linear-models.html#using-lm-for-many-analyses"><i class="fa fa-check"></i><b>11.5</b> Using <code>lm()</code> for many analyses</a>
+<ul>
 <li class="chapter" data-level="11.5.1" data-path="appendix-a-resampling-linear-models.html"><a href="appendix-a-resampling-linear-models.html#one-sample-t-tests"><i class="fa fa-check"></i><b>11.5.1</b> One-sample t-tests</a></li>
 <li class="chapter" data-level="11.5.2" data-path="appendix-a-resampling-linear-models.html"><a href="appendix-a-resampling-linear-models.html#two-sample-t-tests"><i class="fa fa-check"></i><b>11.5.2</b> Two-sample t-tests</a></li>
 </ul></li>
-<li class="chapter" data-level="11.6" data-path="appendix-a-resampling-linear-models.html"><a href="appendix-a-resampling-linear-models.html#creating-simulated-data"><i class="fa fa-check"></i><b>11.6</b> Creating Simulated Data</a><ul>
+<li class="chapter" data-level="11.6" data-path="appendix-a-resampling-linear-models.html"><a href="appendix-a-resampling-linear-models.html#creating-simulated-data"><i class="fa fa-check"></i><b>11.6</b> Creating Simulated Data</a>
+<ul>
 <li class="chapter" data-level="11.6.1" data-path="appendix-a-resampling-linear-models.html"><a href="appendix-a-resampling-linear-models.html#observational-studies-vs-designed-experiments"><i class="fa fa-check"></i><b>11.6.1</b> Observational Studies vs Designed Experiments</a></li>
 </ul></li>
-<li class="chapter" data-level="11.7" data-path="appendix-a-resampling-linear-models.html"><a href="appendix-a-resampling-linear-models.html#confidence-interval-types"><i class="fa fa-check"></i><b>11.7</b> Confidence Interval Types</a><ul>
+<li class="chapter" data-level="11.7" data-path="appendix-a-resampling-linear-models.html"><a href="appendix-a-resampling-linear-models.html#confidence-interval-types"><i class="fa fa-check"></i><b>11.7</b> Confidence Interval Types</a>
+<ul>
 <li class="chapter" data-level="11.7.1" data-path="appendix-a-resampling-linear-models.html"><a href="appendix-a-resampling-linear-models.html#normal-intervals"><i class="fa fa-check"></i><b>11.7.1</b> Normal intervals</a></li>
 <li class="chapter" data-level="11.7.2" data-path="appendix-a-resampling-linear-models.html"><a href="appendix-a-resampling-linear-models.html#percentile-intervals"><i class="fa fa-check"></i><b>11.7.2</b> Percentile intervals</a></li>
 <li class="chapter" data-level="11.7.3" data-path="appendix-a-resampling-linear-models.html"><a href="appendix-a-resampling-linear-models.html#basic-intervals"><i class="fa fa-check"></i><b>11.7.3</b> Basic intervals</a></li>
 <li class="chapter" data-level="11.7.4" data-path="appendix-a-resampling-linear-models.html"><a href="appendix-a-resampling-linear-models.html#towards-bias-corrected-and-accelerated-intervals-bca"><i class="fa fa-check"></i><b>11.7.4</b> Towards bias-corrected and accelerated intervals (BCa)</a></li>
 </ul></li>
-<li class="chapter" data-level="11.8" data-path="appendix-a-resampling-linear-models.html"><a href="appendix-a-resampling-linear-models.html#bootstrap-confidence-intervals-in-r"><i class="fa fa-check"></i><b>11.8</b> Bootstrap Confidence Intervals in R</a><ul>
+<li class="chapter" data-level="11.8" data-path="appendix-a-resampling-linear-models.html"><a href="appendix-a-resampling-linear-models.html#bootstrap-confidence-intervals-in-r"><i class="fa fa-check"></i><b>11.8</b> Bootstrap Confidence Intervals in R</a>
+<ul>
 <li class="chapter" data-level="11.8.1" data-path="appendix-a-resampling-linear-models.html"><a href="appendix-a-resampling-linear-models.html#using-carboot-function"><i class="fa fa-check"></i><b>11.8.1</b> Using <code>car::Boot()</code> function</a></li>
 <li class="chapter" data-level="11.8.2" data-path="appendix-a-resampling-linear-models.html"><a href="appendix-a-resampling-linear-models.html#using-the-boot-package"><i class="fa fa-check"></i><b>11.8.2</b> Using the <code>boot</code> package</a></li>
 </ul></li>
 <li class="chapter" data-level="11.9" data-path="appendix-a-resampling-linear-models.html"><a href="appendix-a-resampling-linear-models.html#Exercises_ResamplingLinearModels"><i class="fa fa-check"></i><b>11.9</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="appendix-b-alternative-bootstrap-code.html"><a href="appendix-b-alternative-bootstrap-code.html"><i class="fa fa-check"></i>Appendix B : Alternative Bootstrap Code</a><ul>
+<li class="chapter" data-level="" data-path="appendix-b-alternative-bootstrap-code.html"><a href="appendix-b-alternative-bootstrap-code.html"><i class="fa fa-check"></i>Appendix B : Alternative Bootstrap Code</a>
+<ul>
 <li class="chapter" data-level="" data-path="appendix-b-alternative-bootstrap-code.html"><a href="appendix-b-alternative-bootstrap-code.html#mosaic-package"><i class="fa fa-check"></i>Mosaic Package</a></li>
 <li class="chapter" data-level="" data-path="appendix-b-alternative-bootstrap-code.html"><a href="appendix-b-alternative-bootstrap-code.html#base-r-code"><i class="fa fa-check"></i>Base R Code</a></li>
 </ul></li>
@@ -337,20 +377,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="hypothesis-tests-for-the-mean-of-a-population" class="section level1">
+<div id="hypothesis-tests-for-the-mean-of-a-population" class="section level1" number="6">
 <h1><span class="header-section-number">Chapter 6</span> Hypothesis Tests for the mean of a population</h1>
 <p><strong>Chapter still being edited.</strong></p>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb121-1"></a><span class="kw">library</span>(dplyr)</span>
-<span id="cb121-2"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb121-2"></a><span class="kw">library</span>(tidyr)</span>
-<span id="cb121-3"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb121-3"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb121-4"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb121-4"></a></span>
-<span id="cb121-5"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb121-5"></a><span class="co"># Set default behavior of ggplot2 graphs to be black/white theme</span></span>
-<span id="cb121-6"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb121-6"></a><span class="kw">theme_set</span>(<span class="kw">theme_bw</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb121-1" aria-hidden="true"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb121-2"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb121-2" aria-hidden="true"></a><span class="kw">library</span>(tidyr)</span>
+<span id="cb121-3"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb121-3" aria-hidden="true"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb121-4"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb121-4" aria-hidden="true"></a></span>
+<span id="cb121-5"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb121-5" aria-hidden="true"></a><span class="co"># Set default behavior of ggplot2 graphs to be black/white theme</span></span>
+<span id="cb121-6"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb121-6" aria-hidden="true"></a><span class="kw">theme_set</span>(<span class="kw">theme_bw</span>())</span></code></pre></div>
 <p>Science is about observing how the world works, making a conjecture (or hypothesis) about the mechanism and then performing experiments to see if real data agrees or disagrees with the proposed hypothesis.</p>
 <p><strong>Example:</strong> Suppose Rancher A wants to buy some calves from Rancher B. Rancher B claims that the average weight of his calves is 500 pounds. Rancher A decides to buy 10 calves. A few days later he starts looking at the cows and begins to wonder if the average really is 500 pounds. Rancher A weighs his 10 calves and the sample mean is <span class="math inline">\(\bar{x}=475\)</span> and the sample standard deviation is <span class="math inline">\(s=50\)</span>. Below are the data</p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb122-1"></a>cows &lt;-<span class="st"> </span><span class="kw">data.frame</span>(    </span>
-<span id="cb122-2"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb122-2"></a>  <span class="dt">weight =</span> <span class="kw">c</span>(<span class="dv">553</span>, <span class="dv">466</span>, <span class="dv">451</span>, <span class="dv">421</span>, <span class="dv">523</span>, <span class="dv">517</span>, <span class="dv">451</span>, <span class="dv">510</span>, <span class="dv">392</span>, <span class="dv">466</span>) )</span>
-<span id="cb122-3"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb122-3"></a>cows <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>( <span class="dt">xbar=</span><span class="kw">mean</span>(weight), <span class="dt">s=</span><span class="kw">sd</span>(weight) )</span></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb122-1" aria-hidden="true"></a>cows &lt;-<span class="st"> </span><span class="kw">data.frame</span>(    </span>
+<span id="cb122-2"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb122-2" aria-hidden="true"></a>  <span class="dt">weight =</span> <span class="kw">c</span>(<span class="dv">553</span>, <span class="dv">466</span>, <span class="dv">451</span>, <span class="dv">421</span>, <span class="dv">523</span>, <span class="dv">517</span>, <span class="dv">451</span>, <span class="dv">510</span>, <span class="dv">392</span>, <span class="dv">466</span>) )</span>
+<span id="cb122-3"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb122-3" aria-hidden="true"></a>cows <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>( <span class="dt">xbar=</span><span class="kw">mean</span>(weight), <span class="dt">s=</span><span class="kw">sd</span>(weight) )</span></code></pre></div>
 <pre><code>##   xbar        s
 ## 1  475 49.99556</code></pre>
 <p>There are two possibilities. Either Rancher A was just unlucky in his random selection of 10 calves from the heard, or the true average weight within the herd is less than 500.</p>
@@ -366,14 +406,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>P-value is the probability of seeing the observed data or something more extreme given the null hypothesis is true. By “something more extreme”, we mean samples that would be more evidence for the alternative hypothesis.</p>
 <p><span class="math display">\[\mbox{p-value}=P(T_{9}&lt;-1.58)=0.074\]</span></p>
 <p>The above value is the actual value calculated using R</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb124-1"></a><span class="co">#        pt(-1.58, df=9)           # No Graph</span></span>
-<span id="cb124-2"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb124-2"></a>mosaic<span class="op">::</span><span class="kw">xpt</span>(<span class="op">-</span><span class="fl">1.58</span>, <span class="dt">df=</span><span class="dv">9</span>, <span class="dt">ncp=</span><span class="dv">0</span>)    <span class="co"># With a graph; Non-Centrality Parameter = 0</span></span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb124-1" aria-hidden="true"></a><span class="co">#        pt(-1.58, df=9)           # No Graph</span></span>
+<span id="cb124-2"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb124-2" aria-hidden="true"></a>mosaic<span class="op">::</span><span class="kw">xpt</span>(<span class="op">-</span><span class="fl">1.58</span>, <span class="dt">df=</span><span class="dv">9</span>, <span class="dt">ncp=</span><span class="dv">0</span>)    <span class="co"># With a graph; Non-Centrality Parameter = 0</span></span></code></pre></div>
 <p><img src="06_HypothesisTests_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <pre><code>## [1] 0.07428219</code></pre>
 <p>but using tables typically found in intro statistics books, the most precise thing you would be able to say is <span class="math inline">\(0.05 \le \mbox{p-value} \le 0.10\)</span> So there is a small chance that Rancher A just got unlucky with his ten calves. While the data isn’t entirely supportive of <span class="math inline">\(H_{0}\)</span>, we don’t have strong enough data to out right reject <span class="math inline">\(H_{0}\)</span>. So we will say that we fail to reject <span class="math inline">\(H_{0}\)</span>. Notice that we aren’t saying that we accept the null hypothesis, only that there is insufficient evidence to call Rancher B a liar.</p>
-<div id="writing-hypotheses" class="section level2">
+<div id="writing-hypotheses" class="section level2" number="6.1">
 <h2><span class="header-section-number">6.1</span> Writing Hypotheses</h2>
-<div id="null-and-alternative-hypotheses" class="section level3">
+<div id="null-and-alternative-hypotheses" class="section level3" number="6.1.1">
 <h3><span class="header-section-number">6.1.1</span> Null and alternative hypotheses</h3>
 <p>In elementary school most students are taught the scientific method follows the following steps:</p>
 <ol style="list-style-type: decimal">
@@ -395,7 +435,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>It is helpful to our understanding to label the different hypotheses, both the ones being tested and the different alternatives. We’ll label the hypothesis being tested as <span class="math inline">\(H_{0}\)</span> which we often refer to as the <strong>null hypothesis</strong>. The <strong>alternative hypothesis</strong>, which we’ll denote <span class="math inline">\(H_{a}\)</span>, should be the opposite of the null hypothesis. Had Eratosthenes known about modern scientific methods, he would have correctly considered <span class="math inline">\(H_{0}\)</span>: the world is flat verses <span class="math inline">\(H_{a}\)</span>: the world is not flat and not incorrectly concluded that the world is a sphere. Amusingly Eratosthenes’ data wasn’t inconsistent with the hypothesis that the world was shaped like a doughnut, but he thought the sphere to be more likely. Likewise Helmont should have considered the hypotheses <span class="math inline">\(H_{0}\)</span>: plants only consume soil versus the alternative <span class="math inline">\(H_{a}\)</span>: plants consume something besides soil.</p>
 <p>In both cases, the observed data was compared to what would have been expected if the null hypothesis was true. If the null was true Eratosthenes would have seen the same length shadow in both cities and Helmont would have seen 168 pounds of willow tree and <span class="math inline">\(200-168=32\)</span> pounds of soil remaining.</p>
 </div>
-<div id="error" class="section level3">
+<div id="error" class="section level3" number="6.1.2">
 <h3><span class="header-section-number">6.1.2</span> Error</h3>
 <p>Unfortunately the world is not a simple place and experiments rarely can isolate exactly the hypothesis being tested. We can repeat an experiment and get slightly different results each time due to variation in weather, temperature, or diligence of the researcher. If we are testing the effectiveness of a new drug to treat a particular disease, we don’t trust the results of a single patient, instead we wish to examine many patients (some that receive the new drug and some the receive the old) to average out the noise between the patients. The questions about how many patients do we need to have and how large of a difference between the treatments is large enough to conclude the new drug is better are the heart of modern statistics.</p>
 <p>Suppose we consider the population of all US men aged 40-60 with high blood pressure (there might be about 20 million people in this population). We want to know if exercise and ACE inhibitors lower systolic blood pressure better than exercise alone for these people. We’ll consider the null hypothesis that exercise is equivalent to exercise and ACE inhibitors versus exercise is different than exercise and ACE inhibitors. If we could take every single member of the population and expose them to exercise or exercise with ACE inhibitors, we would know for certain how the population reacts to the different treatments. Unfortunately this is too expensive and ethically dubious.</p>
@@ -405,7 +445,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>When the sample size is large it is easy to see if the treatments differ in their effect on systolic blood pressure, but at medium or small sample sizes, the question is much harder. It is important to recognize that the core of the problem is still “is the observed data consistent with the null hypothesis?” but we now have to consider an addition variability term that is unrelated to the research hypothesis of interest. In the above example, the small sample data is consistent with the null hypothesis even when the null hypothesis is false!</p>
 </div>
 </div>
-<div id="conducting-a-hypothesis-test-for-mu" class="section level2">
+<div id="conducting-a-hypothesis-test-for-mu" class="section level2" number="6.2">
 <h2><span class="header-section-number">6.2</span> Conducting a Hypothesis Test for <span class="math inline">\(\mu\)</span></h2>
 <p>Perhaps the hardest part about conducting a hypothesis test is figuring out what the null and alternative hypothesis should be. The null hypothesis is a statement about a population parameter.
 <span class="math display">\[H_{0}:\mbox{ population parameter = hypothesized value}\]</span>
@@ -423,8 +463,8 @@ The hard part is figuring which of the possible alternatives we should examine. 
 <p>Suppose we perform an experiment with <span class="math inline">\(n=20\)</span> light bulbs and observe <span class="math inline">\(\bar{x}=980\)</span> and <span class="math inline">\(s=64\)</span> hours and therefore our test statistic is
 <span class="math display">\[ t_{19}	=	\frac{\bar{x}-\mu}{s/\sqrt{n}} =	\frac{980-1000}{64/\sqrt{20}} =	-1.40\]</span>
 Then the p-value would be</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb126-1"></a><span class="co">#        pt(-1.4, df=19)           # No Graph</span></span>
-<span id="cb126-2"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb126-2"></a>mosaic<span class="op">::</span><span class="kw">xpt</span>(<span class="op">-</span><span class="fl">1.4</span>, <span class="dt">df=</span><span class="dv">19</span>, <span class="dt">ncp=</span><span class="dv">0</span> )   <span class="co"># With a Graph</span></span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb126-1" aria-hidden="true"></a><span class="co">#        pt(-1.4, df=19)           # No Graph</span></span>
+<span id="cb126-2"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb126-2" aria-hidden="true"></a>mosaic<span class="op">::</span><span class="kw">xpt</span>(<span class="op">-</span><span class="fl">1.4</span>, <span class="dt">df=</span><span class="dv">19</span>, <span class="dt">ncp=</span><span class="dv">0</span> )   <span class="co"># With a Graph</span></span></code></pre></div>
 <p><img src="06_HypothesisTests_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <pre><code>## [1] 0.08881538</code></pre>
 <p>and we calculate p-value <span class="math inline">\(=P\left(T_{19}&lt;-1.4\right)=0.0888\)</span>. A conclusion can then be drawn based on a chosen significance level. Most commonly <span class="math inline">\(\alpha\)</span> is set to be 5%, or <span class="math inline">\(\alpha = 0.05\)</span>. In this case, we would fail to reject <span class="math inline">\(H_0\)</span> and conclude at 5% significance that the data fails to reject <span class="math inline">\(\mu = 1000\)</span> hours.</p>
@@ -434,16 +474,16 @@ Then the p-value would be</p>
   H_{a}:\mbox{ }\mu	&amp;\ne	2 
   \end{aligned}\]</span></p>
 <p>Suppose we perform a test of a random sample of resistors and obtain a test statistics of <span class="math inline">\(t_{9}=1.8\)</span>. Because the p-value is “the probability of your data or something more extreme” and in this case more extreme implies extreme values in both tails then</p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb128-1"></a>mosaic<span class="op">::</span><span class="kw">xpt</span>( <span class="kw">c</span>(<span class="op">-</span><span class="fl">1.8</span>, <span class="fl">1.8</span>), <span class="dt">df=</span><span class="dv">9</span>, <span class="dt">ncp=</span><span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb128-1" aria-hidden="true"></a>mosaic<span class="op">::</span><span class="kw">xpt</span>( <span class="kw">c</span>(<span class="op">-</span><span class="fl">1.8</span>, <span class="fl">1.8</span>), <span class="dt">df=</span><span class="dv">9</span>, <span class="dt">ncp=</span><span class="dv">0</span>)</span></code></pre></div>
 <p><img src="06_HypothesisTests_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <pre><code>## [1] 0.05269534 0.94730466</code></pre>
 <p>and we calculate
 <span class="math display">\[\textrm{p-value} = P\left(\left|T_{9}\right|&gt;1.8\right)=2P\left(T_{9}&lt;-1.8\right)=2\left(0.0527\right)=0.105\]</span></p>
 <p>using the R commands</p>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb130-1"></a><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="kw">pt</span>(<span class="op">-</span><span class="fl">1.8</span>, <span class="dt">df=</span><span class="dv">9</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb130-1" aria-hidden="true"></a><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="kw">pt</span>(<span class="op">-</span><span class="fl">1.8</span>, <span class="dt">df=</span><span class="dv">9</span>)</span></code></pre></div>
 <pre><code>## [1] 0.1053907</code></pre>
 <p>This test would conclude that at 5% significance, we fail to reject <span class="math inline">\(H_0\)</span>. This indicates the data fails to reject that <span class="math inline">\(\mu = 2\)</span> Ohms and the resistors can be used under the conditions required.</p>
-<div id="why-should-hypotheses-use-mu-and-not-barx" class="section level3">
+<div id="why-should-hypotheses-use-mu-and-not-barx" class="section level3" number="6.2.1">
 <h3><span class="header-section-number">6.2.1</span> Why should hypotheses use <span class="math inline">\(\mu\)</span> and not <span class="math inline">\(\bar{x}\)</span>?</h3>
 <p>There is no need to make a statistical test of the form
 <span class="math display">\[\begin{aligned} 
@@ -453,7 +493,7 @@ Then the p-value would be</p>
 <p>because we know the value of <span class="math inline">\(\bar{x}\)</span>; we calculated the value there is no uncertainty to what it is. However I want to use the sample mean <span class="math inline">\(\bar{x}\)</span> as an estimate of the population mean <span class="math inline">\(\mu\)</span> and because I don’t know what <span class="math inline">\(\mu\)</span> is but know that it should be somewhere near <span class="math inline">\(\bar{x}\)</span>, my hypothesis test is a question about <span class="math inline">\(\mu\)</span> and if it is near the value stated in the null hypothesis.</p>
 <p>Hypotheses are always statements about population parameters such as <span class="math inline">\(\mu\)</span> or <span class="math inline">\(\sigma\)</span> and never about sample statistic values such as <span class="math inline">\(\bar{x}\)</span> or <span class="math inline">\(s\)</span>.</p>
 </div>
-<div id="a-note-on-calculating-p-values" class="section level3">
+<div id="a-note-on-calculating-p-values" class="section level3" number="6.2.2">
 <h3><span class="header-section-number">6.2.2</span> A note on calculating p-values</h3>
 <p>Students often get confused by looking up probabilities in tables and don’t know which tail of the distribution supports the alternative hypothesis. This is further exacerbated by tables sometimes giving area to the left, sometimes area to the right, and R only giving area to the left. In general, your best approach to calculating p-values correctly is to draw the picture of the distribution of the test statistic (usually a t-distribution) and decide which tail(s) supports the alternative and figuring out the area farther out in the tail(s) than your test statistic. However, since some students need a more algorithmic set of instructions, the following will work:</p>
 <ol style="list-style-type: decimal">
@@ -473,7 +513,7 @@ Then the p-value would be</p>
 </ol>
 </div>
 </div>
-<div id="additional-examples" class="section level2">
+<div id="additional-examples" class="section level2" number="6.3">
 <h2><span class="header-section-number">6.3</span> Additional Examples</h2>
 <ol style="list-style-type: decimal">
 <li>A potato chip manufacturer advertises that it sells 16 ounces of chips per bag. A consumer advocacy group wants to test this claim. They take a sample of <span class="math inline">\(n=18\)</span> bags and carefully weights the contents of each bag and calculate a sample mean <span class="math inline">\(\bar{x}=15.8\)</span> oz and a sample standard deviation of <span class="math inline">\(s=0.2\)</span>.
@@ -512,7 +552,7 @@ So the p-value is <span class="math inline">\(\mbox{p-value }=P(T_{9}&gt;.06)\ap
 <p>But is there a practical difference in 1 SAT point? Not really. Since SAT scores are measured in multiple of 5 (you can score 1015, or 1020, but not 1019), there isn’t any practical value of raising a students score by 1 point. By taking a sample so large, I have been able to detect a completely worthless difference.</p>
 <p>Thus we have an example of a statistically significant difference, but it is not a practical difference.</p>
 </div>
-<div id="p-values-vs-cutoff-values" class="section level2">
+<div id="p-values-vs-cutoff-values" class="section level2" number="6.4">
 <h2><span class="header-section-number">6.4</span> P-values vs cutoff values</h2>
 <p>We have been calculating p-values and then comparing those values to the desired alpha level. It is possible, however, to use the alpha level to back-calculate a cutoff level for the test statistic, or even original sample mean. Often these cutoff values are referred to as critical values. Neither approach is wrong, but is generally a matter of preference, although knowing both techniques can be useful.</p>
 <p><strong>Example:</strong> We return to the pharmaceutical company that has developed a new pain reliever. Recall the null and alternative hypotheses were
@@ -521,7 +561,7 @@ So the p-value is <span class="math inline">\(\mbox{p-value }=P(T_{9}&gt;.06)\ap
 and we had observed a test statistic
 <span class="math display">\[t=\frac{\bar{x}-\mu_{0}}{\frac{s}{\sqrt{n}}}=\frac{23-25}{\frac{10}{\sqrt{16}}}=-0.8\]</span>
 with <span class="math inline">\(15\)</span> degrees of freedom. Using an <span class="math inline">\(\alpha=0.10\)</span> level of significance, if this test statistic is smaller than the <span class="math inline">\(0.10\)</span>th quantile of a <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(15\)</span> degrees of freedom, then we will reject the null hypothesis. This cutoff value is <span class="math inline">\(t^{0.1}_{15} = t_{crit}=-1.341\)</span>. This is shown below using R:</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb132-1"></a> <span class="kw">qt</span>(<span class="fl">0.1</span>, <span class="dt">df=</span><span class="dv">15</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb132-1" aria-hidden="true"></a> <span class="kw">qt</span>(<span class="fl">0.1</span>, <span class="dt">df=</span><span class="dv">15</span>)</span></code></pre></div>
 <pre><code>## [1] -1.340606</code></pre>
 <p>Because the observed test statistic <span class="math inline">\(t_s = -0.8\)</span> is less extreme (not as far into the tail) as the cutoff value <span class="math inline">\(t_{crit} = -1.341\)</span>, we failed to reject the null hypothesis.</p>
 <p>We can push this idea even farther and calculate a critical value on the original scale of <span class="math inline">\(\bar{x}\)</span> by solving
@@ -535,15 +575,15 @@ t_{crit}	&amp;=	\frac{\bar{x}_{crit}-\mu_{0}}{\left( \frac{s}{\sqrt{n}} \right)}
 So if we observe a sample mean <span class="math inline">\(\bar{x}&lt;21.65\)</span> then we would reject the null hypothesis. Here we actually observed <span class="math inline">\(\bar{x}=23\)</span> so this comparison still fails to reject the null hypothesis and concludes there is insufficient evidence to reject that the new pain reliever has the same time till relief as the old medicine.</p>
 <p>In general calculating and reporting p-values is preferred, because they account for any ambiguity about one-sided or two-sided tests and how many degrees of freedom were available.</p>
 </div>
-<div id="running-a-t-test-in-r" class="section level2">
+<div id="running-a-t-test-in-r" class="section level2" number="6.5">
 <h2><span class="header-section-number">6.5</span> Running a t-test in R</h2>
 <p>While it is possible to do t-tests by hand, most people will use a software package to perform these calculations. Here we will use the R function <code>t.test()</code>. This function expects a vector of data (so that it can calculate <span class="math inline">\(\bar{x}\)</span> and <span class="math inline">\(s\)</span>) and a hypothesized value of <span class="math inline">\(\mu\)</span>.</p>
 <p><em>Example</em>. Suppose we have data regarding fuel economy of <span class="math inline">\(5\)</span> vehicles of the same make and model and we wish to test if the observed fuel economy is consistent with the advertised <span class="math inline">\(31\)</span> mpg at highway speeds. Assuming the fuel economy varies normally among cars of the same make and model, we test
 <span class="math display">\[\begin{aligned} H_{0}:\,\mu	 &amp;=	31 \\
                   H_{a}:\,\mu	 &amp;\ne	31 \end{aligned}\]</span>
 and calculate</p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb134-1"></a>cars &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">mpg =</span> <span class="kw">c</span>(<span class="fl">31.8</span>, <span class="fl">32.1</span>, <span class="fl">32.5</span>, <span class="fl">30.9</span>, <span class="fl">31.3</span>))</span>
-<span id="cb134-2"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb134-2"></a>cars <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="kw">mean</span>(mpg), <span class="kw">sd</span>(mpg))</span></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb134-1" aria-hidden="true"></a>cars &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">mpg =</span> <span class="kw">c</span>(<span class="fl">31.8</span>, <span class="fl">32.1</span>, <span class="fl">32.5</span>, <span class="fl">30.9</span>, <span class="fl">31.3</span>))</span>
+<span id="cb134-2"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb134-2" aria-hidden="true"></a>cars <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="kw">mean</span>(mpg), <span class="kw">sd</span>(mpg))</span></code></pre></div>
 <pre><code>##   mean(mpg)   sd(mpg)
 ## 1     31.72 0.6340347</code></pre>
 <p>The test statistic is:
@@ -558,7 +598,7 @@ and calculate</p>
 		[30.93,\; &amp; 32.51]
 \end{aligned}\]</span></p>
 <p>These results can be confirmed quickly through the use of <code>t.test()</code>.</p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb136-1"></a><span class="kw">t.test</span>( cars<span class="op">$</span>mpg, <span class="dt">mu=</span><span class="dv">31</span>, <span class="dt">alternative=</span><span class="st">&#39;two.sided&#39;</span> )</span></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb136-1" aria-hidden="true"></a><span class="kw">t.test</span>( cars<span class="op">$</span>mpg, <span class="dt">mu=</span><span class="dv">31</span>, <span class="dt">alternative=</span><span class="st">&#39;two.sided&#39;</span> )</span></code></pre></div>
 <pre><code>## 
 ## 	One Sample t-test
 ## 
@@ -572,7 +612,7 @@ and calculate</p>
 ##     31.72</code></pre>
 <p>The <code>t.test()</code> function supports testing one-sided alternatives (<code>alternative='less'</code> or <code>alternative='greater'</code>) and more information can be found in the R help system using <code>help(t.test)</code>.</p>
 </div>
-<div id="type-i-and-type-ii-errors" class="section level2">
+<div id="type-i-and-type-ii-errors" class="section level2" number="6.6">
 <h2><span class="header-section-number">6.6</span> Type I and Type II Errors</h2>
 <p>We can think of the p-value as measuring how much evidence we have for the null hypothesis. If the p-value is small, the evidence for the null hypothesis is small. Conversely if the p-value is large, then the data is supporting the null hypothesis.</p>
 <p>There is an important philosophical debate about how much evidence do we need in order to reject the null hypothesis. Since the p-value is a measure of support for the null hypothesis, if the p-value drops below a specified threshold (call it <span class="math inline">\(\alpha\)</span>), we will choose to reject the null hypothesis. Different scientific disciplines have different levels of rigor. Therefore, they set commonly used <span class="math inline">\(\alpha\)</span> levels differently. For example physicists demand a high degree of accuracy and consistency, thus might use <span class="math inline">\(\alpha=0.01\)</span>, while ecologists deal with very messy data and might use an <span class="math inline">\(\alpha=0.10\)</span>.</p>
@@ -615,7 +655,7 @@ Result</td>
 <p>Our legal system theoretically operates under the rule that it is better to let 10 guilty people go free, than wrongly convict 1 innocent. In other words, it is worse to make a type I mistake (concluding guilty when innocent), than to make a type II mistake (concluding not guilty when guilty). Critically, when a jury finds a person “not guilty” they are not saying that defense team has proven that the defendant is innocent, but rather that the prosecution has not proven the defendant guilty.</p>
 <p>This same idea manifests itself in science with the <span class="math inline">\(\alpha\)</span>-level. Typically we decide that it is better to make a type II mistake. An experiment that results in a large p-value does not prove that <span class="math inline">\(H_{0}\)</span> is true, but that there is insufficient evidence to conclude <span class="math inline">\(H_{a}\)</span>.</p>
 <p>If we still suspect that <span class="math inline">\(H_{a}\)</span> is true, then we must repeat the experiment with a larger samples size. A larger sample size makes it possible to detect smaller differences.</p>
-<div id="power-and-sample-size-selection" class="section level3">
+<div id="power-and-sample-size-selection" class="section level3" number="6.6.1">
 <h3><span class="header-section-number">6.6.1</span> Power and Sample Size Selection</h3>
 <p>Just as we calculated the necessary sample size to achieve a confidence interval of a specified width, we are also often interested in calculating the necessary sample size to find a significant difference from the hypothesized mean <span class="math inline">\(\mu_{0}\)</span>. Just as in the confidence interval case where we had to specify the margin of error <span class="math inline">\(ME\)</span> and some estimate of the population standard deviation <span class="math inline">\(\hat{\sigma}\)</span>, we now must specify a difference we want to be able to detect <span class="math inline">\(\delta\)</span> and an estimate of the population standard deviation <span class="math inline">\(\hat{\sigma}\)</span>.</p>
 <p><strong>Example:</strong> Suppose that I work in Quality Control for a company that manufactures a type of rope. This rope is supposed to have a mean breaking strength of <span class="math inline">\(5000\)</span> pounds and long experience with the process suggests that the standard deviation is approximately <span class="math inline">\(s=50\)</span>. As with many manufacturing processes, sometimes the machines that create the rope get out of calibration. So each morning we take a random sample of <span class="math inline">\(n=7\)</span> pieces of rope and using <span class="math inline">\(\alpha=0.05\)</span>, test the hypothesis
@@ -652,8 +692,8 @@ t_{crit}\left(\frac{s}{\sqrt{n}}\right)+\mu_{0}	&amp;=	\bar{x}_{crit} \\
 <li>The power of the test <span class="math inline">\(1-\beta\)</span>.</li>
 <li>The sample size <span class="math inline">\(n\)</span>.</li>
 </ol>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb138-1"></a><span class="kw">power.t.test</span>(<span class="dt">delta=</span><span class="dv">50</span>, <span class="dt">sd=</span><span class="dv">50</span>, <span class="dt">sig.level=</span><span class="fl">0.05</span>, <span class="dt">n=</span><span class="dv">7</span>, </span>
-<span id="cb138-2"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb138-2"></a>             <span class="dt">type=</span><span class="st">&quot;one.sample&quot;</span>, <span class="dt">alternative=</span><span class="st">&quot;one.sided&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb138-1" aria-hidden="true"></a><span class="kw">power.t.test</span>(<span class="dt">delta=</span><span class="dv">50</span>, <span class="dt">sd=</span><span class="dv">50</span>, <span class="dt">sig.level=</span><span class="fl">0.05</span>, <span class="dt">n=</span><span class="dv">7</span>, </span>
+<span id="cb138-2"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb138-2" aria-hidden="true"></a>             <span class="dt">type=</span><span class="st">&quot;one.sample&quot;</span>, <span class="dt">alternative=</span><span class="st">&quot;one.sided&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##      One-sample t test power calculation 
 ## 
@@ -663,8 +703,8 @@ t_{crit}\left(\frac{s}{\sqrt{n}}\right)+\mu_{0}	&amp;=	\bar{x}_{crit} \\
 ##       sig.level = 0.05
 ##           power = 0.7543959
 ##     alternative = one.sided</code></pre>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb140-1"></a><span class="kw">power.t.test</span>(<span class="dt">delta=</span><span class="dv">50</span>, <span class="dt">sd=</span><span class="dv">50</span>, <span class="dt">sig.level=</span><span class="fl">0.05</span>, <span class="dt">power=</span><span class="fl">0.95</span>, </span>
-<span id="cb140-2"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb140-2"></a>             <span class="dt">type=</span><span class="st">&quot;one.sample&quot;</span>, <span class="dt">alternative=</span><span class="st">&quot;one.sided&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb140-1" aria-hidden="true"></a><span class="kw">power.t.test</span>(<span class="dt">delta=</span><span class="dv">50</span>, <span class="dt">sd=</span><span class="dv">50</span>, <span class="dt">sig.level=</span><span class="fl">0.05</span>, <span class="dt">power=</span><span class="fl">0.95</span>, </span>
+<span id="cb140-2"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb140-2" aria-hidden="true"></a>             <span class="dt">type=</span><span class="st">&quot;one.sample&quot;</span>, <span class="dt">alternative=</span><span class="st">&quot;one.sided&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##      One-sample t test power calculation 
 ## 
@@ -683,7 +723,7 @@ t_{crit}\left(\frac{s}{\sqrt{n}}\right)+\mu_{0}	&amp;=	\bar{x}_{crit} \\
 </ol>
 </div>
 </div>
-<div id="Exercises_HypothesisTests" class="section level2">
+<div id="Exercises_HypothesisTests" class="section level2" number="6.7">
 <h2><span class="header-section-number">6.7</span> Exercises</h2>
 <ol style="list-style-type: decimal">
 <li><p>One way the amount of sewage and industrial pollutants dumped into a body of water affects the health of the water is by reducing the amount of dissolved oxygen available for aquatic life. Over a 2-month period, 8 samples were taken from a river at a location 1 mile downstream from a sewage treatment plant. The amount of dissolved oxygen in the samples was determined and is reported in the following table.</p>
@@ -712,18 +752,16 @@ t_{crit}\left(\frac{s}{\sqrt{n}}\right)+\mu_{0}	&amp;=	\bar{x}_{crit} \\
 </ol></li>
 <li><p>We are interested in investigating how accurate radon detectors sold to homeowners are. We take a randomly selection of <span class="math inline">\(n=12\)</span> detectors and expose them to <span class="math inline">\(105\)</span> pico-curies per liter (pCi/l) of radon. The following values were given by the radon detectors.</p>
 <table>
-<thead>
-<tr class="header">
-<th align="center">91.9</th>
-<th align="center">97.8</th>
-<th align="center">111.4</th>
-<th align="center">122.3</th>
-<th align="center">105.4</th>
-<th align="center">95.0</th>
-</tr>
-</thead>
 <tbody>
 <tr class="odd">
+<td align="center">91.9</td>
+<td align="center">97.8</td>
+<td align="center">111.4</td>
+<td align="center">122.3</td>
+<td align="center">105.4</td>
+<td align="center">95.0</td>
+</tr>
+<tr class="even">
 <td align="center">103.8</td>
 <td align="center">99.6</td>
 <td align="center">96.6</td>

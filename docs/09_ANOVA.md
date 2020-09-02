@@ -684,11 +684,6 @@ Neither representation is more powerful because on a very deep mathematical leve
 We have been talking about the complex and simple models for our data but there is one more possible model, albeit not a very good one. I will refer to this as the bad model because it is almost always a poor fitting model.
 $$Y_{ij}=\epsilon_{ij} \;\;\; \textrm{ where }\;\;\; \epsilon_{ij}\stackrel{iid}{\sim}N\left(0,\sigma^{2}\right).$$
 
-
-```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
 ![](09_ANOVA_files/figure-latex/unnamed-chunk-29-1.pdf)<!-- --> 
 
 Notice that the complex model has three parameters that define “signal” part of the model (i.e. the three group means). The simple has one parameter that defines the “signal” (the overall mean). The bad model has no parameters that define the model (i.e. the red line is always at zero). 

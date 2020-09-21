@@ -233,7 +233,7 @@ $$\bar{Y}	\stackrel{\cdot}{\sim}	N\left(\mu_{\bar{Y}}=\mu,\;\;\sigma_{\bar{Y}}^{
 
 ## Exercises {#Exercises_SamplingDistributions}
 
-1. Suppose that the amount of fluid in a small can of soda can be well approximated by a Normal distribution. Let $X$ be the amount of soda (in milliliters) in a single can and $X\sim N\left(\mu=222,\;\sigma=5\right)$.
+1. Suppose that the amount of fluid in a small can of soda can be well approximated by a Normal distribution. Let $X$ be the amount of soda (in milliliters) in a single can and $X\sim N\left(\mu=222,\;\sigma^2=5^2=25\right)$.
     a) $P\left(X>230\right)=$
     b) Suppose we take a random sample of 6 cans such that the six cans are independent. What is the expected value of the mean of those six cans? In other words, what is $E\left(\bar{X}\right)$?
     c) What is $Var\left(\bar{X}\right)$? (Recall we denote this as $\sigma_{\bar{X}}^{2}$)

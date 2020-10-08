@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 6 Hypothesis Tests for the mean of a population | Introduction to Statistical Methodology, Second Edition</title>
   <meta name="description" content="Chapter 6 Hypothesis Tests for the mean of a population | Introduction to Statistical Methodology, Second Edition" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 Hypothesis Tests for the mean of a population | Introduction to Statistical Methodology, Second Edition" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Derek L. Sonderegger &amp; Robert Buscaglia" />
 
 
-<meta name="date" content="2020-09-02" />
+<meta name="date" content="2020-10-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -246,7 +246,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.2.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#why-should-hypotheses-use-mu-and-not-barx"><i class="fa fa-check"></i><b>6.2.1</b> Why should hypotheses use <span class="math inline">\(\mu\)</span> and not <span class="math inline">\(\bar{x}\)</span>?</a></li>
 <li class="chapter" data-level="6.2.2" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#a-note-on-calculating-p-values"><i class="fa fa-check"></i><b>6.2.2</b> A note on calculating p-values</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#additional-examples"><i class="fa fa-check"></i><b>6.3</b> Additional Examples</a></li>
+<li class="chapter" data-level="6.3" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#additional-examples-1"><i class="fa fa-check"></i><b>6.3</b> Additional Examples</a></li>
 <li class="chapter" data-level="6.4" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#p-values-vs-cutoff-values"><i class="fa fa-check"></i><b>6.4</b> P-values vs cutoff values</a></li>
 <li class="chapter" data-level="6.5" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#running-a-t-test-in-r"><i class="fa fa-check"></i><b>6.5</b> Running a t-test in R</a></li>
 <li class="chapter" data-level="6.6" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i><b>6.6</b> Type I and Type II Errors</a>
@@ -394,14 +394,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>##   xbar        s
 ## 1  475 49.99556</code></pre>
 <p>There are two possibilities. Either Rancher A was just unlucky in his random selection of 10 calves from the heard, or the true average weight within the herd is less than 500.</p>
-<p><span class="math display">\[H_{0}:\;\mu	=	500\]</span>
-<span class="math display">\[H_{a}:\;\mu	&lt;	500\]</span></p>
+<p><span class="math display">\[H_{0}:\;\mu   =   500\]</span>
+<span class="math display">\[H_{a}:\;\mu   &lt;   500\]</span></p>
 <p>For this calculation we’ll assume the weight of a calf is normally distributed <span class="math inline">\(N\left(\mu,\sigma\right)\)</span>, and therefore <span class="math inline">\(\bar{X}\)</span> is normally distributed <span class="math inline">\(N\left(\mu,\frac{\sigma}{\sqrt{n}}\right)\)</span>. If true mean is 500, how likely is it to get a sample mean of 475 (or less)? One way to think about this is that we want a measure of how extreme the event is that we observed, and one way to do that is to calculate how much probability there is for events that are even more extreme.</p>
 <p>To calculate how far into the tail our observed sample mean <span class="math inline">\(\bar{x}=475\)</span> is by measuring the area of the distribution that is farther into the tail than the observed value.</p>
-<p><span class="math display">\[\begin{aligned}P\left(\bar{X}\le475\right)	
+<p><span class="math display">\[\begin{aligned}P\left(\bar{X}\le475\right)    
     &amp;= P\left(\frac{\bar{X}-\mu}{\left(\frac{s}{\sqrt{n}}\right)}\le\frac{475-500}{\left(\frac{50}{\sqrt{10}}\right)}\right) \\
-	  &amp;= P\left(T_{9}\le-1.58\right) \\
-	  &amp;=	0.074 \end{aligned}\]</span></p>
+      &amp;= P\left(T_{9}\le-1.58\right) \\
+      &amp;=    0.074 \end{aligned}\]</span></p>
 <p>We see that the observed <span class="math inline">\(\bar{X}\)</span> is in the tail of the distribution and tends to not support <span class="math inline">\(H_{0}\)</span>.</p>
 <p>P-value is the probability of seeing the observed data or something more extreme given the null hypothesis is true. By “something more extreme”, we mean samples that would be more evidence for the alternative hypothesis.</p>
 <p><span class="math display">\[\mbox{p-value}=P(T_{9}&lt;-1.58)=0.074\]</span></p>
@@ -451,17 +451,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="math display">\[H_{0}:\mbox{ population parameter = hypothesized value}\]</span>
 and the alternative will be one of
 <span class="math display">\[\begin{aligned} 
-  H_{a}:	\textrm{population parameter }  &amp;&lt;   \textrm{ hypothesized value} \\	
-  H_{a}:	\textrm{population parameter }  &amp;&gt;   \textrm{ hypothesized value} \\	
-  H_{a}:	\textrm{population parameter }  &amp;\ne \textrm{ hypothesized value}
+  H_{a}:    \textrm{population parameter }  &amp;&lt;   \textrm{ hypothesized value} \\    
+  H_{a}:    \textrm{population parameter }  &amp;&gt;   \textrm{ hypothesized value} \\    
+  H_{a}:    \textrm{population parameter }  &amp;\ne \textrm{ hypothesized value}
 \end{aligned}\]</span>
 The hard part is figuring which of the possible alternatives we should examine. The alternative hypothesis is what the researcher believes is true. By showing that the complement of <span class="math inline">\(H_{a}\)</span> (that is <span class="math inline">\(H_{0}\)</span>) can not be true, we support the alternative which we believe to be true.</p>
 <p><span class="math inline">\(H_{0}\)</span> is often a statement of no effect, or no difference between the claimed and observed.</p>
 <p><strong>Example:</strong> A light bulb company advertises that their bulbs last for 1000 hours. Consumers will be unhappy if the bulbs last less time, but will not mind if the bulbs last longer. Therefore Consumer Reports might perform a test and would consider the hypotheses
-<span class="math display">\[H_{0}:\;\mu	=	1000\]</span>
-<span class="math display">\[H_{a}:\;\mu	&lt;	1000\]</span></p>
+<span class="math display">\[H_{0}:\;\mu   =   1000\]</span>
+<span class="math display">\[H_{a}:\;\mu   &lt;   1000\]</span></p>
 <p>Suppose we perform an experiment with <span class="math inline">\(n=20\)</span> light bulbs and observe <span class="math inline">\(\bar{x}=980\)</span> and <span class="math inline">\(s=64\)</span> hours and therefore our test statistic is
-<span class="math display">\[ t_{19}	=	\frac{\bar{x}-\mu}{s/\sqrt{n}} =	\frac{980-1000}{64/\sqrt{20}} =	-1.40\]</span>
+<span class="math display">\[ t_{19}   =   \frac{\bar{x}-\mu}{s/\sqrt{n}} =    \frac{980-1000}{64/\sqrt{20}} = -1.40\]</span>
 Then the p-value would be</p>
 <div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb126-1" aria-hidden="true"></a><span class="co">#        pt(-1.4, df=19)           # No Graph</span></span>
 <span id="cb126-2"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb126-2" aria-hidden="true"></a>mosaic<span class="op">::</span><span class="kw">xpt</span>(<span class="op">-</span><span class="fl">1.4</span>, <span class="dt">df=</span><span class="dv">19</span>, <span class="dt">ncp=</span><span class="dv">0</span> )   <span class="co"># With a Graph</span></span></code></pre></div>
@@ -470,8 +470,8 @@ Then the p-value would be</p>
 <p>and we calculate p-value <span class="math inline">\(=P\left(T_{19}&lt;-1.4\right)=0.0888\)</span>. A conclusion can then be drawn based on a chosen significance level. Most commonly <span class="math inline">\(\alpha\)</span> is set to be 5%, or <span class="math inline">\(\alpha = 0.05\)</span>. In this case, we would fail to reject <span class="math inline">\(H_0\)</span> and conclude at 5% significance that the data fails to reject <span class="math inline">\(\mu = 1000\)</span> hours.</p>
 <p><strong>Example:</strong> A computer company is buying resistors from another company. The resistors are supposed to have a resistance of <span class="math inline">\(2\)</span> Ohms and too much or too little resistance is bad. Here we would be testing
 <span class="math display">\[\begin{aligned} 
-  H_{0}:\mbox{ }\mu	&amp;=	  2 \\    
-  H_{a}:\mbox{ }\mu	&amp;\ne	2 
+  H_{0}:\mbox{ }\mu &amp;=    2 \\    
+  H_{a}:\mbox{ }\mu &amp;\ne    2 
   \end{aligned}\]</span></p>
 <p>Suppose we perform a test of a random sample of resistors and obtain a test statistics of <span class="math inline">\(t_{9}=1.8\)</span>. Because the p-value is “the probability of your data or something more extreme” and in this case more extreme implies extreme values in both tails then</p>
 <div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb128-1" aria-hidden="true"></a>mosaic<span class="op">::</span><span class="kw">xpt</span>( <span class="kw">c</span>(<span class="op">-</span><span class="fl">1.8</span>, <span class="fl">1.8</span>), <span class="dt">df=</span><span class="dv">9</span>, <span class="dt">ncp=</span><span class="dv">0</span>)</span></code></pre></div>
@@ -487,8 +487,8 @@ Then the p-value would be</p>
 <h3><span class="header-section-number">6.2.1</span> Why should hypotheses use <span class="math inline">\(\mu\)</span> and not <span class="math inline">\(\bar{x}\)</span>?</h3>
 <p>There is no need to make a statistical test of the form
 <span class="math display">\[\begin{aligned} 
-  H_{0}:\;\bar{x}	&amp;=	  3  \\
-  H_{a}:\;\bar{x}	&amp;\ne	3 
+  H_{0}:\;\bar{x}   &amp;=    3  \\
+  H_{a}:\;\bar{x}   &amp;\ne    3 
 \end{aligned}\]</span></p>
 <p>because we know the value of <span class="math inline">\(\bar{x}\)</span>; we calculated the value there is no uncertainty to what it is. However I want to use the sample mean <span class="math inline">\(\bar{x}\)</span> as an estimate of the population mean <span class="math inline">\(\mu\)</span> and because I don’t know what <span class="math inline">\(\mu\)</span> is but know that it should be somewhere near <span class="math inline">\(\bar{x}\)</span>, my hypothesis test is a question about <span class="math inline">\(\mu\)</span> and if it is near the value stated in the null hypothesis.</p>
 <p>Hypotheses are always statements about population parameters such as <span class="math inline">\(\mu\)</span> or <span class="math inline">\(\sigma\)</span> and never about sample statistic values such as <span class="math inline">\(\bar{x}\)</span> or <span class="math inline">\(s\)</span>.</p>
@@ -513,14 +513,14 @@ Then the p-value would be</p>
 </ol>
 </div>
 </div>
-<div id="additional-examples" class="section level2" number="6.3">
+<div id="additional-examples-1" class="section level2" number="6.3">
 <h2><span class="header-section-number">6.3</span> Additional Examples</h2>
 <ol style="list-style-type: decimal">
 <li>A potato chip manufacturer advertises that it sells 16 ounces of chips per bag. A consumer advocacy group wants to test this claim. They take a sample of <span class="math inline">\(n=18\)</span> bags and carefully weights the contents of each bag and calculate a sample mean <span class="math inline">\(\bar{x}=15.8\)</span> oz and a sample standard deviation of <span class="math inline">\(s=0.2\)</span>.
 <ol style="list-style-type: lower-alpha">
 <li>State an appropriate null and alternative hypothesis.
-<span class="math display">\[\begin{aligned} H_{0}:\mu	 &amp;=	16\mbox{ oz } \\
-               H_{a}:\mu	 &amp;&lt;	16\mbox{ oz }
+<span class="math display">\[\begin{aligned} H_{0}:\mu  &amp;= 16\mbox{ oz } \\
+               H_{a}:\mu  &amp;&lt; 16\mbox{ oz }
  \end{aligned}\]</span></li>
 <li>Calculate an appropriate test statistic given the sample data.
 <span class="math display">\[t=\frac{\bar{x}-\mu_{0}}{\frac{s}{\sqrt{n}}}=\frac{15.8-16}{\frac{.2}{\sqrt{18}}}=-4.24\]</span></li>
@@ -531,8 +531,8 @@ Then the p-value would be</p>
 <li>A pharmaceutical company has developed an improved pain reliever and believes that it acts faster than the leading brand. It is well known that the leading brand takes <span class="math inline">\(25\)</span> minutes to act. They perform an experiment on <span class="math inline">\(16\)</span> people with pain and record the time until the patient notices pain relief. The sample mean is <span class="math inline">\(\bar{x}=23\)</span> minutes, and the sample standard deviation was <span class="math inline">\(s=10\)</span> minutes.
 <ol style="list-style-type: lower-alpha">
 <li>State an appropriate null and alternative hypothesis.
-<span class="math display">\[\begin{aligned} H_{0}:\mu	 &amp;=	25\mbox{ minutes } \\
-               H_{a}:\mu	 &amp;&lt;	25\mbox{ minutes }
+<span class="math display">\[\begin{aligned} H_{0}:\mu  &amp;= 25\mbox{ minutes } \\
+               H_{a}:\mu  &amp;&lt; 25\mbox{ minutes }
  \end{aligned}\]</span></li>
 <li>Calculate an appropriate test statistic given the sample data.
 <span class="math display">\[t_{15}=\frac{\bar{x}-\mu_{0}}{\frac{s}{\sqrt{n}}}=\frac{23-25}{\frac{10}{\sqrt{16}}}=-0.8\]</span></li>
@@ -542,8 +542,8 @@ Then the p-value would be</p>
 <li>State your conclusion in terms of the problem. <em>These data do not provide statistically significant evidence to conclude that this new pain reliever acts faster than the leading brand.</em></li>
 </ol></li>
 <li>Consider the case of SAT test preparation course. They claim that their students perform better than the national average of 1019. We wish to perform a test to discover whether or not that is true.
-<span class="math display">\[\begin{aligned} H_{0}:\,\mu	 &amp;=	1019  \\
-               H_{a}:\,\mu	 &amp;&gt;	1019
+<span class="math display">\[\begin{aligned} H_{0}:\,\mu    &amp;= 1019  \\
+               H_{a}:\,\mu    &amp;&gt; 1019
 \end{aligned}\]</span>
 They take a sample of size <span class="math inline">\(n=10\)</span> and the sample mean is <span class="math inline">\(\bar{x}=1020\)</span>, with a sample standard deviation <span class="math inline">\(s=50\)</span>. The test statistic is <span class="math display">\[t_{9}=\frac{\bar{x}-\mu_{0}}{\frac{s}{\sqrt{n}}}=\frac{1}{\frac{50}{\sqrt{10}}}=.06\]</span>
 So the p-value is <span class="math inline">\(\mbox{p-value }=P(T_{9}&gt;.06)\approx0.5\)</span> and we fail to reject the null hypothesis. However, what if they had performed this experiment with <span class="math inline">\(n=20000\)</span> students and gotten the same results? <span class="math display">\[t_{19999}=\frac{\bar{x}-\mu_{0}}{\frac{s}{\sqrt{n}}}=\frac{1}{\frac{50}{\sqrt{20000}}}=2.83\]</span> and thus <span class="math inline">\(\mbox{p-value }=P(T_{19999}&gt;2.83)=0.0023\)</span> At <span class="math inline">\(\alpha=.05\)</span>, we will reject the null hypothesis and conclude that there is statistically significant evidence that the students who take the course perform better than the national average.</li>
@@ -556,8 +556,8 @@ So the p-value is <span class="math inline">\(\mbox{p-value }=P(T_{9}&gt;.06)\ap
 <h2><span class="header-section-number">6.4</span> P-values vs cutoff values</h2>
 <p>We have been calculating p-values and then comparing those values to the desired alpha level. It is possible, however, to use the alpha level to back-calculate a cutoff level for the test statistic, or even original sample mean. Often these cutoff values are referred to as critical values. Neither approach is wrong, but is generally a matter of preference, although knowing both techniques can be useful.</p>
 <p><strong>Example:</strong> We return to the pharmaceutical company that has developed a new pain reliever. Recall the null and alternative hypotheses were
-<span class="math display">\[\begin{aligned} H_{0}:\mu	 &amp;=	25\mbox{ minutes } \\
-                  H_{a}:\mu	 &amp;&lt;	25\mbox{ minutes } \end{aligned}\]</span>
+<span class="math display">\[\begin{aligned} H_{0}:\mu  &amp;= 25\mbox{ minutes } \\
+                  H_{a}:\mu  &amp;&lt; 25\mbox{ minutes } \end{aligned}\]</span>
 and we had observed a test statistic
 <span class="math display">\[t=\frac{\bar{x}-\mu_{0}}{\frac{s}{\sqrt{n}}}=\frac{23-25}{\frac{10}{\sqrt{16}}}=-0.8\]</span>
 with <span class="math inline">\(15\)</span> degrees of freedom. Using an <span class="math inline">\(\alpha=0.10\)</span> level of significance, if this test statistic is smaller than the <span class="math inline">\(0.10\)</span>th quantile of a <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(15\)</span> degrees of freedom, then we will reject the null hypothesis. This cutoff value is <span class="math inline">\(t^{0.1}_{15} = t_{crit}=-1.341\)</span>. This is shown below using R:</p>
@@ -566,11 +566,11 @@ with <span class="math inline">\(15\)</span> degrees of freedom. Using an <span 
 <p>Because the observed test statistic <span class="math inline">\(t_s = -0.8\)</span> is less extreme (not as far into the tail) as the cutoff value <span class="math inline">\(t_{crit} = -1.341\)</span>, we failed to reject the null hypothesis.</p>
 <p>We can push this idea even farther and calculate a critical value on the original scale of <span class="math inline">\(\bar{x}\)</span> by solving
 <span class="math display">\[\begin{aligned}
-t_{crit}	&amp;=	\frac{\bar{x}_{crit}-\mu_{0}}{\left( \frac{s}{\sqrt{n}} \right)} \\
+t_{crit}    &amp;=  \frac{\bar{x}_{crit}-\mu_{0}}{\left( \frac{s}{\sqrt{n}} \right)} \\
 \\
--1.341	  &amp;=	\frac{\bar{x}_{crit}-25}{\left( \frac{10}{\sqrt{16}} \right) }    \\
--1.341\left(\frac{10}{\sqrt{16}}\right)+25	&amp;=	\bar{x}_{crit}  \\
-21.65	&amp;=	\bar{x}_{crit}
+-1.341    &amp;=    \frac{\bar{x}_{crit}-25}{\left( \frac{10}{\sqrt{16}} \right) }    \\
+-1.341\left(\frac{10}{\sqrt{16}}\right)+25  &amp;=  \bar{x}_{crit}  \\
+21.65   &amp;=  \bar{x}_{crit}
 \end{aligned}\]</span>
 So if we observe a sample mean <span class="math inline">\(\bar{x}&lt;21.65\)</span> then we would reject the null hypothesis. Here we actually observed <span class="math inline">\(\bar{x}=23\)</span> so this comparison still fails to reject the null hypothesis and concludes there is insufficient evidence to reject that the new pain reliever has the same time till relief as the old medicine.</p>
 <p>In general calculating and reporting p-values is preferred, because they account for any ambiguity about one-sided or two-sided tests and how many degrees of freedom were available.</p>
@@ -579,8 +579,8 @@ So if we observe a sample mean <span class="math inline">\(\bar{x}&lt;21.65\)</s
 <h2><span class="header-section-number">6.5</span> Running a t-test in R</h2>
 <p>While it is possible to do t-tests by hand, most people will use a software package to perform these calculations. Here we will use the R function <code>t.test()</code>. This function expects a vector of data (so that it can calculate <span class="math inline">\(\bar{x}\)</span> and <span class="math inline">\(s\)</span>) and a hypothesized value of <span class="math inline">\(\mu\)</span>.</p>
 <p><em>Example</em>. Suppose we have data regarding fuel economy of <span class="math inline">\(5\)</span> vehicles of the same make and model and we wish to test if the observed fuel economy is consistent with the advertised <span class="math inline">\(31\)</span> mpg at highway speeds. Assuming the fuel economy varies normally among cars of the same make and model, we test
-<span class="math display">\[\begin{aligned} H_{0}:\,\mu	 &amp;=	31 \\
-                  H_{a}:\,\mu	 &amp;\ne	31 \end{aligned}\]</span>
+<span class="math display">\[\begin{aligned} H_{0}:\,\mu    &amp;= 31 \\
+                  H_{a}:\,\mu    &amp;\ne   31 \end{aligned}\]</span>
 and calculate</p>
 <div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb134-1" aria-hidden="true"></a>cars &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">mpg =</span> <span class="kw">c</span>(<span class="fl">31.8</span>, <span class="fl">32.1</span>, <span class="fl">32.5</span>, <span class="fl">30.9</span>, <span class="fl">31.3</span>))</span>
 <span id="cb134-2"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb134-2" aria-hidden="true"></a>cars <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="kw">mean</span>(mpg), <span class="kw">sd</span>(mpg))</span></code></pre></div>
@@ -592,15 +592,15 @@ and calculate</p>
 <span class="math display">\[\textrm{p-value}=2\cdot P\left(T_{4}&gt;2.54\right)=0.064\]</span></p>
 <p>and a <span class="math inline">\(95\%\)</span> confidence interval is
 <span class="math display">\[\begin{aligned} 
-\bar{x}	&amp;\pm	t_{n-1}^{1-\alpha/2}\left(\frac{s}{\sqrt{n}}\right) \\
-31.72	  &amp;\pm	2.776445\left(\frac{0.63403}{\sqrt{5}}\right)       \\
-31.72	  &amp;\pm	0.7872 \\
-		[30.93,\; &amp; 32.51]
+\bar{x} &amp;\pm    t_{n-1}^{1-\alpha/2}\left(\frac{s}{\sqrt{n}}\right) \\
+31.72     &amp;\pm  2.776445\left(\frac{0.63403}{\sqrt{5}}\right)       \\
+31.72     &amp;\pm  0.7872 \\
+        [30.93,\; &amp; 32.51]
 \end{aligned}\]</span></p>
 <p>These results can be confirmed quickly through the use of <code>t.test()</code>.</p>
 <div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#cb136-1" aria-hidden="true"></a><span class="kw">t.test</span>( cars<span class="op">$</span>mpg, <span class="dt">mu=</span><span class="dv">31</span>, <span class="dt">alternative=</span><span class="st">&#39;two.sided&#39;</span> )</span></code></pre></div>
 <pre><code>## 
-## 	One Sample t-test
+##  One Sample t-test
 ## 
 ## data:  cars$mpg
 ## t = 2.5392, df = 4, p-value = 0.06403
@@ -650,8 +650,8 @@ Result</td>
 </table>
 <p>There are two ways to make a mistake. The type I error is to reject <span class="math inline">\(H_{0}\)</span> when it is true. This error is controlled by <span class="math inline">\(\alpha\)</span>. We can think of <span class="math inline">\(\alpha\)</span> as the probability of rejecting <span class="math inline">\(H_{0}\)</span> when we shouldn’t. However there is a trade off. If <span class="math inline">\(\alpha\)</span> is very small then we will fail to reject <span class="math inline">\(H_{0}\)</span> in cases where <span class="math inline">\(H_{0}\)</span> is not true. This is called a type II error and we will define <span class="math inline">\(\beta\)</span> as the probability of failing to reject <span class="math inline">\(H_{0}\)</span> when it is false.</p>
 <p>This trade off between type I and type II errors can be seen by examining our legal system. A person is presumed innocent until proven guilty. So the hypothesis being tested in the court of law are</p>
-<p><span class="math display">\[\begin{aligned} H_{0}: &amp;	\textrm{ defendent is innocent}  \\
-                  H_{a}: &amp;	\textrm{ defendent is guilty} \end{aligned}\]</span></p>
+<p><span class="math display">\[\begin{aligned} H_{0}: &amp;  \textrm{ defendent is innocent}  \\
+                  H_{a}: &amp;  \textrm{ defendent is guilty} \end{aligned}\]</span></p>
 <p>Our legal system theoretically operates under the rule that it is better to let 10 guilty people go free, than wrongly convict 1 innocent. In other words, it is worse to make a type I mistake (concluding guilty when innocent), than to make a type II mistake (concluding not guilty when guilty). Critically, when a jury finds a person “not guilty” they are not saying that defense team has proven that the defendant is innocent, but rather that the prosecution has not proven the defendant guilty.</p>
 <p>This same idea manifests itself in science with the <span class="math inline">\(\alpha\)</span>-level. Typically we decide that it is better to make a type II mistake. An experiment that results in a large p-value does not prove that <span class="math inline">\(H_{0}\)</span> is true, but that there is insufficient evidence to conclude <span class="math inline">\(H_{a}\)</span>.</p>
 <p>If we still suspect that <span class="math inline">\(H_{a}\)</span> is true, then we must repeat the experiment with a larger samples size. A larger sample size makes it possible to detect smaller differences.</p>
@@ -659,16 +659,16 @@ Result</td>
 <h3><span class="header-section-number">6.6.1</span> Power and Sample Size Selection</h3>
 <p>Just as we calculated the necessary sample size to achieve a confidence interval of a specified width, we are also often interested in calculating the necessary sample size to find a significant difference from the hypothesized mean <span class="math inline">\(\mu_{0}\)</span>. Just as in the confidence interval case where we had to specify the margin of error <span class="math inline">\(ME\)</span> and some estimate of the population standard deviation <span class="math inline">\(\hat{\sigma}\)</span>, we now must specify a difference we want to be able to detect <span class="math inline">\(\delta\)</span> and an estimate of the population standard deviation <span class="math inline">\(\hat{\sigma}\)</span>.</p>
 <p><strong>Example:</strong> Suppose that I work in Quality Control for a company that manufactures a type of rope. This rope is supposed to have a mean breaking strength of <span class="math inline">\(5000\)</span> pounds and long experience with the process suggests that the standard deviation is approximately <span class="math inline">\(s=50\)</span>. As with many manufacturing processes, sometimes the machines that create the rope get out of calibration. So each morning we take a random sample of <span class="math inline">\(n=7\)</span> pieces of rope and using <span class="math inline">\(\alpha=0.05\)</span>, test the hypothesis
-<span class="math display">\[\begin{aligned} H_{0}:\;\mu	 &amp;=	5000  \\
-                  H_{a}:\;\mu	 &amp;&lt;	5000  \end{aligned}\]</span>
+<span class="math display">\[\begin{aligned} H_{0}:\;\mu    &amp;= 5000  \\
+                  H_{a}:\;\mu    &amp;&lt; 5000  \end{aligned}\]</span>
 Notice that I will reject the null hypothesis if <span class="math inline">\(\bar{x}\)</span> is less than some cut-off value (which we denote <span class="math inline">\(\bar{x}_{crit}\)</span>), which we calculate by first recognizing that the critical t-value is
 <span class="math display">\[t_{crit}=t_{n-1}^{\alpha}=-1.943\]</span>
 and then solving the following equation for <span class="math inline">\(\bar{x}_{crit}\)</span>
 <span class="math display">\[\begin{aligned}
-t_{crit}	&amp;=	\frac{\bar{x}_{crit}-\mu_{0}}{\frac{s}{\sqrt{n}}} \\
-t_{crit}\left(\frac{s}{\sqrt{n}}\right)+\mu_{0}	&amp;=	\bar{x}_{crit} \\
--1.943\left(\frac{50}{\sqrt{7}}\right)+5000	&amp;=	\bar{x}_{crit} \\
-4963	&amp;=	\bar{x}_{crit}
+t_{crit}    &amp;=  \frac{\bar{x}_{crit}-\mu_{0}}{\frac{s}{\sqrt{n}}} \\
+t_{crit}\left(\frac{s}{\sqrt{n}}\right)+\mu_{0} &amp;=  \bar{x}_{crit} \\
+-1.943\left(\frac{50}{\sqrt{7}}\right)+5000 &amp;=  \bar{x}_{crit} \\
+4963    &amp;=  \bar{x}_{crit}
 \end{aligned}\]</span></p>
 <p>There is a trade off between the Type I and Type II errors. By making a Type I error, I will reject the null hypothesis when the null hypothesis is true. Here I would stop manufacturing for the day while re-calibrating the machine. Clearly a Type I error is not good. The probability of making a Type I error is denoted <span class="math inline">\(\alpha\)</span>.</p>
 <p><img src="06_HypothesisTests_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
@@ -677,10 +677,10 @@ t_{crit}\left(\frac{s}{\sqrt{n}}\right)+\mu_{0}	&amp;=	\bar{x}_{crit} \\
 <p><img src="06_HypothesisTests_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <p>The the probability of a type II error is
 <span class="math display">\[\begin{aligned}
-\beta	&amp;=	P\left(\bar{X}&gt;4963.3\;|\,\mu=4950\right) \\
-	    &amp;=	P\left(\frac{\bar{X}-4950}{50/\sqrt{7}}&gt;\frac{4963.3-4950}{50/\sqrt{7}}\right) \\
-	    &amp;=	P\left(T_{6}&gt;0.703\right) \\
-	    &amp;=	0.254 \end{aligned}\]</span></p>
+\beta   &amp;=  P\left(\bar{X}&gt;4963.3\;|\,\mu=4950\right) \\
+        &amp;=  P\left(\frac{\bar{X}-4950}{50/\sqrt{7}}&gt;\frac{4963.3-4950}{50/\sqrt{7}}\right) \\
+        &amp;=  P\left(T_{6}&gt;0.703\right) \\
+        &amp;=  0.254 \end{aligned}\]</span></p>
 <p>and therefore my power for detecting a mean breaking strength less than or equal to 4950 is <span class="math inline">\(1-\beta=0.7457\)</span> which is very close to what any statistical package will calculate for us.The power calculation should done using a t-distribution with non-centrality parameter instead of just shifting the distribution. The difference is slight, but is enough to cause our calculation to be slightly off. This power is rather low and I would prefer to have the power be near <span class="math inline">\(0.95\)</span>. We can improve our power by using a larger sample size. We’ll repeat these calculations using <span class="math inline">\(n=15\)</span>.</p>
 <p><img src="06_HypothesisTests_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <p>Power calculations are relatively tedious to do by hand, but fortunately there are several very good resources for exploring how power and sample size interact. We can do these calculations in R using the function <code>power.t.test()</code>.</p>

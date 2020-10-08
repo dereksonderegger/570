@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 Probability | Introduction to Statistical Methodology, Second Edition</title>
   <meta name="description" content="Chapter 2 Probability | Introduction to Statistical Methodology, Second Edition" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 Probability | Introduction to Statistical Methodology, Second Edition" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Derek L. Sonderegger &amp; Robert Buscaglia" />
 
 
-<meta name="date" content="2020-09-02" />
+<meta name="date" content="2020-10-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -246,7 +246,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.2.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#why-should-hypotheses-use-mu-and-not-barx"><i class="fa fa-check"></i><b>6.2.1</b> Why should hypotheses use <span class="math inline">\(\mu\)</span> and not <span class="math inline">\(\bar{x}\)</span>?</a></li>
 <li class="chapter" data-level="6.2.2" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#a-note-on-calculating-p-values"><i class="fa fa-check"></i><b>6.2.2</b> A note on calculating p-values</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#additional-examples"><i class="fa fa-check"></i><b>6.3</b> Additional Examples</a></li>
+<li class="chapter" data-level="6.3" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#additional-examples-1"><i class="fa fa-check"></i><b>6.3</b> Additional Examples</a></li>
 <li class="chapter" data-level="6.4" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#p-values-vs-cutoff-values"><i class="fa fa-check"></i><b>6.4</b> P-values vs cutoff values</a></li>
 <li class="chapter" data-level="6.5" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#running-a-t-test-in-r"><i class="fa fa-check"></i><b>6.5</b> Running a t-test in R</a></li>
 <li class="chapter" data-level="6.6" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i><b>6.6</b> Type I and Type II Errors</a>
@@ -431,12 +431,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Rule:</strong> <em>If two events are mutually exclusive, then <span class="math inline">\(P(A\cup B)=P(A)+P(B)\)</span></em></p>
 <p><img src="02_Probability_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p><strong>Example</strong>. Let <span class="math inline">\(R\)</span> be the sum of two different colored dice. Suppose we are interested in <span class="math inline">\(P(R \le 4)\)</span>. Notice that the pair of dice can fall 36 different ways (6 ways for the first die and six for the second results in 6x6 possible outcomes, and each way has equal probability <span class="math inline">\(1/36\)</span>. Because the dice cannot simultaneously sum to <span class="math inline">\(2\)</span> and to <span class="math inline">\(3\)</span>, we could write
-<span class="math display">\[\begin{aligned} P(R \le 4 )	
-  &amp;=	P(R=2)+P(R=3)+P(R=4) \\
-	&amp;=	P(\left\{ 1,1\right\} )+P(\left\{ 1,2\right\} \mathrm{\textrm{ or }}\left\{ 2,1\right\} )+P(\{1,3\}\textrm{ or }\{2,2\}\textrm{ or }\{3,1\}) \\
-	&amp;=	\frac{1}{36}+\frac{2}{36}+\frac{3}{36} \\
-	&amp;=	\frac{6}{36} \\
-	&amp;=	\frac{1}{6} \end{aligned}\]</span></p>
+<span class="math display">\[\begin{aligned} P(R \le 4 )   
+  &amp;=    P(R=2)+P(R=3)+P(R=4) \\
+    &amp;=  P(\left\{ 1,1\right\} )+P(\left\{ 1,2\right\} \mathrm{\textrm{ or }}\left\{ 2,1\right\} )+P(\{1,3\}\textrm{ or }\{2,2\}\textrm{ or }\{3,1\}) \\
+    &amp;=  \frac{1}{36}+\frac{2}{36}+\frac{3}{36} \\
+    &amp;=  \frac{6}{36} \\
+    &amp;=  \frac{1}{6} \end{aligned}\]</span></p>
 <p><strong>Complement Rule:</strong> <span class="math inline">\(P(A)+P(A^c)=1\)</span></p>
 <p>This rule follows from the partitioning of the set of all events (<span class="math inline">\(S\)</span>) into two disjoint sets, <span class="math inline">\(A\)</span> and <span class="math inline">\(A^c\)</span>. We learned above that <span class="math inline">\(A \cup A^c = S\)</span> and that <span class="math inline">\(P(S) = 1\)</span>. Combining those statements, we obtain the complement rule.</p>
 <p><img src="02_Probability_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
@@ -508,26 +508,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 <p>It is clear that fire claims are more likely fraudulent than auto or other claims. In fact, the proportion of fraudulent claims, given that the claim is against a fire policy is
 <span class="math display">\[\begin{aligned}
-P(\textrm{ Fraud }|\textrm{ FirePolicy })	&amp;=	\frac{\textrm{proportion of claims that are fire policies and are fraudulent}}{\textrm{proportion of fire claims}} \\
-	&amp;=	\frac{6\%}{20\%}\\
-	&amp; \\
-	&amp;=	0.3
-	\end{aligned}\]</span></p>
+P(\textrm{ Fraud }|\textrm{ FirePolicy })   &amp;=  \frac{\textrm{proportion of claims that are fire policies and are fraudulent}}{\textrm{proportion of fire claims}} \\
+    &amp;=  \frac{6\%}{20\%}\\
+    &amp; \\
+    &amp;=  0.3
+    \end{aligned}\]</span></p>
 <p>In general we define conditional probability (assuming <span class="math inline">\(P(B) \ne 0\)</span>) as
 <span class="math display">\[P(A|B)=\frac{P(A\cap B)}{P(B)}\]</span>
 which can also be rearranged to show
 <span class="math display">\[\begin{aligned}
-P(A\cap B)	&amp;=	P(A\,|\,B)\,P(B) \\
-	          &amp;=	P(B\,|\,A)\,P(A)
+P(A\cap B)  &amp;=  P(A\,|\,B)\,P(B) \\
+              &amp;=    P(B\,|\,A)\,P(A)
 \end{aligned}\]</span>
 Because the order doesn’t matter and <span class="math inline">\(P\left(A\cap B\right)=P\left(B\cap A\right)\)</span>.</p>
 <p>Using this rule, we might calculate the probability that a claim is an Auto policy given that it is not fraudulent.
 <span class="math display">\[\begin{aligned}
-P\left(\,Auto\;|\;NotFraud\,\right)	&amp;= \frac{P\left(\,Auto\;\cap\;NotFraud\right)}{P\left(\,NotFraud\,\right)} \\
-	&amp;=	\frac{0.29}{0.9} \\
-	&amp;	\\
-	&amp;=	0.3\bar{2}
-	\end{aligned}\]</span></p>
+P\left(\,Auto\;|\;NotFraud\,\right) &amp;= \frac{P\left(\,Auto\;\cap\;NotFraud\right)}{P\left(\,NotFraud\,\right)} \\
+    &amp;=  \frac{0.29}{0.9} \\
+    &amp;   \\
+    &amp;=  0.3\bar{2}
+    \end{aligned}\]</span></p>
 <p><strong>Definition:</strong> Two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are said to be <strong>independent</strong> if <span class="math inline">\(P(A\cap B)=P(A)P(B)\)</span>.</p>
 <p>What independence is saying that knowing the outcome of event <span class="math inline">\(A\)</span> doesn’t give you any information about the outcome of event <span class="math inline">\(B\)</span>. Thus, we can use conditional statements to also show that two events are independent if <span class="math inline">\(P(A|B) = P(A)\)</span>.</p>
 <p>In simple random sampling, we assume that any two samples are independent. In cluster sampling, we assume that samples within a cluster are not independent, but clusters are independent of each other.</p>
@@ -568,18 +568,18 @@ P\left(\,Auto\;|\;NotFraud\,\right)	&amp;= \frac{P\left(\,Auto\;\cap\;NotFraud\r
 </table>
 <p>We can fill in some of the table using our the definition of conditional probability. For example:
 <span class="math display">\[\begin{aligned}
-P\left(Red\,\cap\,Convertable\right)	&amp;= P\left(Red\,|\,Convertable\right)\,P\left(Convertable\right) \\
-	&amp;=	0.60*0.10 \\
-	&amp;=	0.06
+P\left(Red\,\cap\,Convertable\right)    &amp;= P\left(Red\,|\,Convertable\right)\,P\left(Convertable\right) \\
+    &amp;=  0.60*0.10 \\
+    &amp;=  0.06
   \end{aligned}\]</span></p>
 <p>Lets think about what this conditional probability means. Of the <span class="math inline">\(90\%\)</span> of cars that are not convertibles, <span class="math inline">\(15\%\)</span> those non-convertibles are red and therefore the proportion of cars that are red non-convertibles is <span class="math inline">\(0.90*0.15=0.135\)</span>. Of the <span class="math inline">\(10\%\)</span> of cars that are convertibles, <span class="math inline">\(60\%\)</span> of those are red and therefore proportion of cars that are red convertibles is <span class="math inline">\(0.10*0.60=0.06\)</span>. Thus the total percentage of red cars is actually
-<span class="math display">\[\begin{aligned}P\left(\,Red\,\right)	
+<span class="math display">\[\begin{aligned}P\left(\,Red\,\right)  
   &amp;= P\left(\;Red\;\cap\;Convertible\;\right)+P\left(\,Red\,\cap\,NonConvertible\,\right)\\
-	&amp;= P\left(\,Red\,|\,Convertable\,\right)P\left(\,Convertible\,\right)+P\left(\,Red\,|\,NonConvertible\,\right)P\left(\,NonConvertible\,\right)\\
-	&amp;=	0.60*0.10+0.15*0.90\\
-	&amp;=	0.06+0.135\\
-	&amp;=	0.195
-	\end{aligned}\]</span>
+    &amp;= P\left(\,Red\,|\,Convertable\,\right)P\left(\,Convertible\,\right)+P\left(\,Red\,|\,NonConvertible\,\right)P\left(\,NonConvertible\,\right)\\
+    &amp;=  0.60*0.10+0.15*0.90\\
+    &amp;=  0.06+0.135\\
+    &amp;=  0.195
+    \end{aligned}\]</span>
 So when I ask for <span class="math inline">\(P(\;red\;|\;convertable\;)\)</span>, I am narrowing my space of cars to consider only convertibles. While there percentage of cars that are red and convertible is just 6% of all cars, when I restrict myself to convertibles, we see that the percentage of this smaller set of cars that are red is 60%.</p>
 <p>Notice that because <span class="math inline">\(P\left(Red\right)=0.195\ne0.60=P\left(Red\,|\,Convertable\right)\)</span> then the events <span class="math inline">\(Red\)</span> and <span class="math inline">\(Convertable\)</span> are not independent.</p>
 </div>
@@ -588,13 +588,13 @@ So when I ask for <span class="math inline">\(P(\;red\;|\;convertable\;)\)</span
 <p>Here we give a short summary of the most frequently used rules.</p>
 <p><span class="math display">\[0 \le P\left(A\right) \le 1\]</span></p>
 <p><span class="math display">\[P\left(A\right)+P\left(A^c\right)=1\]</span>
-<span class="math display">\[P\left(A\cup B\right)	=	P\left(A\right)+P\left(B\right)-P\left(A\cap B\right)\]</span>
-<span class="math display">\[P\left(A\cap B\right)	=	\begin{cases}
+<span class="math display">\[P\left(A\cup B\right) =   P\left(A\right)+P\left(B\right)-P\left(A\cap B\right)\]</span>
+<span class="math display">\[P\left(A\cap B\right) =   \begin{cases}
 P\left(A\,|\,B\right)P\left(B\right)\\
 P\left(B\,|\,A\right)P\left(A\right)\\
 P(A)P(B)\;\; &amp; \textrm{ if A,B are independent}
 \end{cases}\]</span></p>
-<p><span class="math display">\[P\left(A\,|\,B\right)	=	\frac{P\left(A\cap B\right)}{P\left(B\right)}\]</span></p>
+<p><span class="math display">\[P\left(A\,|\,B\right) =   \frac{P\left(A\cap B\right)}{P\left(B\right)}\]</span></p>
 </div>
 </div>
 <div id="discrete-random-variables" class="section level2" number="2.3">
@@ -624,25 +624,25 @@ P(A)P(B)\;\; &amp; \textrm{ if A,B are independent}
 <p>Example: Consider the discrete random variable <span class="math inline">\(S\)</span>, the sum of two fair dice.</p>
 <p><img src="02_Probability_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <p>We often want to ask ‘What is expected value of this distribution?’ You might think about taking a really, really large number of samples from this distribution and then taking the mean of that really really big sample. We define the expected value (often denoted by <span class="math inline">\(\mu\)</span>) as a weighted average of the possible values and the weights are the proportions with which those values occur.
-<span class="math display">\[\mu=E[S]	=	\sum_{\textrm{possible }s}\;s\cdot P\left(S=s\right)\]</span>
+<span class="math display">\[\mu=E[S]  =   \sum_{\textrm{possible }s}\;s\cdot P\left(S=s\right)\]</span>
 In this case, we have that
 <span class="math display">\[\begin{aligned} \mu = E[S] 
-&amp;=	\sum_{s=2}^{12}s\cdot P(S=s) \\
-&amp;=	2\cdot P\left(S=2\right)+3\cdot P\left(S=3\right)+\dots+11\cdot P\left(S=11\right)+12\cdot P\left(S=12\right) \\
-&amp;=	2\left(\frac{1}{36}\right)+3\left(\frac{2}{36}\right)+\dots+11\left(\frac{2}{36}\right)+12\left(\frac{1}{36}\right) \\
-&amp;=	7
+&amp;=  \sum_{s=2}^{12}s\cdot P(S=s) \\
+&amp;=  2\cdot P\left(S=2\right)+3\cdot P\left(S=3\right)+\dots+11\cdot P\left(S=11\right)+12\cdot P\left(S=12\right) \\
+&amp;=  2\left(\frac{1}{36}\right)+3\left(\frac{2}{36}\right)+\dots+11\left(\frac{2}{36}\right)+12\left(\frac{1}{36}\right) \\
+&amp;=  7
 \end{aligned}\]</span></p>
 </div>
-<div id="variance" class="section level4" number="2.3.1.2">
+<div id="variance-1" class="section level4" number="2.3.1.2">
 <h4><span class="header-section-number">2.3.1.2</span> Variance</h4>
 <p>Similarly we could define the variance of <span class="math inline">\(S\)</span> (which we often denote <span class="math inline">\(\sigma^{2}\)</span>) as a weighted average of the squared-deviations that could occur.
-<span class="math display">\[ \sigma^{2}=V[S]	= \sum_{\textrm{possible }s}\; (s-\mu)^2 \cdot P\left(S=s\right)\]</span>
+<span class="math display">\[ \sigma^{2}=V[S]  = \sum_{\textrm{possible }s}\; (s-\mu)^2 \cdot P\left(S=s\right)\]</span>
 which in this example can be calculated as
 <span class="math display">\[\begin{aligned} \sigma^{2}=V[S] 
   &amp;= \sum_{s=2}^{12}\left(s-\mu\right)^{2}P(S=s) \\
-	&amp;= (2-7)^{2}\left(\frac{1}{36}\right)+(3-7)^{2}\left(\frac{2}{36}\right)+\dots+(12-7)^{2}\left(\frac{1}{36}\right) \\
-	&amp;= \frac{35}{6}=5.8\bar{3}
-	\end{aligned}\]</span></p>
+    &amp;= (2-7)^{2}\left(\frac{1}{36}\right)+(3-7)^{2}\left(\frac{2}{36}\right)+\dots+(12-7)^{2}\left(\frac{1}{36}\right) \\
+    &amp;= \frac{35}{6}=5.8\bar{3}
+    \end{aligned}\]</span></p>
 <p>We could interpret the expectation as the sample mean of an infinitely large sample, and the variance as the sample variance of the same infinitely large sample. These are two very important numbers that describe the distribution.</p>
 <p><strong>Example:</strong> My wife is a massage therapist and over the last year, the number of clients she sees per work day (denoted Y) varied according the following table:</p>
 <table>
@@ -676,12 +676,12 @@ which in this example can be calculated as
 <span id="cb49-7"><a href="2-probability.html#cb49-7" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme_bw</span>()                                      <span class="co"># set background color...</span></span></code></pre></div>
 <p><img src="02_Probability_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <p>Because this is the long term relative frequency of the number of clients (over 200 working days!), it is appropriate to interpret these frequencies as probabilities. This table and graph is often called a <strong>probability mass function (pmf)</strong> because it lists how the probability is spread across the possible values of the random variable. We might next ask ourselves what is the average number of clients per day?</p>
-<p><span class="math display">\[\begin{aligned} E\left(Y\right)	
-  &amp;=	\sum_{\textrm{possible }y}y\,P\left(Y=y\right) \\
-	&amp;=	\sum_{y=0}^{4}y\,P\left(Y=y\right) \\
-	&amp;=	0\,P\left(Y=0\right)+1\,P\left(Y=1\right)+2\,P\left(Y=2\right)+3\,P\left(Y=3\right)+4\,P\left(Y=4\right) \\
-	&amp;=	0\left(0.3\right)+1\left(0.35\right)+2\left(0.20\right)+3\left(0.10\right)+4\left(0.05\right) \\
-	&amp;=	1.25 \end{aligned}\]</span></p>
+<p><span class="math display">\[\begin{aligned} E\left(Y\right)   
+  &amp;=    \sum_{\textrm{possible }y}y\,P\left(Y=y\right) \\
+    &amp;=  \sum_{y=0}^{4}y\,P\left(Y=y\right) \\
+    &amp;=  0\,P\left(Y=0\right)+1\,P\left(Y=1\right)+2\,P\left(Y=2\right)+3\,P\left(Y=3\right)+4\,P\left(Y=4\right) \\
+    &amp;=  0\left(0.3\right)+1\left(0.35\right)+2\left(0.20\right)+3\left(0.10\right)+4\left(0.05\right) \\
+    &amp;=  1.25 \end{aligned}\]</span></p>
 <p>Notice that this number is not an integer and therefore is not a value that <span class="math inline">\(Y\)</span> could actually take on. You might be tempted to therefore round it to the nearest integer. That would be wrong. The rational is that if we wanted to estimate the number of clients she has per month (and thus her income), we would have a worse estimate if we used the rounded number.</p>
 <p>Another example of a case where rounding would be inappropriate is in gambling situations where the amount won or lost per hand isn’t particularly important but the average amount won or lost over hundreds or thousands of plays is what matters. A Roulette wheel has 18 red and 18 black slots along with 2 green. If you bet $1 on red, you could either win a dollar or lose a dollar. However, because the probabilities are</p>
 <table>
@@ -702,21 +702,21 @@ which in this example can be calculated as
 </table>
 <p>then the persons expected winnings per play are:</p>
 <p><span class="math display">\[ \begin{aligned}E[W] 
-  =	\sum_{\textrm{possible }w}w\,P\left(W=w\right) 
+  = \sum_{\textrm{possible }w}w\,P\left(W=w\right) 
   =  1 \left(\frac{18}{38} \right) + -1 \left( \frac{20}{38} \right) 
   =  -0.0526 \end{aligned}\]</span></p>
 <p>So for every Black/Red bet, the player should expect to lose 5.2 cents. While this number is small, it is enough to make the casino millions of dollars over the long run.</p>
 <p>Returning to the massage therapy example, assuming that successive days are independent (which might be a bad assumption) what is the probability she has two days in a row with no clients?
-<span class="math display">\[\begin{aligned}P\left(\textrm{0 on day1 }and\textrm{ 0 on day2}\right)	
-  &amp;=	P\left(\textrm{0 on day 1}\right)P\left(\textrm{0 on day 2}\right) \\
-	&amp;=	\left(0.3\right)\left(0.3\right) \\
-	&amp;=	0.09 \end{aligned}\]</span></p>
+<span class="math display">\[\begin{aligned}P\left(\textrm{0 on day1 }and\textrm{ 0 on day2}\right)    
+  &amp;=    P\left(\textrm{0 on day 1}\right)P\left(\textrm{0 on day 2}\right) \\
+    &amp;=  \left(0.3\right)\left(0.3\right) \\
+    &amp;=  0.09 \end{aligned}\]</span></p>
 <p>What is the variance of this distribution?
-<span class="math display">\[\begin{aligned}V\left(Y\right)	
+<span class="math display">\[\begin{aligned}V\left(Y\right)    
   &amp;= \sum_{\textrm{possible y}}\,\left(y-\mu\right)^{2}\,P\left(Y=y\right) \\
-	&amp;= \sum_{y=0}^{4}\,\left(y-\mu\right)^{2}P\left(Y=y\right) \\
-	&amp;=	\left(0-1.25\right)^{2}\left(0.3\right)+\left(1-1.25\right)^{2}\left(0.35\right)+\left(2-1.25\right)^{2}\left(0.20\right)+\left(3-1.25\right)^{2}\left(0.10\right)+\left(4-1.25\right)^{2}\left(0.05\right) \\
-	&amp;=	1.2875 \end{aligned}\]</span></p>
+    &amp;= \sum_{y=0}^{4}\,\left(y-\mu\right)^{2}P\left(Y=y\right) \\
+    &amp;=  \left(0-1.25\right)^{2}\left(0.3\right)+\left(1-1.25\right)^{2}\left(0.35\right)+\left(2-1.25\right)^{2}\left(0.20\right)+\left(3-1.25\right)^{2}\left(0.10\right)+\left(4-1.25\right)^{2}\left(0.05\right) \\
+    &amp;=  1.2875 \end{aligned}\]</span></p>
 <p>Note on Notation: There is a difference between the upper and lower case letters we have been using to denote a random variable. In general, we let the upper case denote the random variable and the lower case as a value that the the variable could possibly take on. So in the massage example, the number of clients seen per day <span class="math inline">\(Y\)</span> could take on values <span class="math inline">\(y=0,1,2,3,\)</span> or <span class="math inline">\(4\)</span>.</p>
 </div>
 </div>
@@ -770,9 +770,9 @@ which in this example can be calculated as
 </tbody>
 </table>
 <p>Because these are far apart enough in space that the outcome of Trap1 is independent of Trap2 and Trap3, then
-<span class="math display">\[P(E_{1}\cap C_{2}\cap E_{3})	=	P(E_{1})P(C_{2})P(E_{3})
-	=	(1-0.8)0.8(1-0.8)
-	=	0.032\]</span>
+<span class="math display">\[P(E_{1}\cap C_{2}\cap E_{3})  =   P(E_{1})P(C_{2})P(E_{3})
+    =   (1-0.8)0.8(1-0.8)
+    =   0.032\]</span>
 <strong>Notice how important the assumption of independence is!!!</strong> Similarly we could calculate the probabilities for the rest of the table.</p>
 <table>
 <thead>
@@ -900,29 +900,29 @@ which in this example can be calculated as
 <span id="cb50-7"><a href="2-probability.html#cb50-7" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
 <p><img src="02_Probability_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <p>To calculate the height of any of these bars, we can evaluate the pmf at the desired point. For example, to calculate the probability the number of full traps is 2, we calculate the following</p>
-<p><span class="math display">\[\begin{aligned} P(X=2)	
-  &amp;=	{3 \choose 2}\left(0.8\right)^{2}\left(1-0.8\right)^{3-2} \\
-	&amp;=	\frac{3!}{2!(3-2)!}(0.8)^{2}(0.2)^{3-2} \\
-	&amp;=	\frac{3\cdot2\cdot1}{(2\cdot1)1}\;(0.8)^{2}(0.2) \\
-	&amp;=	3(0.128) \\
-	&amp;=	0.384 \end{aligned}\]</span></p>
+<p><span class="math display">\[\begin{aligned} P(X=2)    
+  &amp;=    {3 \choose 2}\left(0.8\right)^{2}\left(1-0.8\right)^{3-2} \\
+    &amp;=  \frac{3!}{2!(3-2)!}(0.8)^{2}(0.2)^{3-2} \\
+    &amp;=  \frac{3\cdot2\cdot1}{(2\cdot1)1}\;(0.8)^{2}(0.2) \\
+    &amp;=  3(0.128) \\
+    &amp;=  0.384 \end{aligned}\]</span></p>
 <p>You can use R to calculate these probabilities. In general, for any distribution, the “d-function” gives the distribution function (pmf or pdf). So to get R to do the preceding calculation we use:</p>
 <div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="2-probability.html#cb51-1" aria-hidden="true"></a><span class="co"># If    X ~ Binomial(n=3, pi=0.8)</span></span>
 <span id="cb51-2"><a href="2-probability.html#cb51-2" aria-hidden="true"></a><span class="co"># Then  P( X = 2 | n=3, pi=0.8 ) =</span></span>
 <span id="cb51-3"><a href="2-probability.html#cb51-3" aria-hidden="true"></a><span class="kw">dbinom</span>(<span class="dv">2</span>, <span class="dt">size=</span><span class="dv">3</span>, <span class="dt">prob=</span><span class="fl">0.8</span>)</span></code></pre></div>
 <pre><code>## [1] 0.384</code></pre>
 <p>The expectation of this distribution can be shown to be
-<span class="math display">\[\begin{aligned}E[X]	
-  &amp;=	\sum_{x=0}^{n}x\,P(X=x) \\
-	&amp;=	\sum_{x=0}^{n}x\;\frac{n!}{x!\left(n-x\right)!}\pi^{x}\left(1-\pi\right)^{n-x}\\
-	&amp;=	\vdots \\
-	&amp;=	n\pi \end{aligned}\]</span></p>
+<span class="math display">\[\begin{aligned}E[X]   
+  &amp;=    \sum_{x=0}^{n}x\,P(X=x) \\
+    &amp;=  \sum_{x=0}^{n}x\;\frac{n!}{x!\left(n-x\right)!}\pi^{x}\left(1-\pi\right)^{n-x}\\
+    &amp;=  \vdots \\
+    &amp;=  n\pi \end{aligned}\]</span></p>
 <p>and the variance can be similarly calculated
-<span class="math display">\[\begin{aligned} V[X]	
-  &amp;=	\sum_{x=0}^{n}\left(x-E\left[X\right]\right)^{2}\,P\left(X=x|n,\pi\right) \\
-	&amp;=	\sum_{x=0}^{n}\left(x-E\left[X\right]\right)^{2}\;\frac{n!}{x!\left(n-x\right)!}\pi^{x}\left(1-\pi\right)^{n-x} \\
-	&amp;=	\vdots \\
-	&amp;=	n\pi(1-\pi) \end{aligned}\]</span></p>
+<span class="math display">\[\begin{aligned} V[X]  
+  &amp;=    \sum_{x=0}^{n}\left(x-E\left[X\right]\right)^{2}\,P\left(X=x|n,\pi\right) \\
+    &amp;=  \sum_{x=0}^{n}\left(x-E\left[X\right]\right)^{2}\;\frac{n!}{x!\left(n-x\right)!}\pi^{x}\left(1-\pi\right)^{n-x} \\
+    &amp;=  \vdots \\
+    &amp;=  n\pi(1-\pi) \end{aligned}\]</span></p>
 <p><strong>Example:</strong> Suppose a bird survey only captures the presence or absence of a particular bird (say the mountain chickadee). Assuming the true presence proportion at national forest sites around Flagstaff is <span class="math inline">\(\pi=0.1\)</span>, then for <span class="math inline">\(n=20\)</span> randomly chosen sites, the number of sites in which the bird was observed would have the following PMF.</p>
 <div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="2-probability.html#cb53-1" aria-hidden="true"></a>dist &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">x =</span> <span class="dv">0</span><span class="op">:</span><span class="dv">20</span> ) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb53-2"><a href="2-probability.html#cb53-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">probability =</span> <span class="kw">dbinom</span>(x, <span class="dt">size=</span><span class="dv">20</span>, <span class="dt">prob=</span><span class="fl">0.1</span>))</span>
@@ -969,17 +969,17 @@ which in this example can be calculated as
 <p>Assuming that these conditions hold for some count variable <span class="math inline">\(Y\)</span>, the the probability mass function is given by
 <span class="math display">\[P(Y=y)=\frac{\lambda^{y}e^{-\lambda}}{y!}\]</span>
 where <span class="math inline">\(\lambda\)</span> is the expected number of events over 1 unit of time or space and <span class="math inline">\(e\)</span> is the constant <span class="math inline">\(2.718281828\dots\)</span>.</p>
-<p><span class="math display">\[E[Y]	=	\lambda\]</span>
-<span class="math display">\[Var[Y]	=	\lambda\]</span></p>
+<p><span class="math display">\[E[Y]  =   \lambda\]</span>
+<span class="math display">\[Var[Y]    =   \lambda\]</span></p>
 <p><strong>Example:</strong> Suppose we are interested in the population size of small mammals in a region. Let <span class="math inline">\(Y\)</span> be the number of small mammals caught in a large trap over a 12 hour period. Finally, suppose that <span class="math inline">\(Y\sim Poisson(\lambda=2.3)\)</span>. What is the probability of finding exactly 4 critters in our trap?
-<span class="math display">\[P(Y=4)	=	\frac{2.3^{4}\,e^{-2.3}}{4!} =	0.1169\]</span>
+<span class="math display">\[P(Y=4)    =   \frac{2.3^{4}\,e^{-2.3}}{4!} =  0.1169\]</span>
 What about the probability of finding at most 4?
-<span class="math display">\[\begin{aligned} P(Y\le4)	
-  &amp;=	P(Y=0)+P(Y=1)+P(Y=2)+P(Y=3)+P(Y=4) \\
-	&amp;=	0.1003+0.2306+0.2652+0.2033+0.1169 \\
-	&amp;=	0.9163 \end{aligned}\]</span></p>
+<span class="math display">\[\begin{aligned} P(Y\le4) 
+  &amp;=    P(Y=0)+P(Y=1)+P(Y=2)+P(Y=3)+P(Y=4) \\
+    &amp;=  0.1003+0.2306+0.2652+0.2033+0.1169 \\
+    &amp;=  0.9163 \end{aligned}\]</span></p>
 <p>What about the probability of finding 5 or more?
-<span class="math display">\[P(Y\ge5)	=	1-P(Y\le4) =	1-0.9163 =	0.0837\]</span></p>
+<span class="math display">\[P(Y\ge5)  =   1-P(Y\le4) =    1-0.9163 =  0.0837\]</span></p>
 <p>These calculations can be done using the distribution function (d-function) for the Poisson and the cumulative distribution function (p-function).</p>
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="2-probability.html#cb58-1" aria-hidden="true"></a>dist &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">NumCaught =</span> <span class="dv">0</span><span class="op">:</span><span class="dv">10</span> ) <span class="op">%&gt;%</span></span>
 <span id="cb58-2"><a href="2-probability.html#cb58-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>( <span class="dt">probability =</span> <span class="kw">dpois</span>( NumCaught, <span class="dt">lambda=</span><span class="fl">2.3</span> ) )</span>
@@ -1021,8 +1021,8 @@ What about the probability of finding at most 4?
 0 &amp; \textrm{otherwise}
 \end{cases}\]</span></p>
 <p>Analogous to the discrete distributions, we can define the Expectation and Variance of these distributions by replacing the summation with an integral
-<span class="math display">\[\mu = E[X] =	\int_{0}^{\infty}x\,f(x)\,dx = \dots = \frac{1}{\lambda} \]</span>
-<span class="math display">\[\sigma^2 = Var[X]	=	\int_{0}^{\infty}\left(x-\mu\right)^{2}\,f\left(x\right)\,dx =	\dots = \frac{1}{\lambda^{2}}\]</span></p>
+<span class="math display">\[\mu = E[X] =  \int_{0}^{\infty}x\,f(x)\,dx = \dots = \frac{1}{\lambda} \]</span>
+<span class="math display">\[\sigma^2 = Var[X] =   \int_{0}^{\infty}\left(x-\mu\right)^{2}\,f\left(x\right)\,dx =  \dots = \frac{1}{\lambda^{2}}\]</span></p>
 <p>Because the exponential distribution is defined by the rate of occurrence of an event, increasing that rate decreases the time between events. Furthermore because the rate of occurrence cannot be negative, we restrict <span class="math inline">\(\lambda&gt;0\)</span>.</p>
 <p><img src="02_Probability_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
 <p><strong>Example:</strong> Suppose the time between insect captures <span class="math inline">\(X\)</span> during a summer evening for a species of bat follows a exponential distribution with capture rate of <span class="math inline">\(\lambda=2\)</span> insects per minute and therefore the expected waiting time between captures is <span class="math inline">\(1/\lambda=1/2\)</span> minute. Suppose that we are interested in the probability that it takes a bat more than 1 minute to capture its next insect.</p>
@@ -1068,26 +1068,26 @@ where <span class="math inline">\(\exp[y]\)</span> is the exponential function <
 then
 <span class="math display">\[Z=\frac{X-\mu}{\sigma}\sim N\left(0,1\right)\]</span></p>
 <p>You might remember doing something similar in an undergraduate statistics course in order to use a table to look up some probability. From the height example, we calculate
-<span class="math display">\[\begin{aligned}z	
-  &amp;=	\frac{64-70}{3} \\
-	&amp;=	\frac{-6}{3} \\
-	&amp;=	-2 \end{aligned}\]</span>
+<span class="math display">\[\begin{aligned}z  
+  &amp;=    \frac{64-70}{3} \\
+    &amp;=  \frac{-6}{3} \\
+    &amp;=  -2 \end{aligned}\]</span>
 Note that this calculation shows that he is <span class="math inline">\(-2\)</span> standard deviations from the mean. Next we look at a table for <span class="math inline">\(z=-2.00\)</span>. To do this we go down to the <span class="math inline">\(-2.0\)</span> row and over to the <span class="math inline">\(.00\)</span> column and find <span class="math inline">\(0.0228\)</span>. Only slightly over 2% of the adult male population is shorter!</p>
 <p>How tall must a person be to be taller than <span class="math inline">\(80\%\)</span> of the rest of the adult male population? To answer that we must use the table in reverse and look for the <span class="math inline">\(0.8\)</span> value. We find the closest value possible <span class="math inline">\((0.7995)\)</span> and the <span class="math inline">\(z\)</span> value associated with it is <span class="math inline">\(z=0.84\)</span>. Next we solve the standardizing equation for <span class="math inline">\(x\)</span>
 <span class="math display">\[\begin{aligned}
-z	    &amp;=	\frac{x-\mu}{\sigma} \\
-0.84	&amp;=	\frac{x-70}{3} \\
-x	    &amp;=	3(0.84)+70 \\
-	    &amp;=	72.49\;\textrm{inches} \end{aligned}\]</span></p>
+z       &amp;=  \frac{x-\mu}{\sigma} \\
+0.84    &amp;=  \frac{x-70}{3} \\
+x       &amp;=  3(0.84)+70 \\
+        &amp;=  72.49\;\textrm{inches} \end{aligned}\]</span></p>
 <p>Alternatively we could use the quantile function for the normal distribution (q-function) in R and avoid the imprecision of using a table.</p>
 <div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="2-probability.html#cb71-1" aria-hidden="true"></a><span class="kw">qnorm</span>(.<span class="dv">8</span>, <span class="dt">mean=</span><span class="dv">0</span>, <span class="dt">sd=</span><span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] 0.8416212</code></pre>
 <p><strong>Empirical Rules:</strong> It is from the normal distribution that the empirical rules from the previous chapter is derived. If <span class="math inline">\(X\sim N(\mu,\sigma^{2})\)</span> then
-<span class="math display">\[\begin{aligned} P(\mu-\sigma\le X\le\mu+\sigma)	
-  &amp;=	P(-1 \le Z \le 1) \\
-	&amp;=	P(Z \le 1) - P(Z \le -1) \\
-	&amp;\approx	0.8413-0.1587 \\
-	&amp;=	0.6826 \end{aligned}\]</span></p>
+<span class="math display">\[\begin{aligned} P(\mu-\sigma\le X\le\mu+\sigma)   
+  &amp;=    P(-1 \le Z \le 1) \\
+    &amp;=  P(Z \le 1) - P(Z \le -1) \\
+    &amp;\approx    0.8413-0.1587 \\
+    &amp;=  0.6826 \end{aligned}\]</span></p>
 <p><img src="02_Probability_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
 </div>
 </div>

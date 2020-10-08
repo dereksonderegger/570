@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Appendix A : Resampling Linear Models | Introduction to Statistical Methodology, Second Edition</title>
   <meta name="description" content="Appendix A : Resampling Linear Models | Introduction to Statistical Methodology, Second Edition" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Appendix A : Resampling Linear Models | Introduction to Statistical Methodology, Second Edition" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Derek L. Sonderegger &amp; Robert Buscaglia" />
 
 
-<meta name="date" content="2020-09-02" />
+<meta name="date" content="2020-10-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -246,7 +246,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.2.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#why-should-hypotheses-use-mu-and-not-barx"><i class="fa fa-check"></i><b>6.2.1</b> Why should hypotheses use <span class="math inline">\(\mu\)</span> and not <span class="math inline">\(\bar{x}\)</span>?</a></li>
 <li class="chapter" data-level="6.2.2" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#a-note-on-calculating-p-values"><i class="fa fa-check"></i><b>6.2.2</b> A note on calculating p-values</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#additional-examples"><i class="fa fa-check"></i><b>6.3</b> Additional Examples</a></li>
+<li class="chapter" data-level="6.3" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#additional-examples-1"><i class="fa fa-check"></i><b>6.3</b> Additional Examples</a></li>
 <li class="chapter" data-level="6.4" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#p-values-vs-cutoff-values"><i class="fa fa-check"></i><b>6.4</b> P-values vs cutoff values</a></li>
 <li class="chapter" data-level="6.5" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#running-a-t-test-in-r"><i class="fa fa-check"></i><b>6.5</b> Running a t-test in R</a></li>
 <li class="chapter" data-level="6.6" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i><b>6.6</b> Type I and Type II Errors</a>
@@ -386,10 +386,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb436-5"><a href="appendix-a-resampling-linear-models.html#cb436-5" aria-hidden="true"></a><span class="kw">library</span>(boot)      <span class="co"># for the boot function</span></span></code></pre></div>
 <p>The last several chapters have introduced a number of parametric models where we assume that the error terms are normally distributed.
 <span class="math display">\[\begin{aligned}
-  \textrm{One-sample t-test:}	&amp; \;\;\; Y_{i}=\mu+\epsilon_{i}                      &amp; \textrm{where} &amp; \;\;\;\epsilon_{i}\stackrel{iid}{\sim}N\left(0,\sigma\right) \\
-  \textrm{Two-sample t-test:}	&amp;	\;\;\;Y_{ij}=\mu_{i}+\epsilon_{ij}                &amp; \textrm{where} &amp; \;\;\;\epsilon_{ij}\stackrel{iid}{\sim}N\left(0,\sigma\right)\;\;\;i\in\left\{ 1,2\right\} \\
-  \textrm{ANOVA:}		          &amp; \;\;\;Y_{ij}=\mu_{i}+\epsilon_{ij}                &amp; \textrm{where} &amp; \;\;\;\epsilon_{ij}\stackrel{iid}{\sim}N\left(0,\sigma\right)\;\;\;i\in\left\{ 1,2,\dots,k\right\} \\
-  \textrm{Regression:}		    &amp; \;\;\;Y_{i}=\beta_{0}+\beta_{1}x_{i}+\epsilon_{i} &amp; \textrm{where} &amp; \;\;\;\epsilon_{i}\stackrel{iid}{\sim}N\left(0,\sigma\right)
+  \textrm{One-sample t-test:}   &amp; \;\;\; Y_{i}=\mu+\epsilon_{i}                      &amp; \textrm{where} &amp; \;\;\;\epsilon_{i}\stackrel{iid}{\sim}N\left(0,\sigma\right) \\
+  \textrm{Two-sample t-test:}   &amp;   \;\;\;Y_{ij}=\mu_{i}+\epsilon_{ij}                &amp; \textrm{where} &amp; \;\;\;\epsilon_{ij}\stackrel{iid}{\sim}N\left(0,\sigma\right)\;\;\;i\in\left\{ 1,2\right\} \\
+  \textrm{ANOVA:}                 &amp; \;\;\;Y_{ij}=\mu_{i}+\epsilon_{ij}                &amp; \textrm{where} &amp; \;\;\;\epsilon_{ij}\stackrel{iid}{\sim}N\left(0,\sigma\right)\;\;\;i\in\left\{ 1,2,\dots,k\right\} \\
+  \textrm{Regression:}          &amp; \;\;\;Y_{i}=\beta_{0}+\beta_{1}x_{i}+\epsilon_{i} &amp; \textrm{where} &amp; \;\;\;\epsilon_{i}\stackrel{iid}{\sim}N\left(0,\sigma\right)
   \end{aligned}\]</span></p>
 <p>We developed hypothesis tests and confidence intervals for the model parameters assuming that the error terms were normally distributed and, in the event that they are normally distributed, those tests and confidence intervals are the best we can do. However, if the errors are not normally distributed, what should we do?</p>
 <p>Previously we used bootstrapping to estimate the sampling distribution of the sampling statistic when we didn’t know the distribution. We will use the same bootstrapping method, but we’ll simplify all of the above cases to the the same simple linear model
@@ -401,15 +401,15 @@ and <span class="math inline">\(E\left(Y_{i}\right)\)</span> takes on some form 
 <h3><span class="header-section-number">11.5.1</span> One-sample t-tests</h3>
 <p>In this model we are concerned with testing
 <span class="math display">\[\begin{aligned} 
-  H_{0}: &amp;	\;\;	\mu=\mu_{0}\\
-  H_{a}: &amp;	\;\;	\mu\ne\mu_{0}
+  H_{0}: &amp;  \;\;    \mu=\mu_{0}\\
+  H_{a}: &amp;  \;\;    \mu\ne\mu_{0}
   \end{aligned}\]</span>
 for some <span class="math inline">\(\mu_{0}\)</span>. For example, suppose we have the following data and we want to test <span class="math inline">\(H_{0}:\mu=5 vs H_{a}:\mu\ne5\)</span>. The R code we used previously was</p>
 <div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="appendix-a-resampling-linear-models.html#cb437-1" aria-hidden="true"></a><span class="co"># How we previously did a t.test</span></span>
 <span id="cb437-2"><a href="appendix-a-resampling-linear-models.html#cb437-2" aria-hidden="true"></a>test.data &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">y=</span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">13</span>) )</span>
 <span id="cb437-3"><a href="appendix-a-resampling-linear-models.html#cb437-3" aria-hidden="true"></a><span class="kw">t.test</span>( test.data<span class="op">$</span>y, <span class="dt">mu=</span><span class="dv">5</span> )</span></code></pre></div>
 <pre><code>## 
-## 	One Sample t-test
+##  One Sample t-test
 ## 
 ## data:  test.data$y
 ## t = 0.79361, df = 5, p-value = 0.4634
@@ -462,8 +462,8 @@ for some <span class="math inline">\(\mu_{0}\)</span>. For example, suppose we h
 <h3><span class="header-section-number">11.5.2</span> Two-sample t-tests</h3>
 <p>This model is concerned with testing
 <span class="math display">\[\begin{aligned} 
-H_{0}: &amp;	\;\;	\mu_{1}=\mu_{2} \\
-H_{a}: &amp;	\;\;	\mu_{1}\ne\mu_{2}
+H_{0}: &amp;    \;\;    \mu_{1}=\mu_{2} \\
+H_{a}: &amp;    \;\;    \mu_{1}\ne\mu_{2}
 \end{aligned}\]</span></p>
 <div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="appendix-a-resampling-linear-models.html#cb445-1" aria-hidden="true"></a><span class="co"># How we previously did a t.test</span></span>
 <span id="cb445-2"><a href="appendix-a-resampling-linear-models.html#cb445-2" aria-hidden="true"></a>test.data &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">y=</span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">4</span>,  <span class="dv">5</span>,  <span class="dv">7</span>, <span class="dv">13</span>, </span>
@@ -472,7 +472,7 @@ H_{a}: &amp;	\;\;	\mu_{1}\ne\mu_{2}
 <span id="cb445-5"><a href="appendix-a-resampling-linear-models.html#cb445-5" aria-hidden="true"></a></span>
 <span id="cb445-6"><a href="appendix-a-resampling-linear-models.html#cb445-6" aria-hidden="true"></a><span class="kw">t.test</span>( y <span class="op">~</span><span class="st"> </span>group, <span class="dt">data=</span>test.data, <span class="dt">var.equal=</span><span class="ot">TRUE</span> )</span></code></pre></div>
 <pre><code>## 
-## 	Two Sample t-test
+##  Two Sample t-test
 ## 
 ## data:  y by group
 ## t = -1.838, df = 10, p-value = 0.09591
@@ -501,7 +501,7 @@ H_{a}: &amp;	\;\;	\mu_{1}\ne\mu_{2}
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Residual standard error: 3.926 on 10 degrees of freedom
-## Multiple R-squared:  0.2525,	Adjusted R-squared:  0.1778 
+## Multiple R-squared:  0.2525, Adjusted R-squared:  0.1778 
 ## F-statistic: 3.378 on 1 and 10 DF,  p-value: 0.09591</code></pre>
 <div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="appendix-a-resampling-linear-models.html#cb449-1" aria-hidden="true"></a><span class="kw">coef</span>(m2)</span></code></pre></div>
 <pre><code>## (Intercept)      groupB 
@@ -601,8 +601,8 @@ where the minus sign on the upper limit is because <span class="math inline">\(\
 <p><img src="90_Resampling_LinearModels_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <p>Then any particular value of <span class="math inline">\(\hat{\theta}^{*}\)</span> could be much larger than <span class="math inline">\(\hat{\theta}\)</span>. Therefore <span class="math inline">\(\hat{\theta}\)</span> could be much larger than <span class="math inline">\(\theta\)</span>. Therefore our confidence interval should be <span class="math inline">\(\left[\hat{\theta}-\textrm{big},\;\hat{\theta}+\textrm{small}\right]\)</span>.</p>
 <p>This formula can be simplified to<br />
-<span class="math display">\[\left[\hat{\theta}-\left(\hat{\theta}_{1-\alpha/2}^{*}-\hat{\theta}\right)\;,\,\hat{\theta}+\left(\hat{\theta}-\hat{\theta}_{\alpha/2}^{*}\right)\right]	
-	\left[2\hat{\theta}-\hat{\theta}_{1-\alpha/2}^{*}\;,\;\;2\hat{\theta}-\hat{\theta}_{\alpha/2}^{*}\right]\]</span></p>
+<span class="math display">\[\left[\hat{\theta}-\left(\hat{\theta}_{1-\alpha/2}^{*}-\hat{\theta}\right)\;,\,\hat{\theta}+\left(\hat{\theta}-\hat{\theta}_{\alpha/2}^{*}\right)\right]  
+    \left[2\hat{\theta}-\hat{\theta}_{1-\alpha/2}^{*}\;,\;\;2\hat{\theta}-\hat{\theta}_{\alpha/2}^{*}\right]\]</span></p>
 </div>
 <div id="towards-bias-corrected-and-accelerated-intervals-bca" class="section level3" number="11.7.4">
 <h3><span class="header-section-number">11.7.4</span> Towards bias-corrected and accelerated intervals (BCa)</h3>
@@ -645,7 +645,7 @@ The first thing we will do (as we should do in all data analyses) is to graph ou
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Residual standard error: 4.294 on 21 degrees of freedom
-## Multiple R-squared:  0.9973,	Adjusted R-squared:  0.997 
+## Multiple R-squared:  0.9973, Adjusted R-squared:  0.997 
 ## F-statistic:  2631 on 3 and 21 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Confidence intervals using the
 <span class="math display">\[\epsilon_{ij}\stackrel{iid}{\sim}N\left(0,\sigma\right)\]</span> assumption are given by</p>
@@ -698,7 +698,7 @@ but the <span class="math inline">\(\epsilon_{i}\)</span> terms have a strong po
 <p><img src="90_Resampling_LinearModels_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
 <div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="appendix-a-resampling-linear-models.html#cb477-1" aria-hidden="true"></a><span class="kw">shapiro.test</span>( <span class="kw">resid</span>(model) )</span></code></pre></div>
 <pre><code>## 
-## 	Shapiro-Wilk normality test
+##  Shapiro-Wilk normality test
 ## 
 ## data:  resid(model)
 ## W = 0.77319, p-value = 0.0003534</code></pre>
@@ -886,38 +886,38 @@ then our usual analysis is inappropriate but we could easily bootstrap our confi
 <table>
 <tbody>
 <tr class="odd">
-<td align="center"><span class="math inline">\(x_{i}\)</span> |</td>
-<td align="center">3 |</td>
-<td align="center">4 |</td>
-<td align="center">5 |</td>
-<td align="center">6 |</td>
+<td align="center"><span class="math inline">\(x_{i}\)</span></td>
+<td align="center">3</td>
+<td align="center">4</td>
+<td align="center">5</td>
+<td align="center">6</td>
 <td align="center">7</td>
 <td align="center">8</td>
 </tr>
 <tr class="even">
-<td align="center"><span class="math inline">\(y_{i}\)</span> |</td>
-<td align="center">5 |</td>
-<td align="center">9 |</td>
-<td align="center">10 |</td>
-<td align="center">12 |</td>
+<td align="center"><span class="math inline">\(y_{i}\)</span></td>
+<td align="center">5</td>
+<td align="center">9</td>
+<td align="center">10</td>
+<td align="center">12</td>
 <td align="center">15</td>
 <td align="center">15</td>
 </tr>
 <tr class="odd">
-<td align="center"><span class="math inline">\(\hat{y}_{i}\)</span> | 6 |</td>
-<td align="center">6 |</td>
-<td align="center">8 |</td>
-<td align="center">10 |</td>
-<td align="center">12 |</td>
+<td align="center"><span class="math inline">\(\hat{y}_{i}\)</span></td>
+<td align="center">6</td>
+<td align="center">8</td>
+<td align="center">10</td>
+<td align="center">12</td>
 <td align="center">14</td>
 <td align="center">16</td>
 </tr>
 <tr class="even">
 <td align="center"><span class="math inline">\(\hat{\epsilon}_{i}\)</span></td>
-<td align="center">-1 |</td>
-<td align="center">1 |</td>
-<td align="center">0 |</td>
-<td align="center">0 |</td>
+<td align="center">-1</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">0</td>
 <td align="center">1</td>
 <td align="center">-1</td>
 </tr>

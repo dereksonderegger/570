@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Sampling Distribution of \(\bar{X}\) | Introduction to Statistical Methodology, Second Edition</title>
   <meta name="description" content="Chapter 4 Sampling Distribution of \(\bar{X}\) | Introduction to Statistical Methodology, Second Edition" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Sampling Distribution of \(\bar{X}\) | Introduction to Statistical Methodology, Second Edition" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Derek L. Sonderegger &amp; Robert Buscaglia" />
 
 
-<meta name="date" content="2020-09-02" />
+<meta name="date" content="2020-10-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -246,7 +246,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.2.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#why-should-hypotheses-use-mu-and-not-barx"><i class="fa fa-check"></i><b>6.2.1</b> Why should hypotheses use <span class="math inline">\(\mu\)</span> and not <span class="math inline">\(\bar{x}\)</span>?</a></li>
 <li class="chapter" data-level="6.2.2" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#a-note-on-calculating-p-values"><i class="fa fa-check"></i><b>6.2.2</b> A note on calculating p-values</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#additional-examples"><i class="fa fa-check"></i><b>6.3</b> Additional Examples</a></li>
+<li class="chapter" data-level="6.3" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#additional-examples-1"><i class="fa fa-check"></i><b>6.3</b> Additional Examples</a></li>
 <li class="chapter" data-level="6.4" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#p-values-vs-cutoff-values"><i class="fa fa-check"></i><b>6.4</b> P-values vs cutoff values</a></li>
 <li class="chapter" data-level="6.5" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#running-a-t-test-in-r"><i class="fa fa-check"></i><b>6.5</b> Running a t-test in R</a></li>
 <li class="chapter" data-level="6.6" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i><b>6.6</b> Type I and Type II Errors</a>
@@ -438,33 +438,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="probability-rules-for-expectations-and-variances" class="section level3" number="4.2.1">
 <h3><span class="header-section-number">4.2.1</span> Probability Rules for Expectations and Variances</h3>
 <p>Claim: For random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> and constant <span class="math inline">\(a\)</span> the following statements hold:
-<span class="math display">\[E\left(aX\right)	=	aE\left(X\right)\]</span>
-<span class="math display">\[Var\left(aX\right)	=	a^{2}Var\left(X\right)\]</span>
-<span class="math display">\[E\left(X+Y\right)	=	E\left(X\right)+E\left(Y\right)\]</span>
-<span class="math display">\[E\left(X-Y\right)	=	E\left(X\right)-E\left(Y\right)\]</span>
-<span class="math display">\[Var\left(X\pm Y\right)	=	Var\left(X\right)+Var\left(Y\right)\;\textrm{if X,Y are independent}\]</span></p>
+<span class="math display">\[E\left(aX\right)  =   aE\left(X\right)\]</span>
+<span class="math display">\[Var\left(aX\right)    =   a^{2}Var\left(X\right)\]</span>
+<span class="math display">\[E\left(X+Y\right) =   E\left(X\right)+E\left(Y\right)\]</span>
+<span class="math display">\[E\left(X-Y\right) =   E\left(X\right)-E\left(Y\right)\]</span>
+<span class="math display">\[Var\left(X\pm Y\right)    =   Var\left(X\right)+Var\left(Y\right)\;\textrm{if X,Y are independent}\]</span></p>
 <p>Proving these results is relatively straight forward and is done in almost all introductory probability text books.</p>
 </div>
 <div id="mean-and-variance-of-the-sample-mean" class="section level3" number="4.2.2">
 <h3><span class="header-section-number">4.2.2</span> Mean and Variance of the Sample Mean</h3>
 <p>We have been talking about random variables drawn from a known distribution and being able to derive their expected values and variances. We now turn to the mean of a collection of random variables. Because sample values are random, any function of them is also random. So even though the act of calculating a mean is not a random process, the numbers that are fed into the algorithm are random. Thus the sample mean will change from sample to sample and we are interested in how it varies.</p>
 <p>Using the rules we have just confirmed, it is easy to calculate the expectation and variance of the sample mean. Given a sample <span class="math inline">\(X_{1},X_{2},\dots,X_{n}\)</span> of observations where all the observations are independent of each other and all the observations have expectation <span class="math inline">\(E\left[X_{i}\right]=\mu\)</span> and variance <span class="math inline">\(Var\left[X_{i}\right]=\sigma^{2}\)</span> then
-<span class="math display">\[\begin{aligned}E\left[\bar{X}\right]	
-  &amp;=	E\left[\frac{1}{n}\sum_{i=1}^{n}X_{i}\right] \\
-	&amp;=	\frac{1}{n}E\left[\sum_{i=1}^{n}X_{i}\right] \\
-	&amp;=	\frac{1}{n}\sum_{i=1}^{n}E\left[X_{i}\right] \\
-	&amp;=	\frac{1}{n}\sum_{i=1}^{n}\mu                 \\
-	&amp;=	\frac{1}{n}\,n\mu                            \\
-	&amp;=	\mu\end{aligned}\]</span>
+<span class="math display">\[\begin{aligned}E\left[\bar{X}\right]  
+  &amp;=    E\left[\frac{1}{n}\sum_{i=1}^{n}X_{i}\right] \\
+    &amp;=  \frac{1}{n}E\left[\sum_{i=1}^{n}X_{i}\right] \\
+    &amp;=  \frac{1}{n}\sum_{i=1}^{n}E\left[X_{i}\right] \\
+    &amp;=  \frac{1}{n}\sum_{i=1}^{n}\mu                 \\
+    &amp;=  \frac{1}{n}\,n\mu                            \\
+    &amp;=  \mu\end{aligned}\]</span>
 and
-<span class="math display">\[\begin{aligned} Var\left[\bar{X}\right]	               
-  &amp;=	Var\left[\frac{1}{n}\sum_{i=1}^{n}X_{i}\right]       \\
-	&amp;=	\frac{1}{n^{2}}Var\left[\sum_{i=1}^{n}X_{i}\right]   \\
-	&amp;=	\frac{1}{n^{2}}\sum_{i=1}^{n}Var\left[X_{i}\right]   \\
-	&amp;=	\frac{1}{n^{2}}\sum_{i=1}^{n}\sigma^{2}              \\
-	&amp;=	\frac{1}{n^{2}}\,n\sigma^{2}                         \\
-	&amp;=	\frac{\sigma^{2}}{n}
-	\end{aligned}\]</span></p>
+<span class="math display">\[\begin{aligned} Var\left[\bar{X}\right]                 
+  &amp;=    Var\left[\frac{1}{n}\sum_{i=1}^{n}X_{i}\right]       \\
+    &amp;=  \frac{1}{n^{2}}Var\left[\sum_{i=1}^{n}X_{i}\right]   \\
+    &amp;=  \frac{1}{n^{2}}\sum_{i=1}^{n}Var\left[X_{i}\right]   \\
+    &amp;=  \frac{1}{n^{2}}\sum_{i=1}^{n}\sigma^{2}              \\
+    &amp;=  \frac{1}{n^{2}}\,n\sigma^{2}                         \\
+    &amp;=  \frac{\sigma^{2}}{n}
+    \end{aligned}\]</span></p>
 <p>Notice that the sample mean has the same expectation as the original distribution that the samples were pulled from, but it has a smaller variance! So the sample mean is an unbiased estimator of the population mean <span class="math inline">\(\mu\)</span> and the average distance of the sample mean to the population mean decreases as the sample size becomes larger.</p>
 </div>
 </div>
@@ -476,25 +476,25 @@ and
 <p><strong>Example:</strong> A researcher measures the wingspan of a captured Mountain Plover three times. Assume that each of these <span class="math inline">\(X_{i}\)</span> measurements comes from a <span class="math inline">\(N\left(\mu=6\textrm{ inches},\,\sigma^{2}=1\textrm{ inches}^2\right)\)</span> distribution.</p>
 <ol style="list-style-type: decimal">
 <li><p>What is the probability that the first observation is greater than 7?
-<span class="math display">\[\begin{aligned}P\left(X\ge7\right)	
-  &amp;=	P\left(\frac{X-\mu}{\sigma}\ge\frac{7-6}{1}\right)  \\
- &amp;=	P\left(Z\ge1\right)                                 \\
- &amp;=	0.1587
+<span class="math display">\[\begin{aligned}P\left(X\ge7\right)    
+  &amp;=    P\left(\frac{X-\mu}{\sigma}\ge\frac{7-6}{1}\right)  \\
+ &amp;=  P\left(Z\ge1\right)                                 \\
+ &amp;=  0.1587
   \end{aligned}\]</span></p></li>
 <li><p>What is the distribution of the sample mean?
 <span class="math display">\[\bar{X}\sim N\left(\mu_{\bar{X}}=6,\,\;\sigma_{\bar{X}}^{2}=\frac{1^{2}}{3}\right)\]</span></p></li>
 <li><p>What is the probability that the sample mean is greater than 7?
-<span class="math display">\[\begin{aligned}P\left(\bar{X}\ge7\right)	                                                   
-  &amp;=	P\left(\frac{\bar{X}-\mu_{\bar{X}}}{\sigma_{\bar{X}}}\ge\frac{7-6}{\sqrt{\frac{1}{3}}}\right)  \\
- &amp;=	P\left(Z\ge\sqrt{3}\right)    \\
- &amp;=	P\left(Z\ge1.73\right) \\
- &amp;=	0.0418
+<span class="math display">\[\begin{aligned}P\left(\bar{X}\ge7\right)                                                     
+  &amp;=    P\left(\frac{\bar{X}-\mu_{\bar{X}}}{\sigma_{\bar{X}}}\ge\frac{7-6}{\sqrt{\frac{1}{3}}}\right)  \\
+ &amp;=  P\left(Z\ge\sqrt{3}\right)    \\
+ &amp;=  P\left(Z\ge1.73\right) \\
+ &amp;=  0.0418
  \end{aligned}\]</span></p></li>
 </ol>
 <p><strong>Example:</strong> Suppose that the weight of an adult black bear is normally distributed with standard deviation <span class="math inline">\(\sigma=50\)</span> pounds. How large a sample do I need to take to be <span class="math inline">\(95\%\)</span> certain that my sample mean is within <span class="math inline">\(10\)</span> pounds of the true mean <span class="math inline">\(\mu\)</span>?</p>
-<p>So we want <span class="math display">\[\left|\bar{X}-\mu\right| \le 10\]</span> which we rewrite as <span class="math display">\[-10	\le\bar{X}-\mu_{\bar{X}}\le	10\]</span></p>
-<p><span class="math display">\[\frac{-10}{\left(\frac{50}{\sqrt{n}}\right)}	\le\frac{\bar{X}-\mu_{\bar{X}}}{\sigma_{\bar{X}}}\le	\frac{10}{\left(\frac{50}{\sqrt{n}}\right)}\]</span></p>
-<p><span class="math display">\[\frac{-10}{\left(\frac{50}{\sqrt{n}}\right)}	\le Z\le	\frac{10}{\left(\frac{50}{\sqrt{n}}\right)}\]</span></p>
+<p>So we want <span class="math display">\[\left|\bar{X}-\mu\right| \le 10\]</span> which we rewrite as <span class="math display">\[-10    \le\bar{X}-\mu_{\bar{X}}\le 10\]</span></p>
+<p><span class="math display">\[\frac{-10}{\left(\frac{50}{\sqrt{n}}\right)}  \le\frac{\bar{X}-\mu_{\bar{X}}}{\sigma_{\bar{X}}}\le    \frac{10}{\left(\frac{50}{\sqrt{n}}\right)}\]</span></p>
+<p><span class="math display">\[\frac{-10}{\left(\frac{50}{\sqrt{n}}\right)}  \le Z\le    \frac{10}{\left(\frac{50}{\sqrt{n}}\right)}\]</span></p>
 <p>Next we look in our standard normal table to find a <span class="math inline">\(z\)</span>-value such that <span class="math inline">\(P\left(-z\le Z\le z\right)=0.95\)</span> and that value is <span class="math inline">\(z=1.96\)</span>.</p>
 <div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="4-sampling-distribution-of-barx.html#cb107-1" aria-hidden="true"></a>data &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">z=</span> <span class="kw">seq</span>(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="dt">length=</span><span class="dv">1000</span>) ) <span class="op">%&gt;%</span></span>
 <span id="cb107-2"><a href="4-sampling-distribution-of-barx.html#cb107-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>( <span class="dt">y =</span> <span class="kw">dnorm</span>(z) )</span>
@@ -504,9 +504,9 @@ and
 <span id="cb107-6"><a href="4-sampling-distribution-of-barx.html#cb107-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_text</span>( <span class="dt">x=</span><span class="dv">0</span>, <span class="dt">y=</span>.<span class="dv">2</span>, <span class="dt">label=</span><span class="st">&#39;95%&#39;</span>)</span></code></pre></div>
 <p><img src="04_SamplingDistribution_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>So all we need to do is solve the following equation for <span class="math inline">\(n\)</span>
-<span class="math display">\[1.96	=	\frac{10}{ \left( \frac{50}{\sqrt{n}} \right) }\]</span>
-<span class="math display">\[\frac{1.96}{10}\left(50\right)	=	\sqrt{n}\]</span>
-<span class="math display">\[96	\approx	n\]</span></p>
+<span class="math display">\[1.96  =   \frac{10}{ \left( \frac{50}{\sqrt{n}} \right) }\]</span>
+<span class="math display">\[\frac{1.96}{10}\left(50\right)    =   \sqrt{n}\]</span>
+<span class="math display">\[96    \approx n\]</span></p>
 </div>
 <div id="central-limit-theorem" class="section level2" number="4.4">
 <h2><span class="header-section-number">4.4</span> Central Limit Theorem</h2>
@@ -524,10 +524,10 @@ and
 </ol>
 <p><strong>Example:</strong> Suppose the waiting time from order to delivery at a fast-food restaurant is an exponential random variable with rate <span class="math inline">\(\lambda=1/2\)</span> minutes and so the expected wait time is <span class="math inline">\(2\)</span> minutes and the variance is <span class="math inline">\(4\)</span> minutes. What is the approximate probability that we observe a sample of size <span class="math inline">\(n=40\)</span> with a mean time greater than <span class="math inline">\(2.5\)</span> minutes?</p>
 <p><span class="math display">\[\begin{aligned}P\left(\bar{X}\ge2.5\right)
-  &amp;=	P\left(\frac{\bar{X}-\mu_{\bar{X}}}{\sigma_{\bar{X}}}\ge\frac{2.5-\mu_{\bar{X}}}{\sigma_{\bar{X}}}\right) \\
-	&amp;\approx	P\left(Z\ge\frac{2.5-2}{\frac{2}{\sqrt{40}}}\right) \\
-	&amp;=	P\left(Z\ge1.58\right) \\
-	&amp;=	0.0571 \end{aligned}\]</span></p>
+  &amp;=    P\left(\frac{\bar{X}-\mu_{\bar{X}}}{\sigma_{\bar{X}}}\ge\frac{2.5-\mu_{\bar{X}}}{\sigma_{\bar{X}}}\right) \\
+    &amp;\approx    P\left(Z\ge\frac{2.5-2}{\frac{2}{\sqrt{40}}}\right) \\
+    &amp;=  P\left(Z\ge1.58\right) \\
+    &amp;=  0.0571 \end{aligned}\]</span></p>
 <div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="4-sampling-distribution-of-barx.html#cb108-1" aria-hidden="true"></a><span class="co"># Answer obtained via simulation</span></span>
 <span id="cb108-2"><a href="4-sampling-distribution-of-barx.html#cb108-2" aria-hidden="true"></a>SampDist &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">10000</span>) <span class="op">*</span>{                     <span class="co"># make 10,000</span></span>
 <span id="cb108-3"><a href="4-sampling-distribution-of-barx.html#cb108-3" aria-hidden="true"></a>  Sample &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">x=</span> <span class="kw">rexp</span>(<span class="dt">n=</span><span class="dv">40</span>, <span class="dt">rate=</span><span class="dv">1</span><span class="op">/</span><span class="dv">2</span> ) )   <span class="co"># simulated xbar </span></span>
@@ -543,14 +543,14 @@ and
 <p><span class="math inline">\(E\left(\bar{Y}\right)=\mu\)</span>. That states that the distribution of the sample mean will centered at <span class="math inline">\(\mu\)</span>. We expect to sometimes take samples where the sample mean is higher than <span class="math inline">\(\mu\)</span> and sometimes less than <span class="math inline">\(\mu\)</span>, but the average underestimate is the same magnitude as the average overestimate.</p>
 <p><span class="math inline">\(Var\left(\bar{Y}\right)=\frac{\sigma^{2}}{n}\)</span>. This states that as our sample size increases, we trust the sample mean to be close to <span class="math inline">\(\mu\)</span>. The larger the sample size, the greater our expectation that the <span class="math inline">\(\bar{Y}\)</span> will be close to <span class="math inline">\(\mu\)</span>.</p>
 <p>If <span class="math inline">\(Y_{1},Y_{2},\dots,Y_{n}\)</span> were sampled from a <span class="math inline">\(N\left(\mu,\sigma^{2}\right)\)</span> distribution then <span class="math inline">\(\bar{Y}\)</span> is normally distributed.
-<span class="math display">\[\bar{Y}	\sim	N\left(\mu_{\bar{Y}}=\mu,\;\;\sigma_{\bar{Y}}^{2}=\frac{\sigma^{2}}{n}\right)\]</span></p>
+<span class="math display">\[\bar{Y} \sim    N\left(\mu_{\bar{Y}}=\mu,\;\;\sigma_{\bar{Y}}^{2}=\frac{\sigma^{2}}{n}\right)\]</span></p>
 <p>If <span class="math inline">\(Y_{1},Y_{2},\dots,Y_{n}\)</span> were sampled from a distribution that is <em>not</em> normal but has mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^{2}\)</span>, and our sample size is large, then <span class="math inline">\(\bar{Y}\)</span> is <em>approximately</em> normally distributed.
-<span class="math display">\[\bar{Y}	\stackrel{\cdot}{\sim}	N\left(\mu_{\bar{Y}}=\mu,\;\;\sigma_{\bar{Y}}^{2}=\frac{\sigma^{2}}{n}\right)\]</span></p>
+<span class="math display">\[\bar{Y}   \stackrel{\cdot}{\sim}  N\left(\mu_{\bar{Y}}=\mu,\;\;\sigma_{\bar{Y}}^{2}=\frac{\sigma^{2}}{n}\right)\]</span></p>
 </div>
 <div id="Exercises_SamplingDistributions" class="section level2" number="4.5">
 <h2><span class="header-section-number">4.5</span> Exercises</h2>
 <ol style="list-style-type: decimal">
-<li>Suppose that the amount of fluid in a small can of soda can be well approximated by a Normal distribution. Let <span class="math inline">\(X\)</span> be the amount of soda (in milliliters) in a single can and <span class="math inline">\(X\sim N\left(\mu=222,\;\sigma=5\right)\)</span>.
+<li>Suppose that the amount of fluid in a small can of soda can be well approximated by a Normal distribution. Let <span class="math inline">\(X\)</span> be the amount of soda (in milliliters) in a single can and <span class="math inline">\(X\sim N\left(\mu=222,\;\sigma^2=5^2=25\right)\)</span>.
 <ol style="list-style-type: lower-alpha">
 <li><span class="math inline">\(P\left(X&gt;230\right)=\)</span></li>
 <li>Suppose we take a random sample of 6 cans such that the six cans are independent. What is the expected value of the mean of those six cans? In other words, what is <span class="math inline">\(E\left(\bar{X}\right)\)</span>?</li>

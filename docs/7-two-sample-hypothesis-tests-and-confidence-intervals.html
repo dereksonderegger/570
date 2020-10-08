@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 7 Two-Sample Hypothesis Tests and Confidence Intervals | Introduction to Statistical Methodology, Second Edition</title>
   <meta name="description" content="Chapter 7 Two-Sample Hypothesis Tests and Confidence Intervals | Introduction to Statistical Methodology, Second Edition" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 Two-Sample Hypothesis Tests and Confidence Intervals | Introduction to Statistical Methodology, Second Edition" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Derek L. Sonderegger &amp; Robert Buscaglia" />
 
 
-<meta name="date" content="2020-09-02" />
+<meta name="date" content="2020-10-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -246,7 +246,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.2.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#why-should-hypotheses-use-mu-and-not-barx"><i class="fa fa-check"></i><b>6.2.1</b> Why should hypotheses use <span class="math inline">\(\mu\)</span> and not <span class="math inline">\(\bar{x}\)</span>?</a></li>
 <li class="chapter" data-level="6.2.2" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#a-note-on-calculating-p-values"><i class="fa fa-check"></i><b>6.2.2</b> A note on calculating p-values</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#additional-examples"><i class="fa fa-check"></i><b>6.3</b> Additional Examples</a></li>
+<li class="chapter" data-level="6.3" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#additional-examples-1"><i class="fa fa-check"></i><b>6.3</b> Additional Examples</a></li>
 <li class="chapter" data-level="6.4" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#p-values-vs-cutoff-values"><i class="fa fa-check"></i><b>6.4</b> P-values vs cutoff values</a></li>
 <li class="chapter" data-level="6.5" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#running-a-t-test-in-r"><i class="fa fa-check"></i><b>6.5</b> Running a t-test in R</a></li>
 <li class="chapter" data-level="6.6" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i><b>6.6</b> Type I and Type II Errors</a>
@@ -398,23 +398,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The effects of caffeine on the body have been well studied. In one experiment, a group of male college students were trained in a particular tapping movement and to tap at a rapid rate. They were randomly divided into caffeine and non-caffeine groups and given approximately two cups of coffee (with either 200 mg of caffeine or none). After a 2-hour period, the students tapping rate was measured.</p>
 <p>The population that we are trying to learn about is male college-aged students and we the most likely question of interest is if the mean tap rate of the caffeinated group is different than the non-caffeinated group. Notice that we want to take this sample of 20 students to make inference on the population of male college-aged students. The hypotheses we are interested in are
 <span class="math display">\[\begin{aligned} 
-H_{0}:	\mu_{nc} &amp;=   \mu_{c} \\	
-H_{a}:	\mu_{nc} &amp;\ne \mu_{c}
+H_{0}:  \mu_{nc} &amp;=   \mu_{c} \\    
+H_{a}:  \mu_{nc} &amp;\ne \mu_{c}
 \end{aligned}\]</span></p>
 <p>where <span class="math inline">\(\mu_{c}\)</span> is the mean tap rate of the caffeinated group and <span class="math inline">\(\mu_{nc}\)</span> is the mean tap rate of the non-caffeinated group. We could equivalently express these hypotheses via
 <span class="math display">\[\begin{aligned}
-H_{0}:	\mu_{nc}-\mu_{c}  &amp;=  0  \\
-H_{a}:	\mu_{nc}-\mu_{c} &amp;\ne 0
+H_{0}:  \mu_{nc}-\mu_{c}  &amp;=  0  \\
+H_{a}:  \mu_{nc}-\mu_{c} &amp;\ne 0
 \end{aligned}\]</span></p>
 <p>Or we could let <span class="math inline">\(\delta=\mu_{nc}-\mu_{c}\)</span> and write the hypotheses as
 <span class="math display">\[\begin{aligned}
-H_{0}:\,\delta	&amp;=	  0 \\
-H_{a}:\,\delta	&amp;\ne	0
+H_{0}:\,\delta  &amp;=    0 \\
+H_{a}:\,\delta  &amp;\ne    0
 \end{aligned}\]</span></p>
 <p>The data are available in many different formats at <a href="http://www.lock5stat.com/datapage.html" class="uri">http://www.lock5stat.com/datapage.html</a></p>
 <div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#cb143-1" aria-hidden="true"></a><span class="kw">data</span>(CaffeineTaps, <span class="dt">package=</span><span class="st">&#39;Lock5Data&#39;</span>)   <span class="co"># load the data from the Lock5Data package</span></span>
 <span id="cb143-2"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#cb143-2" aria-hidden="true"></a><span class="kw">str</span>(CaffeineTaps)</span></code></pre></div>
-<pre><code>## &#39;data.frame&#39;:	20 obs. of  2 variables:
+<pre><code>## &#39;data.frame&#39;:    20 obs. of  2 variables:
 ##  $ Taps : int  246 248 250 252 248 250 246 248 245 250 ...
 ##  $ Group: Factor w/ 2 levels &quot;Caffeine&quot;,&quot;NoCaffeine&quot;: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
 <p>The dataset contains two variables. Taps are the response of interest. Group is a factor (or categorical variable) that has 2 levels. These are the different groupings of Caffeine and NoCaffeine. The first thing we should do is, as always, graph the data.</p>
@@ -527,7 +527,7 @@ H_{a}:\,\delta	&amp;\ne	0
 <span id="cb161-2"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#cb161-2" aria-hidden="true"></a><span class="kw">oneway_test</span>(Taps<span class="op">~</span>Group, <span class="dt">data=</span>CaffeineTaps, <span class="dt">alternative=</span><span class="st">&quot;two.sided&quot;</span>,</span>
 <span id="cb161-3"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#cb161-3" aria-hidden="true"></a>            <span class="dt">distribution=</span><span class="kw">approximate</span>(<span class="dt">nresample=</span><span class="dv">10</span><span class="op">^</span><span class="dv">4</span>))</span></code></pre></div>
 <pre><code>## 
-## 	Approximative Two-Sample Fisher-Pitman Permutation Test
+##  Approximative Two-Sample Fisher-Pitman Permutation Test
 ## 
 ## data:  Taps by Group (Caffeine, NoCaffeine)
 ## Z = 2.723, p-value = 0.0049
@@ -538,8 +538,8 @@ H_{a}:\,\delta	&amp;\ne	0
 <h4><span class="header-section-number">7.1.1.2</span> Different Alternative Hypothesis</h4>
 <p>Everything we know about the biological effects of ingesting caffeine suggests that we should have expected the caffeinated group to tap faster. We might want to set up our experiment so only faster tapping represents “extreme” data compared to the null hypothesis. In this case we want an alternative of <span class="math inline">\(H_{a}:\,\mu_{nc}-\mu_{c}&lt;0\)</span> We can state our null and alternative hypothesis as
 <span class="math display">\[\begin{aligned}
-H_{0}:\,\mu_{nc}-\mu_{c}	&amp;\ge	0 \\
-H_{a}:\,\mu_{nc}-\mu_{c}	&amp;&lt;	0
+H_{0}:\,\mu_{nc}-\mu_{c}    &amp;\ge    0 \\
+H_{a}:\,\mu_{nc}-\mu_{c}    &amp;&lt;  0
 \end{aligned}\]</span></p>
 <p>The creation of the sampling distribution of the mean difference <span class="math inline">\(d^*\)</span> is identical to our previous technique because if our observed difference <span class="math inline">\(d\)</span> is so negative that it is incompatible with the hypothesis that <span class="math inline">\(\mu_{nc}-\mu_{c}=0\)</span> then it must also be incompatible with any positive difference. We can perform the permutation test and generate the distribution of estimated differences in the same manner as above. The only difference in the analysis is at the end when we calculate the p-value and don’t consider the positive tail. That is, the p-value is the percent of simulations where <span class="math inline">\(d^*&lt;d\)</span>.</p>
 <div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#cb163-1" aria-hidden="true"></a>PermutationDist <span class="op">%&gt;%</span><span class="st"> </span></span>
@@ -551,7 +551,7 @@ H_{a}:\,\mu_{nc}-\mu_{c}	&amp;&lt;	0
 <span id="cb165-2"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#cb165-2" aria-hidden="true"></a><span class="kw">oneway_test</span>(Taps<span class="op">~</span>Group, <span class="dt">data=</span>CaffeineTaps, <span class="dt">alternative=</span><span class="st">&quot;less&quot;</span>,</span>
 <span id="cb165-3"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#cb165-3" aria-hidden="true"></a>            <span class="dt">distribution=</span><span class="kw">approximate</span>(<span class="dt">nresample=</span><span class="dv">10</span><span class="op">^</span><span class="dv">4</span>))</span></code></pre></div>
 <pre><code>## 
-## 	Approximative Two-Sample Fisher-Pitman Permutation Test
+##  Approximative Two-Sample Fisher-Pitman Permutation Test
 ## 
 ## data:  Taps by Group (NoCaffeine, Caffeine)
 ## Z = -2.723, p-value = 0.0021
@@ -590,26 +590,26 @@ H_{a}:\,\mu_{nc}-\mu_{c}	&amp;&lt;	0
 <p>So our hypothesis tests and confidence interval routine will follow a similar pattern as our one-sample tests, but we now need to figure out the correct standardization formula for the difference in means. The only difficulty will be figuring out what the appropriate standard deviation term <span class="math inline">\(\hat{\sigma}_{D}\)</span> should be.</p>
 <p>Recall that if two random variables, A and B, are independent then <span class="math display">\[Var\left(A-B\right)=Var(A)+Var(B)\]</span>
 and therefore
-<span class="math display">\[\begin{aligned} Var\left(D\right)	
-  &amp;=	Var\left(\bar{X}_{1}-\bar{X}_{2}\right) \\
-	&amp;=	Var\left(\bar{X}_{1}\right)+Var\left(\bar{X}_{2}\right) \\
-	&amp;=	\frac{\sigma_{1}^{2}}{n_{1}}+\frac{\sigma_{2}^{2}}{n_{2}}
-	\end{aligned}\]</span>
+<span class="math display">\[\begin{aligned} Var\left(D\right) 
+  &amp;=    Var\left(\bar{X}_{1}-\bar{X}_{2}\right) \\
+    &amp;=  Var\left(\bar{X}_{1}\right)+Var\left(\bar{X}_{2}\right) \\
+    &amp;=  \frac{\sigma_{1}^{2}}{n_{1}}+\frac{\sigma_{2}^{2}}{n_{2}}
+    \end{aligned}\]</span>
 and finally we have
 <span class="math display">\[StdErr\left(D\right)=\sqrt{\frac{s_{1}^{2}}{n_{1}}+\frac{s_{2}^{2}}{n_{2}}}\]</span>
 and therefore my standardized value for the difference will be
-<span class="math display">\[\begin{aligned} t_{\Delta}	
-  &amp;=	\frac{\textrm{estimate}\,\,\,-\,\,\,\textrm{null hypothesized value}}{StdErr\left(\,\,\textrm{estimate}\,\,\right)} \\
-	\end{aligned}\]</span></p>
+<span class="math display">\[\begin{aligned} t_{\Delta}    
+  &amp;=    \frac{\textrm{estimate}\,\,\,-\,\,\,\textrm{null hypothesized value}}{StdErr\left(\,\,\textrm{estimate}\,\,\right)} \\
+    \end{aligned}\]</span></p>
 <p>The test statistic under unequal variance conditions is given by</p>
-<p><span class="math display">\[\begin{aligned} t_{\Delta}	
-	&amp;=	\frac{\left(\bar{x}_{1}-\bar{x}_{2}\right)}{\sqrt{\frac{s_{1}^{2}}{n_{1}}+\frac{s_{2}^{2}}{n_{2}}}} \\
-	\end{aligned}\]</span></p>
+<p><span class="math display">\[\begin{aligned} t_{\Delta}    
+    &amp;=  \frac{\left(\bar{x}_{1}-\bar{x}_{2}\right)}{\sqrt{\frac{s_{1}^{2}}{n_{1}}+\frac{s_{2}^{2}}{n_{2}}}} \\
+    \end{aligned}\]</span></p>
 <p>For the data evaluated here, we thus have</p>
 <p><span class="math display">\[\begin{aligned} t_{\Delta}
-	&amp;=	\frac{\left(-3.5\right)-0}{\sqrt{\frac{2.39^{2}}{10}+\frac{2.21^{2}}{10}}} \\
-	&amp;=	-3.39 
-	\end{aligned}\]</span></p>
+    &amp;=  \frac{\left(-3.5\right)-0}{\sqrt{\frac{2.39^{2}}{10}+\frac{2.21^{2}}{10}}} \\
+    &amp;=  -3.39 
+    \end{aligned}\]</span></p>
 <p>This is somewhat painful, but reasonable. The last question is what t-distribution should we compare this to? Previously we’ve used <span class="math inline">\(df=n-1\)</span> but now we have two samples. So our degrees of freedom ought to be somewhere between <span class="math inline">\(\min\left(n_{1},n_{2}\right)-2=8\)</span> and <span class="math inline">\(\left(n_{1}+n_{2}\right)-1=19\)</span>.</p>
 <p>There is no correct answer, but the best approximation to what it should be is called Satterthwaite’s Approximation. We will give this degree of freedom a special character, <span class="math inline">\(\Delta\)</span>, to keep it clear when we are using it.
 <span class="math display">\[\Delta=\frac{\left(V_{1}+V_{2}\right)^{2}}{\frac{V_{1}^{2}}{n_{1}-1}+\frac{V_{2}^{2}}{n_{2}-1}}\]</span>
@@ -627,7 +627,7 @@ and
 <h4><span class="header-section-number">7.1.2.1</span> Confidence Interval</h4>
 <p>Similar to the theory discussed earlier, we can calculate the asymptotic confidence interval for the difference in the means. Recall that in general the confidence interval is given by</p>
 <p><span class="math display">\[\begin{aligned}
-\textrm{Est}\;\; &amp;\pm\; t_{\Delta}^{1-\alpha/2}\;\textrm{StdErr}\left(\;\textrm{Est}\;\right)	\\	
+\textrm{Est}\;\; &amp;\pm\; t_{\Delta}^{1-\alpha/2}\;\textrm{StdErr}\left(\;\textrm{Est}\;\right)   \\  
 \end{aligned}\]</span></p>
 <p>For the difference of two means under unequal variance conditions, this can be written</p>
 <p><span class="math display">\[\begin{aligned}
@@ -646,7 +646,7 @@ and
 <p>It is probably fair to say that this is an ugly calculation to do by hand. Fortunately it isn’t too hard to make R do these calculations for you. The function <code>t.test()</code> will accept two arguments, a vector of values from the first group and a vector from the second group. We can also give it a formula, which is good to start understanding. Here we use <code>Response ~ Predictors</code>, which will be important for understanding linear models. We want to test if the response <code>Taps</code> differs between the two <code>Group</code> levels.</p>
 <div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#cb176-1" aria-hidden="true"></a><span class="kw">t.test</span>(Taps <span class="op">~</span><span class="st"> </span>Group, <span class="dt">data=</span>CaffeineTaps)</span></code></pre></div>
 <pre><code>## 
-## 	Welch Two Sample t-test
+##  Welch Two Sample t-test
 ## 
 ## data:  Taps by Group
 ## t = -3.3942, df = 17.89, p-value = 0.003255
@@ -667,11 +667,11 @@ we could consider the model where we assume that the variance term is the same f
 <p>First, we can estimate <span class="math inline">\(\mu_{1}\)</span> and <span class="math inline">\(\mu_{2}\)</span> with the appropriate sample means <span class="math inline">\(\bar{x}_{1}\)</span> and <span class="math inline">\(\bar{x}_{2}\)</span>. Next we need to calculate an estimate of <span class="math inline">\(\sigma\)</span> using all of the data. First recall the formula for the sample variance for one group was
 <span class="math display">\[s^{2}=\frac{1}{n-1}\left[\sum_{j=1}^{n}\left(x_{j}-\bar{x}\right)^{2}\right]\]</span></p>
 <p>In the case with two samples, we want a similar formula but it should take into account data from both sample groups. Define the notation <span class="math inline">\(x_{1j}\)</span> to be the <span class="math inline">\(j\)</span>th observation of group 1, and <span class="math inline">\(x_{2j}\)</span> to be the <span class="math inline">\(j\)</span>th observation of group 2 and in general <span class="math inline">\(x_{ij}\)</span> as the <span class="math inline">\(j\)</span>th observation from group <span class="math inline">\(i\)</span>. We want to subtract each observation from the its appropriate sample mean and then, because we had to estimate two means, we need to subtract two degrees of freedom from the denominator.
-<span class="math display">\[\begin{aligned} s_{pooled}^{2}	
-  &amp;=	\frac{1}{n_{1}+n_{2}-2}\left[\sum_{j=1}^{n_{1}}\left(x_{1j}-\bar{x}_{1}\right)^{2}+\sum_{j=1}^{n_{2}}\left(x_{2j}-\bar{x}_{2}\right)^{2}\right] \\
-	&amp;=	\frac{1}{n_{1}+n_{2}-2}\left[\sum_{j=1}^{n_{1}}e_{1j}^{2}+\sum_{j=1}^{n_{2}}e_{2j}^{2}\right]\\
-	&amp;=	\frac{1}{n_{1}+n_{2}-2}\left[\sum_{i=1}^{2}\sum_{j=1}^{n_{i}}e_{ij}^{2}\right]
-	\end{aligned}\]</span></p>
+<span class="math display">\[\begin{aligned} s_{pooled}^{2}    
+  &amp;=    \frac{1}{n_{1}+n_{2}-2}\left[\sum_{j=1}^{n_{1}}\left(x_{1j}-\bar{x}_{1}\right)^{2}+\sum_{j=1}^{n_{2}}\left(x_{2j}-\bar{x}_{2}\right)^{2}\right] \\
+    &amp;=  \frac{1}{n_{1}+n_{2}-2}\left[\sum_{j=1}^{n_{1}}e_{1j}^{2}+\sum_{j=1}^{n_{2}}e_{2j}^{2}\right]\\
+    &amp;=  \frac{1}{n_{1}+n_{2}-2}\left[\sum_{i=1}^{2}\sum_{j=1}^{n_{i}}e_{ij}^{2}\right]
+    \end{aligned}\]</span></p>
 <p>where <span class="math inline">\(\bar{x}_{1}\)</span> and <span class="math inline">\(\bar{x}_{2}\)</span> are the sample means and <span class="math inline">\(e_{ij}=x_{ij}-\bar{x}_{i}\)</span> is the residual error of the <span class="math inline">\(i,j\)</span> observation. A computationally convenient formula for this same quantity is
 <span class="math display">\[s_{pooled}^{2}=\frac{1}{n_{1}+n_{2}-2}\left[\left(n_{1}-1\right)s_{1}^{2}+\left(n_{2}-1\right)s_{2}^{2}\right]\]</span></p>
 <p>Finally we notice that this pooled estimate of the variance term <span class="math inline">\(\sigma^{2}\)</span> has <span class="math inline">\(n_{1}+n_{2}-2\)</span> degrees of freedom. <em>One benefit of the pooled procedure is that we don’t have to mess with the Satterthwaite’s approximate degrees of freedom.</em></p>
@@ -679,9 +679,9 @@ we could consider the model where we assume that the variance term is the same f
 <span class="math display">\[t_{\Delta} 
   =\frac{\left(\bar{x}_{1}-\bar{x}_{2}\right)-0}{\sqrt{\frac{s_{1}^{2}}{n_{1}}+\frac{s_{2}^{2}}{n_{2}}}}\]</span>
 Now in the equal variance case, we will use the pooled estimate of the variance term <span class="math inline">\(s_{pooled}^{2}\)</span> instead of <span class="math inline">\(s_{1}^{2}\)</span> and <span class="math inline">\(s_{2}^{2}\)</span>, and we have known <span class="math inline">\(df = (n_1 + n_2 - 2)\)</span>.</p>
-<p><span class="math display">\[\begin{aligned} t_{n_{1}+n_{2}-2}	
-  &amp;=	\frac{\left(\bar{x}_{1}-\bar{x}_{2}\right)-0}{\sqrt{\frac{s_{pool}^{2}}{n_{1}}+\frac{s_{pool}^{2}}{n_{2}}}} \\
-	&amp;=	\frac{\left(\bar{x}_{1}-\bar{x}_{2}\right)-0}{s_{pool}\sqrt{\frac{1}{n_{1}}+\frac{1}{n_{2}}}}
+<p><span class="math display">\[\begin{aligned} t_{n_{1}+n_{2}-2} 
+  &amp;=    \frac{\left(\bar{x}_{1}-\bar{x}_{2}\right)-0}{\sqrt{\frac{s_{pool}^{2}}{n_{1}}+\frac{s_{pool}^{2}}{n_{2}}}} \\
+    &amp;=  \frac{\left(\bar{x}_{1}-\bar{x}_{2}\right)-0}{s_{pool}\sqrt{\frac{1}{n_{1}}+\frac{1}{n_{2}}}}
   \end{aligned}\]</span></p>
 <p>where we note that
 <span class="math display">\[StdErr\left(\bar{X}_{1}-\bar{X}_{2}\right)=s_{pooled}\sqrt{\left(1/n_{1}\right)+\left(1/n_{2}\right)}\]</span></p>
@@ -690,8 +690,8 @@ Now in the equal variance case, we will use the pooled estimate of the variance 
 <p>We can now rework the analysis of the Caffeine data under equal variance assumptions, allowing us to pool our estimate of the variance.</p>
 <p>Recall our hypothesis for the <code>CaffeineTaps</code> data
 <span class="math display">\[\begin{aligned}
-H_{0}:	&amp;\mu_{nc}-\mu_{c}  =  0	  \\
-H_{a}:	&amp;\mu_{nc}-\mu_{c} \ne 0 
+H_{0}:  &amp;\mu_{nc}-\mu_{c}  =  0   \\
+H_{a}:  &amp;\mu_{nc}-\mu_{c} \ne 0 
 \end{aligned}\]</span></p>
 <p>First we have to calculate the summary statistics for each group.</p>
 <div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#cb178-1" aria-hidden="true"></a>CaffeineTaps <span class="op">%&gt;%</span><span class="st"> </span></span>
@@ -744,7 +744,7 @@ H_{a}:	&amp;\mu_{nc}-\mu_{c} \ne 0
 <div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#cb188-1" aria-hidden="true"></a><span class="co"># Do the t-test</span></span>
 <span id="cb188-2"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#cb188-2" aria-hidden="true"></a><span class="kw">t.test</span>( Taps <span class="op">~</span><span class="st"> </span>Group, <span class="dt">data=</span>CaffeineTaps, <span class="dt">var.equal=</span><span class="ot">TRUE</span> ) </span></code></pre></div>
 <pre><code>## 
-## 	Two Sample t-test
+##  Two Sample t-test
 ## 
 ## data:  Taps by Group
 ## t = -3.3942, df = 18, p-value = 0.003233
@@ -758,7 +758,7 @@ H_{a}:	&amp;\mu_{nc}-\mu_{c} \ne 0
 <div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#cb190-1" aria-hidden="true"></a><span class="co"># Do the t-test at 99% confidence</span></span>
 <span id="cb190-2"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#cb190-2" aria-hidden="true"></a><span class="kw">t.test</span>( Taps <span class="op">~</span><span class="st"> </span>Group, <span class="dt">data=</span>CaffeineTaps, <span class="dt">var.equal=</span><span class="ot">TRUE</span>, <span class="dt">conf.level=</span>.<span class="dv">99</span> ) </span></code></pre></div>
 <pre><code>## 
-## 	Two Sample t-test
+##  Two Sample t-test
 ## 
 ## data:  Taps by Group
 ## t = -3.3942, df = 18, p-value = 0.003233
@@ -806,17 +806,17 @@ where we define <span class="math inline">\(\delta=\mu_{w}-\mu_{b}\)</span> and 
 ## 1 Water   19.2  13.5  3.67    18
 ## 2 Beer    23.6  17.1  4.13    25</code></pre>
 <p>Here we see that our statistic of interest is
-<span class="math display">\[\begin{aligned} d	
-  &amp;=	\bar{x}_{w}-\bar{x}_{b} \\
-	&amp;=	19.22-23.6              \\
-	&amp;=	-4.37\bar{7}
-	\end{aligned}\]</span></p>
+<span class="math display">\[\begin{aligned} d 
+  &amp;=    \bar{x}_{w}-\bar{x}_{b} \\
+    &amp;=  19.22-23.6              \\
+    &amp;=  -4.37\bar{7}
+    \end{aligned}\]</span></p>
 <p>We can use our numerical methods to evaluate statistical significance. First we perform the hypothesis test by creating the sampling distribution of <span class="math inline">\(d^*\)</span> assuming <span class="math inline">\(H_0\)</span> is true by repeatedly shuffling the group labels and calculating differences. We use <code>coin</code> to simplify the work.</p>
 <div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#cb195-1" aria-hidden="true"></a><span class="co">### library(coin) required</span></span>
 <span id="cb195-2"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#cb195-2" aria-hidden="true"></a>coin<span class="op">::</span><span class="kw">oneway_test</span>(Number<span class="op">~</span>Treat, <span class="dt">data=</span>Mosquitoes, <span class="dt">alternative=</span><span class="st">&quot;less&quot;</span>,</span>
 <span id="cb195-3"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#cb195-3" aria-hidden="true"></a>            <span class="dt">distribution=</span><span class="kw">approximate</span>(<span class="dt">nresample=</span><span class="dv">10</span><span class="op">^</span><span class="dv">4</span>))</span></code></pre></div>
 <pre><code>## 
-## 	Approximative Two-Sample Fisher-Pitman Permutation Test
+##  Approximative Two-Sample Fisher-Pitman Permutation Test
 ## 
 ## data:  Number by Treat (Water, Beer)
 ## Z = -3.1673, p-value = 5e-04
@@ -840,7 +840,7 @@ where we define <span class="math inline">\(\delta=\mu_{w}-\mu_{b}\)</span> and 
 <div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#cb201-1" aria-hidden="true"></a><span class="kw">t.test</span>( Number <span class="op">~</span><span class="st"> </span>Treat, <span class="dt">data=</span>Mosquitoes, </span>
 <span id="cb201-2"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#cb201-2" aria-hidden="true"></a>        <span class="dt">var.equal=</span><span class="ot">TRUE</span>, <span class="dt">conf.level=</span><span class="fl">0.90</span>)</span></code></pre></div>
 <pre><code>## 
-## 	Two Sample t-test
+##  Two Sample t-test
 ## 
 ## data:  Number by Treat
 ## t = -3.587, df = 41, p-value = 0.0008831
@@ -888,12 +888,12 @@ where we define <span class="math inline">\(\delta=\mu_{w}-\mu_{b}\)</span> and 
 <p><img src="07_Two_Samples_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
 <p>Looking at this view of the data, it doesn’t appear that the husbands tend to be older than the wives. A t-test to see if the average age of husbands is greater than the average age of wives gives an insignificant difference. We will want to test if</p>
 <p><span class="math display">\[\begin{aligned}
-H_{0}:	&amp;\mu_{h}-\mu_{w}  =  0	  \\
-H_{a}:	&amp;\mu_{h}-\mu_{w} &gt; 0 
+H_{0}:  &amp;\mu_{h}-\mu_{w}  =  0    \\
+H_{a}:  &amp;\mu_{h}-\mu_{w} &gt; 0 
 \end{aligned}\]</span></p>
 <div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#cb208-1" aria-hidden="true"></a><span class="kw">t.test</span>( Age <span class="op">~</span><span class="st"> </span>Spouse, <span class="dt">data=</span>MarriageAges.Long, <span class="dt">alternative=</span><span class="st">&#39;greater&#39;</span> )</span></code></pre></div>
 <pre><code>## 
-## 	Welch Two Sample t-test
+##  Welch Two Sample t-test
 ## 
 ## data:  Age by Spouse
 ## t = 1.8055, df = 203.12, p-value = 0.03624
@@ -912,13 +912,13 @@ H_{a}:	&amp;\mu_{h}-\mu_{w} &gt; 0
 <p><img src="07_Two_Samples_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
 <p>Given this set of differences, we’d like to know if this data is compatible with the null hypothesis that husbands and wives tend to be the same age versus the alternative that husbands tend to be older. (We could chose the two-sided test as well).
 <span class="math display">\[\begin{aligned}
-H_{0}:\;\delta	&amp;=	0  \\
-H_{A}:\;\delta	&amp;&gt;	0
+H_{0}:\;\delta  &amp;=  0  \\
+H_{A}:\;\delta  &amp;&gt;  0
 \end{aligned}\]</span></p>
 <p>Because we have reduced our problem to a 1-sample test, we can perform the asymptotic t-test easily enough in R. Notice now we are testing against the null hypothesis that <span class="math inline">\(\delta = 0\)</span>.</p>
 <div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#cb211-1" aria-hidden="true"></a><span class="kw">t.test</span>( MarriageAges<span class="op">$</span>d, <span class="dt">mu=</span><span class="dv">0</span> )</span></code></pre></div>
 <pre><code>## 
-## 	One Sample t-test
+##  One Sample t-test
 ## 
 ## data:  MarriageAges$d
 ## t = 5.8025, df = 104, p-value = 7.121e-08
@@ -932,7 +932,7 @@ H_{A}:\;\delta	&amp;&gt;	0
 <p>To perform the same analysis using re-sampling methods, we need to be careful to do the re-sampling correctly. Notice that if we use <code>coin</code> how we set it up before, that we get something similar to when we were working under the assumption that the two groups were independent. The <code>coin</code> package requires objects be factors (the data.frame has it contained as a character or <code>chr</code>).</p>
 <div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#cb213-1" aria-hidden="true"></a><span class="kw">oneway_test</span>(Age<span class="op">~</span><span class="kw">factor</span>(Spouse), <span class="dt">data=</span>MarriageAges.Long, <span class="dt">alternative=</span><span class="st">&quot;greater&quot;</span>, <span class="dt">distribution=</span><span class="kw">approximate</span>(<span class="dt">nresample=</span><span class="dv">10</span><span class="op">^</span><span class="dv">4-1</span>))</span></code></pre></div>
 <pre><code>## 
-## 	Approximative Two-Sample Fisher-Pitman Permutation Test
+##  Approximative Two-Sample Fisher-Pitman Permutation Test
 ## 
 ## data:  Age by factor(Spouse) (Husband, Wife)
 ## Z = 1.7958, p-value = 0.0384
@@ -940,11 +940,11 @@ H_{A}:\;\delta	&amp;&gt;	0
 <p>The issue is that the permutations were done without taking into account that the Spouses are paired. The permutation test must be updated such that the paired nature of the marriages is taken into account. We can introduce this pairing using a conditional statement, where we want to ensure that we group the <code>Spouse</code> variable given the marriage they are in <code>Marriage</code>.</p>
 <div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#cb215-1" aria-hidden="true"></a><span class="kw">oneway_test</span>(Age<span class="op">~</span><span class="kw">factor</span>(Spouse)<span class="op">|</span><span class="kw">factor</span>(Marriage), <span class="dt">data=</span>MarriageAges.Long, <span class="dt">alternative=</span><span class="st">&quot;greater&quot;</span>, <span class="dt">distribution=</span><span class="kw">approximate</span>(<span class="dt">nresample=</span><span class="dv">10</span><span class="op">^</span><span class="dv">4-1</span>))</span></code></pre></div>
 <pre><code>## 
-## 	Approximative Two-Sample Fisher-Pitman Permutation Test
+##  Approximative Two-Sample Fisher-Pitman Permutation Test
 ## 
 ## data:  Age by
-## 	 factor(Spouse) (Husband, Wife) 
-## 	 stratified by factor(Marriage)
+##   factor(Spouse) (Husband, Wife) 
+##   stratified by factor(Marriage)
 ## Z = 5.0675, p-value &lt; 1e-04
 ## alternative hypothesis: true mu is greater than 0</code></pre>
 <p>After 10000 permutations, no mean difference in age was ever observed as extreme as the original and can only state that p-value <span class="math inline">\(&lt; 1e-4\)</span>. This is in agreement with the t.test performed above on the difference in ages for each marriage.</p>
@@ -998,7 +998,7 @@ H_{A}:\;\delta	&amp;&gt;	0
 <p>All of the differences were positive, so it is almost ridiculous to do a hypothesis test that there is no decrease in delays with the flexible timing system. We continue through the analysis. We begin with the asymptotic results, using the paired differences.</p>
 <div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#cb226-1" aria-hidden="true"></a><span class="kw">t.test</span>( TrafficFlow<span class="op">$</span>Difference )</span></code></pre></div>
 <pre><code>## 
-## 	One Sample t-test
+##  One Sample t-test
 ## 
 ## data:  TrafficFlow$Difference
 ## t = 19.675, df = 23, p-value = 6.909e-16
@@ -1012,11 +1012,11 @@ H_{A}:\;\delta	&amp;&gt;	0
 <div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#cb228-1" aria-hidden="true"></a><span class="kw">oneway_test</span>(Delay<span class="op">~</span><span class="kw">factor</span>(Seq)<span class="op">|</span><span class="kw">factor</span>(Light), <span class="dt">data=</span>TrafficFlow.Long, </span>
 <span id="cb228-2"><a href="7-two-sample-hypothesis-tests-and-confidence-intervals.html#cb228-2" aria-hidden="true"></a>            <span class="dt">alternative=</span><span class="st">&quot;two.sided&quot;</span>, <span class="dt">distribution=</span><span class="kw">approximate</span>(<span class="dt">nresample=</span><span class="dv">10</span><span class="op">^</span><span class="dv">4-1</span>))</span></code></pre></div>
 <pre><code>## 
-## 	Approximative Two-Sample Fisher-Pitman Permutation Test
+##  Approximative Two-Sample Fisher-Pitman Permutation Test
 ## 
 ## data:  Delay by
-## 	 factor(Seq) (Flexible, Timed) 
-## 	 stratified by factor(Light)
+##   factor(Seq) (Flexible, Timed) 
+##   stratified by factor(Light)
 ## Z = -4.7596, p-value &lt; 1e-04
 ## alternative hypothesis: true mu is not equal to 0</code></pre>
 <p>We observe after 10000 iterations that again, no mean difference was ever as extreme as the original data set. Thus, we have p-value <span class="math inline">\(&lt; 1e^{-4}\)</span>. We finish with the bootstrap, performed on the differences.</p>

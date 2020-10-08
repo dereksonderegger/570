@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 10 Regression | Introduction to Statistical Methodology, Second Edition</title>
   <meta name="description" content="Chapter 10 Regression | Introduction to Statistical Methodology, Second Edition" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 10 Regression | Introduction to Statistical Methodology, Second Edition" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Derek L. Sonderegger &amp; Robert Buscaglia" />
 
 
-<meta name="date" content="2020-09-02" />
+<meta name="date" content="2020-10-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -246,7 +246,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.2.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#why-should-hypotheses-use-mu-and-not-barx"><i class="fa fa-check"></i><b>6.2.1</b> Why should hypotheses use <span class="math inline">\(\mu\)</span> and not <span class="math inline">\(\bar{x}\)</span>?</a></li>
 <li class="chapter" data-level="6.2.2" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#a-note-on-calculating-p-values"><i class="fa fa-check"></i><b>6.2.2</b> A note on calculating p-values</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#additional-examples"><i class="fa fa-check"></i><b>6.3</b> Additional Examples</a></li>
+<li class="chapter" data-level="6.3" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#additional-examples-1"><i class="fa fa-check"></i><b>6.3</b> Additional Examples</a></li>
 <li class="chapter" data-level="6.4" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#p-values-vs-cutoff-values"><i class="fa fa-check"></i><b>6.4</b> P-values vs cutoff values</a></li>
 <li class="chapter" data-level="6.5" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#running-a-t-test-in-r"><i class="fa fa-check"></i><b>6.5</b> Running a t-test in R</a></li>
 <li class="chapter" data-level="6.6" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i><b>6.6</b> Type I and Type II Errors</a>
@@ -446,15 +446,15 @@ where</p>
 <p><img src="10_Regression_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>Given this model, how do we find estimates of <span class="math inline">\(\beta_{0}\)</span> and <span class="math inline">\(\beta_{1}\)</span>? In the past we have always relied on using some sort of sample mean, but it is not obvious what we can use here. Instead of a mean, we will use the values of <span class="math inline">\(\hat{\beta}_{0}\)</span> and <span class="math inline">\(\hat{\beta}_{1}\)</span> that minimize the sum of squared error (SSE) where
 <span class="math display">\[\begin{aligned}
-\hat{y}_{i}	&amp;=	\hat{\beta}_{0}+\hat{\beta}_{1}x_{i} \\
-e_{i}	      &amp;=	y_{i}-\hat{y}_{i} \\
-SSE	        &amp;=	\sum_{i=1}^{n}e_{i}^{2}
+\hat{y}_{i} &amp;=  \hat{\beta}_{0}+\hat{\beta}_{1}x_{i} \\
+e_{i}         &amp;=    y_{i}-\hat{y}_{i} \\
+SSE         &amp;=  \sum_{i=1}^{n}e_{i}^{2}
 \end{aligned}\]</span></p>
 <p><img src="10_Regression_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>Fortunately there are simple closed form solutions for <span class="math inline">\(\hat{\beta}_{0}\)</span> and <span class="math inline">\(\hat{\beta}_{1}\)</span>
 <span class="math display">\[\begin{aligned}
-\hat{\beta}_{1}	&amp;=	r\,\left(\frac{s_{y}}{s_{x}}\right)\\
-\hat{\beta_{0}}	&amp;=	\bar{y}-\hat{\beta}_{1}\bar{x} 
+\hat{\beta}_{1} &amp;=  r\,\left(\frac{s_{y}}{s_{x}}\right)\\
+\hat{\beta_{0}} &amp;=  \bar{y}-\hat{\beta}_{1}\bar{x} 
 \end{aligned}\]</span></p>
 <p>and using these estimates several properties can be shown</p>
 <ol style="list-style-type: decimal">
@@ -464,12 +464,12 @@ SSE	        &amp;=	\sum_{i=1}^{n}e_{i}^{2}
 <li><span class="math inline">\(\hat{\beta}_{0}\)</span> and <span class="math inline">\(\hat{\beta}_{1}\)</span> are unbiased estimators of <span class="math inline">\(\beta_{0}\)</span> and <span class="math inline">\(\beta_{1}\)</span>.</li>
 </ol>
 <p>We are also interested in an estimate of <span class="math inline">\(\sigma^{2}\)</span> and we will use our usual estimation scheme of
-<span class="math display">\[\begin{aligned} \hat{\sigma}^{2}	
+<span class="math display">\[\begin{aligned} \hat{\sigma}^{2}  
   &amp;= \frac{1}{n-2}\sum_{i=1}^{n}\left(y_{i}-\hat{y}_{i}\right)^{2}  
-	=	\frac{\sum_{i=1}^{n}e_{i}^{2}}{n-2} 
-	=	\frac{SSE}{n-2} 
-	=	MSE 
-	\end{aligned}\]</span></p>
+    =   \frac{\sum_{i=1}^{n}e_{i}^{2}}{n-2} 
+    =   \frac{SSE}{n-2} 
+    =   MSE 
+    \end{aligned}\]</span></p>
 <p>where the <span class="math inline">\(-2\)</span> comes from having to estimate <span class="math inline">\(\beta_{0}\)</span> and <span class="math inline">\(\beta_{1}\)</span> before we can estimate <span class="math inline">\(\sigma^{2}\)</span>. As in the ANOVA case, we can interpret <span class="math inline">\(\sigma\)</span> as the typical distance an observation is from its predicted value.</p>
 <p>As always we are also interested in knowing the estimated standard deviation (which we will call Standard Error) of the model parameters <span class="math inline">\(\beta_{0}\)</span> and <span class="math inline">\(\beta_{1}\)</span> and it can be shown that
 <span class="math display">\[StdErr\left(\hat{\beta}_{0}\right)=\hat{\sigma}\sqrt{\frac{1}{n}+\frac{\bar{x}^{2}}{S_{xx}}}\]</span>
@@ -505,7 +505,7 @@ where <span class="math inline">\(S_{xx}=\sum\left(x_{i}-\bar{x}\right)^{2}\)</s
 <span id="cb345-4"><a href="10-regression.html#cb345-4" aria-hidden="true"></a><span class="kw">cbind</span>(stderr.b0, stderr.b1)</span></code></pre></div>
 <pre><code>##      stderr.b0 stderr.b1
 ## [1,] 0.5217119 0.1039651</code></pre>
-<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="10-regression.html#cb347-1" aria-hidden="true"></a>t.star &lt;-<span class="st"> </span><span class="kw">qt</span>(.<span class="dv">975</span>, <span class="dt">df=</span>n<span class="dv">-2</span>)	</span>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="10-regression.html#cb347-1" aria-hidden="true"></a>t.star &lt;-<span class="st"> </span><span class="kw">qt</span>(.<span class="dv">975</span>, <span class="dt">df=</span>n<span class="dv">-2</span>)  </span>
 <span id="cb347-2"><a href="10-regression.html#cb347-2" aria-hidden="true"></a><span class="kw">c</span>(b0<span class="op">-</span>t.star<span class="op">*</span>stderr.b0, b0<span class="op">+</span>t.star<span class="op">*</span>stderr.b0)</span></code></pre></div>
 <pre><code>## [1] -1.6184048  0.4795395</code></pre>
 <div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="10-regression.html#cb349-1" aria-hidden="true"></a><span class="kw">c</span>(b1<span class="op">-</span>t.star<span class="op">*</span>stderr.b1, b1<span class="op">+</span>t.star<span class="op">*</span>stderr.b1)</span></code></pre></div>
@@ -575,7 +575,7 @@ where <span class="math inline">\(S_{xx}=\sum\left(x_{i}-\bar{x}\right)^{2}\)</s
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Residual standard error: 0.2565 on 48 degrees of freedom
-## Multiple R-squared:  0.5514,	Adjusted R-squared:  0.542 
+## Multiple R-squared:  0.5514, Adjusted R-squared:  0.542 
 ## F-statistic: 58.99 on 1 and 48 DF,  p-value: 6.71e-10</code></pre>
 <p>The first row is giving information about the y-intercept. In this case the estimate is <span class="math inline">\(-0.5694\)</span> and the standard error of the estimate is <span class="math inline">\(0.5217\)</span>. The t-statistic and associated p-value is testing the hypotheses:
 <span class="math inline">\(H_{0}:\,\beta_{0}=0\)</span> vs <span class="math inline">\(H_{a}:\,\beta_{0}\ne0\)</span>. This test is not usually of much interest. However because the equivalent test in the slope row testing <span class="math inline">\(\beta_{1}=0\)</span> vs <span class="math inline">\(\beta_{1}\ne0\)</span>, the p-value of the slope row is <em>very</em> interesting because it tells me if I should include the slope variable in the model. If <span class="math inline">\(\beta_{1}\)</span> could be zero, then we should drop the predictor from our model and use the simple model <span class="math inline">\(y_{i}=\beta_{0}+\epsilon_{i}\)</span> instead.</p>
@@ -586,13 +586,13 @@ where <span class="math inline">\(S_{xx}=\sum\left(x_{i}-\bar{x}\right)^{2}\)</s
 vs the simple model where x does not help predict <span class="math inline">\(y\)</span>
 <span class="math display">\[y_{i}=\beta_0+\epsilon_{i}\]</span>
 Notice this is effectively forcing the regression line to be flay and I could have written the model using <span class="math inline">\(\beta_{0}=\mu\)</span> to try to keep our notation straight. If I were to look at the simple model I would use <span class="math inline">\(\bar{y}=\hat{\beta}_0\)</span> as the predicted value of <span class="math inline">\(y\)</span> for <em>any</em> value of <span class="math inline">\(x\)</span> and my Sum of Squared Error in the simple model will be
-<span class="math display">\[SSE_{simple}	=	\sum_{i=1}^{n}\left(y_{i}-\hat{y}_{i}\right)^{2}
-	=	\sum_{i=1}^{n}\left(y_{i}-\hat{\beta}_0\right)^{2}\]</span>
+<span class="math display">\[SSE_{simple}  =   \sum_{i=1}^{n}\left(y_{i}-\hat{y}_{i}\right)^{2}
+    =   \sum_{i=1}^{n}\left(y_{i}-\hat{\beta}_0\right)^{2}\]</span>
 and the appropriate Mean Squared Error is</p>
 <p><span class="math display">\[MSE_{simple}=\frac{1}{n-1}\sum\left(y_{i}-\hat{\beta}_0\right)^{2}\]</span></p>
 <p>We can go through the same sort of calculations for the full complex model and get
-<span class="math display">\[SSE_{complex}	=	\sum_{i=1}^{n}\left(y_{i}-\hat{y}_{i}\right)^{2}
-	=	\sum_{i=1}^{n}\left(y_{i}-\left(\hat{\beta}_{0}+\hat{\beta}_{1}x_{i}\right)\right)^{2}\]</span>
+<span class="math display">\[SSE_{complex} =   \sum_{i=1}^{n}\left(y_{i}-\hat{y}_{i}\right)^{2}
+    =   \sum_{i=1}^{n}\left(y_{i}-\left(\hat{\beta}_{0}+\hat{\beta}_{1}x_{i}\right)\right)^{2}\]</span>
 Notice that <span class="math inline">\(\hat{\beta}_0\)</span> term is in both models, but will not be numerically the same.
 Next we have
 <span class="math display">\[MSE_{complex}=\frac{1}{n-2}\sum_{i=1}^{n}\left(y_{i}-\left(\hat{\beta}_{0}+\hat{\beta}_{1}x_{i}\right)\right)^{2}\]</span>
@@ -670,16 +670,16 @@ and think of this quantity as the amount of variability that is explained by add
 and therefore its <span class="math inline">\(StdErr(\hat{\beta}_{0}+\hat{\beta}_{1}x_{new})\)</span> is
 <span class="math display">\[StdErr\left(\hat{\beta}_{0}+\hat{\beta}_{1}x_{new}\right)=\hat{\sigma}\sqrt{\frac{1}{n}+\frac{\left(x_{new}-\bar{x}\right)^{2}}{S_{xx}}}\]</span></p>
 <p>We can use this value to produce a confidence interval for the regression line for any value of <span class="math inline">\(x_{new}\)</span>.
-<span class="math display">\[Estimate	\pm	t\;StdErr\left(Estimate\right)\]</span>
-<span class="math display">\[\left(\hat{\beta}_{0}+\hat{\beta}_{1}x_{new}\right)	\pm	t_{n-2}^{1-\alpha/2}\;\;\hat{\sigma}\sqrt{\frac{1}{n}+\frac{\left(x_{new}-\bar{x}\right)^{2}}{S_{xx}}}\]</span></p>
+<span class="math display">\[Estimate  \pm t\;StdErr\left(Estimate\right)\]</span>
+<span class="math display">\[\left(\hat{\beta}_{0}+\hat{\beta}_{1}x_{new}\right)   \pm t_{n-2}^{1-\alpha/2}\;\;\hat{\sigma}\sqrt{\frac{1}{n}+\frac{\left(x_{new}-\bar{x}\right)^{2}}{S_{xx}}}\]</span></p>
 <p>the expected value of new observation <span class="math inline">\(\hat{E}\left(Y\,|\,X=x_{new}\right)\)</span>. This expectation is regression line but because the estimated regression line is a function of the data, then the line isn’t the exactly the same as the true regression line. To reflect that, I want to calculate a confidence interval for where the true regression line should be.</p>
 <p>I might instead be interested calculating a confidence interval for <span class="math inline">\(y_{new}\)</span>, which I will call a <em>prediction</em> interval in an attempt to keep from being confused with the confidence interval of the regression line. Because we have <span class="math display">\[y_{new}=\beta_{0}+\beta_{1}x_{new}+\epsilon_{new}\]</span></p>
 <p>then my prediction interval will still be centered at <span class="math inline">\(\hat{\beta}_{0}+\hat{\beta}_{1}x_{new}\)</span> but the the uncertainty should be the sum of the uncertainty associated with the estimates of <span class="math inline">\(\beta_{0}\)</span> and <span class="math inline">\(\beta_{1}\)</span> and the additional variability associated with <span class="math inline">\(\epsilon_{new}\)</span>. In short,
 <span class="math display">\[\begin{aligned}
-\hat{Var}\left(\hat{\beta}_{0}+\hat{\beta}_{1}x_{new}+\epsilon\right)	
-    &amp;=	\hat{Var}\left(\hat{\beta}_{0}+\hat{\beta}_{1}x_{new}\right)+\hat{Var}\left(\epsilon\right) \\
-	  &amp;=	\hat{\sigma}^{2}\left(\frac{1}{n}+\frac{\left(x_{new}-\bar{x}\right)^{2}}{S_{xx}}\right)+\hat{\sigma}^{2}
-	  \end{aligned}\]</span></p>
+\hat{Var}\left(\hat{\beta}_{0}+\hat{\beta}_{1}x_{new}+\epsilon\right)   
+    &amp;=  \hat{Var}\left(\hat{\beta}_{0}+\hat{\beta}_{1}x_{new}\right)+\hat{Var}\left(\epsilon\right) \\
+      &amp;=    \hat{\sigma}^{2}\left(\frac{1}{n}+\frac{\left(x_{new}-\bar{x}\right)^{2}}{S_{xx}}\right)+\hat{\sigma}^{2}
+      \end{aligned}\]</span></p>
 <p>and the <span class="math inline">\(StdErr\left(\right)\)</span> of a new observation will be</p>
 <p><span class="math display">\[StdErr\left(\hat{y}_{new}\right)=\hat{\sigma}\sqrt{1+\frac{1}{n}+\frac{\left(x_{new}-\bar{x}\right)^{2}}{S_{xx}}}\]</span></p>
 <p>So the prediction interval for a new observation will be:
@@ -826,7 +826,7 @@ and therefore its <span class="math inline">\(StdErr(\hat{\beta}_{0}+\hat{\beta}
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Residual standard error: 4.252 on 29 degrees of freedom
-## Multiple R-squared:  0.9353,	Adjusted R-squared:  0.9331 
+## Multiple R-squared:  0.9353, Adjusted R-squared:  0.9331 
 ## F-statistic: 419.4 on 1 and 29 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="10-regression.html#cb383-1" aria-hidden="true"></a><span class="kw">confint</span>(model)</span></code></pre></div>
 <pre><code>##                  2.5 %     97.5 %
@@ -866,7 +866,7 @@ and therefore its <span class="math inline">\(StdErr(\hat{\beta}_{0}+\hat{\beta}
 <span id="cb385-9"><a href="10-regression.html#cb385-9" aria-hidden="true"></a><span class="kw">plot</span>(x<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>), y); <span class="kw">abline</span>(<span class="kw">coef</span>(<span class="kw">lm</span>(y<span class="op">~</span><span class="kw">I</span>(x<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>)))));</span></code></pre></div>
 <p><img src="10_Regression_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
 <div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="10-regression.html#cb386-1" aria-hidden="true"></a>mydata &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>y)</span></code></pre></div>
-<p>Unfortunately it is not always obvious what transformation is most appropriate. The Box-Cox family of transformations for the y-variable is <span class="math display">\[ f(y\,|\,\lambda)	=	\begin{cases}
+<p>Unfortunately it is not always obvious what transformation is most appropriate. The Box-Cox family of transformations for the y-variable is <span class="math display">\[ f(y\,|\,\lambda) =   \begin{cases}
     y^{\lambda} &amp; \;\;\textrm{if}\,\,\lambda\ne0\\
     \log y &amp; \;\;\textrm{if}\,\,\lambda=0
   \end{cases}\]</span>
@@ -874,7 +874,7 @@ which includes squaring (<span class="math inline">\(\lambda=2\)</span>), square
 <p>Of course, we also want to use a transformation that isn’t completely obscure and is commonly used in the scientific field, so square roots, reciprocals, and logs are preferred.</p>
 <p><img src="10_Regression_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
 <div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="10-regression.html#cb387-1" aria-hidden="true"></a><span class="kw">str</span>(mydata)</span></code></pre></div>
-<pre><code>## &#39;data.frame&#39;:	40 obs. of  2 variables:
+<pre><code>## &#39;data.frame&#39;:    40 obs. of  2 variables:
 ##  $ x: num  0 0.769 1.538 2.308 3.077 ...
 ##  $ y: num  2 3.08 2.92 4.17 5.44 ...</code></pre>
 <div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="10-regression.html#cb389-1" aria-hidden="true"></a>MASS<span class="op">::</span><span class="kw">boxcox</span>(y<span class="op">~</span>x, <span class="dt">data=</span>mydata, <span class="dt">plotit=</span><span class="ot">TRUE</span>)</span></code></pre></div>

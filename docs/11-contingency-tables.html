@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 11 Contingency Tables | Introduction to Statistical Methodology, Second Edition</title>
   <meta name="description" content="Chapter 11 Contingency Tables | Introduction to Statistical Methodology, Second Edition" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 11 Contingency Tables | Introduction to Statistical Methodology, Second Edition" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Derek L. Sonderegger &amp; Robert Buscaglia" />
 
 
-<meta name="date" content="2020-09-02" />
+<meta name="date" content="2020-10-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -246,7 +246,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.2.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#why-should-hypotheses-use-mu-and-not-barx"><i class="fa fa-check"></i><b>6.2.1</b> Why should hypotheses use <span class="math inline">\(\mu\)</span> and not <span class="math inline">\(\bar{x}\)</span>?</a></li>
 <li class="chapter" data-level="6.2.2" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#a-note-on-calculating-p-values"><i class="fa fa-check"></i><b>6.2.2</b> A note on calculating p-values</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#additional-examples"><i class="fa fa-check"></i><b>6.3</b> Additional Examples</a></li>
+<li class="chapter" data-level="6.3" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#additional-examples-1"><i class="fa fa-check"></i><b>6.3</b> Additional Examples</a></li>
 <li class="chapter" data-level="6.4" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#p-values-vs-cutoff-values"><i class="fa fa-check"></i><b>6.4</b> P-values vs cutoff values</a></li>
 <li class="chapter" data-level="6.5" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#running-a-t-test-in-r"><i class="fa fa-check"></i><b>6.5</b> Running a t-test in R</a></li>
 <li class="chapter" data-level="6.6" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i><b>6.6</b> Type I and Type II Errors</a>
@@ -435,8 +435,8 @@ the null hypothesis is true, then <span class="math inline">\(60\%\)</span> of t
 where <span class="math inline">\(n_{i,\cdot}\)</span> is row total for the <span class="math inline">\(i\)</span>th row, <span class="math inline">\(n_{\cdot,j}\)</span> is the column total for the <span class="math inline">\(j\)</span>th row, and <span class="math inline">\(n\)</span> is the total number of observations in the table.</p>
 <p>This is the first case where our test statistic will not be just plugging in the sample statistic into the null hypothesis. Instead we will consider a test statistic that is more flexible and will handle more general cases (say 3 or more response or treatment groups) Our statistic for assessing how far our observed data is from what we expect under the null hypothesis involves the difference between the observed and the expected for each of the cells, but again we don’t want to just sum the differences, instead will make the differences positive by squaring the differences. Second, a difference of 10 between the observed and expected cell count is very different if the number expected is 1000 than if it is 10, so we will scale the observed difference by dividing by the expected cell count.</p>
 <p>We define
-<span class="math display">\[\begin{aligned}X^{2}	
-  &amp;=	\sum_{\textrm{all ij cells}}\frac{\left(O_{ij}-E_{ij}\right)^{2}}{E_{ij}} \\
+<span class="math display">\[\begin{aligned}X^{2}  
+  &amp;=    \sum_{\textrm{all ij cells}}\frac{\left(O_{ij}-E_{ij}\right)^{2}}{E_{ij}} \\
   &amp;=  \frac{(23-24)^2}{24} + \frac{(25-24)^2}{24} + \frac{(17-16)^2}{16} + \frac{(15-16)^2}{16} \\
   &amp;=  0.04167 + 0.04167 + 0.0625 + 0.0625 \\
   &amp;= 0.20834
@@ -446,7 +446,7 @@ where <span class="math inline">\(n_{i,\cdot}\)</span> is row total for the <spa
 <p>Researchers suspected that attack of a plant by one organism induce resistance to subsequent attack by a different organism. The <span class="math inline">\(47\)</span> individually potted cotton plants were randomly allocated to two groups: infestation by spider mites or no infestation. After two weeks the mites were dutifully removed by a conscientious research assistant, and both groups were inoculated with Verticillium, a fungus that causes Wilt disease.</p>
 <div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="11-contingency-tables.html#cb399-1" aria-hidden="true"></a><span class="kw">data</span>(Mites, <span class="dt">package=</span><span class="st">&quot;mosaicData&quot;</span>)</span>
 <span id="cb399-2"><a href="11-contingency-tables.html#cb399-2" aria-hidden="true"></a><span class="kw">str</span>(Mites)</span></code></pre></div>
-<pre><code>## &#39;data.frame&#39;:	47 obs. of  2 variables:
+<pre><code>## &#39;data.frame&#39;:    47 obs. of  2 variables:
 ##  $ treatment: Factor w/ 2 levels &quot;mites&quot;,&quot;no mites&quot;: 1 1 1 1 1 1 1 1 1 1 ...
 ##  $ outcome  : Factor w/ 2 levels &quot;no wilt&quot;,&quot;wilt&quot;: 2 2 2 2 2 2 2 2 2 2 ...</code></pre>
 <p>We will summarize the data into a contingency table that counts the number of plants in each treatment/wilt category.</p>
@@ -482,16 +482,16 @@ where <span class="math inline">\(n_{i,\cdot}\)</span> is row total for the <spa
 ## Total         26         21      47
 ## ===================================</code></pre>
 <p>Is this data indicative of mites inferring a disease resistance? More formally we are interested in testing
-<span class="math display">\[H_{0}:\:	\pi_{w}=\pi_{w|m}\]</span>
-<span class="math display">\[H_{0}:\:	\pi_{w}\ne\pi_{w|m}\]</span>
+<span class="math display">\[H_{0}:\:  \pi_{w}=\pi_{w|m}\]</span>
+<span class="math display">\[H_{0}:\:  \pi_{w}\ne\pi_{w|m}\]</span><br />
 where the relevant parameters are <span class="math inline">\(\pi_{w}\)</span>, the probability that a plant will wilt, and <span class="math inline">\(\pi_{w|m}\)</span>, the probability that a plant will wilt given that it has been treated with mites.</p>
 <p>We calculate our test statistic as
-<span class="math display">\[\begin{aligned}X^{2}	
-  &amp;=	\sum_{\textrm{all ij cells}}\frac{\left(O_{ij}-E_{ij}\right)^{2}}{E_{ij}} \\
-	&amp;=	\frac{\left(15-10.51\right)^{2}}{10.51}+\frac{\left(4-8.49\right)^{2}}{8.49}+\frac{\left(11-15.49\right)^{2}}{15.49}+\frac{\left(17-12.51\right)^{2}}{12.51}\\
-	&amp;=	1.92+2.37+1.30+1.61 \\
-	&amp;=	7.20
-	\end{aligned}\]</span></p>
+<span class="math display">\[\begin{aligned}X^{2}  
+  &amp;=    \sum_{\textrm{all ij cells}}\frac{\left(O_{ij}-E_{ij}\right)^{2}}{E_{ij}} \\
+    &amp;=  \frac{\left(15-10.51\right)^{2}}{10.51}+\frac{\left(4-8.49\right)^{2}}{8.49}+\frac{\left(11-15.49\right)^{2}}{15.49}+\frac{\left(17-12.51\right)^{2}}{12.51}\\
+    &amp;=  1.92+2.37+1.30+1.61 \\
+    &amp;=  7.20
+    \end{aligned}\]</span></p>
 <p>If the null hypothesis is true, then this statistic should be small, and a large value of the statistic is indicative of the null hypothesis being incorrect. But how large must the statistic be before we reject the null hypothesis?</p>
 </div>
 <div id="hypothesis-testing" class="section level2" number="11.2">
@@ -502,7 +502,7 @@ where the relevant parameters are <span class="math inline">\(\pi_{w}\)</span>, 
 <span id="cb405-2"><a href="11-contingency-tables.html#cb405-2" aria-hidden="true"></a><span class="co"># correction and just calculate the test statistic as we&#39;ve described </span></span>
 <span id="cb405-3"><a href="11-contingency-tables.html#cb405-3" aria-hidden="true"></a><span class="kw">chisq.test</span>( <span class="kw">table</span>(Mites), <span class="dt">correct=</span><span class="ot">FALSE</span> )   <span class="co"># do a Chi-sq test </span></span></code></pre></div>
 <pre><code>## 
-## 	Pearson&#39;s Chi-squared test
+##  Pearson&#39;s Chi-squared test
 ## 
 ## data:  table(Mites)
 ## X-squared = 7.2037, df = 1, p-value = 0.007275</code></pre>
@@ -518,11 +518,11 @@ where the relevant parameters are <span class="math inline">\(\pi_{w}\)</span>, 
 <span id="cb409-2"><a href="11-contingency-tables.html#cb409-2" aria-hidden="true"></a><span class="kw">table</span>(Mites.star)</span></code></pre></div>
 <pre><code>##           outcome
 ## treatment  no wilt wilt
-##   mites         11   15
-##   no mites       8   13</code></pre>
+##   mites         12   14
+##   no mites       7   14</code></pre>
 <div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="11-contingency-tables.html#cb411-1" aria-hidden="true"></a><span class="kw">chisq.test</span>( <span class="kw">table</span>(Mites.star), <span class="dt">correct=</span><span class="ot">FALSE</span> )<span class="op">$</span>statistic <span class="co"># grab only the test statistic</span></span></code></pre></div>
-<pre><code>##  X-squared 
-## 0.08559517</code></pre>
+<pre><code>## X-squared 
+## 0.7928475</code></pre>
 <p>We see that this code is creating a data frame with a single column called <code>X.squared</code> and next we simulate a large number of times and display the sampling distribution of <span class="math inline">\(X^{2*}\)</span>.</p>
 <div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="11-contingency-tables.html#cb413-1" aria-hidden="true"></a>SamplingDist &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">10000</span>)<span class="op">*</span>{</span>
 <span id="cb413-2"><a href="11-contingency-tables.html#cb413-2" aria-hidden="true"></a>  Mites.star &lt;-<span class="st"> </span>Mites <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">treatment =</span> mosaic<span class="op">::</span><span class="kw">shuffle</span>(treatment))</span>
@@ -539,8 +539,8 @@ where the relevant parameters are <span class="math inline">\(\pi_{w}\)</span>, 
 <p>As usual, it is pretty annoying to have to program the permutation test ourselves. Fortunately the <code>chisq.test()</code> function allows us to option to tell it to do a permutation based test. There is an option <code>simulate.p.value</code> which reproduces the simulation test we just performed.</p>
 <div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="11-contingency-tables.html#cb417-1" aria-hidden="true"></a><span class="kw">chisq.test</span>( <span class="kw">table</span>(Mites), <span class="dt">simulate.p.value=</span><span class="ot">TRUE</span>, <span class="dt">B=</span><span class="dv">10000</span> )</span></code></pre></div>
 <pre><code>## 
-## 	Pearson&#39;s Chi-squared test with simulated p-value (based on 10000
-## 	replicates)
+##  Pearson&#39;s Chi-squared test with simulated p-value (based on 10000
+##  replicates)
 ## 
 ## data:  table(Mites)
 ## X-squared = 7.2037, df = NA, p-value = 0.0148</code></pre>
@@ -576,8 +576,8 @@ where the relevant parameters are <span class="math inline">\(\pi_{w}\)</span>, 
 ## ===============================================</code></pre>
 <div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="11-contingency-tables.html#cb422-1" aria-hidden="true"></a><span class="kw">chisq.test</span>( <span class="kw">table</span>(Conceived), <span class="dt">simulate.p.value=</span><span class="ot">TRUE</span>, <span class="dt">B=</span><span class="dv">10000</span> )</span></code></pre></div>
 <pre><code>## 
-## 	Pearson&#39;s Chi-squared test with simulated p-value (based on 10000
-## 	replicates)
+##  Pearson&#39;s Chi-squared test with simulated p-value (based on 10000
+##  replicates)
 ## 
 ## data:  table(Conceived)
 ## X-squared = 0.062628, df = NA, p-value = 1</code></pre>
@@ -588,8 +588,8 @@ where the relevant parameters are <span class="math inline">\(\pi_{w}\)</span>, 
 <p>There was nothing special about the analysis that required only 2x2 tables. Expanding this the expected value for the <span class="math inline">\(i,j\)</span> cell in the table is still
 <span class="math display">\[E_{ij} = \frac{n_{i\cdot} n_{\cdot j}}{n}\]</span></p>
 <p>As before we define the test statistic as
-<span class="math display">\[\begin{aligned}X^{2}	
-  &amp;=	\sum_{\textrm{all ij cells}}\frac{\left(O_{ij}-E_{ij}\right)^{2}}{E_{ij}}
+<span class="math display">\[\begin{aligned}X^{2}  
+  &amp;=    \sum_{\textrm{all ij cells}}\frac{\left(O_{ij}-E_{ij}\right)^{2}}{E_{ij}}
   \end{aligned}\]</span></p>
 <p>If we have sufficient samples sizes in each cell (general rule-of-thumb is greater than 5 per cell), then we could compare this test statistic to a Chi-Squared distribution with <span class="math inline">\((R-1)(C-1)\)</span> degrees of freedom.
 <span class="math display">\[p.value = Pr( \chi_{(r-1)(c-1)} &gt; X^2 )\]</span></p>
@@ -640,15 +640,15 @@ where the relevant parameters are <span class="math inline">\(\pi_{w}\)</span>, 
 <span class="math display">\[p.value = Pr( \chi^2_3 &gt; 26.168 ) = 8.795\textrm{e-}06\]</span></p>
 <div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="11-contingency-tables.html#cb431-1" aria-hidden="true"></a><span class="kw">chisq.test</span>( tab )</span></code></pre></div>
 <pre><code>## 
-## 	Pearson&#39;s Chi-squared test
+##  Pearson&#39;s Chi-squared test
 ## 
 ## data:  tab
 ## X-squared = 26.168, df = 3, p-value = 8.797e-06</code></pre>
 <p>If we are worried about the sample size begin large enough, we could perform a permutation based test by repeatedly shuffling the <code>Race</code> labels calculating the test statistic and then comparing the observed test statistic <span class="math inline">\(X^2=26.168\)</span> to the permutation</p>
 <div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="11-contingency-tables.html#cb433-1" aria-hidden="true"></a><span class="kw">chisq.test</span>( tab, <span class="dt">simulate.p.value=</span><span class="ot">TRUE</span>, <span class="dt">B=</span><span class="dv">100000</span> )</span></code></pre></div>
 <pre><code>## 
-## 	Pearson&#39;s Chi-squared test with simulated p-value (based on 1e+05
-## 	replicates)
+##  Pearson&#39;s Chi-squared test with simulated p-value (based on 1e+05
+##  replicates)
 ## 
 ## data:  tab
 ## X-squared = 26.168, df = NA, p-value = 2e-05</code></pre>

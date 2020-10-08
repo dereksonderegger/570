@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 8 Testing Model Assumptions | Introduction to Statistical Methodology, Second Edition</title>
   <meta name="description" content="Chapter 8 Testing Model Assumptions | Introduction to Statistical Methodology, Second Edition" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 8 Testing Model Assumptions | Introduction to Statistical Methodology, Second Edition" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Derek L. Sonderegger &amp; Robert Buscaglia" />
 
 
-<meta name="date" content="2020-09-02" />
+<meta name="date" content="2020-10-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -246,7 +246,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.2.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#why-should-hypotheses-use-mu-and-not-barx"><i class="fa fa-check"></i><b>6.2.1</b> Why should hypotheses use <span class="math inline">\(\mu\)</span> and not <span class="math inline">\(\bar{x}\)</span>?</a></li>
 <li class="chapter" data-level="6.2.2" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#a-note-on-calculating-p-values"><i class="fa fa-check"></i><b>6.2.2</b> A note on calculating p-values</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#additional-examples"><i class="fa fa-check"></i><b>6.3</b> Additional Examples</a></li>
+<li class="chapter" data-level="6.3" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#additional-examples-1"><i class="fa fa-check"></i><b>6.3</b> Additional Examples</a></li>
 <li class="chapter" data-level="6.4" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#p-values-vs-cutoff-values"><i class="fa fa-check"></i><b>6.4</b> P-values vs cutoff values</a></li>
 <li class="chapter" data-level="6.5" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#running-a-t-test-in-r"><i class="fa fa-check"></i><b>6.5</b> Running a t-test in R</a></li>
 <li class="chapter" data-level="6.6" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i><b>6.6</b> Type I and Type II Errors</a>
@@ -416,15 +416,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">8.1.2</span> Tests for Normality</h3>
 <p>It seems logical that there should be some sort of statistical test for if a sample is obviously non-normal. Two common ones are the Shapiro-Wilks test and the Anderson-Darling test. The Shapiro-Wilks test is available in the base installation of R with the function shapiro.test(). The Anderson-Darling test is available in the package <code>nortest</code>. Here we will not focus on the theory of these tests, but instead their use. In both tests the null hypothesis is that the data are normally distributed.
 <span class="math display">\[\begin{aligned}
-H_{0} &amp;:\,	\textrm{data are normally distributed} \\	
-H_{a} &amp;:\,	\textrm{data are not normally distributed}	
+H_{0} &amp;:\,  \textrm{data are normally distributed} \\   
+H_{a} &amp;:\,  \textrm{data are not normally distributed}  
 \end{aligned}\]</span>
 Therefore a small p-value is evidence against normality.</p>
 <p>Often we want to know if our data comes from a normal distribution because our sample size is too small to rely on the Central Limit Theorem to guarantee that the sampling distribution of the sample mean is Normal. So how well do these tests detect non-normality in a small sample size case?</p>
 <div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="8-testing-model-assumptions.html#cb238-1" aria-hidden="true"></a>x &lt;-<span class="st"> </span><span class="kw">rlnorm</span>(<span class="dt">n=</span><span class="dv">10</span>, <span class="dt">meanlog=</span><span class="dv">2</span>, <span class="dt">sdlog=</span><span class="dv">2</span>)</span>
 <span id="cb238-2"><a href="8-testing-model-assumptions.html#cb238-2" aria-hidden="true"></a><span class="kw">shapiro.test</span>(x)</span></code></pre></div>
 <pre><code>## 
-## 	Shapiro-Wilk normality test
+##  Shapiro-Wilk normality test
 ## 
 ## data:  x
 ## W = 0.39539, p-value = 2.207e-07</code></pre>
@@ -432,7 +432,7 @@ Therefore a small p-value is evidence against normality.</p>
 <div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="8-testing-model-assumptions.html#cb240-1" aria-hidden="true"></a>x &lt;-<span class="st"> </span><span class="kw">rgamma</span>(<span class="dt">n=</span><span class="dv">10</span>, <span class="dt">shape=</span><span class="dv">5</span>, <span class="dt">rate=</span><span class="dv">1</span><span class="op">/</span><span class="dv">5</span>)</span>
 <span id="cb240-2"><a href="8-testing-model-assumptions.html#cb240-2" aria-hidden="true"></a><span class="kw">shapiro.test</span>(x)</span></code></pre></div>
 <pre><code>## 
-## 	Shapiro-Wilk normality test
+##  Shapiro-Wilk normality test
 ## 
 ## data:  x
 ## W = 0.92703, p-value = 0.4193</code></pre>
@@ -462,8 +462,8 @@ Therefore a small p-value is evidence against normality.</p>
 where the <span class="math inline">\(i\)</span> subscript denotes which population the observation was drawn from and the <span class="math inline">\(j\)</span> subscript denotes the individual observation and from the <span class="math inline">\(i\)</span>th population we observe <span class="math inline">\(n_i\)</span> samples. In general I might be interested in evaluating if <span class="math inline">\(\sigma_i^2=\sigma_j^2\)</span>.</p>
 <p>Let’s consider the simplest case of two populations and consider the null and alternative hypotheses:
 <span class="math display">\[\begin{aligned}
-H_{0} &amp;:\,\sigma_{1}^{2}	=	\sigma_{2}^{2} \\
-H_{a} &amp;:\,\sigma_{1}^{2}	\ne	\sigma_{2}^{2}
+H_{0} &amp;:\,\sigma_{1}^{2}    =   \sigma_{2}^{2} \\
+H_{a} &amp;:\,\sigma_{1}^{2}    \ne \sigma_{2}^{2}
 \end{aligned}\]</span>
 If the null hypothesis is true, then the ratio <span class="math inline">\(s_{1}^{2}/s_{2}^{2}\)</span> should be approximately one. It can be shown that under the null hypothesis,
 <span class="math display">\[f=\frac{s_{1}^{2}}{s_{2}^{2}}\sim F_{df_{1},df_{2}}\]</span>
@@ -475,9 +475,9 @@ where <span class="math inline">\(df_{1}\)</span> and <span class="math inline">
 <div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="8-testing-model-assumptions.html#cb243-1" aria-hidden="true"></a><span class="kw">qf</span>( <span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">.975</span>), <span class="dv">6</span>, <span class="dv">9</span>)</span></code></pre></div>
 <pre><code>## [1] 0.1810477 4.3197218</code></pre>
 <p>so we will fail to reject the null hypothesis. Just for good measure, we can calculate the p-value as
-<span class="math display">\[\begin{aligned}p-value	
-  &amp;=	2\cdot P(F_{n_{1}-1,n_{2}-1}&lt;0.391) \\
-	&amp;=	2\cdot P\left(F_{6,9}&lt;0.391\right)
+<span class="math display">\[\begin{aligned}p-value    
+  &amp;=    2\cdot P(F_{n_{1}-1,n_{2}-1}&lt;0.391) \\
+    &amp;=  2\cdot P\left(F_{6,9}&lt;0.391\right)
 \end{aligned}\]</span></p>
 <div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="8-testing-model-assumptions.html#cb245-1" aria-hidden="true"></a><span class="dv">2</span><span class="op">*</span><span class="kw">pf</span>(<span class="fl">0.391</span>, <span class="dv">6</span>, <span class="dv">9</span>)</span></code></pre></div>
 <pre><code>## [1] 0.2654714</code></pre>
@@ -487,8 +487,8 @@ where <span class="math inline">\(df_{1}\)</span> and <span class="math inline">
 <h3><span class="header-section-number">8.2.3</span> Symmetry of the F-distribution</h3>
 <p>When testing
 <span class="math display">\[\begin{aligned}
-H_{0} &amp;:		\sigma_{1}^{2}=\sigma_{2}^{2}    \\
-H_{a} &amp;:		\sigma_{1}^{2}\ne\sigma_{2}^{2}
+H_{0} &amp;:        \sigma_{1}^{2}=\sigma_{2}^{2}    \\
+H_{a} &amp;:        \sigma_{1}^{2}\ne\sigma_{2}^{2}
 \end{aligned}\]</span></p>
 <p>The labeling of group <span class="math inline">\(1\)</span> and group <span class="math inline">\(2\)</span> is completely arbitrary and I should view <span class="math inline">\(f=s_{1}^{2}/s_{2}^{2}\)</span> as the same evidence against null as <span class="math inline">\(f^{*}=s_{2}^{2}/s_{1}^{2}\)</span>. Therefore we have
 <span class="math display">\[
@@ -559,7 +559,7 @@ For example, suppose that <span class="math inline">\(n_{1}=5\)</span> and <span
 <div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="8-testing-model-assumptions.html#cb262-1" aria-hidden="true"></a><span class="co"># Using Rs built in function</span></span>
 <span id="cb262-2"><a href="8-testing-model-assumptions.html#cb262-2" aria-hidden="true"></a><span class="kw">var.test</span>( time <span class="op">~</span><span class="st"> </span>trt, <span class="dt">data=</span>Alcohol )</span></code></pre></div>
 <pre><code>## 
-## 	F test to compare two variances
+##  F test to compare two variances
 ## 
 ## data:  time by trt
 ## F = 1.7048, num df = 9, denom df = 9, p-value = 0.439
@@ -608,7 +608,7 @@ For example, suppose that <span class="math inline">\(n_{1}=5\)</span> and <span
 <p>We now test to see if there is a significant difference between the variances of these two groups. If we feel comfortable with assuming that these data come from normal distributions, then the theoretical method is appropriate.</p>
 <div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="8-testing-model-assumptions.html#cb271-1" aria-hidden="true"></a><span class="kw">var.test</span>( time <span class="op">~</span><span class="st"> </span>type, <span class="dt">data=</span>Commute )</span></code></pre></div>
 <pre><code>## 
-## 	F test to compare two variances
+##  F test to compare two variances
 ## 
 ## data:  time by type
 ## F = 3.039, num df = 13, denom df = 11, p-value = 0.07301

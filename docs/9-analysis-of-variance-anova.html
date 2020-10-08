@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 9 Analysis of Variance (ANOVA) | Introduction to Statistical Methodology, Second Edition</title>
   <meta name="description" content="Chapter 9 Analysis of Variance (ANOVA) | Introduction to Statistical Methodology, Second Edition" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 9 Analysis of Variance (ANOVA) | Introduction to Statistical Methodology, Second Edition" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Derek L. Sonderegger &amp; Robert Buscaglia" />
 
 
-<meta name="date" content="2020-09-02" />
+<meta name="date" content="2020-10-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -246,7 +246,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.2.1" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#why-should-hypotheses-use-mu-and-not-barx"><i class="fa fa-check"></i><b>6.2.1</b> Why should hypotheses use <span class="math inline">\(\mu\)</span> and not <span class="math inline">\(\bar{x}\)</span>?</a></li>
 <li class="chapter" data-level="6.2.2" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#a-note-on-calculating-p-values"><i class="fa fa-check"></i><b>6.2.2</b> A note on calculating p-values</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="3-confidence-intervals-via-bootstrapping.html"><a href="3-confidence-intervals-via-bootstrapping.html#additional-examples"><i class="fa fa-check"></i><b>6.3</b> Additional Examples</a></li>
+<li class="chapter" data-level="6.3" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#additional-examples-1"><i class="fa fa-check"></i><b>6.3</b> Additional Examples</a></li>
 <li class="chapter" data-level="6.4" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#p-values-vs-cutoff-values"><i class="fa fa-check"></i><b>6.4</b> P-values vs cutoff values</a></li>
 <li class="chapter" data-level="6.5" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#running-a-t-test-in-r"><i class="fa fa-check"></i><b>6.5</b> Running a t-test in R</a></li>
 <li class="chapter" data-level="6.6" data-path="6-hypothesis-tests-for-the-mean-of-a-population.html"><a href="6-hypothesis-tests-for-the-mean-of-a-population.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i><b>6.6</b> Type I and Type II Errors</a>
@@ -405,8 +405,8 @@ and <span class="math inline">\(\mu_{i}\)</span> is the mean of group <span clas
 4. The observations are representative of the population of interest</p>
 <p>In general I want to test the hypotheses
 <span class="math display">\[\begin{aligned}
-H_{0} &amp;:		\mu_{1}=\mu_{2}=\dots=\mu_{k} \\
-H_{a} &amp;:		\textrm{at least on mean is different than the others}
+H_{0} &amp;:        \mu_{1}=\mu_{2}=\dots=\mu_{k} \\
+H_{a} &amp;:        \textrm{at least on mean is different than the others}
 \end{aligned}\]</span></p>
 <p><strong>Example 1</strong>. Suppose that we have three hybrids of a particular plant and we measure the leaf area for each hybrid.</p>
 <p>In the following graph, there does not appear to be a difference between the hybrid means:</p>
@@ -428,11 +428,11 @@ H_{a} &amp;:		\textrm{at least on mean is different than the others}
 <li><span class="math inline">\(\bar{y}_{\cdot\cdot}\)</span> be the mean of all the observations.</li>
 </ol>
 <p>Regardless of if the null hypothesis is true, the following is an estimate of <span class="math inline">\(\sigma^{2}\)</span>. We could use a pooled variance estimate similar to the estimator in the pooled two-sample t-test. We will denote this first estimator as the within-group estimate because the sums in the numerator are all measuring the variability within a group.
-<span class="math display">\[\begin{aligned} s_{W}^{2}	
-  &amp;=	\frac{\sum_{i=1}^{k}\sum_{j=1}^{n_{k}}\left(y_{ij}-\bar{y}_{i\cdot}\right)^{2}}{n-k} \\
-	&amp;=	\frac{\sum_{j=1}^{n_{1}}\left(y_{1j}-\bar{y}_{1\cdot}\right)^{2}+\sum_{j=1}^{n_{2}}\left(y_{2j}-\bar{y}_{2\cdot}\right)^{2}+\dots+\sum_{j=1}^{n_{k}}\left(y_{kj}-\bar{y}_{k\cdot}\right)^{2}}{\left(n_{1}-1\right)+\left(n_{2}-1\right)+\dots+\left(n_{k}-1\right)} \\
-	&amp;=	\frac{\left(n_{1}-1\right)s_{1}^{2}+\left(n_{2}-1\right)s_{2}^{2}+\dots+\left(n_{k}-1\right)s_{k}^{2}}{n-k}
-	\end{aligned}\]</span></p>
+<span class="math display">\[\begin{aligned} s_{W}^{2} 
+  &amp;=    \frac{\sum_{i=1}^{k}\sum_{j=1}^{n_{k}}\left(y_{ij}-\bar{y}_{i\cdot}\right)^{2}}{n-k} \\
+    &amp;=  \frac{\sum_{j=1}^{n_{1}}\left(y_{1j}-\bar{y}_{1\cdot}\right)^{2}+\sum_{j=1}^{n_{2}}\left(y_{2j}-\bar{y}_{2\cdot}\right)^{2}+\dots+\sum_{j=1}^{n_{k}}\left(y_{kj}-\bar{y}_{k\cdot}\right)^{2}}{\left(n_{1}-1\right)+\left(n_{2}-1\right)+\dots+\left(n_{k}-1\right)} \\
+    &amp;=  \frac{\left(n_{1}-1\right)s_{1}^{2}+\left(n_{2}-1\right)s_{2}^{2}+\dots+\left(n_{k}-1\right)s_{k}^{2}}{n-k}
+    \end{aligned}\]</span></p>
 <p>If the null hypothesis is true and <span class="math inline">\(\mu_{1}=\dots=\mu_{k}\)</span>, then a second way that I could estimate the <span class="math inline">\(\sigma^{2}\)</span> term is using the sample means. If <span class="math inline">\(H_{0}\)</span> is true then each sample mean has sampling distribution <span class="math inline">\(\bar{Y}_{i\cdot}\sim N\left(\mu,\frac{\sigma^{2}}{n_{i}}\right)\)</span>. In the simple case where <span class="math inline">\(n_{1}=n_{2}=\dots=n_{k}\)</span> then the sample variance of the <span class="math inline">\(k\)</span> sample means <span class="math inline">\(\bar{y}_{1},\bar{y}_{2},\dots,\bar{y}_{k}\)</span> has expectation <span class="math inline">\(\sigma^{2}/n_{i}\)</span> and could be used to estimate <span class="math inline">\(\sigma^{2}\)</span>. In the case of unequal sample sizes, the formula will be slightly different.</p>
 <p><span class="math display">\[s_{B}^{2}=\frac{1}{k-1}\sum_{i=1}^{k}n_{i}\left(\bar{y}_{i\cdot}-\bar{y}_{\cdot\cdot}\right)^{2}\]</span></p>
 <p>Under the null hypothesis, these two estimates are both estimating <span class="math inline">\(\sigma^{2}\)</span> and should be similar and the ratio <span class="math inline">\(s_{B}^{2}/s_{W}^{2}\)</span> follows an F-distribution with numerator degrees of freedom <span class="math inline">\(k-1\)</span> and denominator degrees of freedom <span class="math inline">\(n-k\)</span> degrees of freedom. We define our test statistic as <span class="math display">\[f=\frac{s_{B}^{2}}{s_{W}^{2}}\]</span></p>
@@ -498,28 +498,28 @@ H_{a} &amp;:		\textrm{at least on mean is different than the others}
 and has each observation having the same expectation <span class="math inline">\(\mu\)</span>. Thus we use the overall mean of the data <span class="math inline">\(\bar{y}_{\cdot\cdot}\)</span> as the estimate of <span class="math inline">\(\mu\)</span> and therefore our error terms are
 <span class="math display">\[e_{ij}=y_{ij}-\bar{y}_{\cdot\cdot}\]</span>
 The sum of squared error associated with the simple model is thus
-<span class="math display">\[\begin{aligned} SSE_{simple}		
+<span class="math display">\[\begin{aligned} SSE_{simple}      
   &amp;= \sum_{i=1}^{k}\sum_{j=1}^{n_{i}}e_{ij}^{2} \\
-	&amp;=	\sum_{i=1}^{k}\sum_{j=1}^{n_{i}}\left(y_{ij}-\bar{y}_{\cdot\cdot}\right)^{2} \\
-	&amp;=	SST 
-	\end{aligned}\]</span></p>
+    &amp;=  \sum_{i=1}^{k}\sum_{j=1}^{n_{i}}\left(y_{ij}-\bar{y}_{\cdot\cdot}\right)^{2} \\
+    &amp;=  SST 
+    \end{aligned}\]</span></p>
 <p><strong>Complex Model</strong></p>
 <p>The more complicated model
 <span class="math display">\[Y_{ij}=\mu_{i}+\epsilon_{ij}\;\;\;\textrm{where}\;\epsilon_{ij}\stackrel{iid}{\sim}N\left(0,\sigma^{2}\right)\]</span>
 has each observation having the expectation of its group mean <span class="math inline">\(\mu_{i}\)</span>. We’ll use the group means <span class="math inline">\(\bar{y}_{i\cdot}\)</span> as estimates for <span class="math inline">\(\mu_{i}\)</span> and thus the error terms are <span class="math display">\[e_{ij}=y_{ij}-\bar{y}_{i\cdot}\]</span>
 and the sum of squared error associated with the complex model is thus
-<span class="math display">\[\begin{aligned} SSE_{complex}	
-  &amp;=	\sum_{i=1}^{k}\sum_{j=1}^{n_{i}}e_{ij}^{2} \\
-	&amp;=	\sum_{i=1}^{k}\sum_{j=1}^{n_{i}}\left(y_{ij}-\bar{y}_{i\cdot}\right)^{2} \\
-	&amp;=	SSW 
-	\end{aligned}\]</span></p>
+<span class="math display">\[\begin{aligned} SSE_{complex} 
+  &amp;=    \sum_{i=1}^{k}\sum_{j=1}^{n_{i}}e_{ij}^{2} \\
+    &amp;=  \sum_{i=1}^{k}\sum_{j=1}^{n_{i}}\left(y_{ij}-\bar{y}_{i\cdot}\right)^{2} \\
+    &amp;=  SSW 
+    \end{aligned}\]</span></p>
 <p><strong>Difference</strong></p>
 <p>The difference between the simple and complex sums of squared error is denoted <span class="math inline">\(SSE_{diff}\)</span> and we see
-<span class="math display">\[\begin{aligned} SSE_{diff}	
-  &amp;=	SSE_{simple}-SSE_{complex} \\
-	&amp;=	SST-SSW \\
-	&amp;=	SSB
-	\end{aligned}\]</span>
+<span class="math display">\[\begin{aligned} SSE_{diff}    
+  &amp;=    SSE_{simple}-SSE_{complex} \\
+    &amp;=  SST-SSW \\
+    &amp;=  SSB
+    \end{aligned}\]</span>
 Note that <span class="math inline">\(SSE_{diff}\)</span> can be interpreted as the amount of variability that is explained by the more complicated model vs the simple. If this <span class="math inline">\(SSE_{diff}\)</span> is large, then we should use the complex model. Our only question becomes “How large is large?”</p>
 <p>First we must account for the number of additional parameters we have added. If we added five parameters, I should expect to account for more variability that if I added one parameter, so first we will divide <span class="math inline">\(SSE_{diff}\)</span> by the number of added parameters to get <span class="math inline">\(MSE_{diff}\)</span> which is the amount of variability explained by each additional parameter. If that amount is large compared to the leftover from the complex model, then we should use the complex model.</p>
 <p>These calculations are preformed in the ANOVA table, and the following table is identical to the previous ANOVA table, and we have only changed the names given to the various quantities.</p>
@@ -587,7 +587,7 @@ as the estimate of <span class="math inline">\(\sigma^{2}\)</span>. Notice that 
 <span id="cb284-3"><a href="9-analysis-of-variance-anova.html#cb284-3" aria-hidden="true"></a>                           <span class="fl">4.79</span>, <span class="fl">5.03</span>, <span class="fl">4.99</span>, <span class="fl">4.79</span>, <span class="fl">5.05</span>),</span>
 <span id="cb284-4"><a href="9-analysis-of-variance-anova.html#cb284-4" aria-hidden="true"></a>                   <span class="dt">Species =</span> <span class="kw">factor</span>( <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">each=</span><span class="dv">5</span>) ) )</span>
 <span id="cb284-5"><a href="9-analysis-of-variance-anova.html#cb284-5" aria-hidden="true"></a><span class="kw">str</span>(data)</span></code></pre></div>
-<pre><code>## &#39;data.frame&#39;:	15 obs. of  2 variables:
+<pre><code>## &#39;data.frame&#39;:    15 obs. of  2 variables:
 ##  $ LAI    : num  2.88 2.87 3.23 3.24 3.33 3.83 3.86 4.03 3.87 4.16 ...
 ##  $ Species: Factor w/ 3 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;: 1 1 1 1 1 2 2 2 2 2 ...</code></pre>
 <div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="9-analysis-of-variance-anova.html#cb286-1" aria-hidden="true"></a>model &lt;-<span class="st"> </span><span class="kw">lm</span>(LAI <span class="op">~</span><span class="st"> </span>Species, <span class="dt">data=</span>data)</span></code></pre></div>
@@ -618,7 +618,7 @@ as the estimate of <span class="math inline">\(\sigma^{2}\)</span>. Notice that 
 <p>Notice that R does not give you the third line in the ANOVA table. This was a deliberate choice by the Core Development Team of R, but one that is somewhat annoying. Because the third line is just the total of the first two, it isn’t hard to calculate, if necessary.</p>
 <p>The row labeled Species corresponds to the difference between the simple and complex models, while the Residuals row corresponds to the complex model. Notice that <span class="math inline">\(SSE_{diff}\)</span> is quite large, but to decide if it is large enough to justify the use of the complex model, we must go through the calculations to get the p-value, which is quite small. Because the p-value is smaller than any reasonable <span class="math inline">\(\alpha\)</span>-level, we can reject the null hypothesis and conclude that at least one of the means is different than the others.</p>
 <p>But which mean is different? The first thing to do is to look at the point estimates and confidence intervals for <span class="math inline">\(\mu_{i}\)</span>. These are
-<span class="math display">\[\hat{\mu}_{i}	=	\bar{y}_{i\cdot}\]</span>
+<span class="math display">\[\hat{\mu}_{i} =   \bar{y}_{i\cdot}\]</span>
 <span class="math display">\[\hat{y}_{i\cdot}\pm t_{n-k}^{1-\alpha/2}\left(\frac{\hat{\sigma}}{\sqrt{n_{i}}}\right)\]</span>
 and can be found using the <code>coef()</code> and <code>confint()</code> functions.</p>
 <div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="9-analysis-of-variance-anova.html#cb292-1" aria-hidden="true"></a><span class="co"># To get coefficients in the way we have represented the </span></span>
@@ -739,7 +739,7 @@ and can be found using the <code>coef()</code> and <code>confint()</code> functi
 <div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="9-analysis-of-variance-anova.html#cb310-1" aria-hidden="true"></a><span class="co"># Test for Normality</span></span>
 <span id="cb310-2"><a href="9-analysis-of-variance-anova.html#cb310-2" aria-hidden="true"></a><span class="kw">shapiro.test</span>(<span class="kw">resid</span>(model))</span></code></pre></div>
 <pre><code>## 
-## 	Shapiro-Wilk normality test
+##  Shapiro-Wilk normality test
 ## 
 ## data:  resid(model)
 ## W = 0.98358, p-value = 0.9516</code></pre>
@@ -776,7 +776,7 @@ and can be found using the <code>coef()</code> and <code>confint()</code> functi
 <div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="9-analysis-of-variance-anova.html#cb316-1" aria-hidden="true"></a><span class="kw">pairwise.t.test</span>(Hostility<span class="op">$</span>HLT, Hostility<span class="op">$</span>Method, </span>
 <span id="cb316-2"><a href="9-analysis-of-variance-anova.html#cb316-2" aria-hidden="true"></a>                <span class="dt">pool.sd=</span><span class="ot">FALSE</span>, <span class="dt">p.adjust.method=</span><span class="st">&#39;none&#39;</span>)</span></code></pre></div>
 <pre><code>## 
-## 	Pairwise comparisons using t tests with non-pooled SD 
+##  Pairwise comparisons using t tests with non-pooled SD 
 ## 
 ## data:  Hostility$HLT and Hostility$Method 
 ## 
@@ -788,7 +788,7 @@ and can be found using the <code>coef()</code> and <code>confint()</code> functi
 <div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="9-analysis-of-variance-anova.html#cb318-1" aria-hidden="true"></a><span class="kw">pairwise.t.test</span>(Hostility<span class="op">$</span>HLT, Hostility<span class="op">$</span>Method, </span>
 <span id="cb318-2"><a href="9-analysis-of-variance-anova.html#cb318-2" aria-hidden="true"></a>                <span class="dt">pool.sd=</span><span class="ot">FALSE</span>, <span class="dt">p.adjust.method=</span><span class="st">&#39;bonferroni&#39;</span>)</span></code></pre></div>
 <pre><code>## 
-## 	Pairwise comparisons using t tests with non-pooled SD 
+##  Pairwise comparisons using t tests with non-pooled SD 
 ## 
 ## data:  Hostility$HLT and Hostility$Method 
 ## 
@@ -1093,13 +1093,13 @@ We return to the hostility scores example and we will create the two different m
 <li>Do the ANOVA test and test the normality of the residual terms by making a QQplot and doing the Shapiro-Wilk’s test.</li>
 <li>Examine the ANOVA table. What is the p-value for testing the hypotheses
 <span class="math display">\[\begin{aligned}
- H_{0} &amp;:\,		\mu_{setosa}=\mu_{virginica}=\mu_{versicolor} \\
- H_{a} &amp;:\,		\textrm{at least on mean is different} 
+ H_{0} &amp;:\,      \mu_{setosa}=\mu_{virginica}=\mu_{versicolor} \\
+ H_{a} &amp;:\,      \textrm{at least on mean is different} 
  \end{aligned}\]</span></li>
 <li>Now that we know there is a statistically significant difference among the means (and with setosa having a mean Sepal.Width about 30% larger than the other two, I think aesthetically that is a big difference), we can go searching for it. Use Tukey’s “Honestly Significant Differences” method to test all the pairwise comparisons between means. In particular, what is the p-value for testing
 <span class="math display">\[\begin{aligned}
- H_{0} &amp;:\,		\mu_{setosa}=\mu_{virginica} \\
- H_{a} &amp;:\:		\mu_{setosa}\ne\mu_{virginica}
+ H_{0} &amp;:\,      \mu_{setosa}=\mu_{virginica} \\
+ H_{a} &amp;:\:      \mu_{setosa}\ne\mu_{virginica}
  \end{aligned}\]</span></li>
 <li>What is the estimated value of <span class="math inline">\(\mu_{setosa}\)</span>? What is the estimated value of <span class="math inline">\(\mu_{virginica}\)</span>?</li>
 <li>What is the estimated value of <span class="math inline">\(\sigma^{2}\)</span>?</li>

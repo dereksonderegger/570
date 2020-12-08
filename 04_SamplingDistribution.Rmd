@@ -13,13 +13,15 @@ if( length(pkgs > 0)){
 }
 
 # Set my default chunk options 
-knitr::opts_chunk$set( fig.height=3, cache=TRUE )
+knitr::opts_chunk$set( fig.height=3 )
 ```
  
  
 ```{r, message=FALSE, warning=FALSE}
-library(ggplot2)
-library(dplyr)
+suppressPackageStartupMessages({
+  library(ggplot2)
+  library(dplyr)
+})
 
 # Set default behavior of ggplot2 graphs to be black/white theme
 theme_set(theme_bw())
@@ -30,39 +32,58 @@ theme_set(theme_bw())
 ```
 
 
-In the previous chapter, we used bootstrapping to estimate the sampling distribution of $\bar{X}$. We then used this bootstrap distribution to calculate a confidence interval for the population mean. We noticed that the sampling distribution of $\bar{X}$ almost always looked like a normal distribution. Prior to the advent of modern computing, statisticians used a theoretical approximation known as the Central Limit Theorem (CLT). Even today, statistical procedures based on the CLT are widely used and often perform as the corresponding re-sampling technique. In this chapter we'll lay the theoretical foundations for the CLT as well as introduce computation
+In the previous chapter, we used bootstrapping to estimate the sampling 
+distribution of $\bar{X}$. We then used this bootstrap distribution to calculate 
+a confidence interval for the population mean. We noticed that the sampling 
+distribution of $\bar{X}$ almost always looked like a normal distribution. 
+Prior to the advent of modern computing, statisticians used a theoretical 
+approximation known as the Central Limit Theorem (CLT). Statistical 
+procedures based on the CLT are widely used and often perform as well or better
+than the corresponding re-sampling technique. In this chapter we'll 
+lay the theoretical foundations for the CLT as well as introduce both hand
+computation and R code snippets to complete various tasks.
 
 ## Enlightening Example
 
-Suppose we are sampling from a population that has a mean of $\mu=5$ and is skewed. For this example, I'll use a Chi-squared distribution with parameter $\nu=5$. 
+Suppose we are sampling from a population that has a mean of $\mu=5$ and is 
+skewed. For this example, I'll use a Chi-squared distribution with parameter $\nu=5$. 
+
 
 ```{r}
 # Population is a Chi-sq distribution with df=5 
 PopDist <- data.frame(x = seq(0,20,length=10000)) %>%
-  mutate(density=dchisq(x,df=5))
+  mutate(density=dchisq(x, df=5))
 
 ggplot(PopDist, aes(x=x, y=density)) +
   geom_area(fill='salmon') +
   ggtitle('Population Distribution')
 ```
 
-We want to estimate the mean $\mu$ and take a random sample of $n=5$. Lets do this a few times and notice that the sample mean is never exactly 5, but is a bit off from that.
+We want to estimate the mean $\mu$ and take a random sample of $n=6$. Lets do 
+this a few times and notice that the sample mean $\bar{x}$ is never exactly 
+the same as the population mean $\mu=5$, but is a bit off from that.
 
-```{r}
-n <- 5  # Our Sample Size!
-mosaic::do(3) * {
-  Sample.Data <- data.frame( x = rchisq(n,df=5) )
-  Sample.Data %>% summarise( xbar = mean(x) )
+```{r, echo=FALSE}
+set.seed <- 7685839373  # so that my example is remains the same 
+```
+```{r, warning=FALSE, message=FALSE}
+n <- 6  # Our Sample Size!
+my_sample <- rchisq(n, df=5)    # A sample of size n=6 with df = 5.
+my_sample  # Notice quite a spread of values, similar to the population graph
+mean(my_sample) # the sample mean
+
+# Use a do() loop to repeatedly sample n=6 and calculate the sample mean
+SampDist <- mosaic::do(3) * {
+  data.frame(xbar = mean(rchisq(n, df=5)))
 }
+SampDist # Show the 3 sample means...
 ```
 
 Now produce 10000 estimates from random samples of the population.
 
 ```{r}
-n <- 5
 SampDist <- mosaic::do(10000) * {
-  Sample.Data <- data.frame( x = rchisq(n,df=5) )
-  Sample.Data %>% summarise( xbar = mean(x)     ) 
+  data.frame(xbar = mean(rchisq(n, df=5)))
 }
 ```
 
@@ -95,13 +116,24 @@ $$E\left(X-Y\right)	=	E\left(X\right)-E\left(Y\right)$$
 $$Var\left(X\pm Y\right)	=	Var\left(X\right)+Var\left(Y\right)\;\textrm{if X,Y are independent}$$
  
 
-Proving these results is relatively straight forward and is done in almost all introductory probability text books. 
+Proving these results is relatively straight forward and is done in almost all 
+introductory probability text books. 
 
 ### Mean and Variance of the Sample Mean
 
-We have been talking about random variables drawn from a known distribution and being able to derive their expected values and variances. We now turn to the mean of a collection of random variables. Because sample values are random, any function of them is also random. So even though the act of calculating a mean is not a random process, the numbers that are fed into the algorithm are random. Thus the sample mean will change from sample to sample and we are interested in how it varies.
+We have been talking about random variables drawn from a known distribution and 
+being able to derive their expected values and variances. We now turn to the mean 
+of a collection of random variables. Because sample values are random, any 
+function of them is also random. So even though the act of calculating a mean is 
+not a random process, the numbers that are fed into the algorithm are random. 
+Thus the sample mean will change from sample to sample and we are interested in 
+how it varies.
 
-Using the rules we have just confirmed, it is easy to calculate the expectation and variance of the sample mean. Given a sample $X_{1},X_{2},\dots,X_{n}$ of observations where all the observations are independent of each other and all the observations have expectation $E\left[X_{i}\right]=\mu$ and variance $Var\left[X_{i}\right]=\sigma^{2}$ then 
+Using the rules we have just confirmed, it is easy to calculate the expectation 
+and variance of the sample mean. Given a sample $X_{1},X_{2},\dots,X_{n}$ of 
+observations where all the observations are independent of each other and all 
+the observations have expectation $E\left[X_{i}\right]=\mu$ and variance 
+$Var\left[X_{i}\right]=\sigma^{2}$ then 
 $$\begin{aligned}E\left[\bar{X}\right]	
   &=	E\left[\frac{1}{n}\sum_{i=1}^{n}X_{i}\right] \\
 	&=	\frac{1}{n}E\left[\sum_{i=1}^{n}X_{i}\right] \\
@@ -118,18 +150,30 @@ $$\begin{aligned}E\left[\bar{X}\right]
 	&=	\frac{1}{n^{2}}\,n\sigma^{2}                         \\
 	&=	\frac{\sigma^{2}}{n}
 	\end{aligned}$$
-		
- Notice that the sample mean has the same expectation as the original distribution that the samples were pulled from, but it has a smaller variance! So the sample mean is an unbiased estimator of the population mean $\mu$ and the average distance of the sample mean to the population mean decreases as the sample size becomes larger. 
+
+Notice that the sample mean has the same expectation as the original distribution 
+that the samples were pulled from, but it has a smaller variance! So the sample 
+mean is an unbiased estimator of the population mean $\mu$ and the average distance 
+of the sample mean to the population mean decreases as the sample size becomes larger. 
 
 ## Distribution of $\bar{X}$
 
-If $X_{i}\stackrel{iid}{\sim}N\left(\mu,\sigma^{2}\right)$ then it is well known (and proven in most undergraduate probability classes) that $\bar{X}$ is also normally distributed with a mean and variance that were already established. That is
+If $X_{i}\stackrel{iid}{\sim}N\left(\mu,\sigma^{2}\right)$ then it is well known 
+(and proven in most undergraduate probability classes) that $\bar{X}$ is also 
+normally distributed with a mean and variance that were already established. That is
 $$\bar{X}\sim N\left(\mu_{\bar{X}}=\mu,\;\sigma_{\bar{X}}^{2}=\frac{\sigma^{2}}{n}\right)$$
  
 
-Notation: Because the expectations of $X$ and $\bar{X}$ are the same, I could drop the subscript for the expectation of $\bar{X}$ but it is sometimes helpful to be precise. Because the variances are different we will use $\sigma_{\bar{X}}$ to denote the standard deviation of $\bar{X}$ and $\sigma_{\bar{X}}^{2}$ to denote variance of $\bar{X}$. If there is no subscript, we are referring to the population parameter of the distribution from which we taking the sample from.
+Notation: Because the expectations of $X$ and $\bar{X}$ are the same, I could drop 
+the subscript for the expectation of $\bar{X}$ but it is sometimes helpful to be 
+precise. Because the variances are different we will use $\sigma_{\bar{X}}$ to 
+denote the standard deviation of $\bar{X}$ and $\sigma_{\bar{X}}^{2}$ to denote 
+variance of $\bar{X}$. If there is no subscript, we are referring to the population 
+parameter of the distribution from which we taking the sample from.
 
-**Example:** A researcher measures the wingspan of a captured Mountain Plover three times. Assume that each of these $X_{i}$ measurements comes from a $N\left(\mu=6\textrm{ inches},\,\sigma^{2}=1\textrm{ inches}^2\right)$ distribution. 
+**Example:** A researcher measures the wingspan of a captured Mountain Plover 
+three times. Assume that each of these $X_{i}$ measurements comes from a 
+$N\left(\mu=6\textrm{ inches},\,\sigma^{2}=1\textrm{ inches}^2\right)$ distribution. 
 
 1. What is the probability that the first observation is greater than 7?
 $$\begin{aligned}P\left(X\ge7\right)	
@@ -151,7 +195,9 @@ $$\begin{aligned}P\left(\bar{X}\ge7\right)
 	\end{aligned}$$
  
 
-**Example:** Suppose that the weight of an adult black bear is normally distributed with standard deviation $\sigma=50$ pounds. How large a sample do I need to take to be $95\%$ certain that my sample mean is within $10$  pounds of the true mean $\mu$?
+**Example:** Suppose that the weight of an adult black bear is normally distributed 
+with standard deviation $\sigma=50$ pounds. How large a sample do I need to take 
+to be $95\%$ certain that my sample mean is within $10$  pounds of the true mean $\mu$?
 
 So we want $$\left|\bar{X}-\mu\right| \le 10$$ which we rewrite as $$-10	\le\bar{X}-\mu_{\bar{X}}\le	10$$
 		
@@ -160,7 +206,8 @@ $$\frac{-10}{\left(\frac{50}{\sqrt{n}}\right)}	\le\frac{\bar{X}-\mu_{\bar{X}}}{\
 $$\frac{-10}{\left(\frac{50}{\sqrt{n}}\right)}	\le Z\le	\frac{10}{\left(\frac{50}{\sqrt{n}}\right)}$$
  
 
-Next we look in our standard normal table to find a $z$-value such that $P\left(-z\le Z\le z\right)=0.95$ and that value is $z=1.96$.
+Next we look in our standard normal table to find a $z$-value such that 
+$P\left(-z\le Z\le z\right)=0.95$ and that value is $z=1.96$.
 
 ```{r}
 data <- data.frame( z= seq(-3, 3, length=1000) ) %>%
@@ -179,9 +226,27 @@ $$96	\approx	n$$
 
 ## Central Limit Theorem
 
-> I know of scarcely anything so apt to impress the imagination as the wonderful form of cosmic order expressed by the "Law of Frequency of Error". The law would have been personified by the Greeks and deified, if they had known of it. It reigns with serenity and in complete self-effacement, amidst the wildest confusion. The huger the mob, and the greater the apparent anarchy, the more perfect is its sway. It is the supreme law of Unreason. Whenever a large sample of chaotic elements are taken in hand and marshaled in the order of their magnitude, an unsuspected and most beautiful form of regularity proves to have been latent all along. - Sir Francis Galton (1822-1911)
+> I know of scarcely anything so apt to impress the imagination as the wonderful 
+> form of cosmic order expressed by the "Law of Frequency of Error". The law would 
+> have been personified by the Greeks and deified, if they had known of it. It 
+> reigns with serenity and in complete self-effacement, amidst the wildest confusion. 
+> The huger the mob, and the greater the apparent anarchy, the more perfect is its 
+> sway. It is the supreme law of Unreason. Whenever a large sample of chaotic 
+> elements are taken in hand and marshaled in the order of their magnitude, an 
+> unsuspected and most beautiful form of regularity proves to have been latent all 
+> along. 
+> 
+> Sir Francis Galton (1822-1911)
 
-It was not surprising that the average of a number of normal random variables is also a normal random variable. Because the average of a number of binomial random variables cannot be binomial since the average could be something besides a $0$ or $1$ and the average of Poisson random variables does not have to be an integer. The question arises, what can we say the distribution of the sample mean if the data comes from a non-normal distribution? The answer is quite a lot! Provided the distribution sample from has a non-infinite variance and we have a sufficient sample size.
+It was not surprising that the average of a number of normal random variables is 
+also a normal random variable. However the average of a number of binomial random 
+variables cannot be binomial because the average could be something besides a $0$ 
+or $1$. Similarly the average of Poisson random variables is not Poisson distributed
+because the average does not have to be an integer. 
+The question then arises, "What can we say the distribution of the sample mean if the 
+data comes from a non-normal distribution?" The answer turns out to be quite a lot,
+provided the distribution sample from has a non-infinite variance and we have a sufficient 
+sample size.
 
 **Central Limit Theorem**
 

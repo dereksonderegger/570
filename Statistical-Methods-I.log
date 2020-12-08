@@ -1,11 +1,11 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.10.6)  8 OCT 2020 13:25
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.11.7)  2 DEC 2020 17:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **Statistical-Methods-I.tex
 (./Statistical-Methods-I.tex
-LaTeX2e <2020-10-01>
-L3 programming layer <2020-10-05> xparse <2020-03-03> (/Users/dls354/Library/Ti
+LaTeX2e <2020-10-01> patch level 2
+L3 programming layer <2020-10-27> xparse <2020-03-03> (/Users/dls354/Library/Ti
 nyTeX/texmf-dist/tex/latex/base/book.cls
 Document Class: book 2020/04/10 v1.4m Standard LaTeX document class
 (/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/base/bk10.clo
@@ -138,7 +138,7 @@ Already applied: [0000/00/00] Old fixltx2e package on input line 53.
 )
 (/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/unicode-math/unicode-math.s
 ty (/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/l3kernel/expl3.sty
-Package: expl3 2020-10-05 L3 programming layer (loader) 
+Package: expl3 2020-10-27 L3 programming layer (loader) 
 
 (/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-xetex.d
 ef
@@ -157,13 +157,13 @@ TeX
 
 (/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/l3packages/xparse/xparse.st
 y
-Package: xparse 2020-10-05 L3 Experimental document command parser
+Package: xparse 2020-10-27 L3 Experimental document command parser
 
 (/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/l3packages/xparse/xparse-ge
 neric.tex))
 (/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2
 e.sty
-Package: l3keys2e 2020-10-05 LaTeX2e option processing using LaTeX3 keys
+Package: l3keys2e 2020-10-27 LaTeX2e option processing using LaTeX3 keys
 ) (/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/fontspec/fontspec.sty
 Package: fontspec 2020/02/21 v2.7i Font selection for XeLaTeX and LuaLaTeX
 
@@ -238,7 +238,7 @@ Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
 ) (/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/auxhook/auxhook.sty
 Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 ) (/Users/dls354/Library/TinyTeX/texmf-dist/tex/latex/kvoptions/kvoptions.sty
-Package: kvoptions 2019/11/29 v3.13 Key value format for package options (HO)
+Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
 )
 \@linkdim=\dimen151
 \Hy@linkcounter=\count275
@@ -790,23 +790,17 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 ] [8]
 Chapter 1.
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 159.
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 163.
 [9
 
-] [10] [11] [12]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[13]
+] [10] [11] [12] [13]
 File: 01_Data_Summary_files/figure-latex/unnamed-chunk-6-1.pdf Graphic file (ty
 pe pdf)
 <use 01_Data_Summary_files/figure-latex/unnamed-chunk-6-1.pdf>
+[14]
 File: 01_Data_Summary_files/figure-latex/unnamed-chunk-7-1.pdf Graphic file (ty
 pe pdf)
 <use 01_Data_Summary_files/figure-latex/unnamed-chunk-7-1.pdf>
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[14]
 File: 01_Data_Summary_files/figure-latex/unnamed-chunk-8-1.pdf Graphic file (ty
 pe pdf)
 <use 01_Data_Summary_files/figure-latex/unnamed-chunk-8-1.pdf>
@@ -814,73 +808,78 @@ pe pdf)
 File: 01_Data_Summary_files/figure-latex/unnamed-chunk-9-1.pdf Graphic file (ty
 pe pdf)
 <use 01_Data_Summary_files/figure-latex/unnamed-chunk-9-1.pdf>
+File: 01_Data_Summary_files/figure-latex/unnamed-chunk-10-1.pdf Graphic file (t
+ype pdf)
+<use 01_Data_Summary_files/figure-latex/unnamed-chunk-10-1.pdf>
+
+Underfull \vbox (badness 3240) has occurred while \output is active []
+
+[16]
 File: 01_Data_Summary_files/figure-latex/unnamed-chunk-11-1.pdf Graphic file (t
 ype pdf)
 <use 01_Data_Summary_files/figure-latex/unnamed-chunk-11-1.pdf>
-[16]
+[17]
 File: 01_Data_Summary_files/figure-latex/unnamed-chunk-12-1.pdf Graphic file (t
 ype pdf)
 <use 01_Data_Summary_files/figure-latex/unnamed-chunk-12-1.pdf>
 File: 01_Data_Summary_files/figure-latex/unnamed-chunk-13-1.pdf Graphic file (t
 ype pdf)
 <use 01_Data_Summary_files/figure-latex/unnamed-chunk-13-1.pdf>
-[17]
-File: 01_Data_Summary_files/figure-latex/unnamed-chunk-14-1.pdf Graphic file (t
+[18] [19]
+File: 01_Data_Summary_files/figure-latex/unnamed-chunk-16-1.pdf Graphic file (t
 ype pdf)
-<use 01_Data_Summary_files/figure-latex/unnamed-chunk-14-1.pdf>
-[18]
-File: 01_Data_Summary_files/figure-latex/unnamed-chunk-17-1.pdf Graphic file (t
-ype pdf)
-<use 01_Data_Summary_files/figure-latex/unnamed-chunk-17-1.pdf>
-[19] [20] [21]
-Underfull \hbox (badness 10000) in paragraph at lines 572--573
+<use 01_Data_Summary_files/figure-latex/unnamed-chunk-16-1.pdf>
+[20] [21] [22]
+Underfull \hbox (badness 10000) in paragraph at lines 747--749
 
  []
 
-[22] [23] [24]
-Overfull \hbox (17.25pt too wide) in paragraph at lines 746--746
+[23] [24] [25]
+Overfull \hbox (17.25pt too wide) in paragraph at lines 898--898
 []\TU/lmtt/m/n/10 ## []summarise()[] ungrouping output (override with [].groups
 [] argument)[] 
  []
 
-[25]
+File: 01_Data_Summary_files/figure-latex/unnamed-chunk-25-1.pdf Graphic file (t
+ype pdf)
+<use 01_Data_Summary_files/figure-latex/unnamed-chunk-25-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[26]
 File: 01_Data_Summary_files/figure-latex/unnamed-chunk-26-1.pdf Graphic file (t
 ype pdf)
 <use 01_Data_Summary_files/figure-latex/unnamed-chunk-26-1.pdf>
 File: 01_Data_Summary_files/figure-latex/unnamed-chunk-27-1.pdf Graphic file (t
 ype pdf)
 <use 01_Data_Summary_files/figure-latex/unnamed-chunk-27-1.pdf>
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[26]
-File: 01_Data_Summary_files/figure-latex/unnamed-chunk-28-1.pdf Graphic file (t
-ype pdf)
-<use 01_Data_Summary_files/figure-latex/unnamed-chunk-28-1.pdf>
 [27] [28] [29]
+File: 01_Data_Summary_files/figure-latex/unnamed-chunk-30-1.pdf Graphic file (t
+ype pdf)
+<use 01_Data_Summary_files/figure-latex/unnamed-chunk-30-1.pdf>
 File: 01_Data_Summary_files/figure-latex/unnamed-chunk-31-1.pdf Graphic file (t
 ype pdf)
 <use 01_Data_Summary_files/figure-latex/unnamed-chunk-31-1.pdf>
+
+Underfull \vbox (badness 3260) has occurred while \output is active []
+
+[30]
 File: 01_Data_Summary_files/figure-latex/unnamed-chunk-32-1.pdf Graphic file (t
 ype pdf)
 <use 01_Data_Summary_files/figure-latex/unnamed-chunk-32-1.pdf>
-[30]
-File: 01_Data_Summary_files/figure-latex/unnamed-chunk-33-1.pdf Graphic file (t
-ype pdf)
-<use 01_Data_Summary_files/figure-latex/unnamed-chunk-33-1.pdf>
 [31]
-Underfull \hbox (badness 1112) in paragraph at lines 996--998
+Underfull \hbox (badness 1112) in paragraph at lines 1194--1198
 \TU/lmr/m/it/10 rand.sample\TU/lmr/m/n/10 . Assign each value to variables with
  the names
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 996--998
+Underfull \hbox (badness 10000) in paragraph at lines 1194--1198
 
  []
 
 
-Underfull \hbox (badness 1762) in paragraph at lines 1008--1010
+Underfull \hbox (badness 1762) in paragraph at lines 1210--1215
 \TU/lmr/m/it/10 rand.sample.2 \TU/lmr/m/n/10 and save them as variables named \
 TU/lmr/m/it/10 step2.mean\TU/lmr/m/n/10 ,
  []
@@ -928,18 +927,18 @@ File: 02_Probability_files/figure-latex/unnamed-chunk-12-1.pdf Graphic file (ty
 pe pdf)
 <use 02_Probability_files/figure-latex/unnamed-chunk-12-1.pdf>
 [38]
-Overfull \hbox (36.57603pt too wide) detected at line 1163
+Overfull \hbox (36.57603pt too wide) detected at line 1369
 [][]
  []
 
 [39]
-Underfull \hbox (badness 1478) in paragraph at lines 1194--1195
+Underfull \hbox (badness 1478) in paragraph at lines 1400--1401
 []\TU/lmr/m/n/10 Suppose that convertibles make up just 10% of the domestic aut
 omo-
  []
 
 
-Overfull \hbox (103.83377pt too wide) detected at line 1223
+Overfull \hbox (103.83377pt too wide) detected at line 1429
 [][]
  []
 
@@ -948,7 +947,7 @@ File: 02_Probability_files/figure-latex/unnamed-chunk-13-1.pdf Graphic file (ty
 pe pdf)
 <use 02_Probability_files/figure-latex/unnamed-chunk-13-1.pdf>
 
-Overfull \hbox (2.862pt too wide) detected at line 1304
+Overfull \hbox (2.862pt too wide) detected at line 1525
 [][]
  []
 
@@ -956,11 +955,8 @@ Overfull \hbox (2.862pt too wide) detected at line 1304
 File: 02_Probability_files/figure-latex/unnamed-chunk-14-1.pdf Graphic file (ty
 pe pdf)
 <use 02_Probability_files/figure-latex/unnamed-chunk-14-1.pdf>
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 [43] [44]
-Overfull \hbox (110.02527pt too wide) detected at line 1387
+Overfull \hbox (110.02527pt too wide) detected at line 1629
 [][]
  []
 
@@ -968,7 +964,7 @@ Overfull \hbox (110.02527pt too wide) detected at line 1387
 
 Package amsmath Warning: Foreign command \atopwithdelims;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1477.
+(amsmath)                 on input line 1738.
 
 File: 02_Probability_files/figure-latex/unnamed-chunk-15-1.pdf Graphic file (ty
 pe pdf)
@@ -1007,10 +1003,7 @@ pe pdf)
 File: 02_Probability_files/figure-latex/unnamed-chunk-29-1.pdf Graphic file (ty
 pe pdf)
 <use 02_Probability_files/figure-latex/unnamed-chunk-29-1.pdf>
-[58] [59]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[60] [61] [62
+[58] [59] [60] [61] [62
 
 ]
 Chapter 3.
@@ -1036,9 +1029,6 @@ type pdf)
 File: 03_Bootstrapping_files/figure-latex/unnamed-chunk-16-1.pdf Graphic file (
 type pdf)
 <use 03_Bootstrapping_files/figure-latex/unnamed-chunk-16-1.pdf>
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 [68]
 File: 03_Bootstrapping_files/figure-latex/unnamed-chunk-17-1.pdf Graphic file (
 type pdf)
@@ -1046,68 +1036,64 @@ type pdf)
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[69] [70]
+[69] [70] [71]
 File: 03_Bootstrapping_files/figure-latex/unnamed-chunk-20-1.pdf Graphic file (
 type pdf)
 <use 03_Bootstrapping_files/figure-latex/unnamed-chunk-20-1.pdf>
-[71]
+[72]
 File: 03_Bootstrapping_files/figure-latex/unnamed-chunk-21-1.pdf Graphic file (
 type pdf)
 <use 03_Bootstrapping_files/figure-latex/unnamed-chunk-21-1.pdf>
-
-Underfull \vbox (badness 4660) has occurred while \output is active []
-
-[72]
 File: 03_Bootstrapping_files/figure-latex/unnamed-chunk-23-1.pdf Graphic file (
 type pdf)
 <use 03_Bootstrapping_files/figure-latex/unnamed-chunk-23-1.pdf>
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 [73] [74] [75] [76]
 Chapter 4.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 24.88pt on input line 2481.
+(Font)              scaled to size 24.88pt on input line 3008.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 20.74pt on input line 2481.
+(Font)              scaled to size 20.74pt on input line 3008.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 17.28pt on input line 2481.
+(Font)              scaled to size 17.28pt on input line 3008.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 24.88228pt on input line 2481.
+(Font)              scaled to size 24.88228pt on input line 3008.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 20.7419pt on input line 2481.
+(Font)              scaled to size 20.7419pt on input line 3008.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 17.28157pt on input line 2481.
+(Font)              scaled to size 17.28157pt on input line 3008.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 24.87733pt on input line 2481.
+(Font)              scaled to size 24.87733pt on input line 3008.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 20.73778pt on input line 2481.
+(Font)              scaled to size 20.73778pt on input line 3008.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 17.27815pt on input line 2481.
+(Font)              scaled to size 17.27815pt on input line 3008.
 [77
 
 ]
 File: 04_SamplingDistribution_files/figure-latex/unnamed-chunk-3-1.pdf Graphic 
 file (type pdf)
 <use 04_SamplingDistribution_files/figure-latex/unnamed-chunk-3-1.pdf>
-[78]
-File: 04_SamplingDistribution_files/figure-latex/unnamed-chunk-6-1.pdf Graphic 
-file (type pdf)
-<use 04_SamplingDistribution_files/figure-latex/unnamed-chunk-6-1.pdf>
-[79]
-Underfull \vbox (badness 1472) has occurred while \output is active []
 
-[80]
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 14.4pt on input line 2622.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 14.4013pt on input line 2622.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 14.39845pt on input line 2622.
-[81] [82]
+Overfull \hbox (1.5pt too wide) in paragraph at lines 3071--3071
+[]\TU/lmtt/m/n/10 ## [1]  1.398413  8.255088 10.107422  2.786150  7.521939  1.7
+88287[] 
+ []
+
+[78]
 File: 04_SamplingDistribution_files/figure-latex/unnamed-chunk-7-1.pdf Graphic 
 file (type pdf)
 <use 04_SamplingDistribution_files/figure-latex/unnamed-chunk-7-1.pdf>
+[79] [80]
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 14.4pt on input line 3191.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 14.4013pt on input line 3191.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 14.39845pt on input line 3191.
+[81] [82]
+File: 04_SamplingDistribution_files/figure-latex/unnamed-chunk-8-1.pdf Graphic 
+file (type pdf)
+<use 04_SamplingDistribution_files/figure-latex/unnamed-chunk-8-1.pdf>
 [83] [84] [85] [86]
 Chapter 5.
 [87
@@ -1117,18 +1103,66 @@ File: 05_ConfidenceIntervals_files/figure-latex/unnamed-chunk-3-1.pdf Graphic f
 ile (type pdf)
 <use 05_ConfidenceIntervals_files/figure-latex/unnamed-chunk-3-1.pdf>
 [89]
+Overfull \hbox (269.25pt too wide) in paragraph at lines 3541--3541
+[]\TU/lmtt/m/n/10 ## Installing 10 packages: pillar, cli, vctrs, processx, rstu
+dioapi, rprojroot, waldo, colorspace, isoband, lubridate[] 
+ []
+
+
+Overfull \hbox (38.25pt too wide) in paragraph at lines 3552--3552
+[]\TU/lmtt/m/n/10 ##   There is a binary version available but the source versi
+on is later:[] 
+ []
+
+
+Overfull \hbox (96.0pt too wide) in paragraph at lines 3552--3552
+[]\TU/lmtt/m/n/10 ##  /var/folders/d1/drs_scp95wd_s6zsdksk312m0000gn/T//RtmpqwQ
+T26/downloaded_packages[] 
+ []
+
+[90]
+Overfull \hbox (489.75pt too wide) in paragraph at lines 3584--3584
+[]   \TU/lmtt/m/n/10 checking for file ‘/private/var/folders/d1/drs_scp95wd_s6z
+sdksk312m0000gn/T/RtmpqwQT26/remotes86933ff75901/dereksonderegger-dsTools-0b697
+ba/DESCRIPTION’ ...[] 
+ []
+
+
+Overfull \hbox (468.75pt too wide) in paragraph at lines 3584--3584
+[]\TU/lmtt/m/n/10 v  checking for file ‘/private/var/folders/d1/drs_scp95wd_s6z
+sdksk312m0000gn/T/RtmpqwQT26/remotes86933ff75901/dereksonderegger-dsTools-0b697
+ba/DESCRIPTION’[] 
+ []
+
+
+Overfull \hbox (43.5pt too wide) in paragraph at lines 3584--3584
+[]\TU/lmtt/m/n/10 -  checking for LF line-endings in source and make files and 
+shell scripts[] 
+ []
+
+
+Overfull \hbox (27.75pt too wide) in paragraph at lines 3592--3592
+[]\TU/lmtt/m/n/10 ## Warning in is.na(x): is.na() applied to non-(list or vecto
+r) of type[] 
+ []
+
+
+Overfull \hbox (27.75pt too wide) in paragraph at lines 3592--3592
+[]\TU/lmtt/m/n/10 ## Warning in is.na(x): is.na() applied to non-(list or vecto
+r) of type[] 
+ []
+
+File: 05_ConfidenceIntervals_files/figure-latex/unnamed-chunk-4-1.pdf Graphic f
+ile (type pdf)
+<use 05_ConfidenceIntervals_files/figure-latex/unnamed-chunk-4-1.pdf>
 File: 05_ConfidenceIntervals_files/figure-latex/unnamed-chunk-5-1.pdf Graphic f
 ile (type pdf)
 <use 05_ConfidenceIntervals_files/figure-latex/unnamed-chunk-5-1.pdf>
-[90] [91]
-File: 05_ConfidenceIntervals_files/figure-latex/unnamed-chunk-7-1.pdf Graphic f
-ile (type pdf)
-<use 05_ConfidenceIntervals_files/figure-latex/unnamed-chunk-7-1.pdf>
-[92] [93] [94] [95] [96
+[91] [92] [93] [94] [95] [96]
+Chapter 6.
+[97
 
 ]
-Chapter 6.
-[97]
 File: 06_HypothesisTests_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file 
 (type pdf)
 <use 06_HypothesisTests_files/figure-latex/unnamed-chunk-4-1.pdf>
@@ -1186,7 +1220,7 @@ Overfull \hbox (14.10233pt too wide) has occurred while \output is active
  []
 
 [108] [109]
-Overfull \hbox (22.40002pt too wide) in paragraph at lines 3447--3448
+Overfull \hbox (22.40002pt too wide) in paragraph at lines 4232--4233
 []\TU/lmr/m/n/10 The \TU/lmtt/m/n/10 t.test() \TU/lmr/m/n/10 function supports 
 testing one-sided alternatives (\TU/lmtt/m/n/10 alternative=[]less[]
  []
@@ -1235,7 +1269,7 @@ File: 06_HypothesisTests_files/figure-latex/unnamed-chunk-19-1.pdf Graphic file
  (type pdf)
 <use 06_HypothesisTests_files/figure-latex/unnamed-chunk-19-1.pdf>
 
-Underfull \hbox (badness 1270) in paragraph at lines 3696--3697
+Underfull \hbox (badness 1270) in paragraph at lines 4481--4482
 \TU/lmr/m/n/10 ability of a Type II error. That is, calculate the value of
  []
 
@@ -1256,7 +1290,7 @@ CONFIDENCE INTERVALS
  []
 
 [120]
-Overfull \hbox (75.0pt too wide) in paragraph at lines 3776--3776
+Overfull \hbox (75.0pt too wide) in paragraph at lines 4561--4561
 []\TU/lmtt/m/n/10 ##  $ Group: Factor w/ 2 levels "Caffeine","NoCaffeine": 1 1 
 1 1 1 1 1 1 1 1 ...[] 
  []
@@ -1304,7 +1338,7 @@ CONFIDENCE INTERVALS
  []
 
 [130] [131]
-Overfull \hbox (17.25pt too wide) in paragraph at lines 4206--4206
+Overfull \hbox (17.25pt too wide) in paragraph at lines 4991--4991
 []\TU/lmtt/m/n/10 ## alternative hypothesis: true difference in means is not eq
 ual to 0[] 
  []
@@ -1316,7 +1350,7 @@ CONFIDENCE INTERVALS
  []
 
 [132] [133]
-Overfull \hbox (17.25pt too wide) in paragraph at lines 4270--4270
+Overfull \hbox (17.25pt too wide) in paragraph at lines 5055--5055
 []\TU/lmtt/m/n/10 ## []summarise()[] ungrouping output (override with [].groups
 [] argument)[] 
  []
@@ -1328,19 +1362,19 @@ CONFIDENCE INTERVALS
  []
 
 [134]
-Overfull \hbox (17.25pt too wide) in paragraph at lines 4295--4295
+Overfull \hbox (17.25pt too wide) in paragraph at lines 5080--5080
 []\TU/lmtt/m/n/10 ## []summarise()[] ungrouping output (override with [].groups
 [] argument)[] 
  []
 
 [135]
-Overfull \hbox (17.25pt too wide) in paragraph at lines 4371--4371
+Overfull \hbox (17.25pt too wide) in paragraph at lines 5156--5156
 []\TU/lmtt/m/n/10 ## alternative hypothesis: true difference in means is not eq
 ual to 0[] 
  []
 
 
-Overfull \hbox (17.25pt too wide) in paragraph at lines 4394--4394
+Overfull \hbox (17.25pt too wide) in paragraph at lines 5179--5179
 []\TU/lmtt/m/n/10 ## alternative hypothesis: true difference in means is not eq
 ual to 0[] 
  []
@@ -1366,7 +1400,7 @@ File: 07_Two_Samples_files/figure-latex/unnamed-chunk-34-1.pdf Graphic file (ty
 pe pdf)
 <use 07_Two_Samples_files/figure-latex/unnamed-chunk-34-1.pdf>
 [139]
-Overfull \hbox (17.25pt too wide) in paragraph at lines 4536--4536
+Overfull \hbox (17.25pt too wide) in paragraph at lines 5321--5321
 []\TU/lmtt/m/n/10 ## alternative hypothesis: true difference in means is not eq
 ual to 0[] 
  []
@@ -1391,7 +1425,7 @@ mr/m/n/10 141
  []
 
 [141]
-Overfull \hbox (17.25pt too wide) in paragraph at lines 4625--4625
+Overfull \hbox (17.25pt too wide) in paragraph at lines 5410--5410
 []\TU/lmtt/m/n/10 ## alternative hypothesis: true difference in means is greate
 r than 0[] 
  []
@@ -1501,13 +1535,13 @@ File: 08_TestingAssumptions_files/figure-latex/unnamed-chunk-15-1.pdf Graphic f
 ile (type pdf)
 <use 08_TestingAssumptions_files/figure-latex/unnamed-chunk-15-1.pdf>
 [161]
-Overfull \hbox (17.25pt too wide) in paragraph at lines 5294--5294
+Overfull \hbox (17.25pt too wide) in paragraph at lines 6079--6079
 []\TU/lmtt/m/n/10 ## []summarise()[] ungrouping output (override with [].groups
 [] argument)[] 
  []
 
 [162]
-Overfull \hbox (12.0pt too wide) in paragraph at lines 5340--5340
+Overfull \hbox (12.0pt too wide) in paragraph at lines 6125--6125
 []\TU/lmtt/m/n/10 ## alternative hypothesis: true ratio of variances is not equ
 al to 1[] 
  []
@@ -1521,7 +1555,7 @@ File: 08_TestingAssumptions_files/figure-latex/unnamed-chunk-25-1.pdf Graphic f
 ile (type pdf)
 <use 08_TestingAssumptions_files/figure-latex/unnamed-chunk-25-1.pdf>
 
-Overfull \hbox (12.0pt too wide) in paragraph at lines 5434--5434
+Overfull \hbox (12.0pt too wide) in paragraph at lines 6219--6219
 []\TU/lmtt/m/n/10 ## alternative hypothesis: true ratio of variances is not equ
 al to 1[] 
  []
@@ -1546,7 +1580,7 @@ File: 09_ANOVA_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file (type pdf)
 Underfull \vbox (badness 1527) has occurred while \output is active []
 
 [173] [174]
-Overfull \hbox (17.25pt too wide) in paragraph at lines 5745--5745
+Overfull \hbox (17.25pt too wide) in paragraph at lines 6530--6530
 []\TU/lmtt/m/n/10 ## []summarise()[] ungrouping output (override with [].groups
 [] argument)[] 
  []
@@ -1555,73 +1589,73 @@ File: 09_ANOVA_files/figure-latex/unnamed-chunk-5-1.pdf Graphic file (type pdf)
 
 <use 09_ANOVA_files/figure-latex/unnamed-chunk-5-1.pdf>
 [175]
-Overfull \hbox (19.56099pt too wide) in alignment at lines 5751--5755
+Overfull \hbox (19.56099pt too wide) in alignment at lines 6536--6540
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (19.56099pt too wide) in alignment at lines 5755--5760
+Overfull \hbox (19.56099pt too wide) in alignment at lines 6540--6545
  [] [] [] [] [] [] 
  []
 
 [176]
-Overfull \hbox (4.76747pt too wide) in paragraph at lines 5813--5814
+Overfull \hbox (4.76747pt too wide) in paragraph at lines 6598--6599
  []\TU/lmr/m/n/10 Source| 
  []
 
 
-Overfull \hbox (4.79883pt too wide) in alignment at lines 5810--5826
+Overfull \hbox (4.79883pt too wide) in alignment at lines 6595--6611
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (19.33748pt too wide) in paragraph at lines 5828--5829
+Overfull \hbox (19.33748pt too wide) in paragraph at lines 6613--6614
  []\TU/lmr/m/n/10 Difference| 
  []
 
 
-Overfull \hbox (2.73491pt too wide) in paragraph at lines 5832--5833
+Overfull \hbox (2.73491pt too wide) in paragraph at lines 6617--6618
  []$[][][][]$| 
  []
 
 
-Overfull \hbox (11.5862pt too wide) in paragraph at lines 5838--5839
+Overfull \hbox (11.5862pt too wide) in paragraph at lines 6623--6624
 []$[][][][] [] 
  []
 
 
-Overfull \hbox (14.45747pt too wide) in paragraph at lines 5841--5842
+Overfull \hbox (14.45747pt too wide) in paragraph at lines 6626--6627
  []\TU/lmr/m/n/10 Complex| 
  []
 
 
-Overfull \hbox (16.52492pt too wide) in paragraph at lines 5845--5846
+Overfull \hbox (16.52492pt too wide) in paragraph at lines 6630--6631
  []$[][][][]$| 
  []
 
 
-Overfull \hbox (5.29747pt too wide) in paragraph at lines 5854--5855
+Overfull \hbox (5.29747pt too wide) in paragraph at lines 6639--6640
  []\TU/lmr/m/n/10 Simple| 
  []
 
 
-Overfull \hbox (10.98093pt too wide) in paragraph at lines 5858--5859
+Overfull \hbox (10.98093pt too wide) in paragraph at lines 6643--6644
  []$[][][][]$| 
  []
 
 
-Overfull \hbox (4.79883pt too wide) in alignment at lines 5826--5867
+Overfull \hbox (4.79883pt too wide) in alignment at lines 6611--6652
  [] [] [] [] [] [] 
  []
 
 [177] [178]
-Overfull \hbox (38.25pt too wide) in paragraph at lines 5900--5900
+Overfull \hbox (38.25pt too wide) in paragraph at lines 6685--6685
 []\TU/lmtt/m/n/10 ##  $ LAI    : num  2.88 2.87 3.23 3.24 3.33 3.83 3.86 4.03 3
 .87 4.16 ...[] 
  []
 
 
-Overfull \hbox (22.5pt too wide) in paragraph at lines 5900--5900
+Overfull \hbox (22.5pt too wide) in paragraph at lines 6685--6685
 []\TU/lmtt/m/n/10 ##  $ Species: Factor w/ 3 levels "1","2","3": 1 1 1 1 1 2 2 
 2 2 2 ...[] 
  []
@@ -1630,7 +1664,7 @@ File: 09_ANOVA_files/figure-latex/unnamed-chunk-7-1.pdf Graphic file (type pdf)
 
 <use 09_ANOVA_files/figure-latex/unnamed-chunk-7-1.pdf>
 [179]
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5938--5938
+Overfull \hbox (59.25pt too wide) in paragraph at lines 6723--6723
 []\TU/lmtt/m/n/10 ## Call []lifecycle::last_warnings()[] to see where this warn
 ing was generated.[] 
  []
@@ -1643,13 +1677,13 @@ File: 09_ANOVA_files/figure-latex/unnamed-chunk-12-1.pdf Graphic file (type pdf
 )
 <use 09_ANOVA_files/figure-latex/unnamed-chunk-12-1.pdf>
 [182] [183]
-Overfull \hbox (38.25pt too wide) in paragraph at lines 6078--6078
+Overfull \hbox (38.25pt too wide) in paragraph at lines 6863--6863
 []\TU/lmtt/m/n/10 ## P value adjustment: tukey method for comparing a family of
  5 estimates[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 6100--6100
+Overfull \hbox (38.25pt too wide) in paragraph at lines 6885--6885
 []\TU/lmtt/m/n/10 ## P value adjustment: tukey method for comparing a family of
  5 estimates[] 
  []
@@ -1665,13 +1699,13 @@ File: 09_ANOVA_files/figure-latex/unnamed-chunk-18-1.pdf Graphic file (type pdf
 Underfull \vbox (badness 1281) has occurred while \output is active []
 
 [185]
-Overfull \hbox (59.25pt too wide) in paragraph at lines 6167--6167
+Overfull \hbox (59.25pt too wide) in paragraph at lines 6952--6952
 []\TU/lmtt/m/n/10 ## Warning in leveneTest.default(y = y, group = group, ...): 
 group coerced to[] 
  []
 
 [186]
-Overfull \hbox (38.25pt too wide) in paragraph at lines 6237--6237
+Overfull \hbox (38.25pt too wide) in paragraph at lines 7022--7022
 []\TU/lmtt/m/n/10 ## P value adjustment: tukey method for comparing a family of
  3 estimates[] 
  []
@@ -1689,7 +1723,7 @@ File: 09_ANOVA_files/figure-latex/unnamed-chunk-29-1.pdf Graphic file (type pdf
 )
 <use 09_ANOVA_files/figure-latex/unnamed-chunk-29-1.pdf>
 [192] [193]
-Underfull \hbox (badness 10000) in paragraph at lines 6522--6523
+Underfull \hbox (badness 10000) in paragraph at lines 7307--7308
 
  []
 
@@ -1704,12 +1738,12 @@ File: 09_ANOVA_files/figure-latex/unnamed-chunk-33-1.pdf Graphic file (type pdf
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [195] [196]
-Overfull \hbox (16.20157pt too wide) detected at line 6598
+Overfull \hbox (16.20157pt too wide) detected at line 7383
 [][][][] [] [] [] [][] [] [] [] [][] [] [] [] [][]
  []
 
 
-Overfull \hbox (9.77557pt too wide) detected at line 6609
+Overfull \hbox (9.77557pt too wide) detected at line 7394
 [][][][] [] [] [] [][] [] [] [] [][] [] [] [] [][]
  []
 
@@ -1746,17 +1780,17 @@ File: 10_Regression_files/figure-latex/unnamed-chunk-9-1.pdf Graphic file (type
 Underfull \vbox (badness 4913) has occurred while \output is active []
 
 [203] [204]
-Overfull \hbox (11.5979pt too wide) in paragraph at lines 6967--6968
+Overfull \hbox (11.5979pt too wide) in paragraph at lines 7752--7753
  []\TU/lmr/m/n/10 Coefficient| 
  []
 
 
-Overfull \hbox (1.12979pt too wide) in paragraph at lines 6969--6970
+Overfull \hbox (1.12979pt too wide) in paragraph at lines 7754--7755
  []\TU/lmr/m/n/10 Estimate| 
  []
 
 
-Overfull \hbox (4.9679pt too wide) in paragraph at lines 6980--6981
+Overfull \hbox (4.9679pt too wide) in paragraph at lines 7765--7766
  []\TU/lmr/m/n/10 Intercept| 
  []
 
@@ -1764,42 +1798,42 @@ Overfull \hbox (4.9679pt too wide) in paragraph at lines 6980--6981
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [205] [206]
-Overfull \hbox (4.76747pt too wide) in paragraph at lines 7070--7071
+Overfull \hbox (4.76747pt too wide) in paragraph at lines 7855--7856
  []\TU/lmr/m/n/10 Source| 
  []
 
 
-Overfull \hbox (19.33748pt too wide) in paragraph at lines 7085--7086
+Overfull \hbox (19.33748pt too wide) in paragraph at lines 7870--7871
  []\TU/lmr/m/n/10 Difference| 
  []
 
 
-Overfull \hbox (2.73491pt too wide) in paragraph at lines 7089--7090
+Overfull \hbox (2.73491pt too wide) in paragraph at lines 7874--7875
  []$[][][][]$| 
  []
 
 
-Overfull \hbox (8.52669pt too wide) in paragraph at lines 7095--7096
+Overfull \hbox (8.52669pt too wide) in paragraph at lines 7880--7881
  []$[][][][] [] 
  []
 
 
-Overfull \hbox (14.45747pt too wide) in paragraph at lines 7098--7099
+Overfull \hbox (14.45747pt too wide) in paragraph at lines 7883--7884
  []\TU/lmr/m/n/10 Complex| 
  []
 
 
-Overfull \hbox (16.52492pt too wide) in paragraph at lines 7102--7103
+Overfull \hbox (16.52492pt too wide) in paragraph at lines 7887--7888
  []$[][][][]$| 
  []
 
 
-Overfull \hbox (5.29747pt too wide) in paragraph at lines 7111--7112
+Overfull \hbox (5.29747pt too wide) in paragraph at lines 7896--7897
  []\TU/lmr/m/n/10 Simple| 
  []
 
 
-Overfull \hbox (10.98093pt too wide) in paragraph at lines 7115--7116
+Overfull \hbox (10.98093pt too wide) in paragraph at lines 7900--7901
  []$[][][][]$| 
  []
 
@@ -1831,7 +1865,7 @@ File: 10_Regression_files/figure-latex/unnamed-chunk-25-1.pdf Graphic file (typ
 e pdf)
 <use 10_Regression_files/figure-latex/unnamed-chunk-25-1.pdf>
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 7373--7373
+Overfull \hbox (59.25pt too wide) in paragraph at lines 8158--8158
 []\TU/lmtt/m/n/10 ## Call []lifecycle::last_warnings()[] to see where this warn
 ing was generated.[] 
  []
@@ -1876,16 +1910,16 @@ File: 10_Regression_files/figure-latex/unnamed-chunk-33-1.pdf Graphic file (typ
 e pdf)
 <use 10_Regression_files/figure-latex/unnamed-chunk-33-1.pdf>
 
-Overfull \vbox (1.59698pt too high) detected at line 7586
+Overfull \vbox (1.59698pt too high) detected at line 8371
  []
 
 [222] [223] [224]
-Overfull \hbox (10.52025pt too wide) in alignment at lines 7719--7721
+Overfull \hbox (10.52025pt too wide) in alignment at lines 8504--8506
  [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (10.52025pt too wide) in alignment at lines 7721--7725
+Overfull \hbox (10.52025pt too wide) in alignment at lines 8506--8510
  [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] 
  []
 
@@ -1894,13 +1928,13 @@ Overfull \hbox (10.52025pt too wide) in alignment at lines 7721--7725
 ]
 Chapter 11.
 [227] [228] [229]
-Overfull \hbox (69.75pt too wide) in paragraph at lines 7890--7890
+Overfull \hbox (69.75pt too wide) in paragraph at lines 8675--8675
 []\TU/lmtt/m/n/10 ##  $ treatment: Factor w/ 2 levels "mites","no mites": 1 1 1
  1 1 1 1 1 1 1 ...[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 7890--7890
+Overfull \hbox (59.25pt too wide) in paragraph at lines 8675--8675
 []\TU/lmtt/m/n/10 ##  $ outcome  : Factor w/ 2 levels "no wilt","wilt": 2 2 2 2
  2 2 2 2 2 2 ...[] 
  []
@@ -1910,13 +1944,13 @@ File: 12_ContingencyTables_files/figure-latex/unnamed-chunk-11-1.pdf Graphic fi
 le (type pdf)
 <use 12_ContingencyTables_files/figure-latex/unnamed-chunk-11-1.pdf>
 [233]
-Overfull \hbox (17.25pt too wide) in paragraph at lines 8074--8074
+Overfull \hbox (17.25pt too wide) in paragraph at lines 8859--8859
 []\TU/lmtt/m/n/10 ##  Pearson[]s Chi-squared test with simulated p-value (based
  on 10000[] 
  []
 
 [234]
-Overfull \hbox (17.25pt too wide) in paragraph at lines 8137--8137
+Overfull \hbox (17.25pt too wide) in paragraph at lines 8922--8922
 []\TU/lmtt/m/n/10 ##  Pearson[]s Chi-squared test with simulated p-value (based
  on 10000[] 
  []
@@ -1926,18 +1960,18 @@ File: 12_ContingencyTables_files/figure-latex/unnamed-chunk-16-1.pdf Graphic fi
 le (type pdf)
 <use 12_ContingencyTables_files/figure-latex/unnamed-chunk-16-1.pdf>
 [236] [237]
-Overfull \hbox (17.25pt too wide) in paragraph at lines 8263--8263
+Overfull \hbox (17.25pt too wide) in paragraph at lines 9048--9048
 []\TU/lmtt/m/n/10 ##  Pearson[]s Chi-squared test with simulated p-value (based
  on 1e+05[] 
  []
 
 [238]
-Overfull \hbox (1.34546pt too wide) in alignment at lines 8281--8297
+Overfull \hbox (1.34546pt too wide) in alignment at lines 9066--9082
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (1.34546pt too wide) in alignment at lines 8297--8338
+Overfull \hbox (1.34546pt too wide) in alignment at lines 9082--9123
  [] [] [] [] [] [] 
  []
 
@@ -1948,16 +1982,16 @@ le (type pdf)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [239] [240]
-Overfull \hbox (6.57356pt too wide) detected at line 8404
+Overfull \hbox (6.57356pt too wide) detected at line 9189
 [][]
  []
 
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <14.4> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 8413.
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 9198.
 [241
 
 ] [242] [243]
-Overfull \hbox (17.25pt too wide) in paragraph at lines 8544--8544
+Overfull \hbox (17.25pt too wide) in paragraph at lines 9329--9329
 []\TU/lmtt/m/n/10 ## alternative hypothesis: true difference in means is not eq
 ual to 0[] 
  []
@@ -1975,18 +2009,18 @@ File: 90_Resampling_LinearModels_files/figure-latex/unnamed-chunk-16-1.pdf Grap
 hic file (type pdf)
 <use 90_Resampling_LinearModels_files/figure-latex/unnamed-chunk-16-1.pdf>
 [251]
-Underfull \hbox (badness 10000) in paragraph at lines 8753--8754
+Underfull \hbox (badness 10000) in paragraph at lines 9538--9539
 
  []
 
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <12> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 8766.
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 9551.
 [252]
 File: 90_Resampling_LinearModels_files/figure-latex/unnamed-chunk-18-1.pdf Grap
 hic file (type pdf)
 <use 90_Resampling_LinearModels_files/figure-latex/unnamed-chunk-18-1.pdf>
 [253]
-Underfull \hbox (badness 1515) in paragraph at lines 8840--8841
+Underfull \hbox (badness 1515) in paragraph at lines 9625--9626
 []\TU/lmr/m/n/10 To utilize the bootstrap confidence intervals, we will use the
  function
  []
@@ -2021,13 +2055,13 @@ File: 90_Resampling_LinearModels_files/figure-latex/unnamed-chunk-38-1.pdf Grap
 hic file (type pdf)
 <use 90_Resampling_LinearModels_files/figure-latex/unnamed-chunk-38-1.pdf>
 [263] [264]
-Underfull \hbox (badness 2529) in paragraph at lines 9335--9336
+Underfull \hbox (badness 2529) in paragraph at lines 10120--10121
 []\TU/lmr/m/n/10 The \TU/lmtt/m/n/10 car::Boot() \TU/lmr/m/n/10 function cannot
  handle the grouping, but
  []
 
 
-Overfull \hbox (71.74992pt too wide) in paragraph at lines 9354--9356
+Overfull \hbox (71.74992pt too wide) in paragraph at lines 10139--10141
 []\TU/lmr/m/n/10 Call this function using \TU/lmtt/m/n/10 indices = resample(1:
 21, groups=Pollution$type)\TU/lmr/m/n/10 .
  []
@@ -2050,15 +2084,15 @@ Underfull \vbox (badness 2126) has occurred while \output is active []
 No file Statistical-Methods-I.bbl.
 [269] (./Statistical-Methods-I.aux)
 Package rerunfilecheck Info: File `Statistical-Methods-I.out' has not changed.
-(rerunfilecheck)             Checksum: 4C55981D0BC4F337CF285ACC16F2F541;13426.
+(rerunfilecheck)             Checksum: 7EB46AF92DF171CEB8C33EF333457725;13252.
  ) 
 Here is how much of TeX's memory you used:
- 17278 strings out of 479465
- 338551 string characters out of 5881333
- 773140 words of memory out of 5000000
- 36292 multiletter control sequences out of 15000+600000
+ 17276 strings out of 479426
+ 338529 string characters out of 5880085
+ 769454 words of memory out of 5000000
+ 36331 multiletter control sequences out of 15000+600000
  545471 words of font info for 117 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 84i,11n,118p,2129b,579s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 94i,11n,118p,2129b,581s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on Statistical-Methods-I.pdf (269 pages).

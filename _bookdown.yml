@@ -1,4 +1,4 @@
 book_filename: "Statistical-Methods-I"
 chapter_name: "Chapter "
-output_dir: "docs"
+output_dir: "_book"
 new_session: yes

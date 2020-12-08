@@ -14,7 +14,7 @@
 # Output files from R CMD check
 /*.Rcheck/
 
-# RStudio files
+# RStudio file directory
 .Rproj.user/
 
 # The Project file
@@ -33,6 +33,5 @@
 
 # Bookdown files and cache directory.  If we want pdfs on
 # GitHub, they should live in the docs/ directory
-_book/
-_bookdown_files/
-.Rproj.user
+_book
+_bookdown_files
